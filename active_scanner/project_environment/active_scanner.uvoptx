@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>empty_peripheral_template_585</TargetName>
+    <TargetName>active_scanner_585</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -188,7 +188,7 @@
   </Target>
 
   <Target>
-    <TargetName>empty_peripheral_template_586</TargetName>
+    <TargetName>active_scanner_586</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -2514,8 +2514,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\src\user_empty_peripheral_template.c</PathWithFileName>
-      <FilenameWithoutPath>user_empty_peripheral_template.c</FilenameWithoutPath>
+      <PathWithFileName>.\..\src\user_active_scanner.c</PathWithFileName>
+      <FilenameWithoutPath>user_active_scanner.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

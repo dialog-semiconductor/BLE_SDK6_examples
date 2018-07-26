@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>empty_peripheral_template_585</TargetName>
+      <TargetName>active_scanner_585</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\out_585\</OutputDirectory>
-          <OutputName>empty_peripheral_template_585</OutputName>
+          <OutputName>active_scanner_585</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -370,7 +370,7 @@
             <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\scatterfile_common.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--feedback=".\unused_585.txt" .\..\..\..\..\..\sdk\common_project_files\misc\da14585_symbols.txt  --symdefs=empty_peripheral_template_585_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <Misc>--feedback=".\unused_585.txt" .\..\..\..\..\..\sdk\common_project_files\misc\da14585_symbols.txt  --symdefs=active_scanner_585_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -1296,16 +1296,16 @@
           <GroupName>user_app</GroupName>
           <Files>
             <File>
-              <FileName>user_empty_peripheral_template.c</FileName>
+              <FileName>user_active_scanner.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\src\user_empty_peripheral_template.c</FilePath>
+              <FilePath>.\..\src\user_active_scanner.c</FilePath>
             </File>
           </Files>
         </Group>
       </Groups>
     </Target>
     <Target>
-      <TargetName>empty_peripheral_template_586</TargetName>
+      <TargetName>active_scanner_586</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -1347,7 +1347,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\out_586\</OutputDirectory>
-          <OutputName>empty_peripheral_template_586</OutputName>
+          <OutputName>active_scanner_586</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -1668,7 +1668,7 @@
             <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\scatterfile_common.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--feedback=".\unused_586.txt" .\..\..\..\..\..\sdk\common_project_files\misc\da14585_symbols.txt  --symdefs=empty_peripheral_template_586_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <Misc>--feedback=".\unused_586.txt" .\..\..\..\..\..\sdk\common_project_files\misc\da14585_symbols.txt  --symdefs=active_scanner_586_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -2594,9 +2594,9 @@
           <GroupName>user_app</GroupName>
           <Files>
             <File>
-              <FileName>user_empty_peripheral_template.c</FileName>
+              <FileName>user_active_scanner.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\src\user_empty_peripheral_template.c</FilePath>
+              <FilePath>.\..\src\user_active_scanner.c</FilePath>
             </File>
           </Files>
         </Group>

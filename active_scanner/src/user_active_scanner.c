@@ -45,7 +45,7 @@
  */
 
 #include "app_api.h"
-#include "user_empty_peripheral_template.h"
+#include "user_active_scanner.h"
 
 /*
  * FUNCTION DEFINITIONS

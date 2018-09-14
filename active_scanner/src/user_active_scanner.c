@@ -1,9 +1,9 @@
 /**
  ****************************************************************************************
  *
- * @file user_empty_peripheral_template.c
+ * @file user_active_scanner.c
  *
- * @brief Empty peripheral template project source code.
+ * @brief Active scanner project source code.
  *
  * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
  *

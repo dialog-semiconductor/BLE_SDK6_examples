@@ -193,7 +193,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "DIALOG-TMPL"
+#define USER_DEVICE_NAME        "DIALOG-SCANNER"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)
@@ -207,7 +207,7 @@ static const struct advertise_configuration user_adv_conf = {
  */
 static const struct gapm_configuration user_gapm_conf = {
     /// Device Role: Central, Peripheral, Observer, Broadcaster or All roles. (@see enum gap_role)
-    .role = GAP_ROLE_PERIPHERAL,
+    .role = GAP_ROLE_OBSERVER,
 
     /// Maximal MTU. Shall be set to 23 if Legacy Pairing is used, 65 if Secure Connection is used,
     /// more if required by the application

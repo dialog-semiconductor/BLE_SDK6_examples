@@ -1,9 +1,9 @@
 /**
  ****************************************************************************************
  *
- * @file user_empty_peripheral_template.h
+ * @file user_active_scanner.h
  *
- * @brief Empty peripheral template project header file.
+ * @brief Active scanner project header file.
  *
  * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
  *
@@ -30,8 +30,8 @@
  ****************************************************************************************
  */
 
-#ifndef _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
-#define _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#ifndef _USER_ACTIVE_SCANNER_H_
+#define _USER_ACTIVE_SCANNER_H_
 
 /**
  ****************************************************************************************
@@ -87,4 +87,4 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param );
 
 /// @} APP
 
-#endif // _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#endif // _USER_ACTIVE_SCANNER_H_

@@ -51,11 +51,6 @@
 #define CFG_APP_SECURITY
 
 /****************************************************************************************************************/
-/* Enables WatchDog timer.                                                                                      */
-/****************************************************************************************************************/
-#define CFG_WDOG 
-
-/****************************************************************************************************************/
 /* Determines maximum concurrent connections supported by application. It configures the heap memory allocated  */
 /* to service multiple connections. It is used for GAP central role applications. For GAP peripheral role it    */
 /* should be set to 1 for optimizing memory utilization.                                                        */
@@ -81,7 +76,7 @@
 /* controls the uart module used. If it is defined UART2 is used. If not, UART is used. uart or uart2 driver    */
 /* must be included in project respectively.                                                                    */
 /****************************************************************************************************************/
-#undef CFG_PRINTF
+#define CFG_PRINTF
 #ifdef CFG_PRINTF
     #define CFG_PRINTF_UART2
 #endif

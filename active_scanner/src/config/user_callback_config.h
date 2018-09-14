@@ -109,13 +109,13 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_disconnect                  = user_on_disconnect,
     .app_on_update_params_rejected      = NULL,
     .app_on_update_params_complete      = NULL,
-    .app_on_set_dev_config_complete     = default_app_on_set_dev_config_complete,
+    .app_on_set_dev_config_complete     = user_on_set_dev_config_complete,
     .app_on_adv_nonconn_complete        = NULL,
     .app_on_adv_undirect_complete       = NULL,
     .app_on_adv_direct_complete         = NULL,
     .app_on_db_init_complete            = default_app_on_db_init_complete,
-    .app_on_scanning_completed          = NULL,
-    .app_on_adv_report_ind              = NULL,
+    .app_on_scanning_completed          = user_on_scan_complete,
+    .app_on_adv_report_ind              = user_adv_report_ind,
     .app_on_get_dev_name                = default_app_on_get_dev_name,
     .app_on_get_dev_appearance          = default_app_on_get_dev_appearance,
     .app_on_get_dev_slv_pref_params     = default_app_on_get_dev_slv_pref_params,
@@ -163,7 +163,7 @@ static void (*const app_process_catch_rest_cb)(ke_msg_id_t const msgid, void con
                                          ke_task_id_t const dest_id, ke_task_id_t const src_id) = NULL;
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
-    .app_on_init            = default_app_on_init,
+    .app_on_init            = user_app_on_init,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,

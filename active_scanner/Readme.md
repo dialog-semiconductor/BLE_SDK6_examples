@@ -16,7 +16,7 @@ advertising data in a friendly way on its serial terminal.
 * **Hardware configuration**
 
 	- This example runs on The DA14585/DA14586 Bluetooth Smart SoC devices.
-	- The Basic Development kit is needed for this example.
+	- A Basic or Pro Development kit is needed for this example.
 	- Connect the USB Development kit to the host computer.
 
 * **Software configuration**
@@ -29,7 +29,7 @@ advertising data in a friendly way on its serial terminal.
 
 ## How to run the example
 
-For initial setup of the example please refer to [this sectionof the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup). 
+For initial setup of the example please refer to [this sectionof the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
 
 ### Initial Setup
 

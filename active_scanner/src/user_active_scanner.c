@@ -73,7 +73,7 @@ struct scan_configuration {
 
 static const struct scan_configuration user_scan_conf ={
     /// Operation code.
-    .code = GAPM_SCAN_PASSIVE,
+    .code = GAPM_SCAN_ACTIVE,
     /// Own BD address source of the device
     .addr_src = GAPM_CFG_ADDR_PUBLIC,
     /// Scan interval
@@ -85,7 +85,7 @@ static const struct scan_configuration user_scan_conf ={
     /// Scan filter policy
     .filt_policy = SCAN_ALLOW_ADV_ALL,
     /// Scan duplicate filtering policy
-    .filter_duplic = SCAN_FILT_DUPLIC_DIS
+    .filter_duplic = SCAN_FILT_DUPLIC_EN
 };
 
 void user_scan_start( void );
@@ -97,8 +97,6 @@ void user_app_on_init(void)
 
     // Set sleep mode
     arch_set_sleep_mode(app_default_sleep_mode);
-	
-//		user_scan_start();
   
 }
 
@@ -110,17 +108,19 @@ void user_app_on_init(void)
  */
 void user_on_set_dev_config_complete( void )
 {
+		// start the scanning
 		arch_printf( "Dev config complete\r\n");
-    // Add the first required service in the database
-    //if (app_db_init_start())
-    //{
-        user_scan_start();
-    //}
+		user_scan_start();
 }
 
 
 
-//not allowed on connection ?
+/**
+ ****************************************************************************************
+ * @brief Scan function
+ * @return void
+ ****************************************************************************************
+ */
 static void user_scan_start(void)
 {
     struct gapm_start_scan_cmd* cmd = KE_MSG_ALLOC(GAPM_START_SCAN_CMD,
@@ -145,59 +145,83 @@ static void user_scan_start(void)
     
 }
 
-
+/**
+ ****************************************************************************************
+ * @brief Scan complete function. Restart the scanning
+ * @return void
+ ****************************************************************************************
+ */
 void user_on_scan_complete(const uint8_t param){
-    arch_printf( "SCAN COMPLETE %X \r\n", (int)param );
+    arch_printf( "SCAN COMPLETE\r\n");
 		user_scan_start();
 }
 
+/**
+ ****************************************************************************************
+ * @brief Advertising report function. Decode and display most popular advertising field
+ * @return void
+ ****************************************************************************************
+ */
 void user_adv_report_ind (struct gapm_adv_report_ind const * param ) {
-/*
-
-	int i;
-  	if( app_control.scan_report_index <MAX_ADV_REPORTS ) 
-    {
-        
-        memcpy( (void *)&app_control.adv_bd_addr[app_control.scan_report_index], param->report.adv_addr.addr, 6 );
-      
-    } else 
-    {
-         //Stop scanning
-         app_easy_gap_advertise_stop();
-         return;
-    }    
-	*/
-    arch_printf( "BD ADDR %02x %02x %02x",  (int)param->report.adv_addr.addr[5], (int)param->report.adv_addr.addr[4], (int)param->report.adv_addr.addr[3] );
-    arch_printf( " %02x %02x %02x\r\n", (int)param->report.adv_addr.addr[2], (int)param->report.adv_addr.addr[1], (int)param->report.adv_addr.addr[0] );
-    /*
-		app_control.scan_report_index++;
-    
-    //ademo
-		//uint8_t target_address[6] = { 0x44, 0x44, 0x44, 0xca, 0xea, 0x80 };
-		for( i=0; i<MAX_PERI_DEV; i++ )
-		{
-			if(!memcmp(param->report.adv_addr.addr, target_address[i], 6 ))
-		//  if(param->report.adv_addr.addr[5] == 0x80 && param->report.adv_addr.addr[4] == 0xea && param->report.adv_addr.addr[3] == 0xca && param->report.adv_addr.addr[2] == 0x44 && param->report.adv_addr.addr[1] == 0x44 && param->report.adv_addr.addr[0] == 0x44)
-			{
-					g_dev[i] = (int)app_control.scan_report_index - 1; 
+	uint8_t ad_len,index=0;
+	
+	// report the bluetooth device address
+	arch_printf( "[%02x:%02x:%02x:",  (int)param->report.adv_addr.addr[5], (int)param->report.adv_addr.addr[4], (int)param->report.adv_addr.addr[3] );
+  arch_printf( "%02x:%02x:%02x] ", (int)param->report.adv_addr.addr[2], (int)param->report.adv_addr.addr[1], (int)param->report.adv_addr.addr[0] );
+		
+	// report the advertising payload length
+	arch_printf("LEN %d\r\n",param->report.data_len);
+		
+	// loop through the advertising data information
+	while( index < param->report.data_len) {
+		
+		// extract field length
+		ad_len = param->report.data[index];
+		arch_printf( "  - ");
+		
+		// decode field type
+		if(param->report.data[index + 1 ] == 0x9) {                // Device name
+			arch_printf( "Name: ", param->report.data[index + 1 ]);
+			for(int i= index + 2; i < index + ad_len + 1; i++) {
+				arch_printf("%c", param->report.data[i]);
 			}
-		}	
-		*/
+		} else if(param->report.data[index + 1 ] == 0x1) {        // Device flags
+			arch_printf( "Flags: ", param->report.data[index + 1 ]);
+			for(int i= index + 2; i < index + ad_len + 1; i++) {
+				arch_printf("%X ", param->report.data[i]);
+			}
+		} else if(param->report.data[index + 1 ] == 0x3 || param->report.data[index + 1 ] == 0x2) { // Services 16 bits UUID
+			arch_printf( "Services ID: ", param->report.data[index + 1 ]);
+			for(int i= index + 2; i < index + ad_len + 1; i+=2) {
+				arch_printf("0x%X%X, ", param->report.data[i+1],param->report.data[i]);
+			}
+		} else if(param->report.data[index + 1 ] == 0x7) {       // Services 128 bits UUID
+			arch_printf( "128 Bits UUID: ", param->report.data[index + 1 ]);
+			for(int i= index + 2; i < index + ad_len + 1; i++) {
+				arch_printf("%X ", param->report.data[i]);
+			}
+		} else if(param->report.data[index + 1 ] == 0x15) {     // Services solicitation 128 bits UUID
+			arch_printf( "128 Bits solicitation UUID: ", param->report.data[index + 1 ]);
+			for(int i= index + 2; i < index + ad_len + 1; i++) {
+				arch_printf("%X ", param->report.data[i]);
+			}
+		} else if(param->report.data[index + 1 ] == 0xFF) {    // Manufacturer specific data
+			arch_printf( "Manufacture Specific: ", param->report.data[index + 1 ]);
+			for(int i= index + 2; i < index + ad_len + 1; i++) {
+				arch_printf("%X ", param->report.data[i]);
+			}
+		} else {                                              // not decoded raw data
+			arch_printf( "%X:", param->report.data[index + 1 ]);
+			for(int i= index + 2; i < index + ad_len + 1; i++) {
+				arch_printf("%X ", param->report.data[i]);
+			}
+		}
+		
+		arch_printf( "\r\n");
+		index += ad_len + 1;
+	} 
     
 }
-
-void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
-{	
-		arch_printf("connect");
-    default_app_on_connection(connection_idx, param);
-}
-
-void user_on_disconnect( struct gapc_disconnect_ind const *param )
-{
-    arch_printf("disconnect\n");
-    default_app_on_disconnect(param);
-}
- 
 
  
 

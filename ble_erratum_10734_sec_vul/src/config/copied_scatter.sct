@@ -1,0 +1,138 @@
+#! armcc -E -I .\,.\..,.\..\src\config,C:\DA14585_untouched_demo_sdk\6.0.10.510\sdk\common_project_files\ --cpu Cortex-M0
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                                                         System RAM                                                         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;+******************************+******************************+******************************+******************************+
+;+ 1st RAM block (32KB)         + 2nd RAM block (16KB)         + 3rd RAM block (16KB)         + 4th RAM block (32KB)         +
+;+******************************+******************************+******************************+******************************+
+;                                                              ^                 ^            ^                   ^          ;
+;                                                              |                 |            |                   |          ;
+;                                                              |        RET_MEM_BASE_ADDR     |                   |          ;
+;                                                              |                       RAM_4_BASE_ADDR            |          ;
+;                                                       RAM_3_BASE_ADDR                                      __SCT_BLE_BASE  ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Definition required by da1458x_scatter_config.h
+#define ARM_SCATTERFILE
+
+#include "da1458x_config_basic.h"
+#include "da1458x_config_advanced.h"
+#include "da1458x_scatter_config.h"
+
+; Macro to align val on the multiple of 4 equal or nearest higher
+#define ALIGN4_HI(val) (((val)+3) AND (~3))
+
+#if !defined(CFG_RET_DATA_SIZE)
+    #error "CFG_RET_DATA_SIZE is not defined!"
+#endif
+
+#if !defined(CFG_RET_DATA_UNINIT_SIZE)
+    #error "CFG_RET_DATA_UNINIT_SIZE is not defined!"
+#endif
+
+#define RET_MEM_BASE_ADDR    ALIGN4_HI((__SCT_BLE_BASE - (CFG_RET_DATA_UNINIT_SIZE + CFG_RET_DATA_SIZE + RET_HEAP_SIZE)))
+
+
+#if defined(CFG_CODE_LOCATION_OTP) && defined(CFG_CODE_LOCATION_EXT)
+    #error "Only one of CFG_CODE_LOCATION_OTP and CFG_CODE_LOCATION_EXT must be defined!"
+#elif defined(CFG_CODE_LOCATION_OTP)
+    #define CODE_LOCATION_OTP   1
+    #define CODE_LOCATION_EXT   0
+#elif defined(CFG_CODE_LOCATION_EXT)
+    #define CODE_LOCATION_OTP   0
+    #define CODE_LOCATION_EXT   1
+#else
+    #error "One of CFG_CODE_LOCATION_OTP and CFG_CODE_LOCATION_EXT must be defined!"
+#endif
+
+#if defined (CFG_TRNG)
+    #define TRNG_BUFFER_AREA_SZ CFG_TRNG
+#else
+    #define TRNG_BUFFER_AREA_SZ 0
+#endif
+
+#if CODE_LOCATION_OTP
+
+    #define CODE_AREA_BASE      (0x07fc0000 + 0xC0 + 80)
+    #define CODE_AREA_MAX_SIZE  (0xF800 - (0xC0 + 80))
+
+#elif CODE_LOCATION_EXT
+
+    #define CODE_AREA_BASE  (0x07fc0000 + 0xC0 + 80 + TRNG_BUFFER_AREA_SZ)
+    #define CODE_AREA_MAX_SIZE  (0x16800 - (0xC0 + 80 + TRNG_BUFFER_AREA_SZ))
+
+#endif
+
+
+LR_IROM1 0x07fc0000 0xc0 {                      ;
+    ER_IROM1 0x07fc0000 0xc0 {                  ; load address = execution address
+        *.o (RESET, +First)
+    }
+}
+
+LR_IROM2 0x07fc00c0 80 {                        ; 20 patch function slots
+    ER_IROM2 0x07fc00c0 EMPTY 80 {              ; load address = execution address
+    }
+}
+
+#if CODE_LOCATION_EXT
+LR_TRNG_ZI (0x07fc0000 +0xC0+80) TRNG_BUFFER_AREA_SZ {
+    ER_TRNG_ZI (0x07fc0000 +0xC0+80) TRNG_BUFFER_AREA_SZ {
+        /* The TRNG buffer area must be located lower than the 64K boundary. */
+        .ANY(trng_buffer_area_zi)
+    }
+}
+#endif
+
+LR_IROM3 CODE_AREA_BASE CODE_AREA_MAX_SIZE {
+
+    ER_IROM3 CODE_AREA_BASE CODE_AREA_MAX_SIZE {
+       *(InRoot$$Sections)                      ; All library sections that must be in a
+                                                ; root region, for example, __main.o,
+                                                ; __scatter*.o, __dc*.o, and * Region$$Table
+        boot_vectors.o (+RO)
+        system_ARMCM0.o (+RO)
+        .ANY (+RO)
+        .ANY (+RW)
+    }
+
+    ; *********************************************************************************************
+    ; * END OF OTP - ANYTHING BELOW THIS POINT IS NOT WRITTEN WHEN THE CODE IS BURNED TO THE OTP! *
+    ; *********************************************************************************************
+
+    ER_PRODTEST AlignExpr(+0,8) UNINIT {
+        .ANY (prodtest_uninit)
+    }
+
+    #if CODE_LOCATION_OTP
+    ER_TRNG_ZI +0 {
+        /* The TRNG buffer area must be located lower than the 64K boundary. */
+        /* This execution region starts at most 2K before the 64K boundary. */
+        .ANY(trng_buffer_area_zi, +FIRST)
+    }
+    #endif
+
+    ER_ZI +0 {
+        .ANY (+ZI)
+        .ANY (STACK)
+        jump_table.o (heap_mem_area_not_ret)    ; not retained HEAP
+    }
+}
+
+LR_RETAINED_RAM0 RET_MEM_BASE_ADDR {
+
+    RET_DATA_UNINIT RET_MEM_BASE_ADDR UNINIT CFG_RET_DATA_UNINIT_SIZE {
+        .ANY (retention_mem_area_uninit)        ; uninitialized application data
+    }
+
+    RET_DATA +0 CFG_RET_DATA_SIZE {
+        .ANY (retention_mem_area0)              ; zero initialized SDK + application data
+    }
+
+    RET_HEAP +0 RET_HEAP_SIZE {
+        jump_table.o (heap_env_area)
+        jump_table.o (heap_db_area)
+        jump_table.o (heap_msg_area)
+    }
+}

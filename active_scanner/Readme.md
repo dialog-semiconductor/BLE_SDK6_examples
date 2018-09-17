@@ -29,6 +29,8 @@ advertising data in a friendly way on its serial terminal.
 
 ## How to run the example
 
+For initial setup of the example please refer to [this sectionof the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup). 
+
 ### Initial Setup
 
  - Start Keil

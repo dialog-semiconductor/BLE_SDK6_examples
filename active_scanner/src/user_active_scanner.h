@@ -81,9 +81,11 @@ i.e.
  ****************************************************************************************
  */
 
-void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param);
 
-void user_on_disconnect( struct gapc_disconnect_ind const *param );
+void user_on_set_dev_config_complete( void );
+void user_adv_report_ind (struct gapm_adv_report_ind const * param );
+void user_on_scan_complete(const uint8_t param);
+void user_app_on_init(void);
 
 /// @} APP
 

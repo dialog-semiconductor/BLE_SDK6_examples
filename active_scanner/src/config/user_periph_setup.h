@@ -51,7 +51,7 @@
 //*** <<< Use Configuration Wizard in Context Menu >>> ***
 
 // <o> DK selection <0=> As in da1458x_periph_setup.h <1=> Basic <2=> Pro <3=> Expert
-#define HW_CONFIG (2)
+#define HW_CONFIG (1)
 
 #define HW_CONFIG_BASIC_DK  ((HW_CONFIG==0 && SDK_CONFIG==1) || HW_CONFIG==1)
 #define HW_CONFIG_PRO_DK    ((HW_CONFIG==0 && SDK_CONFIG==2) || HW_CONFIG==2)
@@ -106,7 +106,12 @@
 /****************************************************************************************/
 /* UART2 pin configuration (debug print console)                                        */
 /****************************************************************************************/
+#define UART2_TX_GPIO_PORT  GPIO_PORT_0
+#define UART2_TX_GPIO_PIN   GPIO_PIN_4
 
+#define UART2_RX_GPIO_PORT  GPIO_PORT_0
+#define UART2_RX_GPIO_PIN   GPIO_PIN_5
+/*
 #ifdef CFG_PRINTF_UART2
     #if HW_CONFIG_BASIC_DK
         #define UART2_TX_GPIO_PORT  GPIO_PORT_2
@@ -138,7 +143,7 @@
 
     #endif
 #endif
-
+*/
 /****************************************************************************************/
 /* LED and button configuration                                                         */
 /****************************************************************************************/

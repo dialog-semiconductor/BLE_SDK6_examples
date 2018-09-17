@@ -105,8 +105,8 @@ static const struct app_suotar_cb user_app_suotar_cb = {
 #endif
 
 static const struct app_callbacks user_app_callbacks = {
-    .app_on_connection                  = user_on_connection,
-    .app_on_disconnect                  = user_on_disconnect,
+    .app_on_connection                  = NULL,
+    .app_on_disconnect                  = NULL,
     .app_on_update_params_rejected      = NULL,
     .app_on_update_params_complete      = NULL,
     .app_on_set_dev_config_complete     = user_on_set_dev_config_complete,

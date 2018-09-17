@@ -1,3 +1,4 @@
+
 # DA14585/DA14586 BLE Erratum 10734 - security vulnerability
 
 ---
@@ -5,9 +6,9 @@
 
 ## Example description
 
-This SDK6 DA14585 example shows how to send a command 
-from the applicaiton layer to the BLE STACK to ensure and 
-update the security key. 
+This SDK6 DA14585 example shows how to send a command
+from the applicaiton layer to the BLE STACK to ensure and
+update the security key.
 As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
 
 ## HW and SW configuration
@@ -18,10 +19,10 @@ As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
 	- This example runs on The DA14585/DA14586 Bluetooth Smart SoC devices.
 	- The Basic or pro Development kit is needed for this example.
 	- Connect the USB Development kit to the host computer.
-	- UART TX/RX jumper on P04/P05
 	- SPI jumper on P00/P03/P05/P06/BATT_SEL
-	- If SPI UART is in use at the same time then a 3 wire
-	  jumper is needed on P05
+
+![jumper_config](assets/jumper_setup.png)
+
 
 * **Software configuration**
 
@@ -32,6 +33,8 @@ As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
 
 
 ## How to run the example
+
+For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
 
 ### Initial Setup
 
@@ -47,7 +50,7 @@ As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
 
 As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
 
-![SMP_results](assets/sec_vulnerability_sniffer_log.png)
+![SMP_results](assets/sec_vulnerability_sniffer_log.jpg)
 
 
 
@@ -85,4 +88,3 @@ As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
 
 **************************************************************************************
-

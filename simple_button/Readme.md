@@ -17,10 +17,13 @@ As a proof of concept it can be verified by transmitting UART messages or the LE
 	- This example runs on The DA14585 Bluetooth Smart SoC devices.
 	- The Basic / Pro Development kit is needed for this example.
 	- Connect the USB Development kit to the host computer.
-	- UART TX/RX jumper on P04/P05
+	- UART TX/RX jumper on P0_4/P0_5
 	- LED jumper is configured to P10
-	- Button is configured to P11
+	- Button is configured to P1_1 corresponding to SW3 on the Pro Development kit.
+	  For the Basic development kit, a active-low switch should be connected to P1_1 as displayed in the following schematic
 
+![simple_button_basic](assets/simple_button_basic.png) 
+ 
 * **Software configuration**
 
 	- This example requires:
@@ -44,9 +47,9 @@ For initial setup of the example please refer to [this section of the dialog sup
 		- parity: None
 		- flow  control: none
 
- - Pressing the button (P11) for less than 3 seconds (i.e. short press) to toggle the led status
- - Pressing the button (P11) for 3 seconds or more (i.e. long press) will start LED blinking ON/OFF
- - Pressing the button (P11) for less than 3 seconds (i.e. short press) again will stop LED blinking or toggle
+ - Pressing the button (P1_1) for less than 3 seconds (i.e. short press) to toggle the led status
+ - Pressing the button (P1_1) for 3 seconds or more (i.e. long press) will start LED blinking ON/OFF
+ - Pressing the button (P1_1) for less than 3 seconds (i.e. short press) again will stop LED blinking or toggle
 
 ![uart_data](assets/uart_data.png)
 

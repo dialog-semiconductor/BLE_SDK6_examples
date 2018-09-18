@@ -30,6 +30,7 @@ As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
     * Smartsnippets Studio 1.6.3.
     * SDK6.0.10
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
+	- Python 3.5 or greater
 
 
 ## How to run the example

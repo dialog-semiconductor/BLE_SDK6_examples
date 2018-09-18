@@ -6,7 +6,7 @@
 ## Example description
 
 This SDK6 DA14585 example shows how configure a simple button for short press and long press (>3 seconds)
-from the applicaiton layer 
+from the applicaiton layer
 As a proof of concept it can be verified by transmitting UART messages or the LED status
 
 ## HW and SW configuration
@@ -22,8 +22,8 @@ As a proof of concept it can be verified by transmitting UART messages or the LE
 	- Button is configured to P1_1 corresponding to SW3 on the Pro Development kit.
 	  For the Basic development kit, a active-low switch should be connected to P1_1 as displayed in the following schematic
 
-![simple_button_basic](assets/simple_button_basic.png) 
- 
+		![simple_button_basic](assets/simple_button_basic.png)
+
 * **Software configuration**
 
 	- This example requires:
@@ -51,7 +51,7 @@ For initial setup of the example please refer to [this section of the dialog sup
  - Pressing the button (P1_1) for 3 seconds or more (i.e. long press) will start LED blinking ON/OFF
  - Pressing the button (P1_1) for less than 3 seconds (i.e. short press) again will stop LED blinking or toggle
 
-![uart_data](assets/uart_data.png)
+	![uart_data](assets/uart_data.png)
 
 
 

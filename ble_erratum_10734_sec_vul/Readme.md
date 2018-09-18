@@ -20,8 +20,8 @@ As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
 	- The Basic or pro Development kit is needed for this example.
 	- Connect the USB Development kit to the host computer.
 	- SPI jumper on P00/P03/P05/P06/BATT_SEL
-
-![jumper_config](assets/jumper_setup.png)
+		
+		![jumper_config](assets/jumper_setup.png)
 
 
 * **Software configuration**

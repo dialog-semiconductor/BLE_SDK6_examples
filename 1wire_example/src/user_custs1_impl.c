@@ -45,14 +45,14 @@
 #include "user_peripheral.h"
 #include "user_periph_setup.h"
 #include "systick.h"
-#include "one_wire.h"
-#include "user_uart.h"
+#include "arch_console.h"
+#include "user_ds18b20.h"
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
-extern struct OneWire_sensor OneWire_sensors[10];
+extern struct temperature_sensor temperature_sensors[MAX_NO_SENSORS];
 extern uint32_t sensor_index;
 
 ke_msg_id_t timer_used      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
@@ -73,17 +73,24 @@ void user_svc1_onewire_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
 
     if (val == SEARCH_ROM)
 		{
-				OneWire_SearchROM();
+				get_address();
 				print_address();
 				sent_address();
 		}
 		else if (val == CONVERT_T)
 		{
         OneWire_ConvertT();
-				printf_string("\n\n\rCONVERTING");
-				printf_string("TEMPERATURE...");
+			
+				#ifdef CFG_PRINTF
+						arch_printf("\n\n\rCONVERTING");
+						arch_printf("TEMPERATURE...");
+				#endif
+			
 				systick_wait(750000); // maximum temperature conversion time
-				printf_string("DONE");				
+			
+				#ifdef CFG_PRINTF
+						arch_printf("DONE");
+				#endif
 		}
 		else if (val == READ_SCRATCHPAD)
 		{
@@ -110,10 +117,10 @@ void sent_address(void)
 					
 				//req->conhdl = app_env->conhdl;
 				req->handle = SVC1_IDX_ONEWIRE_DATA_VAL;
-				req->length = sizeof(OneWire_sensors[loop].address_low);
+				req->length = sizeof(temperature_sensors[loop].address_low);
 				req->notification = true;
 				
-				memcpy(req->value, &OneWire_sensors[loop].address_low, sizeof(OneWire_sensors[loop].address_low));
+				memcpy(req->value, &temperature_sensors[loop].address_low, sizeof(temperature_sensors[loop].address_low));
 				//memcpy(req->value, &high, DEF_SVC1_ONEWIRE_DATA_CHAR_LEN);
 				ke_msg_send(req);
 				
@@ -125,10 +132,10 @@ void sent_address(void)
 					
 				//req->conhdl = app_env->conhdl;
 				req1->handle = SVC1_IDX_ONEWIRE_DATA_VAL;
-				req1->length = sizeof(OneWire_sensors[loop].address_low);
+				req1->length = sizeof(temperature_sensors[loop].address_low);
 				req1->notification = true;
 						
-				memcpy(req1->value, &OneWire_sensors[loop].address_high, sizeof(OneWire_sensors[loop].address_high));
+				memcpy(req1->value, &temperature_sensors[loop].address_high, sizeof(temperature_sensors[loop].address_high));
 				//memcpy(req->value, &high, DEF_SVC1_ONEWIRE_DATA_CHAR_LEN);
 				ke_msg_send(req1);			
 				
@@ -147,10 +154,10 @@ void sent_temperatures(void)
 					
 				//req->conhdl = app_env->conhdl;
 				req->handle = SVC1_IDX_ONEWIRE_DATA_VAL;
-				req->length = sizeof(OneWire_sensors[loop].temperature);
+				req->length = sizeof(temperature_sensors[loop].temperature);
 				req->notification = true;
 				
-				memcpy(req->value, &OneWire_sensors[loop].temperature, sizeof(OneWire_sensors[loop].temperature));
+				memcpy(req->value, &temperature_sensors[loop].temperature, sizeof(temperature_sensors[loop].temperature));
 				//memcpy(req->value, &high, DEF_SVC1_ONEWIRE_DATA_CHAR_LEN);
 				ke_msg_send(req);		
 		}
@@ -168,10 +175,10 @@ void sent_scratchpad(void)
 					
 				//req->conhdl = app_env->conhdl;
 				req->handle = SVC1_IDX_ONEWIRE_DATA_VAL;
-				req->length = sizeof(OneWire_sensors[loop].scratchpad_low);
+				req->length = sizeof(temperature_sensors[loop].scratchpad_low);
 				req->notification = true;
 				
-				memcpy(req->value, &OneWire_sensors[loop].scratchpad_low, sizeof(OneWire_sensors[loop].scratchpad_low));
+				memcpy(req->value, &temperature_sensors[loop].scratchpad_low, sizeof(temperature_sensors[loop].scratchpad_low));
 				//memcpy(req->value, &high, DEF_SVC1_ONEWIRE_DATA_CHAR_LEN);
 				ke_msg_send(req);
 				
@@ -183,10 +190,10 @@ void sent_scratchpad(void)
 					
 				//req->conhdl = app_env->conhdl;
 				req1->handle = SVC1_IDX_ONEWIRE_DATA_VAL;
-				req1->length = sizeof(OneWire_sensors[loop].scratchpad_high);
+				req1->length = sizeof(temperature_sensors[loop].scratchpad_high);
 				req1->notification = true;
 						
-				memcpy(req1->value, &OneWire_sensors[loop].scratchpad_high, sizeof(OneWire_sensors[loop].scratchpad_high));
+				memcpy(req1->value, &temperature_sensors[loop].scratchpad_high, sizeof(temperature_sensors[loop].scratchpad_high));
 				//memcpy(req->value, &high, DEF_SVC1_ONEWIRE_DATA_CHAR_LEN);
 				ke_msg_send(req1);			
 				

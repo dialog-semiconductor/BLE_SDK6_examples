@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Oct 03 11:58:01 2018
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Fri Oct 05 11:55:57 2018
 ;VERSION 0.2
 ;FILE adc.o
 adc_calibrate <= USED 0
@@ -54,7 +54,6 @@ app_msg_send_wakeup_ble <= USED 0
 app_fill_random_byte_array <= USED 0
 app_get_address_type <= USED 0
 ;FILE arch_console.o
-arch_printf <= USED 0
 arch_puts <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
@@ -124,9 +123,6 @@ i2c_wait_until_eeprom_ready <= USED 0
 dummyf <= USED 0
 ;FILE nmi_handler.o
 ;FILE nvds.o
-;FILE one_wire.o
-OneWire_readRom <= USED 0
-address_systick_ISR <= USED 0
 ;FILE patch.o
 ;FILE pll_vcocal_lut.o
 GPADC_init <= USED 0
@@ -208,10 +204,11 @@ uart2_flow_on <= USED 0
 uart2_read <= USED 0
 uart2_set_flow_off_retries_limit <= USED 0
 ;FILE user_custs1_impl.o
+;FILE user_ds18b20.o
+;FILE user_one_wire.o
 ;FILE user_periph_setup.o
 GPIO_reservations <= USED 0
 ;FILE user_peripheral.o
-;FILE user_uart.o
 ;FILE wkupct_quadec.o
 quad_decoder_disable_irq <= USED 0
 quad_decoder_enable_irq <= USED 0

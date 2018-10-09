@@ -29,7 +29,7 @@
  *
  ****************************************************************************************
  */
-#include "one_wire.h"
+#include "user_one_wire.h"
 #include "user_periph_setup.h"
 #include "gpio.h"
 #include "spi.h"
@@ -39,44 +39,22 @@
 bool 			cmp_id_bit 				= 0;
 bool 			id_bit 						= 0;
 uint32_t 	sensor_index 			= 0;
-uint32_t 	read_sensor 			= 0;
 
 struct OneWire_sensor OneWire_sensors[MAX_NO_SENSORS];
-uint8_t		bitcount = 0;
+struct OneWire_sensor empty[MAX_NO_SENSORS];
 
-// function for storing the bitvalue to the corresponding temperature adress and bitposition
-void store_bit_in_address(bool bit, int bit_position)
-{
-		if (bit)
-		{
-				if (bit_position >= 32)
-				
-				{
-						OneWire_sensors[(sensor_index)].address_high |= 1 << (bit_position - 32);
-				}
-				else
-				{
-						OneWire_sensors[(sensor_index)].address_low |= 1 << bit_position;
-				}
-		}
-		else
-		{		
-				if (bit_position >= 32)
-				{
-						OneWire_sensors[(sensor_index)].address_high &= ~(1 << (bit_position - 32));
-				}
-				else
-				{
-						OneWire_sensors[(sensor_index)].address_low &= ~(1 << (bit_position));
-				}				
-		}	
-		if(((bit_position + 1) % 4) == 0 && bit_position)
-		{
-				printf_string(" ");
-		}
-}
+static void store_bit_in_address(bool bit, int bit_position);
+static void id_systick_ISR(void);
+static void comp_id_systick_ISR(void);
+static void SPI_write_32bits(uint32_t dataToSend);
+static void SPI_write_16bits(uint16_t dataToSend);
 
-// Interupt handler for reading id
+/**
+****************************************************************************************
+* @brief Interrupt handler for reading id bit in the Search algorithm
+* @return void
+****************************************************************************************
+*/
 void id_systick_ISR(void)
 {
 		systick_stop();
@@ -91,7 +69,12 @@ void id_systick_ISR(void)
 		}
 }
 
-// Interrupt handler for reading comp_id
+/**
+****************************************************************************************
+* @brief Interrupt handler for reading complementary id bit in the Search algorithm
+* @return void
+****************************************************************************************
+*/
 void comp_id_systick_ISR(void)
 {
 		systick_stop();
@@ -106,51 +89,13 @@ void comp_id_systick_ISR(void)
 		}
 }
 
-// Interrupt handler for reading address 
-void address_systick_ISR(void)
-{
-		systick_stop();
-		bool inputlevel = GPIO_GetPinStatus(ONEWIRE_RX_PORT, ONEWIRE_RX_PIN);
-		store_bit_in_address(inputlevel, bitcount);
-}
-// interrupt handler for reading scratchpad
-void readScratchpad_systick_ISR(void){
-		systick_stop();
-		bool inputlevel = GPIO_GetPinStatus(ONEWIRE_RX_PORT, ONEWIRE_RX_PIN);
-		if (inputlevel)
-		{
-				if (bitcount < 16)
-				{
-						OneWire_sensors[read_sensor].temperature |= 1 << bitcount;	
-				}
-				else if (bitcount >= 16 &&bitcount < 40)
-				{
-						OneWire_sensors[read_sensor].scratchpad_low |= 1 << (bitcount - 16);
-				}
-				else
-				{
-						OneWire_sensors[read_sensor].scratchpad_high |= 1 << (bitcount - 40);
-				}
-		}
-		else
-		{
-				if (bitcount < 16)
-				{
-						OneWire_sensors[read_sensor].temperature &= ~(1 << (bitcount));							
-				}
-				else if (bitcount >= 16 &&bitcount < 40)
-				{
-						OneWire_sensors[read_sensor].scratchpad_low &= ~(1 << (bitcount - 16));	
-				}
-				else
-				{
-						OneWire_sensors[read_sensor].scratchpad_high &= ~(1 << (bitcount - 40));
-				}
-		}
-}
-
-
-//
+/**
+****************************************************************************************
+* @brief 			Write 32 bits of data to MOSI (P0_6) from the 
+	@dataToSend Parameter containing 32 bits of data to send
+* @return 		void
+****************************************************************************************
+*/
 void SPI_write_32bits(uint32_t dataToSend)
 {
 		SetWord16(SPI_RX_TX_REG1, (uint16_t)(dataToSend >> 16));
@@ -161,6 +106,13 @@ void SPI_write_32bits(uint32_t dataToSend)
 		SetWord16(SPI_CLEAR_INT_REG, 0x01);                     // clear pending flag	
 }
 
+/**
+****************************************************************************************
+* @brief 			Write 16 bits of data to MOSI (P0_6) from the 
+	@param[in] 	Parameter containing 16 bits of data to send
+* @return 		void
+****************************************************************************************
+*/
 void SPI_write_16bits(uint16_t dataToSend)
 {
 		SetWord16(SPI_RX_TX_REG0, (uint16_t)(dataToSend));
@@ -170,7 +122,12 @@ void SPI_write_16bits(uint16_t dataToSend)
 		SetWord16(SPI_CLEAR_INT_REG, 0x01);                     // clear pending flag	
 }
 
-// Initiate readslot
+/**
+****************************************************************************************
+* @brief 			Transmits 1.5 µSec pulse initiating master readslot (>70 µSec in total)
+* @return 		void
+****************************************************************************************
+*/
 void OneWire_readSlot(systick_callback_function_t systick_callback)
 {
 		uint32_t dataToSend = 0x1FFFFFFF;
@@ -186,6 +143,13 @@ void OneWire_readSlot(systick_callback_function_t systick_callback)
 		SPI_write_16bits(dataToSend);
 }
 
+/**
+****************************************************************************************
+* @brief 			Initiates the OneWirebus. Since data is transmitted using the SPI-
+*							controller, it is initialized accordingly. 
+* @return 		void
+****************************************************************************************
+*/
 void OneWire_init(void)
 {
 		SPI_Pad_t chipselect = {SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN};
@@ -194,7 +158,12 @@ void OneWire_init(void)
 		SetBits16(SPI_CTRL_REG, SPI_DO, 1);
 }
 
-// Wait for presence pulse after reset state
+/**
+****************************************************************************************
+* @brief 			Let master wait for (approximately 500µSec) to detect presence pulse. 
+* @return 		void
+****************************************************************************************
+*/
 void OneWire_presence(void)
 {
 		uint32_t dataToSend = 0xFFFFFFFF;
@@ -204,7 +173,12 @@ void OneWire_presence(void)
 		}
 }
 
-// Generate resetpulse
+/**
+****************************************************************************************
+* @brief 			Initiates a resetpulse of approximately 500 µSec.
+* @return 		void
+****************************************************************************************
+*/
 void OneWire_reset(void)
 {
 		SetBits16(SPI_CTRL_REG, SPI_DO, 0);
@@ -216,7 +190,15 @@ void OneWire_reset(void)
 		SetBits16(SPI_CTRL_REG, SPI_DO, 1);
 }
 
-// Master write byte
+/**
+****************************************************************************************
+* @brief 			Transmit a byte value on the bus (LSB first)
+*
+*	@param			Byte to be transmitted
+*
+* @return 		void
+****************************************************************************************
+*/
 void OneWire_write_byte(uint8_t byte)
 {
 		for (int loop = 0; loop < 8; loop++)
@@ -233,7 +215,12 @@ void OneWire_write_byte(uint8_t byte)
 		}
 }
 
-// Master write "1" slot
+/**
+****************************************************************************************
+* @brief 			Transmit a high level bit to the bus (Pulse < 15 µSec) using SPI.
+* @return 		void
+****************************************************************************************
+*/
 void OneWire_write_1(void)
 {
 		uint32_t dataToSend = 0x0000FFFF;
@@ -245,7 +232,13 @@ void OneWire_write_1(void)
 		}
 		SPI_write_16bits(dataToSend);		
 }
-// Master write "0" slot
+
+/**
+****************************************************************************************
+* @brief 			Transmit a low level bit to the bus (Pulse > 15 µSec) using SPI.
+* @return 		void
+****************************************************************************************
+*/
 void OneWire_write_0(void)
 {
 		SetBits16(SPI_CTRL_REG, SPI_DO, 0);
@@ -261,7 +254,14 @@ void OneWire_write_0(void)
 		SPI_write_16bits(dataToSend);
 }
 
-// Search algorithm
+/**
+****************************************************************************************
+* @brief 	1-Wire search algorithm. Tree search finding all sensor addresses (least
+					significant 32 bits and most significant 32 bits) and storing them in 
+					OneWire_sensors array. 
+* @return void
+****************************************************************************************
+*/
 void OneWire_SearchROM(void)
 {
 		// Search algorithm variables		
@@ -270,6 +270,11 @@ void OneWire_SearchROM(void)
 		uint32_t 	last_discrepancy 	= 0; 		// index that indicates from which bit the search should start
 		uint32_t 	last_zero 				= 0;		// bit position of the last zero written where there was a discrepancy
 		uint32_t 	id_bit_number			=	0; 		// Rom bit number value currently being searched
+	
+		for (int loop = 0; loop < MAX_NO_SENSORS; loop++)
+		{
+			OneWire_sensors[loop] = empty[loop];
+		}
 	
 		sensor_index = 0;
 		while (0 == 0)
@@ -296,9 +301,8 @@ void OneWire_SearchROM(void)
 						
 						if (id_bit && cmp_id_bit)
 						{
-								printf_string("\n\rError... Please");
-								printf_string(" Restart Search");	
 								last_device_flag = 1;
+								
 								break;
 						}
 						else if (id_bit && !cmp_id_bit)							// There are only 1's in all participating ROM numbers
@@ -375,117 +379,35 @@ void OneWire_SearchROM(void)
 		}
 }	
 
-// This command can only be used when there is one slave on the bus
-// Allows the master to read the slave's 64-bit ROM code without the (more complicated) Search Rom procedure
-void OneWire_readRom(void)
+/**
+****************************************************************************************
+* @brief Store the bitvalue in the corresponding sensor address and bitposition
+* @return void
+****************************************************************************************
+*/
+void store_bit_in_address(bool bit, int bit_position)
 {
-		OneWire_reset();
-		OneWire_presence();
-		OneWire_write_byte(0x33);
-		for (int loop = 0; loop < 64; loop++)
+		if (bit)
 		{
-				bitcount = loop;
-				OneWire_readSlot(address_systick_ISR);
-		}
-		sensor_index = 0;
-}
-
-// Command to target a particular slave corresponding the ROM code
-void OneWire_matchRom(int sensor_number)
-{
-		OneWire_reset();
-		OneWire_presence();
-		OneWire_write_byte(0x55); // Rom command
-		OneWire_write_byte((OneWire_sensors[sensor_number].address_low 	>>   0) & 0xFF);
-		OneWire_write_byte((OneWire_sensors[sensor_number].address_low 	>>   8) & 0xFF);
-		OneWire_write_byte((OneWire_sensors[sensor_number].address_low 	>> 	16) & 0xFF);
-		OneWire_write_byte((OneWire_sensors[sensor_number].address_low 	>> 	24) & 0xFF);
-		OneWire_write_byte((OneWire_sensors[sensor_number].address_high		>>   0) & 0xFF);
-		OneWire_write_byte((OneWire_sensors[sensor_number].address_high  	>>   8) & 0xFF);
-		OneWire_write_byte((OneWire_sensors[sensor_number].address_high  	>> 	16) & 0xFF);
-		OneWire_write_byte((OneWire_sensors[sensor_number].address_high  	>> 	24) & 0xFF);
-}
-
-// Command to read from slaves scratchpad
-void OneWire_readScratchpad(void)
-{
-		for (int loop_i = 0; loop_i <= sensor_index; loop_i++)
-		{		
-				read_sensor = loop_i;
-				OneWire_matchRom(loop_i);
-				OneWire_write_byte(0xBE);
-				for (int loop = 0; loop < 72; loop++)
+				if (bit_position >= 32)
+				
 				{
-						bitcount = loop;
-						OneWire_readSlot(readScratchpad_systick_ISR);
+						OneWire_sensors[(sensor_index)].address_high |= 1 << (bit_position - 32);
+				}
+				else
+				{
+						OneWire_sensors[(sensor_index)].address_low |= 1 << bit_position;
 				}
 		}
-}
-
-// Command to initiate temperature conversion
-void OneWire_ConvertT(void)
-{
-		OneWire_write_byte(0xCC);
-		OneWire_write_byte(0x44);
-}
-
-//
-void print_temperature()
-{
-		printf_string("\n\n\rTemperatures: ");
-		for (int loop = 0; loop <= sensor_index; loop++)
-		{
-				float temp = OneWire_sensors[loop].temperature;
-				int sensor_number = (loop + 1);
-				temp = (temp/16);
-				char s[] = {0};
-				char s1[10];
-				itoa(sensor_number, s1);
-				ftoa(temp, s, 1);
-				printf_string("\n\rSensor ");
-				printf_string(s1);
-				printf_string(".) ");
-				printf_string(s);
-				printf_string(" DEGREES CELCIUS");
-		}
-}
-
-// Print Scratchpad
-void print_scratchpad()
-{
-		printf_string("\n\n\r");
-		printf_string("Scratchpad");
-		printf_string(" contents:");
-		for ( int loop = 0; loop <= sensor_index; loop++)
-		{
-				int temp = (loop + 1);
-				char s[] = {0};
-				itoa(temp, s);
-				printf_string("\n\rSensor ");
-				printf_string(s);
-				printf_string(".) ");
-				printf_byte(OneWire_sensors[loop].temperature);
-				printf_byte(OneWire_sensors[loop].temperature >> 8);
-				printf_string(" ");
-				print_word(OneWire_sensors[loop].scratchpad_low << 8);
-				print_word(OneWire_sensors[loop].scratchpad_high);
-		}
-}
-
-// Print address
-void print_address(void)
-{
-		printf_string("\n\n\r");
-		printf_string("Addresses:");
-		for ( int loop = 0; loop <= sensor_index; loop++)
-		{
-				printf_string("\n\r");
-				printf_string("Sensor ");
-				char s[] = {0};
-				itoa(( loop + 1 ), s );
-				printf_string(s);
-				printf_string(".) ");
-				print_word(OneWire_sensors[loop].address_low);
-				print_word(OneWire_sensors[loop].address_high);	
-		}
+		else
+		{		
+				if (bit_position >= 32)
+				{
+						OneWire_sensors[(sensor_index)].address_high &= ~(1 << (bit_position - 32));
+				}
+				else
+				{
+						OneWire_sensors[(sensor_index)].address_low &= ~(1 << (bit_position));
+				}				
+		}	
 }

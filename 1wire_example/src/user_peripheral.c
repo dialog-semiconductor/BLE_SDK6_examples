@@ -53,8 +53,8 @@
 #include "gpio.h"
 #include "spi.h"
 #include "systick.h"
-#include "user_uart.h" 
-#include "one_wire.h" 
+#include "arch_console.h" 
+#include "user_ds18b20.h"
 
 /*
  * TYPE DEFINITIONS
@@ -95,17 +95,23 @@ uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retentio
 
 void SW3_ISR(void)
 {
-		OneWire_SearchROM();
+		get_address();
 		OneWire_ConvertT();
-		printf_string("\n\r");
-		print_address();
-		printf_string("\n\n\rCONVERTING");
-		printf_string("TEMPERATURE...");
+		print_address();		
+	
+		#ifdef CFG_PRINTF
+				arch_printf("\n\n\n\rCONVERTING TEMPERATURE...");
+		#endif
+	
 		systick_wait(750000); // maximum temperature conversion time
-		printf_string("DONE");
 		OneWire_readScratchpad();
+	
+		#ifdef CFG_PRINTF
+				arch_printf("DONE");		
+		#endif
+	
 		print_scratchpad();
-		print_temperature();		
+		print_temperature();
 }
 
 void set_SW3_interrupt()

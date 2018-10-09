@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>1Wire_Example_585</TargetName>
+    <TargetName>ble_app_peripheral_585</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -119,6 +119,10 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>ARMRTXEVENTFLAGS</Key>
           <Name>-L70 -Z18 -C0 -M0 -T1</Name>
         </SetRegEntry>
@@ -190,7 +194,7 @@
   </Target>
 
   <Target>
-    <TargetName>1Wire_Example_586</TargetName>
+    <TargetName>ble_app_peripheral_586</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -415,7 +419,7 @@
 
   <Group>
     <GroupName>sdk_arch</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -686,7 +690,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14585_untouched_SDK\6.0.10.511\\sdk\platform\driver\systick\systick.h</PathWithFileName>
+      <PathWithFileName>C:\DA14585_untouched_SDK\6.0.10.511\sdk\platform\driver\systick\systick.h</PathWithFileName>
       <FilenameWithoutPath>systick.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -698,7 +702,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14585_untouched_SDK\6.0.10.511\\sdk\platform\driver\systick\systick.c</PathWithFileName>
+      <PathWithFileName>C:\DA14585_untouched_SDK\6.0.10.511\sdk\platform\driver\systick\systick.c</PathWithFileName>
       <FilenameWithoutPath>systick.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1698,8 +1702,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\src\user_drivers\one_wire.c</PathWithFileName>
-      <FilenameWithoutPath>one_wire.c</FilenameWithoutPath>
+      <PathWithFileName>..\src\user_drivers\user_one_wire.c</PathWithFileName>
+      <FilenameWithoutPath>user_one_wire.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1710,8 +1714,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\src\user_drivers\one_wire.h</PathWithFileName>
-      <FilenameWithoutPath>one_wire.h</FilenameWithoutPath>
+      <PathWithFileName>..\src\user_drivers\user_one_wire.h</PathWithFileName>
+      <FilenameWithoutPath>user_one_wire.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1722,8 +1726,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\src\user_drivers\user_uart.c</PathWithFileName>
-      <FilenameWithoutPath>user_uart.c</FilenameWithoutPath>
+      <PathWithFileName>..\src\user_drivers\user_ds18b20.c</PathWithFileName>
+      <FilenameWithoutPath>user_ds18b20.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1734,8 +1738,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\src\user_drivers\user_uart.h</PathWithFileName>
-      <FilenameWithoutPath>user_uart.h</FilenameWithoutPath>
+      <PathWithFileName>..\src\user_drivers\user_ds18b20.h</PathWithFileName>
+      <FilenameWithoutPath>user_ds18b20.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

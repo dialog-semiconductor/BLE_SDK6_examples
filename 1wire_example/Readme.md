@@ -8,7 +8,7 @@
 This SDK6 DA14585 example provides a implementation of a 1-Wire driver with three DS18B20
 sensors (editing the MAX_NO_SENSORS value in the one_wire.h file will allow more sensors to be connected). 
 The 1-Wire commands and sensordata are added in BLE characteristics to be controlled
-or read from a smartphone application (i.e. lightblue for iOS). 
+or read from a smartphone application (i.e. Lightblue for iOS or BLE Scanner for Android). More information on the DS18B20 can be found in the [datasheet](https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf).
 
 ## HW and SW configuration
 
@@ -16,7 +16,7 @@ or read from a smartphone application (i.e. lightblue for iOS).
 * **Hardware configuration**
 
 	- This example runs on The DA14585 Bluetooth Smart SoC devices.
-	- A breadboard is used for connecting the buscomponents to the develepment kit as shown in the lay-out schematic underneath where the appropriate pins are highlighted.
+	- A breadboard is used for connecting the buscomponents to the develepment kit as shown in the lay-out schematic underneath. The jumper settings are displayed in pink. 
 	- The Basic or pro Development kit is needed for this example.
 	- Connect the USB Development kit to the host computer.
 	- Button is configured to P1_1 corresponding to SW3 on the Pro Development kit.
@@ -28,11 +28,6 @@ or read from a smartphone application (i.e. lightblue for iOS).
 	- A diode (i.e. 1N4148) should be connected to prevent the Tx pin from trying to drive the bus high whenever a slave pulls it low. The
 	schematic underneath displays the connection from the 1-Wire bus to the dev kit. 
 	
-	**Button on Basic kit**	
-
-	![simple_button_basic](assets/simple_button_basic.png) 
- 
- 
 	**Breadboard lay-out**
 
 	![breadboard](assets/breadboard.png) 
@@ -49,6 +44,7 @@ or read from a smartphone application (i.e. lightblue for iOS).
 ## How to run the example
 
 For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
+The example is running from SRAM. For programming to Flash, see chapter 11 in the [SmartSnippets Toolbox User Manual](https://support.dialog-semiconductor.com/resource/um-b-083-smartsnippets-toolbox-user-manual).
 
 ### Initial Setup
 
@@ -85,18 +81,45 @@ For initial setup of the example please refer to [this section of the dialog sup
 	  **Enabling listen for notifications**
 	  
 	  ![screenshot](assets/screenshot.png)
-	  
- - To provide the correct timings of the Write slots according to the 1-Wire specification, the SPI controller is used. 
- - Below, two screenshots of a logic analyzer will display 3 bits of a transmission sequence and the corresponding timings achieved with the SPI controller of a Write 0 and Write 1 operation respectively.
- 
- 	**Write 0 timings**	
 
-	![1wire_write0](assets/1wire_write0.png) 
+### About this example
+ - 	Starting point for this example is the BLE peripheral project from SDK6. This project provides the right framework for adding the OneWire BLE characteristics. In the this project the user_one_wire and user_ds18b20 drivers were added.
+ - 	The user_one_wire driver contains:
+ 
+	- All the functionality to transmit high level and low level bits using the SPI controller: OneWire_write_1(), OneWire_write_0();
+	The SPI controller is necessary to provide accurate timings. 
+	Below, two screenshots of a logic analyzer will display 3 bits of a transmission sequence and the corresponding timings achieved with the SPI controller of a Write 0 and Write 1 operation respectively.
+	- Function to transmit whole bytes: OneWire_write_byte(uint8_t byte);
+	- Master readslot function requiring a callback to determine specific functionality (i.e. id_systick_ISR for reading id bit in the search algorithm): OneWire_readSlot(systick_callback_function_t systick_callback);
+	- OneWire initialisation which sets up the SPI controller with the correct parameters: OneWire_init();
+	- OneWire reset pulse: OneWire_reset();
+	- Wait for presence pulse: OneWire_presence();
+	- [Search ROM algorithm](https://www.maximintegrated.com/en/app-notes/index.mvp/id/187) storing all addresses on the bus in struct array of type OneWire_sensor: OneWire_SearchROM();
+	- Configurable limit to the number of sensors: #define MAX_NO_SENSORS 10
+	
+	**Write 0 timings**	
+
+	![1wire_write0](assets/1wire_write0.PNG) 
  
  
 	**Write 1 timings**
 
-	![1wire_write1](assets/1wire_write1.png) 
+	![1wire_write1](assets/1wire_write1.PNG) 
+
+ - 	The user_ds18b20 driver contains:
+ 
+	- Function to get only the DS18B20 address(es) using the OneWire_SearchROM() function. It will store the addresses (least significant 32 bits and most significant 32 bits seperately) in the correct members and instances of the struct array of type temperature_sensor: get_address(void);
+	- Function command to let all the DS18B20 convert the temperature and write it in the scratchpad. With the standard 12-bit resolution, it takes approximately 750ms: OneWire_ConvertT(void);
+	- Function to read the scratchpad contents. It will store the temperatures, and the rest of the scratchpad contents (24 least significant bits and 32 most significant bits) seperately in the correct members and instances of the struct array of type temperature_sensor: OneWire_readScratchpad(void);
+	- Function command to target a single sensor using the sensor index: OneWire_matchRom(int sensor_number);
+	- Functions to print data to the uart serial terminal: print_scratchpad(void), print_address(void), print_temperature(void);
+	
+- 	For adding the BLE characteristics the following files were modified:
+	
+	-	For user_custs1_def (header and source file);
+	- 	user_custs1_impl (header and source file);
+	- 	user_peripheral.c
+	- 	For more info on adding a custom BLE profile, refer to this [tutorial](https://support.dialog-semiconductor.com/resource/tutorial-3-custom-profile-gatt-cmd-examplev11).
 
 ## Known Limitations
 

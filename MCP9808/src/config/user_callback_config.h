@@ -46,7 +46,7 @@
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
-#include "user_profile.h"
+#include "user_temperaturereporter.h"
 
 /*
  * LOCAL VARIABLE DEFINITIONS

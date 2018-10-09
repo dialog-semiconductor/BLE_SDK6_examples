@@ -108,5 +108,5 @@ void periph_init(void)
    // Enable the pads
     SetBits16(SYS_CTRL_REG, PAD_LATCH_EN, 1);
 		
-		init_MCP9808(MCP9808_I2C_ADDRESS); //Initialise the ADXL345
+		init_MCP9808(MCP9808_I2C_ADDRESS); //Initialise the MCP9808
 }

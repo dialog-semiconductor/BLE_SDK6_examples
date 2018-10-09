@@ -1,9 +1,9 @@
 /**
  ****************************************************************************************
  *
- * @file user_profile.h
+ * @file user_temperaturereporter.h
  *
- * @brief Bare Bone application header file.
+ * @brief Temperature notification header file.
  *
  * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
  *

@@ -53,7 +53,7 @@
 #define MCP9808_SCL_PORT     GPIO_PORT_0
 #define MCP9808_SCL_PIN      GPIO_PIN_7
 
-#define MCP9808_I2C_ADDRESS  0x18 //Address is between 0x18 and 0x1F (excludes r/w bit)
+#define MCP9808_I2C_ADDRESS  0x18 //Address is between 0x18 and 0xF (excludes r/w bit)
 
 /*
  * FUNCTION DECLARATIONS
@@ -65,6 +65,8 @@
  * @brief      Initializes the MCP9808.
  *
  * @param[in]  address, The I2C slave of the MCP9808
+ * @param[in]  bit rate, The I2C slave bit rate (1:100kbit/s, 2:400kbit/s)
+ * @param[in]  register_width, The I2C slave register width (8 or 16 bit)
  *
  * @return     void
  *****************************************************************************************

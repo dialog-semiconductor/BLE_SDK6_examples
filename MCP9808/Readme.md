@@ -46,6 +46,16 @@ If everything went well, you should be able to receive temperature data as the v
 
 ![Notification screenshot](assets/Notification-screenshot.jpg)
 
+## How it works
+
+Tutorial 3 on the [Dialog Semiconductor support](https://support.dialog-semiconductor.com) website shows how to make your own custom profile.
+The *user_catch_rest_hndl* function in user_temperaturereporter.c will handle the messages for our custom profile.
+This application only has one possible custom action: a write to the notification. When this occurs the *user_svc1_temperature_wr_ntf_handler* function is called.
+This function will check the contents of the write. If the content of the write equals zero, the temperature timer is canceled.
+If the value is anything else, the *user_svc1_temperature_send_ntf* function is called. This function will read out the sensor data and convert it to a string(for demo purposes).
+The string will be placed in a message, along with some other parameters, like the connection ID and the characteristic handle.
+After the message is sent, the *app_easy_timer* function is used to schedule the next call to the *user_svc1_temperature_send_ntf* function. This will ensure the temperature is transmitted regularly.
+The *app_easy_timer* function has a resolution of 10ms hence we divide the desired delay in ms by 10.
 
 ## Known Limitations
 

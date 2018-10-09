@@ -1,9 +1,9 @@
 /**
  ****************************************************************************************
  *
- * @file user_profile.c
+ * @file user_temperaturereporter.c
  *
- * @brief Profile project source code.
+ * @brief Temperature notification source code.
  *
  * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
  *
@@ -45,7 +45,7 @@
 #include "rwip_config.h"             // SW configuration
 #include "gap.h"
 #include "app_easy_timer.h"
-#include "user_profile.h"
+#include "user_temperaturereporter.h"
 #include "co_bt.h"
 #include "gpio.h"
 #include "app_api.h"
@@ -344,29 +344,29 @@ void user_svc1_temperature_send_ntf()
 
 		
 		
-		req->conidx = 0;                            //Connection ID to send the data to (this application can only have one connection(0))
-		req->notification = true;                   //Data is sent as a notification and not as indication
-		req->handle = SVC1_IDX_TEMPERATURE_VAL;    //The handle of the characteristic we want to write to
-		req->length = string_length;                //Data length in bytes
+		req->conidx = 0;                                      //Connection ID to send the data to (this application can only have one connection(0))
+		req->notification = true;                             //Data is sent as a notification and not as indication
+		req->handle = SVC1_IDX_TEMPERATURE_VAL;               //The handle of the characteristic we want to write to
+		req->length = string_length;                          //Data length in bytes
 		memcpy(req->value, temperature_string, string_length);//Copy the string to the message
 
-		ke_msg_send(req);                           //Send the message to the task
+		ke_msg_send(req);                                     //Send the message to the task
 		
-		temperature_timer_handle = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_temperature_send_ntf); //Set a timer for 100 ms (10*10)
+		temperature_timer_handle = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_temperature_send_ntf); //Set a timer for NOTIFICATION_DELAY ms
 }
 
 void user_svc1_temperature_wr_ntf_handler(struct custs1_val_write_ind const *param){
 	if(param->value[0]){
 		//If the client subscribed to the notification
 		if(temperature_timer_handle == EASY_TIMER_INVALID_TIMER){ 
-			//Start the X timer if it is not running
-			app_easy_timer(10, user_svc1_temperature_send_ntf);
+			//Start the timer if it is not running
+			user_svc1_temperature_send_ntf();
 		}
 	}
 	else{
 		//If the client unsubscribed from the notification
 		if(temperature_timer_handle != EASY_TIMER_INVALID_TIMER){ 
-			//Stop the X timer if it is running
+			//Stop the timer if it is running
 			app_easy_timer_cancel(temperature_timer_handle);
 			temperature_timer_handle = EASY_TIMER_INVALID_TIMER;
 		}

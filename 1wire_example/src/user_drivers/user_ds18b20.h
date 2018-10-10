@@ -43,7 +43,7 @@ struct temperature_sensor
 		uint8_t 	sensor_number;
 		uint32_t 	address_low;
 		uint32_t	address_high;
-		uint16_t 	temperature;
+		int16_t 	temperature;
 		uint32_t 	scratchpad_low;
 		uint32_t  scratchpad_high;
 };

@@ -35,6 +35,7 @@
 #include "user_periph_setup.h"
 #include "arch_console.h"
 #include "math.h"
+#include "stdlib.h"
 
 extern struct OneWire_sensor OneWire_sensors[MAX_NO_SENSORS]; 	// Contains addresses of all 1-Wire sensors
 extern int sensor_index;																				// Value indicating the number of sensors on the bus
@@ -314,7 +315,7 @@ static void ftoa(float n, char *res, int afterpoint)
     if (afterpoint != 0) 
     { 
         res[i] = '.';  // add dot 
-        fpart = fpart * pow(10, afterpoint); 
+        fpart = abs(fpart * pow(10, afterpoint)); 
         itoa((int)fpart, res + i + 1); 
     } 
 } 

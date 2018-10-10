@@ -34,7 +34,6 @@
 #include "gpio.h"
 #include "spi.h"
 #include "systick.h"
-#include "user_uart.h"
 
 bool 			cmp_id_bit 				= 0;
 bool 			id_bit 						= 0;

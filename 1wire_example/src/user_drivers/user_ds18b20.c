@@ -31,7 +31,6 @@
  */
 
 #include "user_ds18b20.h"
-#include "user_uart.h"
 #include "gpio.h"
 #include "user_periph_setup.h"
 #include "arch_console.h"

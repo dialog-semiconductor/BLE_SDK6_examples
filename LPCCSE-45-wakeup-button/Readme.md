@@ -61,7 +61,8 @@ The example is running from SRAM. To run the program from flash refer to chapter
 		
 ## About this Example
 This example was built on top of the Barebone project from SDK6. The code can be found in user_wakeup_example.h and user_wakeup_example.c.
-The function, to initialize the parameters of the example, user_wakeup_example_init(void), is called from the user_app_init(void) in the user_barebone.c file. 
+The function, to initialize the parameters of the example, user_wakeup_example_init(void), is called from the user_app_init(void) in the user_barebone.c file.
+In the da1458x_config_basic.h file the SLEEP_WITHOUT_ADVERTISING flag is undefined by default. When sleep without advertising is required, defining this flag will ensure this. 
 
 To setup the wakeup interrupt, wkupct_enable_irq(uint32_t sel_pins, uint32_t pol_pins, uint16_t events_num, uint16_t deb_time) from the wkupct_quadec driver is used with the following paramters:
 
@@ -77,7 +78,7 @@ To setup the wakeup interrupt, wkupct_enable_irq(uint32_t sel_pins, uint32_t pol
  In the app_wakeup_press_cb(void) the following is done:
  * When the device isn't sleeping, put the device to sleep by calling the following functions:
  
-	- app_easy_gap_advertise_stop(); This function will stop the advertising.
+	- app_easy_gap_advertise_stop(); This function will stop the advertising. (Function is only called when the SLEEP_WITHOUT_ADVERTISING is defined)
 	- arch_set_sleep_mode(ARCH_EXT_SLEEP_ON); This function will change the default sleepstate.	
 	- arch_ble_ext_wakeup_on(); This function prevents the BLE core from waking up the system. Only an external event (i.e. buttonpress) can wake up the system.
 	
@@ -86,6 +87,7 @@ To setup the wakeup interrupt, wkupct_enable_irq(uint32_t sel_pins, uint32_t pol
 	- arch_set_sleep_mode(ARCH_SLEEP_OFF); This will change the default sleepstate.
     - arch_ble_force_wakeup(); This will wakeup the BLE core when only external event can wake up the system. 
     - arch_ble_ext_wakeup_off(); This will enable the BLE core to wakeup the system from sleep.
+	- Furthermore, the source of the interrupt will be checked and displayed accordingly. 
 	
 With the wakeup interrupt there isn't a good way do differentiate between level detection and edge detection 
 as is the case with normal GPIO interrupts by setting the correct value in the GPIO_INT_LEVEL_CTRL_REG. 

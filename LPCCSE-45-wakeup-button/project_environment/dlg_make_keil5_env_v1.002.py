@@ -53,8 +53,6 @@ DLG_WORKING_PROJECT_NAME = 'test.uvprojx'
 FILE_EXTENSION = 'uvprojx'	
 SOC_ID = 585
 
-SHARED_FOLDER_PATH = 'projects\\target_apps\\peripheral_examples\\shared\\'
-
 SCATTER_FILE_PATH = 'sdk\\common_project_files\\scatterfiles\\scatterfile_common.sct'
 SUB_STR_PATTERN_STACK_CONFIG = '.\\..\\..\\..\\..\\..\\sdk\\common_project_files\\'
 DA1458X_STACK_CONFIG = 'sdk\\common_project_files\\'
@@ -62,7 +60,7 @@ DA1458X_STACK_CONFIG = 'sdk\\common_project_files\\'
 COPIED_SCATTER_FILE_PATH = '.\\..\\src\\config\\copied_scatter.sct'
 
 XML_TAG = ['IncludePath', 'Misc', 'ScatterFile', 'FilePath', 'tIfile']
-DLG_FIND_STR_PATTERN = ['\\sdk\\' , '\\third_party\\', "\\shared\\"]
+DLG_FIND_STR_PATTERN = ['\\sdk\\' , '\\third_party\\']
 DLG_SPLIT_STR_PATTERN = [';' , ' ', '', '=']
 DLG_FIND_OTHER_PATTERN = ['--symdefs']
 
@@ -135,13 +133,6 @@ def build_uvoptx_element_debugopt(xml_sub_element):
 			single_text = DLG_SDK_ROOT_DIRECTORY + DLG_FIND_STR_PATTERN[0] + my_t_list[-1]	
 			#print(single_text)
 			t_sub_element.text = single_text	
-		else:
-			my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[2],1)
-			if(len(my_t_list)> 1):
-				single_text = DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + my_t_list[-1]			
-				#print(single_text)
-				t_sub_element.text = single_text	
-		
 	tree.write(dlg_uvoptx_file)
 	
 	x = '''<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\r\n'''
@@ -240,15 +231,8 @@ def build_uvprojx_element_file(xml_sub_element, split_str_pattern):
 					#print(my_t_list)
 					if(len(my_t_list)> 1):
 						single_text = DLG_SDK_ROOT_DIRECTORY + DLG_FIND_STR_PATTERN[1] + my_t_list[-1]
-					else:
-						my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[2],1)
-						single_text = temp_text
-						#print(my_t_list)
-						if(len(my_t_list)> 1):
-							single_text = DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + my_t_list[-1]
 					#print(my_t_list)
 				#print(single_text)
-					
 					
 				if (os.path.exists(single_text) == True):
 					t_sub_element.find(temp_tag).text = single_text
@@ -303,8 +287,6 @@ def build_uvprojx_element_ldads_misc(xml_sub_element, split_str_pattern):
 		updated_data = ''
 		#print(t_sub_element.tag)
 		print(t_sub_element.text)
-		if(t_sub_element.text == None):
-			return
 		temp_text = t_sub_element.text
 		temp_list = temp_text.split(split_str_pattern)
 		#print(temp_list)
@@ -377,11 +359,6 @@ def build_uvprojx_element_various_controls(xml_sub_element, xml_tag, split_str_p
 						my_t_list = single_text.split(DLG_FIND_STR_PATTERN[1],1)
 						if(len(my_t_list)> 1):
 							single_text = DLG_SDK_ROOT_DIRECTORY + DLG_FIND_STR_PATTERN[1] + my_t_list[-1]
-						else:
-							my_t_list = single_text.split(DLG_FIND_STR_PATTERN[2],1)
-							if(len(my_t_list)> 1):								
-								single_text = DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + my_t_list[-1]
-							
 					#print(single_text)
 					if (os.path.isdir(single_text) == True):
 						#print("IT IS A VALID PATH...")
@@ -415,7 +392,7 @@ def setup_keil5_project_environment():
 	This API will create the entire the link between the SDK files
     and the user application	
 	"""
-	global root, tree, COPIED_SCATTER_FILE_PATH
+	global root, tree
 	subString = SUB_STR_PATTERN_STACK_CONFIG
 	temp_flag = False
 	
@@ -423,18 +400,14 @@ def setup_keil5_project_environment():
 		newText = my_file.read().replace(subString, DLG_SDK_ROOT_DIRECTORY + DA1458X_STACK_CONFIG)
 		#print(newText)	
 	my_file.close()
-	
-	if(os.path.isdir(".\\..\\src\\config\\") == False):
-		COPIED_SCATTER_FILE_PATH = DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct"
-		temp_flag = True		
-	else:
-		with open(COPIED_SCATTER_FILE_PATH, "w") as my_file:
-			my_file.write(newText)
-			print("DA1458X SCATTER FILE IS COPIED ...")
-			print("     FROM LOCATION :: ", DLG_SDK_ROOT_DIRECTORY + SCATTER_FILE_PATH)
-			print("     TO LOCATION :: ", COPIED_SCATTER_FILE_PATH)
-			temp_flag = True
-		my_file.close()
+
+	with open(COPIED_SCATTER_FILE_PATH, "w") as my_file:
+		my_file.write(newText)
+		print("DA1458X SCATTER FILE IS COPIED ...")
+		print("     FROM LOCATION :: ", DLG_SDK_ROOT_DIRECTORY + SCATTER_FILE_PATH)
+		print("     TO LOCATION :: ", COPIED_SCATTER_FILE_PATH)
+		temp_flag = True
+	my_file.close()
 
 	
 	if (temp_flag):
@@ -454,6 +427,12 @@ def setup_keil5_project_environment():
 		
 		
 	#return	
+	
+	
+
+	
+	
+
 	
 
 #verify it is a dialog keil applicaiton project

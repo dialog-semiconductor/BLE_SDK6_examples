@@ -93,7 +93,11 @@ void app_wakeup_press_cb(void)
 						arch_printf("\n\n\rSystem going to sleep");
 				#endif
 				GPIO_SetInactive(GPIO_LED_PORT, GPIO_LED_PIN);
-				app_easy_gap_advertise_stop();
+			
+				#ifdef SLEEP_WITHOUT_ADVERTISING
+						app_easy_gap_advertise_stop();
+				#endif
+			
 				arch_set_sleep_mode(ARCH_EXT_SLEEP_ON);				
 				arch_ble_ext_wakeup_on();
 		}

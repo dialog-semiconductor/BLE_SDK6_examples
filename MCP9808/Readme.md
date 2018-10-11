@@ -19,6 +19,9 @@ The sensor data gets sent over BLE with a notification.
 - Connect the SCL pin of the MCP9808 to pin 0-7 of the development board.
 - Connect the SDA pin of the MCP9808 to pin 1-2 of the development board.
   - These pins are defined in the MCP9808.h file
+ 
+![Pin connections in Fritzing](assets/MCP9808_Fritzing.png) 
+ 
 - Connect the USB Development kit to the host computer.
 
 

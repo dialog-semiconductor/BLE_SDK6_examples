@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>my_app_example_585</TargetName>
+      <TargetName>ble_central_with_security_585</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -19,28 +19,28 @@
           <PackID>ARM.CMSIS.5.3.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x0,0x0) IRAM(0x0,0x0) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
-          <FlashUtilSpec></FlashUtilSpec>
-          <StartupFile></StartupFile>
+          <FlashUtilSpec />
+          <StartupFile />
           <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0NEW_DEVICE -FS00 -FL040000 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
           <RegisterFile>$$Device:ARMCM0$Device\ARM\ARMCM0\Include\ARMCM0.h</RegisterFile>
-          <MemoryEnv></MemoryEnv>
-          <Cmp></Cmp>
-          <Asm></Asm>
-          <Linker></Linker>
-          <OHString></OHString>
-          <InfinionOptionDll></InfinionOptionDll>
-          <SLE66CMisc></SLE66CMisc>
-          <SLE66AMisc></SLE66AMisc>
-          <SLE66LinkerMisc></SLE66LinkerMisc>
+          <MemoryEnv />
+          <Cmp />
+          <Asm />
+          <Linker />
+          <OHString />
+          <InfinionOptionDll />
+          <SLE66CMisc />
+          <SLE66AMisc />
+          <SLE66LinkerMisc />
           <SFDFile>$$Device:ARMCM0$Device\ARM\SVD\ARMCM0.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
-          <BinPath></BinPath>
-          <IncludePath></IncludePath>
-          <LibPath></LibPath>
-          <RegisterFilePath></RegisterFilePath>
-          <DBRegisterFilePath></DBRegisterFilePath>
+          <BinPath />
+          <IncludePath />
+          <LibPath />
+          <RegisterFilePath />
+          <DBRegisterFilePath />
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\out_585\</OutputDirectory>
-          <OutputName>my_app_example_585</OutputName>
+          <OutputName>ble_central_with_security_585</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -62,8 +62,8 @@
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopU1X>0</nStopU1X>
@@ -72,8 +72,8 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopB1X>0</nStopB1X>
@@ -82,15 +82,15 @@
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
-          <SVCSIdString></SVCSIdString>
+          <SVCSIdString />
         </TargetCommonOption>
         <CommonProperty>
           <UseCPPCompiler>0</UseCPPCompiler>
@@ -104,8 +104,8 @@
           <AssembleAssemblyFile>0</AssembleAssemblyFile>
           <PublicsOnly>0</PublicsOnly>
           <StopOnExitCode>3</StopOnExitCode>
-          <CustomArgument></CustomArgument>
-          <IncludeLibraryModules></IncludeLibraryModules>
+          <CustomArgument />
+          <IncludeLibraryModules />
           <ComprImg>1</ComprImg>
         </CommonProperty>
         <DllOption>
@@ -139,10 +139,10 @@
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
           <Flash3>"" ()</Flash3>
-          <Flash4></Flash4>
-          <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
-          <pFcArmRoot></pFcArmRoot>
+          <Flash4 />
+          <pFcarmOut />
+          <pFcarmGrp />
+          <pFcArmRoot />
           <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArmAds>
@@ -175,7 +175,7 @@
             <RvctClst>0</RvctClst>
             <GenPPlst>0</GenPPlst>
             <AdsCpuType>"Cortex-M0"</AdsCpuType>
-            <RvctDeviceName></RvctDeviceName>
+            <RvctDeviceName />
             <mOS>0</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
@@ -307,7 +307,7 @@
                 <Size>0x0</Size>
               </OCR_RVCT10>
             </OnChipMemories>
-            <RvctStartVector></RvctStartVector>
+            <RvctStartVector />
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
@@ -335,9 +335,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--thumb -c --preinclude da1458x_config_basic.h --preinclude da1458x_config_advanced.h --preinclude user_config.h --bss_threshold=0 --feedback=".\unused_585.txt"</MiscControls>
-              <Define></Define>
-              <Undefine></Undefine>
-              <IncludePath>C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\include;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_bass;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_diss;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_proxr;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_suotar;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_findme;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_custs;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\em;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\lld;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\atts;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\bas\bass\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\dis\diss\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\prox\proxr\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\suota\suotar\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble_hl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\ea\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\em\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\boot\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\compiler\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\ll\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\main;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\arch_console;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\common\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\crypto;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\dbg\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\nvds\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rf\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rwip\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\h4tl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\adc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\battery;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\gpio;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\i2c_eeprom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\reg;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi_flash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\syscntl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\systick;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\trng;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\uart;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\wkupct_quadec;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\ble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\hw_otpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\dma;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\pdm;.\..\src\config;.\..\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\system_library\include;..\src\custom_profile;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\lan;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cpp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\rscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\pasp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\anp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\hrp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findt\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom\custs\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\rand;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\hash</IncludePath>
+              <Define />
+              <Undefine />
+              <IncludePath>C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\include;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_bass;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_diss;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_proxr;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_suotar;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_findme;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_custs;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\em;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\lld;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\atts;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\bas\bass\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\dis\diss\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\prox\proxr\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\suota\suotar\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble_hl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\ea\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\em\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\boot\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\compiler\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\ll\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\main;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\arch_console;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\common\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\crypto;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\dbg\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\nvds\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rf\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rwip\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\h4tl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\adc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\battery;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\gpio;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\i2c_eeprom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\reg;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi_flash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\syscntl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\systick;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\trng;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\uart;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\wkupct_quadec;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\ble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\hw_otpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\dma;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\pdm;.\..\src\config;.\..\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\system_library\include;..\src\custom_profile;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\lan;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cpp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\rscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\pasp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\anp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\hrp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findt\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom\custs\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\rand;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\hash;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -352,10 +352,10 @@
             <useXO>0</useXO>
             <uClangAs>0</uClangAs>
             <VariousControls>
-              <MiscControls></MiscControls>
-              <Define></Define>
-              <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <MiscControls />
+              <Define />
+              <Undefine />
+              <IncludePath />
             </VariousControls>
           </Aads>
           <LDads>
@@ -367,13 +367,13 @@
             <useFile>0</useFile>
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
-            <pXoBase></pXoBase>
+            <pXoBase />
             <ScatterFile>.\..\src\config\copied_scatter.sct</ScatterFile>
-            <IncludeLibs></IncludeLibs>
-            <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--feedback=".\unused_585.txt" C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files\misc\da14585_symbols.txt   --symdefs=empty_peripheral_template_585_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
-            <LinkerInputFile></LinkerInputFile>
-            <DisabledWarnings></DisabledWarnings>
+            <IncludeLibs />
+            <IncludeLibsPath />
+            <Misc>--feedback=".\unused_585.txt" C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files\misc\da14585_symbols.txt    --symdefs=empty_peripheral_template_585_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <LinkerInputFile />
+            <DisabledWarnings />
           </LDads>
         </TargetArmAds>
       </TargetOption>
@@ -1311,7 +1311,7 @@
       </Groups>
     </Target>
     <Target>
-      <TargetName>my_app_example_586</TargetName>
+      <TargetName>ble_central_with_security_586</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -1323,28 +1323,28 @@
           <PackID>ARM.CMSIS.5.3.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x0,0x0) IRAM(0x0,0x0) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
-          <FlashUtilSpec></FlashUtilSpec>
-          <StartupFile></StartupFile>
+          <FlashUtilSpec />
+          <StartupFile />
           <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0NEW_DEVICE -FS00 -FL040000 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
           <RegisterFile>$$Device:ARMCM0$Device\ARM\ARMCM0\Include\ARMCM0.h</RegisterFile>
-          <MemoryEnv></MemoryEnv>
-          <Cmp></Cmp>
-          <Asm></Asm>
-          <Linker></Linker>
-          <OHString></OHString>
-          <InfinionOptionDll></InfinionOptionDll>
-          <SLE66CMisc></SLE66CMisc>
-          <SLE66AMisc></SLE66AMisc>
-          <SLE66LinkerMisc></SLE66LinkerMisc>
+          <MemoryEnv />
+          <Cmp />
+          <Asm />
+          <Linker />
+          <OHString />
+          <InfinionOptionDll />
+          <SLE66CMisc />
+          <SLE66AMisc />
+          <SLE66LinkerMisc />
           <SFDFile>$$Device:ARMCM0$Device\ARM\SVD\ARMCM0.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
-          <BinPath></BinPath>
-          <IncludePath></IncludePath>
-          <LibPath></LibPath>
-          <RegisterFilePath></RegisterFilePath>
-          <DBRegisterFilePath></DBRegisterFilePath>
+          <BinPath />
+          <IncludePath />
+          <LibPath />
+          <RegisterFilePath />
+          <DBRegisterFilePath />
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -1353,7 +1353,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\out_586\</OutputDirectory>
-          <OutputName>my_app_example_586</OutputName>
+          <OutputName>ble_central_with_security_586</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -1366,8 +1366,8 @@
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopU1X>0</nStopU1X>
@@ -1376,8 +1376,8 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopB1X>0</nStopB1X>
@@ -1386,15 +1386,15 @@
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
-          <SVCSIdString></SVCSIdString>
+          <SVCSIdString />
         </TargetCommonOption>
         <CommonProperty>
           <UseCPPCompiler>0</UseCPPCompiler>
@@ -1408,8 +1408,8 @@
           <AssembleAssemblyFile>0</AssembleAssemblyFile>
           <PublicsOnly>0</PublicsOnly>
           <StopOnExitCode>3</StopOnExitCode>
-          <CustomArgument></CustomArgument>
-          <IncludeLibraryModules></IncludeLibraryModules>
+          <CustomArgument />
+          <IncludeLibraryModules />
           <ComprImg>1</ComprImg>
         </CommonProperty>
         <DllOption>
@@ -1443,10 +1443,10 @@
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
           <Flash3>"" ()</Flash3>
-          <Flash4></Flash4>
-          <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
-          <pFcArmRoot></pFcArmRoot>
+          <Flash4 />
+          <pFcarmOut />
+          <pFcarmGrp />
+          <pFcArmRoot />
           <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArmAds>
@@ -1479,7 +1479,7 @@
             <RvctClst>0</RvctClst>
             <GenPPlst>0</GenPPlst>
             <AdsCpuType>"Cortex-M0"</AdsCpuType>
-            <RvctDeviceName></RvctDeviceName>
+            <RvctDeviceName />
             <mOS>0</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
@@ -1611,7 +1611,7 @@
                 <Size>0x0</Size>
               </OCR_RVCT10>
             </OnChipMemories>
-            <RvctStartVector></RvctStartVector>
+            <RvctStartVector />
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
@@ -1640,8 +1640,8 @@
             <VariousControls>
               <MiscControls>--thumb -c --preinclude da1458x_config_basic.h --preinclude da1458x_config_advanced.h --preinclude user_config.h --bss_threshold=0 --feedback=".\unused_586.txt"</MiscControls>
               <Define>__DA14586__</Define>
-              <Undefine></Undefine>
-              <IncludePath>C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\include;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_bass;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_diss;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_proxr;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_suotar;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_findme;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_custs;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\em;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\lld;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\atts;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\bas\bass\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\dis\diss\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\prox\proxr\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\suota\suotar\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble_hl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\ea\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\em\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\boot\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\compiler\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\ll\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\main;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\arch_console;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\common\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\crypto;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\dbg\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\nvds\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rf\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rwip\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\h4tl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\adc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\battery;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\gpio;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\i2c_eeprom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\reg;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi_flash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\syscntl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\systick;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\trng;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\uart;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\wkupct_quadec;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\ble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\hw_otpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\dma;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\pdm;.\..\src\config;.\..\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\system_library\include;..\src\custom_profile;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\lan;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cpp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\rscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\pasp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\anp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\hrp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findt\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom\custs\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\rand;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\hash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\include;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_bass;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_diss;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_proxr;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_suotar;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_findme;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_custs;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\em;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\lld;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\atts;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\bas\bass\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\dis\diss\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\prox\proxr\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\suota\suotar\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble_hl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\ea\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\em\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\boot\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\compiler\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\ll\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\main;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\arch_console;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\common\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\crypto;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\dbg\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\nvds\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rf\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rwip\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\h4tl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\adc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\battery;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\gpio;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\i2c_eeprom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\reg;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi_flash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\syscntl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\systick;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\trng;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\uart;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\wkupct_quadec;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\ble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\hw_otpc;.\..\src\config;.\..\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\system_library\include;..\src\custom_profile;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\lan;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cpp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\rscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\pasp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\anp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\hrp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findt\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom\custs\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\hash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\rand;</IncludePath>
+              <Undefine />
+              <IncludePath>C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\include;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_bass;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_diss;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_proxr;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_suotar;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_findme;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_custs;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\em;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\lld;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\atts;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\bas\bass\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\dis\diss\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\prox\proxr\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\suota\suotar\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble_hl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\ea\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\em\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\boot\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\compiler\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\ll\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\main;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\arch_console;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\common\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\crypto;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\dbg\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\nvds\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rf\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rwip\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\h4tl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\adc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\battery;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\gpio;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\i2c_eeprom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\reg;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi_flash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\syscntl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\systick;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\trng;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\uart;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\wkupct_quadec;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\ble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\hw_otpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\dma;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\pdm;.\..\src\config;.\..\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\system_library\include;..\src\custom_profile;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\lan;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cpp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\rscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\pasp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\anp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\hrp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findt\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom\custs\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\rand;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\hash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\include;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_bass;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_diss;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_proxr;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_suotar;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_findme;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_custs;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\em;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\lld;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\atts;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\bas\bass\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\dis\diss\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\prox\proxr\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\suota\suotar\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble_hl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\ea\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\em\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\boot\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\compiler\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\ll\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\main;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\arch_console;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\common\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\crypto;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\dbg\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\nvds\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rf\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rwip\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\h4tl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\adc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\battery;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\gpio;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\i2c_eeprom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\reg;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi_flash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\syscntl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\systick;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\trng;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\uart;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\wkupct_quadec;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\ble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\hw_otpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\dma;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\pdm;.\..\src\config;.\..\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\system_library\include;..\src\custom_profile;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\lan;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cpp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\rscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\pasp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\anp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\hrp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findt\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom\custs\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\rand;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\hash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\include;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_bass;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_diss;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_proxr;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_suotar;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_findme;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\app_modules\src\app_custs;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\em;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\lld;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\controller\llm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\attm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\att\atts;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gap\gapm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\gatt\gattm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\l2c\l2cm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp\smpm;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\host\smp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\bas\bass\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\dis\diss\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\prox\proxr\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\suota\suotar\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\rwble_hl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\ea\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\em\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\boot\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\compiler\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\ll\rvds;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch\main;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\arch;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\arch_console;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\common\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\crypto;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\dbg\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\ke\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\nvds\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rf\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\gtl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\rwip\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\core_modules\h4tl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\adc;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\battery;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\gpio;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\i2c_eeprom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\reg;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\spi_flash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\syscntl;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\systick;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\trng;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\uart;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\wkupct_quadec;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\ble;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\driver\hw_otpc;.\..\src\config;.\..\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\platform\system_library\include;..\src\custom_profile;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\lan;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cpp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\rscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\pasp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\cscp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\anp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\hrp;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\hci\src;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findt\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\find\findl\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\ble_stack\profiles\custom\custs\api;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\hash;C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\third_party\rand;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1656,10 +1656,10 @@
             <useXO>0</useXO>
             <uClangAs>0</uClangAs>
             <VariousControls>
-              <MiscControls></MiscControls>
-              <Define></Define>
-              <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <MiscControls />
+              <Define />
+              <Undefine />
+              <IncludePath />
             </VariousControls>
           </Aads>
           <LDads>
@@ -1671,13 +1671,13 @@
             <useFile>0</useFile>
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
-            <pXoBase></pXoBase>
+            <pXoBase />
             <ScatterFile>.\..\src\config\copied_scatter.sct</ScatterFile>
-            <IncludeLibs></IncludeLibs>
-            <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--feedback=".\unused_586.txt" C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files\misc\da14585_symbols.txt   --symdefs=empty_peripheral_template_586_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
-            <LinkerInputFile></LinkerInputFile>
-            <DisabledWarnings></DisabledWarnings>
+            <IncludeLibs />
+            <IncludeLibsPath />
+            <Misc>--feedback=".\unused_586.txt" C:\Users\qiyang\Documents\Untouched_SDK\6.0.10.511\\sdk\common_project_files\misc\da14585_symbols.txt    --symdefs=empty_peripheral_template_586_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <LinkerInputFile />
+            <DisabledWarnings />
           </LDads>
         </TargetArmAds>
       </TargetOption>
@@ -2617,9 +2617,9 @@
   </Targets>
 
   <RTE>
-    <apis/>
-    <components/>
-    <files/>
+    <apis />
+    <components />
+    <files />
   </RTE>
 
 </Project>

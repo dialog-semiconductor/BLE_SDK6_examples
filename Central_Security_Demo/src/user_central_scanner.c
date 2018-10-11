@@ -65,6 +65,12 @@ bool is_scanning __attribute__((section("retention_mem_area0"), zero_init)); //@
  ****************************************************************************************
 */
 
+/**
+ ****************************************************************************************
+ * @brief Clear scanned devices in the list.
+ *
+ ****************************************************************************************
+ */
 void user_clear_devices(void){
 	struct adv_device empty = {0};
 	for(int i = 0;i<10;i++){
@@ -195,19 +201,22 @@ void	user_connect_to_device(struct adv_device device){
  */
 static void uart_read_cb(uint8_t status)
 {
-	if(uart_input == 0x52 || uart_input == 0x72){
+	//Relaunch scanning if input is letter R
+	if(uart_input == 'r' || uart_input == 'R'){
 		wdg_resume();	
 		user_clear_devices();
 		user_scan_start();
 	}
+	//Simple input sanitycheck
 	else{
-		if(uart_input < 0x30 || uart_input-0x30 >= device_count){
+		if(uart_input < '0' || uart_input-'0' >= device_count){
 			arch_printf("Input not valid.\r\n");
 			user_choose_device();
 		}
 		else{
+			//Connect to device according to the input number
 			uart2_read_in_progress = 0;
-			uart_input = uart_input - 0x30;
+			uart_input = uart_input - '0';
 			user_connect_to_device(scanned_devices[uart_input]);
 		}
 	}

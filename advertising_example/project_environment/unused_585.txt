@@ -1,9 +1,8 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Oct 22 10:49:50 2018
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Oct 25 16:06:39 2018
 ;VERSION 0.2
 ;FILE adc.o
 adc_calibrate <= USED 0
 adc_disable <= USED 0
-;FILE advertising_example.o
 ;FILE app.o
 active_conhdl_to_conidx <= USED 0
 active_conidx_to_conhdl <= USED 0
@@ -37,7 +36,6 @@ app_easy_wakeup_free <= USED 0
 app_easy_wakeup_set <= USED 0
 app_msg_utils_api_process_handler <= USED 0
 ;FILE app_easy_timer.o
-app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
 ;FILE app_entry_point.o
 ;FILE app_msg_utils.o
@@ -73,13 +71,9 @@ battery_get_lvl <= USED 0
 ;FILE gpio.o
 GPIO_ConfigurePinPower <= USED 0
 GPIO_DisablePorPin <= USED 0
-GPIO_EnableIRQ <= USED 0
 GPIO_EnablePorPin <= USED 0
-GPIO_GetIRQInputLevel <= USED 0
 GPIO_GetPinStatus <= USED 0
 GPIO_GetPorTime <= USED 0
-GPIO_RegisterCallback <= USED 0
-GPIO_SetIRQInputLevel <= USED 0
 GPIO_SetPorTime <= USED 0
 ;FILE hardfault_handler.o
 ;FILE hash.o
@@ -195,7 +189,9 @@ uart2_flow_off <= USED 0
 uart2_flow_on <= USED 0
 uart2_read <= USED 0
 uart2_set_flow_off_retries_limit <= USED 0
-;FILE user_barebone.o
+;FILE user_adv_example.o
+user_resume_from_sleep <= USED 0
+;FILE user_button.o
 ;FILE user_periph_setup.o
 GPIO_reservations <= USED 0
 ;FILE wkupct_quadec.o
@@ -208,6 +204,4 @@ quad_decoder_init <= USED 0
 quad_decoder_register_callback <= USED 0
 quad_decoder_release <= USED 0
 wkupct_disable_irq <= USED 0
-wkupct_enable_irq <= USED 0
 wkupct_quad_disable_IRQ <= USED 0
-wkupct_register_callback <= USED 0

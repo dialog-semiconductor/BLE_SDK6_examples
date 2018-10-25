@@ -48,7 +48,6 @@
  ****************************************************************************************
  */
  #define GPIO_DRV_PIN_ALLOC_MON_DISABLED
- #define ADV_EXAMPLE
 
 //*** <<< Use Configuration Wizard in Context Menu >>> ***
 
@@ -152,7 +151,7 @@
 				#define GPIO_LED_PIN      GPIO_PIN_0
 		#endif
 
-		#ifdef USER_ADVERTISING_EXAMPLE
+		#ifdef USER_user_button
 				#define GPIO_BUTTON_PORT  GPIO_PORT_1
 				#define GPIO_BUTTON_PIN   GPIO_PIN_1
 				

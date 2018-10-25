@@ -886,7 +886,7 @@
                   <MiscControls>--reduce_paths</MiscControls>
                   <Define></Define>
                   <Undefine></Undefine>
-                  <IncludePath>..\src\adv_example</IncludePath>
+                  <IncludePath>..\src\user_example;..\src</IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
@@ -911,19 +911,24 @@
           </GroupOption>
           <Files>
             <File>
-              <FileName>user_barebone.c</FileName>
+              <FileName>user_adv_example.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\user_barebone.c</FilePath>
+              <FilePath>..\src\user_adv_example.c</FilePath>
             </File>
             <File>
-              <FileName>advertising_example.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\adv_example\advertising_example.c</FilePath>
-            </File>
-            <File>
-              <FileName>advertising_example.h</FileName>
+              <FileName>user_adv_example.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\src\adv_example\advertising_example.h</FilePath>
+              <FilePath>..\src\user_adv_example.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_button.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\user_button.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1765,19 +1770,24 @@
           <GroupName>user_app</GroupName>
           <Files>
             <File>
-              <FileName>user_barebone.c</FileName>
+              <FileName>user_adv_example.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\user_barebone.c</FilePath>
+              <FilePath>..\src\user_adv_example.c</FilePath>
             </File>
             <File>
-              <FileName>advertising_example.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\adv_example\advertising_example.c</FilePath>
-            </File>
-            <File>
-              <FileName>advertising_example.h</FileName>
+              <FileName>user_adv_example.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\src\adv_example\advertising_example.h</FilePath>
+              <FilePath>..\src\user_adv_example.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_button.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\user_button.h</FilePath>
             </File>
           </Files>
         </Group>

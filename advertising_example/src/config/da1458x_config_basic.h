@@ -92,9 +92,14 @@
 /* example.                                                                    																	*/
 /****************************************************************************************************************/
 
-#define ADV_EXAMPLE											
-#define ADV_TIMER_EXAMPLE
-//#define ADV_BUTTON_EXAMPLE
-//#define LED_INDICATION
+#define ADV_EXAMPLE		
+
+#ifdef ADV_EXAMPLE
+		#undef ADV_TIMER_EXAMPLE
+		#define ADV_BUTTON_EXAMPLE
+#endif
+
+// Define LED_INDICATION to enable advertising led indication
+#define LED_INDICATION
 
 #endif // _DA1458X_CONFIG_BASIC_H_

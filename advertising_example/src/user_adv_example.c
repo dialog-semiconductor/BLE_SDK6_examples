@@ -1,32 +1,40 @@
 /**
  ****************************************************************************************
  *
- * @file user_barebone.c
+ * @file user_adv_example.c
  *
  * @brief Barebone project source code.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
- *
+ * Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs 
+ * included in this package ("Software") include confidential, proprietary information 
+ * of Dialog Semiconductor. All Rights Reserved.
+ * 
+ * THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) AND MAY
+ * ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND. THIS 
+ * SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS. RECIPIENT 
+ * SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOG’S PRIOR 
+ * WRITTEN PERMISSION.
+ * 
+ * UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS THAT 
+ * TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED “AS IS”, WITHOUT 
+ * WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT 
+ * LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, 
+ * MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM 
+ * COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND ITS
+ * AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY 
+ * REPRESENTATIONS (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED 
+ * SOFTWARE IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, 
+ * AND (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY 
+ * OR INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED 
+ * BY THE FCC OR OTHER LIKE AGENCIES.
+ * 
+ * IN NO EVENT SHALL DIALOG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * 
  ****************************************************************************************
  */
 
@@ -45,13 +53,15 @@
 #include "rwip_config.h"             // SW configuration
 #include "gap.h"
 #include "app_easy_timer.h"
-#include "user_barebone.h"
+#include "user_adv_example.h"
 #include "co_bt.h"
 #include "user_periph_setup.h"
 #include "wkupct_quadec.h"
 #include "gpio.h"
-#include "advertising_example.h"
+#include "user_button.h"
 #include "rwble.h"
+#include "arch_console.h"
+
 
 /*
  * TYPE DEFINITIONS
@@ -72,7 +82,7 @@ struct mnf_specific_data_ad_structure
  ****************************************************************************************
  */
 
-extern advertising_state adv_state;
+advertising_state adv_state = UNDIRECT_ADVERTISING;
 extern last_ble_evt arch_rwble_last_event;
 
 uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
@@ -87,6 +97,11 @@ uint8_t stored_adv_data_len                     __attribute__((section("retentio
 uint8_t stored_scan_rsp_data_len                __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+
+// Timer example function declaration
+#ifdef ADV_TIMER_EXAMPLE
+		static void user_resume_from_sleep(void);
+#endif //ADV_TIMER_EXAMPLE 
 
 /*
  * FUNCTION DEFINITIONS
@@ -224,7 +239,7 @@ static void param_update_request_timer_cb()
 void user_app_init(void)
 {
 		#ifdef ADV_BUTTON_EXAMPLE
-				user_init_button_interrupt();
+				user_init_button_interrupt(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN);
 		#endif
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     
@@ -264,7 +279,7 @@ void user_app_adv_start(void)
 								user_noncon_adv_start();
 								break;
 						case SLEEP:
-								user_activate_sleep();
+								user_enable_extended_sleep();
 								break;
 						default :
 								user_undirect_adv_start();
@@ -374,6 +389,13 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 }
 
 #ifdef ADV_EXAMPLE
+
+/**
+ ****************************************************************************************
+ * @brief Start undirected advertising
+ * @return void
+ ****************************************************************************************
+*/ 
 void user_undirect_adv_start(void)
 {
 		// Schedule the next advertising data update
@@ -391,6 +413,12 @@ void user_undirect_adv_start(void)
     app_easy_gap_undirected_advertise_start();
 }
 
+/**
+ ****************************************************************************************
+ * @brief start non-connectible advertising
+ * @return void
+ ****************************************************************************************
+*/ 
 void user_noncon_adv_start(void)
 {
 		// Schedule the next advertising data update
@@ -431,6 +459,76 @@ arch_main_loop_callback_ret_t user_ble_powered_on(void)
 		#endif
 		return GOTO_SLEEP;
 }
-#endif
+
+/**
+ ****************************************************************************************
+ * @brief Callback when waking op the system to start advertising
+ * @return void
+ ****************************************************************************************
+*/
+void user_resume_from_sleep(void)
+{
+    arch_disable_sleep();
+    if (GetBits16(SYS_STAT_REG, PER_IS_DOWN))
+    {
+         periph_init();
+    }
+		user_change_adv_state(UNDIRECT_ADVERTISING);
+		user_app_adv_start();
+}
+
+/**
+ ****************************************************************************************
+ * @brief Send the device to sleep.
+ * @return void
+ ****************************************************************************************
+*/                   
+void user_enable_extended_sleep(void)
+{
+		arch_set_sleep_mode(ARCH_EXT_SLEEP_ON);
+    arch_set_extended_sleep(false);
+		#ifdef ADV_TIMER_EXAMPLE
+				app_easy_timer(SLEEP_DURATION, user_resume_from_sleep);
+		#endif
+}
+
+/**
+ ****************************************************************************************
+ * @brief Function to set the advertising state
+					[Optional] If CFG_PRINTF is defined the advertising state will be send to
+					a UART serial terminal (i.e. Tera Term).
+ * @return void
+ ****************************************************************************************
+*/
+void user_change_adv_state(advertising_state state)
+{
+	switch (state)
+	{
+			case UNDIRECT_ADVERTISING:
+					adv_state = UNDIRECT_ADVERTISING;
+					#ifdef CFG_PRINTF
+							arch_printf("\n\n\rAdvertising state changed to undirected advertising...");
+					#endif
+					break;
+			case NONCON_ADVERTISING:
+					adv_state = NONCON_ADVERTISING;
+					#ifdef CFG_PRINTF
+							arch_printf("\n\n\rAdvertising state changed to nonconnectable advertising...");
+					#endif
+					break;
+			case SLEEP:
+					adv_state = SLEEP;
+					#ifdef CFG_PRINTF
+							arch_printf("\n\n\rAdvertising turned off, system going to sleep...");
+					#endif
+					break;
+			default :
+					adv_state = NONCON_ADVERTISING;
+					#ifdef CFG_PRINTF
+							arch_printf("\n\n\rAdvertising state changed to undirected advertising...");
+					#endif
+	}	
+}
+#endif //ADV_EXAMPLE
 
 /// @} APP

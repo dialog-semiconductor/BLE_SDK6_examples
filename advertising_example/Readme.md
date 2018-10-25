@@ -39,7 +39,7 @@ The example is running from SRAM. For programming to Flash, see chapter 11 in th
 ### Initial Setup
 
  - Start Keil
- - [Optional] Configure the following parameters at the bottom of the da1458x_config_basic.h file.
+ - [Optional] Configure the following parameters at the top of the da1458x_config_basic.h file.
  	- Make sure *ADV_EXAMPLE* is defined.
  	- Make sure either *ADV_BUTTON_EXAMPLE* **OR** *ADV_TIMER_EXAMPLE* is defined based on which example is preferred.
  	- Make sure *LED_INDICATION* is defined if this is you preference.
@@ -74,10 +74,10 @@ The example is running from SRAM. For programming to Flash, see chapter 11 in th
 
 ### About this example
 Starting point for this example is the BLE barebone project from SDK6. This provides the right framework for the advertising events used in this example.
--	The user_advertising_example header and source file, which contain most of the functionality of this example, were added.
-- Some slight changes were made in the user_barebone.c and user_barebone.h files. These changes can be easily traced as they are marked with the ADV_EXAMPLE flag.
+- The user_barebone.h and user_barebone.c files were renamed to user_adv_example.h and user_adv_example.c. Some changes and additions were made here. These changes can be easily traced as they are marked with the ADV_EXAMPLE flag.
 - Some minor changes were made to the user_peripheral_setup files to accommodate the button functionality and led indication.
 - The user_callback_config.h has been slightly modified. Callback is added for non-connectible advertising as well as a callback to check the last BLE event for the sake of advertising LED indication.
+- The user_button.h and user_button.c were added. These files accommodate the button functionality used in this example.
 
 
 ## Known Limitations

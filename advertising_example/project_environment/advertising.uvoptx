@@ -120,9 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>â¬Cwd³Á
-d³Á
-Úo0_</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -150,40 +147,7 @@ d³Á
           <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0NEW_DEVICE -FS00 -FL040000 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>159</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\src\adv_example\advertising_example.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>160</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\src\adv_example\advertising_example.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -371,7 +335,7 @@ d³Á
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\src\adv_example\advertising_example.c</Filename>
+          <Filename>K:\Bluetooth Support\Miscellaneous\_ErwinvV\Erwin_work\bitbucket_workspace\lpccse_15_final\lpccse_15\advertising_example\src\adv_example\advertising_example.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -387,7 +351,7 @@ d³Á
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\src\adv_example\advertising_example.c</Filename>
+          <Filename>K:\Bluetooth Support\Miscellaneous\_ErwinvV\Erwin_work\bitbucket_workspace\lpccse_15_final\lpccse_15\advertising_example\src\adv_example\advertising_example.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -403,7 +367,7 @@ d³Á
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\src\adv_example\advertising_example.c</Filename>
+          <Filename>K:\Bluetooth Support\Miscellaneous\_ErwinvV\Erwin_work\bitbucket_workspace\lpccse_15_final\lpccse_15\advertising_example\src\adv_example\advertising_example.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -419,7 +383,7 @@ d³Á
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\src\adv_example\advertising_example.c</Filename>
+          <Filename>K:\Bluetooth Support\Miscellaneous\_ErwinvV\Erwin_work\bitbucket_workspace\lpccse_15_final\lpccse_15\advertising_example\src\adv_example\advertising_example.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -435,7 +399,7 @@ d³Á
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\src\adv_example\advertising_example.c</Filename>
+          <Filename>K:\Bluetooth Support\Miscellaneous\_ErwinvV\Erwin_work\bitbucket_workspace\lpccse_15_final\lpccse_15\advertising_example\src\adv_example\advertising_example.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -671,7 +635,7 @@ d³Á
 
   <Group>
     <GroupName>sdk_driver</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1558,32 +1522,44 @@ d³Á
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\src\user_barebone.c</PathWithFileName>
-      <FilenameWithoutPath>user_barebone.c</FilenameWithoutPath>
+      <PathWithFileName>..\src\user_adv_example.c</PathWithFileName>
+      <FilenameWithoutPath>user_adv_example.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>12</GroupNumber>
       <FileNumber>83</FileNumber>
-      <FileType>1</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\src\adv_example\advertising_example.c</PathWithFileName>
-      <FilenameWithoutPath>advertising_example.c</FilenameWithoutPath>
+      <PathWithFileName>..\src\user_adv_example.h</PathWithFileName>
+      <FilenameWithoutPath>user_adv_example.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>12</GroupNumber>
       <FileNumber>84</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\src\user_button.c</PathWithFileName>
+      <FilenameWithoutPath>user_button.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>12</GroupNumber>
+      <FileNumber>85</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\src\adv_example\advertising_example.h</PathWithFileName>
-      <FilenameWithoutPath>advertising_example.h</FilenameWithoutPath>
+      <PathWithFileName>..\src\user_button.h</PathWithFileName>
+      <FilenameWithoutPath>user_button.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

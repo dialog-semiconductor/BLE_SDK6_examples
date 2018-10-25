@@ -46,7 +46,7 @@
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
-#include "user_barebone.h"
+#include "user_adv_example.h"
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -119,7 +119,11 @@ static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     // The user has to take into account the watchdog timer handling (keep it running,
     // freeze it, reload it, resume it, etc), when the app_on_system_powered() is being
     // called and may potentially affect the main loop.
-    .app_on_system_powered  = user_ble_powered_on,
+		#ifdef ADV_EXAMPLE
+				.app_on_system_powered  = user_ble_powered_on,
+		#else
+				.app_on_system_powered = NULL,
+		#endif
 
     .app_before_sleep       = NULL,
     .app_validate_sleep     = NULL,
@@ -130,11 +134,7 @@ static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
 
 // Default Handler Operations
 static const struct default_app_operations user_default_app_operations = {
-		#ifdef ADV_TIMER_EXAMPLE
-				.default_operation_adv = user_app_adv_start,
-		#else
-				.default_operation_adv = user_app_adv_start,
-		#endif
+		.default_operation_adv = user_app_adv_start,
 };
 
 // Place in this structure the app_<profile>_db_create and app_<profile>_enable functions

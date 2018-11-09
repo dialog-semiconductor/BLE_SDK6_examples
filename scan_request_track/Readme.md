@@ -51,9 +51,10 @@ For initial setup of the example please refer to [this section of the dialog sup
 		- parity: None
 		- flow  control: none
  - If the device is activelly scanned then the fw will print the bd addresses that are scanning the device.
+ 
+	![scan_requests_print](assets/scan_requests_print.png)
  - Also in the case of a scan request a cursor will also appear in the power profiler of Smart Snippets.
 
-	![scan_requests_print](assets/scan_requests_print.png)
 	![scan_request_cursor](assets/scan_request_cursor.png)
 
 

@@ -49,8 +49,8 @@ Nothing needs to be changed or configured by default, just put the project folde
 
 ### Function Test
 
-	Note: The BLE program is just a tool to convert hex commands into IR conrol signals, there is no IR command library included in this demo or Android application, it only works on a home devce when you know the valid command set, and the protocol is supported by the program.
-	Check the lists below for reference.
+Note: The BLE program is just a tool to convert hex commands into IR conrol signals, there is no IR command library included in this demo or Android application, it only works on a home devce when you know the valid command set, and the protocol is supported by the program. Check the lists below for reference.
+
 - Currently supported IR protocols:
 	- Philips RC5
 	- NEC
@@ -67,14 +67,14 @@ Nothing needs to be changed or configured by default, just put the project folde
 	- Install and run "IR Remote" app in the Android folder, agree if any permission requests pops up.
 	- The app will try to find and connect to "DLG-Remote" device by its BD address on launch. Check if the device is properlly advertising or if the BD address is altered when the app keeps looking for the device.
 
-  	![remote UI](assets/remote_ui_s.PNG)
+![remote UI](assets/remote_ui_s.png)
 
 	- After successfully connected to the device, press any button to send corresponding commands.
 	- By defalt, the controller screen would be configured for ZTE IPTV box, tap on the blue gear at bottom right corner to enter the editor
 
-	![editor UI](assets/editor_ui_s.PNG)
+![editor UI](assets/editor_ui_s.png)
 
-	![New Profile UI](assets/new_profile_ui_s.PNG) 
+![New Profile UI](assets/new_profile_ui_s.png) 
 
 	- Commands are essencially stored as profiles for different devices for simplicity, no device catagories or brand lists for current version. (Plan to be added in the future)
 	- To load another profile, click the profiles button at top left to select. By default only 2 devices are available.
@@ -103,7 +103,7 @@ Nothing needs to be changed or configured by default, just put the project folde
 
 ### Adding protocols/Modify the driver
 
-	Users are supposed to add custom protocols or modify the driver for their own needs. Please refer to instruction below to understand how the encoding works.
+Users are supposed to add custom protocols or modify the driver for their own needs. Please refer to instruction below to understand how the encoding works.
 
 - Drivers and protocols
   

@@ -2,33 +2,53 @@
 
 ## Example description
 A DA14585/6 Central side project with basic scan/connect and security feature. The main purpose is to demonstrate the basic pairing, encryption and bonding process on central side.
-It will actively pair up with peripheral devices and store bonding informations on connection or passively response to security request from peripheral. None SDK related functions on both central and peripheral sides can be printed to track the process of pairing/bonding process.
+It will actively pair up with peripheral devices and store bonding informations on connection or passively respond to security request from peripheral. None SDK related functions on both central and peripheral sides can be printed to track the process of pairing/bonding process.
 
 # Features
 1. Interactive scanner through the UART serial port terminal
-2. Pairing process actively started by central side on connection or passively triggered by security request from periphral side
-3. Attempt to directly encrypt the connection instead of pairing if the bonding info is already existed
-4. Attempt to relaunch pairing process if peripheral side missing previousely bonded key **(SDK code modification required for this feature)**.
+2. Pairing process actively started by central side on connection or passively triggered by security request from peripheral side
+3. Attempt to directly encrypt the connection instead of pairing if the bonding info already exists
+4. Attempt to relaunch pairing process if peripheral side is missing previousely bonded key **(SDK code modification required for this feature)**
 
+# How security binding works
+To learn basic security feature of BLE, please refer to the [training material](https://support.dialog-semiconductor.com/resource/tutorial-5-ble-security-examplev12 "BLE Security Tutorial") from the support website.
+
+The pairing and bonding process is a series of command and credential info exchange happening between master and slave devices, after which both device stores the information for encrypt the connection. The info will be stored in a dedicated bonding database(short for bdb) for later use, and the database can be configured to retain on SPI flash or I2C EEPROM. The SDK provides neccessary APIs to manipulate the database.
+
+To make the bonding process clear, it can be explained as the flow chart below:
+![Bonding flow chart](assets/flow_chart.png)
+
+Seems a lot of messages to be handled. Lucily most of them is already taken care by existing SDK functions or BLE stack, as long as the default handlers are correctly registered in **user_callback_config.h**. What we really need to do(as a master device) is to initial the process when slave device is configured not to actively send security request, or correctly respond to the security request, by sending bond/encrypt request.
+
+In this example, master device will first check the bonding database to see if the connected device is previously paired. If yes, it will directly send encrypt request and skip the pairing procedule. Otherwise it will try to pair up with the slave device.
+
+An exception is the situation that the slave device somehow removed stored info of the master device, an error will be triggered and halt the program during the debug session. A workaround was introduced in the software configuration part
 
 ## HW and SW configuration
 * **Hardware configuration**
 	- DA14585 Basic/Pro dev kit * 2.
 
 	* Peripheral: 
-		- Jumpers placed as standard SPI flash setup, plus an extra jumper for UTX prints on P04.
+		- Jumpers placed as standard SPI flash setup, plus an extra jumper for UTX prints on P04 - JL_RxD.
 
 	* Central:
-		- Jumpers placed as standard SPI flash setup, plus extra jumpers for UTX prints on P04,and jumping wiring for **URX on P02**.
+		- Jumpers placed as standard SPI flash setup, plus extra jumpers for UTX prints on P04 - JL_RxD,and jumping wiring for **JL_TxD on P02**. See illustration below:
+        
+        ![Cenrtal Jumper Placement/Wiring](assets/Board_setup.png)
 
 * **Software configuration**
 	* Peripheral:
 		- Use original SDK included ble_app_security for peripheral side app.
 		- Change **.security_request_scenario** under **user_default_hnd_conf** in *user_config.h* to alter the security request behavior. DEF_SEC_REQ_NEVER by default.
+            - DEF_SEC_REQ_NEVER: Slave do not send security requests.
+            - DEF_SEC_REQ_ON_CONNECTION: Slave send security request on connection
 
 	* Central:
-		- Serial Terminal (e.g. TeraTerm) is required for the demo to work. A key input for number is required to choose the device to connect.
-		- Define/Undefine **CFG_SHOW_FUNC_LOG** in *da1458x_config_basic.h* to enable/disable security related function prints. Disabled by default.
+		- Serial Terminal (e.g. TeraTerm) is required for the demo to work. A key input for number is required to choose the device to connect. The settings should be default DA14585 UART connection configuration:
+            - 115200 Baudrate
+            - 8 bit data
+            - No parity
+            - 1 stop bits
 		- Define/undefine **CFG_SECURITY_ACTIVE** in *da1458x_config_basic.h* to change security behavior. When defined, central device will send bonding request on connection, ignoring the security request. When undefined, central device will wait for security_request from peripheral to start the pairing process.
 
 	* Compatiblity:

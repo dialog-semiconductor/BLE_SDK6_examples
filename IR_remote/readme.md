@@ -6,9 +6,12 @@
 
 ## Example description
 
-	This program takes incoming command from connected mobile phone, encodes it into standard infrared control signal and sends out via normal IR emitter. 
-	A basic IR encoding driver was implemented so that user can add customized protocols based on it. With a valid IR remote commands library and proper configurations, this demo can be used as an universal IR remote controller which is able to control most legacy home devices.
-	An Android app to work with the demo is provided to test the commands, and can be actually used as a remote controller for selected devices.
+This program takes incoming command from connected mobile phone, encodes it into standard infrared control signal and sends out via normal IR emitter. 
+	
+A basic IR encoding driver was implemented so that user can add customized protocols based on it. With a valid IR remote commands library and proper configurations, this demo can be used as an universal IR remote controller which is able to control most legacy home devices.
+
+An Android app to work with the demo is provided to test the commands, and can be actually used as a remote controller for selected devices.
+
 ![Project concept](assets/concept_l.png)
 	
 ## HW and SW configuration
@@ -63,10 +66,16 @@ Nothing needs to be changed or configured by default, just put the project folde
 
 	- Install and run "IR Remote" app in the Android folder, agree if any permission requests pops up.
 	- The app will try to find and connect to "DLG-Remote" device by its BD address on launch. Check if the device is properlly advertising or if the BD address is altered when the app keeps looking for the device.
-	- ![remote UI](assets/remote_ui_s.PNG)
+
+  	![remote UI](assets/remote_ui_s.PNG)
+
 	- After successfully connected to the device, press any button to send corresponding commands.
 	- By defalt, the controller screen would be configured for ZTE IPTV box, tap on the blue gear at bottom right corner to enter the editor
-	- ![editor UI](assets/editor_ui_s.PNG) ![New Profile UI](assets/new_profile_ui_s.PNG) 
+
+	![editor UI](assets/editor_ui_s.PNG)
+
+	![New Profile UI](assets/new_profile_ui_s.PNG) 
+
 	- Commands are essencially stored as profiles for different devices for simplicity, no device catagories or brand lists for current version. (Plan to be added in the future)
 	- To load another profile, click the profiles button at top left to select. By default only 2 devices are available.
 	- To create a new custom profile, click the plus icon at top right corner
@@ -94,7 +103,7 @@ Nothing needs to be changed or configured by default, just put the project folde
 
 ### Adding protocols/Modify the driver
 
-	Users are welcomed to add custom protocols or modify the driver for their own needs. Please refer to instruction below to understand how the encoding works.
+	Users are supposed to add custom protocols or modify the driver for their own needs. Please refer to instruction below to understand how the encoding works.
 
 - Drivers and protocols
   
@@ -124,11 +133,12 @@ Nothing needs to be changed or configured by default, just put the project folde
 	Logic 0 is presented as 2 blocks (on-off), Logic 1 is presented as 4 blocks(on-off-off-off), with 560us width for each block. Using 560us as a smallest unit, the leading signal can be seen as 16 blocks of pulse on and 8 blocks of pulse off.
 
 	Thus, for NEC command 0x00, 0x40:
+
 	![Signal Sequence](assets/signal.png)
 	
 	The logic sequence is 
 	
-	**Leading signal - 00000000(address, 0x00) -  11111111(inverted address, 0xFF) - 0000010(Command, 0x40->0x02) - 11111101(inverted command, 0xfD)**
+	**Leading signal - 00000000(address, 0x00) -  11111111(inversed address, 0xFF) - 0000010(Command, 0x40->0x02) - 11111101(inversed command, 0xfD)**
 
 	The signal bit sequence is 
 	

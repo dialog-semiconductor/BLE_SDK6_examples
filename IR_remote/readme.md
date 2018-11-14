@@ -67,14 +67,14 @@ Note: The BLE program is just a tool to convert hex commands into IR conrol sign
 	- Install and run "IR Remote" app in the Android folder, agree if any permission requests pops up.
 	- The app will try to find and connect to "DLG-Remote" device by its BD address on launch. Check if the device is properlly advertising or if the BD address is altered when the app keeps looking for the device.
 
-![remote UI](assets/remote_ui_s.png)
+	![remote UI](assets/remote_ui_s.png)
 
 	- After successfully connected to the device, press any button to send corresponding commands.
 	- By defalt, the controller screen would be configured for ZTE IPTV box, tap on the blue gear at bottom right corner to enter the editor
 
-![editor UI](assets/editor_ui_s.png)
+	![editor UI](assets/editor_ui_s.png)
 
-![New Profile UI](assets/new_profile_ui_s.png) 
+	![New Profile UI](assets/new_profile_ui_s.png) 
 
 	- Commands are essencially stored as profiles for different devices for simplicity, no device catagories or brand lists for current version. (Plan to be added in the future)
 	- To load another profile, click the profiles button at top left to select. By default only 2 devices are available.

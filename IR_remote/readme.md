@@ -154,7 +154,7 @@ Users are supposed to add custom protocols or modify the driver for their own ne
 
 	**1 (ending pulse)**
 
-	So the actual sequence for sending is {0xFF,FF,00,AA,AA,88,88,88,88,AA,A2,A2,22,22,88,80}, with 91 in length.
+	So the actual sequence for sending is {0xFF,FF,00,AA,AA,88,88,88,88,AA,A2,A2,22,22,88,80}, with length 121 in bits.
 
   - Custom protocol:
 

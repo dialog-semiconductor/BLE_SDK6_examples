@@ -23,7 +23,12 @@
  #include "user_periph_setup.h"
  #include "arch_api.h"
  
- #define USE_DMA
+/// USE DMA
+ #ifdef CFG_USE_DMA
+ #define USE_DMA 1
+ #else
+ #define USE_DMA 0
+ #endif
  #define NUMBYTES 100
  
  /**
@@ -35,7 +40,7 @@
  ****************************************************************************************
  */ 
  void spi_dma_transmit(uint8_t* data_to_send, uint16_t length){
-	 #ifdef USE_DMA
+	 #if USE_DMA
 	 length = length-1; //We will be handeling the first byte ourself
 	 SetWord16(DMA0_A_STARTL_REG, ((uint32_t) data_to_send + 1) & 0xFFFF);          //Set the lower 16 bits of the source
 	 SetWord16(DMA0_A_STARTH_REG, (((uint32_t) data_to_send + 1) >> 16) & 0xFFFF);  //Set the upper 16 bits of the source
@@ -82,7 +87,7 @@
  uint8_t volatile filler; //Make sure this address does not get reused
  
  void spi_dma_receive(uint8_t* data_buffer, uint16_t length){
-	 #ifdef USE_DMA
+	 #if USE_DMA
 	 length = length-1; //We will be handeling the first byte ourself
 	 SetWord16(DMA0_A_STARTL_REG, (uint32_t) SPI_RX_TX_REG0 & 0xFFFF);              //Set the lower 16 bits of the source
 	 SetWord16(DMA0_A_STARTH_REG, ((uint32_t) SPI_RX_TX_REG0 >> 16) & 0xFFFF);      //Set the upper 16 bits of the source
@@ -154,7 +159,7 @@
  ****************************************************************************************
  */ 
  void spi_dma_tranceive(uint8_t* data_to_send, uint8_t* data_buffer, uint16_t length){
-	 #ifdef USE_DMA
+	 #if USE_DMA
 	 length = length-1; //We will be handeling the first byte ourself
 	 SetWord16(DMA0_A_STARTL_REG, (uint32_t) SPI_RX_TX_REG0 & 0xFFFF);               //Set the lower 16 bits of the source
 	 SetWord16(DMA0_A_STARTH_REG, ((uint32_t) SPI_RX_TX_REG0 >> 16) & 0xFFFF);       //Set the upper 16 bits of the source
@@ -219,7 +224,7 @@
  ****************************************************************************************
  */ 
  void wait_for_dma(){
-	 #ifdef USE_DMA
+	 #if USE_DMA
 	 while(GPIO_GetPinStatus(SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN) == false){//Idle while the cs pin is low 
 																																				//This check is to make sure we do not resume prematurely
 	   __wfi(); //Put the cpu in idle mode and wait for the dma interrupt

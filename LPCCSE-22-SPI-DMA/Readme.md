@@ -20,6 +20,7 @@ The general flow of a DMA transfer is as follows:
 - Prepare the DMA channels for the transfer, configure the bus width, turn on DREQ\_MODE\(data request mode\) and finally set the DMA\_ON bit.
 - Initiate the transfer by doing the first transaction by hand, usually the *spi\_access\(\)* function.
 	
+The parameters of the demo can be tweaked to test different transfer sizes and sending methods. This can be found in *user\_config.h*
 	
 ## HW and SW configuration
 

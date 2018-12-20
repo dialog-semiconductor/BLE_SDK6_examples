@@ -39,9 +39,12 @@ For initial setup of the example please refer to [this section of the dialog sup
 
  - Start Keil
  - Open file rwble.c
- - Search for the dlg_event_isr() function (line 700)
+ - Search for the dlg_event_isr() function.
  - Above dlg_event_isr() function implementation, add the declaration of the hook function "__weak void user_end_event_isr_hook(void) {}"
  - In the dlg_event_isr() function invoke the user_end_event_isr_hook() function before any other SDK function is invoked.
+ - After completing the modification the code in dlg_event_isr should look like the below screenshot:
+ 
+	![dlg_event_isr](assets/dlg_event_isr.png)
  - Compile and launch the example
  - Open the development kit serial port with the following parameters
 

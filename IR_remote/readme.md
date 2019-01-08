@@ -6,11 +6,11 @@
 
 ## Example description
 
-This program takes incoming command from connected mobile phone, encodes it into standard infrared control signal and sends out via normal IR emitter. 
+This program takes an incoming command from a connected mobile phone, encodes it into a standard infrared control signal and sends it out via a normal IR emitter. 
 	
 A basic IR encoding driver was implemented so that user can add customized protocols based on it. With a valid IR remote commands library and proper configurations, this demo can be used as an universal IR remote controller which is able to control most legacy home devices.
 
-An Android app to work with the demo is provided to test the commands, and can be actually used as a remote controller for selected devices.
+An Android app which works with the demo is provided to test the commands, and can be actually used as a remote controller for selected devices.
 
 ![Project concept](assets/concept_l.png)
 	
@@ -64,30 +64,30 @@ Note: The BLE program is just a tool to convert hex commands into IR conrol sign
 
 * **Test with Android APP**
 
-	- Install and run "IR Remote" app in the Android folder, agree if any permission requests pops up.
+	- Install and run the "IR Remote" app. in the Android folder, agree if any permission requests pops up. In Android 6.0+ the Google Android API update resulted Bluetooth LE technology requires location permissions to be granted in order to use the app.
 	- The app will try to find and connect to "DLG-Remote" device by its BD address on launch. Check if the device is properlly advertising or if the BD address is altered when the app keeps looking for the device.
 
 	![remote UI](assets/remote_ui_s.png)
 
-	- After successfully connected to the device, press any button to send corresponding commands.
-	- By defalt, the controller screen would be configured for ZTE IPTV box, tap on the blue gear at bottom right corner to enter the editor
+	- After successfully connecting to the device, press any button to send corresponding commands.
+	- By default, the controller screen would be configured for ZTE IPTV box, tap on the blue gear at bottom right corner to enter the editor
 
 	![editor UI](assets/editor_ui_s.png)
 
 	![New Profile UI](assets/new_profile_ui_s.png) 
 
-	- Commands are essencially stored as profiles for different devices for simplicity, no device catagories or brand lists for current version. (Plan to be added in the future)
+	- Commands are essentially stored as profiles for different devices for simplicity, no device categories or brand lists for current version. (Plan to be added in the future)
 	- To load another profile, click the profiles button at top left to select. By default only 2 devices are available.
-	- To create a new custom profile, click the plus icon at top right corner
+	- To create a new custom profile, click the plus icon at the top right corner
 	- Provide a device name, select proper protocol, input device address code and commands as heximal strings in corresponding fields. Hit save button down below to save and load the profile.
 	- The 2 default profiles are not editable nor deletable.
 - The Andriod app was made with MIT [App inventor 2](http://ai2.appinventor.mit.edu). The "source" form of the app is also available in the folder as the .aia file, which can be imported into app inventor for modification or further development.
 
 * **Test without Android APP**
 
-	- Use any BLE debug app for the test when you don't have an Android phone or not willing to install the app. (e.g. LightBlue, NRF Connector)
+	- Use any BLE debug app for the test when you don't have an Android phone or are not willing to install the app. (e.g. LightBlue)
 	- Scan and connect to device "DLG-Remote"
-	- Go to Unkonw Service with UUID started with EDFEC62E...
+	- Go to the unknown service UUID starting with EDFEC62E...
 	- Write commands as unsigned bytes to the only characteristic described as "Long Value"
 	- A unsigned integer(in hex) array is expected, with rules as below appied:
 		- The first byte is protocol picker, should be:
@@ -96,34 +96,34 @@ Note: The BLE program is just a tool to convert hex commands into IR conrol sign
 			- 03 - Samsung
 			- 04 - Panasonic
 			- FF - Custom
-		- The following bytes are input parameters for each protocols. Most of them requires 2 bytes(address, command), while Pnanasonic protocol uses more bytes. The rule can be modified in the protocol function and the BLE write handler.
+		- The following bytes are input parameters for each protocols. Most of them require 2 bytes(address, command), while Panasonic protocol uses more bytes. The rule can be modified in the protocol function and the BLE write handler.
 		- Input with length less than 3 bytes or started with unhandled protocol value would not trigger any IR activity.
-		- For custom command, see next part for the explainations. 
+		- For custom commands, see next part for the explanations. 
 
 
 ### Adding protocols/Modify the driver
 
-Users are supposed to add custom protocols or modify the driver for their own needs. Please refer to instruction below to understand how the encoding works.
+Users can add custom protocols or modify the driver for their own needs. Please refer to instruction below to understand how the encoding works.
 
 - Drivers and protocols
   
   - All IR encoding related code resides in src/user_driver/user_IR_driver.c and its header file.
-  - IR remote signals are essencially a sequence of 0 and 1s represented by on/off states of a pulsing IR light. The pulse has a specific frequcency and duty cycle. 
+  - IR remote signals are essentially a sequence of 0 and 1s represented by on/off states of a pulsing IR light. The pulse has a specific frequcency and duty cycle. 
   - Function **ir_send_sequence** is the core function to generate IR signal out of given logic sequence based on timer0 and PWM functionalities. It has 4 input augments:
   	1. struct pwm_settings *freq*: Consits of 2 unsigned 16bit value, *pwm_high* and *pwm_low*.
 		- Signal carrier frequency can be calculated as $\frac{16M}{pwm_{high}+pwm_{low}+1}$.
 		- Signal carrier duty cycle can be calculated as $\frac{pwm_{high}}{pwm_{high}+pwm_{low}+1}$. 
 		- For example, PWM setting of {138,280} results signal carrier of ~38KHz, and a duty cycle of ~33%. 
 		- Common carrier frequecy settings (38KHz and 36KHz) are pre-defined, feel free to use or modify the value as own preference.
-	2. uint16_t *width*: The duration in 16M XTAL tick for the smallest signal block of a given protocol. 
+	2. uint16_t *width*: The duration in 16M XTAL ticks for the smallest signal block of a given protocol. 
 		- Duration of a signal "block" can be calculated as $\frac{width}{16M}$.
-		- The actual duration may be slightly different from theoretical calculation. Feel free to talor the value with help of a logic anylizer.
+		- The actual duration may be slightly different from theoretical calculation. Feel free to tailor the value with help of a logic anylizer.
 	3. uint8_t *length*: The number of the signal "blocks"
-	4. uint8_t* *sequence*: Pointer to the start of signal sequence.
-		- Signal sequence will be processed bit wise, from start byte to following bytes, from MSB to LSB in each byte. 
+	4. uint8_t* *sequence*: Pointer to the start of the signal sequence.
+		- The signal sequence will be processed byte wise, starting with the start byte, from MSB to LSB in each byte. 
 		- Each byte represents 8 signal "blocks", where the total number of "blocks" to be send is defined by the *length* augment
-  - Function **user_XXX_send** are used for preparing the signal sequence to be send from given address and command value, where XXX represents an IR remote protocol.
-	- Users can add new protocols by implementing own functions. The unique rules of the protocols should be implemented to convert commands into signal sequence, the carrier frequencey and signal block width should also be properly calculated for the protocol.
+  - The  **user_XXX_send** functions are used to prepare the signal sequence to be send based on the given address and command value, where XXX represents an IR remote protocol.
+	- Users can add new protocols by implementing their own functions. The unique rules of the protocols should be implemented to convert commands into signal sequences, the carrier frequencey and signal block width should also be properly calculated for the protocol.
   - Example:
 
 	For the "power on" command of ZTE IPTV box, it uses NEC protocol with device address 0x00, command 0x02.
@@ -170,8 +170,8 @@ Users are supposed to add custom protocols or modify the driver for their own ne
 
 ### Modify the command
 
-- As explained, current program receives byte array and correspondingly encodes to proper IR control signal sequence. The message handling is done in function 
-**user_svc1_long_val_wr_ind_handler** in user_custs1_impl.c, which has the implementation of handlers in custom1 profile.
+- As explained, the program receives a byte array and correspondingly encodes it to a proper IR control signal sequence. The message handling is done in function 
+**user_svc1_long_val_wr_ind_handler** in user_custs1_impl.c, which implements the handlers of the custom1 profile.
 - Users can add switch case for new custom protocols or re-define what to do with received data on the characteristics on own preference.
 ## Known Limitations
 
@@ -188,23 +188,12 @@ Users are supposed to add custom protocols or modify the driver for their own ne
 
 **************************************************************************************
 
- Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
+ Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
 
- This software ("Software") is owned by Dialog Semiconductor. By using this Software
- you agree that Dialog Semiconductor retains all intellectual property and proprietary
- rights in and to this Software and any use, reproduction, disclosure or distribution
- of the Software without express written permission or a license agreement from Dialog
- Semiconductor is strictly prohibited. This Software is solely for use on or in
- conjunction with Dialog Semiconductor products.
+THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND. THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS. RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOG’S PRIOR WRITTEN PERMISSION.
 
- EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
- REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
- IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
- SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
- CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
- PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
- ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
+UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS THAT TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED “AS IS”, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND ITS AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY REPRESENTATIONS (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED SOFTWARE IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, AND (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY OR INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED BY THE FCC OR OTHER LIKE AGENCIES.
+
+IN NO EVENT SHALL DIALOG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 **************************************************************************************

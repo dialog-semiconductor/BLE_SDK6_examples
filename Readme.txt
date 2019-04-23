@@ -51,7 +51,7 @@ step 3 when finished, you should be able to run the example
 
 - There are No known limitations for this example. But you can check and refer to the following application note for
 [known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software"Forum link").
+- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum link").
 - you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
 
 

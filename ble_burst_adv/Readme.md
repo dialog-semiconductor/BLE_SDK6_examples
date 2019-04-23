@@ -30,7 +30,9 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 ### Initial Setup
 
-    - Build and download the example using the Keil IDE. Run the example using the Keil debugger and observe busrts of advertising events using of the following:
+1.  Build and download the example using the Keil IDE. 
+2.  Run the example using the Keil debugger.
+3.  Observe busrts of advertising events using of the following:
         * Montor UART debug output.
         * Monitor current consumption using the Power Profiler found within the SmartSnippets Toolbox.
         * Montior transmitted advertising events using an Smart Phone App such as LightBlue.

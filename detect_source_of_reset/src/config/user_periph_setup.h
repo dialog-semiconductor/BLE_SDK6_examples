@@ -118,11 +118,11 @@
         #define UART2_RX_GPIO_PIN   GPIO_PIN_7
 
     #elif HW_CONFIG_PRO_DK
-        #define UART2_TX_GPIO_PORT  GPIO_PORT_2
-        #define UART2_TX_GPIO_PIN   GPIO_PIN_6
+        #define UART2_TX_GPIO_PORT  GPIO_PORT_0
+        #define UART2_TX_GPIO_PIN   GPIO_PIN_4
 
-        #define UART2_RX_GPIO_PORT  GPIO_PORT_2
-        #define UART2_RX_GPIO_PIN   GPIO_PIN_7
+        #define UART2_RX_GPIO_PORT  GPIO_PORT_0
+        #define UART2_RX_GPIO_PIN   GPIO_PIN_5
 
     #elif HW_CONFIG_EXPERT_DK
         #define UART2_TX_GPIO_PORT  GPIO_PORT_0

@@ -54,6 +54,11 @@
 #include "wkupct_quadec.h"
 #include "user_periph_setup.h"
 
+#ifdef CFG_PRINTF
+    #include "arch_console.h"
+#endif
+
+
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -190,6 +195,11 @@ void user_app_adv_start(void)
 											APP_ADV_HARDFAULT_LEN,
 											&(cmd->info.host.adv_data[cmd->info.host.adv_data_len]),
 											APP_ADV_HARDFAULT);
+					
+						#ifdef CFG_PRINTF
+									arch_printf("Source of reset : Hardfault\r\n");
+						#endif
+					
 				}break;
 			
         case CUSTS1_NMI:
@@ -198,6 +208,11 @@ void user_app_adv_start(void)
 									APP_ADV_NMI_LEN,
 									&(cmd->info.host.adv_data[cmd->info.host.adv_data_len]),
 									APP_ADV_NMI);
+					
+						#ifdef CFG_PRINTF
+									arch_printf("Source of reset : NMI\r\n");
+						#endif
+					
         } break;
 				case CUSTS1_SW_RESET:
 				{
@@ -205,6 +220,11 @@ void user_app_adv_start(void)
 									APP_ADV_NMI_LEN,
 									&(cmd->info.host.adv_data[cmd->info.host.adv_data_len]),
 									APP_ADV_NMI);
+					
+						#ifdef CFG_PRINTF
+									arch_printf("Source of reset : Software Reset\r\n");
+						#endif
+					
 				}break;
 			
         case CUSTS1_POR:
@@ -213,6 +233,11 @@ void user_app_adv_start(void)
 										APP_ADV_POR_LEN,
 										&(cmd->info.host.adv_data[cmd->info.host.adv_data_len]),
 										APP_ADV_POR);
+							
+						#ifdef CFG_PRINTF
+									arch_printf("Source of reset : Power-On-Reset\r\n");
+						#endif
+					
         } break;
 
         default:

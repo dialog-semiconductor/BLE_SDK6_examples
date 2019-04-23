@@ -1,6 +1,6 @@
 # ble_burst_adv
 
----
+Busrt Advertising with Bluetooth LE
 
 ## Example description
 
@@ -19,12 +19,12 @@
 * **Software configuration**
 
 	- This example requires:
-    * Smartsnippets Studio 2.0.8 (or later)
-    * SDK6.0.10 (or later)
+        * Smartsnippets Studio 2.0.8 (or later)
+        * SDK6.0.10 (or later)
 
 ## How to run the example
 
-<a href="https://support.dialog-semiconductor.com/resource/da1458x-example-setup">For initial setup of the example please refer to this section of the dialog support portal</a>
+For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
 
 ### Initial Setup
 

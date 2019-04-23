@@ -1,12 +1,14 @@
 # ble_burst_adv
 
-Busrt Advertising with Bluetooth LE
+Burst Advertising with Bluetooth LE
 
 ## Example description
 
-    Simple example showing how to implement 'burst' advertising on the DA14585/6. 
-	Burst advertising is the process of sending a number of advertising events and then having a delay before sending another group of advertising events. 
-    This example allows the user to configure the number of advertising events to be transmitted per burst and the time between bursts. 
+Simple example showing how to implement 'burst' advertising on the DA14585/6. Burst 
+advertising is the process of sending a number of advertising events and then having 
+a delay before sending another group of advertising events. This example allows the 
+user to configure the number of advertising events to be transmitted per burst and 
+the time between bursts. 
 	
 ## HW and SW configuration
 

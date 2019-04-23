@@ -124,18 +124,18 @@ For the initial setup, please refer to [this section](https://support.dialog-sem
    ![ble_scanner_1](assets\ble_scanner_1.png)
 5. A custom service with the **Control Point** characteristic should be appeared.&nbsp;
    ![ble_scanner_2](assets\ble_scanner_2.png)
-6. Write **0x00** to trigger a hardfault&nbsp;
+6. &nbsp;Write **0x00** to trigger a hardfault&nbsp;
    ![ble_scanner_3](assets\ble_scanner_3.png)
-7. A hardfault is occured&nbsp;
+7. &nbsp;A hardfault is occured&nbsp;
    ![hardfault](assets\hardfault.PNG)
 8. Stop the debug procedure and reset the Pro-DK. detect_rst_flag** is stored into Retention-RAM, and so its value is retained.
 9. Add a break point into ``user_app_adv_start()`` function and run it again in debug mode.
-10. Step over (press F10) and the "Hardfault" is appended into the  advertising data. &nbsp;
+10. Step over (press F10) and the "Hardfault" is appended into the  advertising data.&nbsp;
     ![hardfault_1](assets\hardfault_1.PNG)
 11. Stop the debug procedure
-12. Open the Serial terminal (TerTerm) with the following COM port configurations&nbsp;
+12. &nbsp;Open the Serial terminal (TerTerm) with the following COM port configurations&nbsp;
     ![comport](assets\comport.PNG)
-13. Download the firmware into System-RAM again and  the reason of the reset should be appeared on the monitor. &nbsp;
+13. &nbsp;Download the firmware into System-RAM again and  the reason of the reset should be appeared on the monitor.&nbsp;
     ![teraterm](assets\teraterm.PNG)
 
 

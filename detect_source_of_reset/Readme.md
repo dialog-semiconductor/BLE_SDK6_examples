@@ -118,24 +118,24 @@ For the initial setup, please refer to [this section](https://support.dialog-sem
 
 1. Open the project via Keil µVision 5
 2. Build the project 
-3. Run it in **debug mode**. To learn basic debugging techniques, please refer to training material](https://www.dialog-semiconductor.com/sites/default/files/training_08_debugging_v1.1.pdf).
-   ![Debug mode](assets\Debug_mode.png)
-4. Connect to  **DETECT-RESET** 
+3. Run it in **debug mode**. To learn basic debugging techniques, please refer to training material](https://www.dialog-semiconductor.com/sites/default/files/training_08_debugging_v1.1.pdf).&nbsp;
+   ![Debug mode](assets\Debug_mode.PNG)
+4. Connect to  **DETECT-RESET** &nbsp;
    ![ble_scanner_1](assets\ble_scanner_1.png)
-5. A custom service with the **Control Point** characteristic should be appeared.
+5. A custom service with the **Control Point** characteristic should be appeared.&nbsp;
    ![ble_scanner_2](assets\ble_scanner_2.png)
-6. Write **0x00** to trigger a hardfault
+6. Write **0x00** to trigger a hardfault&nbsp;
    ![ble_scanner_3](assets\ble_scanner_3.png)
-7. A hardfault is occured
+7. A hardfault is occured&nbsp;
    ![hardfault](assets\hardfault.PNG)
 8. Stop the debug procedure and reset the Pro-DK. detect_rst_flag** is stored into Retention-RAM, and so its value is retained.
 9. Add a break point into ``user_app_adv_start()`` function and run it again in debug mode.
-10. Step over (press F10) and the "Hardfault" is appended into the  advertising data. 
+10. Step over (press F10) and the "Hardfault" is appended into the  advertising data. &nbsp;
     ![hardfault_1](assets\hardfault_1.PNG)
 11. Stop the debug procedure
-12. Open the Serial terminal (TerTerm) with the following COM port configurations
+12. Open the Serial terminal (TerTerm) with the following COM port configurations&nbsp;
     ![comport](assets\comport.PNG)
-13. Download the firmware into System-RAM again and  the reason of the reset should be appeared on the monitor. 
+13. Download the firmware into System-RAM again and  the reason of the reset should be appeared on the monitor. &nbsp;
     ![teraterm](assets\teraterm.PNG)
 
 

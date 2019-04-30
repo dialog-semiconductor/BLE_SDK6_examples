@@ -3,7 +3,7 @@
  *
  * @file user_accelerometer.c
  *
- * @brief Accelerometer project source code.
+ * @brief Accelerometer application source code.
  *
  * Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
  *

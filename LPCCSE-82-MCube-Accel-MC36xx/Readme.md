@@ -39,7 +39,7 @@ Before user starts to load this DEMO. The following software tools has to be set
 
 ## How to run the example
 
-The implementation of driver is described in the mCube-MC36XX-Programming Guide included in the repository (link below) for customers using mCube sensors for the first time. Refer to the document for understanding the driver implementation. The repository also includes the driver source code if needed.
+The implementation of mCube accelerometer driver is described in the mCube-MC36XX-Programming Guide that can be accessed from the repository link below. Customers using mCube sensors for the first time, refer to the document for understanding the driver implementation. The repository also includes the driver source code if needed.
 
 [Accelerometer mc36xx mcu driver](https://github.com/mcubemems/Accelerometer_mc36xx_mcu_driver)
 

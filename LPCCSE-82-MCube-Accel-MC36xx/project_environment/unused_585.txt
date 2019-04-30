@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060422: Last Updated: Fri Mar 29 16:22:51 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Apr 29 22:51:18 2019
 ;VERSION 0.2
 ;FILE adc.o
 adc_calibrate <= USED 0
@@ -53,15 +53,15 @@ app_msg_send_wakeup_ble <= USED 0
 ;FILE app_utils.o
 app_fill_random_byte_array <= USED 0
 app_get_address_type <= USED 0
+;FILE arch_console.o
+arch_printf <= USED 0
+arch_puts <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
 arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
-arch_force_active_mode <= USED 0
-arch_get_sleep_mode <= USED 0
 arch_last_rwble_evt_get <= USED 0
-arch_restore_sleep_mode <= USED 0
 arch_set_deep_sleep <= USED 0
 ;FILE arch_system.o
 __ARM_common_ll_muluu <= USED 0
@@ -226,17 +226,12 @@ syscntl_set_dcdc_vbat3v_level <= USED 0
 SystemCoreClockUpdate <= USED 0
 ;FILE trng.o
 ;FILE uart2.o
-uart2_finish_transfers <= USED 0
 uart2_flow_off <= USED 0
 uart2_flow_on <= USED 0
-uart2_init <= USED 0
 uart2_read <= USED 0
 uart2_set_flow_off_retries_limit <= USED 0
-uart2_write <= USED 0
-uart2_write_async <= USED 0
 ;FILE user_accelerometer.o
 ;FILE user_periph_setup.o
-set_pad_functions <= USED 0
 ;FILE wkupct_quadec.o
 quad_decoder_disable_irq <= USED 0
 quad_decoder_enable_irq <= USED 0

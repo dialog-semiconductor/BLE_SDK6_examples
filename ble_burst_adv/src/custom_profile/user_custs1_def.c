@@ -5,7 +5,7 @@
  *
  * @brief Custom Server 1 (CUSTS1) profile database definitions.
  *
- * Copyright (c) 2016-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2016-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *

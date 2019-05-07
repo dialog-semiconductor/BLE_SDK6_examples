@@ -51,7 +51,7 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 **************************************************************************************
 
- Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
+ Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
 
  This software ("Software") is owned by Dialog Semiconductor. By using this Software
  you agree that Dialog Semiconductor retains all intellectual property and proprietary

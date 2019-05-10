@@ -32,10 +32,21 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 1.  Build and download the example using the Keil IDE. 
 2.  Run the example using the Keil debugger.
-3.  Observe bursts of advertising events using of the following:
-        * Monitor UART debug output.
+3.  Set jumpers on the basic or PRO development kits to use P0_4 and P0_5 for UART communication.
+4.  Observe bursts of advertising events using of the following:
+        * Monitor UART debug output using a terminal such as Teraterm etc.
+		    - baudrate: 115200
+		    - data: 8 bits
+		    - stop: 1 bit
+		    - parity: None
+		    - flow control: none
         * Monitor current consumption using the Power Profiler found within the SmartSnippets Toolbox.
         * Monitor transmitted advertising events using a Smart Phone App such as LightBlue.
+5. Undirected connecatable advertising is used for this demonstration.
+
+The device should display the advertising data as shown in the picture below:
+
+![Output](assets/output.png)
 
 ## Known Limitations
 

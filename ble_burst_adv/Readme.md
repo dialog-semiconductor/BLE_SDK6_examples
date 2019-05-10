@@ -26,7 +26,7 @@ the time between bursts.
 
 ## How to run the example
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
+For initial setup of the example please refer to [this section of the dialog support portal](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da1458x-example-setup.pdf).
 
 ### Initial Setup
 
@@ -41,9 +41,9 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 
 - There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
+[known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf "known hardware limitations").
 - Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+- You can also refer to the troubleshooting section in the [Getting Started Link](https://www.dialog-semiconductor.com/sites/default/files/um-b-049_da14585da14586_getting_started_guide_v2.1_0.pdf "DA1585x Getting Started with the Development Kit UM-B-049").
 
 
 ## License

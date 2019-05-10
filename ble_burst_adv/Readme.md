@@ -15,7 +15,7 @@ the time between bursts.
 
 * **Hardware configuration**
 
-	- This example runs on The DA14485/DA14586 Bluetooth Smart SoC devices.
+	- This example runs on the DA14585/DA14586 Bluetooth Smart SoC devices.
 	- A Basic or PRO Development kits is needed for this example.
 	
 * **Software configuration**
@@ -32,10 +32,10 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 1.  Build and download the example using the Keil IDE. 
 2.  Run the example using the Keil debugger.
-3.  Observe busrts of advertising events using of the following:
-        * Montor UART debug output.
+3.  Observe bursts of advertising events using of the following:
+        * Monitor UART debug output.
         * Monitor current consumption using the Power Profiler found within the SmartSnippets Toolbox.
-        * Montior transmitted advertising events using an Smart Phone App such as LightBlue.
+        * Monitor transmitted advertising events using a Smart Phone App such as LightBlue.
 
 ## Known Limitations
 

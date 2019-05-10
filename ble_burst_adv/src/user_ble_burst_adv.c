@@ -91,7 +91,7 @@ static void start_advertising(void)
 
 /**
  ****************************************************************************************
- * @brief 
+ * @brief Called when device configuration is complete.
  *
  * @param[in] None.
  *
@@ -146,9 +146,9 @@ void user_on_adv_undirect_complete(uint8_t status)
 
 /**
  ****************************************************************************************
- * @brief 
+ * @brief Called on connection event.
  *
- * @param[in] None. 
+ * @param[in] Pointer to gapc_connection_req_ind message.
  *
  * @return None. 
  ****************************************************************************************
@@ -176,9 +176,9 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 
 /**
  ****************************************************************************************
- * @brief 
+ * @brief Called on disconnection event.
  *
- * @param[in] None. 
+ * @param[in] Pointer to gapc_disconnect_ind message. 
  *
  * @return None. 
  ****************************************************************************************

@@ -91,6 +91,11 @@ uint8_t uninit_store_data[USER_RETRAM_DATA_LEN] __attribute__((section("retentio
 //Flag into the Retention RAM to detect the source of the reset
 uint8_t detect_rst_flag		__attribute__((section("retention_mem_area_uninit"),  zero_init)); 
 
+uint8_t *detect_value  ;
+
+
+
+
 /*
  * FUNCTION DEFINITIONS
  ****************************************************************************************
@@ -102,6 +107,39 @@ static void ret_ram_data_init(void)
 	//Copy the USER_RETRAM_DATA into the RetRAM
 	memcpy(uninit_store_data, USER_RETRAM_DATA ,USER_RETRAM_DATA_LEN );
 }
+
+void update_custs1_att_db(void)
+{
+	switch(detect_rst_flag)
+	{
+		
+		case CUSTS1_HARDFAULT:
+			{
+				detect_value = (uint8_t*)CUSTS1_HARDFAULT;
+			}break;
+		
+		case CUSTS1_NMI:
+		{
+				detect_value = (uint8_t*)CUSTS1_NMI;
+		} break;
+			case CUSTS1_SW_RESET:
+			{
+					detect_value = (uint8_t*)CUSTS1_SW_RESET;
+			}break;
+		
+		case CUSTS1_POR:
+		{
+			detect_value = (uint8_t*)CUSTS1_POR;
+		} break;
+
+		default:
+			detect_value = (uint8_t*)CUSTS1_NOTHING;
+				break;
+	}
+
+}
+
+
 
 /**
  ****************************************************************************************
@@ -150,6 +188,7 @@ void user_app_init(void)
 	
 		//Store the user's data into the RetRAM
     ret_ram_data_init();
+		update_custs1_att_db();
 	
 		#ifdef CFG_POWER_ON_RESET
 			//User function for power-on-reset

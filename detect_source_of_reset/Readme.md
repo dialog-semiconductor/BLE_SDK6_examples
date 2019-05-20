@@ -1,12 +1,10 @@
-------
-
 # Detect the source of the Reset 
 
 ------
 
 ## Example description
 
-The main purpose of this SW example is to demonstrate how to detect the source of a reset event and explain how to store data into or/and read data from **retention RAM**.  This demonstration example does not require SDK modifications and is based on top of **SDK6.0.10**. The user can update the Bluetooth advertising data with the source of the reset or print the reason of the reset on a serial console.
+The main purpose of this SW example is to demonstrate how to detect the source of a reset event and explain how to store data into or/and read data from **retention RAM**.  This demonstration example **requires some SDK modifications** and is based on top of **SDK6.0.10**. The user can update the Bluetooth advertising data with the source of the reset or print the reason of the reset on a serial console.
 
 ## Features
 
@@ -19,7 +17,66 @@ The main purpose of this SW example is to demonstrate how to detect the source o
 - Interacting with the UART serial port terminal
 - Interacting with advertising data
 
+## Custom profile
+A 128-bit UUID custom profile us included with 1 custom service. 
+
+<table>
+  <caption> <b> <i> Custom Service 1 Characteristic Values and Properties</i></b></caption>
+<thead>
+  <tr class="header">
+  <th style="text-align: left;">Name</th>
+  <th style="text-align: left;">Properties</th>
+  <th style="text-align: left;">Length(B)</th>
+  <th style="text-align: left;">Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr class="odd">
+  <td style="text-align: left;">Control Point</td>
+  <td style="text-align: left;">Write</td>
+  <td style="text-align: left;">1</td>
+  <td style="text-align: left;">Accept commands from peer</td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;">Reset detection</td>
+  <td style="text-align: left;">Read</td>
+  <td style="text-align: left;">20</td>
+  <td style="text-align: left;">Update tte source of the reset in the peer device</td>
+  </tr>
+</tbody>
+</table>
+
+
+
 ## How it works
+
+### SDK modifications
+-  Modifications in **Hardfault handler** (`sdk_root/nmi_handler.c`)
+  1. Include the following header files
+      ```c
+      #include "user_custs1_impl.h"
+      ``` 
+  2. Add detect_rst_flag variable
+        ```c
+      extern uint8_t detect_rst_flag;
+      ```
+  3. Add detect_rst_flag in **HardFault_HandlerC**
+      ```c
+      detect_rst_flag = CUSTS1_HARDFAULT; 
+      ```
+-  Modifications in **NMI handler** (`sdk_root/hardfault_handler.c`)
+  1. Include the following header files
+      ```c
+      #include "user_custs1_impl.h"
+      ```
+  2. Add detect_rst_flag variable
+      ```c
+      extern uint8_t detect_rst_flag;
+      ```
+  3. Add detect_rst_flag in **NMI_HandlerC**
+      ```c
+      detect_rst_flag = CUSTS1_NMI; 
+      ```
 
 ### Store data into the Retention-RAM
 
@@ -36,17 +93,17 @@ The main purpose of this SW example is to demonstrate how to detect the source o
 
 ### Reset detection
 
-An 128-bit UUID custom service is utilized and includes a characteristic attribute named **Control Point**. This attribute is used to indicate the reason of reset as described in `Features` section. The declaration of the characteristic is located in `user_custs1_def.h /.c`. If you are not familiar with custom profile declaration, please refer to [training material](https://www.dialog-semiconductor.com/sites/default/files/training_02_custom_profile_example_v1.2.pdf) from [support website](https://www.dialog-semiconductor.com/bluetooth-low-energy). Valid values of **Control Point** at:
+The **Control Point** attribute is used to indicate the reason of reset as described in `Features` section. The declaration of the characteristic is located in `user_custs1_def.h /.c`. If you are not familiar with custom profile declaration, please refer to [training material](https://www.dialog-semiconductor.com/sites/default/files/training_02_custom_profile_example_v1.2.pdf) from [support website](https://www.dialog-semiconductor.com/bluetooth-low-energy). Valid values of **Control Point** at:
 
-- **Byte 0x00 : Hardfault** 
+- **Byte 0x01 : Hardfault** 
   - A hardfault is occurred by executing `*(uint32_t *)0x01 = 0x90;`
   - Once the hardfault is issued, the **HardFault_HandlerC** exception handler is triggered, located in `hardfault_handler.c`  
   - The **detect_rst_flag** value is assigned to **CUSTS1_HARDFAULT (=0x00)**
-- **Byte 0x01 : NMI**
+- **Byte 0x02 : NMI**
   - An endless loop will run, so that the WDOG will expire and an NMI will be fired.
   - Once the NMI is issued, the **NMI_HandlerC** exception handler is triggered, located in `nmi_handler.c`
   - The **detect_rst_flag** value is assigned to **CUSTS1_NMI (=0x01)**
-- **Byte 0x02 : Software Reset** 
+- **Byte 0x03 : Software Reset** 
   - The **SYS_CTRL_REG** is used to trigger a *Software Reset* to the device
   - According to the datasheet, the SW reset is triggered by writing the **SYS_CTRL_REG[SW_RESET]** bit field.
   - The **detect_rst_flag** value is assigned to **CUSTS1_SW_RESET (=0x02)**
@@ -56,7 +113,7 @@ There is no dedicated register on the DA14585 that will allow us determine when 
 
 **user_power_on_reset()** is used to explicitly cause POR upon system initialization. This API should be applied as soon as possible after the device boots. Both **POR_TIMER_REG** and **POR_PIN_REG*** are the only registers that will retain their values between resets and during any type of sleep modes and can be used to store application data. If the condition is true, then the value of the register is changed and **detect_rst_flag** is assigned to **CUSTS1_POR (=0x03)**. After POR, the device will start advertising again. **CFG_POWER_ON_RESET**, located in `user_custs1_impl.h`,  should be used to activate/deactivate POR. 
 
-​   
+   
 
 ```c
 void user_power_on_reset(void)
@@ -114,27 +171,41 @@ For the initial setup, please refer to [this section](https://support.dialog-sem
 - Connect to the device
 - You should see the **Control Point** Bluetooth characteristic
 
+
+
 ### Hardfault example
 
 1. Open the project via Keil µVision 5
+
 2. Build the project 
+
 3. Run it in **debug mode**. To learn basic debugging techniques, please refer to training material](https://www.dialog-semiconductor.com/sites/default/files/training_08_debugging_v1.1.pdf).&nbsp;
    ![Debug mode](assets\Debug_mode.PNG)
+
 4. Connect to  **DETECT-RESET** &nbsp;
    ![ble_scanner_1](assets\ble_scanner_1.png)
+
 5. A custom service with the **Control Point** characteristic should be appeared.&nbsp;
    ![ble_scanner_2](assets\ble_scanner_2.png)
+
 6. &nbsp;Write **0x00** to trigger a hardfault&nbsp;
    ![ble_scanner_3](assets\ble_scanner_3.png)
+
 7. &nbsp;A hardfault is occured&nbsp;
    ![hardfault](assets\hardfault.PNG)
+
 8. Stop the debug procedure and reset the Pro-DK. detect_rst_flag** is stored into Retention-RAM, and so its value is retained.
+
 9. Add a break point into ``user_app_adv_start()`` function and run it again in debug mode.
+
 10. Step over (press F10) and the "Hardfault" is appended into the  advertising data.&nbsp;
     ![hardfault_1](assets\hardfault_1.PNG)
+
 11. Stop the debug procedure
+
 12. &nbsp;Open the Serial terminal (TerTerm) with the following COM port configurations&nbsp;
     ![comport](assets\comport.PNG)
+    
 13. &nbsp;Download the firmware into System-RAM again and  the reason of the reset should be appeared on the monitor.&nbsp;
     ![teraterm](assets\teraterm.PNG)
 

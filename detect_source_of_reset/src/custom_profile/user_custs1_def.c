@@ -60,6 +60,7 @@
 static const att_svc_desc128_t custs1_svc1                      = DEF_SVC1_UUID_128;
 
 static const uint8_t SVC1_CTRL_POINT_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_CTRL_POINT_UUID_128;
+static const uint8_t SVC1_RST_DETECT_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_RST_DETECT_UUID_128;
 
 
 
@@ -77,8 +78,14 @@ const uint8_t custs1_services[]  = {SVC1_IDX_SVC, CUSTS1_IDX_NB};
 const uint8_t custs1_services_size = ARRAY_LEN(custs1_services) - 1;
 const uint16_t custs1_att_max_nb = CUSTS1_IDX_NB;
 
+
+extern uint8_t *detect_value ;
+
+
+
+
 /// Full CUSTS1 Database Description - Used to add attributes into the database
-const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
+struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 {
     /*************************
      * Service 1 configuration
@@ -86,21 +93,35 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
      */
 
     // Service 1 Declaration
-    [SVC1_IDX_SVC]                     = {(uint8_t*)&att_decl_svc, ATT_UUID_128_LEN, PERM(RD, ENABLE),
+    [SVC1_IDX_SVC]                     = {(const uint8_t*)&att_decl_svc, ATT_UUID_128_LEN, PERM(RD, ENABLE),
                                             sizeof(custs1_svc1), sizeof(custs1_svc1), (uint8_t*)&custs1_svc1},
 
     // Control Point Characteristic Declaration
-    [SVC1_IDX_CONTROL_POINT_CHAR]      = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+    [SVC1_IDX_CONTROL_POINT_CHAR]      = {(const uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             0, 0, NULL},
 
     // Control Point Characteristic Value
-    [SVC1_IDX_CONTROL_POINT_VAL]       = {SVC1_CTRL_POINT_UUID_128, ATT_UUID_128_LEN, PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
+    [SVC1_IDX_CONTROL_POINT_VAL]       = {(const uint8_t*)SVC1_CTRL_POINT_UUID_128, ATT_UUID_128_LEN, PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
                                             DEF_SVC1_CTRL_POINT_CHAR_LEN, 0, NULL},
 
     // Control Point Characteristic User Description
-    [SVC1_IDX_CONTROL_POINT_USER_DESC] = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, DEF_SVC1_CONTROL_POINT_USER_DESC},
+    [SVC1_IDX_CONTROL_POINT_USER_DESC] = {(const uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, (uint8_t *)DEF_SVC1_CONTROL_POINT_USER_DESC},
+		
+		// Reset detection Characteristic Declaration
+    [SVC1_IDX_RST_DETECT_CHAR]          = {(const uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            0, 0, NULL},
+
+    // Reset detection Characteristic Value
+    [SVC1_IDX_RST_DETECT_VAL]           = {(const uint8_t*)SVC1_RST_DETECT_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE),
+                                            DEF_SVC1_RST_DETECT_CHAR_LEN, 1 , (uint8_t*)&detect_value},
+
+    // Reset detection Characteristic User Description
+    [SVC1_IDX_RST_DETECT_USER_DESC]     = {(const uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            sizeof(DEF_SVC1_RST_DETECT_USER_DESC) - 1, sizeof(DEF_SVC1_RST_DETECT_USER_DESC) - 1, (uint8_t *)DEF_SVC1_RST_DETECT_USER_DESC},																				
 
 };
+
+
 
 /// @} USER_CONFIG

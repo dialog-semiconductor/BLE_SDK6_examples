@@ -104,6 +104,15 @@
  */
 static void ret_ram_data_init(void);
 
+
+/**
+ ****************************************************************************************
+ * @brief Update the Reset detection characteristic accoridng to detect_rst_flag
+ * @return void
+ ****************************************************************************************
+ */
+void update_custs1_att_db(void);
+
 /**
  ****************************************************************************************
  * @brief Application initialization function.

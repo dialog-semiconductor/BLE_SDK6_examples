@@ -275,6 +275,12 @@ static void param_update_request_timer_cb()
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application callback function to set initial device configuration.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_init(void)
 {
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
@@ -294,6 +300,12 @@ void user_app_init(void)
     default_app_on_init();
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application callback function to configure device advertisement.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_adv_start(void)
 {
     // Schedule the next advertising data update
@@ -308,6 +320,12 @@ void user_app_adv_start(void)
     app_easy_gap_undirected_advertise_start();
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application callback function upon device connection is established.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
     if (app_env[connection_idx].conidx != GAP_INVALID_CONIDX)
@@ -337,6 +355,12 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
     default_app_on_connection(connection_idx, param);
 }
 
+/**
+ ****************************************************************************************
+ * @brief User appliation callback function upon advertisement completion.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_adv_undirect_complete(uint8_t status)
 {
     // If advertising was canceled then update advertising data and start advertising again
@@ -346,6 +370,12 @@ void user_app_adv_undirect_complete(uint8_t status)
     }
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application callback function upon device disconnect.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
 {
     // Cancel the parameter update request timer
@@ -379,6 +409,12 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     user_app_adv_start();
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application function to send accelerometer X-axis data notification.
+ * @return void
+ ****************************************************************************************
+*/
 void user_svc1_accel_X_send_ntf()
 {
     //Construct the string to send as a notification
@@ -405,6 +441,12 @@ void user_svc1_accel_X_send_ntf()
     X_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_X_send_ntf); //Set a timer for 100 ms (10*10)
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application function to set X-Axis notification handler.
+ * @return void
+ ****************************************************************************************
+*/
 void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param){
     if(param->value[0]){
         //If the client subscribed to the notification
@@ -423,6 +465,12 @@ void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param){
     }
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application function to send accelerometer Y-axis data notification.
+ * @return void
+ ****************************************************************************************
+*/
 void user_svc1_accel_Y_send_ntf()
 {
     mnf_data_update();
@@ -447,6 +495,12 @@ void user_svc1_accel_Y_send_ntf()
     Y_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Y_send_ntf); //Do this again in 100 ms (10*10)
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application function to set Y-Axis notification handler.
+ * @return void
+ ****************************************************************************************
+*/
 void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param){
     if(param->value[0]){
         if(Y_timer == EASY_TIMER_INVALID_TIMER){
@@ -463,6 +517,12 @@ void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param){
     }
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application function to send accelerometer Z-axis data notification.
+ * @return void
+ ****************************************************************************************
+*/
 void user_svc1_accel_Z_send_ntf()
 {
     mnf_data_update();
@@ -488,6 +548,12 @@ void user_svc1_accel_Z_send_ntf()
     Z_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Z_send_ntf); //Do this again in 100 ms (10*10)
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application function to set Z-Axis notification handler.
+ * @return void
+ ****************************************************************************************
+*/
 void user_svc1_accel_Z_wr_ntf_handler(struct custs1_val_write_ind const *param){
     if(param->value[0]){
         if(Z_timer == EASY_TIMER_INVALID_TIMER){
@@ -504,6 +570,12 @@ void user_svc1_accel_Z_wr_ntf_handler(struct custs1_val_write_ind const *param){
     }
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application timer callback function to handle Gyro data service.
+ * @return void
+ ****************************************************************************************
+*/
 void user_svc2_g_timer_cb_handler(void)
 {
     struct custs1_val_ntf_ind_req *req =
@@ -521,6 +593,12 @@ void user_svc2_g_timer_cb_handler(void)
     g_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc2_g_timer_cb_handler);
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application function to set Gyro data notification handler.
+ * @return void
+ ****************************************************************************************
+*/
 void user_svc2_g_wr_ntf_handler(struct custs1_val_write_ind const *param){
     if(param->value[0]){
         if(g_timer == EASY_TIMER_INVALID_TIMER){
@@ -537,6 +615,12 @@ void user_svc2_g_wr_ntf_handler(struct custs1_val_write_ind const *param){
     }
 }
 
+/**
+ ****************************************************************************************
+ * @brief User application callback function to handle BLE GAP operations.
+ * @return void
+ ****************************************************************************************
+*/
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,

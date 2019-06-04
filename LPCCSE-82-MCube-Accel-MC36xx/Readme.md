@@ -1,10 +1,10 @@
 
-# DA14585/6 interface with mCube Accelerometer over I2C
+# DA14585/586 interface with mCube Accelerometer over I2C
 
 
 ## Example description
 
-Sample software application to interface Dialog DA14585/6 BLE SoC's with mCube MC36xx (MC3672/35) accelerometers.
+Sample software application to interface Dialog DA14585/586 BLE SoC's with mCube MC36xx (MC3672/35) accelerometers.
 
 This DA14585 example shows how to communicate with a mCube accelerometer sensor over I2C interface. The sensor data gets sent over BLE with a notification when connected to a mobile application. Features in this example includes the implementation code for sensor sniff mode for low-power application and FIFO as sensor buffer.
 
@@ -13,7 +13,7 @@ This DA14585 example shows how to communicate with a mCube accelerometer sensor 
 
 ### Hardware configuration
 
-The current example focuses on the implementation of Accel connected via I2C and sending sensor data over BLE notifications using the DA14585 & MC3672. For SPI interface implementation refer to [MC3672 Quick Start Guide](https://mcubemems.com/wp-content/uploads/2018/05/MC3672-Quick-Start-Guide-APS-045-0017v1.2.pdf) which demos the MC3672 Aurdino implementation or [mCube-MC36XX-Programming Guide](https://github.com/mcubemems/Accelerometer_mc36xx_mcu_driver/blob/master/MC36XX_MCU_3.1.0/mCube%20-%20MC36XX%20-%20Programming%20Guide%20%20v1.1.1.pdf) for general platforms.
+The current example focuses on the implementation of Accel connected via I2C and sending sensor data over BLE notifications using the DA14585 & MC3672. For SPI interface implementation refer to [MC3672 Quick Start Guide](https://mcubemems.com/wp-content/uploads/2018/05/MC3672-Quick-Start-Guide-APS-045-0017v1.2.pdf) which demos the MC3672 Arduino implementation or [mCube-MC36XX-Programming Guide](https://github.com/mcubemems/Accelerometer_mc36xx_mcu_driver/blob/master/MC36XX_MCU_3.1.0/mCube%20-%20MC36XX%20-%20Programming%20Guide%20%20v1.1.1.pdf) for general platforms.
 
 **Note:** Both the SPI and I2C interfaces cannot be active at the same time as the clock (SCK) and data (SDA) are shared between the two protocols.
 
@@ -69,13 +69,18 @@ To compile and run this program, user can follow the steps below.
 	#define FIFO_THRESHOLD 5
 
 
+## Reference
+
+- Please refer to the document from the link below to set up this software example on your machine.
+
+ [How to setup software Example](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da1458x-example-setup.pdf)
+
 ## Known Limitations
 
-
 - There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum link").
-- You can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+[known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf).
+- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software).
+- You can also refer to the Troubleshooting section in the DA1585x Getting Started Guide with the Development Kit [UM-B-049](https://www.dialog-semiconductor.com/sites/default/files/um-b-049_da14585da14586_getting_started_guide_v2.1_0.pdf).
 
 
 ## License

@@ -51,7 +51,7 @@ A 128-bit UUID custom profile us included with 1 custom service.
 ## How it works
 
 ### SDK modifications
--  Modifications in **Hardfault handler** (`sdk_root/nmi_handler.c`)
+-  Modifications in **Hardfault handler** (`sdk_root/hardfault_handler.c`)
   1. Include the following header files
       ```c
       #include "user_custs1_impl.h"
@@ -62,9 +62,9 @@ A 128-bit UUID custom profile us included with 1 custom service.
       ```
   3. Add detect_rst_flag in **HardFault_HandlerC**
       ```c
-      detect_rst_flag = CUSTS1_HARDFAULT; 
+      uint8_t detect_rst_flag = CUSTS1_HARDFAULT; 
       ```
--  Modifications in **NMI handler** (`sdk_root/hardfault_handler.c`)
+-  Modifications in **NMI handler** (`sdk_root/nmi_handler.c`)
   1. Include the following header files
       ```c
       #include "user_custs1_impl.h"
@@ -75,7 +75,7 @@ A 128-bit UUID custom profile us included with 1 custom service.
       ```
   3. Add detect_rst_flag in **NMI_HandlerC**
       ```c
-      detect_rst_flag = CUSTS1_NMI; 
+      uint8_t detect_rst_flag = CUSTS1_NMI; 
       ```
 
 ### Store data into the Retention-RAM

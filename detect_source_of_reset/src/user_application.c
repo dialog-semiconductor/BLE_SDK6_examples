@@ -101,6 +101,13 @@ uint8_t *detect_value  ;
  ****************************************************************************************
 */
 
+/**
+ ****************************************************************************************
+ * @brief Store USER_RETRAM_DATA into the RetRAM upon system initialization
+ * @return void
+ ****************************************************************************************
+*/
+
 
 static void ret_ram_data_init(void)
 {
@@ -157,7 +164,7 @@ static void param_update_request_timer_cb()
 
 /**
  ****************************************************************************************
- * @brief Explicitly cause power on reset upon syestem initialization
+ * @brief Explicitly cause power on reset upon system initialization
  * @return void
  ****************************************************************************************
 */
@@ -213,11 +220,6 @@ static void append_data(uint8_t *len,
 
     // Update advertising or scan response data length
     *len += name_length + 2;
-}
-
-void user_app_update_adv_data(void)
-{
-	
 }
 
 void user_app_adv_start(void)

@@ -84,8 +84,5 @@
 		{
 			detect_rst_flag = CUSTS1_SW_RESET ;
 			SetBits16(SYS_CTRL_REG, SW_RESET, 1);
-		}
-
-		
-		
+		}		
 }

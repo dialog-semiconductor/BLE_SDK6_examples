@@ -46,7 +46,18 @@ A 128-bit UUID custom profile us included with 1 custom service.
 </tbody>
 </table>
 
+The implementation code of the Custom service is included in  ``user_custs1_impl.c``. The **user_svc1_ctrl_wr_ind_handler** is implemented,  which is the **Control Point** characteristic write indication handler.
 
+## APIs brief description 
+
+- **user_app_connection**: Connection function
+- **user_app_adv_undirect_complete**: Undirect advertising completion function
+- **user_app_disconnect**: Disconnection function
+- **user_catch_rest_hndl**: Handles the messages that are not handled by the SDK internal mechanisms
+- **append_data**: Append data into adverting data
+- **user_app_init**: Application initialization function
+- **user_power_on_reset**: Explicitly cause power on reset upon system initialization
+- **ret_ram_data_init**: Store USER_RETRAM_DATA into the RetRAM upon system initialization
 
 ## How it works
 

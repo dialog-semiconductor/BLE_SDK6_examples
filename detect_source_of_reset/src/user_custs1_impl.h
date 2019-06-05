@@ -56,8 +56,7 @@
 	  CUSTS1_HARDFAULT,
 		CUSTS1_NMI,
 		CUSTS1_SW_RESET,
-		CUSTS1_POR,
-    
+		CUSTS1_POR,   
 };
 
 /*
@@ -91,5 +90,4 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
  
  /// @} APP
 																	 
-#endif // _USER_CUSTS1_IMPL_H_											
-																	 
+#endif // _USER_CUSTS1_IMPL_H_

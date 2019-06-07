@@ -57,6 +57,7 @@ If everything went well, you should be able to receive a proprietary capacitance
 <img src="assets/notification_screenshot.jpg" alt="Notification screenshot" height="500">
 
 The accompanying application can be installed on android using the .apk file. Or can be built and installed with Cordova, for which [setup instructions can be found here](https://cordova.apache.org/docs/en/latest/guide/platforms/android/#installing-the-requirements).
+Before the app can be built, the command *cordova prepare* must be ran. This will set up the build targets and download the needed plugins.
 If Cordova is set up correctly the app can be installed by connecting an Android device with USB debugging enabled to the pc, opening a command prompt in the main app folder(the one with config.xml in it) and typing *cordova run android*.
 Instructions to [do the same for IOS can be found here](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html).
 

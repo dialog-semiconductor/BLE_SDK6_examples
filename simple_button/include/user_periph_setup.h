@@ -41,30 +41,47 @@
 #include "uart.h"
 #include "gpio.h"
 
-/*
- * DEFINES
- ****************************************************************************************
- */
+/****************************************************************************************/
+/* UART2 configuration to print messages                                                  */
+/****************************************************************************************/
+#define UART                        UART2
 
-// Select UART settings
-#define UART2_BAUDRATE      UART_BAUDRATE_115K2       // Baudrate in bits/s: {9K6, 14K4, 19K2, 28K8, 38K4, 57K6, 115K2}
-#define UART2_FRAC_BAUDRATE UART_FRAC_BAUDRATE_115K2  // Baudrate fractional part: {9K6, 14K4, 19K2, 28K8, 38K4, 57K6, 115K2}
-#define UART2_DATALENGTH    UART_CHARFORMAT_8         // Datalength in bits: {5, 6, 7, 8}
-#define UART2_PARITY        UART_PARITY_NONE          // Parity: {UART_PARITY_NONE, UART_PARITY_EVEN, UART_PARITY_ODD}
-#define UART2_STOPBITS      UART_STOPBITS_1           // Stop bits: {UART_STOPBITS_1, UART_STOPBITS_2}
-#define UART2_FLOWCONTROL   UART_FLOWCONTROL_DISABLED // Flow control: {UART_FLOWCONTROL_DISABLED, UART_FLOWCONTROL_ENABLED}
+#if defined (__DA14531__)
+    #define UART2_TX_PORT           GPIO_PORT_0
+    #define UART2_TX_PIN            GPIO_PIN_6
+#else
+    #define UART2_TX_PORT           GPIO_PORT_0
+    #define UART2_TX_PIN            GPIO_PIN_4
+#endif
 
-#define UART2_TX_GPIO_PORT  GPIO_PORT_0
-#define UART2_TX_GPIO_PIN   GPIO_PIN_4
-#define UART2_RX_GPIO_PORT  GPIO_PORT_0
-#define UART2_RX_GPIO_PIN   GPIO_PIN_5
+// Define UART2 Settings
+#define UART2_BAUDRATE              UART_BAUDRATE_115200
+#define UART2_DATABITS              UART_DATABITS_8
+#define UART2_PARITY                UART_PARITY_NONE
+#define UART2_STOPBITS              UART_STOPBITS_1
+#define UART2_AFCE                  UART_AFCE_DIS
+#define UART2_FIFO                  UART_FIFO_EN
+#define UART2_TX_FIFO_LEVEL         UART_TX_FIFO_LEVEL_0
+#define UART2_RX_FIFO_LEVEL         UART_RX_FIFO_LEVEL_0
 
-// LED
-#define LED_PORT           GPIO_PORT_1
-#define LED_PIN            GPIO_PIN_0
-
-#define GPIO_SW3_PORT			 GPIO_PORT_1
-#define GPIO_SW3_PIN			 GPIO_PIN_1
+/****************************************************************************************/
+/* LED configuration                                                                                 */
+/****************************************************************************************/
+#if defined (__DA14531__)
+    #define LED_PORT                GPIO_PORT_0
+    #define LED_PIN                 GPIO_PIN_9
+#else
+    #define LED_PORT                GPIO_PORT_1
+    #define LED_PIN                 GPIO_PIN_0
+#endif
+	
+	#if defined (__DA14531__)
+		#define GPIO_SW3_PORT			 GPIO_PORT_0 
+		#define GPIO_SW3_PIN			 GPIO_PIN_4
+#else
+		#define GPIO_SW3_PORT			 GPIO_PORT_1 
+		#define GPIO_SW3_PIN			 GPIO_PIN_1 
+#endif
 
 /*
  * FUNCTION DECLARATIONS
@@ -73,9 +90,8 @@
 
 /**
  ****************************************************************************************
- * @brief Enable pad and peripheral clocks assuming that peripheral power domain
- *        is down. The UART and SPI clocks are set.
- * @return void
+ * @brief   Initializes application's peripherals and pins
+ * @return  void
  ****************************************************************************************
  */
 void periph_init(void);

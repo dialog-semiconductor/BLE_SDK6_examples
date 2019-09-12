@@ -5,7 +5,7 @@
  *
  * @brief Peripherals initialization functions
  *
- * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -35,39 +35,48 @@
  ****************************************************************************************
  */
 
-#include "uart.h"
-#include "gpio.h"
 #include "user_periph_setup.h"
+#include "datasheet.h"
 
- /**
- ****************************************************************************************
- * @brief Enable pad and peripheral clocks assuming that peripheral power domain
- *        is down. The UART and SPI clocks are set.
- ****************************************************************************************
- */
+static void set_pad_functions(void)
+{
+#if defined (__DA14586__)
+    // Disallow spontaneous DA14586 SPI Flash wake-up
+    GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
+#endif
+
+		GPIO_ConfigurePin(GPIO_SW3_PORT, GPIO_SW3_PIN, INPUT_PULLUP, PID_GPIO, false);
+	
+    GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
+
+    GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, false);
+}
+
+// Configuration struct for UART2
+static const uart_cfg_t uart_cfg = {
+    .baud_rate = UART2_BAUDRATE,
+    .data_bits = UART2_DATABITS,
+    .parity = UART2_PARITY,
+    .stop_bits = UART2_STOPBITS,
+    .auto_flow_control = UART2_AFCE,
+    .use_fifo = UART2_FIFO,
+    .tx_fifo_tr_lvl = UART2_TX_FIFO_LEVEL,
+    .rx_fifo_tr_lvl = UART2_RX_FIFO_LEVEL,
+    .intr_priority = 2,
+};
+
 void periph_init(void)
 {
-    // system init
-    SetWord16(CLK_AMBA_REG, 0x00);                 // set clocks (hclk and pclk ) 16MHz
-    SetWord16(SET_FREEZE_REG,FRZ_WDOG);            // stop watch dog
-    SetBits16(SYS_CTRL_REG,PAD_LATCH_EN,1);        // open pads
-    SetBits16(SYS_CTRL_REG,DEBUGGER_ENABLE,1);     // open debugger
-    SetBits16(PMU_CTRL_REG, PERIPH_SLEEP,0);       // exit peripheral power down
-
+#if !defined (__DA14531__)
     // Power up peripherals' power domain
     SetBits16(PMU_CTRL_REG, PERIPH_SLEEP, 0);
     while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
-
-    //Init pads
-    GPIO_ConfigurePin(UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, OUTPUT, PID_UART2_TX, false);
-    GPIO_ConfigurePin(UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, INPUT, PID_UART2_RX, false);
+    SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
+#endif
 	
-		//Init SW3
-		GPIO_ConfigurePin(GPIO_SW3_PORT, GPIO_SW3_PIN, INPUT_PULLUP, PID_GPIO, false);
-		
-    // Init LED
-    GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, false);
-    SetBits16(CLK_PER_REG, UART2_ENABLE, 1);                      // enable  clock for UART2
-    // Initialize UART component
-    uart2_init(UART2_BAUDRATE, UART2_FRAC_BAUDRATE, UART2_DATALENGTH);
+    uart_initialize(UART2, &uart_cfg);
+
+    set_pad_functions();
+
+    GPIO_set_pad_latch_en(true);
 }

@@ -3,9 +3,9 @@
  *
  * @file main.c
  *
- * @brief Blinky example
+ * @brief Simple_Button example
  *
- * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -30,37 +30,41 @@
  ****************************************************************************************
  */
 #include <stdio.h>
-#include "common_uart.h"
+#include "systick.h" 
+#include "uart_utils.h"
 #include "user_periph_setup.h"
 #include "gpio.h"
-#include "systick.h"
-
-#define LED_OFF_THRESHOLD 10000
-#define LED_ON_THRESHOLD  400000
-
+#include "system_init.h"
+ 
+/****************************************************************************************/
+/* User constants                                                                   		  	  				*/
+/****************************************************************************************/
+ const uint32_t 	BLINK_INTERVAL 				= 500000;			// In usec. 
+ const uint32_t	LONG_PRESS_TIME 		= 3000000;  	// In usec	
+ const uint8_t 		DEBOUNCE_MS 					= 30;			  		// In ms
+ const bool 				SYSTICK_ENABLE_T   	= 1; 
+ 
 // Interrupt initialization function declarations
 void systick_ISR(void);
 void negative_GPIO_ISR(void);
 void GPIO_ISR(void);
 void wakeup_ISR(void);
-
-// Interrupt initialization function declarations
+	
 void interrupts_init(void);
 void set_timer_interrupt(void) ;
 void set_positive_GPIO_interrupt(void);
 void set_negative_GPIO_interrupt(void);
-
-// Flag for detecting long (3s) or short press
+	
+// Flag for detecting long (3s=) or short press
 bool three_second_push = 0;
 
-// System initialization function declaration
-void system_init(void);
 
 void Led_blink(void);
+ 
 /**
  ****************************************************************************************
- * @brief Main routine of the Blinky example
- * 
+ * @brief Main routine of the Simple_Button example
+ * @return void
  ****************************************************************************************
  */
 int main (void)
@@ -68,28 +72,14 @@ int main (void)
     system_init();
     periph_init();
 		interrupts_init();
-    while(1);
+
+    for(;;);
 }
 
 /**
  ****************************************************************************************
- * @brief System Initialization
- *
- ****************************************************************************************
- */
-void system_init(void)
-{
-    SetWord16(CLK_AMBA_REG, 0x00);                 // set clocks (hclk and pclk ) 16MHz
-    SetWord16(SET_FREEZE_REG,FRZ_WDOG);            // stop watch dog
-    SetBits16(SYS_CTRL_REG,PAD_LATCH_EN,1);        // open pads
-    SetBits16(SYS_CTRL_REG,DEBUGGER_ENABLE,1);     // open debugger
-    SetBits16(PMU_CTRL_REG, PERIPH_SLEEP,0);       // exit peripheral power down
-}
-
-/**
- ****************************************************************************************
- * @brief Blinky test function
- *
+ * @brief Led_blink function
+ * @return void
  ****************************************************************************************
  */
 void Led_blink(void)
@@ -99,25 +89,36 @@ void Led_blink(void)
 		if (GPIO_GetPinStatus(LED_PORT, LED_PIN))
 		{
 				GPIO_SetInactive(LED_PORT, LED_PIN);
-				printf_string("\n\r=> LED OFF <=");
+				printf_string(UART,"\n\r=> LED OFF <=");
 		}
 		else
 		{
 				GPIO_SetActive(LED_PORT, LED_PIN);
-				printf_string("\n\r=> LED ON  <=");
+				printf_string(UART,"\n\r=> LED ON  <=");
 		}
-		systick_start(500000, 1);
+		systick_start(BLINK_INTERVAL, SYSTICK_ENABLE_T);
 }
 
-void systick_ISR(void) // systick ISR handler
+/**
+ ****************************************************************************************
+ * @brief systick ISR handler
+ * @return void
+ ****************************************************************************************
+ */
+void systick_ISR(void) 
 {
 		systick_stop();
 		three_second_push = 1;
-		printf_string("\n\n\rLong Press");
-		//GPIO_SetActive(LED_PORT, LED_PIN); //test
+		printf_string(UART,"\n\n\rLong Press");
 		Led_blink();
 }
 
+/**
+ ****************************************************************************************
+ * @brief negative_GPIO_ISR function
+ * @return void
+ ****************************************************************************************
+ */
 void negative_GPIO_ISR(void)
 {
 		// Prevents interrupt from triggering at startup
@@ -129,29 +130,41 @@ void negative_GPIO_ISR(void)
 
 		if (!three_second_push)
 		{
-				systick_stop();
-			printf_string("\n\n\rShort press");
+			systick_stop();
+			printf_string(UART,"\n\n\rShort press");
 				if (GPIO_GetPinStatus(LED_PORT, LED_PIN))
 				{
 						GPIO_SetInactive(LED_PORT, LED_PIN);
-						printf_string("\n\r=> LED OFF <=");
+						printf_string(UART,"\n\r=> LED OFF <=");
 				}
 				else
 				{
 						GPIO_SetActive(LED_PORT, LED_PIN);
-						printf_string("\n\r=> LED ON  <=");
+						printf_string(UART,"\n\r=> LED ON  <=");
 				}
 		}
 }
 
+/**
+ ****************************************************************************************
+ * @brief GPIO_ISR function generate timer, if LONG_PRESS_TIME_T time is passed an exception is generated
+ * @return void
+ ****************************************************************************************
+ */
 void GPIO_ISR(void)
 {
-		three_second_push = 0; 										// reset flag
-		systick_stop(); 													// stop and reset systick if it's currently running
-		systick_register_callback(systick_ISR);		// 
-		systick_start(3000000, 1);  							// start timer generating exeption at 3 seconds
+		three_second_push = 0; 																													
+		systick_stop(); 																																				
+		systick_register_callback(systick_ISR);																			
+		systick_start(LONG_PRESS_TIME, SYSTICK_ENABLE_T);		
 }
-
+	
+/**
+ ****************************************************************************************
+ * @brief interrupts_init function
+ * @return void
+ ****************************************************************************************
+ */
 void interrupts_init(void)
 {
 		set_timer_interrupt();
@@ -159,21 +172,40 @@ void interrupts_init(void)
 		set_negative_GPIO_interrupt();
 }
 
+/**
+ ****************************************************************************************
+ * @brief set_timer_interrupt function, configures interupt handler function
+ * @return void
+ ****************************************************************************************
+ */
 void set_timer_interrupt(void) 
 {
-		systick_register_callback(systick_ISR); // configure interupt handler function
+		systick_register_callback(systick_ISR); 
 }
 
+/**
+ ****************************************************************************************
+ * @brief set_positive_GPIO_interrupt function
+ * @return void
+ ****************************************************************************************
+ */
 void set_positive_GPIO_interrupt(void)
 {
-		GPIO_EnableIRQ(GPIO_SW3_PORT, GPIO_SW3_PIN, GPIO0_IRQn, true, true, 30);
+		GPIO_EnableIRQ(GPIO_SW3_PORT, GPIO_SW3_PIN, GPIO0_IRQn, true, true, DEBOUNCE_MS);
 		GPIO_SetIRQInputLevel(GPIO0_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
 		GPIO_RegisterCallback(GPIO0_IRQn, GPIO_ISR);
 }
 
+/**
+ ****************************************************************************************
+ * @brief set_negative_GPIO_interrupt function
+ * @return void
+ ****************************************************************************************
+ */
 void set_negative_GPIO_interrupt(void)
 {
-		GPIO_EnableIRQ(GPIO_SW3_PORT, GPIO_SW3_PIN, GPIO1_IRQn, true, true, 30);
+		GPIO_EnableIRQ(GPIO_SW3_PORT, GPIO_SW3_PIN, GPIO1_IRQn, true, true, DEBOUNCE_MS);
 		GPIO_SetIRQInputLevel(GPIO1_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
 		GPIO_RegisterCallback(GPIO1_IRQn, negative_GPIO_ISR);
 }
+

@@ -75,7 +75,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>1</IsCurrentTarget>
+        <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
       <CpuCode>7</CpuCode>
       <DebugOpt>
@@ -113,7 +113,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\tbeijloo\Downloads\6.0.11.933\\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
+        <tIfile>C:\Users\tbeijloo\Downloads\6.0.11.989\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -281,7 +281,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\tbeijloo\Downloads\6.0.11.933\\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
+        <tIfile>C:\Users\tbeijloo\Downloads\6.0.11.989\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -411,7 +411,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>0</IsCurrentTarget>
+        <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>7</CpuCode>
       <DebugOpt>
@@ -449,10 +449,17 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\tbeijloo\Downloads\6.0.11.933\\projects\target_apps\peripheral_examples\shared\DA14531.ini</tIfile>
+        <tIfile>C:\Users\tbeijloo\Downloads\6.0.11.989\projects\target_apps\peripheral_examples\shared\DA14531.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>DLGUARM</Key>
+          <Name>ã7$wHËÊ
+ã7$wHËÊ
+</Name>
+        </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>UL2CM3</Key>
@@ -538,7 +545,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14585_586.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -550,7 +557,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14585_586.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -562,7 +569,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -574,7 +581,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -586,7 +593,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\projects\target_apps\peripheral_examples\shared\source\exceptions.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\projects\target_apps\peripheral_examples\shared\source\exceptions.c</PathWithFileName>
       <FilenameWithoutPath>exceptions.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -606,7 +613,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
       <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -618,7 +625,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -630,7 +637,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\driver\uart\uart.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\uart\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -642,7 +649,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
       <FilenameWithoutPath>uart_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -654,8 +661,68 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\\sdk\platform\driver\systick\systick.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\systick\systick.c</PathWithFileName>
       <FilenameWithoutPath>systick.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>11</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
+      <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>12</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
+      <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>13</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
+      <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>14</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
+      <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>15</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
+      <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -669,7 +736,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>11</FileNumber>
+      <FileNumber>16</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -681,7 +748,7 @@
     </File>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>12</FileNumber>
+      <FileNumber>17</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -693,13 +760,13 @@
     </File>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>13</FileNumber>
+      <FileNumber>18</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.933\\projects\target_apps\peripheral_examples\shared\source\system_init.c</PathWithFileName>
-      <FilenameWithoutPath>system_init.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\6.0.11.989\\sdk\platform\arch\main\arch_system.c</PathWithFileName>
+      <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

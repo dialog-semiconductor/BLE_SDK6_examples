@@ -1,28 +1,40 @@
-# DA14585/DA14586 Peripheral GPIO - Simple Button press
+﻿# DA14585/DA14586/DA14531 Peripheral GPIO - Simple Button press
 
 ---
 
 
 ## Example description
 
-This SDK6 DA14585 example shows how configure a simple button for short press and long press (>3 seconds)
-from the applicaiton layer
+This SDK6 example shows how configure a simple button for short press and long press (>3 seconds)
+from the applicaiton layer.
 As a proof of concept it can be verified by transmitting UART messages or the LED status
 
 ## HW and SW configuration
 
+	-This example runs on The DA14585 and the 14531 Bluetooth Smart SoC devices.	
+	-The Basic / Pro Development kit is needed for this example.
+	Follow the hardware configuration according to your Daughterboard, DA14585 or DA14531.
 
-* **Hardware configuration**
+* **Hardware configuration DA14585**
 
-	- This example runs on The DA14585 Bluetooth Smart SoC devices.
-	- The Basic / Pro Development kit is needed for this example.
 	- Connect the USB Development kit to the host computer.
-	- UART TX/RX jumper on P0_4/P0_5
-	- LED jumper is configured to P10
-	- Button is configured to P1_1 corresponding to SW3 on the Pro Development kit.
-	  For the Basic development kit, a active-low switch should be connected to P1_1 as displayed in the following schematic
+	- UART TX/RX jumper on P0_4/P0_5 (red box 1)
+	- LED jumper is configured to P1_0 (red box 2)
+	- Button jumper is configured to P1_1 (red box 3) redcorresponding to SW3 on the Pro Development kit.
+	  The image below shows the Motherboard with jumper configuration for the DA14585
 
-		![simple_button_basic](assets/simple_button_basic.png)
+		![simple_button_basic](assets/Motherboard_Hardware_Configuration_DA14585.png)
+
+
+* **Hardware configuration DA14531**
+
+	- Connect the USB Development kit to the host computer.
+	- UART TX jumper wire from P26 on J2 to UTX pin 17 on J1 as shown in the image below (the green line)
+	- LED jumper is configured to P1_0 (red bow 1)
+	- Button jumper is configured to P1_1 (red box 2) redcorresponding to SW3 on the Pro Development kit.
+	  The image below shows the Motherboard with jumper (wire) configuration for the DA14531
+
+		![simple_button_basic](assets/Motherboard_Hardware_Configuration_DA14531.png)
 
 * **Software configuration**
 
@@ -38,6 +50,10 @@ For initial setup of the example please refer to [this section of the dialog sup
 ### Initial Setup
 
  - Start Keil
+ - Select your device in the box shown below (DA14585, DA14586 or DA14531)
+
+![simple_button_basic](assets/Select_Device.png)
+
  - Compile and launch the example
  - Open the development kit serial port with the following parameters
 
@@ -69,7 +85,7 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 **************************************************************************************
 
- Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
+ Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
 
  This software ("Software") is owned by Dialog Semiconductor. By using this Software
  you agree that Dialog Semiconductor retains all intellectual property and proprietary

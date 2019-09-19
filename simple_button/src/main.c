@@ -34,7 +34,7 @@
 #include "uart_utils.h"
 #include "user_periph_setup.h"
 #include "gpio.h"
-#include "system_init.h"
+#include "arch_system.h"
  
 /****************************************************************************************/
 /* User constants                                                                   		  	  				*/
@@ -72,6 +72,7 @@ int main (void)
     system_init();
     periph_init();
 		interrupts_init();
+
 
     for(;;);
 }

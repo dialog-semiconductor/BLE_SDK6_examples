@@ -1,0 +1,13 @@
+Address	Size	Type	RW or RO	Shortname	Description	Group	Default	Number of options
+7F87ED0	240	String_Rev	RW	Configuration Script	<html>Configuration Script</html>	Configuration Script
+7F87FC0	4	Flag_rev	RW	Application Flag 1	<html>Application Programmed Flag #1 0x1234A5A5 = Application is in OTP</html>	Main group	0xFFFFFFFF	2	0xFFFFFFFF	No	0x1234A5A5	Yes
+7F87FC4	4	Flag_rev	RW	Application Flag 2	<html>Application Programmed Flag #2 0xA5A51234 = Application is in OTP</html>	Main group	0xFFFFFFFF	2	0xFFFFFFFF	No	0xA5A51234	Yes
+7F87FC8	4	Integer	RW	Boot specific config	<html>Boot specific config B0:<br/>0xAA = Boot from SPI port at a specific location<br/>0xFF = Normal sequence<br/>B1: Wake up Command opcode<br/>B2: SPI_DIV<br/>B3: Reserved</html>	Main group
+7F87FCC	4	Integer	RW	Boot specific port mapping	<html>Boot specific port mapping<br>B0[7:4] : SPI_CLK, Port number<br>B0[3:0] : SPI_CLK, Pin number<br>B1[7:4] : SPI_EN, Port number<br>B1[3:0] : SPI_EN, Pin number<br>B2[7:4] : SPI_DO, Port number<br>B2[3:0] : SPI_DO, Pin number<br>B3[7:4] : SPI_DI, Port number<br>B3[3:0] : SPI_DI, Pin number </html>	Main group
+7F87FD0	4	Integer	RW	Device and Package Flag	<html>Device and Package Flag<br>B[3-2]: Reserved<br>B[1]:0xFF = 531<br>Others = Reserved<br>B[0]:0xFF = WLCSP with P0_5<br>0x66 = WLCSP without P0_5<br>0xAA = FCGQFN24<br>0x55 = KGD</html>	Main group
+7F87FD4	8	String	RW	Bluetooth Device Address	<html>Bluetooth Device Address (64-bit word). String of bytes</html>	Main group
+7F87FDC	4	Integer	RW	OTP DMA length	<html>OTP DMA length (number of 32-bit words)</html>	Main group
+7F87FE0	4	Integer	RW	Position	<html>Position:<br>Bits[31:24]= LOT #<br>Bits[23:16]= Wafer #<br>Bits[15:8]= Y coordinate<br>Bits[7:0]= X coordinate</html>	Main group
+7F87FE4	4	Integer	RW	Tester	<html>Tester:<br>Bits[7:2]=Tester_ID,<br>Bits[1:0]=Tester_Site</html>	Main group
+7F87FE8	4	Integer	RW	TimeStamp	<html>TimeStamp:<br>Bits[31:24]=TS_Byte3<br>Bits[23:16]= TS_Byte2<br>Bits[15:8]= TS_Byte1<br>Bits[7:0]= TS_Byte0</html>	Main group
+7F87FEC	20	String	RW	Reserved for Future Needs	<html>Reserved for Future Needs</html>	Main group

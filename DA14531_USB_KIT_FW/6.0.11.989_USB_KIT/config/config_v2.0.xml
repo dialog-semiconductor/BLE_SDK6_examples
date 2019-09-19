@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdk_configuration xmlns="http://www.diasemi.com/sdkConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" format_ver="4.0" xsi:schemaLocation="http://www.diasemi.com/sdkConfig config_v4.0.xsd">
+   <!--Please note that the following characters should be escaped in xml:
+"   &amp;quot;
+'   &amp;apos;
+<   &amp;lt;
+>   &amp;gt;
+&amp;   &amp;-->
+   <sdk>
+      <families>
+         <family id="DA1453x">DA1453x</family>
+         <family id="DA14585-586">DA14585-586</family>
+      </families>
+      <manufacturer>Dialog Semiconductor</manufacturer>
+      <name>SmartSnippets DA1453x-DA14585-586 SDK</name>
+      <version>6.0.11</version>
+      <doc_root />
+      <!--Can be common for all families. If <family> tag is added, common doxygen path is overridden for the family-->
+      <devices>
+         <family id="DA1453x">
+            <device id="DA14531-00">
+               <name>DA14531-00</name>
+               <filtering_configuration />
+            </device>
+            <device id="DA14531-01">
+               <name>DA14531-01</name>
+               <filtering_configuration />
+            </device>
+         </family>
+         <family id="DA14585-586">
+            <device id="DA14585-00">
+               <name>DA14585-00</name>
+               <part_numbers />
+               <filtering_configuration />
+            </device>
+            <device id="DA14586-00">
+               <name>DA14586-00</name>
+               <part_numbers />
+               <filtering_configuration />
+            </device>
+         </family>
+      </devices>
+      <platforms>
+         <platform name="windows" default="yes">
+            <!-- Default means which configuration to be used if platform failed to detect  -->
+            <tools>
+               <tool id="toolchain">
+                  <name>GNU Tools for ARM Embedded Processors</name>
+                  <official_url>www.dialog-semiconductor.com/sw/gnutoolpage</official_url>
+                  <version>7-2018q2</version>
+                  <official_download_url direct_download="yes">https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-win32.zip?revision=9b83e69c-e279-4d16-9401-990c836197b3?product=GNU%20Arm%20Embedded%20Toolchain,ZIP,,Windows,7-2018-q2-update</official_download_url>
+               </tool>
+               <tool id="segger_jlink">
+                  <name>J-Link software package components</name>
+                  <official_url>https://www.segger.com/products/debug-probes/j-link/</official_url>
+                  <version>6.40</version>
+                  <official_download_url direct_download="no">JLink_Windows_V640.exe</official_download_url>
+               </tool>
+               <tool id="segger_ozone" can_skip="true">
+                  <name>Segger Ozone</name>
+                  <official_url>https://www.segger.com/products/development-tools/ozone-j-link-debugger/</official_url>
+                  <version>2.32</version>
+                  <official_download_url direct_download="yes">https://www.segger.com/downloads/jlink/Ozone_Setup_Windows_V232_x86.exe</official_download_url>
+               </tool>
+               <tool id="segger_systemview" can_skip="true">
+                  <name>SystemView</name>
+                  <official_url>https://www.segger.com/products/development-tools/systemview/</official_url>
+                  <version>2.42</version>
+                  <official_download_url direct_download="yes">https://www.segger.com/downloads/jlink/Setup_SystemView_V242.exe</official_download_url>
+               </tool>
+               <tool id="iar" status="disabled">
+                  <name>IAR Embedded Workbench IDE</name>
+                  <official_url>https://www.iar.com/iar-embedded-workbench/</official_url>
+                  <version>latest</version>
+                  <official_download_url direct_download="no">https://www.iar.com/iar-embedded-workbench/#!?architecture=Arm</official_download_url>
+               </tool>
+               <tool id="keil">
+                  <name>uVision IDE Keil for ARM Embedded Processors</name>
+                  <official_url>https://www.keil.com/</official_url>
+                  <version>5.25</version>
+                  <official_download_url direct_download="no">https://www.keil.com/demo/eval/arm.htm</official_download_url>
+               </tool>
+            </tools>
+            <tool_buttons>
+               <!--Note that status can be ommited. By default it is enabled.-->
+               <!--Use "invisible" status to add a hidden button that can be enabled by the user-->
+               <!--Common tool buttons for both families are listed under common. Family specific buttons are listed under the family id tag-->
+               <common>
+                  <tool_button id="eclipse_ide">
+                  <name>IDE</name>
+                  <tooltip>Switch to the IDE in the C/C++ perspective</tooltip>
+               </tool_button>
+                  <tool_button id="sdk_inspector">
+                     <name>SDK Inspector</name>
+                     <tooltip>SDK Inspector</tooltip>
+                  </tool_button>
+                  <tool_button id="smartsnippets_toolbox">
+                  <name>SmartSnippets Toolbox</name>
+                  <tooltip>Launch SmartSnippets Toolbox as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="segger_systemview">
+                  <name>Segger Systemview</name>
+                  <tooltip>Opens Segger&amp;apos;s SystemView as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="segger_ozone">
+                  <name>Segger Ozone</name>
+                  <tooltip>Opens Segger&amp;apos;s Ozone (JLink Debugger) as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="keil_ide">
+                  <name>Keil IDE</name>
+                  <tooltip>Opens Keil uVision as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="iar_ide" status="invisible">
+                  <name>IAR Embedded Workbench IDE</name>
+                  <tooltip>Opens IAR Embedded Workbench IDE as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="rf_master">
+                  <name>RF Master</name>
+                  <tooltip>Opens SmartSnippets RF Master as an external application</tooltip>
+               </tool_button>
+               </common>
+               <family id="DA1453x" />
+               <family id="DA14585-586" />
+            </tool_buttons>
+            <product_id_setup_script />
+            <toolbox_resources>
+               <common>
+                  <mkimage location="../binaries/host/windows/mkimage/mkimage.exe" />
+			   </common>
+               <family id="DA1453x" />
+               <family id="DA14585-586" />
+            </toolbox_resources>
+         </platform>
+         <platform name="linux" default="no">
+            <tools>
+               <tool id="toolchain">
+                  <name>GNU Tools for ARM Embedded Processors</name>
+                  <official_url>www.dialog-semiconductor.com/sw/gnutoolpage</official_url>
+                  <version>7-2018q2</version>
+                  <official_download_url direct_download="yes">https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz2?revision=bc2c96c0-14b5-4bb4-9f18-bceb4050fee7?product=GNU%20Arm%20Embedded%20Toolchain,64-bit,,Linux,7-2018-q2-update</official_download_url>
+               </tool>
+               <tool id="segger_jlink">
+                  <name>J-Link software package components</name>
+                  <official_url>https://www.segger.com/products/debug-probes/j-link/</official_url>
+                  <version>6.40</version>
+                  <official_download_url direct_download="no">JLink_Linux_V640_x86_64.tgz</official_download_url>
+               </tool>
+               <tool id="segger_ozone" can_skip="true">
+                  <name>Segger Ozone</name>
+                  <official_url>https://www.segger.com/products/development-tools/ozone-j-link-debugger/</official_url>
+                  <version>2.32</version>
+                  <official_download_url direct_download="yes">https://www.segger.com/downloads/jlink/Ozone_Linux_V232_x86_64.tgz</official_download_url>
+               </tool>
+               <tool id="segger_systemview" can_skip="true">
+                  <name>SystemView</name>
+                  <official_url>https://www.segger.com/products/development-tools/systemview/</official_url>
+                  <version>2.42</version>
+                  <official_download_url direct_download="yes">https://www.segger.com/downloads/jlink/SystemView_Linux_V242_x86_64.tgz</official_download_url>
+               </tool>
+            </tools>
+            <tool_buttons>
+               <!--Note that status can be ommited. By default it is enabled.-->
+               <!--Use "invisible" status to add a hidden button that can be enabled by the user-->
+               <!--Common tool buttons for both families are listed under common. Family specific buttons are listed under the family id tag-->
+               <common>
+                  <tool_button id="eclipse_ide">
+                  <name>IDE</name>
+                  <tooltip>Switch to the IDE in the C/C++ perspective</tooltip>
+               </tool_button>
+               <tool_button id="sdk_inspector">
+                  <name>SDK Inspector</name>
+                  <tooltip>SDK Inspector</tooltip>
+               </tool_button>
+                  <tool_button id="smartsnippets_toolbox">
+                  <name>SmartSnippets Toolbox</name>
+                  <tooltip>Launch SmartSnippets Toolbox as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="segger_systemview">
+                  <name>Segger Systemview</name>
+                  <tooltip>Opens Segger&amp;apos;s SystemView as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="segger_ozone">
+                  <name>Segger Ozone</name>
+                  <tooltip>Opens Segger&amp;apos;s Ozone (JLink Debugger) as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="keil_ide" status="invisible">
+                  <name>Keil IDE</name>
+                  <tooltip>Opens Keil uVision as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="iar_ide" status="invisible">
+                  <name>IAR Embedded Workbench IDE</name>
+                  <tooltip>Opens IAR Embedded Workbench IDE as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="rf_master">
+                  <name>RF Master</name>
+                  <tooltip>Opens SmartSnippets RF Master as an external application</tooltip>
+               </tool_button>
+               </common>
+               <family id="DA1453x" />
+               <family id="DA14585-586" />
+            </tool_buttons>
+            <product_id_setup_script />
+            <toolbox_resources />
+         </platform>
+         <platform name="mac" default="no">
+            <tools>
+               <tool id="toolchain">
+                  <name>GNU Tools for ARM Embedded Processors</name>
+                  <official_url>www.dialog-semiconductor.com/sw/gnutoolpage</official_url>
+                  <version>7-2018q2</version>
+                  <official_download_url direct_download="yes">https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-mac.tar.bz2?revision=982ef8a4-1815-4651-9c44-6144c9d8b34b?product=GNU%20Arm%20Embedded%20Toolchain,64-bit,,Mac%20OS%20X,7-2018-q2-update</official_download_url>
+               </tool>
+               <tool id="segger_jlink">
+                  <name>J-Link software package components</name>
+                  <version>6.40</version>
+                  <official_url>https://www.segger.com/products/debug-probes/j-link/</official_url>
+                  <official_download_url direct_download="no">JLink_MacOSX_V640.pkg</official_download_url>
+               </tool>
+               <tool id="segger_ozone" can_skip="true">
+                  <name>Segger Ozone</name>
+                  <official_url>https://www.segger.com/products/development-tools/ozone-j-link-debugger/</official_url>
+                  <version>2.32</version>
+                  <official_download_url direct_download="yes">https://www.segger.com/downloads/jlink/Ozone_MacOSX_V232_Universal.pkg</official_download_url>
+               </tool>
+               <tool id="segger_systemview" can_skip="true">
+                  <name>SystemView</name>
+                  <official_url>https://www.segger.com/products/development-tools/systemview/</official_url>
+                  <version>2.42</version>
+                  <official_download_url direct_download="yes">https://www.segger.com/downloads/jlink/SystemView_MacOSX_V242.pkg</official_download_url>
+               </tool>
+            </tools>
+            <tool_buttons>
+               <!--Note that status can be ommited. By default it is enabled.-->
+               <!--Use "invisible" status to add a hidden button that can be enabled by the user-->
+               <!--Common tool buttons for both families are listed under common. Family specific buttons are listed under the family id tag-->
+               <common>
+                  <tool_button id="eclipse_ide">
+                  <name>IDE</name>
+                  <tooltip>Switch to the IDE in the C/C++ perspective</tooltip>
+               </tool_button>
+                  <tool_button id="smartsnippets_toolbox" status="invisible">
+                  <name>SmartSnippets Toolbox</name>
+                  <tooltip>Launch SmartSnippets Toolbox as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="segger_systemview">
+                  <name>Segger Systemview</name>
+                  <tooltip>Opens Segger&amp;apos;s SystemView as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="segger_ozone">
+                  <name>Segger Ozone</name>
+                  <tooltip>Opens Segger&amp;apos;s Ozone (JLink Debugger) as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="keil_ide" status="invisible">
+                  <name>Keil IDE</name>
+                  <tooltip>Opens Keil uVision as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="iar_ide" status="invisible">
+                  <name>IAR Embedded Workbench IDE</name>
+                  <tooltip>Opens IAR Embedded Workbench IDE as an external application</tooltip>
+               </tool_button>
+                  <tool_button id="rf_master" status="invisible">
+                  <name>RF Master</name>
+                  <tooltip>Opens SmartSnippets RF Master as an external application</tooltip>
+               </tool_button>
+               <tool_button id="sdk_inspector">
+                  <name>SDK Inspector</name>
+                  <tooltip>SDK Inspector</tooltip>
+               </tool_button>
+               </common>
+               <family id="DA1453x" />
+               <family id="DA14585-586" />
+            </tool_buttons>
+            <product_id_setup_script />
+         </platform>
+      </platforms>
+      <resources>
+         <common>
+            <resource id="forum">
+               <name>Forums</name>
+               <link id="forum">
+                  <name>SmartBond Forums</name>
+                  <url>https://www.dialog-semiconductor.com/forum</url>
+               </link>
+            </resource>
+            <resource id="ref_designs">
+               <name>Reference Designs</name>
+               <link id="smartbond_ref_designs">
+                  <name>Wearable Development Kit</name>
+                  <url>https://www.dialog-semiconductor.com/da14531-refdes</url>
+               </link>
+            </resource>
+            <resource id="partner">
+               <name>Find Your Partner</name>
+               <link id="smartbond_partner_eco">
+                  <name>SmartBond Partner Ecosystem</name>
+                  <url>https://support.dialog-semiconductor.com/ecosystem</url>
+               </link>
+            </resource>
+         </common>
+         <family id="DA1453x">
+		    <resource id="product_documentation">
+               <name>Product Documentation</name>
+               <link id="product_1">
+                  <name>DA1453x</name>
+                  <url>https://www.dialog-semiconductor.com/product/da14531</url>
+               </link>
+            </resource>
+         </family>
+         <family id="DA14585-586">
+            <resource id="product_documentation">
+               <name>Product Documentation</name>
+               <link id="product_1">
+                  <name>DA14585</name>
+                  <url>https://support.dialog-semiconductor.com/connectivity/product/da14585</url>
+               </link>
+               <link id="product_2">
+                  <name>DA14586</name>
+                  <url>https://support.dialog-semiconductor.com/connectivity/product/da14586</url>
+               </link>
+            </resource>
+         </family>
+      </resources>
+      <toolbox_resources>
+         <common>
+            <mkimage_version_file location="../sdk/platform/include/sdk_version.h" />
+         </common>
+         <family id="DA1453x">
+            <jtag_programmer location="toolbox_resources/DA1453x/common/jtag_programmer.bin" />
+            <flash_programmer location="toolbox_resources/DA1453x/common/flash_programmer.bin" />
+            <header_txt location="toolbox_resources/DA1453x/common/header.txt" />
+            <registers_xml location="toolbox_resources/DA1453x/common/DA14531.xml" /><!--  CS parses it for reg address-value CMDs --> 
+            <cs_groups_xml location="toolbox_resources/DA1453x/common/tcs.xml" /><!--  CS parses it for trim/cslib CMDs -->
+            <default_secondary_bootloader location="toolbox_resources/DA1453x/common/secondary_bootloader_531.hex" />
+         </family>
+         <family id="DA14585-586">
+            <jtag_programmer location="toolbox_resources/DA14585-586/common/jtag_programmer.bin" />
+            <flash_programmer location="toolbox_resources/DA14585-586/common/flash_programmer.bin" />
+            <header_txt location="toolbox_resources/DA14585-586/common/header.txt" />
+            <lifetime_estimator location="toolbox_resources/DA14585-586/common/lifetimeEstimator_defaults.txt" />
+            <default_secondary_bootloader>
+               <device id="DA14585-00" location="toolbox_resources/DA14585-586/common/secondary_bootloader_585.hex" />
+               <device id="DA14586-00" location="toolbox_resources/DA14585-586/common/secondary_bootloader_586.hex" />
+            </default_secondary_bootloader>
+		 </family>
+      </toolbox_resources>
+      <toolbox_config>
+         <common />
+         <family id="DA1453x">
+		    <global>
+            <UartPorts>
+               <txrx id="P0_0, P0_1">
+                  <baudrate>115200</baudrate>
+               </txrx>
+               <txrx id="P0_3, P0_3">
+                  <baudrate>115200</baudrate>
+               </txrx>
+               <txrx id="P0_5, P0_5">
+                  <baudrate>115200</baudrate>
+               </txrx>
+            </UartPorts>
+            <I2C_SPI_GPIOS>
+               <gpio id="P0_0" />
+               <gpio id="P0_1" />
+               <gpio id="P0_2" />
+               <gpio id="P0_3" />
+               <gpio id="P0_4" />
+               <gpio id="P0_5" />
+               <gpio id="P0_6" />
+               <gpio id="P0_7" />
+               <gpio id="P0_8" />
+               <gpio id="P0_9" />
+               <gpio id="P0_10" />
+               <gpio id="P0_11" />
+            </I2C_SPI_GPIOS>
+            <gpio_pin_config>
+               <input_no_resistor>0x000</input_no_resistor>
+               <input_pull_up>0x100</input_pull_up>
+               <input_pull_down>0x200</input_pull_down>
+               <output>0x300</output>
+            </gpio_pin_config>
+         </global>
+            <defaults>
+               <OTP_START_ADDRESS>0x07F80000</OTP_START_ADDRESS>
+               <OTP_HEADER_START_ADDRESS>0x7F87ED0</OTP_HEADER_START_ADDRESS>
+               <OTP_SIZE>32768</OTP_SIZE>
+               <OTP_HEADER_SIZE>304</OTP_HEADER_SIZE> <!-- OTP Header + CS -->
+               <!--DA14531-00 defaults follow. Override them for other devices if required-->
+               <TXRX id="P0_0, P0_1" />
+               <SCL id="P0_3" />
+               <SDA id="P0_4" />
+               <CLK id="P0_4" />
+               <CS id="P0_1" />
+               <MISO id="P0_3" />
+               <MOSI id="P0_0" />
+            </defaults>
+         </family>
+         <family id="DA14585-586">
+            <global>
+               <UartPorts>
+                  <txrx id="P0_0, P0_1">
+                     <baudrate>57600</baudrate>
+                  </txrx>
+                  <txrx id="P0_2, P0_3">
+                     <baudrate>115200</baudrate>
+                  </txrx>
+                  <txrx id="P0_4, P0_5">
+                     <baudrate>57600</baudrate>
+                  </txrx>
+                  <txrx id="P0_6, P0_7">
+                     <baudrate>9600</baudrate>
+                  </txrx>
+               </UartPorts>
+               <I2C_SPI_GPIOS>
+                  <gpio id="P0_0" />
+                  <gpio id="P0_1" />
+                  <gpio id="P0_2" />
+                  <gpio id="P0_3" />
+                  <gpio id="P0_4" />
+                  <gpio id="P0_5" />
+                  <gpio id="P0_6" />
+                  <gpio id="P0_7" />
+                  <gpio id="P1_0" />
+                  <gpio id="P1_1" />
+                  <gpio id="P1_2" />
+                  <gpio id="P1_3" />
+                  <gpio id="P2_0" />
+                  <gpio id="P2_1" />
+                  <gpio id="P2_2" />
+                  <gpio id="P2_3" />
+                  <gpio id="P2_4" />
+                  <gpio id="P2_5" />
+                  <gpio id="P2_6" />
+                  <gpio id="P2_7" />
+                  <gpio id="P2_8" />
+                  <gpio id="P2_9" />
+                  <gpio id="P3_0" />
+                  <gpio id="P3_1" />
+                  <gpio id="P3_2" />
+                  <gpio id="P3_3" />
+                  <gpio id="P3_4" />
+                  <gpio id="P3_5" />
+                  <gpio id="P3_6" />
+                  <gpio id="P3_7" />
+               </I2C_SPI_GPIOS>
+               <gpio_pin_config>
+                  <input_no_resistor>0x000</input_no_resistor>
+                  <input_pull_up>0x100</input_pull_up>
+                  <input_pull_down>0x200</input_pull_down>
+                  <output>0x300</output>
+               </gpio_pin_config>
+            </global>
+            <defaults>
+               <OTP_START_ADDRESS>0x07F80000</OTP_START_ADDRESS>
+               <OTP_HEADER_START_ADDRESS>0x7F8FE00</OTP_HEADER_START_ADDRESS>
+               <OTP_SIZE>65536</OTP_SIZE>
+               <OTP_HEADER_SIZE>512</OTP_HEADER_SIZE>
+               <DA14585_USER_SPACE_START_ADDR>0x7F8F800</DA14585_USER_SPACE_START_ADDR>
+               <!--DA14585-00 defaults follow. Override them for othr devices if required-->
+               <TXRX id="P0_4, P0_5" />
+               <SCL id="P0_2" />
+               <SDA id="P0_3" />
+               <CLK id="P0_0" />
+               <CS id="P0_3" />
+               <MISO id="P0_5" />
+               <MOSI id="P0_6" />
+               <device id="DA14586-00">
+                  <CLK id="P2_0" />
+                  <CS id="P2_3" />
+                  <MISO id="P2_4" />
+                  <MOSI id="P2_9" />
+               </device>
+            </defaults>
+         </family>
+      </toolbox_config>
+      <studio_config>
+		  <sdk_search>
+			<uVision id=".uvprojx">
+				<family id="DA14585-586">name="(.*)_58[56]"</family>
+				<family id="DA14585-586">file="system_DA14585_586.s"</family>
+				<family id="DA14585-586">file="startup_DA14585_586.s"</family>
+				<family id="DA1453x">name="(.*)_Barium"</family>
+				<family id="DA1453x">file="system_DA14531.s"</family>
+				<family id="DA1453x">file="startup_DA14531.s"</family>
+				<family id="DA1453x">file="system_Barium.s"</family>
+				<family id="DA1453x">file="startup_Barium.s"</family>
+			</uVision>
+			<Eclipse id=".cproject">
+				<family id="DA14585-586">name="(.*)DA1458[56]"</family>
+				<family id="DA14585-586">file="startup_DA14585_586.s"</family>
+				<family id="DA1453x">name="(.*)DA14531(.*)"</family>
+				<family id="DA1453x">file="startup_DA14531.s"</family>
+			</Eclipse>
+			
+		  </sdk_search>
+	  </studio_config>
+   </sdk>
+</sdk_configuration>

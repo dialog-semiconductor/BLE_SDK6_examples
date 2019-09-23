@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_custs_config.c
+ * @file user_custs1_impl.h
  *
- * @brief Custom1/2 Server (CUSTS1/2) profile database structure and initialization.
+ * @brief Peripheral project Custom1 Server implementation header file.
  *
- * Copyright (c) 2016-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -30,62 +30,46 @@
  ****************************************************************************************
  */
 
-/**
- ****************************************************************************************
- * @defgroup USER_CONFIG
- * @ingroup USER
- * @brief Custom1/2 Server (CUSTS1/2) profile database structure and initialization.
- *
- * @{
- ****************************************************************************************
- */
+#ifndef _MCP9808_H_
+#define _MCP9808_H_
+
 
 /*
  * INCLUDE FILES
  ****************************************************************************************
  */
-
-#include "app_prf_types.h"
-#include "app_customs.h"
-#include "user_custs1_def.h"
+#include "stdint.h"
+#include "math.h"
 
 /*
- * GLOBAL VARIABLE DEFINITIONS
+ * USER TYPE DEFINITIONS
  ****************************************************************************************
  */
+typedef enum{ HALF_RESOLUTION = 0,
+							QUATER_RESOLUTION,
+							EIGHT_RESOLUTION,
+							SIXTEENTH_RESOLUTION} temperature_resolution; //The higher the resolution the longer the convursion time, for SIXTEENTH_RESOLUTION it is 250ms.
+																														//Look in the datasheet of the MCP9808 Temperature sensor for the convursion time.
+							
+/*
+ * DEFINES
+ ****************************************************************************************
+ */
+#define NOTIFICATION_DELAY 					300  									//Time between notifications in ms
+#define TEMPERATURE_DATA_REGISTER		0x05 									//Register 5 contains 12 bits of temperature data
+#define TEMPERATURE_REGISTER_SIZE		12	 									//In bits. Must be a unsigned integer greater than 0
+#define RESOLUTION_CONFIG_REGISTER	0X08 								 	//3 bits register containing the resolution
+#define USED_TEMPERATURE_RESOLUTION	SIXTEENTH_RESOLUTION 	//0.0625 degrees Celsius resolution
+/*
+ * FUNCTION DECLARATIONS
+ ****************************************************************************************
+ */
+void temperature_sensor_init(void);
 
-#if (BLE_CUSTOM1_SERVER)
-extern const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB];
-#endif
+uint16_t read_MCP9808_temperature_register(void);
 
-/// Custom1/2 server function callback table
-const struct cust_prf_func_callbacks cust_prf_funcs[] =
-{
-#if (BLE_CUSTOM1_SERVER)
-    {   TASK_ID_CUSTS1,
-        custs1_att_db,
-        CUSTS1_IDX_NB,
-        #if (BLE_APP_PRESENT)
-        app_custs1_create_db, NULL,
-        #else
-        NULL, NULL,
-        #endif
-        NULL, NULL,
-    },
-#endif
-#if (BLE_CUSTOM2_SERVER)
-    {   TASK_ID_CUSTS2,
-        NULL,
-        0,
-        #if (BLE_APP_PRESENT)
-        app_custs2_create_db, NULL,
-        #else
-        NULL, NULL,
-        #endif
-        NULL, NULL,
-    },
-#endif
-    {TASK_ID_INVALID, NULL, 0, NULL, NULL, NULL, NULL},   // DO NOT MOVE. Must always be last, this indicates the end of the database
-};
+double calculate_temperature(const uint16_t);
 
-/// @} USER_CONFIG
+double get_temperature(void);
+
+#endif // _MCP9808_H_

@@ -1,9 +1,9 @@
 #! /usr/bin/python
 '''
 ###########################################################################################
-# @file		:: dlg_make_keil5_env_v1.002.py
+# @file		:: dlg_make_keil5_env_v1.004.py
 #
-# @brief	:: This script is used to create DA14585/6 BLE application build environment in KEIL5. 
+# @brief	:: This script is used to create DA145 85/86/31 BLE application build environment in KEIL5. 
 #			   You need DA14585/6 hardware and SDK6. We always recommeded to take the latest SDK
 #			   from the support website for the new application development.
 #			   Create your project only in the user application space.
@@ -51,15 +51,17 @@ DLG_SDK_ROOT_DIRECTORY = 'C:\\Dialog_workspace\\' # default just for example it 
 DLG_WORKING_PROJECT_DIRECTORY = '.'
 DLG_WORKING_PROJECT_NAME = 'test.uvprojx'
 FILE_EXTENSION = 'uvprojx'	
-SOC_ID = 585
+#SOC_ID = 585
+SOC_ID_LIST = ['585','586','531']
 
 SHARED_FOLDER_PATH = 'projects\\target_apps\\peripheral_examples\\shared\\'
 
-SCATTER_FILE_PATH = 'sdk\\common_project_files\\scatterfiles\\scatterfile_common.sct'
+SCATTER_FILE_PATH = ['sdk\\common_project_files\\scatterfiles\\scatterfile_common.sct', 'sdk\\common_project_files\\scatterfiles\\DA14531.sct']
 SUB_STR_PATTERN_STACK_CONFIG = '.\\..\\..\\..\\..\\..\\sdk\\common_project_files\\'
 DA1458X_STACK_CONFIG = 'sdk\\common_project_files\\'
 
-COPIED_SCATTER_FILE_PATH = '.\\..\\src\\config\\copied_scatter.sct'
+COPIED_SCATTER_FILE_PATH = ['.\\..\\src\\config\\copied_scatter_585_586.sct', '.\\..\\src\\config\\copied_scatter_531.sct']
+COPIED_SCATTER_FILE_PATH_1 = ''
 
 XML_TAG = ['IncludePath', 'Misc', 'ScatterFile', 'FilePath', 'tIfile']
 DLG_FIND_STR_PATTERN = ['\\sdk\\' , '\\third_party\\', "\\shared\\"]
@@ -78,6 +80,9 @@ XML_PATTERN_OUTPUT_FILENAME = 'Targets/Target/TargetOption/TargetCommonOption/Ou
 XML_PATTERN_TIFILE = 'Target/TargetOption/DebugOpt/tIfile'
 XML_PATTERN_OVOPTX_TARGET_FILENAME = 'Target/TargetName'
 
+LOCATION_IDX = 0	#starting location index
+MAX_LOCATION_IDX = 2 #maximum number of file locations applicable for 585 = 0,586 = 1,531 = 2 
+
 
 
 def build_uvoptx_element_targetname(xml_sub_element):
@@ -94,11 +99,11 @@ def build_uvoptx_element_targetname(xml_sub_element):
 	
 	dlg_uvoptx_target_file = temp_list[0] + '_'	
 	
-	t_element_counter = SOC_ID
+	t_element_counter = 0
 	
 	for t_sub_element in root.findall(xml_sub_element):
 		#print(t_sub_element.text)
-		t_sub_element.text = dlg_uvoptx_target_file + str(t_element_counter)
+		t_sub_element.text = dlg_uvoptx_target_file + SOC_ID_LIST[t_element_counter]
 		t_element_counter = t_element_counter + 1
 		#print('TARGET PROJECT NAME IN OVOPTX FILE:: ' + t_sub_element.text)
 	
@@ -166,11 +171,11 @@ def build_uvprojx_element_output_name(xml_sub_element):
 	
 	tree = ET.parse(DLG_WORKING_PROJECT_NAME)
 	root = tree.getroot()	
-	t_element_counter = SOC_ID
+	t_element_counter = 0
 	
 	for t_sub_element in root.findall(xml_sub_element):
 		#print(t_sub_element.text)
-		t_sub_element.text = target_name + str(t_element_counter)
+		t_sub_element.text = target_name + SOC_ID_LIST[t_element_counter]
 		t_element_counter = t_element_counter + 1
 		#print('EXECUTABLE FILE NAME :: ' + t_sub_element.text)
 	
@@ -196,11 +201,11 @@ def build_uvprojx_element_target_name(xml_sub_element):
 	
 	tree = ET.parse(DLG_WORKING_PROJECT_NAME)
 	root = tree.getroot()	
-	t_element_counter = SOC_ID
+	t_element_counter = 0
 	
 	for t_sub_element in root.findall(xml_sub_element):
 		#print(t_sub_element.text)
-		t_sub_element.text = target_name + str(t_element_counter)
+		t_sub_element.text = target_name + SOC_ID_LIST[t_element_counter]
 		t_element_counter = t_element_counter + 1
 		#print('TARGET PROJECT NAME :: ' + t_sub_element.text)
 	
@@ -249,7 +254,6 @@ def build_uvprojx_element_file(xml_sub_element, split_str_pattern):
 					#print(my_t_list)
 				#print(single_text)
 					
-					
 				if (os.path.exists(single_text) == True):
 					t_sub_element.find(temp_tag).text = single_text
 				else:
@@ -270,14 +274,30 @@ def build_uvprojx_element_file(xml_sub_element, split_str_pattern):
 def build_uvprojx_element_ldads_scatterfile(xml_sub_element):	
 	"""
 	Modify and update UVPROJX ldads element
-	"""	
+	"""		
+	
+	loop_idx = location_idx = LOCATION_IDX		
+	max_location_idx = MAX_LOCATION_IDX
+	
 	tree = ET.parse(DLG_WORKING_PROJECT_NAME)
 	root = tree.getroot()
 	
 	updated_data = ''	
-	for t_sub_element in root.findall(xml_sub_element):
-		if (os.path.exists(str(COPIED_SCATTER_FILE_PATH)) == True):
-			t_sub_element.text = str(COPIED_SCATTER_FILE_PATH)
+	
+	
+	
+	for t_sub_element in root.findall(xml_sub_element):		
+			if (os.path.exists(str(COPIED_SCATTER_FILE_PATH[location_idx])) == True):			
+				t_sub_element.text = str(COPIED_SCATTER_FILE_PATH[location_idx])
+			elif (os.path.exists(str(COPIED_SCATTER_FILE_PATH_1)) == True):
+				t_sub_element.text = str(COPIED_SCATTER_FILE_PATH_1)
+				
+				
+			loop_idx = loop_idx + 1	
+			if (loop_idx == max_location_idx):
+				location_idx = location_idx + 1						
+				
+			
 	
 	my_file = open(DLG_WORKING_PROJECT_NAME,"w") 
 	x = '''<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\r\n'''
@@ -285,6 +305,7 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element):
 	my_file.write(x)
 	my_file.write((ET.tostring(root, encoding='UTF-8').decode('utf8')))
 	my_file.close()	
+	
 				
 def build_uvprojx_element_ldads_misc(xml_sub_element, split_str_pattern):
 	"""
@@ -328,13 +349,13 @@ def build_uvprojx_element_ldads_misc(xml_sub_element, split_str_pattern):
 					
 			temp_list[1] = updated_data
 			#print(temp_list[1])
-				
+		"""		
 		if(len(temp_list[2])>1):
 			updated_data = ''
 			updated_data = temp_list[2][:10] + target_name
 			temp_list[2] = updated_data
 			#print(temp_list[2])
-		
+		"""
 		joined_text = split_str_pattern.join(temp_list)
 		print(joined_text)
 		t_sub_element.text = joined_text
@@ -415,45 +436,59 @@ def setup_keil5_project_environment():
 	This API will create the entire the link between the SDK files
     and the user application	
 	"""
-	global root, tree, COPIED_SCATTER_FILE_PATH
+	global root, tree, COPIED_SCATTER_FILE_PATH_1
 	subString = SUB_STR_PATTERN_STACK_CONFIG
 	temp_flag = False
-	
-	with open(DLG_SDK_ROOT_DIRECTORY + SCATTER_FILE_PATH) as my_file:
-		newText = my_file.read().replace(subString, DLG_SDK_ROOT_DIRECTORY + DA1458X_STACK_CONFIG)
-		#print(newText)	
-	my_file.close()
-	
+	idx = LOCATION_IDX
+	max_idx = MAX_LOCATION_IDX
+
 	if(os.path.isdir(".\\..\\src\\config\\") == False):
-		COPIED_SCATTER_FILE_PATH = DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct"
+		COPIED_SCATTER_FILE_PATH_1 = DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct"
+		#print("SCATTER FILE :: ", COPIED_SCATTER_FILE_PATH_1)	
 		temp_flag = True		
 	else:
-		with open(COPIED_SCATTER_FILE_PATH, "w") as my_file:
-			my_file.write(newText)
-			print("DA1458X SCATTER FILE IS COPIED ...")
-			print("     FROM LOCATION :: ", DLG_SDK_ROOT_DIRECTORY + SCATTER_FILE_PATH)
-			print("     TO LOCATION :: ", COPIED_SCATTER_FILE_PATH)
-			temp_flag = True
-		my_file.close()
+		while(idx < max_idx):
+			with open(DLG_SDK_ROOT_DIRECTORY + SCATTER_FILE_PATH[idx]) as my_file:
+				newText = my_file.read().replace(subString, DLG_SDK_ROOT_DIRECTORY + DA1458X_STACK_CONFIG)
+				#print(newText)	
+			my_file.close()
 
+			with open(COPIED_SCATTER_FILE_PATH[idx], "w") as my_file:
+				my_file.write(newText)
+				print("SCATTER FILE IS COPIED ...")
+				print("     FROM LOCATION :: ", DLG_SDK_ROOT_DIRECTORY + SCATTER_FILE_PATH[idx])
+				print("     TO LOCATION :: ", COPIED_SCATTER_FILE_PATH[idx])			
+			my_file.close()
+			idx = idx + 1
+			
+
+		if(idx == 2):
+			temp_flag = True
+		else:
+			print("ERROR: SCATTER FILE COPY PROCESS FAILED")
+			exit()
+		
 	
 	if (temp_flag):
 	
-		build_uvprojx_element_various_controls(XML_PATTERN_VARIOUS_CONTROLS, XML_TAG[0], DLG_SPLIT_STR_PATTERN[0])	
-		build_uvprojx_element_ldads_scatterfile(XML_PATTERN_LDADS_SCATTERFILE)
-		build_uvprojx_element_ldads_misc(XML_PATTERN_LDADS_MISC, DLG_SPLIT_STR_PATTERN[1])
-		build_uvprojx_element_file(XML_PATTERN_FILE, DLG_SPLIT_STR_PATTERN[2])				
-		build_uvprojx_element_target_name(XML_PATTERN_TARGET_FILENAME)
-		build_uvprojx_element_output_name(XML_PATTERN_OUTPUT_FILENAME)
-		
-		
-		build_uvoptx_element_debugopt(XML_PATTERN_TIFILE)
-		build_uvoptx_element_targetname(XML_PATTERN_OVOPTX_TARGET_FILENAME)
+		build_uvprojx_element_various_controls(XML_PATTERN_VARIOUS_CONTROLS, XML_TAG[0], DLG_SPLIT_STR_PATTERN[0])		
+		build_uvprojx_element_ldads_scatterfile(XML_PATTERN_LDADS_SCATTERFILE)		
+		build_uvprojx_element_ldads_misc(XML_PATTERN_LDADS_MISC, DLG_SPLIT_STR_PATTERN[1])	
+		build_uvprojx_element_file(XML_PATTERN_FILE, DLG_SPLIT_STR_PATTERN[2])					
+		#build_uvprojx_element_target_name(XML_PATTERN_TARGET_FILENAME)	
+		#build_uvprojx_element_output_name(XML_PATTERN_OUTPUT_FILENAME)
+		build_uvoptx_element_debugopt(XML_PATTERN_TIFILE)	
+		#build_uvoptx_element_targetname(XML_PATTERN_OVOPTX_TARGET_FILENAME)
 		
 		print(DLG_WORKING_PROJECT_NAME + " IS SUCCESSFULLY UPDATED WITH PROPER SDK PATH ...")		
 		
-		
-	#return	
+	return	
+	
+	
+
+	
+	
+
 	
 
 #verify it is a dialog keil applicaiton project

@@ -1,18 +1,31 @@
 /**
  ****************************************************************************************
  *
- * @file user_temperaturereporter.c
+ * @file user_peripheral.c
  *
- * @brief Temperature notification source code.
+ * @brief Peripheral project source code.
  *
- * Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
- * 
- * THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND.  THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS.  RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOG’S PRIOR WRITTEN PERMISSION.
- * 
- * UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS THAT TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED “AS IS”, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND ITS AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY REPRESENTATIONS (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED SOFTWARE IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, AND (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY OR INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED BY THE FCC OR OTHER LIKE AGENCIES.
- * 
- * IN NO EVENT SHALL DIALOG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ *
+ * This software ("Software") is owned by Dialog Semiconductor.
+ *
+ * By using this Software you agree that Dialog Semiconductor retains all
+ * intellectual property and proprietary rights in and to this Software and any
+ * use, reproduction, disclosure or distribution of the Software without express
+ * written permission or a license agreement from Dialog Semiconductor is
+ * strictly prohibited. This Software is solely for use on or in conjunction
+ * with Dialog Semiconductor products.
+ *
+ * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
+ * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
+ * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
+ * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
+ * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+ * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+ * OF THE SOFTWARE.
  *
  ****************************************************************************************
  */
@@ -32,29 +45,14 @@
 #include "rwip_config.h"             // SW configuration
 #include "gap.h"
 #include "app_easy_timer.h"
-#include "user_temperaturereporter.h"
-#include "co_bt.h"
-#include "gpio.h"
-#include "app_api.h"
-#include "app.h"
-#include "prf_utils.h"
-#include "custs1.h"
+#include "user_peripheral.h"
+#include "user_custs1_impl.h"
 #include "user_custs1_def.h"
-#include "user_periph_setup.h"
-#include "custs1_task.h"
-#include "user_MCP9808.h"
-#include <math.h>
-#include <stdio.h> 
-#include <stdlib.h>
-
-
-
+#include "co_bt.h"
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
  */
-
-
 
 // Manufacturer Specific Data ADV structure type
 struct mnf_specific_data_ad_structure
@@ -65,24 +63,25 @@ struct mnf_specific_data_ad_structure
     uint8_t proprietary_data[APP_AD_MSD_DATA_LEN];
 };
 
+
+
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
 
-uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd app_adv_data_update_timer_used        __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd app_param_update_request_timer_used   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd temperature_timer_handle							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-char temperature_string[32]                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_area0");
+timer_hnd app_adv_data_update_timer_used        __SECTION_ZERO("retention_mem_area0");
+timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0");
+
 // Retained variables
-struct mnf_specific_data_ad_structure mnf_data  __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+struct mnf_specific_data_ad_structure mnf_data  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 // Index of manufacturer data in advertising data or scan response data (when MSB is 1)
-uint8_t mnf_data_index                          __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data_len                     __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data_len                __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t mnf_data_index                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint8_t stored_adv_data_len                     __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data_len                __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint8_t stored_adv_data[ADV_DATA_LEN]           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS
@@ -128,20 +127,20 @@ static void mnf_data_update()
 
 /**
  ****************************************************************************************
- * @brief Add an AD structure in the Advertising or Scan Response Data of the 
+ * @brief Add an AD structure in the Advertising or Scan Response Data of the
   *       GAPM_START_ADVERTISE_CMD parameter struct.
  * @param[in] cmd               GAPM_START_ADVERTISE_CMD parameter struct
  * @param[in] ad_struct_data    AD structure buffer
  * @param[in] ad_struct_len     AD structure length
- * @param[in] adv_connectable   Connectable advertising event or not. It controls whether 
- *                              the advertising data use the full 31 bytes length or only 
- *                              28 bytes (Document CCSv6 - Part 1.3 Flags). 
+ * @param[in] adv_connectable   Connectable advertising event or not. It controls whether
+ *                              the advertising data use the full 31 bytes length or only
+ *                              28 bytes (Document CCSv6 - Part 1.3 Flags).
  * @return void
  */
 static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_struct_data, uint8_t ad_struct_len, uint8_t adv_connectable)
 {
     uint8_t adv_data_max_size = (adv_connectable) ? (ADV_DATA_LEN - 3) : (ADV_DATA_LEN);
-    
+
     if ((adv_data_max_size - cmd->info.host.adv_data_len) >= ad_struct_len)
     {
         // Append manufacturer data to advertising data
@@ -149,7 +148,7 @@ static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_str
 
         // Update Advertising Data Length
         cmd->info.host.adv_data_len += ad_struct_len;
-        
+
         // Store index of manufacturer data which are included in the advertising data
         mnf_data_index = cmd->info.host.adv_data_len - sizeof(struct mnf_specific_data_ad_structure);
     }
@@ -160,7 +159,7 @@ static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_str
 
         // Update Scan Response Data Length
         cmd->info.host.scan_rsp_data_len += ad_struct_len;
-        
+
         // Store index of manufacturer data which are included in the scan response data
         mnf_data_index = cmd->info.host.scan_rsp_data_len - sizeof(struct mnf_specific_data_ad_structure);
         // Mark that manufacturer data is in scan response and not advertising data
@@ -200,7 +199,7 @@ static void adv_data_update_timer_cb()
 
     // Update advertising data on the fly
     app_easy_gap_update_adv_data(stored_adv_data, stored_adv_data_len, stored_scan_rsp_data, stored_scan_rsp_data_len);
-    
+
     // Restart timer for the next advertising update
     app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
 }
@@ -217,19 +216,20 @@ static void param_update_request_timer_cb()
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
 }
 
+
 void user_app_init(void)
 {
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
-    
+
     // Initialize Manufacturer Specific Data
     mnf_data_init();
-    
+
     // Initialize Advertising and Scan Response Data
     memcpy(stored_adv_data, USER_ADVERTISE_DATA, USER_ADVERTISE_DATA_LEN);
     stored_adv_data_len = USER_ADVERTISE_DATA_LEN;
     memcpy(stored_scan_rsp_data, USER_ADVERTISE_SCAN_RESPONSE_DATA, USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN);
     stored_scan_rsp_data_len = USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN;
-    temperature_timer_handle = EASY_TIMER_INVALID_TIMER; //Initialise timer handle
+
     default_app_on_init();
 }
 
@@ -237,10 +237,10 @@ void user_app_adv_start(void)
 {
     // Schedule the next advertising data update
     app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
-    
+
     struct gapm_start_advertise_cmd* cmd;
     cmd = app_easy_gap_undirected_advertise_get_active();
-    
+
     // Add manufacturer data to initial advertising or scan response data, if there is enough space
     app_add_ad_struct(cmd, &mnf_data, sizeof(struct mnf_specific_data_ad_structure), 1);
 
@@ -293,73 +293,11 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
         app_easy_timer_cancel(app_param_update_request_timer_used);
         app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     }
-		
-		// Stop the notification timer
-		if(temperature_timer_handle != EASY_TIMER_INVALID_TIMER){
-			app_easy_timer_cancel(temperature_timer_handle);
-			temperature_timer_handle = EASY_TIMER_INVALID_TIMER;
-		}	
-		
     // Update manufacturer data for the next advertsing event
     mnf_data_update();
     // Restart Advertising
     user_app_adv_start();
 }
-
-
-
-
-void user_svc1_temperature_send_ntf()
-{
-		uint16_t data = read_MCP9808(); //Read the temperature data
-	  double temperature = data;
-		temperature /=  16.0;
-	  if (data & 0x800){
-			temperature -= 256;
-		}
-	  //Construct the string to send as a notification
-		uint8_t string_length = snprintf(temperature_string, 32, "%.4f", temperature);
-		
-		//Allocate a new message
-		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,                   //Message id
-																													prf_get_task_from_id(TASK_ID_CUSTS1), //Target task
-																													TASK_APP,                             //Source of the message
-																													custs1_val_ntf_ind_req,               //The type of structure in the message,
-																																																//This structure should match the ID
-																																																//The ID's and strucures are found in custs1_task.h
-																													string_length);                       //How many bytes of data will be added
-
-		
-		
-		req->conidx = 0;                                      //Connection ID to send the data to (this application can only have one connection(0))
-		req->notification = true;                             //Data is sent as a notification and not as indication
-		req->handle = SVC1_IDX_TEMPERATURE_VAL;               //The handle of the characteristic we want to write to
-		req->length = string_length;                          //Data length in bytes
-		memcpy(req->value, temperature_string, string_length);//Copy the string to the message
-
-		ke_msg_send(req);                                     //Send the message to the task
-		
-		temperature_timer_handle = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_temperature_send_ntf); //Set a timer for NOTIFICATION_DELAY ms
-}
-
-void user_svc1_temperature_wr_ntf_handler(struct custs1_val_write_ind const *param){
-	if(param->value[0]){
-		//If the client subscribed to the notification
-		if(temperature_timer_handle == EASY_TIMER_INVALID_TIMER){ 
-			//Start the timer if it is not running
-			user_svc1_temperature_send_ntf();
-		}
-	}
-	else{
-		//If the client unsubscribed from the notification
-		if(temperature_timer_handle != EASY_TIMER_INVALID_TIMER){ 
-			//Stop the timer if it is running
-			app_easy_timer_cancel(temperature_timer_handle);
-			temperature_timer_handle = EASY_TIMER_INVALID_TIMER;
-		}
-	}
-}
-
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
@@ -368,6 +306,34 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 {
     switch(msgid)
     {
+        case CUSTS1_VAL_WRITE_IND:
+        {
+            struct custs1_val_write_ind const *msg_param = (struct custs1_val_write_ind const *)(param);
+
+            switch (msg_param->handle)
+            {
+                case SVC1_IDX_TEMPERATURE_VAL_NTF_CFG:
+											user_temperature_message_handler(msg_param);
+											break;
+
+                default:
+                    break;
+            }
+        } break;
+
+        case CUSTS1_ATT_INFO_REQ:
+        {
+            struct custs1_att_info_req const *msg_param = (struct custs1_att_info_req const *)param;
+
+            switch (msg_param->att_idx)
+            {
+
+                default:
+                    user_svc1_rest_att_info_req_handler(msgid, msg_param, dest_id, src_id);
+                    break;
+             }
+        } break;
+
         case GAPC_PARAM_UPDATED_IND:
         {
             // Cast the "param" pointer to the appropriate message structure
@@ -381,34 +347,30 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
             {
             }
         } break;
-				
-				case CUSTS1_VAL_WRITE_IND:
-        {
-            struct custs1_val_write_ind const *msg_param = (struct custs1_val_write_ind const *)(param);
 
-            switch (msg_param->handle)
-            {
-                case SVC1_IDX_TEMPERATURE_NTF_CFG:
-                    user_svc1_temperature_wr_ntf_handler(msg_param);
-                    break;
-								
-                default:
-                    break;
-            }
-        } break;
-				
-				case CUSTS1_VAL_NTF_CFM:
+        case CUSTS1_VALUE_REQ_IND:
         {
-            struct custs1_val_ntf_cfm const *msg_param = (struct custs1_val_ntf_cfm const *)(param);
+            struct custs1_value_req_ind const *msg_param = (struct custs1_value_req_ind const *) param;
 
-            switch (msg_param->handle)
-            {
-                case SVC1_IDX_TEMPERATURE_VAL:
-                    break;
-                default:
-                    break;
-            }
+						// Send Error message
+						struct custs1_value_req_rsp *rsp = KE_MSG_ALLOC(CUSTS1_VALUE_REQ_RSP,
+																														src_id,
+																														dest_id,
+																														custs1_value_req_rsp);
+
+						// Provide the connection index.
+						rsp->conidx  = app_env[msg_param->conidx].conidx;
+						// Provide the attribute index.
+						rsp->att_idx = msg_param->att_idx;
+						// Force current length to zero.
+						rsp->length = 0;
+						// Set Error status
+						rsp->status  = ATT_ERR_APP_ERROR;
+						// Send message
+						ke_msg_send(rsp);
+
         } break;
+
         default:
             break;
     }

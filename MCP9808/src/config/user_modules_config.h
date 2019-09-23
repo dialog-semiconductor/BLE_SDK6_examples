@@ -73,7 +73,6 @@
 #define EXCLUDE_DLG_CUSTS1          (0)
 #define EXCLUDE_DLG_CUSTS2          (1)
 
-
 /// @} APP
 
 #endif // _USER_MODULES_CONFIG_H_

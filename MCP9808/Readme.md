@@ -1,64 +1,64 @@
-
-# DA14585/DA14586 Reading out an I2C temperature sensor and sending notification data
+﻿# DA14585/DA14586/DA14531 Peripheral BLE- MCP9808 Temperature sensor BLE notifications
 
 ---
 
 
 ## Example description
 
-This SDK6 DA14585 example shows how to communicate with an I2C temperature sensor.
-The sensor data gets sent over BLE with a notification. 
+This SDK6 example shows how to use I2C to read the temperature data and send the temperature data via BLE notifications.
 
 ## HW and SW configuration
 
+	-This example runs on The DA14585,DA14586 and the 14531 Bluetooth Smart SoC devices.	
+	-The Basic / Pro Development kit is needed for this example.
 
-### Hardware configuration
+* **Hardware configuration**
+Hardware configurations are the same for all daughterboards.
+	- Connect MCP9808 SCL to to J2 pin 24 (P23)
+	- Connect MCP9808 SDA to to J2 pin 22 (P21)
+	These pins are defined in user_periph_setup.h
+	- Connect MCP9808 VDD to to J2 pin 1 (V3)
+	- Connect MCP9808 GND to to J2 pin 39
+	- Make sure the jumpers are set as shown in the image below
+	- Connect the USB Development kit to the host computer
+	The image below shows the Motherboard with jumper (wire) configuration
 
-- This example runs on The DA14585/DA14586 Bluetooth Smart SoC devices.
-- The Basic or pro Development kit is needed for this example.
-- Connect the SCL pin of the MCP9808 to pin 0-7 of the development board.
-- Connect the SDA pin of the MCP9808 to pin 1-2 of the development board.
-  - These pins are defined in the MCP9808.h file
- 
-![Pin connections in Fritzing](assets/MCP9808_Fritzing.png) 
- 
-- Connect the USB Development kit to the host computer.
+		![Hardware_Configurations](assets/Hardware_Configurations.png)
 
+* **Software configuration**
 
-### Software configuration
-
-- This example requires:
-    - SDK6.0.10
-	- A smartphone with a BLE scanning app (for example BLE scanner on Android or Lightblue on IOS)
+	- This example requires:
+    * Smartsnippets Studio 1.6.3.
+    * SDK6.0.10
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ## How to run the example
 
 For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
 
-### Compile and run
+### Initial Setup
 
-- Open the project in Keil µVision 5
-  - Optionally, change the parameters in MCP9808.h
-- Compile and run the project
-- Open the BLE scanner app and look for DLG-TEMP
-- Connect to the device
-- Subscribe to the notification
+ - Open the project in Keil µVision 5 
+ - Select your device in the red box shown below (DA14585, DA14586 or DA14531)
 
-If everything went well, you should be able to receive temperature data as the value of the custom characteristic. As shown below:
+![Select_Device](assets/Select_Device.png)
+ - (optionally) Parameters can be changed in MCP9808.h
+ - (optionally) In user_periph_setup.h I2C configuration can be changed, I2C pins included.
+ - Compile and launch the example
+ - Open "BLE Scanner", this app can be found in the play store, and look for "DLG-TEMP"
 
-![Notification screenshot](assets/Notification-screenshot.jpg)
+If everything went well, you should be able to receive temperature data as the value of the custom characteristic, as shown in the image below:
+
+	![BLE_APP_MCP9808_CAPTURE](assets/BLE_APP_MCP9808_CAPTURE.png)
 
 ## How it works
 
-Tutorial 3 on the [Dialog Semiconductor support](https://support.dialog-semiconductor.com) website shows how to make your own custom profile.
-The *user_catch_rest_hndl* function in user_temperaturereporter.c will handle the messages for our custom profile.
-This application only has one possible custom action: a write to the notification. When this occurs the *user_svc1_temperature_wr_ntf_handler* function is called.
-This function will check the contents of the write. If the content of the write equals zero, the temperature timer is canceled.
-If the value is anything else, the *user_svc1_temperature_send_ntf* function is called. This function will read out the sensor data and convert it to a string(for demo purposes).
-The string will be placed in a message, along with some other parameters, like the connection ID and the characteristic handle.
-After the message is sent, the *app_easy_timer* function is used to schedule the next call to the *user_svc1_temperature_send_ntf* function. This will ensure the temperature is transmitted regularly.
-The *app_easy_timer* function has a resolution of 10ms hence we divide the desired delay in ms by 10.
+
+Tutorial 3 on the [Dialog Semiconductor support](https://www.dialog-semiconductor.com/sites/default/files/training_03_custom_profile_gatt_cmd_example_v1.2.pdf) website shows how to make your own custom profile. The **user_catch_rest_hndl** function in user_peripheral.c will handle the messages for our custom profile. This application only has one possible 
+custom action: a write to the notification. When this occurs the **user_temperature_message_handler** function is called. This function will check the contents of the write. If the content of the write equals zero, the temperature timer is canceled. If the value is 
+anything else, a timer is generated that calls **user_send_temperature_ntf** after NOTIFICATION_DELAY ms. **user_send_temperature_ntf** will read out the sensor data and convert it to a string(for demo purposes). The string will be placed in a message, along with some other parameters, like the connection ID
+and the characteristic handle. After the message is sent, the app_easy_timer function is used to schedule the next call to the **user_send_temperature_ntf** function. This will ensure the temperature is transmitted regularly. The app_easy_timer function
+has a resolution of 10ms hence we divide the desired delay in ms by 10.
 
 ## Known Limitations
 
@@ -66,7 +66,7 @@ The *app_easy_timer* function has a resolution of 10ms hence we divide the desir
 - There are No known limitations for this example. But you can check and refer to the following application note for
 [known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
 - Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+- you can Refer also for the Troubleshooting section in the DA14585x or DA14531 Getting Started with the Development Kit UM-B-049.
 
 
 ## License
@@ -74,13 +74,23 @@ The *app_easy_timer* function has a resolution of 10ms hence we divide the desir
 
 **************************************************************************************
 
- Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
- 
- THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND.  THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS.  RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOG’S PRIOR WRITTEN PERMISSION.
- 
- UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS THAT TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED “AS IS”, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND ITS AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY REPRESENTATIONS (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED SOFTWARE IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, AND (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY OR INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED BY THE FCC OR OTHER LIKE AGENCIES.
- 
- IN NO EVENT SHALL DIALOG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
 
+ This software ("Software") is owned by Dialog Semiconductor. By using this Software
+ you agree that Dialog Semiconductor retains all intellectual property and proprietary
+ rights in and to this Software and any use, reproduction, disclosure or distribution
+ of the Software without express written permission or a license agreement from Dialog
+ Semiconductor is strictly prohibited. This Software is solely for use on or in
+ conjunction with Dialog Semiconductor products.
+
+ EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
+ REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
+ IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
+ SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
+ CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+ PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
 
 **************************************************************************************

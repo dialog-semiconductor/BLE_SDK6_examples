@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_custs_config.c
+ * @file user_custs1_impl.h
  *
- * @brief Custom1/2 Server (CUSTS1/2) profile database structure and initialization.
+ * @brief Peripheral project Custom1 Server implementation header file.
  *
- * Copyright (c) 2016-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -30,62 +30,64 @@
  ****************************************************************************************
  */
 
+#ifndef _USER_CUSTS1_IMPL_H_
+#define _USER_CUSTS1_IMPL_H_
+
 /**
  ****************************************************************************************
- * @defgroup USER_CONFIG
- * @ingroup USER
- * @brief Custom1/2 Server (CUSTS1/2) profile database structure and initialization.
+ * @addtogroup APP
+ * @ingroup RICOW
+ *
+ * @brief
  *
  * @{
  ****************************************************************************************
  */
 
 /*
+ * DEFINES
+ ****************************************************************************************
+ */
+
+
+																	 
+/*
  * INCLUDE FILES
  ****************************************************************************************
  */
 
-#include "app_prf_types.h"
-#include "app_customs.h"
-#include "user_custs1_def.h"
+#include "gapc_task.h"                 // gap functions and messages
+#include "gapm_task.h"                 // gap functions and messages
+#include "custs1_task.h"
 
 /*
- * GLOBAL VARIABLE DEFINITIONS
+ * FUNCTION DECLARATIONS
  ****************************************************************************************
  */
 
-#if (BLE_CUSTOM1_SERVER)
-extern const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB];
-#endif
 
-/// Custom1/2 server function callback table
-const struct cust_prf_func_callbacks cust_prf_funcs[] =
-{
-#if (BLE_CUSTOM1_SERVER)
-    {   TASK_ID_CUSTS1,
-        custs1_att_db,
-        CUSTS1_IDX_NB,
-        #if (BLE_APP_PRESENT)
-        app_custs1_create_db, NULL,
-        #else
-        NULL, NULL,
-        #endif
-        NULL, NULL,
-    },
-#endif
-#if (BLE_CUSTOM2_SERVER)
-    {   TASK_ID_CUSTS2,
-        NULL,
-        0,
-        #if (BLE_APP_PRESENT)
-        app_custs2_create_db, NULL,
-        #else
-        NULL, NULL,
-        #endif
-        NULL, NULL,
-    },
-#endif
-    {TASK_ID_INVALID, NULL, 0, NULL, NULL, NULL, NULL},   // DO NOT MOVE. Must always be last, this indicates the end of the database
-};
+																	 
+void user_temperature_message_handler(struct custs1_val_write_ind const *param);
+									
+void user_send_temperature_ntf(void);									
 
-/// @} USER_CONFIG
+
+/**
+ ****************************************************************************************
+ * @brief Remaining attribute info request handler.
+ * @param[in] msgid   Id of the message received.
+ * @param[in] param   Pointer to the parameters of the message.
+ * @param[in] dest_id ID of the receiving task instance.
+ * @param[in] src_id  ID of the sending task instance.
+ * @return void
+ ****************************************************************************************
+*/
+void user_svc1_rest_att_info_req_handler(ke_msg_id_t const msgid,
+                                         struct custs1_att_info_req const *param,
+                                         ke_task_id_t const dest_id,
+                                         ke_task_id_t const src_id);
+
+
+/// @} APP
+
+#endif // _USER_CUSTS1_IMPL_H_

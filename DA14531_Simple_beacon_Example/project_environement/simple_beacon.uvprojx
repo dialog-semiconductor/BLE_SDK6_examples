@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>simple_beacon_585</TargetName>
+      <TargetName>DA14585</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\out_DA14585\Objects\</OutputDirectory>
-          <OutputName>simple_beacon_585</OutputName>
+          <OutputName>empty_peripheral_template_585</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -1529,7 +1529,7 @@
       </Groups>
     </Target>
     <Target>
-      <TargetName>simple_beacon_586</TargetName>
+      <TargetName>DA14586</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -1571,7 +1571,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\out_DA14586\Objects\</OutputDirectory>
-          <OutputName>simple_beacon_586</OutputName>
+          <OutputName>empty_peripheral_template_586</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -3051,7 +3051,7 @@
       </Groups>
     </Target>
     <Target>
-      <TargetName>simple_beacon_587</TargetName>
+      <TargetName>DA14531</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -3093,7 +3093,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\out_DA14531\Objects\</OutputDirectory>
-          <OutputName>simple_beacon_587</OutputName>
+          <OutputName>empty_peripheral_template_531</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -3416,7 +3416,7 @@
             <ScatterFile>.\..\src\config\copied_scatter_531.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--feedback=".\unused_531.txt" C:\Release_sw_examples_585\6.0.11.989\\sdk\common_project_files\misc\da14531_symbols.txt   --symdefs=simple_beacon_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <Misc>--feedback=".\unused_531.txt" C:\Release_sw_examples_585\6.0.11.989\\sdk\common_project_files\misc\da14531_symbols.txt   --symdefs=empty_peripheral_template_531_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>

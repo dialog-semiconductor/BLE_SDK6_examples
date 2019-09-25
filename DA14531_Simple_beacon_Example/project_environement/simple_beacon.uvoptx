@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>simple_beacon_585</TargetName>
+    <TargetName>DA14585</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -511,7 +511,7 @@
   </Target>
 
   <Target>
-    <TargetName>simple_beacon_586</TargetName>
+    <TargetName>DA14586</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -1000,7 +1000,7 @@
   </Target>
 
   <Target>
-    <TargetName>simple_beacon_587</TargetName>
+    <TargetName>DA14531</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>

@@ -5,14 +5,27 @@
  *
  * @brief Peripherals setup and initialization.
  *
- * Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
- * 
- * THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND.  THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS.  RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOG’S PRIOR WRITTEN PERMISSION.
- * 
- * UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS THAT TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED “AS IS”, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND ITS AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY REPRESENTATIONS (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED SOFTWARE IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, AND (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY OR INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED BY THE FCC OR OTHER LIKE AGENCIES.
- * 
- * IN NO EVENT SHALL DIALOG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
+ *
+ * This software ("Software") is owned by Dialog Semiconductor.
+ *
+ * By using this Software you agree that Dialog Semiconductor retains all
+ * intellectual property and proprietary rights in and to this Software and any
+ * use, reproduction, disclosure or distribution of the Software without express
+ * written permission or a license agreement from Dialog Semiconductor is
+ * strictly prohibited. This Software is solely for use on or in conjunction
+ * with Dialog Semiconductor products.
+ *
+ * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
+ * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
+ * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
+ * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
+ * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+ * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+ * OF THE SOFTWARE.
  *
  ****************************************************************************************
  */
@@ -22,89 +35,130 @@
  ****************************************************************************************
  */
 
-#include "rwip_config.h"             // SW configuration
-#include "user_periph_setup.h"       // peripheral configuration
+#include "user_periph_setup.h"
+#include "datasheet.h"
+#include "system_library.h"
+#include "rwip_config.h"
 #include "gpio.h"
-#include "uart.h"                    // UART initialization
-#include "spi.h"                     // SPI initialization
+#include "uart.h"
+#include "syscntl.h"
+#include "spi_flash.h"
+/*
+ * GLOBAL VARIABLE DEFINITIONS
+ ****************************************************************************************
+ */
 
 #if DEVELOPMENT_DEBUG
 
 void GPIO_reservations(void)
 {
 /*
-* Globally reserved GPIOs reservation
+    i.e. to reserve P0_1 as Generic Purpose I/O:
+    RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
 */
-
-/*
-* Application specific GPIOs reservation. Used only in Development mode (#if DEVELOPMENT_DEBUG)
-
-i.e.
-    RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);    //Reserve P_01 as Generic Purpose I/O
-*/
-  
 	RESERVE_GPIO(SPI_SS, SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, PID_SPI_EN);
 	RESERVE_GPIO(SPI_MISO, SPI_DI_GPIO_PORT, SPI_DI_GPIO_PIN, PID_SPI_DI);
 	RESERVE_GPIO(SPI_MOSI, SPI_DO_GPIO_PORT, SPI_DO_GPIO_PIN, PID_SPI_DO);
 	RESERVE_GPIO(SPI_CLK, SPI_CLK_GPIO_PORT, SPI_CLK_GPIO_PIN, PID_SPI_CLK);
 	
-#ifdef CFG_PRINTF_UART2
-    RESERVE_GPIO(UART2_TX, UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, PID_UART2_TX);
-    RESERVE_GPIO(UART2_RX, UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, PID_UART2_RX);
+#if defined (CFG_PRINTF_UART2)
+    RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
 }
-#endif //DEVELOPMENT_DEBUG
 
-void set_pad_functions(void)        // set gpio port function mode
+#endif
+
+void set_pad_functions(void)
 {
 /*
-* Configure application ports.
-i.e.
-    GPIO_ConfigurePin( GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false ); // Set P_01 as Generic purpose Output
+    i.e. to set P0_1 as Generic purpose Output:
+    GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
 
-#ifdef __DA14586__
-    // disallow spontaneous flash wake-up
-    GPIO_ConfigurePin(SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, OUTPUT, PID_GPIO, true);
+#if defined (__DA14586__)
+    // Disallow spontaneous DA14586 SPI Flash wake-up
+    GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
 #endif
 
-#ifdef CFG_PRINTF_UART2
-    GPIO_ConfigurePin(UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, OUTPUT, PID_UART2_TX, false);
-    GPIO_ConfigurePin(UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, INPUT, PID_UART2_RX, false);
+#if defined (CFG_PRINTF_UART2)
+    // Configure UART2 TX Pad
+    GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
-	
-	GPIO_ConfigurePin( SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, OUTPUT, PID_SPI_EN, true); // Set P_01 as Generic purpose Output
-	GPIO_ConfigurePin( SPI_DI_GPIO_PORT, SPI_DI_GPIO_PIN, INPUT, PID_SPI_DI, true); // Set P_01 as Generic purpose Output
-	GPIO_ConfigurePin( SPI_DO_GPIO_PORT, SPI_DO_GPIO_PIN, OUTPUT, PID_SPI_DO, true); // Set P_01 as Generic purpose Output
-	GPIO_ConfigurePin( SPI_CLK_GPIO_PORT, SPI_CLK_GPIO_PIN, OUTPUT, PID_SPI_CLK, true); // Set P_01 as Generic purpose Output
+
+	GPIO_ConfigurePin( SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, OUTPUT, PID_SPI_EN, true); 
+	GPIO_ConfigurePin( SPI_DI_GPIO_PORT, SPI_DI_GPIO_PIN, INPUT, PID_SPI_DI, true); 
+	GPIO_ConfigurePin( SPI_DO_GPIO_PORT, SPI_DO_GPIO_PIN, OUTPUT, PID_SPI_DO, true); 
+	GPIO_ConfigurePin( SPI_CLK_GPIO_PORT, SPI_CLK_GPIO_PIN, OUTPUT, PID_SPI_CLK, true);
 }
+
+#if defined (CFG_PRINTF_UART2)
+// Configuration struct for UART2
+static const uart_cfg_t uart_cfg = {
+    .baud_rate = UART2_BAUDRATE,
+    .data_bits = UART2_DATABITS,
+    .parity = UART2_PARITY,
+    .stop_bits = UART2_STOPBITS,
+    .auto_flow_control = UART2_AFCE,
+    .use_fifo = UART2_FIFO,
+    .tx_fifo_tr_lvl = UART2_TX_FIFO_LEVEL,
+    .rx_fifo_tr_lvl = UART2_RX_FIFO_LEVEL,
+    .intr_priority = 2,
+};
+#endif
+
+// Configuration struct for SPI
+static const spi_cfg_t spi_cfg = {
+    .spi_ms = SPI_MS_MODE,
+    .spi_cp = SPI_CP_MODE,
+    .spi_speed = SPI_SPEED_MODE,
+    .spi_wsz = SPI_WSZ,
+    .spi_cs = SPI_CS,
+    .cs_pad.port = SPI_EN_GPIO_PORT,
+    .cs_pad.pin = SPI_EN_GPIO_PIN,
+#if defined (__DA14531__)
+    .spi_capture = SPI_EDGE_CAPTURE,
+#endif
+#if defined (CFG_SPI_DMA_SUPPORT)
+    .spi_dma_channel = USER_SPI_DMA_CHANNEL,
+    .spi_dma_priority = DMA_PRIO_0,
+#endif
+};
+
+// Configuration struct for SPI FLASH
+static const spi_flash_cfg_t spi_flash_cfg = {
+    .chip_size = SPI_FLASH_DEV_SIZE,
+};
 
 void periph_init(void)
 {
+#if defined (__DA14531__)
+    // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
+    syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
+#else
     // Power up peripherals' power domain
     SetBits16(PMU_CTRL_REG, PERIPH_SLEEP, 0);
     while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
-
     SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
-
-    //rom patch
-    patch_func();
-
-    //Init pads
-    set_pad_functions();
-
-    // (Re)Initialize peripherals
-    // i.e.
-    // uart_init(UART_BAUDRATE_115K2, UART_FRAC_BAUDRATE_115K2, UART_CHARFORMAT_8);
-
-#ifdef CFG_PRINTF_UART2
-    SetBits16(CLK_PER_REG, UART2_ENABLE, 1);
-    uart2_init(UART_BAUDRATE_115K2, UART_FRAC_BAUDRATE_115K2, UART_CHARFORMAT_8);
 #endif
 
-	 SPI_Pad_t ss = {SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN};//Define slave select pin
-   spi_init(&ss,SPI_MODE_8BIT, SPI_ROLE_MASTER, SPI_CLK_IDLE_POL_LOW, SPI_PHA_MODE_0, SPI_MINT_DISABLE, SPI_XTAL_DIV_2); //Initialise spi.
+    // ROM patch
+    patch_func();
 
-   // Enable the pads
-    SetBits16(SYS_CTRL_REG, PAD_LATCH_EN, 1);
+    // Initialize peripherals
+#if defined (CFG_PRINTF_UART2)
+    // Initialize UART2
+    uart_initialize(UART2, &uart_cfg);
+#endif
+
+    // Configure SPI Flash environment
+    spi_flash_configure_env(&spi_flash_cfg);
+		 
+    // Initialize SPI
+    spi_initialize(&spi_cfg);
+		
+    // Set pad functionality
+    set_pad_functions();
+
+    // Enable the pads
+    GPIO_set_pad_latch_en(true);
 }

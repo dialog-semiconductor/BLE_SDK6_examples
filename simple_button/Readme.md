@@ -40,7 +40,7 @@ As a proof of concept it can be verified by transmitting UART messages or the LE
 
 	- This example requires:
     * Smartsnippets Studio 1.6.3.
-    * SDK6.0.10
+    * SDK6.0.11
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ## How to run the example
@@ -67,7 +67,7 @@ For initial setup of the example please refer to [this section of the dialog sup
  - Pressing the button (P1_1) for 3 seconds or more (i.e. long press) will start LED blinking ON/OFF
  - Pressing the button (P1_1) for less than 3 seconds (i.e. short press) again will stop LED blinking or toggle
 
-	![uart_data](assets/uart_data.png)
+	![simple_button_basic](assets/uart_data.png)
 
 
 

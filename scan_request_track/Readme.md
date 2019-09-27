@@ -5,28 +5,28 @@
 
 ## Example description
 
-This SDK6 DA14585 example shows how a peripheral device can track if it is scanned and which central device 
+This SDK6 DA14585 / DA14531 example demostrates how a peripheral device can track if it is scanned and which central device 
 performs the scanning procedure.
-The scan device needs to scan in active mode since the peripheral device will track if it is scanned using
+The scan device needs to scan in active mode since the peripheral device will track if it is scanned via
 the scan request that the central will issue to get the scan response data from the peripheral.
-The example Requires a minor change in the SDK code, the scan request is tracked in every BLE end event,
-the user will have to attach a hook in the BLE end event ISR.
+The example doesn't require any change in the SDK 6.0.12 code as in previous SDK releases, the scan request is tracked in every BLE END event.
 	
 ## HW and SW configuration
 
 
 * **Hardware configuration**
 
-	- This example runs on The DA14585/DA14586 Bluetooth Smart SoC devices.
+	- This example runs on The DA14585/DA14586/DA14531 Bluetooth Smart SoC devices.
 	- The Basic / Pro Development kit is needed for this example.
 	- Connect the USB Development kit to the host computer.
-	- UART TX jumper on P0_4
+	- UART TX on P0_4 for DA14585/DA14586
+	- UART TX on P0_6 for DA14531
 
 * **Software configuration**
 
 	- This example requires:
-    * Smartsnippets Studio 1.6.3.
-    * SDK6.0.10
+    * Smartsnippets Toolbox 2.0.9.
+    * SDK6.0.12
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- **A simple serial terminal** should be installed on the PC
 
@@ -37,14 +37,6 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 ### Initial Setup
 
- - Start Keil
- - Open file rwble.c
- - Search for the dlg_event_isr() function.
- - Above dlg_event_isr() function implementation, add the declaration of the hook function "__weak void user_end_event_isr_hook(void) {}"
- - In the dlg_event_isr() function invoke the user_end_event_isr_hook() function before any other SDK function is invoked.
- - After completing the modification the code in dlg_event_isr should look like the below screenshot:
- 
-	![dlg_event_isr](assets/dlg_event_isr.png)
  - Compile and launch the example
  - Open the development kit serial port with the following parameters
 

@@ -54,8 +54,6 @@
 /* Used BLE profiles (used by "rwprf_config.h").                                       */
 /***************************************************************************************/
 
-#define CFG_PRF_DISS
-#define CFG_PRF_CUST1
 
 /***************************************************************************************/
 /* Profile application configuration section                                           */
@@ -79,10 +77,12 @@
 #define APP_DIS_MANUFACTURER_NAME_LEN   (11)
 
 /// Model Number String (up to 18 chars)
-#ifdef __DA14586__
-#define APP_DIS_MODEL_NB_STR            ("DA14586")
+#if defined (__DA14586__)
+    #define APP_DIS_MODEL_NB_STR            ("DA14586")
+#elif defined (__DA14531__)
+    #define APP_DIS_MODEL_NB_STR            ("DA14531")
 #else
-#define APP_DIS_MODEL_NB_STR            ("DA14585")
+     #define APP_DIS_MODEL_NB_STR           ("DA14585")
 #endif
 #define APP_DIS_MODEL_NB_STR_LEN        (7)
 
@@ -98,7 +98,13 @@
 #define APP_DIS_SERIAL_NB_STR_LEN       (10)
 
 /// Hardware Revision String
-#define APP_DIS_HARD_REV_STR            ("DA14585")
+#if defined (__DA14586__)
+    #define APP_DIS_HARD_REV_STR            ("DA14586")
+#elif defined (__DA14531__)
+    #define APP_DIS_HARD_REV_STR            ("DA14531")
+#else
+    #define APP_DIS_HARD_REV_STR            ("DA14585")
+#endif
 #define APP_DIS_HARD_REV_STR_LEN        (7)
 
 /// Firmware Revision

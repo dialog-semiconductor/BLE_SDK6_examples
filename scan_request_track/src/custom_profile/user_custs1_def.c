@@ -117,7 +117,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Control Point Characteristic User Description
     [SVC1_IDX_CONTROL_POINT_USER_DESC] = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, DEF_SVC1_CONTROL_POINT_USER_DESC},
+                                            sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_CONTROL_POINT_USER_DESC},
 
     // LED State Characteristic Declaration
     [SVC1_IDX_LED_STATE_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
@@ -129,7 +130,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // LED State Characteristic User Description
     [SVC1_IDX_LED_STATE_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_LED_STATE_USER_DESC) - 1, sizeof(DEF_SVC1_LED_STATE_USER_DESC) - 1, DEF_SVC1_LED_STATE_USER_DESC},
+                                            sizeof(DEF_SVC1_LED_STATE_USER_DESC) - 1, sizeof(DEF_SVC1_LED_STATE_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_LED_STATE_USER_DESC},
 
     // ADC Value 1 Characteristic Declaration
     [SVC1_IDX_ADC_VAL_1_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
@@ -145,7 +147,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // ADC Value 1 Characteristic User Description
     [SVC1_IDX_ADC_VAL_1_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_ADC_VAL_1_USER_DESC) - 1, sizeof(DEF_SVC1_ADC_VAL_1_USER_DESC) - 1, DEF_SVC1_ADC_VAL_1_USER_DESC},
+                                            sizeof(DEF_SVC1_ADC_VAL_1_USER_DESC) - 1, sizeof(DEF_SVC1_ADC_VAL_1_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_ADC_VAL_1_USER_DESC},
 
     // ADC Value 2 Characteristic Declaration
     [SVC1_IDX_ADC_VAL_2_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
@@ -157,7 +160,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // ADC Value 2 Characteristic User Description
     [SVC1_IDX_ADC_VAL_2_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_ADC_VAL_2_USER_DESC) - 1, sizeof(DEF_SVC1_ADC_VAL_2_USER_DESC) - 1, DEF_SVC1_ADC_VAL_2_USER_DESC},
+                                            sizeof(DEF_SVC1_ADC_VAL_2_USER_DESC) - 1, sizeof(DEF_SVC1_ADC_VAL_2_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_ADC_VAL_2_USER_DESC},
 
     // Button State Characteristic Declaration
     [SVC1_IDX_BUTTON_STATE_CHAR]       = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
@@ -173,7 +177,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Button State Characteristic User Description
     [SVC1_IDX_BUTTON_STATE_USER_DESC]  = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_BUTTON_STATE_USER_DESC) - 1, sizeof(DEF_SVC1_BUTTON_STATE_USER_DESC) - 1, DEF_SVC1_BUTTON_STATE_USER_DESC},
+                                            sizeof(DEF_SVC1_BUTTON_STATE_USER_DESC) - 1, sizeof(DEF_SVC1_BUTTON_STATE_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_BUTTON_STATE_USER_DESC},
 
     // Indicateable Characteristic Declaration
     [SVC1_IDX_INDICATEABLE_CHAR]       = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
@@ -189,7 +194,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Indicateable Characteristic User Description
     [SVC1_IDX_INDICATEABLE_USER_DESC]  = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_INDICATEABLE_USER_DESC) - 1, sizeof(DEF_SVC1_INDICATEABLE_USER_DESC) - 1, DEF_SVC1_INDICATEABLE_USER_DESC},
+                                            sizeof(DEF_SVC1_INDICATEABLE_USER_DESC) - 1, sizeof(DEF_SVC1_INDICATEABLE_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_INDICATEABLE_USER_DESC},
 
     // Long Value Characteristic Declaration
     [SVC1_IDX_LONG_VALUE_CHAR]         = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
@@ -205,7 +211,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Long Value Characteristic User Description
     [SVC1_IDX_LONG_VALUE_USER_DESC]    = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_LONG_VALUE_CHAR_USER_DESC) - 1, sizeof(DEF_SVC1_LONG_VALUE_CHAR_USER_DESC) - 1, DEF_SVC1_LONG_VALUE_CHAR_USER_DESC},
+                                            sizeof(DEF_SVC1_LONG_VALUE_CHAR_USER_DESC) - 1, sizeof(DEF_SVC1_LONG_VALUE_CHAR_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_LONG_VALUE_CHAR_USER_DESC},
 
     /*************************
      * Service 2 configuration
@@ -225,7 +232,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Write 1 Characteristic User Description
     [SVC2_WRITE_1_USER_DESC]           = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC2_WRITE_VAL_1_USER_DESC) - 1, sizeof(DEF_SVC2_WRITE_VAL_1_USER_DESC) - 1, DEF_SVC2_WRITE_VAL_1_USER_DESC},
+                                            sizeof(DEF_SVC2_WRITE_VAL_1_USER_DESC) - 1, sizeof(DEF_SVC2_WRITE_VAL_1_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC2_WRITE_VAL_1_USER_DESC},
 
     // Write 2 Characteristic Declaration
     [SVC2_WRITE_2_CHAR]                = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE), 0, 0, NULL},
@@ -236,7 +244,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Write 2 Characteristic User Description
     [SVC2_WRITE_2_USER_DESC]           = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC2_WRITE_VAL_2_USER_DESC) - 1, sizeof(DEF_SVC2_WRITE_VAL_2_USER_DESC) - 1, DEF_SVC2_WRITE_VAL_2_USER_DESC},
+                                            sizeof(DEF_SVC2_WRITE_VAL_2_USER_DESC) - 1, sizeof(DEF_SVC2_WRITE_VAL_2_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC2_WRITE_VAL_2_USER_DESC},
 
     /*************************
      * Service 3 configuration
@@ -260,7 +269,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Read 1 Characteristic User Description
     [SVC3_IDX_READ_1_USER_DESC]        = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC3_READ_VAL_1_USER_DESC) - 1, sizeof(DEF_SVC3_READ_VAL_1_USER_DESC) - 1, DEF_SVC3_READ_VAL_1_USER_DESC},
+                                            sizeof(DEF_SVC3_READ_VAL_1_USER_DESC) - 1, sizeof(DEF_SVC3_READ_VAL_1_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC3_READ_VAL_1_USER_DESC},
 
     // Read 2 Characteristic Declaration
     [SVC3_IDX_READ_2_CHAR]             = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE), 0, 0, NULL},
@@ -271,7 +281,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Read 2 Characteristic User Description
     [SVC3_IDX_READ_2_USER_DESC]        = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC3_READ_VAL_2_USER_DESC) - 1, sizeof(DEF_SVC3_READ_VAL_2_USER_DESC) - 1, DEF_SVC3_READ_VAL_2_USER_DESC},
+                                            sizeof(DEF_SVC3_READ_VAL_2_USER_DESC) - 1, sizeof(DEF_SVC3_READ_VAL_2_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC3_READ_VAL_2_USER_DESC},
     
     // Read 3 Characteristic Declaration
     [SVC3_IDX_READ_3_CHAR]             = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE), 0, 0, NULL},
@@ -286,7 +297,8 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Read 3 Characteristic User Description
     [SVC3_IDX_READ_3_USER_DESC]         = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC3_READ_VAL_3_USER_DESC) - 1, sizeof(DEF_SVC3_READ_VAL_3_USER_DESC) - 1, DEF_SVC3_READ_VAL_3_USER_DESC},
+                                            sizeof(DEF_SVC3_READ_VAL_3_USER_DESC) - 1, sizeof(DEF_SVC3_READ_VAL_3_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC3_READ_VAL_3_USER_DESC},
 };
 
 /// @} USER_CONFIG

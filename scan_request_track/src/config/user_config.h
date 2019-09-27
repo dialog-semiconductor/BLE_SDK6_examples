@@ -91,7 +91,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
+static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
 
 /*
  ****************************************************************************************
@@ -193,7 +193,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "SCAN TRACK"
+#define USER_DEVICE_NAME        "DIALOG-TMPL"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)
@@ -487,5 +487,40 @@ static const struct security_configuration user_security_conf = {
     .sec_req        = GAP_NO_SEC,
     #endif
 };
+
+enum
+{
+  SCAN_REQ_DATA_MSG = APP_MSG_UTIL_API_LAST_MES + 1,
+};
+
+struct scan_req_data_msg{
+    uint8_t scn_bd_address[6];
+};
+
+typedef void (scn_response_callback)(struct scan_req_data_msg const*);
+
+#define DLG_EVENT_HANDLER_ENTER() \
+{                                                                                                                               \
+    struct ea_elt_tag *elt_s = (struct ea_elt_tag *)co_list_pick(&lld_evt_env.elt_prog);                                        \
+    struct lld_evt_tag *evt_s = LLD_EVT_ENV_ADDR_GET(elt_s);                                                                    \
+    uint8_t rx_cnt = ble_rxdesccnt_getf(evt_s->conhdl);                                                                         \
+    if (evt_s->conhdl == LLD_ADV_HDL) {                                                                                         \
+        uint8_t rx_hdl = co_buf_rx_current_get();                                                                               \
+                                                                                                                                \
+        while (rx_cnt--) {                                                                                                      \
+            struct co_buf_rx_desc *rxdesc = co_buf_rx_get(rx_hdl);                                                              \
+            uint8_t status = rxdesc->rxstatus & 0x7F;                                                                           \
+                                                                                                                                \
+            if (llc_util_rxllid_getf(rxdesc) == LL_SCAN_REQ) {                                                                  \
+                if (status & (BLE_MIC_ERR_BIT | BLE_CRC_ERR_BIT | BLE_LEN_ERR_BIT | BLE_TYPE_ERR_BIT | BLE_SYNC_ERR_BIT))       \
+                    return;                                                                                                     \
+                struct scan_req_data_msg *ind = KE_MSG_ALLOC(SCAN_REQ_DATA_MSG, TASK_APP, TASK_APP, scan_req_data_msg);         \
+                memcpy(ind->scn_bd_address, (uint8_t*)(_ble_base + (uint8_t*)rxdesc->rxdataptr), 6);                            \
+                ke_msg_send(ind);                                                                                               \
+            }                                                                                                                   \
+            rx_hdl = co_buf_rx_next(rx_hdl);                                                                                    \
+        }                                                                                                                       \
+    }                                                                                                                           \
+}
 
 #endif // _USER_CONFIG_H_

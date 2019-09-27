@@ -70,16 +70,6 @@ i.e.
  * TYPE DEFINITIONS
  ****************************************************************************************
  */
-enum
-{
-  SCAN_REQ_DATA_MSG,
-};
-
-struct scan_req_data_msg{
-    uint8_t scn_bd_address[6];
-};
-
-typedef void (scn_request_callback)(struct scan_req_data_msg const*);
 
 /*
  * DEFINES
@@ -110,15 +100,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           ke_task_id_t const dest_id,
                           ke_task_id_t const src_id);
 
-/**
- ****************************************************************************************
- * @brief Scan request user callback.
- * @param[in] param   bd address of the scanner that send the scan request.
- * @return void
- ****************************************************************************************
-*/													
-void user_scan_request_cb(struct scan_req_data_msg const * param);
-
 													/**
  ****************************************************************************************
  * @brief Register the callback for the scan request.
@@ -126,7 +107,7 @@ void user_scan_request_cb(struct scan_req_data_msg const * param);
  * @return void
  ****************************************************************************************
 */
-void scan_request_callback_register(scn_request_callback* cb);
+void scan_request_callback_register(scn_response_callback* cb);
 				
 /**
  ****************************************************************************************
@@ -134,7 +115,7 @@ void scan_request_callback_register(scn_request_callback* cb);
  * @return void
  ****************************************************************************************
 */													
-void user_app_init(void);													
+void user_app_init(void);
 /// @} APP
 
 #endif // _SCAN_REQUEST_TRACK_H_

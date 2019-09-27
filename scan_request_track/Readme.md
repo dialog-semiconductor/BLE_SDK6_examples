@@ -7,8 +7,8 @@
 
 This SDK6 DA14585 / DA14531 example demostrates how a peripheral device can track if it is scanned and which central device 
 performs the scanning procedure.
-The scan device needs to scan in active mode since the peripheral device will track if it is scanned via
-the scan request that the central will issue to get the scan response data from the peripheral.
+The central device needs to scan in active mode since the peripheral device will track if it is scanned via
+the scan request from central.
 The example doesn't require any change in the SDK 6.0.12 code as in previous SDK releases, the scan request is tracked in every BLE END event.
 	
 ## HW and SW configuration

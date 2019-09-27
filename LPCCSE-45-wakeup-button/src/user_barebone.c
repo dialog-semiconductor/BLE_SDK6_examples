@@ -47,10 +47,7 @@
 #include "app_easy_timer.h"
 #include "user_barebone.h"
 #include "co_bt.h"
-
-#ifdef USER_WAKEUP_EXAMPLE
-		#include "user_wakeup_example.h"
-#endif
+#include "user_wakeup.h"
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -70,18 +67,18 @@ struct mnf_specific_data_ad_structure
  ****************************************************************************************
  */
 
-uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd app_adv_data_update_timer_used        __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd app_param_update_request_timer_used   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd app_adv_data_update_timer_used        __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 // Retained variables
-struct mnf_specific_data_ad_structure mnf_data  __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+struct mnf_specific_data_ad_structure mnf_data  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 // Index of manufacturer data in advertising data or scan response data (when MSB is 1)
-uint8_t mnf_data_index                          __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data_len                     __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data_len                __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t mnf_data_index                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint8_t stored_adv_data_len                     __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data_len                __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint8_t stored_adv_data[ADV_DATA_LEN]           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS
@@ -218,10 +215,7 @@ static void param_update_request_timer_cb()
 
 void user_app_init(void)
 {
-		#ifdef USER_WAKEUP_EXAMPLE
-				user_wakeup_example_init();
-		#endif
-	
+		user_wakeup_example_init();
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     
     // Initialize Manufacturer Specific Data
@@ -281,11 +275,10 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
 
 void user_app_adv_undirect_complete(uint8_t status)
 {
+    // If advertising was canceled then update advertising data and start advertising again
     if (status == GAP_ERR_CANCELED)
     {
-        #ifndef USER_WAKEUP_EXAMPLE
-						user_app_adv_start();
-				#endif
+        user_app_adv_start();
     }
 }
 

@@ -1,9 +1,9 @@
 /**
  ****************************************************************************************
  *
- * @file wkp_button.h
+ * @file user_wakeup.h
  *
- * @brief Wake up button header file
+ * @brief Barebone application header file.
  *
  * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
  *
@@ -29,13 +29,53 @@
  *
  ****************************************************************************************
  */
- #include "gpio.h"
+
+#ifndef _USER_WAKEUP_H_
+#define _USER_WAKEUP_H_
+
+/**
+ ****************************************************************************************
+ * @addtogroup APP
+ * @ingroup
+ *
+ * @brief
+ *
+ * @{
+ ****************************************************************************************
+ */
+
+/*
+ * INCLUDE FILES
+ ****************************************************************************************
+ */
  
- /**
+
+/*
+ * DEFINES
  ****************************************************************************************
- * @brief Sets button as wakeup trigger
- * @return void
+ */
+
+#define DEBOUNCE_TIME 					30 // Time in ms, can be a value from 1 to 63 
+#define EVENTS_BEFORE_INTERRUPT 1  // Must be a 8 bits value
+
+enum { 
+				INTERRUPT_DISABLE = 0,
+				INTERRUPT_ENABLE
+		 };
+
+/*
+ * FUNCTION DECLARATIONS
  ****************************************************************************************
-*/
+ */
+
+#if defined(__DA14531__)
+void reset_event_counter(void);
+#endif
+
 void user_wakeup_example_init(void);
 
+void app_wakeup_press_cb(void);
+
+/// @} APP
+
+#endif //_USER_BAREBONE_H_

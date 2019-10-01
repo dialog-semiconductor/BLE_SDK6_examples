@@ -5,7 +5,7 @@
  *
  * @brief Basic compile configuration file.
  *
- * Copyright (c) 2014-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2014-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -36,7 +36,7 @@
 #include "da1458x_stack_config.h"
 #include "user_profiles_config.h"
 
-#if !defined (__DA14531__)
+#if !defined (__DA14531__) && !defined (__ES2_DA14531__)
 
 /***************************************************************************************************************/
 /* Integrated or external processor configuration                                                              */

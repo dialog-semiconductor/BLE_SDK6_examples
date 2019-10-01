@@ -5,7 +5,7 @@
  *
  * @brief Advanced compile configuration file.
  *
- * Copyright (c) 2014-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2014-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -35,7 +35,7 @@
 
 #include "da1458x_stack_config.h"
 
-#if !defined (__DA14531__)
+#if !defined (__DA14531__) && !defined (__ES2_DA14531__)
 
 /****************************************************************************************************************/
 /* Low Power clock selection.                                                                                   */
@@ -281,14 +281,6 @@
 #define CFG_LP_CLK              LP_CLK_RCX20
 
 /****************************************************************************************************************/
-/* If defined the application uses a hardcoded value for XTAL32M trimming. Should be disabled for devices       */
-/* where XTAL32M is calibrated and trim value is stored in OTP.                                                 */
-/* Important note. The hardcoded value is the average value of the trimming values giving the optimal results   */
-/* for DA14531 DK devices. May not be applicable in other designs                                               */
-/****************************************************************************************************************/
-#define CFG_USE_DEFAULT_XTAL32M_TRIM_VALUE_IF_NOT_CALIBRATED
-
-/****************************************************************************************************************/
 /* Periodic wakeup period to poll GTL iface. Time in msec.                                                      */
 /****************************************************************************************************************/
 #define CFG_MAX_SLEEP_DURATION_PERIODIC_WAKEUP_MS                  500  // 0.5s
@@ -363,7 +355,7 @@
 /* - CFG_NVDS_TAG_BLE_CA_NB_PKT         Number of packets to receive for statistics                             */
 /* - CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT     Number  of bad packets needed to remove a channel                       */
 /****************************************************************************************************************/
-#define CFG_NVDS_TAG_BD_ADDRESS             {0xEA, 0xEA, 0x70, 0xCA, 0xEA, 0x80}
+#define CFG_NVDS_TAG_BD_ADDRESS             {0x01, 0x00, 0x70, 0xCA, 0xEA, 0x80}
 
 #define CFG_NVDS_TAG_LPCLK_DRIFT            DRIFT_500PPM
 #define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       2000
@@ -494,12 +486,6 @@
 /*         CFG_POWER_OPTIMIZATIONS flag, if device is to support the high temperature range feature.            */
 /****************************************************************************************************************/
 #define CFG_AMB_TEMPERATURE
-
-/****************************************************************************************************************/
-/* Enable power optimizations using the XTAL16M adaptive settling algorithm.                                    */
-/* NOTE: The XTAL16M adaptive settling algorithm works only with XTAL23K and not with RCX, as the LP clock.     */
-/****************************************************************************************************************/
-//#define CFG_XTAL16M_ADAPTIVE_SETTLING // TODO
 
 /****************************************************************************************************************/
 /* Disable quadrature decoder on start up. The quadrature decoder is by default enabled on system power up and  */

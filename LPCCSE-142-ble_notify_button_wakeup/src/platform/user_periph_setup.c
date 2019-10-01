@@ -5,7 +5,7 @@
  *
  * @brief Peripherals setup and initialization.
  *
- * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -29,6 +29,7 @@
  *
  ****************************************************************************************
  */
+
 /*
  * INCLUDE FILES
  ****************************************************************************************
@@ -42,11 +43,8 @@
 #include "uart.h"
 #include "syscntl.h"
 
-/**
- ****************************************************************************************
- * @brief Each application reserves its own GPIOs here.
- *
- * @return void
+/*
+ * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
 
@@ -55,60 +53,61 @@
 void GPIO_reservations(void)
 {
 /*
-* Globally reserved GPIOs reservation
+    i.e. to reserve P0_1 as Generic Purpose I/O:
+    RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
 */
 
-/*
-* Application specific GPIOs reservation. Used only in Development mode (#if DEVELOPMENT_DEBUG)
-
-i.e.
-    RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);    //Reserve P_01 as Generic Purpose I/O
-*/
-#ifdef CFG_PRINTF_UART2
-    RESERVE_GPIO(UART2_TX, UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, PID_UART2_TX);
-    RESERVE_GPIO(UART2_RX, UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, PID_UART2_RX);
+#if defined (CFG_PRINTF_UART2)
+    RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
 
-	RESERVE_GPIO(GPIO_3_3, GPIO_SW3_PORT, GPIO_SW3_PIN, PID_GPIO_3_3);
-	RESERVE_GPIO(GPIO_2_2, GPIO_SW2_PORT, GPIO_SW2_PIN, PID_GPIO_2_2);
-  RESERVE_GPIO(GPIO_1_1, GPIO_SW1_PORT, GPIO_SW1_PIN, PID_GPIO_1_1);
-	
+    RESERVE_GPIO(GPIO_3_3, GPIO_SW3_PORT, GPIO_SW3_PIN, PID_GPIO_3_3);
+    RESERVE_GPIO(GPIO_2_2, GPIO_SW2_PORT, GPIO_SW2_PIN, PID_GPIO_2_2);
+    RESERVE_GPIO(GPIO_1_1, GPIO_SW1_PORT, GPIO_SW1_PIN, PID_GPIO_1_1);
 }
-#endif //DEVELOPMENT_DEBUG
 
-/**
- ****************************************************************************************
- * @brief Map port pins. The UART and SPI port pins and GPIO ports are mapped.
- ****************************************************************************************
- */
-void set_pad_functions(void)        // set gpio port function mode
+#endif
+
+void set_pad_functions(void)
 {
 /*
-* Configure application ports.
-i.e.
-    GPIO_ConfigurePin( GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false ); // Set P_01 as Generic purpose Output
+    i.e. to set P0_1 as Generic purpose Output:
+    GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
 
-#ifdef __DA14586__
-    // disallow spontaneous flash wake-up
-    GPIO_ConfigurePin(SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, OUTPUT, PID_GPIO, true);
+#if defined (__DA14586__)
+    // Disallow spontaneous DA14586 SPI Flash wake-up
+    GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
 #endif
 
-#ifdef CFG_PRINTF_UART2
-    GPIO_ConfigurePin(UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, OUTPUT, PID_UART2_TX, false);
-    GPIO_ConfigurePin(UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, INPUT, PID_UART2_RX, false);
+#if defined (CFG_PRINTF_UART2)
+    // Configure UART2 TX Pad
+    GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
-	
-			//Init SW3
-		GPIO_ConfigurePin(GPIO_SW3_PORT, GPIO_SW3_PIN, INPUT_PULLUP, PID_GPIO, false);
+    //Init SW3
+    GPIO_ConfigurePin(GPIO_SW3_PORT, GPIO_SW3_PIN, INPUT_PULLUP, PID_GPIO, false);
 		
-		//Init SW2
-		GPIO_ConfigurePin(GPIO_SW2_PORT, GPIO_SW2_PIN, INPUT_PULLUP, PID_GPIO, false);
+    //Init SW2
+    GPIO_ConfigurePin(GPIO_SW2_PORT, GPIO_SW2_PIN, INPUT_PULLUP, PID_GPIO, false);
 
-		//Init SW1
-		GPIO_ConfigurePin(GPIO_SW1_PORT, GPIO_SW1_PIN, INPUT_PULLUP, PID_GPIO, false);
-
+    //Init SW1
+    GPIO_ConfigurePin(GPIO_SW1_PORT, GPIO_SW1_PIN, INPUT_PULLUP, PID_GPIO, false);
 }
+
+#if defined (CFG_PRINTF_UART2)
+// Configuration struct for UART2
+static const uart_cfg_t uart_cfg = {
+    .baud_rate = UART2_BAUDRATE,
+    .data_bits = UART2_DATABITS,
+    .parity = UART2_PARITY,
+    .stop_bits = UART2_STOPBITS,
+    .auto_flow_control = UART2_AFCE,
+    .use_fifo = UART2_FIFO,
+    .tx_fifo_tr_lvl = UART2_TX_FIFO_LEVEL,
+    .rx_fifo_tr_lvl = UART2_RX_FIFO_LEVEL,
+    .intr_priority = 2,
+};
+#endif
 
 void periph_init(void)
 {

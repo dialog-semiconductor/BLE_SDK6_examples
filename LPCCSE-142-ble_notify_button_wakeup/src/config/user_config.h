@@ -5,7 +5,7 @@
  *
  * @brief User configuration file.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -169,13 +169,13 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Advertising data
-#define USER_ADVERTISE_DATA                   "\x11\x07\x23\xd1\xbc\xea\x5f\x78\x23\x16\xde\xef\x12\x12\x23\x16\x00\x00\x09\xff\x97\x03\x00\x42\x0a\x19\x61\x00"
+#define USER_ADVERTISE_DATA                   ""
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)
 
 /// Scan response data
-#define USER_ADVERTISE_SCAN_RESPONSE_DATA     "\x14\x09\x48\x61\x6e\x64\x73\x65\x74\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x05\x12\x10\x00\x20\00\x02\x0a\00"
+#define USER_ADVERTISE_SCAN_RESPONSE_DATA     ""
 
 /// Scan response data length- maximum 31 bytes
 #define USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN (sizeof(USER_ADVERTISE_SCAN_RESPONSE_DATA)-1)
@@ -193,7 +193,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        ""
+#define USER_DEVICE_NAME        "DLG-BUTTON-NOTIFY"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)

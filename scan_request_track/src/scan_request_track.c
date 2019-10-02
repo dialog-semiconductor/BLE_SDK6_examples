@@ -48,6 +48,7 @@
 #include "app_api.h"
 #include "arch_console.h"
 #include "scan_request_track.h"
+#include "user_periph_setup.h"
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
@@ -105,7 +106,11 @@ static void user_scan_request_cb(struct scan_req_data_msg const * param)
                 param->scn_bd_address[2],
                 param->scn_bd_address[1],
                 param->scn_bd_address[0]);
+#if defined (__DA14531__)
+    arch_set_pxact_gpio(GPIO_CURSOR_PORT, GPIO_CURSOR_PIN);
+#else
     arch_set_pxact_gpio();
+#endif
 }
 
 void scan_request_callback_register(scn_response_callback* cb)

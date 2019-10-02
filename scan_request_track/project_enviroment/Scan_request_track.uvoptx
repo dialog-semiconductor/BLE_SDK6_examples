@@ -533,7 +533,7 @@
 
   <Group>
     <GroupName>sdk_arch</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -652,8 +652,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\..\sdk\platform\system_library\output\Keil_5\system_library.lib</PathWithFileName>
-      <FilenameWithoutPath>system_library.lib</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\..\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
+      <FilenameWithoutPath>da14585_586.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

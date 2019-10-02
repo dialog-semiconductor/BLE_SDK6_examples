@@ -552,9 +552,9 @@
               <FilePath>..\..\..\..\..\third_party\hash\hash.c</FilePath>
             </File>
             <File>
-              <FileName>system_library.lib</FileName>
+              <FileName>da14585_586.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\..\..\..\..\sdk\platform\system_library\output\Keil_5\system_library.lib</FilePath>
+              <FilePath>..\..\..\..\..\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
             </File>
             <File>
               <FileName>da14531.lib</FileName>
@@ -2074,9 +2074,9 @@
               <FilePath>..\..\..\..\..\third_party\hash\hash.c</FilePath>
             </File>
             <File>
-              <FileName>system_library.lib</FileName>
+              <FileName>da14585_586.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\..\..\..\..\sdk\platform\system_library\output\Keil_5\system_library.lib</FilePath>
+              <FilePath>..\..\..\..\..\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
             </File>
             <File>
               <FileName>da14531.lib</FileName>
@@ -3596,9 +3596,9 @@
               <FilePath>..\..\..\..\..\third_party\hash\hash.c</FilePath>
             </File>
             <File>
-              <FileName>system_library.lib</FileName>
+              <FileName>da14585_586.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\..\..\..\..\sdk\platform\system_library\output\Keil_5\system_library.lib</FilePath>
+              <FilePath>..\..\..\..\..\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>

@@ -21,6 +21,7 @@ The example doesn't require any change in the SDK 6.0.12 code as in previous SDK
 	- Connect the USB Development kit to the host computer.
 	- UART TX on P0_4 for DA14585/DA14586
 	- UART TX on P0_6 for DA14531
+	- For the cursor to operate on DA14531 on the PRO KIT a fly wire is needed connecting P03 with J10.1 pin.
 
 * **Software configuration**
 

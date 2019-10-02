@@ -56,6 +56,8 @@
 #if defined (__DA14531__)
     #define UART2_TX_PORT           GPIO_PORT_0
     #define UART2_TX_PIN            GPIO_PIN_6
+    #define GPIO_CURSOR_PORT        GPIO_PORT_0
+    #define GPIO_CURSOR_PIN         GPIO_PIN_3
 #else
     #define UART2_TX_PORT           GPIO_PORT_0
     #define UART2_TX_PIN            GPIO_PIN_4

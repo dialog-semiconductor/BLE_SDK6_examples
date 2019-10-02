@@ -60,6 +60,10 @@ void GPIO_reservations(void)
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
+
+#if defined (__DA14531__)
+    RESERVE_GPIO(CURSOR, GPIO_CURSOR_PORT, GPIO_CURSOR_PIN, PID_GPIO);
+#endif
 }
 
 #endif

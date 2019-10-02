@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_empty_peripheral_template.c
+ * @file user_simple_beacon.c
  *
  * @brief Empty peripheral template project source code.
  *
- * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -251,6 +251,13 @@ static void adv_data_update_timer_cb(void)
     app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
 }
 
+
+/**
+ ****************************************************************************************
+ * @brief Non-connectable Advertising function.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_adv_start(void)
 {
     // Schedule the next advertising data update
@@ -271,6 +278,14 @@ void user_app_adv_start(void)
 
     app_easy_gap_non_connectable_advertise_start();
 }
+
+/**
+ ****************************************************************************************
+ * @brief Non-connectable advertising completion function.
+ * @param[in] status Command complete event message status
+ * @return void
+ ****************************************************************************************
+*/
 
 void user_app_adv_nonconn_complete(uint8_t status)
 {

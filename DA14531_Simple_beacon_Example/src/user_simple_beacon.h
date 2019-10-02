@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_empty_peripheral_template.h
+ * @file user_simple_beacon.h
  *
  * @brief Empty peripheral template project header file.
  *
- * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *

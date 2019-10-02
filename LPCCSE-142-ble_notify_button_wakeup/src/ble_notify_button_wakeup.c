@@ -57,8 +57,10 @@
  ****************************************************************************************
  */
 
-#define LEGO_SEND_CMD_TO				(700)	//7s timeout
-
+#define WAKEUP_PINS                 (WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN))
+#define WAKEUP_POLARITIES           (WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW))
+#define WAKEUP_EVENTS_TO_TRIGGER    1
+#define WAKEUP_DEBOUNCE_MS          30
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
@@ -97,10 +99,8 @@ void app_wakeup_press_cb(void)
         app_easy_wakeup_set(GPIO_1_STOP_ISR);
     }
 
-    wkupct_enable_irq((WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN)), 						// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_SELECT will make sure the appropriate bit in the register is set. 
-                      (WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW)),	// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_POLARITY will make sure the appriopriate bit in the register is set.
-                      1,																																																													// Number of events needed to trigger interrupt
-                      30);
+    wkupct_enable_irq(WAKEUP_PINS, WAKEUP_POLARITIES, WAKEUP_EVENTS_TO_TRIGGER,
+                      WAKEUP_DEBOUNCE_MS);
         
     app_easy_wakeup();
 
@@ -192,10 +192,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
-    wkupct_enable_irq((WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN)),    // When enabling more than one interrupt source use OR bitoperation. WKUPCT_PIN_SELECT will make sure the appropriate bit in the register is set. 
-                      (WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW)),	// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_POLARITY will make sure the appriopriate bit in the register is set.
-                      1,        // Number of events needed to trigger interrupt
-                      30);      // Debounce time ranging from 0 to 63
+    wkupct_enable_irq(WAKEUP_PINS, WAKEUP_POLARITIES, WAKEUP_EVENTS_TO_TRIGGER,
+                      WAKEUP_DEBOUNCE_MS);
 
     wkupct_register_callback(app_wakeup_press_cb);	// sets this function as wake-up interrupt callback	
 

@@ -58,15 +58,7 @@
  */
 
 #define LEGO_SEND_CMD_TO				(700)	//7s timeout
-#define LEGO_SEND_CMD_TO_RET			(50)	//0.5s timeout
 
-/*
- * GLOBAL VARIABLE DEFINITIONS
- ****************************************************************************************
- */
-timer_hnd lego_tmr							__attribute__((section("retention_mem_area0"), zero_init));
-timer_hnd lego_tmr_ret						__attribute__((section("retention_mem_area0"), zero_init)); 
- 
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
@@ -82,43 +74,6 @@ void GPIO_1_BACK_ISR(void);
  ****************************************************************************************
 */
 /* Send the second command */
-static void lego_send_ret_cmd_timer_cb()
-{
-    uint8_t lego_up_ret_cmd[] = {0x05, 0x00, 0x45, 0x00, 0x00};
-	uint8_t lego_up_ret_cmd_len = sizeof(lego_up_ret_cmd)/sizeof(lego_up_ret_cmd[0]);
-	
-    struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-                                                          prf_get_task_from_id(TASK_ID_CUSTS1),
-                                                          TASK_APP,
-                                                          custs1_val_ntf_ind_req,
-                                                          DEF_SVC1_CTRL_POINT_CHAR_LEN);
-		
-    req->handle = SVC1_IDX_CONTROL_POINT_VAL;
-    req->length = lego_up_ret_cmd_len;
-    req->notification = true;
-    memcpy(req->value, &lego_up_ret_cmd, lego_up_ret_cmd_len);
-	
-    ke_msg_send(req);
-}
-
-static void lego_send_stop_ret_cmd_timer_cb()
-{
-	uint8_t lego_up_ret_cmd[] = {0x05, 0x00, 0x45, 0x00, 0x00};
-	uint8_t lego_up_ret_cmd_len = sizeof(lego_up_ret_cmd)/sizeof(lego_up_ret_cmd[0]);
-	
-    struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-                                                          prf_get_task_from_id(TASK_ID_CUSTS1),
-                                                          TASK_APP,
-                                                          custs1_val_ntf_ind_req,
-                                                          DEF_SVC1_CTRL_POINT_CHAR_LEN);
-		
-    req->handle = SVC1_IDX_CONTROL_POINT_VAL;
-    req->length = lego_up_ret_cmd_len;
-    req->notification = true;
-    memcpy(req->value, &lego_up_ret_cmd, lego_up_ret_cmd_len);
-	
-    ke_msg_send(req);
-}
 
 void app_wakeup_press_cb(void)
 {
@@ -166,8 +121,6 @@ void GPIO_1_UP_ISR(void)
     req->length = lego_up_cmd_len;
     req->notification = true;
     memcpy(req->value, &lego_up_cmd, lego_up_cmd_len);
-
-  	lego_tmr = app_easy_timer(LEGO_SEND_CMD_TO_RET, lego_send_ret_cmd_timer_cb);
 		
     ke_msg_send(req);
 }
@@ -188,8 +141,6 @@ void GPIO_1_STOP_ISR(void)
     req->notification = true;
     memcpy(req->value, &lego_up_cmd, lego_up_cmd_len);
 
-  	lego_tmr = app_easy_timer(LEGO_SEND_CMD_TO_RET, lego_send_stop_ret_cmd_timer_cb);
-		
     ke_msg_send(req);
 }
 

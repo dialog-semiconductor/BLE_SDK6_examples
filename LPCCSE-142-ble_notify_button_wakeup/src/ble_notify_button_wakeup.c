@@ -160,12 +160,9 @@ void app_wakeup_press_cb(void)
 				{
 					app_easy_wakeup_set(GPIO_1_STOP_ISR);
 				}
-				else if (!GPIO_GetPinStatus(GPIO_SW1_PORT, GPIO_SW1_PIN))
-				{
-					app_easy_wakeup_set(GPIO_1_BACK_ISR);
-				}
-				wkupct_enable_irq((WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN) | WKUPCT_PIN_SELECT(GPIO_SW1_PORT, GPIO_SW1_PIN)), 						// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_SELECT will make sure the appropriate bit in the register is set. 
-							(WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW1_PORT, GPIO_SW1_PIN, WKUPCT_PIN_POLARITY_LOW) ),	// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_POLARITY will make sure the appriopriate bit in the register is set.
+
+				wkupct_enable_irq((WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN)), 						// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_SELECT will make sure the appropriate bit in the register is set. 
+							(WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW)),	// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_POLARITY will make sure the appriopriate bit in the register is set.
 							1,																																																													// Number of events needed to trigger interrupt
 							30);
 				
@@ -370,10 +367,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
     //app_easy_wakeup_set(app_wakeup_cb);
-
-		wkupct_enable_irq((WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN) | WKUPCT_PIN_SELECT(GPIO_SW1_PORT, GPIO_SW1_PIN)), 						// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_SELECT will make sure the appropriate bit in the register is set. 
-									(WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW)
-										| WKUPCT_PIN_POLARITY(GPIO_SW1_PORT, GPIO_SW1_PIN, WKUPCT_PIN_POLARITY_LOW)),	// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_POLARITY will make sure the appriopriate bit in the register is set.
+		wkupct_enable_irq((WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN)), 						// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_SELECT will make sure the appropriate bit in the register is set. 
+									(WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW)),	// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_POLARITY will make sure the appriopriate bit in the register is set.
 									1,																																																													// Number of events needed to trigger interrupt
 									30);																																																												// Debounce time ranging from 0 to 63
 	

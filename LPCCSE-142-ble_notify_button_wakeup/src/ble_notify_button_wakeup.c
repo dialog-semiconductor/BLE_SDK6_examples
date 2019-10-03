@@ -99,7 +99,8 @@ void app_wakeup_press_cb(void)
 
     wkupct_enable_irq(WAKEUP_PINS, WAKEUP_POLARITIES, WAKEUP_EVENTS_TO_TRIGGER,
                       WAKEUP_DEBOUNCE_MS);
-        
+    
+    // Invoke the chosen callback when the BLE stack is operational
     app_easy_wakeup();
 
 }
@@ -109,6 +110,7 @@ void move_wkup_cb(void)
     const char up_cmd[] = {'M', 'o', 'v', 'e', '!'};
     const size_t up_cmd_len = sizeof(up_cmd)/sizeof(up_cmd[0]);
 	
+    // Prepare the message to be sent
     struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
                                                           prf_get_task_from_id(TASK_ID_CUSTS1),
                                                           TASK_APP,
@@ -119,7 +121,8 @@ void move_wkup_cb(void)
     req->length = up_cmd_len;
     req->notification = true;
     memcpy(req->value, &up_cmd, up_cmd_len);
-		
+	
+    // Send the message
     ke_msg_send(req);
 }
 
@@ -128,6 +131,7 @@ void stop_wkup_cb(void)
     const char stop_cmd[] = {'S', 't', 'o', 'p', '!'};
     const size_t stop_cmd_len = sizeof(stop_cmd)/sizeof(stop_cmd[0]);
 	
+    // Prepare the message to be sent
     struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
                                                           prf_get_task_from_id(TASK_ID_CUSTS1),
                                                           TASK_APP,
@@ -139,6 +143,7 @@ void stop_wkup_cb(void)
     req->notification = true;
     memcpy(req->value, &stop_cmd, stop_cmd_len);
 
+    // Send the message
     ke_msg_send(req);
 }
 
@@ -150,6 +155,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 {
 	switch(msgid)
 	{
+        // Check if the request is a Write Indication
         case CUSTS1_VAL_WRITE_IND:
         {
             const char hidden_msg_req[] = {'M', 'a', 'r', 'c', 'o', '?'};
@@ -159,6 +165,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
             switch (msg_param->handle)
             {
+                // Check if the message was destined to our custom service and if it matches the expected request 
                 case SVC1_IDX_CONTROL_POINT_VAL:
                     if(!memcmp(&hidden_msg_req[0], &msg_param->value[0], msg_param->length)) {
                         size_t hidden_msg_resp_len = sizeof(hidden_msg_resp)/sizeof(hidden_msg_resp[0]);
@@ -190,10 +197,12 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
+    // Enable the wakeup controller on connection
     wkupct_enable_irq(WAKEUP_PINS, WAKEUP_POLARITIES, WAKEUP_EVENTS_TO_TRIGGER,
                       WAKEUP_DEBOUNCE_MS);
 
-    wkupct_register_callback(app_wakeup_press_cb);	// sets this function as wake-up interrupt callback	
+    // Sets this function as wake-up interrupt callback	
+    wkupct_register_callback(app_wakeup_press_cb);	
 
     default_app_on_connection(connection_idx, param);
 }

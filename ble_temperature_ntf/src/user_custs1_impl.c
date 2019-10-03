@@ -46,15 +46,25 @@
 #include "user_peripheral.h"
 #include "user_periph_setup.h"
 #include "MCP9808.h"
+#include "arch_console.h"
+
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
+#include "adc.h"
+#endif
+
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
 
 ke_msg_id_t timer_temperature_ntf      		__SECTION_ZERO("retention_mem_area0"); 											//@RETENTION MEMORY
-char temperature_ntf_string[32] 					__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-double previous_temperature = -100; 			//-40 is the lowest teperature the MCP9808 can measure 
+char temperature_ntf_string[9] 			    __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
+uint8_t previous_temperature                __SECTION_ZERO("retention_mem_area0");
+#else
+double previous_temperature 								__SECTION_ZERO("retention_mem_area0"); 
+#endif
 /*
  * FUNCTION DEFINITIONS
  ****************************************************************************************
@@ -62,35 +72,45 @@ double previous_temperature = -100; 			//-40 is the lowest teperature the MCP980
  
 void user_send_temperature_ntf(void)
 {
-
-	double temperature = get_temperature();
-	
+    uint8_t length;
+    
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
+    
+        adc_config_t temp_config = {
+        .input_mode = ADC_INPUT_MODE_SINGLE_ENDED,
+        .input = ADC_INPUT_SE_TEMP_SENS,
+    };
+        
+    adc_init(&temp_config);
+    
+    int8_t temperature = adc_get_temp();
+    
+    adc_disable();
+#else
+		double temperature = get_temperature();
+#endif
+    
 	if (temperature != previous_temperature){
 	
 		previous_temperature = temperature;
-		
-		uint8_t length = snprintf(temperature_ntf_string,32,"%.4f",temperature);
-		
-			//Allocate a new message
-		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,                   //Message id
-																prf_get_task_from_id(TASK_ID_CUSTS1), 													//Target task
-																TASK_APP,                             													//Source of the message
-																custs1_val_ntf_ind_req,              												  	//The type of structure in the message,
-																																																//This structure should match the ID
-																																																//The ID's and strucures are found in custs1_task.h
-																length);                       																	//How many bytes of data will be added
+        length = snprintf(temperature_ntf_string, TEMPERATURE_DATA, SNPRINT_FORMAT, temperature);
+		//Allocate a new message
+		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
+																prf_get_task_from_id(TASK_ID_CUSTS1),
+																TASK_APP,
+																custs1_val_ntf_ind_req,
+																length);
 																
-		req->conidx = 0;                                      //Connection ID to send the data to (this application can only have one connection(0))
-		req->notification = true;                             //Data is sent as a notification and not as indication
-		req->handle = USER_IDX_TEMPERATURE_VAL_VAL;           //The handle of the characteristic we want to write to
-		req->length = length;                          				//Data length in bytes
-		memcpy(req->value, temperature_ntf_string, length);		//Copy the string to the message
+		req->conidx = 0;                                        //Connection ID to send the data to (this application can only have one connection(0))
+		req->notification = true;                               //Data is sent as a notification and not as indication
+		req->handle = USER_IDX_TEMPERATURE_VAL_VAL;             //The handle of the characteristic we want to write to
+		req->length = length;                          		    	//Data length in bytes
+		memcpy(req->value, temperature_ntf_string, length);			//Copy the string to the message
 		
-		ke_msg_send(req);                                     //Send the message to the task
+		ke_msg_send(req);                                       //Send the message to the task
 	
 	}
-
-	
+    
 	timer_temperature_ntf = app_easy_timer(NOTIFICATION_DELAY/10, user_send_temperature_ntf); //Set a timer for NOTIFICATION_DELAY ms
 																																
 }

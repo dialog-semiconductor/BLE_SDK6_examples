@@ -5,7 +5,8 @@
 
 ## Example description
 
-This SDK6 example shows how to use I2C to read the temperature data and send the temperature data via BLE notifications.
+This SDK6 example shows how to use I2C to read the temperature data and send the temperature data via BLE notifications for DA14585/14586 and DA14531.
+The example also demonstrates how to use the internal temperature sensor of the DA14531 (**only applicable on DA14531 devices**)
 
 ## HW and SW configuration
 
@@ -31,6 +32,10 @@ Hardware configurations are the same for all daughterboards.
     * Smartsnippets Studio 1.6.3.
     * SDK6.0.10
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
+
+## How to measure temperature using the DA14531 internal Sensor
+	-Select the build for DA14531
+	-Enable the CFG_USE_INTERNAL_TEMP_SENSOR definition to aquire temperature via the internal temperature sensor 
 
 ## How to run the example
 

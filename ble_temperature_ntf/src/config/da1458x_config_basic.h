@@ -202,6 +202,8 @@
 /****************************************************************************************************************/
 #undef CFG_POWER_MODE_BYPASS
 
+//#define CFG_USE_INTERNAL_TEMP_SENSOR
+
 #endif
 
 #endif // _DA1458X_CONFIG_BASIC_H_

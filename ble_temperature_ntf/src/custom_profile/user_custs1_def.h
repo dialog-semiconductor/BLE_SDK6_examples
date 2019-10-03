@@ -62,9 +62,14 @@
 
 #define USER_IDX_TEMPERATURE_VAL_UUID_128		{0x56, 0x34, 0xE0, 0xD1, 0x81, 0x54, 0x42, 0x10, 0x8E, 0xFF, 0xD2, 0xB3, 0x77, 0xE3, 0x2A, 0x77}
 
-#define USER_IDX_TEMPERATURE_VAL_CHAR_LEN 	32
+#define USER_IDX_TEMPERATURE_VAL_CHAR_LEN 	9
 
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
+#define USER_IDX_TEMPERATURE_VAL_USER_DESC	"Internal sensor temperature data"
+#else
 #define USER_IDX_TEMPERATURE_VAL_USER_DESC	"MCP9808 temperature data"
+#endif
+
 //// Service 1 of the custom server 1
 #define DEF_SVC1_UUID_128                {0x59, 0x5a, 0x08, 0xe4, 0x86, 0x2a, 0x9e, 0x8f, 0xe9, 0x11, 0xbc, 0x7c, 0x98, 0x43, 0x42, 0x18}
 

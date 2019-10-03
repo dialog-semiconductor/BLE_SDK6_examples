@@ -1,33 +1,28 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Sep 23 11:40:21 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Oct 03 14:56:12 2019
 ;VERSION 0.2
-;FILE adc_58x.o
+;FILE adc_531.o
+adc_correct_sample <= USED 0
 adc_disable <= USED 0
-adc_enable <= USED 0
+adc_get_temp_async <= USED 0
+adc_input_shift_config <= USED 0
+adc_input_shift_disable <= USED 0
+adc_input_shift_enable <= USED 0
 adc_offset_calibrate <= USED 0
 adc_register_interrupt <= USED 0
 adc_reset <= USED 0
 adc_unregister_interrupt <= USED 0
 ;FILE app.o
-active_conhdl_to_conidx <= USED 0
-active_conidx_to_conhdl <= USED 0
-app_easy_gap_advertise_stop <= USED 0
-app_easy_gap_advertise_with_timeout_stop <= USED 0
 app_easy_gap_dev_config_get_active <= USED 0
 app_easy_gap_directed_advertise_get_active <= USED 0
 app_easy_gap_directed_advertise_start <= USED 0
-app_easy_gap_disconnect <= USED 0
 app_easy_gap_get_peer_features <= USED 0
 app_easy_gap_non_connectable_advertise_get_active <= USED 0
 app_easy_gap_non_connectable_advertise_start <= USED 0
 app_easy_gap_param_update_get_active <= USED 0
-app_easy_gap_set_data_packet_length <= USED 0
 app_easy_gap_start_connection_to <= USED 0
 app_easy_gap_start_connection_to_get_active <= USED 0
 app_easy_gap_start_connection_to_set <= USED 0
 app_easy_gap_undirected_advertise_with_timeout_start <= USED 0
-app_gattc_svc_changed_cmd_send <= USED 0
-app_set_prf_srv_perm <= USED 0
-app_timer_set <= USED 0
 ;FILE app_customs.o
 app_custs1_init <= USED 0
 ;FILE app_customs_common.o
@@ -35,7 +30,6 @@ app_custs1_val_wr_validate <= USED 0
 ;FILE app_customs_task.o
 ;FILE app_default_handlers.o
 default_advertise_operation <= USED 0
-default_app_generate_static_random_addr <= USED 0
 default_app_generate_unique_static_random_addr <= USED 0
 default_app_on_disconnect <= USED 0
 ;FILE app_diss.o
@@ -51,13 +45,8 @@ app_msg_utils_api_process_handler <= USED 0
 ;FILE app_easy_timer.o
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
-;FILE app_entry_point.o
 ;FILE app_msg_utils.o
 app_msg_send_wakeup_ble <= USED 0
-;FILE app_task.o
-;FILE app_utils.o
-app_fill_random_byte_array <= USED 0
-app_get_address_type <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
@@ -68,19 +57,11 @@ arch_get_sleep_mode <= USED 0
 arch_last_rwble_evt_get <= USED 0
 arch_restore_sleep_mode <= USED 0
 arch_set_deep_sleep <= USED 0
+arch_set_hibernation <= USED 0
 ;FILE arch_system.o
-__ARM_common_ll_muluu <= USED 0
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
-calibrate_rcx20 <= USED 0
-lld_sleep_lpcycles_2_us_rcx_func <= USED 0
-lld_sleep_us_2_lpcycles_rcx_func <= USED 0
-read_rcx_freq <= USED 0
-;FILE attm_db_128.o
-;FILE custom_common.o
-;FILE custs1.o
-;FILE custs1_task.o
-;FILE diss.o
+;FILE ble_arp.o
 ;FILE gpio.o
 GPIO_ConfigurePinPower <= USED 0
 GPIO_DisablePorPin <= USED 0
@@ -97,23 +78,12 @@ GPIO_is_valid <= USED 0
 ;FILE hardfault_handler.o
 ;FILE hash.o
 hash <= USED 0
-;FILE hw_otpc_58x.o
-hw_otpc_blank <= USED 0
-hw_otpc_cancel_prepare <= USED 0
-hw_otpc_dma_prog <= USED 0
-hw_otpc_dma_read <= USED 0
-hw_otpc_fifo_prog <= USED 0
-hw_otpc_fifo_read <= USED 0
-hw_otpc_manual_prog <= USED 0
-hw_otpc_manual_read_off <= USED 0
-hw_otpc_manual_word_prog <= USED 0
-hw_otpc_num_of_rr <= USED 0
-hw_otpc_power_save <= USED 0
-hw_otpc_prepare <= USED 0
-hw_otpc_set_speed <= USED 0
-hw_otpc_tdec <= USED 0
-hw_otpc_twr <= USED 0
-hw_otpc_write_rr <= USED 0
+;FILE hw_otpc_531.o
+hw_otpc_prog <= USED 0
+hw_otpc_prog_and_verify <= USED 0
+hw_otpc_read <= USED 0
+hw_otpc_word_prog_and_verify <= USED 0
+hw_otpc_word_read <= USED 0
 ;FILE i2c.o
 i2c_master_receive_buffer_async <= USED 0
 i2c_master_transmit_buffer_async <= USED 0
@@ -140,59 +110,48 @@ i2c_wait_until_eeprom_ready <= USED 0
 dummyf <= USED 0
 ;FILE mcp9808.o
 ;FILE nmi_handler.o
-;FILE nvds.o
+;FILE otp_cs.o
+otp_cs_get_adc_diff_ge <= USED 0
+otp_cs_get_adc_diff_offset <= USED 0
+otp_cs_get_adc_offsh_ge <= USED 0
+otp_cs_get_adc_offsh_offset <= USED 0
+otp_cs_get_adc_single_ge <= USED 0
+otp_cs_get_adc_single_offset <= USED 0
+otp_cs_get_low_power_clock <= USED 0
 ;FILE otp_hdr.o
 ;FILE patch.o
-;FILE pll_vcocal_lut.o
-GPADC_init <= USED 0
-MedianOfFive <= USED 0
-check_pll_lock <= USED 0
-clear_HW_LUT <= USED 0
-find_initial_calcap_ranges <= USED 0
-meas_precharge_freq <= USED 0
-min <= USED 0
-pll_vcocal_LUT_InitUpdate <= USED 0
-save_configure_restore <= USED 0
-set_rf_cal_cap <= USED 0
-update_LUT <= USED 0
-update_calcap_max_channel <= USED 0
-update_calcap_min_channel <= USED 0
-update_calcap_ranges <= USED 0
-write_HW_LUT <= USED 0
-write_one_SW_LUT_entry <= USED 0
 ;FILE prf.o
-prf_reset_func <= USED 0
-;FILE prf_utils.o
-prf_pack_date_time <= USED 0
-prf_unpack_date_time <= USED 0
-;FILE rf_585.o
+;FILE rf_531.o
+dcoff_calibration <= USED 0
+dis_kdco_cal <= USED 0
+kdco_cal_end <= USED 0
+kdco_cal_init <= USED 0
+kdco_calibration <= USED 0
+rf_adplldig_ldo_on <= USED 0
+rf_adplldig_txmod <= USED 0
+rf_ldo_cont_mode_en <= USED 0
 rf_nfm_disable <= USED 0
 rf_nfm_enable <= USED 0
-rf_nfm_is_enabled <= USED 0
-;FILE rf_calibration.o
-DCoffsetCalibration_580 <= USED 0
-IffCalibration_580 <= USED 0
-enable_rf_diag_irq <= USED 0
-rf_calibration_580 <= USED 0
-set_gauss_modgain <= USED 0
+rf_power_down <= USED 0
 ;FILE rwble.o
 ;FILE rwip.o
-;FILE smpc_util.o
-JT_llm_p256_start_func <= USED 0
-;FILE spi_58x.o
+;FILE spi_531.o
 spi_access <= USED 0
 spi_cs_high <= USED 0
 spi_cs_low <= USED 0
 spi_disable <= USED 0
 spi_enable <= USED 0
 spi_initialize <= USED 0
+spi_master_transfer <= USED 0
 spi_receive <= USED 0
+spi_register_receive_cb <= USED 0
+spi_register_send_cb <= USED 0
+spi_register_transfer_cb <= USED 0
 spi_send <= USED 0
 spi_set_bitmode <= USED 0
 spi_set_cp_mode <= USED 0
-spi_set_cs_pad <= USED 0
+spi_set_cs_mode <= USED 0
 spi_set_irq_mode <= USED 0
-spi_set_speed <= USED 0
 spi_transaction <= USED 0
 spi_transfer <= USED 0
 ;FILE spi_flash.o
@@ -236,10 +195,13 @@ spi_flash_write_data_buffer <= USED 0
 spi_flash_write_enable_volatile <= USED 0
 spi_flash_write_status_config_reg <= USED 0
 spi_flash_write_status_reg <= USED 0
-;FILE startup_da14585_586.o
+;FILE startup_da14531.o
 ;FILE syscntl.o
-syscntl_set_dcdc_vbat3v_level <= USED 0
-;FILE system_da14585_586.o
+syscntl_dcdc_turn_off <= USED 0
+syscntl_dcdc_turn_on_in_buck <= USED 0
+syscntl_por_vbat_high_cfg <= USED 0
+syscntl_por_vbat_low_cfg <= USED 0
+;FILE system_da14531.o
 SystemCoreClockUpdate <= USED 0
 ;FILE trng.o
 ;FILE uart.o
@@ -263,11 +225,15 @@ uart_write_byte <= USED 0
 ;FILE user_periph_setup.o
 ;FILE user_peripheral.o
 ;FILE wkupct_quadec.o
+quad_decoder_clear_irq <= USED 0
 quad_decoder_disable_irq <= USED 0
 quad_decoder_enable_irq <= USED 0
 quad_decoder_init <= USED 0
 quad_decoder_register_callback <= USED 0
 quad_decoder_release <= USED 0
+wkupct2_disable_irq <= USED 0
+wkupct2_enable_irq <= USED 0
+wkupct2_register_callback <= USED 0
 wkupct_disable_irq <= USED 0
 wkupct_enable_irq <= USED 0
 wkupct_register_callback <= USED 0

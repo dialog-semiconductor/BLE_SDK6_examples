@@ -65,21 +65,30 @@
  * DEFINES
  ****************************************************************************************
  */
+#define DECIMAL "%d"
+#define FLOAT   "%.4f" 
  
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)  
+#define TEMPERATURE_DATA    (4)
+#define SNPRINT_FORMAT      DECIMAL
+#else
+#define TEMPERATURE_DATA    (9)
+#define SNPRINT_FORMAT      FLOAT
+#endif
 
 /* Duration of timer for connection parameter update request */
-#define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define APP_PARAM_UPDATE_REQUEST_TO         (1000)  	 	// 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 
 /* Advertising data update timer */
-#define APP_ADV_DATA_UPDATE_TO              (3000)   // 3000*10ms = 30sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define APP_ADV_DATA_UPDATE_TO              (3000)   		// 3000*10ms = 30sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 
 /* Manufacturer specific data constants */
 #define APP_AD_MSD_COMPANY_ID       (0xABCD)
 #define APP_AD_MSD_COMPANY_ID_LEN   (2)
-#define APP_AD_MSD_DATA_LEN         (sizeof(uint16_t))
+#define APP_AD_MSD_DATA_LEN         TEMPERATURE_DATA
 
 #define APP_PERIPHERAL_CTRL_TIMER_DELAY 100
-
+#define NOTIFICATION_DELAY 					300  								//Time between notifications in ms
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************

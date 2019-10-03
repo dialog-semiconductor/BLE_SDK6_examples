@@ -49,6 +49,13 @@
 #include "user_custs1_impl.h"
 #include "user_custs1_def.h"
 #include "co_bt.h"
+
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
+#include "adc.h"
+#else
+#include "MCP9808.h"
+#endif
+
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -100,8 +107,7 @@ static void mnf_data_init()
     mnf_data.ad_structure_type = GAP_AD_TYPE_MANU_SPECIFIC_DATA;
     mnf_data.company_id[0] = APP_AD_MSD_COMPANY_ID & 0xFF; // LSB
     mnf_data.company_id[1] = (APP_AD_MSD_COMPANY_ID >> 8 )& 0xFF; // MSB
-    mnf_data.proprietary_data[0] = 0;
-    mnf_data.proprietary_data[1] = 0;
+    memset(mnf_data.proprietary_data, 0, APP_AD_MSD_DATA_LEN);
 }
 
 /**
@@ -112,17 +118,23 @@ static void mnf_data_init()
  */
 static void mnf_data_update()
 {
-    uint16_t data;
-
-    data = mnf_data.proprietary_data[0] | (mnf_data.proprietary_data[1] << 8);
-    data += 1;
-    mnf_data.proprietary_data[0] = data & 0xFF;
-    mnf_data.proprietary_data[1] = (data >> 8) & 0xFF;
-
-    if (data == 0xFFFF) {
-         mnf_data.proprietary_data[0] = 0;
-         mnf_data.proprietary_data[1] = 0;
-    }
+    uint8_t length;
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
+    adc_config_t temp_config = {
+        .input_mode = ADC_INPUT_MODE_SINGLE_ENDED,
+        .input = ADC_INPUT_SE_TEMP_SENS,
+    };
+        
+    adc_init(&temp_config);
+    
+    int8_t temperature = adc_get_temp();
+    
+    adc_disable();
+#else
+		double temperature = get_temperature();
+#endif 
+    length = snprintf((char*)mnf_data.proprietary_data, TEMPERATURE_DATA, SNPRINT_FORMAT, temperature);
+    mnf_data.ad_structure_size = sizeof(struct mnf_specific_data_ad_structure ) - sizeof(uint8_t) - (APP_AD_MSD_DATA_LEN - length);
 }
 
 /**
@@ -237,6 +249,9 @@ void user_app_adv_start(void)
 {
     // Schedule the next advertising data update
     app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
+    
+    // Place the current temperature in the advertising string
+    mnf_data_update();
 
     struct gapm_start_advertise_cmd* cmd;
     cmd = app_easy_gap_undirected_advertise_get_active();
@@ -313,8 +328,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
             switch (msg_param->handle)
             {
                 case SVC1_IDX_TEMPERATURE_VAL_NTF_CFG:
-											user_temperature_message_handler(msg_param);
-											break;
+                    user_temperature_message_handler(msg_param);
+                    break;
 
                 default:
                     break;
@@ -332,43 +347,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                     user_svc1_rest_att_info_req_handler(msgid, msg_param, dest_id, src_id);
                     break;
              }
-        } break;
-
-        case GAPC_PARAM_UPDATED_IND:
-        {
-            // Cast the "param" pointer to the appropriate message structure
-            struct gapc_param_updated_ind const *msg_param = (struct gapc_param_updated_ind const *)(param);
-
-            // Check if updated Conn Params filled to preferred ones
-            if ((msg_param->con_interval >= user_connection_param_conf.intv_min) &&
-                (msg_param->con_interval <= user_connection_param_conf.intv_max) &&
-                (msg_param->con_latency == user_connection_param_conf.latency) &&
-                (msg_param->sup_to == user_connection_param_conf.time_out))
-            {
-            }
-        } break;
-
-        case CUSTS1_VALUE_REQ_IND:
-        {
-            struct custs1_value_req_ind const *msg_param = (struct custs1_value_req_ind const *) param;
-
-						// Send Error message
-						struct custs1_value_req_rsp *rsp = KE_MSG_ALLOC(CUSTS1_VALUE_REQ_RSP,
-																														src_id,
-																														dest_id,
-																														custs1_value_req_rsp);
-
-						// Provide the connection index.
-						rsp->conidx  = app_env[msg_param->conidx].conidx;
-						// Provide the attribute index.
-						rsp->att_idx = msg_param->att_idx;
-						// Force current length to zero.
-						rsp->length = 0;
-						// Set Error status
-						rsp->status  = ATT_ERR_APP_ERROR;
-						// Send message
-						ke_msg_send(rsp);
-
         } break;
 
         default:

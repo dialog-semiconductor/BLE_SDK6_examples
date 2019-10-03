@@ -1,7 +1,7 @@
 /**
  ****************************************************************************************
  *
- * @file user_empty_peripheral_template.c
+ * @file ble_notify_button_wakeup.c
  *
  * @brief Empty peripheral template project source code.
  *

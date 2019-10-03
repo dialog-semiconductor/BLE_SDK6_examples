@@ -198,7 +198,7 @@
 #define GPIO_SW1_PIN			 GPIO_PIN_8
 
 #define GPIO_SW3_PORT			 GPIO_PORT_0
-#define GPIO_SW3_PIN			 GPIO_PIN_9
+#define GPIO_SW3_PIN			 GPIO_PIN_11
 
 #define GPIO_SW2_PORT			 GPIO_PORT_0
 #define GPIO_SW2_PIN			 GPIO_PIN_4

@@ -82,7 +82,7 @@
 #ifdef __DA14586__
 #define APP_DIS_MODEL_NB_STR            ("DA14586")
 #else
-#define APP_DIS_MODEL_NB_STR            ("DA14585")
+#define APP_DIS_MODEL_NB_STR            ("DA14531")
 #endif
 #define APP_DIS_MODEL_NB_STR_LEN        (7)
 
@@ -98,7 +98,7 @@
 #define APP_DIS_SERIAL_NB_STR_LEN       (10)
 
 /// Hardware Revision String
-#define APP_DIS_HARD_REV_STR            ("DA14585")
+#define APP_DIS_HARD_REV_STR            ("DA14531")
 #define APP_DIS_HARD_REV_STR_LEN        (7)
 
 /// Firmware Revision

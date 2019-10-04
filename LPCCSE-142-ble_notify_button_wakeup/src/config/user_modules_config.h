@@ -61,7 +61,7 @@
 /*      that is not used included in the user's application.                           */
 /***************************************************************************************/
 #define EXCLUDE_DLG_GAP             (0)
-#define EXCLUDE_DLG_TIMER           (0)
+#define EXCLUDE_DLG_TIMER           (1)
 #define EXCLUDE_DLG_MSG             (0)
 #define EXCLUDE_DLG_SEC             (1)
 #define EXCLUDE_DLG_DISS            (1)

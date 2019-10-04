@@ -70,4 +70,4 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param );
 
 /// @} APP
 
-#endif // _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#endif // BLE_NOTIFY_BUTTON_WAKEUP_H_

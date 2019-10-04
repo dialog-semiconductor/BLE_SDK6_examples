@@ -1,7 +1,5 @@
 ﻿# DA14531 Multi-button wake-up and notify
 
----
-
 ## Example description
 
 This SDK6 example shows how to configure a DA14531 device to send notifications to a BLE central by pushing the programmable buttons on the DA145xx Pro Development Kit motherboard. It also demonstrates how the software can be configured to catch write notifications to a service and behave accordingly.
@@ -23,7 +21,7 @@ This SDK6 example shows how to configure a DA14531 device to send notifications 
  This example requires:
  - SDK v6.0.11.1009
  - **SEGGER’s J-Link** tools should be downloaded and installed.
- - Additionaly, an application like LightBlue Explorer must be used to act as a BLE central
+ - Additionaly, an application like LightBlue Explorer must be used to act as a BLE central. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.punchthrough.lightblueexplorer) or on the [App Store](https://apps.apple.com/gb/app/lightblue-explorer/id557428110).
 
 ## How to run the example
 

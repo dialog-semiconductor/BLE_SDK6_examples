@@ -194,9 +194,6 @@
  * USER DEFINITIONS
  ****************************************************************************************
  */
-#define GPIO_SW1_PORT			 GPIO_PORT_0
-#define GPIO_SW1_PIN			 GPIO_PIN_8
-
 #define GPIO_SW3_PORT			 GPIO_PORT_0
 #define GPIO_SW3_PIN			 GPIO_PIN_11
 

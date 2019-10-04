@@ -3,7 +3,7 @@
  *
  * @file ble_notify_button_wakeup.h
  *
- * @brief Empty peripheral template project header file.
+ * @brief Multi-button wake-up with BLE notification header file.
  *
  * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *

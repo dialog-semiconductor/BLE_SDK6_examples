@@ -1,20 +1,26 @@
-# DA14531 Multi-button wake-up and notify
+# DA14531 and DA14585/586 Multi-button wake-up and notify
 
 ## Example description
 
-This SDK6 example shows how to configure a DA14531 device to send notifications to a BLE central by pushing the programmable buttons on the DA145xx Pro Development Kit motherboard. It also demonstrates how the software can be configured to catch write notifications to a service and behave accordingly.
+This SDK6 example shows how to configure a DA14531 or DA14585/586 device to send notifications to a BLE central by pushing the programmable buttons on the DA145xx Pro Development Kit motherboard. It also demonstrates how the software can be configured to catch write notifications to a service and behave accordingly.
 
 ## HW and SW configuration
-- This example runs on the DA14531 Bluetooth Smart SoC devices.	
+- This example runs on the DA14531 or DA14585/586 Bluetooth Smart SoC devices.	
 - The DA145xx Pro Development kit is needed for this example.
 
-### Hardware configuration
+### Hardware configuration for the DA14531
 
 - Connect the DA145xx Development kit to the host computer.
 - Connect the P24 pin on header J2 with the second pin on header J19 as shown in the figure below (the mark indicates the first pin). Connect with a jumper the third and fourth pins.
  
 	![j19_conf](assets/ble-notify-wkup-j19_conf.png)
 
+### Hardware configuration for the DA14585/586
+
+- Connect the DA145xx Development kit to the host computer.
+- Connect with a jumper the first and second pins on the J19 header (the mark indicates the first pin). Connect also with a jumper the fourth and fifth pins, as indicated in the figure below.
+ 
+	![j19_conf_585](assets/ble-notify-wkup-j19_585_conf.png)
 
 ### Software configuration
 
@@ -30,7 +36,7 @@ For initial setup of the example please refer to [this section of the dialog sup
 ### Initial Setup
 
  - Start Keil
- - Select the DA14531 device in the box shown below 
+ - Select the DA14531, DA14585 or DA14586 device in the box shown below 
 
 	![select_box_DA14531](assets/ble-notify-wkup-select_device.png)
 

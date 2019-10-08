@@ -194,11 +194,19 @@
  * USER DEFINITIONS
  ****************************************************************************************
  */
-#define GPIO_SW3_PORT			 GPIO_PORT_0
-#define GPIO_SW3_PIN			 GPIO_PIN_11
+#if defined(__DA14531__)
+    #define GPIO_SW3_PORT			 GPIO_PORT_0
+    #define GPIO_SW3_PIN			 GPIO_PIN_11
 
-#define GPIO_SW2_PORT			 GPIO_PORT_0
-#define GPIO_SW2_PIN			 GPIO_PIN_4
+    #define GPIO_SW2_PORT			 GPIO_PORT_0
+    #define GPIO_SW2_PIN			 GPIO_PIN_4
+#else
+    #define GPIO_SW3_PORT                        GPIO_PORT_1
+    #define GPIO_SW3_PIN                         GPIO_PIN_1
+
+    #define GPIO_SW2_PORT                        GPIO_PORT_0
+    #define GPIO_SW2_PIN                         GPIO_PIN_6
+#endif
 
 /*
  * FUNCTION DECLARATIONS

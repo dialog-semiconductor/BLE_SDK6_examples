@@ -5,7 +5,7 @@
  *
  * @brief User modules configuration file.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -62,16 +62,16 @@
 /***************************************************************************************/
 #define EXCLUDE_DLG_GAP             (0)
 #define EXCLUDE_DLG_TIMER           (0)
-#define EXCLUDE_DLG_MSG             (1)
-#define EXCLUDE_DLG_SEC             (1)
-#define EXCLUDE_DLG_DISS            (1)
-#define EXCLUDE_DLG_PROXR           (1)
-#define EXCLUDE_DLG_BASS            (1)
-#define EXCLUDE_DLG_FINDL           (1)
-#define EXCLUDE_DLG_FINDT           (1)
-#define EXCLUDE_DLG_SUOTAR          (1)
-#define EXCLUDE_DLG_CUSTS1          (1)
-#define EXCLUDE_DLG_CUSTS2          (1)
+#define EXCLUDE_DLG_MSG             (0)
+#define EXCLUDE_DLG_SEC             (0)
+#define EXCLUDE_DLG_DISS            (0)
+#define EXCLUDE_DLG_PROXR           (0)
+#define EXCLUDE_DLG_BASS            (0)
+#define EXCLUDE_DLG_FINDL           (0)
+#define EXCLUDE_DLG_FINDT           (0)
+#define EXCLUDE_DLG_SUOTAR          (0)
+#define EXCLUDE_DLG_CUSTS1          (0)
+#define EXCLUDE_DLG_CUSTS2          (0)
 
 /// @} APP
 

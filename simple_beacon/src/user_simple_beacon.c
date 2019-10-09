@@ -3,9 +3,9 @@
  *
  * @file user_simple_beacon.c
  *
- * @brief Non-connectable advertising project source code.
+ * @brief User Simple Beacon source code.
  *
- * Copyright (c) 2017-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -36,6 +36,7 @@
  * @{
  ****************************************************************************************
  */
+#include "rwip_config.h"             // SW configuration
 
 /*
  * INCLUDE FILES
@@ -78,7 +79,15 @@ uint8_t added_scan_rsp_data_len                     __attribute__((section("rete
 uint8_t adv_data_cursor                             __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 uint8_t scan_rsp_data_cursor                        __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 
-bool update_adv_data                                __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+bool 	update_adv_data                             __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+
+uint8_t user_store_data[USER_DATA_LEN] 				__attribute__((section("retention_mem_area_uninit") , zero_init));  //@RETENTION MEMORY
+
+uint8_t user_store_data_len                       	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t user_store_data_counter                   	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t append_data                 			  	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+
+bool  	append_data_empty 							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS
@@ -93,21 +102,46 @@ bool update_adv_data                                __attribute__((section("rete
  */
 static void data_init()
 {
-    // Load initial advertising data and length
-    user_adv_data_len = initial_adv_data_len;
-    memcpy(user_adv_data, initial_adv_data, user_adv_data_len);
+	// Load initial advertising data and length
+	user_adv_data_len = initial_adv_data_len;
+	memcpy(user_adv_data, initial_adv_data, user_adv_data_len);
 
-    // Load initial scan response data and length
-    user_scan_rsp_data_len = initial_scan_rsp_data_len;
-    memcpy(user_scan_rsp_data, initial_scan_rsp_data, user_scan_rsp_data_len);
+	// Load initial scan response data and length
+	user_scan_rsp_data_len = initial_scan_rsp_data_len;
+	memcpy(user_scan_rsp_data, initial_scan_rsp_data, user_scan_rsp_data_len);
 
-    added_adv_data_len = 0;
-    added_scan_rsp_data_len = 0;
+	// Copy the USER_DATA into the RetRAM
+	memcpy(user_store_data, USER_DATA ,USER_DATA_LEN );
 
-    adv_data_cursor = initial_adv_data_len;
-    scan_rsp_data_cursor = initial_scan_rsp_data_len;
+	// Calculate the length of USER_DATA
+	user_store_data_len = ( sizeof( user_store_data )-1 );
 
-    update_adv_data = true;
+	added_adv_data_len = 0;
+	added_scan_rsp_data_len = 0;
+
+	adv_data_cursor = initial_adv_data_len;
+	scan_rsp_data_cursor = initial_scan_rsp_data_len;
+
+	update_adv_data = true;
+}
+
+/**
+ ****************************************************************************************
+ * @brief Checks if  user_store_data[USER_DATA_LEN] buffer is empty
+ * @return true if user_store_data[USER_DATA_LEN] empty , otherwise false
+ ****************************************************************************************
+ */
+static bool is_user_data_empty(void)
+{
+	if ( user_store_data_counter <= user_store_data_len )	
+	{
+		append_data = user_store_data[ user_store_data_counter ];
+		user_store_data_counter++ ; 
+		
+		return false;
+	}
+	
+	return true;
 }
 
 /**
@@ -118,19 +152,20 @@ static void data_init()
  */
 static bool is_adv_data_full(void)
 {
-    if ((user_adv_data_len < ADV_DATA_LEN) && update_adv_data)
-    {
-        added_adv_data_len++;
-        adv_data_cursor++;
+	if ( ( user_adv_data_len < ADV_DATA_LEN ) && update_adv_data )
+	{
+		added_adv_data_len++;
+		adv_data_cursor++;
 
-        user_adv_data[initial_adv_data_len] = added_adv_data_len;
+		user_adv_data[initial_adv_data_len] = added_adv_data_len;
 
-        user_adv_data[adv_data_cursor] = 0xA5;
-        user_adv_data_len = initial_adv_data_len + added_adv_data_len + 1;
+		user_adv_data[adv_data_cursor] = append_data;
+		user_adv_data_len = initial_adv_data_len + added_adv_data_len + 1;
 
-        return false;
-    }
-    return true;
+		return false;
+	}
+	
+	return true;
 }
 
 /**
@@ -141,71 +176,93 @@ static bool is_adv_data_full(void)
  */
 static bool is_scan_rsp_data_full(void)
 {
-    if ((user_scan_rsp_data_len < SCAN_RSP_DATA_LEN) && !update_adv_data)
-    {
-        added_scan_rsp_data_len++;
-        scan_rsp_data_cursor++;
+	if ( ( user_scan_rsp_data_len < SCAN_RSP_DATA_LEN ) && !update_adv_data )
+	{
+		added_scan_rsp_data_len++;
+		scan_rsp_data_cursor++;
 
-        user_scan_rsp_data[initial_scan_rsp_data_len] = added_scan_rsp_data_len;
+		user_scan_rsp_data[initial_scan_rsp_data_len] = added_scan_rsp_data_len;
 
-        user_scan_rsp_data[scan_rsp_data_cursor] = 0xA5;
-        user_scan_rsp_data_len = initial_scan_rsp_data_len + added_scan_rsp_data_len + 1;
+		user_scan_rsp_data[scan_rsp_data_cursor] = append_data;
+		user_scan_rsp_data_len = initial_scan_rsp_data_len + added_scan_rsp_data_len + 1;
+					
+		return false;
+	}
 
-        return false;
-    }
-    return true;
+	return true;
 }
 
 /**
- ****************************************************************************************
- * @brief Advertisement data update timer callback function.
- * @return void
- ****************************************************************************************
- */
+****************************************************************************************
+* @brief Advertisement data update timer callback function.
+* @return void
+****************************************************************************************
+*/
 static void adv_data_update_timer_cb(void)
 {
-    app_adv_data_update_timer_used = EASY_TIMER_INVALID_TIMER;
+	app_adv_data_update_timer_used = EASY_TIMER_INVALID_TIMER;
 
-    if (is_adv_data_full() && update_adv_data)
-    {
-        arch_set_pxact_gpio();
-        // Ready to switch to SCAN_RSP_DATA
-        update_adv_data = false;
+	if ( !is_user_data_empty() )			
+	{
+		if ( is_adv_data_full() && update_adv_data )
+		{
+			// Ready to switch to SCAN_RSP_DATA
+			update_adv_data = false;
+			
+			/*
+			 * Since the ADV_DATA has reached its limit (31-bytes),
+			 * we start to fill the SCAN_RSP_DATA
+			 */
+			
+			//Check for Scan Response Data length 
+			is_scan_rsp_data_full();
+			
+			/*
+			 * Stop advertising when switching from 
+			 * ADV_NONCONN_IND to ADV_SCAN_IND type and vice versa
+			 * On the fly update of the ADV_DATA or SCAN_RSP_DATA 
+			 * cannot be applied when the advertising type is dynamically changed.	
+			 */
+			
+			app_easy_gap_advertise_stop();
+		 
+			// Exit here
+			return;
+		}
 
-        // Since the ADV_DATA has reached its limit (31-bytes), we start to fill the SCAN_RSP_DATA
-        is_scan_rsp_data_full();
-        
-         arch_set_pxact_gpio();
+		if ( is_scan_rsp_data_full() && !update_adv_data)
+		{
+			// Ready to switch to ADV_DATA
+			update_adv_data = true;
+			
+			/*
+			 * Stop advertising when switching from
+			 * ADV_NONCONN_IND to ADV_SCAN_IND type and vice versa
+			 * On the fly update of the ADV_DATA or SCAN_RSP_DATA 
+			 * cannot be applied when the advertising type is dynamically changed.	
+			 */
+			
+			app_easy_gap_advertise_stop();
 
-        // Stop advertising when switching from ADV_NONCONN_IND to ADV_SCAN_IND type and vice versa
-        // On the fly update of the ADV_DATA or SCAN_RSP_DATA cannot be applied when the advertising type is dynamically changed.
-        app_easy_gap_advertise_stop();
-       
+			// Exit here
+			return;
+		}
+	}
 
-        // Exit here
-        return;
-    }
+	// Update advertising data on the fly
+	app_easy_gap_update_adv_data(user_adv_data, user_adv_data_len, user_scan_rsp_data, user_scan_rsp_data_len);
 
-    if (is_scan_rsp_data_full() && !update_adv_data)
-    {
-        // Ready to switch to ADV_DATA
-        update_adv_data = true;
-
-        // Stop advertising when switching from ADV_NONCONN_IND to ADV_SCAN_IND type and vice versa
-        // On the fly update of the ADV_DATA or SCAN_RSP_DATA cannot be applied when the advertising type is dynamically changed.
-        app_easy_gap_advertise_stop();
-
-        // Exit here
-        return;
-    }
-
-    // Update advertising data on the fly
-    app_easy_gap_update_adv_data(user_adv_data, user_adv_data_len, user_scan_rsp_data, user_scan_rsp_data_len);
-
-    // Restart timer for the next advertising update
-    app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
+	// Restart timer for the next advertising update
+	app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
 }
 
+
+/**
+ ****************************************************************************************
+ * @brief Non-connectable Advertising function.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_adv_start(void)
 {
     // Schedule the next advertising data update
@@ -227,6 +284,13 @@ void user_app_adv_start(void)
     app_easy_gap_non_connectable_advertise_start();
 }
 
+/**
+ ****************************************************************************************
+ * @brief Non-connectable advertising completion function.
+ * @param[in] status Command complete event message status
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_adv_nonconn_complete(uint8_t status)
 {
     // If advertising was canceled then update advertising data and start advertising again

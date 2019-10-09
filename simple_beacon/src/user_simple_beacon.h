@@ -3,9 +3,9 @@
  *
  * @file user_simple_beacon.h
  *
- * @brief Non-connectable advertising application header file.
+ * @brief User Simple Beacon source code. header file.
  *
- * Copyright (c) 2017-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -30,15 +30,15 @@
  ****************************************************************************************
  */
 
-#ifndef _USER_SIMPLE_B_H_
-#define _USER_SIMPLE_B_H_
+#ifndef _USER_SIMPLE_BEACON_H_
+#define _USER_SIMPLE_BEACON_H_
 
 /**
  ****************************************************************************************
  * @addtogroup APP
- * @ingroup
+ * @ingroup RICOW
  *
- * @brief
+ * @brief 
  *
  * @{
  ****************************************************************************************
@@ -49,10 +49,17 @@
  ****************************************************************************************
  */
 
-#include "gapc_task.h"                 // gap functions and messages
+#include "rwble_config.h"
 #include "app_task.h"                  // application task
+#include "gapc_task.h"                 // gap functions and messages
+#include "gapm_task.h"                 // gap functions and messages
 #include "app.h"                       // application definitions
-#include "app_callback.h"
+#include "co_error.h"                  // error code definitions
+
+/*
+ * TYPE DEFINITIONS
+ ****************************************************************************************
+ */
 
 /*
  * DEFINES
@@ -65,6 +72,10 @@
 /* Advertising data update timer */
 #define APP_ADV_DATA_UPDATE_TO              (100)    // 100*10ms = 1sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 
+// Define user data into Retention RAM
+#define USER_DATA     						("DA14585/586 & DA14531 Simple Beacon Software Example")
+#define USER_DATA_LEN        				(sizeof(USER_DATA)-1)
+
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
@@ -72,7 +83,7 @@
 
 /**
  ****************************************************************************************
- * @brief Advertising function.
+ * @brief Non-connectable Advertising function.
  * @return void
  ****************************************************************************************
 */
@@ -89,4 +100,4 @@ void user_app_adv_nonconn_complete(uint8_t status);
 
 /// @} APP
 
-#endif //_USER_SIMPLE_B_H_
+#endif // _USER_SIMPLE_BEACON_H_

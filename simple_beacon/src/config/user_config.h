@@ -5,7 +5,7 @@
  *
  * @brief User configuration file.
  *
- * Copyright (c) 2017-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -45,7 +45,7 @@
 #include "co_bt.h"
 
 /*
- * DEFINES
+ * LOCAL VARIABLES
  ****************************************************************************************
  */
 
@@ -81,10 +81,6 @@
  */
 #define USER_CFG_CNTL_PRIV_MODE     APP_CFG_CNTL_PRIV_MODE_NETWORK
 
-/*
- * VARIABLES
- ****************************************************************************************
- */
 
 /******************************************
  * Default sleep mode. Possible values are:
@@ -134,18 +130,11 @@ static const struct advertise_configuration user_adv_conf = {
     /// - GAP_GEN_DISCOVERABLE: General discoverable mode
     /// - GAP_LIM_DISCOVERABLE: Limited discoverable mode
     /// - GAP_BROADCASTER_MODE: Broadcaster mode
-    .mode = GAP_BROADCASTER_MODE,
+    .mode = GAP_GEN_DISCOVERABLE,
 
     /// Host information advertising data (GAPM_ADV_NON_CONN and GAPM_ADV_UNDIRECT)
-    /// Advertising filter policy:
     /// - ADV_ALLOW_SCAN_ANY_CON_ANY: Allow both scan and connection requests from anyone
-    /// - ADV_ALLOW_SCAN_WLST_CON_ANY: Allow both scan req from White List devices only and
-    ///   connection req from anyone
-    /// - ADV_ALLOW_SCAN_ANY_CON_WLST: Allow both scan req from anyone and connection req
-    ///   from White List devices only
-    /// - ADV_ALLOW_SCAN_WLST_CON_WLST: Allow scan and connection requests from White List
-    ///   devices only
-    .adv_filt_policy = ADV_ALLOW_SCAN_ANY_CON_WLST,
+    .adv_filt_policy = ADV_ALLOW_SCAN_ANY_CON_ANY,
 
     /// Address of peer device
     .peer_addr = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6},
@@ -180,13 +169,13 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Advertising data
-#define USER_ADVERTISE_DATA         ""
+#define USER_ADVERTISE_DATA                   ""
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)
 
 /// Scan response data
-#define USER_ADVERTISE_SCAN_RESPONSE_DATA ""
+#define USER_ADVERTISE_SCAN_RESPONSE_DATA     ""
 
 /// Scan response data length- maximum 31 bytes
 #define USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN (sizeof(USER_ADVERTISE_SCAN_RESPONSE_DATA)-1)
@@ -204,7 +193,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "DLG-NONCON"
+#define USER_DEVICE_NAME        "SIMPLE-BEACON"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)
@@ -218,14 +207,15 @@ static const struct advertise_configuration user_adv_conf = {
  */
 static const struct gapm_configuration user_gapm_conf = {
     /// Device Role: Central, Peripheral, Observer, Broadcaster or All roles. (@see enum gap_role)
-    .role = GAP_ROLE_BROADCASTER,
+    .role = GAP_ROLE_PERIPHERAL,
 
-    /// Maximal MTU
+    /// Maximal MTU. Shall be set to 23 if Legacy Pairing is used, 65 if Secure Connection is used,
+    /// more if required by the application
     .max_mtu = 23,
 
     /// Device Address Type
     .addr_type = APP_CFG_ADDR_TYPE(USER_CFG_ADDRESS_MODE),
-    /// Duration before regenerating the Random Private Address when privacy is enabled
+    /// Duration before regenerate the random private address when privacy is enabled
     .renew_dur = 15000,    // 15000 * 10ms = 150s is the minimum value
 
     /***********************
@@ -233,7 +223,7 @@ static const struct gapm_configuration user_gapm_conf = {
      ***********************
      */
 
-    /// Random Static address
+    /// Private static address
     // NOTE: The address shall comply with the following requirements:
     // - the two most significant bits of the address shall be equal to 1,
     // - all the remaining bits of the address shall NOT be equal to 1,
@@ -242,7 +232,7 @@ static const struct gapm_configuration user_gapm_conf = {
     // random static address will be automatically generated.
     .addr = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 
-    /// Device IRK used for Resolvable Private Address generation (LSB first)
+    /// Device IRK used for resolvable random BD address generation (LSB first)
     .irk = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f},
 
     /****************************
@@ -261,7 +251,7 @@ static const struct gapm_configuration user_gapm_conf = {
     /// - Bit [5]  : Service change feature present in GATT attribute database.
     /// - Bit [6]  : Reserved
     /// - Bit [7]  : Enable Debug Mode
-    .att_cfg = 0,
+    .att_cfg = GAPM_MASK_ATT_SVC_CHG_EN,
 
     /// GAP service start handle
     .gap_start_hdl = 0,
@@ -278,10 +268,10 @@ static const struct gapm_configuration user_gapm_conf = {
     .max_mps = 0,
 
     /// Maximal Tx octets (connInitialMaxTxOctets value, as defined in 4.2 Specification)
-    .max_txoctets = 251,
+    .max_txoctets = 0,
 
     /// Maximal Tx time (connInitialMaxTxTime value, as defined in 4.2 Specification)
-    .max_txtime = 2120,
+    .max_txtime = 0,
 };
 
 /*
@@ -324,19 +314,22 @@ static const struct connection_param_configuration user_connection_param_conf = 
  ****************************************************************************************
  */
 static const struct default_handlers_configuration  user_default_hnd_conf = {
-    //Configure the advertise operation used by the default handlers
-    //Possible values:
+    // Configure the advertise operation used by the default handlers
+    // Possible values:
     //  - DEF_ADV_FOREVER
     //  - DEF_ADV_WITH_TIMEOUT
     .adv_scenario = DEF_ADV_FOREVER,
 
-    //Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
-    //It is measured in timer units (3 min). Use MS_TO_TIMERUNITS macro to convert
-    //from milliseconds (ms) to timer units.
+    // Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
+    // It is measured in timer units (3 min). Use MS_TO_TIMERUNITS macro to convert
+    // from milliseconds (ms) to timer units.
     .advertise_period = MS_TO_TIMERUNITS(180000),
 
-    //Configure the security start operation of the default handlers
-    //if the security is enabled (CFG_APP_SECURITY)
+    // Configure the security start operation of the default handlers
+    // if the security is enabled (CFG_APP_SECURITY)
+    // Possible values:
+    //  - DEF_SEC_REQ_NEVER
+    //  - DEF_SEC_REQ_ON_CONNECT
     .security_request_scenario = DEF_SEC_REQ_NEVER
 };
 
@@ -445,83 +438,54 @@ static const struct central_configuration user_central_conf = {
  ****************************************************************************************
  */
 static const struct security_configuration user_security_conf = {
-    /**************************************************************************************
-     * IO capabilities (@see gap_io_cap)
-     *
-     * - GAP_IO_CAP_DISPLAY_ONLY          Display Only
-     * - GAP_IO_CAP_DISPLAY_YES_NO        Display Yes No
-     * - GAP_IO_CAP_KB_ONLY               Keyboard Only
-     * - GAP_IO_CAP_NO_INPUT_NO_OUTPUT    No Input No Output
-     * - GAP_IO_CAP_KB_DISPLAY            Keyboard Display
-     *
-     **************************************************************************************
-     */
+    // IO Capabilities
+    #if defined (USER_CFG_FEAT_IO_CAP)
+    .iocap          = USER_CFG_FEAT_IO_CAP,
+    #else
     .iocap          = GAP_IO_CAP_NO_INPUT_NO_OUTPUT,
+    #endif
 
-    /**************************************************************************************
-     * OOB information (@see gap_oob)
-     *
-     * - GAP_OOB_AUTH_DATA_NOT_PRESENT    OOB Data not present
-     * - GAP_OOB_AUTH_DATA_PRESENT        OOB data present
-     *
-     **************************************************************************************
-     */
+    // OOB Capabilities
+    #if defined (USER_CFG_FEAT_OOB)
+    .oob            = USER_CFG_FEAT_OOB,
+    #else
     .oob            = GAP_OOB_AUTH_DATA_NOT_PRESENT,
+    #endif
 
-    /**************************************************************************************
-     * Authentication (@see gap_auth)
-     *
-     * - GAP_AUTH_REQ_NO_MITM_NO_BOND     No MITM No Bonding
-     * - GAP_AUTH_REQ_NO_MITM_BOND        No MITM Bonding
-     * - GAP_AUTH_REQ_MITM_NO_BOND        MITM No Bonding
-     * - GAP_AUTH_REQ_MITM_BOND           MITM and Bonding
-     *
-     **************************************************************************************
-     */
-    .auth           = GAP_AUTH_REQ_NO_MITM_BOND,
+    // Authentication Requirements
+    #if defined (USER_CFG_FEAT_AUTH_REQ)
+    .auth           = USER_CFG_FEAT_AUTH_REQ,
+    #else
+    .auth           = GAP_AUTH_NONE,
+    #endif
 
-    /**************************************************************************************
-     * Device security requirements (minimum security level). (@see gap_sec_req)
-     *
-     * - GAP_NO_SEC                       No security (no authentication and encryption)
-     * - GAP_SEC1_NOAUTH_PAIR_ENC         Unauthenticated pairing with encryption
-     * - GAP_SEC1_AUTH_PAIR_ENC           Authenticated pairing with encryption
-     * - GAP_SEC2_NOAUTH_DATA_SGN         Unauthenticated pairing with data signing
-     * - GAP_SEC2_AUTH_DATA_SGN           Authentication pairing with data signing
-     * - GAP_SEC_UNDEFINED                Unrecognized security
-     *
-     **************************************************************************************
-     */
-    .sec_req        = GAP_NO_SEC,
-
-     /// Encryption key size (7 to 16) - LTK Key Size
+    // LTK size
+    #if defined (USER_CFG_FEAT_KEY_SIZE)
+    .key_size       = USER_CFG_FEAT_KEY_SIZE,
+    #else
     .key_size       = KEY_LEN,
+    #endif
 
-    /**************************************************************************************
-     * Initiator key distribution (@see gap_kdist)
-     *
-     * - GAP_KDIST_NONE                   No Keys to distribute
-     * - GAP_KDIST_ENCKEY                 LTK (Encryption key) in distribution
-     * - GAP_KDIST_IDKEY                  IRK (ID key)in distribution
-     * - GAP_KDIST_SIGNKEY                CSRK (Signature key) in distribution
-     * - Any combination of the above
-     *
-     **************************************************************************************
-     */
-    .ikey_dist      = GAP_KDIST_SIGNKEY,
+    // Initiator key distribution
+    #if defined (USER_CFG_FEAT_INIT_KDIST)
+    .ikey_dist      = USER_CFG_FEAT_INIT_KDIST,
+    #else
+    .ikey_dist      = GAP_KDIST_NONE,
+    #endif
 
-    /**************************************************************************************
-     * Responder key distribution (@see gap_kdist)
-     *
-     * - GAP_KDIST_NONE                   No Keys to distribute
-     * - GAP_KDIST_ENCKEY                 LTK (Encryption key) in distribution
-     * - GAP_KDIST_IDKEY                  IRK (ID key)in distribution
-     * - GAP_KDIST_SIGNKEY                CSRK (Signature key) in distribution
-     * - Any combination of the above
-     *
-     **************************************************************************************
-     */
+    // Responder key distribution
+    #if defined (USER_CFG_FEAT_RESP_KDIST)
+    .rkey_dist      = USER_CFG_FEAT_RESP_KDIST,
+    #else
     .rkey_dist      = GAP_KDIST_ENCKEY,
+    #endif
+
+    // Security requirements (minimum security level)
+    #if defined (USER_CFG_FEAT_SEC_REQ)
+    .sec_req        = USER_CFG_FEAT_SEC_REQ,
+    #else
+    .sec_req        = GAP_NO_SEC,
+    #endif
 };
 
 #endif // _USER_CONFIG_H_

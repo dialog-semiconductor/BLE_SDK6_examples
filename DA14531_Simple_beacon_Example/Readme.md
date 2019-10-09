@@ -1,6 +1,6 @@
 ------
 
-# DA14531 - DA14585/6 Simple Beacon Example 
+# DA14531 - DA14585/586 Simple Beacon Example 
 
 ------
 
@@ -15,12 +15,11 @@ For getting more information about the Non-Connectable Advertising, please refer
 ## HW and SW configuration
 
 - **Hardware configuration**
-  - This example runs on the DA14531, DA14585, DA14586 Bluetooth Smart SoC devices.
-  - The Basic / Pro Development kit is needed for this example with default jumper configuration..
+  - This example runs on the DA14531, DA14585/586 Bluetooth Smart SoC devices.
+  - The DA1458x / DA145xx Pro Development kit is needed for this example with default jumper configuration..
   - Connect the USB Development kit to the host computer.
 - **Software configuration**
-  - SmartSnippets Studio v2.0.x.
-  - SDK6.0.1x.
+  - SDK6.0.12 or later
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - A smartphone with a BLE scanning app (for example **BLE scanner** on Android or **Lightblue** on IOS).
   - A BLE Sniffing tool is also useful; though not mandatory .
@@ -29,7 +28,10 @@ For getting more information about the Non-Connectable Advertising, please refer
 
 ### Initial Setup
 
-For the initial setup, please refer to [this section](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da1458x-example-setup.pdf").
+- For the initial setup, please refer to [this section](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+
+- For the DA14585/586 getting started guide you can refer to this [link](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 ### Compile & Run
 
@@ -38,7 +40,7 @@ For the initial setup, please refer to [this section](https://www.dialog-semicon
 - Define the data that is to append into ``Adverting`` or ``Scan Response`` data packet by configuring the **USER_DATA** macro in `user_simple_beacon.h`. By default, **USER_DATA** is defined as follow :
 
 ```c
-#define USER_DATA  ("DA14585/6 & DA14531 Simple Beacon Software Example")
+#define USER_DATA  ("DA14585/586 & DA14531 Simple Beacon Software Example")
 ```
 
 ***Note:***
@@ -60,10 +62,35 @@ memcpy(user_store_data, USER_DATA ,USER_DATA_LEN );
 - The firmware checks whether the advertising data are full or not. If not, the next item from ``user_store_data[]`` will be appended into them. 
 - Once the Advertising data packet is full and given that more data are present in ``user_store_data[]` , the next user data will be stored into the Scan Response data packet (**SCAN_RESP**).
 
+
+To verify please take a look at the BLE sniffer log data
+
+1. Initially only the the Device Name is placed into Adverising Data.
+
+	![device_name](assets\shapes\device_name.PNG)
+
+2. Advertising Data are now full.
+
+	![non_conn](assets\shapes\non_conn.PNG)
+
+3. Switching from ADV_NONCONN_IND to ADV_SCAN_IND.
+
+	![adv_ind](assets\shapes\adv_ind.PNG)
+
+4. Central sends a scan request (SCAN_REQ) in order to receive a scan response (SCAN_RESP) from the advertiser.
+
+	![scan_req](assets\shapes\scan_req.PNG)
+
+5. Full Scan Response Data.
+
+	![scan_resp](assets\shapes\scan_resp.PNG)
+
+
 ## Known Limitations
 
-- Refer to the following application note for [known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software"Forum link").
+- Refer to the following application note for [DA1458x known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf  "known hardware limitations").
+- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
 
 ## License
 

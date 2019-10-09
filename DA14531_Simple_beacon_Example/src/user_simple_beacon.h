@@ -3,7 +3,7 @@
  *
  * @file user_simple_beacon.h
  *
- * @brief Empty peripheral template project header file.
+ * @brief User Simple Beacon source code. header file.
  *
  * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
@@ -30,8 +30,8 @@
  ****************************************************************************************
  */
 
-#ifndef _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
-#define _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#ifndef _USER_SIMPLE_BEACON_H_
+#define _USER_SIMPLE_BEACON_H_
 
 /**
  ****************************************************************************************
@@ -55,16 +55,6 @@
 #include "gapm_task.h"                 // gap functions and messages
 #include "app.h"                       // application definitions
 #include "co_error.h"                  // error code definitions
- 
-
-/****************************************************************************
-Add here supported profiles' application header files.
-i.e.
-#if (BLE_DIS_SERVER)
-#include "app_dis.h"
-#include "app_dis_task.h"
-#endif
-*****************************************************************************/
 
 /*
  * TYPE DEFINITIONS
@@ -82,21 +72,32 @@ i.e.
 /* Advertising data update timer */
 #define APP_ADV_DATA_UPDATE_TO              (100)    // 100*10ms = 1sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 
-//Define user data into Retention RAM
-#define USER_DATA     											("DA14585/6 & DA14531 Simple Beacon Software Example")
-//#define USER_DATA     											("dialog")
-#define USER_DATA_LEN        								(sizeof(USER_DATA)-1)
+// Define user data into Retention RAM
+#define USER_DATA     						("DA14585/586 & DA14531 Simple Beacon Software Example")
+#define USER_DATA_LEN        				(sizeof(USER_DATA)-1)
 
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
  */
 
-
+/**
+ ****************************************************************************************
+ * @brief Non-connectable Advertising function.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_adv_start(void);
 
+/**
+ ****************************************************************************************
+ * @brief Non-connectable advertising completion function.
+ * @param[in] status Command complete event message status
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_adv_nonconn_complete(uint8_t status);
 
 /// @} APP
 
-#endif // _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#endif // _USER_SIMPLE_BEACON_H_

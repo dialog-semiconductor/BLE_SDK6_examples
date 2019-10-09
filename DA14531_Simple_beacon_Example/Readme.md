@@ -67,23 +67,23 @@ To verify please take a look at the BLE sniffer log data
 
 1. Initially only the the Device Name is placed into Adverising Data.
 
-	![device_name](assets\shapes\device_name.PNG)
+	![device_name](assets\device_name.PNG)
 
 2. Advertising Data are now full.
 
-	![non_conn](assets\shapes\non_conn.PNG)
+	![non_conn](assets\non_conn.PNG)
 
 3. Switching from ADV_NONCONN_IND to ADV_SCAN_IND.
 
-	![adv_ind](assets\shapes\adv_ind.PNG)
+	![adv_ind](assets\adv_ind.PNG)
 
 4. Central sends a scan request (SCAN_REQ) in order to receive a scan response (SCAN_RESP) from the advertiser.
 
-	![scan_req](assets\shapes\scan_req.PNG)
+	![scan_req](assets\scan_req.PNG)
 
 5. Full Scan Response Data.
 
-	![scan_resp](assets\shapes\scan_resp.PNG)
+	![scan_resp](assets\scan_resp.PNG)
 
 
 ## Known Limitations

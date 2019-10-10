@@ -156,22 +156,23 @@ def build_uvoptx_element_debugopt(xml_sub_element):
 	
 	tree = ET.parse(dlg_uvoptx_file)
 	root = tree.getroot()
-	
+
 	for t_sub_element in root.findall(xml_sub_element):
 		#print(t_sub_element.text)
 		temp_text = t_sub_element.text
-		my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[0],1)
-		#print(my_t_list)
-		if(len(my_t_list)> 1):
-			single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + DLG_FIND_STR_PATTERN[0] + my_t_list[-1]	
-			#print(single_text)
-			t_sub_element.text = single_text	
-		else:
-			my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[2],1)
+		if t_sub_element.tag == XML_TAG[4] and t_sub_element.text != None:
+			my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[0],1)
+			#print(my_t_list)
 			if(len(my_t_list)> 1):
-				single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + SHARED_FOLDER_PATH + my_t_list[-1]			
+				single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + DLG_FIND_STR_PATTERN[0] + my_t_list[-1]	
 				#print(single_text)
 				t_sub_element.text = single_text	
+			else:
+				my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[2],1)
+				if(len(my_t_list)> 1):
+					single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + SHARED_FOLDER_PATH + my_t_list[-1]			
+					#print(single_text)
+					t_sub_element.text = single_text	
 	# tree.write(dlg_uvoptx_file)
 	
 	# x = '''<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\r\n'''

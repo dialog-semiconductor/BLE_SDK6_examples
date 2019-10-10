@@ -18,7 +18,7 @@ The DA14531 product family incorporates three identical HW timer blocks.
 
 <center>
  <figure>
-  <img src="assets\timer0_block_diagram.png" width="90%" height="90%" >
+  <img src="assets\timer0_block_diagram.png" width="60%" height="60%" >
   <figcaption><i><b>Timer 0 Block Diagram</b></i></figcaption>
 </figure>
 </center>
@@ -27,7 +27,7 @@ The DA14531 product family incorporates three identical HW timer blocks.
 
 <center>
  <figure>
-  <img src="assets\timer1_block_diagram.png" width="90%" height="90%">
+  <img src="assets\timer1_block_diagram.png" width="60%" height="60%">
   <figcaption><i><b>Timer 1 Block Diagram</b></i></figcaption>
 </figure>
 </center>
@@ -36,7 +36,7 @@ The DA14531 product family incorporates three identical HW timer blocks.
 
 <center>
  <figure>
-  <img src="assets\timer2_block_diagram.png" width="90%" height="90%">
+  <img src="assets\timer2_block_diagram.png" width="60%" height="60%">
   <figcaption><i><b>Timer 2 Block Diagram</b></i></figcaption>
 </figure>
 </center>

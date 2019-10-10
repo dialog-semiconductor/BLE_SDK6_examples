@@ -29,7 +29,6 @@
  *
  ****************************************************************************************
  */
-#include <stdio.h>
 #include "systick.h" 
 #include "uart_utils.h"
 #include "user_periph_setup.h"
@@ -40,9 +39,8 @@
 /* User constants                                                                   		  	  				*/
 /****************************************************************************************/
  const uint32_t 	BLINK_INTERVAL 				= 500000;			// In usec. 
- const uint32_t	LONG_PRESS_TIME 		= 3000000;  	// In usec	
- const uint8_t 		DEBOUNCE_MS 					= 30;			  		// In ms
- const bool 				SYSTICK_ENABLE_T   	= 1; 
+ const uint32_t		LONG_PRESS_TIME 			= 3000000;  	// In usec	
+ const uint8_t 		DEBOUNCE_MS 					= 30;			  	// In ms 
  
 // Interrupt initialization function declarations
 void systick_ISR(void);
@@ -97,7 +95,7 @@ void Led_blink(void)
 				GPIO_SetActive(LED_PORT, LED_PIN);
 				printf_string(UART,"\n\r=> LED ON  <=");
 		}
-		systick_start(BLINK_INTERVAL, SYSTICK_ENABLE_T);
+		systick_start(BLINK_INTERVAL, true);
 }
 
 /**
@@ -157,7 +155,7 @@ void GPIO_ISR(void)
 		three_second_push = 0; 																													
 		systick_stop(); 																																				
 		systick_register_callback(systick_ISR);																			
-		systick_start(LONG_PRESS_TIME, SYSTICK_ENABLE_T);		
+		systick_start(LONG_PRESS_TIME, true);		
 }
 	
 /**
@@ -192,7 +190,7 @@ void set_timer_interrupt(void)
  */
 void set_positive_GPIO_interrupt(void)
 {
-		GPIO_EnableIRQ(GPIO_SW3_PORT, GPIO_SW3_PIN, GPIO0_IRQn, true, true, DEBOUNCE_MS);
+		GPIO_EnableIRQ(GPIO_SW_PORT, GPIO_SW_PIN, GPIO0_IRQn, true, true, DEBOUNCE_MS);
 		GPIO_SetIRQInputLevel(GPIO0_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
 		GPIO_RegisterCallback(GPIO0_IRQn, GPIO_ISR);
 }
@@ -205,7 +203,7 @@ void set_positive_GPIO_interrupt(void)
  */
 void set_negative_GPIO_interrupt(void)
 {
-		GPIO_EnableIRQ(GPIO_SW3_PORT, GPIO_SW3_PIN, GPIO1_IRQn, true, true, DEBOUNCE_MS);
+		GPIO_EnableIRQ(GPIO_SW_PORT, GPIO_SW_PIN, GPIO1_IRQn, true, true, DEBOUNCE_MS);
 		GPIO_SetIRQInputLevel(GPIO1_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
 		GPIO_RegisterCallback(GPIO1_IRQn, negative_GPIO_ISR);
 }

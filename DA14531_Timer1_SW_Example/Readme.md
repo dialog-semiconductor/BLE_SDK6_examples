@@ -1,12 +1,14 @@
 ------
 
+------
+
 # DA14531 Timer1 Software Example
 
 ------
 
 ## Example description
 
-This Software Example demonstrates using TIMER1. In this demonstration, TIMER1 is configured to Counting and Capturing mode
+This Software Example demonstrates using **TIMER1**. In this demonstration, TIMER1 is configured to Counting and Capturing mode
 
 ## Introduction
 
@@ -16,7 +18,7 @@ The DA14531 product family incorporates three identical HW timer blocks.
 
 <center>
  <figure>
-  <img src="C:\Users\pmoustak\Desktop\GIT\DA14531_DA14585_6\SDK_6.0.12.1015\projects\target_apps\peripheral_examples\timer1\Timer1_SW_Example\assets\timer0_block_diagram.png" width="90%" height="90%" >
+  <img src="C:\Users\pmoustak\Desktop\GIT\DA14531_DA14585_6\SDK_6.0.12.1015\projects\target_apps\peripheral_examples\timer1\DA14531_Timer1_SW_Example\assets\timer0_block_diagram.png" width="90%" height="90%" >
   <figcaption><i><b>Timer 0 Block Diagram</b></i></figcaption>
 </figure>
 </center>
@@ -25,7 +27,7 @@ The DA14531 product family incorporates three identical HW timer blocks.
 
 <center>
  <figure>
-  <img src="C:\Users\pmoustak\Desktop\GIT\DA14531_DA14585_6\SDK_6.0.12.1015\projects\target_apps\peripheral_examples\timer1\Timer1_SW_Example\assets\timer1_block_diagram.png" width="90%" height="90%">
+  <img src="C:\Users\pmoustak\Desktop\GIT\DA14531_DA14585_6\SDK_6.0.12.1015\projects\target_apps\peripheral_examples\timer1\DA14531_Timer1_SW_Example\assets\timer1_block_diagram.png" width="90%" height="90%">
   <figcaption><i><b>Timer 1 Block Diagram</b></i></figcaption>
 </figure>
 </center>
@@ -34,7 +36,7 @@ The DA14531 product family incorporates three identical HW timer blocks.
 
 <center>
  <figure>
-  <img src="C:\Users\pmoustak\Desktop\GIT\DA14531_DA14585_6\SDK_6.0.12.1015\projects\target_apps\peripheral_examples\timer1\Timer1_SW_Example\assets\timer2_block_diagram.png" width="90%" height="90%">
+  <img src="C:\Users\pmoustak\Desktop\GIT\DA14531_DA14585_6\SDK_6.0.12.1015\projects\target_apps\peripheral_examples\timer1\DA14531_Timer1_SW_Example\assets\timer2_block_diagram.png" width="90%" height="90%">
   <figcaption><i><b>Timer 2 Block Diagram</b></i></figcaption>
 </figure>
 </center>
@@ -120,10 +122,10 @@ In the table below, the user Macro Definition are illustrated:
 #undef    CAPTURING_MODE
 #undef    TIMER0_SOURCE
 ```
-- The timer1_general_user_callback_function() callback function is excecuted upon each timer interrupt and the on board LED is changing state
 
+- The `timer1_general_user_callback_function()` callback function is executed upon each timer interrupt and the on board LED is changing state
 
-### Coupturing Mode - Timer0 Source
+### Capturing Mode - Timer0 Source
 
 - Use the following macro configuration in user_timer1.h:
 
@@ -142,20 +144,21 @@ In the table below, the user Macro Definition are illustrated:
 ```
 
 - Define the Timer0 expiration reload value. Default value is 200:
+
 ```c
 #define TIMER0_EXPIRATION_COUNTER_RELOAD_VALUE     200
 ```
 
 - An interrupt is generated in every positive edge of the Timer0 PWM signal and 
-- The timer1_event1_user_callback_function() callback function is excecuted upon each timer interrupt and the on LED is changing state in every positive edge.
+- The `timer1_event1_user_callback_function()` callback function is executed upon each timer interrupt and the on LED is changing state in every **positive edge**.
 
 ![timer1_capturing_cb](assets\timer1_capturing_cb.PNG)
 
-### Coupturing Mode - External PWM Source
+### Capturing Mode - External PWM Source
 
-Instead of using Timer0 to genarate a PWM, you could also use an external PWM source applied on CAPTURE GPIO.
+Instead of using Timer0 to generate a PWM, you could also use **an external PWM source** applied on **CAPTURE GPIO**.
 
-- Use the following macro configuration in user_timer1.h:
+- Use the following macro configuration in `user_timer1.h`:
 
 ```c
 #undef        COUNTING_MODE
@@ -167,7 +170,6 @@ Instead of using Timer0 to genarate a PWM, you could also use an external PWM so
 
 - Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
 - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-
 
 ## License
 

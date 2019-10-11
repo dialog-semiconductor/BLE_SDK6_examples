@@ -75,6 +75,14 @@ void stop_wkup_cb(void);
  ****************************************************************************************
 */
 
+/**
+ ****************************************************************************************
+ * @brief Callback function of the wake-up controller. This function will check which
+ *        button was pressed and it will assign the appropriate callback to be called 
+ *        when the BLE in operational
+ * @return void
+ ****************************************************************************************
+ */
 void app_wakeup_press_cb(void)
 {
 #if !defined (__DA14531__)
@@ -105,6 +113,13 @@ void app_wakeup_press_cb(void)
 
 }
 
+/**
+ ****************************************************************************************
+ * @brief Callback function to send the message "Move!". This callback will be called when
+ *        the SW3 button is pressed
+ * @return void
+ ****************************************************************************************
+ */
 void move_wkup_cb(void)
 {
     const char up_cmd[] = {'M', 'o', 'v', 'e', '!'};
@@ -126,6 +141,13 @@ void move_wkup_cb(void)
     ke_msg_send(req);
 }
 
+/**
+ ****************************************************************************************
+ * @brief Callback function to send the message "Stop!". This callback will be called when
+ *        the SW2 button is pressed
+ * @return void
+ ****************************************************************************************
+ */
 void stop_wkup_cb(void)
 {
     const char stop_cmd[] = {'S', 't', 'o', 'p', '!'};
@@ -147,7 +169,16 @@ void stop_wkup_cb(void)
     ke_msg_send(req);
 }
 
-/* User defined behavior for handling client's requests */
+/**
+ ****************************************************************************************
+ * @brief User defined function which processes Write Notifications.
+ * @param[in] msgid   Type of the message
+ * @param[in] param   Pointer to the message to be processed
+ * @param[in] dest_id Destination task id
+ * @param[in] src_id  Source task id
+ * @return void
+ ****************************************************************************************
+ */
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,
@@ -195,6 +226,14 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 	}
 }
 
+/**
+ **************************************************************************************************
+ * @brief User defined function which which will be called when the device establishes a connection
+ * @param[in] connection_idx Connection ID number
+ * @param[in] param          Pointer to GAPC_CONNECTION_REQ_IND message
+ * @return void
+ **************************************************************************************************
+ */
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
     // Enable the wakeup controller on connection
@@ -207,6 +246,13 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
     default_app_on_connection(connection_idx, param);
 }
 
+/**
+ *********************************************************************************************
+ * @brief User defined function which which will be called when the device closes a connection
+ * @param[in] param Pointer to GAPC_DISCONNECT_IND message
+ * @return void
+ *********************************************************************************************
+ */
 void user_on_disconnect( struct gapc_disconnect_ind const *param )
 {
     default_app_on_disconnect(param);

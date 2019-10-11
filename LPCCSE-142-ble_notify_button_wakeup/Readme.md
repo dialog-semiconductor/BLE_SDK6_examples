@@ -1,23 +1,23 @@
-# DA14531 and DA14585/586 Multi-button wake-up and notify
+# BLE Notifications on Button Press with Wake-up Controller
 
 ## Example description
 
-This SDK6 example shows how to configure a DA14531 or DA14585/586 device to send notifications to a BLE central by pushing the programmable buttons on the DA145xx Pro Development Kit motherboard. It also demonstrates how the software can be configured to catch write notifications to a service and behave accordingly.
+This example shows how to configure a DA14531 or DA14585/586 device to send notifications to a BLE central by button presses. The application advertises its presence and waits for a connection. When a central is connected and enables notifications, the application will be able to deliver notifications when the user presses one of the programmable buttons. The service also waits for a predefined message to which it will respond. 
 
 ## HW and SW configuration
 - This example runs on the DA14531 or DA14585/586 Bluetooth Smart SoC devices.	
-- The DA145xx Pro Development kit is needed for this example.
+- The DA14531 Pro Development Kit is needed for this example. 
 
 ### Hardware configuration for the DA14531
 
-- Connect the DA145xx Development kit to the host computer.
+- Connect the USB1 connector of the DA14531 Pro Development Kit to the host computer.
 - Connect the P24 pin on header J2 with the second pin on header J19 as shown in the figure below (the mark indicates the first pin). Connect with a jumper the third and fourth pins.
  
 	![j19_conf](assets/ble-notify-wkup-j19_conf.png)
 
 ### Hardware configuration for the DA14585/586
 
-- Connect the DA145xx Development kit to the host computer.
+- Connect the USB1 connector of the DA14531 Pro Development Kit to the host computer.
 - Connect with a jumper the first and second pins on the J19 header (the mark indicates the first pin). Connect also with a jumper the fourth and fifth pins, as indicated in the figure below.
  
 	![j19_conf_585](assets/ble-notify-wkup-j19_585_conf.png)
@@ -25,13 +25,13 @@ This SDK6 example shows how to configure a DA14531 or DA14585/586 device to send
 ### Software configuration
 
  This example requires:
- - SDK v6.0.11.1009
+ - SDK v6.0.12 or later
  - **SEGGER’s J-Link** tools should be downloaded and installed.
  - Additionaly, an application like LightBlue Explorer must be used to act as a BLE central. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.punchthrough.lightblueexplorer) or on the [App Store](https://apps.apple.com/gb/app/lightblue-explorer/id557428110).
 
 ## How to run the example
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
+For initial setup of the example please refer to [this section of the dialog support portal](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
 
 ### Initial Setup
 
@@ -77,10 +77,10 @@ For initial setup of the example please refer to [this section of the dialog sup
 ## Known Limitations
 
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 
 ## License

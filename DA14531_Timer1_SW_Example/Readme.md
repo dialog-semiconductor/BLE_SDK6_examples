@@ -8,11 +8,11 @@
 
 ## Example description
 
-This Software Example demonstrates using **TIMER1**. In this demonstration, TIMER1 is configured to Counting and Capturing mode
+This Software Example demonstrates using **TIMER1**. In this demonstration, TIMER1 is configured to Counting and Capturing mode.
 
 ## Introduction
 
-The DA14531 product family incorporates three identical HW timer blocks. 
+The DA14531 product family incorporates three identical HW timer blocks: 
 
 1. **Timer 0** is a 16-bit general purpose software programmable timer, which has the ability of generating Pulse Width Modulated signals, namely PWM0 and PWM1.
 
@@ -23,7 +23,7 @@ The DA14531 product family incorporates three identical HW timer blocks.
 </figure>
 </center>
 
-2. **Timer 1** is an 11-bit timer being able to count up or down. Is supports Counting and Input Campturing mode and it could be enabled in sleep as the vclock source is selectable betweeen System Clock (sys_clk) and Low Power Clock (lp_clk))
+2. **Timer 1** is an 11-bit timer being able to count up or down. It supports Counting and Input Capturing mode and it could be enabled in sleep as the clock source is selectable between System Clock (sys_clk) and Low Power Clock (lp_clk).
 
 <center>
  <figure>
@@ -41,7 +41,7 @@ The DA14531 product family incorporates three identical HW timer blocks.
 </figure>
 </center>
 
-For getting more information about the HW Timers on DA14531, please refer datasheet.
+For getting more information about the HW Timers on DA14531, please refer to the datasheet.
 
 ## Software Configuration
 
@@ -56,7 +56,7 @@ For getting more information about the HW Timers on DA14531, please refer datash
 - Connect the USB Development kit to the host computer.
 - Logic Analyzer would be very helpful for this demonstration
 - In case of **Counting Mode**, jumpers should be placed on default setup
-- In case of **Capturing Mode** , jumpers should be placed on default setup, plus extra wiring from P27 to P21 
+- In case of **Capturing Mode**, jumpers should be placed on default setup, plus extra wiring from P27 to P21 
 
 ## How to run the example
 
@@ -64,17 +64,17 @@ For getting more information about the HW Timers on DA14531, please refer datash
 
 For initial setup of the example please refer to [this section of the dialog support portal](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
 
-### Complile & Run
+### Compile & Run
 
 - Νavigate to project_environment folder and open the Keil project
-- Compile and launch the example. You could download the firmware either into System-RAM or into SPI Flash with the usage of SPI Flash programmer from SmartSnippets Toolbox. When booting from SPI Flash, jumpers should be placed on on standard SPI flash setup.
+- Compile and launch the example. You could download the firmware either into System-RAM or into SPI Flash with the usage of SPI Flash programmer from SmartSnippets Toolbox. When booting from SPI Flash, jumpers should be placed on standard SPI flash setup.
 
 ### Macro Definitions
 
-In the table below, the user Macro Definition are illustrated:
+In the table below, the user macro definitions are illustrated:
 
 <table>
-  <caption> <b> <i> Macros Definitions</i></b></caption>
+  <caption> <b> <i> Macro Definitions</i></b></caption>
 <thead>
   <tr class="header">
   <th style="text-align: left;">Macro</th>
@@ -88,11 +88,11 @@ In the table below, the user Macro Definition are illustrated:
   </tr>
   <tr class="even">
   <td style="text-align: left;">CAPTURING_MODE</td>
-  <td style="text-align: left;">Enabling CApturing Mode - PWM should be applied on CAPTURE GPIO</td>
+  <td style="text-align: left;">Enabling Capturing Mode - PWM should be applied on CAPTURE GPIO</td>
   </tr>
   <tr class="even">
   <td style="text-align: left;">TIMER0_SOURCE</td>
-  <td style="text-align: left;">Use Timer0 as PWM source. If is undefined, external PWM source should be applied. </td>
+  <td style="text-align: left;">Use Timer0 as PWM source. If it is undefined, external PWM source should be applied. </td>
   </tr>
   <tr class="odd">
   <td style="text-align: left;">TIMER_ON</td>
@@ -135,7 +135,7 @@ In the table below, the user Macro Definition are illustrated:
 #define       TIMER0_SOURCE
 ```
 
-- The default Timer0 PWM configuration are the following. You can chenge them according your application
+- The default Timer0 PWM configurations are the following. You can change them according to your application
 
 ```c
 #define     TIMER_ON        1000
@@ -149,8 +149,8 @@ In the table below, the user Macro Definition are illustrated:
 #define TIMER0_EXPIRATION_COUNTER_RELOAD_VALUE     200
 ```
 
-- An interrupt is generated in every positive edge of the Timer0 PWM signal and 
-- The `timer1_event1_user_callback_function()` callback function is executed upon each timer interrupt and the on LED is changing state in every **positive edge**.
+- An interrupt is generated on every positive edge of the Timer0 PWM signal and 
+- The `timer1_event1_user_callback_function()` callback function is executed upon each timer interrupt and the on LED is changing state on every **positive edge**.
 
 ![timer1_capturing_cb](assets\timer1_capturing_cb.PNG)
 

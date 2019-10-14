@@ -43,11 +43,10 @@
  */
 #include "wkupct_quadec.h" 
 #include "user_wakeup.h"
-#include "arch.h"
 #include "user_periph_setup.h"
-#include "uart.h"
 #include "uart_utils.h"
 #include "user_barebone.h"
+
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -64,6 +63,7 @@
  * FUNCTION DEFINITIONS
  ****************************************************************************************
 */
+
 #if defined(__DA14531__)
 /**
  ****************************************************************************************
@@ -71,7 +71,7 @@
  * @return void
  ****************************************************************************************
  */
-void reset_event_counter(void){
+void user_reset_event_counter(void){
 
    SetWord16(WKUP_IRQ_STATUS_REG, WKUP_CNTR_RST);
 
@@ -84,7 +84,7 @@ void reset_event_counter(void){
  * @return void
  ****************************************************************************************
  */
-void app_wakeup_press_cb(void)
+void user_app_wakeup_press_cb(void)
 {
 	SetBits16(WKUP_CTRL_REG, WKUP_ENABLE_IRQ, INTERRUPT_ENABLE); //Resets interupt
 	if (arch_ble_ext_wakeup_get())
@@ -138,15 +138,15 @@ void app_wakeup_press_cb(void)
 		
 	}                                                               
 	#if defined(__DA14531__)
-	reset_event_counter(); // When callback is triggerd the event counter is not set to 0 for the DA14531, that is why this function is called. 
-	#endif								 // For the DA14585/6 the event counter is set to 0 even before reaching this (app_wakeup_press_cb) callback funtion.
+		user_reset_event_counter(); // When callback is triggerd the event counter is not set 0 for the 531, that is why this function is called. 
+	#endif								 	 			// For the 585 the event counter is set to 0 even before reaching this (user_app_wakeup_press_cb) callback funtion.
 												  	
 }
 
 
 /**
  ****************************************************************************************
- * @brief Sets two buttons as wakeup trigger
+ * @brief Sets sw2 and sw3 as wake up trigger
  * @return void
  ****************************************************************************************
 */
@@ -157,7 +157,7 @@ void user_wakeup_example_init(void)
 											EVENTS_BEFORE_INTERRUPT,																																																													
 											DEBOUNCE_TIME);																																																												
 	
-		wkupct_register_callback(app_wakeup_press_cb);	// sets this function as wake-up interrupt callback
+		wkupct_register_callback(user_app_wakeup_press_cb);	// sets this function as wake-up interrupt callback
 }
 
 /// @} APP

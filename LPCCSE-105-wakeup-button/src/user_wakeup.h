@@ -5,7 +5,7 @@
  *
  * @brief Barebone application header file.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -55,7 +55,7 @@
  ****************************************************************************************
  */
 
-#define DEBOUNCE_TIME 					30 // Time in ms, can be a value from 1 to 63 
+#define DEBOUNCE_TIME 					30 // Time in ms, can be a value from 0 to 63 
 #define EVENTS_BEFORE_INTERRUPT 1  // Must be a 8 bits value
 
 enum { 
@@ -69,12 +69,12 @@ enum {
  */
 
 #if defined(__DA14531__)
-void reset_event_counter(void);
+void user_reset_event_counter(void);
 #endif
 
 void user_wakeup_example_init(void);
 
-void app_wakeup_press_cb(void);
+void user_app_wakeup_press_cb(void);
 
 /// @} APP
 

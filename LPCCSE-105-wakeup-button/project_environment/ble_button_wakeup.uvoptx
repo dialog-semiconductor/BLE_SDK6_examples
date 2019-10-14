@@ -113,14 +113,10 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
+        <tIfile>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGUARM</Key>
-        </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>ARMRTXEVENTFLAGS</Key>
@@ -139,7 +135,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U480066255 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN0</Name>
+          <Name>-U480061813 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI-JP0 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN0</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -317,7 +313,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
+        <tIfile>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -470,14 +466,16 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
+        <tIfile>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>ã7$wX¬H3ã7$wX¬H3</Name>
+          <Name>ã7$w sD
+ã7$w sD
+</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -497,7 +495,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U480068345 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BC11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN0</Name>
+          <Name>-U480070039 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BC11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN0</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -596,7 +594,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14585_586.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -608,7 +606,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14585_586.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -620,7 +618,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -632,7 +630,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -644,7 +642,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\main\hardfault_handler.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\main\hardfault_handler.c</PathWithFileName>
       <FilenameWithoutPath>hardfault_handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -656,7 +654,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\main\nmi_handler.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\main\nmi_handler.c</PathWithFileName>
       <FilenameWithoutPath>nmi_handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -676,7 +674,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\core_modules\arch_console\arch_console.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\core_modules\arch_console\arch_console.c</PathWithFileName>
       <FilenameWithoutPath>arch_console.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -688,7 +686,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\core_modules\nvds\src\nvds.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\src\nvds.c</PathWithFileName>
       <FilenameWithoutPath>nvds.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -700,7 +698,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\main\arch_main.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\main\arch_main.c</PathWithFileName>
       <FilenameWithoutPath>arch_main.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -712,7 +710,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\main\jump_table.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\main\jump_table.c</PathWithFileName>
       <FilenameWithoutPath>jump_table.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -724,7 +722,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\main\arch_sleep.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\main\arch_sleep.c</PathWithFileName>
       <FilenameWithoutPath>arch_sleep.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -736,7 +734,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\main\arch_system.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\main\arch_system.c</PathWithFileName>
       <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -748,7 +746,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\arch\main\arch_rom.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\arch\main\arch_rom.c</PathWithFileName>
       <FilenameWithoutPath>arch_rom.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -760,7 +758,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\third_party\rand\chacha20.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\third_party\rand\chacha20.c</PathWithFileName>
       <FilenameWithoutPath>chacha20.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -772,7 +770,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\third_party\hash\hash.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\third_party\hash\hash.c</PathWithFileName>
       <FilenameWithoutPath>hash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -784,7 +782,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
       <FilenameWithoutPath>da14585_586.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -796,7 +794,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\system_library\output\Keil_5\da14531.lib</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\system_library\output\Keil_5\da14531.lib</PathWithFileName>
       <FilenameWithoutPath>da14531.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -808,7 +806,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
       <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -820,7 +818,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\utilities\otp_hdr\otp_hdr.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\utilities\otp_hdr\otp_hdr.c</PathWithFileName>
       <FilenameWithoutPath>otp_hdr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -840,7 +838,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
       <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -852,7 +850,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -864,7 +862,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\battery\battery.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\battery\battery.c</PathWithFileName>
       <FilenameWithoutPath>battery.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -876,7 +874,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</PathWithFileName>
       <FilenameWithoutPath>wkupct_quadec.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -888,7 +886,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\adc\adc_58x.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\adc\adc_58x.c</PathWithFileName>
       <FilenameWithoutPath>adc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -900,7 +898,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\adc\adc_531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\adc\adc_531.c</PathWithFileName>
       <FilenameWithoutPath>adc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -912,7 +910,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
       <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -924,7 +922,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\spi\spi_531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\spi\spi_531.c</PathWithFileName>
       <FilenameWithoutPath>spi_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -936,7 +934,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
       <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -948,7 +946,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
       <FilenameWithoutPath>i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -960,7 +958,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</PathWithFileName>
       <FilenameWithoutPath>i2c_eeprom.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -972,7 +970,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\uart\uart.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\uart\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -984,7 +982,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -996,7 +994,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1008,7 +1006,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\trng\trng.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\trng\trng.c</PathWithFileName>
       <FilenameWithoutPath>trng.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1020,7 +1018,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\driver\dma\dma.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\dma\dma.c</PathWithFileName>
       <FilenameWithoutPath>dma.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1032,7 +1030,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\SDKs\6.0.11.989\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
       <FilenameWithoutPath>uart_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1052,7 +1050,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\core_modules\rf\src\rf_585.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\src\rf_585.c</PathWithFileName>
       <FilenameWithoutPath>rf_585.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1064,7 +1062,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\ble_stack\rwble\rwble.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\ble_stack\rwble\rwble.c</PathWithFileName>
       <FilenameWithoutPath>rwble.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1076,7 +1074,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\core_modules\rwip\src\rwip.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\src\rwip.c</PathWithFileName>
       <FilenameWithoutPath>rwip.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1088,7 +1086,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\core_modules\rf\src\ble_arp.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\src\ble_arp.c</PathWithFileName>
       <FilenameWithoutPath>ble_arp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1100,7 +1098,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\platform\core_modules\rf\src\rf_531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\src\rf_531.c</PathWithFileName>
       <FilenameWithoutPath>rf_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1120,7 +1118,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\ble_stack\profiles\prf.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prf.c</PathWithFileName>
       <FilenameWithoutPath>prf.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1132,7 +1130,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\ble_stack\profiles\prf_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prf_utils.c</PathWithFileName>
       <FilenameWithoutPath>prf_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1144,7 +1142,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\ble_stack\profiles\dis\diss\src\diss.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\src\diss.c</PathWithFileName>
       <FilenameWithoutPath>diss.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1156,7 +1154,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</PathWithFileName>
       <FilenameWithoutPath>diss_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1176,7 +1174,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</PathWithFileName>
       <FilenameWithoutPath>app_default_handlers.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1188,7 +1186,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_common\app.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_common\app.c</PathWithFileName>
       <FilenameWithoutPath>app.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1200,7 +1198,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_common\app_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_common\app_task.c</PathWithFileName>
       <FilenameWithoutPath>app_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1212,7 +1210,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_sec\app_security.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_sec\app_security.c</PathWithFileName>
       <FilenameWithoutPath>app_security.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1224,7 +1222,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_sec\app_security_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_sec\app_security_task.c</PathWithFileName>
       <FilenameWithoutPath>app_security_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1236,7 +1234,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_entry\app_entry_point.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_entry\app_entry_point.c</PathWithFileName>
       <FilenameWithoutPath>app_entry_point.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1248,7 +1246,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_common\app_msg_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_common\app_msg_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_msg_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1260,7 +1258,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_easy\app_easy_timer.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_timer.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_timer.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1272,7 +1270,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_easy\app_easy_security.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_security.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_security.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1284,7 +1282,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_msg_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1296,7 +1294,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_diss\app_diss.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_diss\app_diss.c</PathWithFileName>
       <FilenameWithoutPath>app_diss.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1308,7 +1306,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_diss\app_diss_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_diss\app_diss_task.c</PathWithFileName>
       <FilenameWithoutPath>app_diss_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1320,7 +1318,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_bond_db\app_bond_db.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_bond_db\app_bond_db.c</PathWithFileName>
       <FilenameWithoutPath>app_bond_db.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1332,7 +1330,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.11.989\\sdk\app_modules\src\app_common\app_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\tbeijloo\Downloads\SDKs\6.0.12.1020\sdk\app_modules\src\app_common\app_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

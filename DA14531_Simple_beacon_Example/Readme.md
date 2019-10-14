@@ -6,19 +6,67 @@
 
 ## Example description
 
-The main purpose of this SW example is to demonstrate creating a **Non-Connectable Advertising** application example. To make Non-Connectable advertising more efficient the ``flag type`` field of an advertising packet is optional (please check **Core Specification Supplement v6 by Bluetooth SIG**). If the ``flag type`` field is not used, it can free up to 3 bytes of space which can then be used for sending more advertising data.
+The main purpose of this Software example is to demonstrate creating a **Non-Connectable Advertising** application example. To make Non-Connectable advertising more efficient the ``flag type`` field of an advertising packet is optional (please check **Core Specification Supplement v6 by Bluetooth SIG**). If the ``flag type`` field is not used, it can free up to 3 bytes of space which can then be used for sending more advertising data.
 
-## Non-Connectable Advertising
+## What is a Beacon?
+
+Beacons are battery powered devices that advertise a particular Bluetooth Low Energy payload with identifying information. 
+
+![what_is_beacon](assets\what_is_beacon.PNG)
+
+This Software Example is just to demonstrate creating a Simple Beacon project with **Non-Connectable Advertising**. However, it can be customized for for more advanced use cases, such as:
+  * Adaptive modification of advertising data
+  * Choosing from various beacon formats
+  * Interleaving connectable advertising events
+  * Software Updates Over The Air (SUOTA)
+
+## Non-Connectable Advertising 
+
+Non-connectable advertising allows users to advertise data with the lowest power consumption.
+
+![non_conn_adv](assets\non_conn_adv.PNG)
+
+The SDK includes a non-connectable advertising application example. The project is in the SDK directory:
+
+    <sdk_root_directory>\projects\target_apps\misc\.
+
+The Keil v5 project file is:
+
+    <sdk_root_directory>\projects\target_apps\misc\ble_app_noncon\Keil_5\ble_app_noncon.uvprojx
+
+The appropriate APIs should be used are the listed below :
+
+ - **app_easy_gap_non_connectable_advertise_get_active()** : Get non connectable advertising message with filled parameters.
+ - **app_easy_gap_non_connectable_advertise_start()** : Start advertising for non-connectable peripheral.
 
 For getting more information about the Non-Connectable Advertising, please refer to [Advertising Tutorial](https://www.dialog-semiconductor.com/sites/default/files/advertising_concept.pdf) from our [support website](https://www.dialog-semiconductor.com/bluetooth-low-energy).
 
-## HW and SW configuration
+## Hardware & Software Configuration
+    
+      This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices. 
+        - Connect the Development Kit with the host computer over the USB connector. 
+        - Follow the hardware configuration according to the BLE SoC. 
 
-- **Hardware configuration**
-  - This example runs on the DA14531, DA14585/586 Bluetooth Smart SoC devices.
-  - The DA1458x / DA145xx Pro Development kit is needed for this example with default jumper configuration..
-  - Connect the USB Development kit to the host computer.
-- **Software configuration**
+### DA14585/586 Hardware Configuration
+
+In case of DA14585/586, there are two options available to connect the the daughtercard: 
+
+  1. **DA1458x Pro Development Kit**
+
+      Refer to the getting started guide of [DA1458x Pro Development Kit](https://www.dialog-semiconductor.com/sites/default/files/um-b-049_da14585da14586_getting_started_guide_v2.1_0.pdf)
+
+  2.  **DA14585 Basic Development Kit**
+
+      Refer to the getting started guide of [DA14585 Basic Development Kit](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf)
+
+### DA14531 Hardware Configuration
+
+In case of DA14531, you should use the **DA145xx Pro Development kit**
+
+Refer to the getting started guide of DA145xx Pro Development Kit
+
+
+### Software configuration
   - SDK6.0.12 or later
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - A smartphone with a BLE scanning app (for example **BLE scanner** on Android or **Lightblue** on IOS).
@@ -90,7 +138,7 @@ To verify please take a look at the BLE sniffer log data
 
 - Refer to the following application note for [DA1458x known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf  "known hardware limitations").
 - Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- If you have any question, please contact us in our [public Bluetooth forums](https://www.dialog-semiconductor.com/forum).
 
 ## License
 

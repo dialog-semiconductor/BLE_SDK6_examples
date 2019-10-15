@@ -6,7 +6,7 @@
 
 ## Example description
 
-The main purpose of this Software example is to demonstrate creating a **Non-Connectable Advertising** application example. To make Non-Connectable advertising more efficient the ``flag type`` field of an advertising packet is optional (please check **Core Specification Supplement v6 by Bluetooth SIG**). If the ``flag type`` field is not used, it can free up to 3 bytes of space which can then be used for sending more advertising data.
+The main purpose of this Software Εxample is to demonstrate creating a **Non-Connectable Advertising** application example. To make Non-Connectable advertising more efficient the ``flag type`` field of an advertising packet is optional (please check **Core Specification Supplement v6 by Bluetooth SIG**). If the ``flag type`` field is not used, it can free up to 3 bytes of space which can then be used for sending more advertising data.
 
 ## What is a Beacon?
 
@@ -43,27 +43,31 @@ For getting more information about the Non-Connectable Advertising, please refer
 
 ## Hardware & Software Configuration
     
-      This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices. 
-        - Connect the Development Kit with the host computer over the USB connector. 
-        - Follow the hardware configuration according to the BLE SoC. 
+This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices. 
+  - Connect the Development Kit with the host computer over the USB connector. 
+  - Follow the hardware configuration according to the BLE SoC. 
 
 ### DA14585/586 Hardware Configuration
 
-In case of DA14585/586, there are two options available to connect the the daughtercard: 
+In case of DA14585/586, the DA1458x Pro Development Kit is required with default jumper configuration. Please see the illustration below:
 
-  1. **DA1458x Pro Development Kit**
+![585_basic_DK](assets\585_basic_DK.PNG)
 
-      Refer to the getting started guide of [DA1458x Pro Development Kit](https://www.dialog-semiconductor.com/sites/default/files/um-b-049_da14585da14586_getting_started_guide_v2.1_0.pdf)
-
-  2.  **DA14585 Basic Development Kit**
-
-      Refer to the getting started guide of [DA14585 Basic Development Kit](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf)
+Refer to the getting started guide of [DA14585 Basic Development Kit](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf).
 
 ### DA14531 Hardware Configuration
 
-In case of DA14531, you should use the **DA145xx Pro Development kit**
+In case of DA14531, either  **DA145xx Pro Development kit** or **DA14531 Basic Development Kit** is required for this Software Example with default jumper configuration. Please see the illustrations below:
 
-Refer to the getting started guide of DA145xx Pro Development Kit
+**DA145xx Pro Development kit**
+
+![531_pro_dk](assets\531_pro_dk.PNG)
+
+**DA14531 Basic Development Kit** 
+
+![531_basic_DK](assets\531_basic_DK.PNG)
+
+Refer to the getting started guide of DA145xx Pro Development Kit.
 
 
 ### Software configuration

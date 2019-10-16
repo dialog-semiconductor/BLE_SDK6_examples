@@ -49,7 +49,6 @@ static void set_pad_functions(void)
     // Configure UART2 pin functionality
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 
-
     // Configure LED pin functionality
     GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, false);
 	

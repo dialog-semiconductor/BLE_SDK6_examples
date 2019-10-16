@@ -59,11 +59,8 @@
 #define UART2_RX_FIFO_LEVEL         UART_RX_FIFO_LEVEL_0
 
 /****************************************************************************************/
-/* LED configuration                                                                    */
+/* Timer1 SW Example configurations                                                                    */
 /****************************************************************************************/
-
-
-
 
 #define PWM0_PORT               GPIO_PORT_0
 #define PWM0_PIN                GPIO_PIN_7
@@ -79,7 +76,6 @@
 
 #define UART2_TX_PORT           GPIO_PORT_0
 #define UART2_TX_PIN            GPIO_PIN_4
-
 
 /*
  * FUNCTION DECLARATIONS

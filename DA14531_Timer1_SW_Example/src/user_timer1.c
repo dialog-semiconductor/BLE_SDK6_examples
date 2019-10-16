@@ -58,58 +58,65 @@
  ****************************************************************************************
  */
  
- #if defined (COUNTING_MODE)
-	// Timer1 counting configuration structure
-	static timer1_count_options_t timer1_config =
-	{	
-		/*Timer1 input clock*/
-		.input_clk 	= 	TIM1_CLK_SRC_LP  , 	
-		
-		/*Timer1 free run off*/
-		.free_run 	= 	TIM1_FREE_RUN_OFF,
-		
-		/*Timer1 IRQ mask*/
-		.irq_mask	= 	TIM1_IRQ_MASK_OFF,
-		
-		/*Timer1 count direction*/
-		.count_dir	= 	TIM1_CNT_DIR_DOWN,
-		
-		/*Timer1 reload value*/
-		.reload_val	= 	TIM1_RELOAD_MAX
-	};
+#if defined (COUNTING_MODE)
+
+// Timer1 counting configuration structure
+static timer1_count_options_t timer1_config =
+{	
+	/*Timer1 input clock*/
+	.input_clk 	= 	TIM1_CLK_SRC_LP  , 	
+	
+	/*Timer1 free run off*/
+	.free_run 	= 	TIM1_FREE_RUN_OFF,
+	
+	/*Timer1 IRQ mask*/
+	.irq_mask	= 	TIM1_IRQ_MASK_OFF,
+	
+	/*Timer1 count direction*/
+	.count_dir	= 	TIM1_CNT_DIR_DOWN,
+	
+	/*Timer1 reload value*/
+	.reload_val	= 	TIM1_RELOAD_MAX
+};
+
 #endif
 
-#if defined (CAPTURING_MODE)
-	#if defined (TIMER0_SOURCE)
-		//Timer0 clock configuration structure 
-		static tim0_2_clk_div_config_t clk_div_config =
-		{	
-			/*Input clock division factor*/
-			.clk_div  	=	TIM0_2_CLK_DIV_8 
-		};
-	#endif
 
-	//Timer1 capture / period count configuration structure
-	static timer1_event_options_t timer1_event_1 = 
-	{	
-		/*Timestamp type to be stored upon each event*/
-		.stamp_type			=		TIM1_EVENT_STAMP_CNT,
-		
-		/*Number of periods to be counted*/
-		.period_count		=		100,
-		
-		/*Timer1 event IRQ mask*/
-		.irq_mask			=		TIM1_EVENT_IRQ_MASK_OFF,
-		
-		/*Timer1 event type*/
-		.event_type			=		TIM1_EVENT_TYPE_CAP,
-		
-		/*Timer1 edge type*/
-		.edge_type			=		TIM1_EVENT_EDGE_RISING,
-		
-		/*GPIO pin to be monitored*/
-		.gpio_pin			=		TIM1_EVENT_GPIO_PIN_1,
-	};
+#if defined ( CAPTURING_MODE )
+
+#if defined ( TIMER0_SOURCE )
+
+//Timer0 clock configuration structure 
+static tim0_2_clk_div_config_t clk_div_config =
+{	
+	/*Input clock division factor*/
+	.clk_div  	=	TIM0_2_CLK_DIV_8 
+};
+
+#endif
+
+//Timer1 capture / period count configuration structure
+static timer1_event_options_t timer1_event_1 = 
+{	
+	/*Timestamp type to be stored upon each event*/
+	.stamp_type			=		TIM1_EVENT_STAMP_CNT,
+	
+	/*Number of periods to be counted*/
+	.period_count		=		100,
+	
+	/*Timer1 event IRQ mask*/
+	.irq_mask			=		TIM1_EVENT_IRQ_MASK_OFF,
+	
+	/*Timer1 event type*/
+	.event_type			=		TIM1_EVENT_TYPE_CAP,
+	
+	/*Timer1 edge type*/
+	.edge_type			=		TIM1_EVENT_EDGE_RISING,
+	
+	/*GPIO pin to be monitored*/
+	.gpio_pin			=		TIM1_EVENT_GPIO_PIN_1,
+};
+
 #endif
 
 /*
@@ -126,7 +133,7 @@ volatile uint16_t timer0_pwm_setup_expiration_counter;
 
 #if defined (CAPTURING_MODE)
 
-#if defined (TIMER0_SOURCE)
+#if defined ( TIMER0_SOURCE )
 void timer0_pwm_setup(void)
 {
 	// Enable the Timer0/Timer2 input clock
@@ -149,6 +156,7 @@ void timer0_pwm_setup(void)
 }
 
 #endif
+
 
 /**
  ****************************************************************************************
@@ -181,17 +189,26 @@ static void timer1_event1_user_callback_function(void)
 		//Stop Timer1
 		timer1_stop();
 		
-		#if defined (TIMER0_SOURCE)
+#if defined (TIMER0_SOURCE)
 		
 		//Stop Timer0
 		timer0_stop();
 
 		// Disable the Timer0/Timer2 input clock
 		timer0_2_clk_disable();
-		#endif
+		
+#endif
+		
 	}		
 }
 
+/**
+ ****************************************************************************************
+ * @brief Timer1 setup capturing finction
+ * @param[in] void
+ * @return void
+ ****************************************************************************************
+ */
 void timer1_capturing_setup()
 {			
 	timer0_pwm_setup_expiration_counter = COUNTER_RELOAD_VALUE;
@@ -202,19 +219,21 @@ void timer1_capturing_setup()
 	// enable SWTIM_IRQn irq
 	timer1_enable_irq();	
 	
-	#if defined (TIMER0_SOURCE)
+#if defined (TIMER0_SOURCE)
 	
 	//Start Timer0
 	timer0_pwm_setup();
 	
-	#endif
+#endif
 	
 	// Timer1 configurations and register callback function for SWTIM_IRQn irq
 	timer1_event1_config(&timer1_event_1,timer1_event1_user_callback_function);
 }
 #endif
 
+
 #if defined (COUNTING_MODE)
+
 /**
  ****************************************************************************************
  * @brief Timer0 general user callback function
@@ -242,6 +261,13 @@ static void timer1_general_user_callback_function(void)
      n++;	
 }
 
+
+ /**
+ ****************************************************************************************
+ * @brief Main routine of the Timer1 Software Example
+ *
+ ****************************************************************************************
+ */
 void timer1_general_test(void)
 {	
 	//Stop Timer1	
@@ -256,4 +282,5 @@ void timer1_general_test(void)
 	//Start Timer1
 	timer1_start();	
 }
+
 #endif

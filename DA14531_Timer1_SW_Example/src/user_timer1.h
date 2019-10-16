@@ -44,7 +44,6 @@
  ****************************************************************************************
  */
 
-
 /*
  * INCLUDE FILES
  ****************************************************************************************
@@ -65,16 +64,40 @@
  ****************************************************************************************
  */
 
-#undef				COUNTING_MODE
-#define				CAPTURING_MODE
-#define	 			TIMER0_SOURCE
+/****************************************************************************************/
+/* Select Counting or Capturing Mode                                                    */
+/*	- COUNTING_MODE : Counting Mode of Timer. Toggling LED GPIO (Default Configuration) */
+/*	- CAPTURING_MODE : Capturing Mode of Timer. Supply MPW to CAPTURE GPIO              */
+/****************************************************************************************/
+#define				COUNTING_MODE
+#undef				CAPTURING_MODE
 
-// SW Timer0 - PWM settings
-#define 		TIMER_ON        1000
-#define 		PWM_HIGH        500
-#define 		PWM_LOW         500
+/****************************************************************************************/
+/* In case of Capturing Mode, define the TIMER0_SOURCE macro is:                                                   */
+/*	- defined 	: PWM from SW TImer0 should be applied on CAPTURE GPIO.					*/
+/*	- undefined : PWM from an external source should be applied on CAPTURE GPIO.        */
+/****************************************************************************************/
+#if defined (CAPTURING_MODE)
+#undef	 		TIMER0_SOURCE
+#endif
 
-#define COUNTER_RELOAD_VALUE     200
+
+/****************************************************************************************/
+/* SW Timer0 - PWM settings                                                  			*/
+/*	- TIMER_ON 	: Set TIMER0_ON_REG register											*/
+/*	- PWM_HIGH 	: Set TIMER0_RELOAD_M_REG register       								*/
+/*	- PWM_LOW 	: Set TIMER0_RELOAD_N_REG register       								*/
+/****************************************************************************************/
+#define 		TIMER_ON        	1000
+#define 		PWM_HIGH        	500
+#define 		PWM_LOW         	500
+
+// Define the Timer0 reload value
+
+/****************************************************************************************/
+/* Define the Timer0 reload value                                                 		*/
+/****************************************************************************************/
+#define COUNTER_RELOAD_VALUE     	200
 
 /*
  * FUNCTION DECLARATIONS
@@ -82,6 +105,7 @@
  */
 
 #if defined (CAPTURING_MODE)
+
 /**
  ****************************************************************************************
  * @brief Timer0 PWM setup function
@@ -99,17 +123,20 @@ void timer0_pwm_setup(void);
  */
 void timer1_capturing_setup(void);
 
-/**
+#endif
+ 
+ 
+#if defined (COUNTING_MODE)
+ 
+ /**
  ****************************************************************************************
  * @brief Main routine of the Timer1 Software Example
  *
  ****************************************************************************************
  */
- #endif
+void timer1_general_test(void);
  
- #if defined (COUNTING_MODE)
- void timer1_general_test(void);
- #endif
+#endif
  
  /// @} APP
 

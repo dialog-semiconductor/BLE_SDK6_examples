@@ -5,7 +5,7 @@
  *
  * @brief Callback functions configuration file.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -38,10 +38,12 @@
  ****************************************************************************************
  */
 
-#include <stdio.h>
 #include "app_callback.h"
 #include "app_default_handlers.h"
 #include "app_entry_point.h"
+#include "app_bass.h"
+#include "app_proxr.h"
+#include "app_suotar.h"
 #include "app_prf_types.h"
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
@@ -73,6 +75,7 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_update_params_request       = default_app_update_params_request,
     .app_on_generate_static_random_addr = default_app_generate_static_random_addr,
     .app_on_svc_changed_cfg_ind         = NULL,
+    .app_on_get_peer_features           = NULL,
 #if (BLE_APP_SEC)
     .app_on_pairing_request             = NULL,
     .app_on_tk_exch                     = NULL,
@@ -104,7 +107,20 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 };
 #endif // (BLE_APP_SEC)
 
+
+/*
+ * "app_process_catch_rest_cb" symbol handling for __CC_ARM:
+ * - Use #define if "user_catch_rest_hndl" symbol exists
+ * - Use const declaration if "user_catch_rest_hndl" is NULL
+ */
+
+#if defined ( __CC_ARM )
 static const catch_rest_event_func_t app_process_catch_rest_cb = (catch_rest_event_func_t)user_catch_rest_hndl;
+#elif defined ( __GNUC__ )
+#define app_process_catch_rest_cb   ((catch_rest_event_func_t)user_catch_rest_hndl)
+#endif
+
+// Default Handler Operations
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     .app_on_init            = user_app_init,

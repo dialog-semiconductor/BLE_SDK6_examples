@@ -24,6 +24,7 @@
 
 #include "rwip_config.h"             // SW configuration
 #include "user_periph_setup.h"       // peripheral configuration
+#include "system_library.h"
 #include "gpio.h"
 #include "uart.h"                    // UART initialization
 #include "user_ADXL345.h"

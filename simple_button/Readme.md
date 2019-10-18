@@ -5,110 +5,126 @@
 
 ## Example description
 
-This SDK6 example shows how to configure a button for short press and long press (>3 seconds)
-from the applicaiton layer.
-As a proof of concept it can be verified by transmitting UART messages and/or the LED status
+This example shows:
+How to configure a button for
+- Short press (< 3 seconds)
+- Long press (>= 3 seconds)
+
+The expected result of the example can be verified by:
+- Connecting a serial terminal to the work station to the MB (Mother Board) using UART
+- Means of a blinkign LED.
 
 ## HW and SW configuration
+This example runs on the BLE Smart SoC (System on Chip) devices:
+- DA14585/DA14586 & DA14531 daughter board + Pro Dev Kit mother board.
+- DA14585/DA14586 daughter board + Basic Dev Kit mother board.
 
-	- This example runs on The DA14585 and the DA14531 Bluetooth Smart SoC devices.	
-	- The Basic / Pro Development kit can be used for the DA14585.
-	- The DA14531 requires the Pro Development kit
-	
-	User manual for the Pro Development kit can be found [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro)
-	
-	Follow the hardware configuration according to your Daughterboard (DA14585 or DA14531) and Development Kit, Pro or Basic.
+The user manuals for the development kits can be found:
+- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the Pro Development Kit.
+- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
-* **Hardware configuration DA14531 using Pro Development Kit**
+* __Hardware configuration DA14531 using Pro Development Kit__
 
-	- Connect the USB Development kit to the host computer.
 	- UART TX: connect P21 on J2 to UTX pin 17 on J1 as shown in the image below (the blue line)
 	- LED jumper is configured to P1_0 (red box 2)
 	- Button jumper is configured from SW2 pin to P3_1 (red box 1)
-	  The image below shows the Motherboard with jumper (wire) configuration for the DA14531
-
-		![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
-		
-* **Hardware configuration DA14585 using the Pro Development Kit**
-
 	- Connect the USB Development kit to the host computer.
+
+	The image below shows the Motherboard with jumper (wire) configuration for the DA14531.
+
+	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
+		
+* __Hardware configuration DA14585 using the Pro Development Kit__
+
 	- UART TX jumper on P0_4 (red box 1)
 	- LED jumper is configured to P1_0 (red box 3)
 	- Button jumper is configured from SW3 pin to P1_1 (red box 2)
-	  The image below shows the Motherboard with jumper configuration for the DA14585
-
-		![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
-
-* **Hardware configuration DA14585 using the Basic Development Kit**
-
 	- Connect the USB Development kit to the host computer.
+
+	The image below shows the Motherboard with jumper configuration for the DA14585
+
+	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
+
+* __Hardware configuration DA14585 using the Basic Development Kit__
+
 	- UART TX/RX jumper on P0_4/P0_5
 	- LED jumper is configured to P10
 	- An active-low switch should be connected to P1_1 as displayed in the following schematic
+	- Connect the USB Development kit to the host computer.
 
-	   ![ADXL_Fritzing](assets/ADXL_Fritzing.png)
+	![ADXL_Fritzing](assets/simple_button_basic.png)
 
-* **Software configuration**
- 
-	- This example requires:
-    * SDK6.0.12
-	* Keil5
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
+* __Software configuration__
+This example requires:
+	- (SDK6.0.12)[!!! SDK LINK !!!]
+	- Keil5
+	- __SEGGER’s J-Link__ tools should be downloaded and installed.
+	- Serial Terminal software. For example Tera Term or PuTTY.
 
 ## How to run the example
-
-For initial setup of the example please visit [initial project setup](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
-
-If not done already, please visit the getting started guide accourding to your device [DA14585](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or [DA14531](NO LINK AVAILABLE YET)
-
-### Initial Setup
-
- - Start Keil
+### Setup
+Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+1. Start Keil using the `simple_button.uvprojx` Keil project file.
  
- - Expand the dialog shown in the red box in the image below
+2. Expand the dialog shown in the red box in the image below.
 
-	  ![Expand_Select_Device](assets/Expand_Select_Device.png)
+![Expand_Select_Device](assets/Expand_Select_Device.png)
 
- - Select your device DA14531, DA14586 or DA14585.
+3. Select your device: DA14531, DA14586 or DA14585.
 		
-	  ![Select_Device](assets/Select_Device.png)
+![Select_Device](assets/Select_Device.png)
+
+4. Open a serial terminal on the work station using for example Tera Term/PuTTY with the following parameters:
+```
+- baudrate: 115200
+- data: 8 bits
+- stop: 1 bit
+- parity: None
+- flow  control: none
+```
+
+5. Compile (F7) and launch (ctrl + F5) the example.\
+If the warning (shown below) pops up press OK.
  
- - Compile (F7) and launch (ctrl F5) the example, if the warning (shown below) pops up press OK
- 
-	  ![warning](assets/warning.png)
+![warning](assets/warning.png)
 
- - A screen similar to the image below is shown, press F5 to run the example
+6. A screen similar to the image below is shown.\
+Press F5 to run the example.
 
-	  ![Start_Example](assets/Start_Example.png)
-	
- - Open the development kit serial port with the following parameters
+![Start_Example](assets/Start_Example.png)
 
-		- baudrate: 115200
-		- data: 8 bits
-		- stop: 1 bit
-		- parity: None
-		- flow  control: none
+## Expected Results
+The button interrupt with edge detection example is now running. Following the following steps shows it works as intended:
 
+1. With a serial UART monitor open on the work station, press the button (depending on the DB) and check the results in the window.
 
- - Identify the corresponding led
-	- For the Pro Development Kit the led is called *D5* and the colour of the led is *orange*.
- 	- For the Basic Development Kit the led is called *USR* and the colour of the led is *green*. 
- 
- 
- - Pressing the button (SW3 for the DA14585 and SW2 for the DA14531) for less than 3 seconds (i.e. short press) to toggle the led status
- - Pressing the button (SW3 for the DA14585 and SW2 for the DA14531) for 3 seconds or more (i.e. long press) will start LED blinking ON/OFF
- - Pressing the button (SW3 for the DA14585 and SW2 for the DA14531) for less than 3 seconds (i.e. short press) again will stop LED blinking or toggle the led status
+- Pressing the button (SW3 for the DA14585 and SW2 for the DA14531) for less than 3 seconds (i.e. short press) to toggle the led status
+- Pressing the button (SW3 for the DA14585 and SW2 for the DA14531) for 3 seconds or more (i.e. long press) will start LED blinking ON/OFF
+- Pressing the button (SW3 for the DA14585 and SW2 for the DA14531) for less than 3 seconds (i.e. short press) again will stop LED blinking or toggle the led status
 
-	![simple_button_uart](assets/uart_data.png)
+### DA14585/DA14586/DA14531 with Pro Dev Kit
+1. Identify LED `D5` on the Pro Dev Kit, colored `orange`.
+2. Have the serial UART monitor active: status messages will be displayed here as shown in the following. See step `4` in ["How to run the example"](#How-to-run-the-example) for setting up the serial monitor.
+![simple_button_uart](assets/uart_data.png)
+2. Identify button:
+	- DA14531 uses `SW2` as button in this example
+	- DA14585/DA14586 uses `SW3` as button in this example
+2. Pressing the button for less than 3 seconds (= short press):
+	- Toggles the LED status.
+	- Sends a message to the serial terminal indicating the LED should be on. 
+3. Pressing the button for 3 or more seconds (= long press):
+	- Start toggling the LED status with a set interval (software configured).
+	- Sends messages to the serial terminal indicating the LED should be blinking.
+4. Pressing the button again:
+	- Stops LED blinking.
 
+### DA14585/DA14586 Basic Dev Kit
+1. Identify LED `USR` on the Pro Dev Kit, colored `green`.
 
-## Known Limitations
-
-
-- There are No known limitations for this example.
-- For the DA14585 and the DA14586 known hardware limitations please visit [known hardware limitations DA1458x](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf "known hardware limitations DA1458x").
-- For the DA14531 known hardware limitations please visit [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-
+## Troubleshooting
+Did you follow the steps above?
+No? Check cables and USB ports.
+Still no? Dialog forum(s).
 
 ## License
 

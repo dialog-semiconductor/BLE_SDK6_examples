@@ -197,7 +197,7 @@ void set_positive_GPIO_interrupt(void)
 
 /**
  ****************************************************************************************
- * @brief set_negative_GPIO_interrupt function
+ * @brief Set button (GPIO) release interrupt.
  * @return void
  ****************************************************************************************
  */

@@ -6,18 +6,18 @@ This example shows how to configure a DA14531 or DA14585/586 device to send noti
 
 ## HW and SW configuration
 - This example runs on the DA14531 or DA14585/586 Bluetooth Smart SoC devices.	
-- The DA14531 Pro Development Kit is needed for this example. 
+- The DA145xx Pro Development Kit is needed for this example, and it can be used with either the DA14531 or DA14585/DA14586 daughterboard evaluation kits.
 
 ### Hardware configuration for the DA14531
 
-- Connect the USB1 connector of the DA14531 Pro Development Kit to the host computer.
+- Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
 - Connect the P24 pin on header J2 with the second pin on header J19 as shown in the figure below (the mark indicates the first pin). Connect with a jumper the third and fourth pins.
  
 	![j19_conf](assets/ble-notify-wkup-j19_conf.png)
 
 ### Hardware configuration for the DA14585/586
 
-- Connect the USB1 connector of the DA14531 Pro Development Kit to the host computer.
+- Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
 - Connect with a jumper the first and second pins on the J19 header (the mark indicates the first pin). Connect also with a jumper the fourth and fifth pins, as indicated in the figure below.
  
 	![j19_conf_585](assets/ble-notify-wkup-j19_585_conf.png)

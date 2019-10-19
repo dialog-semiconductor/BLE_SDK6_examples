@@ -2,8 +2,8 @@
 ------
 
 # DA14531 - DA14585/586 Simple Beacon Example 
-
 ------
+
 
 ## Example description
 
@@ -13,9 +13,7 @@ The main purpose of this Software Εxample is to demonstrate creating a **Non-Co
 
 Beacons are battery powered devices that advertise a particular Bluetooth Low Energy payload with identifying information. 
 
-<p align="center">
-  <img src="assets\what_is_beacon.PNG"/>
-</p>
+![what_is_beacon](assets\what_is_beacon.PNG)
 
 This Software Example is just to demonstrate creating a Simple Beacon project with **Non-Connectable Advertising**. However, it can be customized for for more advanced use cases, such as:
   * Adaptive modification of advertising data
@@ -27,9 +25,9 @@ This Software Example is just to demonstrate creating a Simple Beacon project wi
 
 Non-connectable advertising allows users to advertise data with the lowest power consumption.
 
-<p align="center">
-  <img src="assets\non_conn_adv.PNG"/>
-</p>
+![non_conn_adv](assets\non_conn_adv.PNG)
+
+
 
 The SDK includes a non-connectable advertising application example. The project is in the SDK directory:
 
@@ -58,9 +56,7 @@ This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices.
 
 In case of DA14585/586, the DA1458x Pro Development Kit is required with default jumper configuration. Please see the illustration below:
 
-<p align="center">
-  <img src="assets\585_basic_DK.PNG"/>
-</p>
+![585_basic_DK](assets\585_basic_DK.PNG)
 
 Refer to the getting started guide of [DA14585 Basic Development Kit](https://s3.eu-west-2.amazonaws.com/lpccs-docs.dialog-semiconductor.com/DA14585_Getting_Started_basic/index.html).
 
@@ -71,16 +67,14 @@ In case of DA14531, either  **DA145xx Pro Development Kit** or **DA14531 USB Kit
 **DA145xx Pro Development Kit**
 
 Jumpers are placed in default configurations. Refer to the getting started guide of [DA145xx Pro Development Kit](https://www.dialog-semiconductor.com/da14531-getting-started).
-<p align="center">
-  <img src="assets\531_pro_dk.PNG"/>
-</p>
+
+![531_pro_dk](assets\531_pro_dk.PNG)
 
 **DA14531 USB Kit** 
 
 Refer to the getting started guide of DA145xx USB Kit
-<p align="center">
-  <img src="assets\531_usb_kit.PNG"/>
-</p>
+
+![531_usb_kit](assets\531_usb_kit.PNG)
 
 ### Software configuration
   - SDK6.0.12 or later
@@ -130,29 +124,24 @@ memcpy(user_store_data, USER_DATA ,USER_DATA_LEN );
 To verify please take a look at the BLE sniffer log data
 
 1. Initially only the the Device Name is placed into Adverising Data.
-  <p align="center">
-    <img src="assets\device_name.PNG"/>
-  </p>
+
+![device_name](assets\device_name.PNG)
 
 2. Advertising Data are now full.
-  <p align="center">
-    <img src="assets\non_conn.PNG"/>
-  </p>
+
+![non_conn](assets\non_conn.PNG)
 
 3. Switching from ADV_NONCONN_IND to ADV_SCAN_IND.
-  <p align="center">
-    <img src="assets\adv_ind.PNG"/>
-  </p>
+
+![adv_ind](assets\adv_ind.PNG)
 
 4. Central sends a scan request (SCAN_REQ) in order to receive a scan response (SCAN_RESP) from the advertiser.
-  <p align="center">
-    <img src="assets\scan_req.PNG"/>
-  </p>
+
+![scan_req](assets\scan_req.PNG)
 
 5. Full Scan Response Data.
-  <p align="center">
-    <img src="assets\scan_resp.PNG"/>
-  </p>
+
+![scan_resp](assets\scan_resp.PNG)
 
 ## Known Limitations
 

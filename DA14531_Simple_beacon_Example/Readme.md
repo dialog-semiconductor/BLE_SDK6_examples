@@ -49,12 +49,14 @@ For getting more information about the Non-Connectable Advertising, please refer
 ## Hardware & Software Configuration
     
 This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices. 
-  - Connect the Development Kit with the host computer over the USB connector. 
-  - Hardware configurations are different between DA14585/586 and DA14531. Please find bellow the approprate the hardware configuration.
+  - Connect the **DA145xx Pro Development Kit** with the host computer over the USB connector. 
+  - Please find bellow the approprate the hardware configuration.
 
 ### DA14585/586 Hardware Configuration
 
-In case of DA14585/586, the DA1458x Pro Development Kit is required with default jumper configuration. Please see the illustration below:
+In case of DA14585/586,  DA145xx Pro Development Kit is required with default jumper configuration. Please see the illustration below:
+
+The Example can also run on **DA14585 Basic Development Kit** with default jumper configuration, as demonstrated below:
 
 ![585_basic_DK](assets\585_basic_DK.PNG)
 
@@ -62,19 +64,11 @@ Refer to the getting started guide of [DA14585 Basic Development Kit](https://s3
 
 ### DA14531 Hardware Configuration
 
-In case of DA14531, either  **DA145xx Pro Development Kit** or **DA14531 USB Kit** is required for this Software Example with default jumper configuration. Please see the illustrations below:
-
-**DA145xx Pro Development Kit**
+In case of DA14531, the **DA145xx Pro Development Kit** is also required for this Software Example with default jumper configuration. Please see the illustrations below:
 
 Jumpers are placed in default configurations. Refer to the getting started guide of [DA145xx Pro Development Kit](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 ![531_pro_dk](assets\531_pro_dk.PNG)
-
-**DA14531 USB Kit** 
-
-Refer to the getting started guide of DA145xx USB Kit
-
-![531_usb_kit](assets\531_usb_kit.PNG)
 
 ### Software configuration
   - SDK6.0.12 or later
@@ -93,7 +87,7 @@ Refer to the getting started guide of DA145xx USB Kit
 
 ### Compile & Run
 
-- Navigate to ``project_environment`` folder and open the **Keil **project.
+- Navigate to ``project_environment`` folder and open the **Keil** project.
 - Compile and then launch the demonstration example. You can download the firmware either into System-RAM or SPI Flash. To download the firmware into SPI Flash, the  SPI Flash programmer from SmartSnippets Toolbox should be used. 
 - Define the data that is to append into ``Adverting`` or ``Scan Response`` data packet by configuring the **USER_DATA** macro in `user_simple_beacon.h`. By default, **USER_DATA** is defined as follow :
 

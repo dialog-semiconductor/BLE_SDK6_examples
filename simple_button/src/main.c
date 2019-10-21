@@ -32,59 +32,68 @@
 #include "systick.h" 
 #include "uart_utils.h"
 #include "user_periph_setup.h"
-#include "gpio.h"
 #include "arch_system.h"
  
 /****************************************************************************************/
 /* User constants                                                                   		  	  				*/
 /****************************************************************************************/
- const uint32_t 	BLINK_INTERVAL 				= 500000;			// In usec. 
- const uint32_t		LONG_PRESS_TIME 			= 3000000;  	// In usec	
- const uint8_t 		DEBOUNCE_MS 					= 30;			  	// In ms 
+const uint32_t BLINK_INTERVAL	= 500000;	// In usec.
+const uint32_t LONG_PRESS_TIME	= 3000000;	// In usec.
+const uint8_t DEBOUNCE_MS	= 30;	// In ms.
+const bool INPUT_LEVEL = true;	// Input will generate IRQ if input is low.
+const bool EDGE_LEVEL = true;	// Wait for key release after interrupt was set.
  
-// Interrupt initialization function declarations
-void systick_ISR(void);
-void negative_GPIO_ISR(void);
-void GPIO_ISR(void);
-void wakeup_ISR(void);
+// Interrupt function declarations
+void systick_isr(void);
+void buttonRelease_isr(void);
+void buttonPress_isr(void);
 	
-void interrupts_init(void);
-void set_timer_interrupt(void) ;
-void set_positive_GPIO_interrupt(void);
-void set_negative_GPIO_interrupt(void);
-	
+void interruptsInit(void);
+void interruptsDeinit(void);
+
+void setTimer_ir(void);
+void getTimer_ir(void);
+void resetTimer_ir(void);
+
+void setButtonPress_ir(void);
+void getButtonPress_ir(void);
+void resetButtonPress_ir(void);
+
+void setButtonRelease_ir(void);
+void getButtonRelease_ir(void);
+void resetButtonRelease_ir(void);
+
 // Flag for detecting long (3s=) or short press
 bool three_second_push = 0;
 
-
-void Led_blink(void);
+void LED_Blink(void);
  
 /**
  ****************************************************************************************
- * @brief Main routine of the Simple_Button example
+ * @brief Main routine of the Simple_Button example.
  * @return void
  ****************************************************************************************
  */
 int main (void)
 {
-    system_init();
-    periph_init();
-		interrupts_init();
+	system_init();
+	periph_init();
+	interruptsInit();
 
-
-    for(;;);
+    while(1);
 }
 
 /**
  ****************************************************************************************
- * @brief Led_blink function
+ * @brief Toggles LED (Light Emitting Diode) GPIO (General Purpose In/Out) using systick().
+ * @brief Toggle time = BLINK_INTERVAL_T (time in us).
  * @return void
  ****************************************************************************************
  */
-void Led_blink(void)
+void LED_Blink(void)
 {
 		systick_stop();
-		systick_register_callback(Led_blink);
+		systick_register_callback(LED_Blink);
 		if (GPIO_GetPinStatus(LED_PORT, LED_PIN))
 		{
 				GPIO_SetInactive(LED_PORT, LED_PIN);
@@ -100,25 +109,25 @@ void Led_blink(void)
 
 /**
  ****************************************************************************************
- * @brief systick ISR handler
- * @return void
+ * @brief	systick ISR (Interrupt Service Routine) handler.
+ * @return	void
  ****************************************************************************************
  */
-void systick_ISR(void) 
+void systick_isr(void) 
 {
 		systick_stop();
 		three_second_push = 1;
 		printf_string(UART,"\n\n\rLong Press");
-		Led_blink();
+		LED_Blink();
 }
 
 /**
  ****************************************************************************************
- * @brief negative_GPIO_ISR function
+ * @brief Button release ISR (Interrupt Service Routine) handler.
  * @return void
  ****************************************************************************************
  */
-void negative_GPIO_ISR(void)
+void buttonRelease_isr(void)
 {
 		// Prevents interrupt from triggering at startup
 		if (GPIO_GetIRQInputLevel(GPIO1_IRQn) == GPIO_IRQ_INPUT_LEVEL_LOW)
@@ -146,65 +155,135 @@ void negative_GPIO_ISR(void)
 
 /**
  ****************************************************************************************
- * @brief GPIO_ISR function generate timer, if LONG_PRESS_TIME_T time is passed an exception is generated
+ * @brief Button press ISR (Interrupt Service Routine) handler.
+ * @brief Generates a timer. If LONG_PRESS_TIME time is passed an exception is generated.
  * @return void
  ****************************************************************************************
  */
-void GPIO_ISR(void)
+void buttonPress_isr(void)
 {
 		three_second_push = 0; 																													
 		systick_stop(); 																																				
-		systick_register_callback(systick_ISR);																			
+		systick_register_callback(systick_isr);																			
 		systick_start(LONG_PRESS_TIME, true);		
 }
 	
 /**
  ****************************************************************************************
- * @brief interrupts_init function
+ * @brief Interrupts initialization.
  * @return void
  ****************************************************************************************
  */
-void interrupts_init(void)
+void interruptsInit(void)
 {
-		set_timer_interrupt();
-		set_positive_GPIO_interrupt();
-		set_negative_GPIO_interrupt();
+		setTimer_ir();
+		setButtonPress_ir();
+		setButtonRelease_ir();
 }
 
 /**
  ****************************************************************************************
- * @brief set_timer_interrupt function, configures interupt handler function
+ * @brief Interrupts deinitialization. For future use.
  * @return void
  ****************************************************************************************
  */
-void set_timer_interrupt(void) 
+void interruptsDeinit(void)
 {
-		systick_register_callback(systick_ISR); 
 }
 
 /**
  ****************************************************************************************
- * @brief set_positive_GPIO_interrupt function
+ * @brief Set timer IR (interrupt).
  * @return void
  ****************************************************************************************
  */
-void set_positive_GPIO_interrupt(void)
+void setTimer_ir(void) 
 {
-		GPIO_EnableIRQ(GPIO_SW_PORT, GPIO_SW_PIN, GPIO0_IRQn, true, true, DEBOUNCE_MS);
+		systick_register_callback(systick_isr);
+}
+
+/**
+ ****************************************************************************************
+ * @brief Get timer IR (interrupt). For future use.
+ * @return void
+ ****************************************************************************************
+ */
+void getTimer_ir(void) 
+{
+}
+
+/**
+ ****************************************************************************************
+ * @brief Reset timer IR (interrupt). For future use.
+ * @return void
+ ****************************************************************************************
+ */
+void resetTimer_ir(void)
+{
+}
+
+/**
+ ****************************************************************************************
+ * @brief Set button (GPIO) press IR (interrupt).
+ * @return void
+ ****************************************************************************************
+ */
+void setButtonPress_ir(void)
+{
+		GPIO_EnableIRQ(GPIO_SW_PORT, GPIO_SW_PIN, GPIO0_IRQn, INPUT_LEVEL, EDGE_LEVEL, DEBOUNCE_MS);
 		GPIO_SetIRQInputLevel(GPIO0_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
-		GPIO_RegisterCallback(GPIO0_IRQn, GPIO_ISR);
+		GPIO_RegisterCallback(GPIO0_IRQn, setButtonPress_ir);
 }
 
 /**
  ****************************************************************************************
- * @brief Set button (GPIO) release interrupt.
+ * @brief Get button (GPIO) press IR (interrupt). For future use.
  * @return void
  ****************************************************************************************
  */
-void set_negative_GPIO_interrupt(void)
+void getButtonPress_ir(void)
 {
-		GPIO_EnableIRQ(GPIO_SW_PORT, GPIO_SW_PIN, GPIO1_IRQn, true, true, DEBOUNCE_MS);
-		GPIO_SetIRQInputLevel(GPIO1_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
-		GPIO_RegisterCallback(GPIO1_IRQn, negative_GPIO_ISR);
 }
 
+/**
+ ****************************************************************************************
+ * @brief Reset button (GPIO) press IR (interrupt). For future use.
+ * @return void
+ ****************************************************************************************
+ */
+void resetButtonPress_ir(void)
+{
+}
+
+/**
+ ****************************************************************************************
+ * @brief Set button (GPIO) release IR (interrupt).
+ * @return void
+ ****************************************************************************************
+ */
+void setButtonRelease_ir(void)
+{
+		GPIO_EnableIRQ(GPIO_SW_PORT, GPIO_SW_PIN, GPIO1_IRQn, INPUT_LEVEL, EDGE_LEVEL, DEBOUNCE_MS);
+		GPIO_SetIRQInputLevel(GPIO1_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
+		GPIO_RegisterCallback(GPIO1_IRQn, setButtonRelease_ir);
+}
+
+/**
+ ****************************************************************************************
+ * @brief Get button (GPIO) release IR (interrupt). For future use.
+ * @return void
+ ****************************************************************************************
+ */
+void GetButtonRelease_ir(void)
+{
+}
+
+/**
+ ****************************************************************************************
+ * @brief Reset button (GPIO) release IR (interrupt). For future use.
+ * @return void
+ ****************************************************************************************
+ */
+void resetButtonRelease_ir(void)
+{
+}

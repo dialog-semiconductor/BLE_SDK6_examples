@@ -90,10 +90,18 @@
 
 /**
  ****************************************************************************************
- * @brief   Initializes application's peripherals and pins
+ * @brief   Initializes application's peripherals and pins.
  * @return  void
  ****************************************************************************************
  */
 void periph_init(void);
+
+/**
+****************************************************************************************
+* @brief	Deinitializes application's peripherals and pins. For future use.
+* @return	void
+****************************************************************************************
+*/
+void periph_deinit(void);
 
 #endif // _USER_PERIPH_SETUP_H_

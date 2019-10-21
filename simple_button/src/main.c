@@ -232,7 +232,7 @@ void setButtonPress_ir(void)
 {
 		GPIO_EnableIRQ(GPIO_SW_PORT, GPIO_SW_PIN, GPIO0_IRQn, INPUT_LEVEL, EDGE_LEVEL, DEBOUNCE_MS);
 		GPIO_SetIRQInputLevel(GPIO0_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
-		GPIO_RegisterCallback(GPIO0_IRQn, setButtonPress_ir);
+		GPIO_RegisterCallback(GPIO0_IRQn, buttonPress_isr);
 }
 
 /**
@@ -265,7 +265,7 @@ void setButtonRelease_ir(void)
 {
 		GPIO_EnableIRQ(GPIO_SW_PORT, GPIO_SW_PIN, GPIO1_IRQn, INPUT_LEVEL, EDGE_LEVEL, DEBOUNCE_MS);
 		GPIO_SetIRQInputLevel(GPIO1_IRQn, GPIO_IRQ_INPUT_LEVEL_LOW);
-		GPIO_RegisterCallback(GPIO1_IRQn, setButtonRelease_ir);
+		GPIO_RegisterCallback(GPIO1_IRQn, buttonRelease_isr);
 }
 
 /**

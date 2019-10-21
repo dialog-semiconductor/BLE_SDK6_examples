@@ -1,170 +1,187 @@
 ﻿
-# DA14585/DA14586 and DA14531 Button Press with wake up from Sleep
+# DA14585/DA14586 and DA14531 Multiple button press wake up callback
 
 ---
 
 
 ## Example description
 
-This SDK6 example shows how to configure
-multiple buttons that will wake up the system from
-sleep. In the wake up handler it will detect the source
-of the wake up. When button SW2 is the source of the
-wake up, the LED P1_0 will turn on. Alternatively, when 
-button SW3 is the source of the wake up, the LED will 
-remain off. In both cases a message will 
-be send to the serial terminal (i.e. Tera Term, PuTTy or any 
-other of your own preference) displaying the wake up source.
+This example shows:
+- How to wake up using two possible sources, button SW2 or button SW3.
+- How to detect the source, button SW2 or button SW3.
+
+The expected result of the example can be verified by:
+- Connecting a serial terminal on the work station to the MB (Mother Board) using UART.
+- Status of the LED.
+- While awake, the system is advertising (BLE). 
 
 ## HW and SW configuration
 
-	- This example runs on The DA14585 and the DA14531 Bluetooth Smart SoC devices	
-	- The Basic / Pro Development kit can be used for the DA14585
-	- The DA14531 requires the Pro Development kit
+This example runs on the BLE Smart SoC (System on Chip) devices:
+- DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
+- DA14585/DA14586 daughter board + Basic dev Kit mother board.
 	
-	User manual for the Pro Development kit can be found [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro)
-	
-	Follow the hardware configuration according to your Daughter board (DA14585 or DA14531) and Development Kit, Pro or Basic.
+The user manuals for the development kits can be found:
+- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
-* **Hardware configuration DA14531 using Pro Development Kit**
+The example is running from SRAM. To run the program from flash please visit chapter 11 of the [SmartSnippets Toolbox User Manual](https://support.dialog-semiconductor.com/resource/um-b-083-smartsnippets-toolbox-user-manual).
 
-- Connect the USB Development kit to the host computer
-- UART TX: connect P21 on J2 to UTX pin 17 on J1 as shown in the image below (the blue line)
-- LED jumper is configured to P1_0 (red box 2)
-- SW2 (button 2) is configured to P3_1 (red box 1)
-- SW3 (button 3) is configured to P0_7 (P27), see green line in the image below 
+* __Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard__
+
+	- UART TX: connect P21 on J2 to UTX pin 17 on J1 as shown in the image below (the blue line).
+	- LED jumper on J8 is configured to P0_9 (red box 2).
+	- SW2 (button 2) is configured to P3_1, located on J19 (red box 1)
+	- SW3 (button 3) on J19 is configured to P0_7 (P27) on J2, see green line in the image below
+	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
 	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
-		
-* **Hardware configuration DA14585 using the Pro Development Kit**
+	
+* **Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard**
 
-	- Connect the USB Development kit to the host computer.
-	- UART TX jumper on P0_4 (red box 1)
-	- LED jumper is configured to P1_0 (red box 3)
-	- SW2 (button 2) is configured to P0_6 (red box 4)
-	- SW2 (button 3) is configured to P1_1 (red box 2)
+	- UART TX jumper on P0_4, located on J1 (red box 1).
+	- LED jumper is configured to P1_0, located on J8 (red box 3).
+	- SW2 (button 2) is configured to P0_6, located on J19 (red box 4)
+	- SW3 (button 3) is configured to P1_1, located on J19 (red box 2)
+	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector.
 
 	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
 
 * **Hardware configuration DA14585 using the Basic Development Kit**
 
-	- Connect the USB Development kit to the host computer.
-	- UART TX/RX jumper on P0_4/P0_5
-	- LED jumper is configured to P1_0
-	- An active-low switch should be connected to P1_1 (this switch will be SW3) as displayed in the following schematic
-	- An active-low switch should be connected to P0_6 (this switch will be SW2) as displayed in the following schematic
+	- UART TX/RX jumper on P0_4/P0_5, located on J4
+	- LED jumper is configured to P1_0, located on J9
+	- An active-low switch should be connected to P1_1, located on J4, (this switch will be SW3) as displayed in the following schematic
+	- An active-low switch should be connected to P0_6, located on J4, (this switch will be SW2) as displayed in the following schematic
 	
-	   ![connections](assets/connections.PNG)
+	![connections](assets/connections.PNG)
 
 * **Software configuration**
 
 	- This example requires:
 	* (optional) SmartSnippets Toolbox v5.0.10
-    * SDK6.0.12
+    * [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest)
 	* Keil5
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
-
 ## How to run the example
+### Setup
+Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+1. Start Keil using the `simple_button.uvprojx` Keil project file.
+ 
+2. Expand the dialog shown in the red box in the image below.
 
-For initial setup of the example please visit [initial project setup](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+![Expand_Select_Device](assets/Expand_Select_Device.png)
 
-If not done already, please visit the getting started guide according to your device [DA14585](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or [DA14531](NO LINK AVAILABLE YET)
-
-The example is running from SRAM. To run the program from flash please visit chapter 11 of the [SmartSnippets Toolbox User Manual](https://support.dialog-semiconductor.com/resource/um-b-083-smartsnippets-toolbox-user-manual).
-
-### Initial Setup
-
- - Start Keil
- - Expand the dialog shown in the red box in the image below
-
-	  ![Expand_Select_Device](assets/Expand_Select_Device.png)
-	  
- - Select your device DA14531, DA14586 or DA14585
+3. Select your device: DA14531, DA14586 or DA14585.
 		
-	  ![Select_Device](assets/Select_Device.png)
-	  
- - (optional) Change GPIO pin configuration in *user_periph_setup.h*
- - (optional) Change configuration in one or more of the *user_config* files
- - Compile (F7) and launch (ctrl F5) the example, if the warning (shown below) pops up press OK
- 
-	  ![warning](assets/warning.png)
+![Select_Device](assets/Select_Device.png)
 
- - A screen similar to the image below is shown, press F5 to run the example
+4. Open a serial terminal on the work station using for example Tera Term/PuTTY with the following parameters:
+```
+- baud rate: 115200
+- data: 8 bits
+- stop: 1 bit
+- parity: None
+- flow  control: none
+```
 
-	  ![Start_Example](assets/Start_Example.png)
-	
- - Open the development kit serial port with the following parameters
+5. (Optional) open and connect your device in SmartSnippets Toolbox 
 
-		- baud rate: 115200
-		- data: 8 bits
-		- stop: 1 bit
-		- parity: None
-		- flow  control: none
+6. Compile (F7) and launch (ctrl + F5) the example.\
+If the warning (shown below) pops up press OK.
+ 
+![warning](assets/warning.png)
 
-### While running the example
+## Expected Results
 
- - Note that uart messages will only be send to your serial monitor if *CFG_PRINTF_UART2* is defined, the definition can be found in *user_periph_setup.h* 
- 
- - Identify the corresponding led 
-	- For the Pro Development Kit the led is called *D5* and the color of the led is *orange*.
- 	- For the Basic Development Kit the led is called *USR* and the color of the led is *green*.
-	
- - After launch the example will start advertising, no message is send to the serial terminal
- 
- - If button SW2 or SW3 is pressed and the system is awake the system will go to sleep and "System going to sleep" is printed on your serial monitor, if the user led was on it will switch off
- 
- - If button SW2 is pressed and the system is asleep the system will wake up and "Wakeup source: SW2" is printed on your serial monitor and the user led will be turned on
- 
- - If button SW3 is pressed and the system is asleep the system will wake up and "Wakeup source: SW3" is printed on your serial monitor **but because SW3 is the wake up source the user led will remain off**
- 
- - (optional) See power usage via SmartSnippets toolbox, good to see the difference between advertising and sleeping.   
-	- **Note when using SmartSnippets with the DA14531 configure (in user_periph_setup.h) and connect SW2 to another pin than P0_11 (red box 1), because SmartSnippets uses this pin** 
-	
-	  Image below shows a capture of SmartSnippets
-	  ![DA14531_SmartSnippets_Capture_wakeup](assets/DA14531_SmartSnippets_Capture_wakeup.PNG)
+### DA14585/DA14586/DA14531 with DA145xxDEVKT-P PRO-Motherboard
+1. The LED controlled in this example is `D5` and the color is `orange`.
+
+2. Have the serial UART monitor active: status messages will be displayed here. See step `4` in ["How to run the example"](#How-to-run-the-example) for setting up the serial monitor.
+	- Note that UART messages will only be send to your serial monitor if *CFG_PRINTF_UART2* is defined, the definition can be found in *user_periph_setup.h* 
+
+3. (Optional) initialize and start SmartSnippets toolbox.
+	- __Note if SmartSnippets toolbox is used remove the jumper connected to P1_3 on J8__ 
+		  
+	Image below shows a capture of SmartSnippets
+	![DA14531_SmartSnippets_Capture_wakeup](assets/DA14531_SmartSnippets_Capture_wakeup.PNG)
+
+4. After launching the example, the system will start advertising. 
+	- Note that at start up __no__ message is send via UART.
+
+5. Pressing button SW2 or SW3 will make the system go to sleep.
+	- "System going to sleep" is printed on your serial monitor.
+	- If the LED was on it will switch off.
+	- System will stop advertising.
+
+6. Pressing button SW2:
+	- "Wakeup source: SW2" is printed on the serial monitor.
+	- The LED is turned on.
+	- System will start advertising.
+
+7. See step 5.
+
+8. Pressing button SW3:
+	- "Wakeup source: SW3" is printed on the serial monitor.
+	- LED will remain off because SW3 is the source of wake up.
+	- System will start advertising. 
+
+### DA14585/DA14586 Basic Dev Kit
+
+1. The LED controlled in this example is `USR` and the color is `green`.
+
+2. Identify button:
+	- The button connected to P1_1 is SW3.
+	- The button connected to P0_6 is SW2.
+
+3. Follow the steps from step 2 in [DA14585/DA14586/DA14531 with DA145xxDEVKT-P PRO-Motherboard](###DA14585/DA14586/DA14531-with-DA145xxDEVKT-P-PRO-Motherboard)
 		
 ## About this Example
-This example was built on top of the Barebone project from SDK6. The code can be found in *user_wakeup.c*.
-The function, to initialize the parameters of the example, **user_wakeup_example_init(void)**, is called from the **user_app_init(void)** in *the user_barebone.c* file.
-In the *da1458x_config_basic.h* file the SLEEP_WITHOUT_ADVERTISING flag is undefined by default. When sleep without advertising is required, defining this flag will ensure this.
-Mind that *da1458x_config_basic.h* has a section for the DA14531 and a shared section for DA14585 and DA14586. 
 
-To set up the wake up interrupt, wkupct_enable_irq(uint32_t sel_pins, uint32_t pol_pins, uint16_t events_num, uint16_t deb_time) from the wkupct_quadec driver is used with the following parameters:
+### Configuration
 
- - 	sel_pins: (WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN)). WKUPCT_PIN_SELECT uses the GPIO Port and GPIO Pin to create the correct
-	bit mask for setting the wake up interrupt in the corresponding register(s). If more than one interrupt source is to be set, as is the case here, use an OR operation to combine all the bit masks.
- - 	pol_pins: (WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, 1) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, 1)). WKUPCT_PIN_POLARITY uses the GPIO Port, GPIO Pin and polarity parameter to create the correct
-	bit mask for setting the polarity of the wake up source in the corresponding register(s). If more than one interrupt source is to be set, as is the case here, use an OR operation to combine all the bit masks.
- - 	events_num: (1). The number of wake up events before an interrupt is triggered ranging from 1 - 255.
- - 	deb_time: (30). The debounce time in milliseconds ranging from 0 - 63 (0x00 - 0x3F).
+This example can be modified:
+- By changing the pin and other configurations in *user_periph_setup.h*.
+- By changing configurations in *user_wakeup.h*
+- By changing the configurations in one or more of the **user_config** files.
+
+Configuration of the wake up callback (`wkupct_enable_irq`):
+- sel_pins: using `WKUPCT_PIN_SELECT` and an or operator SW2 and SW3 is set as wake up callback.
+- pol_pins: using `WKUPCT_PIN_POLARITY`, an or operator and WKUPCT_PIN_POLARITY_LOW SW2 and SW3 is set to wake up the system at button press.
+	- Button press is equal to polarity low because an internal pull up is used.
+- events_num: is to 1 event (button press) to wake up the system.
+- deb_time: is set to 30 to prevent button debounce to trigger interrupt/callback.
+
+Configure the callback function:
+- With `wkupct_register_callback` a wake up callback function is set, in this case `user_app_wakeup_press_cb`
  
- The wake up callback is set using the wkupct_register_callback(wakeup_handler_function_t callback) function from the wkupct_quadec driver. In this case it is set to the user_app_wakeup_press_cb(void).
- 
- In the user_app_wakeup_press_cb(void) the following is done:
- * When the device isn't sleeping, put the device to sleep by calling the following functions:
- 
-	- app_easy_gap_advertise_stop(); This function will stop the advertising. (Function is only called when the SLEEP_WITHOUT_ADVERTISING is defined)
-	- arch_set_sleep_mode(ARCH_EXT_SLEEP_ON); This function will change the default sleep state.	
-	- arch_ble_ext_wakeup_on(); This function prevents the BLE core from waking up the system. Only an external event (i.e. button press) can wake up the system.
-	
-* When the device is sleeping, wake up the device by calling the following functions:
+### How the system goes to sleep
 
-	- arch_set_sleep_mode(ARCH_SLEEP_OFF); This will change the default sleep state.
-    	- arch_ble_force_wakeup(); This will wake up the BLE core when only external event can wake up the system. 
-    	- arch_ble_ext_wakeup_off(); This will enable the BLE core to wake up the system from sleep.
-	- Furthermore, the source of the interrupt will be checked and displayed accordingly. 
-	
-With the wake up interrupt there isn't a good way do differentiate between level detection and edge detection 
-as is the case with normal GPIO interrupts by setting the correct value in the GPIO_INT_LEVEL_CTRL_REG. 
-For the wake up interrupt there is no similar register to achieve this result.
+1. `GPIO_SetInactive(LED_PORT, LED_PIN)` sets the LED inactive.
 
-## Known Limitations
+2. `arch_set_sleep_mode(ARCH_EXT_SLEEP_ON)` this function will change the default sleep state to ARCH_EXT_SLEEP_ON.
 
+3. `arch_ble_ext_wakeup_on()` this function prevents the BLE core from waking up, the system can only wake up from an external source, a button press in this example.
 
-- There are No known limitations for this example.
-- For the DA14585 and the DA14586 known hardware limitations please visit [known hardware limitations DA1458x](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf "known hardware limitations DA1458x").
-- For the DA14531 known hardware limitations please visit [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
+### How the system wakes up
+
+1. `arch_set_sleep_mode(ARCH_SLEEP_OFF)` this function will change the default sleep state to ARCH_SLEEP_OFF.
+
+2. `arch_ble_force_wakeup()` this function will wake up the BLE core.
+
+3. `arch_ble_ext_wakeup_off()` this function will disable external wake up, the BLE core can wake up the system again.
+
+## Troubleshooting
+- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
+
+- Try a different USB1 cable.
+
+- Try different jumper wires, if used.
+
+- If SmartSnippets toolbox is used, is the jumper connected to P1_3 on J8 removed?
+
+- If none of the above steps help, please check the user manual according to your daughter board and mother board. User manual can be found ["here"](##HW-and-SW-configuration)
 
 
 ## License

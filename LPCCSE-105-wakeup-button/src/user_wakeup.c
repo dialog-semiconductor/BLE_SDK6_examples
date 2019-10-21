@@ -109,7 +109,7 @@ void user_app_wakeup_press_cb(void)
 						printf_string(UART2,"\n\n\rWakeup source: SW2");
 				#endif
 		}
-		else if (!GPIO_GetPinStatus(GPIO_SW3_PORT, GPIO_SW3_PIN))
+		else if(!GPIO_GetPinStatus(GPIO_SW3_PORT, GPIO_SW3_PIN))
 		{
 				#ifdef CFG_PRINTF_UART2
 						printf_string(UART2,"\n\n\rWakeup source: SW3");
@@ -129,9 +129,9 @@ void user_app_wakeup_press_cb(void)
 		#endif
 		GPIO_SetInactive(LED_PORT, LED_PIN);
 
-		#ifdef SLEEP_WITHOUT_ADVERTISING
-				app_easy_gap_advertise_stop();
-		#endif
+//		#ifdef SLEEP_WITHOUT_ADVERTISING
+//				app_easy_gap_advertise_stop();
+//		#endif
 
 		arch_set_sleep_mode(ARCH_EXT_SLEEP_ON);				
 		arch_ble_ext_wakeup_on();

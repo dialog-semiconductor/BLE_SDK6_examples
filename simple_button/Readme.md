@@ -139,7 +139,7 @@ The button interrupt with edge detection example is now running. Follow the step
 
 - Try different jumper wire, if used.
 
-- If none of the above helps, please check the user manual according to your daughter board and mother board. User manual can be found ["here"](##HW-and-SW-configuration)
+- If none of the steps described above help, please check the user manual according to your daughter board and mother board. User manual can be found ["here"](##HW-and-SW-configuration)
 
 ## License
 

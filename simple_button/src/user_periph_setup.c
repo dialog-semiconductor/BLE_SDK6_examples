@@ -45,7 +45,7 @@ static void set_pad_functions(void)
     GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
 #endif
 
-		GPIO_ConfigurePin(GPIO_SW3_PORT, GPIO_SW3_PIN, INPUT_PULLUP, PID_GPIO, false);
+		GPIO_ConfigurePin(GPIO_SW_PORT, GPIO_SW_PIN, INPUT_PULLUP, PID_GPIO, false);
 	
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 

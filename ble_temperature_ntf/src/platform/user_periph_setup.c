@@ -48,6 +48,8 @@
  ****************************************************************************************
  */
 //i2c configuration
+
+#if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)
 static const i2c_cfg_t i2c_cfg = {
     .clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET,
     .clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET,
@@ -61,6 +63,8 @@ static const i2c_cfg_t i2c_cfg = {
     .tx_fifo_level = 1,
     .rx_fifo_level = 1,
 };
+#endif
+
 /**
  ****************************************************************************************
  * @brief Each application reserves its own GPIOs here.
@@ -78,8 +82,10 @@ void GPIO_reservations(void)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
 
+#if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)
 	RESERVE_GPIO(,MCP9808_SDA_PORT, MCP9808_SDA_PIN, PID_I2C_SDA);
 	RESERVE_GPIO(,MCP9808_SCL_PORT, MCP9808_SCL_PIN, PID_I2C_SCL);
+#endif 
 }
 
 #endif
@@ -91,9 +97,11 @@ void set_pad_functions(void)
     GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
 #endif
 
+#if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)
 		// Configure I2C pin functionality
     GPIO_ConfigurePin(MCP9808_SCL_PORT, MCP9808_SCL_PIN, INPUT_PULLUP, PID_I2C_SCL, false);
     GPIO_ConfigurePin(MCP9808_SDA_PORT, MCP9808_SDA_PIN, INPUT_PULLUP, PID_I2C_SDA, false);
+#endif
 }
 
 void periph_init(void)
@@ -118,7 +126,9 @@ void periph_init(void)
     // ROM patch
     patch_func();
 
+#if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)
 		i2c_init(&i2c_cfg);
+#endif
 		
     // Set pad functionality
     set_pad_functions();
@@ -126,6 +136,8 @@ void periph_init(void)
     // Enable the pads
     GPIO_set_pad_latch_en(true);
 		
+#if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)		
 		// Must be done after initializing GPIO because this function communicates with the MCP9808 via I2C
 		temperature_sensor_init();
+#endif
 }

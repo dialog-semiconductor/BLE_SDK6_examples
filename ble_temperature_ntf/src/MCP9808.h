@@ -33,33 +33,32 @@
 #ifndef _MCP9808_H_
 #define _MCP9808_H_
 
-
 /*
  * INCLUDE FILES
  ****************************************************************************************
  */
+ #include "da1458x_config_basic.h"
+ #if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)
 #include "stdint.h"
-#include "math.h"
 
 /*
  * USER TYPE DEFINITIONS
  ****************************************************************************************
  */
 typedef enum{ HALF_RESOLUTION = 0,
-							QUATER_RESOLUTION,
-							EIGHT_RESOLUTION,
-							SIXTEENTH_RESOLUTION} temperature_resolution; //The higher the resolution the longer the convursion time, for SIXTEENTH_RESOLUTION it is 250ms.
+                QUATER_RESOLUTION,
+				EIGHT_RESOLUTION,
+				SIXTEENTH_RESOLUTION} temperature_resolution; //The higher the resolution the longer the convursion time, for SIXTEENTH_RESOLUTION it is 250ms.
 																														//Look in the datasheet of the MCP9808 Temperature sensor for the convursion time.
 							
 /*
  * DEFINES
  ****************************************************************************************
  */
-#define NOTIFICATION_DELAY 					300  									//Time between notifications in ms
-#define TEMPERATURE_DATA_REGISTER		0x05 									//Register 5 contains 12 bits of temperature data
-#define TEMPERATURE_REGISTER_SIZE		12	 									//In bits. Must be a unsigned integer greater than 0
-#define RESOLUTION_CONFIG_REGISTER	0X08 								 	//3 bits register containing the resolution
-#define USED_TEMPERATURE_RESOLUTION	SIXTEENTH_RESOLUTION 	//0.0625 degrees Celsius resolution
+#define TEMPERATURE_DATA_REGISTER		    0x05 									//Register 5 contains 12 bits of temperature data
+#define TEMPERATURE_REGISTER_SIZE		    12	 									//In bits. Must be a unsigned integer greater than 0
+#define RESOLUTION_CONFIG_REGISTER	        0X08 								 	//3 bits register containing the resolution
+#define USED_TEMPERATURE_RESOLUTION	        SIXTEENTH_RESOLUTION 	                //0.0625 degrees Celsius resolution
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
@@ -71,5 +70,7 @@ uint16_t read_MCP9808_temperature_register(void);
 double calculate_temperature(const uint16_t);
 
 double get_temperature(void);
+
+#endif //CFG_USE_INTERNAL_TEMP_SENSOR
 
 #endif // _MCP9808_H_

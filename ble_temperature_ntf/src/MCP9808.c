@@ -35,8 +35,9 @@
  ****************************************************************************************
  */
 #include "MCP9808.h"
+#if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)
 #include "i2c.h"
-
+#include "math.h"
 /**
  ****************************************************************************************
  * @brief Initialize the temperature sensor, the function sets the resolution to maximum
@@ -109,4 +110,4 @@ double get_temperature(void){
 	return calculate_temperature(read_MCP9808_temperature_register());
 }
 
-
+#endif

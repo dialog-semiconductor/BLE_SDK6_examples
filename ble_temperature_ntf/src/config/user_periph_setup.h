@@ -44,7 +44,7 @@
 #include "spi_flash.h"
 #include "i2c.h"
 #include "i2c_eeprom.h"
-
+#include "da1458x_config_basic.h"
 
 
 /*
@@ -52,27 +52,28 @@
  ****************************************************************************************
  */
 
-/****************************************************************************************/
-/* I2C configuration                                                                  	*/
-/****************************************************************************************/
-#define I2C_SLAVE_ADDRESS           0x18                  // Set slave device address
-#define I2C_SPEED_MODE              I2C_SPEED_FAST        // Speed mode: 			I2C_SPEED_FAST (400 kbits/s)
-#define I2C_ADDRESS_MODE            I2C_ADDRESSING_7B     // Addressing mode: I2C_ADDRESSING_7B
-#define I2C_ADDRESS_SIZE            I2C_1BYTES_ADDR       // Address width: 	I2C_1BYTE_ADDR 
+#if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)
+	/****************************************************************************************/
+	/* I2C configuration                                                                  	*/
+	/****************************************************************************************/
+	#define I2C_SLAVE_ADDRESS           0x18                  // Set slave device address
+	#define I2C_SPEED_MODE              I2C_SPEED_FAST        // Speed mode: 			I2C_SPEED_FAST (400 kbits/s)
+	#define I2C_ADDRESS_MODE            I2C_ADDRESSING_7B     // Addressing mode: I2C_ADDRESSING_7B
+	#define I2C_ADDRESS_SIZE            I2C_1BYTES_ADDR       // Address width: 	I2C_1BYTE_ADDR 
 
-// Define I2C Pins
-#if defined (__DA14531__)
-    #define MCP9808_SCL_PORT            GPIO_PORT_0
-    #define MCP9808_SCL_PIN	            GPIO_PIN_1
-    #define MCP9808_SDA_PORT            GPIO_PORT_0
-    #define MCP9808_SDA_PIN             GPIO_PIN_3
-#else
-    #define MCP9808_SCL_PORT            GPIO_PORT_2
-    #define MCP9808_SCL_PIN	            GPIO_PIN_1
-    #define MCP9808_SDA_PORT            GPIO_PORT_2
-    #define MCP9808_SDA_PIN             GPIO_PIN_3
-#endif 
-
+	// Define I2C Pins
+	#if defined (__DA14531__)
+			#define MCP9808_SCL_PORT            GPIO_PORT_0
+			#define MCP9808_SCL_PIN	            GPIO_PIN_1
+			#define MCP9808_SDA_PORT            GPIO_PORT_0
+			#define MCP9808_SDA_PIN             GPIO_PIN_3
+	#else
+			#define MCP9808_SCL_PORT            GPIO_PORT_2
+			#define MCP9808_SCL_PIN	            GPIO_PIN_1
+			#define MCP9808_SDA_PORT            GPIO_PORT_2
+			#define MCP9808_SDA_PIN             GPIO_PIN_3
+	#endif 
+#endif
 
 /***************************************************************************************/
 /* Production debug output configuration                                               */

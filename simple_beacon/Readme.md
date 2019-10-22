@@ -1,98 +1,118 @@
-# DA14585/DA14586 Simple Beacon Example
+------
 
----
+# DA14531 - DA14585/586 Simple Beacon Example 
 
+------
 
 ## Example description
 
-This demo is a non-connectable advertising application example. To make non-connectable
-advertising more efficient the flag type field inside the advertising packet is optional (please check
-Core Specification Supplement v6 by Bluetooth SIG). If the flag type field is not used it will free up to
-3 Bytes of space which can be used to send more advertising data. This
+The main purpose of this SW example is to demonstrate creating a **Non-Connectable Advertising** application example. To make Non-Connectable advertising more efficient the ``flag type`` field of an advertising packet is optional (please check **Core Specification Supplement v6 by Bluetooth SIG**). If the ``flag type`` field is not used, it can free up to 3 bytes of space which can then be used for sending more advertising data.
+
+## Non-Connectable Advertising
+
+For getting more information about the Non-Connectable Advertising, please refer to [Advertising Tutorial](https://www.dialog-semiconductor.com/sites/default/files/advertising_concept.pdf) from our [support website](https://www.dialog-semiconductor.com/bluetooth-low-energy).
 
 ## HW and SW configuration
 
-
-* **Hardware configuration**
-
-	- This example runs on The DA14585 Bluetooth Smart SoC devices.
-	- The Basic / Pro Development kit is needed for this example.
-	- Connect the USB Development kit to the host computer.
-	
-		
-
-* **Software configuration**
-
-	- This example requires:
-    * Smartsnippets Studio 1.6.3.
-    * SDK6.0.10
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
+- **Hardware configuration**
+  - This example runs on the DA14531, DA14585/586 Bluetooth Smart SoC devices.
+  - The DA1458x / DA145xx Pro Development kit is needed for this example with default jumper configuration..
+  - Connect the USB Development kit to the host computer.
+- **Software configuration**
+  - SDK6.0.12 or later
+  - **SEGGER’s J-Link** tools should be downloaded and installed.
+  - A smartphone with a BLE scanning app (for example **BLE scanner** on Android or **Lightblue** on IOS).
+  - A BLE Sniffing tool is also useful; though not mandatory .
 
 ## How to run the example
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
-
 ### Initial Setup
 
- - Start Keil
- - Compile and launch the example
- - The device will start non-connectable advertising and then it will start sending a adv scan indication and again it will switch back to non-connectable advertising
- - To verify plesae take a look at the ble sniffer log data
- 
- ![simple_beacon_basic](assets/simple_beacon_basic.png)
+- For the initial setup, please refer to [this section](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+
+- For the DA14585/586 getting started guide you can refer to this [link](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
+
+### Compile & Run
+
+- Navigate to ``project_environment`` folder and open the **Keil **project.
+- Compile and then launch the demonstration example. You can download the firmware either into System-RAM or SPI Flash. To download the firmware into SPI Flash, the  SPI Flash programmer from SmartSnippets Toolbox should be used. 
+- Define the data that is to append into ``Adverting`` or ``Scan Response`` data packet by configuring the **USER_DATA** macro in `user_simple_beacon.h`. By default, **USER_DATA** is defined as follow :
+
+```c
+#define USER_DATA  ("DA14585/586 & DA14531 Simple Beacon Software Example")
+```
+
+***Note:***
+**USER_DATA** are stored in the **uninitialized section of the Retention-RAM**
+
+```c
+uint8_t user_store_data[USER_DATA_LEN]            __attribute__((section("retention_mem_area_uninit") , zero_init));  //@RETENTION MEMORY
+```
+
+and copied into the `user_store_data[]` array:
+
+```c
+memcpy(user_store_data, USER_DATA ,USER_DATA_LEN );
+```
+
+- Initially, the device initiates non-connectable advertising (**ADV_NONCONN_IND**) and then proceeds with sending an advertising scan indication (**ADV_SCAN_IND**).  Finally, the device is switched back to non-connectable advertising mode. This is a full loop and is repeated all the time. 
+- Initially, the code checks if `user_store_data[]` is not empty. 
+- Every time the SW timer elapses, the `adv_data_update_timer_cb()` callback routine is triggered and each element of `user_store_data[]` is stored in the Advertising Data or Scan Response data packet.
+- The firmware checks whether the advertising data are full or not. If not, the next item from ``user_store_data[]`` will be appended into them. 
+- Once the Advertising data packet is full and given that more data are present in ``user_store_data[]` , the next user data will be stored into the Scan Response data packet (**SCAN_RESP**).
 
 
+To verify please take a look at the BLE sniffer log data
 
+1. Initially only the the Device Name is placed into Adverising Data.
+
+	![device_name](assets\shapes\device_name.PNG)
+
+2. Advertising Data are now full.
+
+	![non_conn](assets\shapes\non_conn.PNG)
+
+3. Switching from ADV_NONCONN_IND to ADV_SCAN_IND.
+
+	![adv_ind](assets\shapes\adv_ind.PNG)
+
+4. Central sends a scan request (SCAN_REQ) in order to receive a scan response (SCAN_RESP) from the advertiser.
+
+	![scan_req](assets\shapes\scan_req.PNG)
+
+5. Full Scan Response Data.
+
+	![scan_resp](assets\shapes\scan_resp.PNG)
 
 
 ## Known Limitations
 
-
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
-
+- Refer to the following application note for [DA1458x known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf  "known hardware limitations").
+- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
 
 ## License
 
+------
 
-**************************************************************************************
+ Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
 
- Copyright (C) 2018 Dialog Semiconductor.
- 
- This computer program or computer programs included in this package ("Software") 
- include confidential, proprietary information of Dialog Semiconductor. 
- 
- All Rights Reserved.
+ This software ("Software") is owned by Dialog Semiconductor. By using this Software
+ you agree that Dialog Semiconductor retains all intellectual property and proprietary
+ rights in and to this Software and any use, reproduction, disclosure or distribution
+ of the Software without express written permission or a license agreement from Dialog
+ Semiconductor is strictly prohibited. This Software is solely for use on or in
+ conjunction with Dialog Semiconductor products.
 
- THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) 
- AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND.  
- THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS.  
- RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT 
- DIALOG’S PRIOR WRITTEN PERMISSION.
+ EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
+ REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
+ IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
+ SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
+ CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+ PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
 
- UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS 
- THAT TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED “AS IS”, 
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, 
- BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, 
- MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM 
- COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND 
- ITS AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY 
- REPRESENTATIONS 
- (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED SOFTWARE 
-     IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, AND 
-	 
- (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY OR 
-     INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED 
-	 BY THE FCC OR OTHER LIKE AGENCIES.
-
- IN NO EVENT SHALL DIALOG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
- EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
- SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
- SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-**************************************************************************************
+------

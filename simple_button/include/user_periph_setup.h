@@ -5,7 +5,7 @@
  *
  * @brief Peripherals setup header file.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -42,13 +42,13 @@
 #include "gpio.h"
 
 /****************************************************************************************/
-/* UART2 configuration to print messages                                                  */
+/* UART2 configuration to print messages                                                */
 /****************************************************************************************/
 #define UART                        UART2
 
 #if defined (__DA14531__)
     #define UART2_TX_PORT           GPIO_PORT_0
-    #define UART2_TX_PIN            GPIO_PIN_6
+    #define UART2_TX_PIN            GPIO_PIN_1
 #else
     #define UART2_TX_PORT           GPIO_PORT_0
     #define UART2_TX_PIN            GPIO_PIN_4
@@ -65,7 +65,7 @@
 #define UART2_RX_FIFO_LEVEL         UART_RX_FIFO_LEVEL_0
 
 /****************************************************************************************/
-/* LED configuration                                                                                 */
+/* LED configuration                                                                    */
 /****************************************************************************************/
 #if defined (__DA14531__)
     #define LED_PORT                GPIO_PORT_0
@@ -76,11 +76,11 @@
 #endif
 	
 	#if defined (__DA14531__)
-		#define GPIO_SW3_PORT			 GPIO_PORT_0 
-		#define GPIO_SW3_PIN			 GPIO_PIN_8
+		#define GPIO_SW_PORT			 GPIO_PORT_0 
+		#define GPIO_SW_PIN			 	 GPIO_PIN_11
 #else
-		#define GPIO_SW3_PORT			 GPIO_PORT_1 
-		#define GPIO_SW3_PIN			 GPIO_PIN_1 
+		#define GPIO_SW_PORT			 GPIO_PORT_1 
+		#define GPIO_SW_PIN			 	 GPIO_PIN_1 
 #endif
 
 /*
@@ -90,10 +90,18 @@
 
 /**
  ****************************************************************************************
- * @brief   Initializes application's peripherals and pins
+ * @brief   Initializes application's peripherals and pins.
  * @return  void
  ****************************************************************************************
  */
 void periph_init(void);
+
+/**
+****************************************************************************************
+* @brief	Deinitializes application's peripherals and pins. For future use.
+* @return	void
+****************************************************************************************
+*/
+void periph_deinit(void);
 
 #endif // _USER_PERIPH_SETUP_H_

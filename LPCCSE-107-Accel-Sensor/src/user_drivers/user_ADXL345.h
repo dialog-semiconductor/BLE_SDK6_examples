@@ -46,7 +46,14 @@
 
 #define ADXL345_REG_POWER_CTL       0x2D //Power-saving features control 
 #define ADXL345_REG_DATA_FORMAT     0x31 //Data format control 
-#define ADXL345_REG_BW_RATE         0x2C //Data rate and power mode control 
+#define ADXL345_REG_BW_RATE         0x2C //Data rate and power mode control
+
+#define ADXL345_REG_DATAX0          0x32 //X-Axis Data 0
+#define ADXL345_REG_DATAX1          0x33 //X-Axis Data 1
+#define ADXL345_REG_DATAY0          0x34 //Y-Axis Data 0
+#define ADXL345_REG_DATAY1          0x35 //Y-Axis Data 1
+#define ADXL345_REG_DATAZ0          0x36 //Z-Axis Data 0
+#define ADXL345_REG_DATAZ1          0x37 //Z-Axis Data 1 
 
 /*
  * FUNCTION DECLARATIONS

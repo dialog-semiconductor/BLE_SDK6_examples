@@ -45,8 +45,8 @@ void ADXL345_init(){
 
 int16_t ADXL345_read_X(){
 	#ifndef NO_SENSOR
-	X_data   =  user_i2c_read_reg(0x32) & 0xff;       //Read X LSB
-	X_data  |= (user_i2c_read_reg(0x33) & 0xff) << 8; //Read X MSB
+	X_data   =  user_i2c_read_reg(ADXL345_REG_DATAX0) & 0xff;       //Read X LSB
+	X_data  |= (user_i2c_read_reg(ADXL345_REG_DATAX1) & 0xff) << 8; //Read X MSB
 	#else
 	//If no sensor is present just increase current data
 	X_data++;
@@ -56,8 +56,8 @@ int16_t ADXL345_read_X(){
 
 int16_t ADXL345_read_Y(){
 	#ifndef NO_SENSOR
-	Y_data   =  user_i2c_read_reg(0x34) & 0xff;       //Read Y LSB
-	Y_data  |= (user_i2c_read_reg(0x35) & 0xff) << 8; //Read Y MSB
+	Y_data   =  user_i2c_read_reg(ADXL345_REG_DATAY0) & 0xff;       //Read Y LSB
+	Y_data  |= (user_i2c_read_reg(ADXL345_REG_DATAY1) & 0xff) << 8; //Read Y MSB
 	#else
 	//If no sensor is present just increase current data
 	Y_data++;
@@ -67,8 +67,8 @@ int16_t ADXL345_read_Y(){
 
 int16_t ADXL345_read_Z(){
 	#ifndef NO_SENSOR
-	Z_data   =  user_i2c_read_reg(0x36) & 0xff;       //Read Z LSB
-	Z_data  |= (user_i2c_read_reg(0x37) & 0xff) << 8; //Read Z MSB
+	Z_data   =  user_i2c_read_reg(ADXL345_REG_DATAZ0) & 0xff;       //Read Z LSB
+	Z_data  |= (user_i2c_read_reg(ADXL345_REG_DATAZ1) & 0xff) << 8; //Read Z MSB
 	#else
 	//If no sensor is present just increase current data
 	Z_data++;
@@ -79,7 +79,7 @@ int16_t ADXL345_read_Z(){
 uint8_t previous[6];
 
 void ADXL345_read_XYZ(uint8_t* xyz){
-	user_i2c_multi_byte_read(0x32, xyz, 6);
+	user_i2c_multi_byte_read(ADXL345_REG_DATAX0, xyz, 6);
 	for(int i = 0; i < 3; i++){
 		int16_t current =   (xyz[i*2+1] & 0xff) << 8 | (xyz[i*2] & 0xff); //Convert the received data to a 16 bit int
 		int16_t prev = (previous[i*2+1] & 0xff) << 8 | (previous[i*2] & 0xff);

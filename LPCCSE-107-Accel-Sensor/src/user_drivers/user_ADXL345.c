@@ -25,7 +25,7 @@
 #include "i2c.h"
 
 
-void init_ADXL345(){
+void ADXL345_init(){
 #ifdef NO_SENSOR
 	return;//If the demo is ran without a sensor return immediately
 #else
@@ -43,7 +43,7 @@ void init_ADXL345(){
 #endif //NO_SENSOR
 }
 
-int16_t read_ADXL345_X(){
+int16_t ADXL345_read_X(){
 	#ifndef NO_SENSOR
 	X_data   =  user_i2c_read_reg(0x32) & 0xff;       //Read X LSB
 	X_data  |= (user_i2c_read_reg(0x33) & 0xff) << 8; //Read X MSB
@@ -54,7 +54,7 @@ int16_t read_ADXL345_X(){
 	return X_data;
 }
 
-int16_t read_ADXL345_Y(){
+int16_t ADXL345_read_Y(){
 	#ifndef NO_SENSOR
 	Y_data   =  user_i2c_read_reg(0x34) & 0xff;       //Read Y LSB
 	Y_data  |= (user_i2c_read_reg(0x35) & 0xff) << 8; //Read Y MSB
@@ -65,7 +65,7 @@ int16_t read_ADXL345_Y(){
 	return Y_data;
 }
 
-int16_t read_ADXL345_Z(){
+int16_t ADXL345_read_Z(){
 	#ifndef NO_SENSOR
 	Z_data   =  user_i2c_read_reg(0x36) & 0xff;       //Read Z LSB
 	Z_data  |= (user_i2c_read_reg(0x37) & 0xff) << 8; //Read Z MSB
@@ -78,7 +78,7 @@ int16_t read_ADXL345_Z(){
 
 uint8_t previous[6];
 
-void read_ADXL345_XYZ(uint8_t* xyz){
+void ADXL345_read_XYZ(uint8_t* xyz){
 	user_i2c_multi_byte_read(0x32, xyz, 6);
 	for(int i = 0; i < 3; i++){
 		int16_t current =   (xyz[i*2+1] & 0xff) << 8 | (xyz[i*2] & 0xff); //Convert the received data to a 16 bit int

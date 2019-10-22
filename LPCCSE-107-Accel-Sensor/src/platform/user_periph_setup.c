@@ -105,5 +105,5 @@ void periph_init(void)
     // Enable the pads
     SetBits16(SYS_CTRL_REG, PAD_LATCH_EN, 1);
 		
-	init_ADXL345(); //Initialise the ADXL345
+	ADXL345_init(); //Initialise the ADXL345
 }

@@ -117,7 +117,7 @@ static void mnf_data_init()
  */
 static void mnf_data_update()
 {    
-		read_ADXL345_XYZ(mnf_data.proprietary_data);
+    ADXL345_read_XYZ(mnf_data.proprietary_data);
 }
 
 /**
@@ -346,7 +346,7 @@ uint8_t user_int_to_string(int16_t input, uint8_t *s){
 void user_svc1_accel_X_send_ntf()
 {	
 	  //Construct the string to send as a notification
-		uint8_t string_length = user_int_to_string(read_ADXL345_X() * 3.9, X_string); //Read data and multipy by 3.9 to get acceleration in mg
+		uint8_t string_length = user_int_to_string(ADXL345_read_X() * 3.9, X_string); //Read data and multipy by 3.9 to get acceleration in mg
 		
 		//Allocate a new message
 		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,                   //Message id
@@ -390,7 +390,7 @@ void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param){
 
 void user_svc1_accel_Y_send_ntf()
 {
-		uint8_t string_length = user_int_to_string(read_ADXL345_Y() * 3.9, Y_string); //Read data and multipy by 3.9 to get acceleration in mg
+		uint8_t string_length = user_int_to_string(ADXL345_read_Y() * 3.9, Y_string); //Read data and multipy by 3.9 to get acceleration in mg
 		
 		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
 																													prf_get_task_from_id(TASK_ID_CUSTS1),
@@ -431,7 +431,7 @@ void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param){
 
 void user_svc1_accel_Z_send_ntf()
 {
-		uint8_t string_length = user_int_to_string(read_ADXL345_Z() * 3.9, Z_string); //Read data and multipy by 3.9 to get acceleration in mg
+		uint8_t string_length = user_int_to_string(ADXL345_read_Z() * 3.9, Z_string); //Read data and multipy by 3.9 to get acceleration in mg
 		
 
 		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
@@ -479,7 +479,7 @@ void user_svc2_g_timer_cb_handler(void)
 																				custs1_val_ntf_ind_req,
 																				DEF_SVC2_G_DATA_CHAR_LEN);
 		uint8_t xyz[DEF_SVC2_G_DATA_CHAR_LEN];
-		read_ADXL345_XYZ(xyz);
+		ADXL345_read_XYZ(xyz);
 		//req->conhdl = app_env->conhdl;
 		req->handle = SVC2_IDX_G_DATA_VAL;
 		req->length = DEF_SVC2_G_DATA_CHAR_LEN;

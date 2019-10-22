@@ -1,0 +1,27 @@
+Address	Size	Type	RW or RO	Shortname	Description	Group	Default	Number of options
+7F8FE00	8	Flag	RW	Application Programmed Flag #1	<html>Empty OTP set NO, Application firmware in OTP set YES</html>	Main group	0	2	0	No	0xA5A53412A5A53412	Yes
+7F8FE08	8	Flag	RW	Application Programmed Flag #2	<html>Empty OTP set NO, Application firmware in OTP set YES</html>	Main group	0	2	0	No	0x3412A5A53412A5A5	Yes
+7F8FE10	8	Integer	RO	IQ Trim value	<html>IQ Trim value</html>	Main group
+7F8FE18	8	String	RW	CRC for Trim and Calibration values	<html>CRC for Trim and Calibration values</html>	Main group
+7F8FE20	144	String	RW	Customer Specific Field	<html>Customer Specific Field<br>(18 x 64-bit words)</html>	Main group
+7F8FEB0	8	Integer	RO	OTP control value	<html>OTP control value<br>Bits[31:0] = 0xC0DEBABE<br>Bits[63:32] = Reserved</html>	Main group
+7F8FEB8	8	Integer	RW	UART STX Timeout	<html>UART STX Timeout<br>(B0[7:0] units of 4mS, default = 60 msec )</html>	Main group
+7F8FEC0	8	Integer	RW	Boot specific mapping	<html>Boot specific mapping<br><br><b>B0[7:4]</b>: SPI_CLK, Port number<br><b>B0[3:0]</b>: SPI_CLK, Pin number<br><br><b>B1[7:4]</b>: SPI_EN, Port number<br><b>B1[3:0]</b>: SPI_EN, Pin number<br><br><b>B2[7:4]</b>: SPI_DO, Port number<br><b>B2[3:0]</b>: SPI_DO, Pin number<br><br><b>B3[7:4]</b>: SPI_DI, Port number<br><b>B3[3:0]</b>: SPI_DI, Pin number<br><br><b>B4</b>:<br>0xAA = Boot from SPI port at a specific location<br>0x00 = Normal sequence<br><b>B5</b>: Wake up Command opcode<br>B6 : Serial Speed Selection SPI DIV (0-3)<br><b>B7</b>: Reserved</html>	Main group
+7F8FEC8	24	String	RW	Reserved	<html>Reserved</html>	Main group
+7F8FEE0	8	Flag	RW	Device and Package Flag	<html>Package Flag:<br><b>B[7-2]:</b> Reserved<br><b>B[1]:</b> <br>0x00 = 585<br>0xAA = 586<br><b>B[0]:</b><br>0x00 = WLCSP34<br>0xAA = QFN40<br>0x55 = QFN48<br>0x99 = KGD</html>	Main group	0	8	0	WLCSP34 (585)	0xAA00000000000000	QFN40 (585)	0x5500000000000000	QFN48 (585)	0x9900000000000000	KGD (585)	0x00AA000000000000	WLCSP34 (586)	0xAAAA000000000000	QFN40 (586)	0x55AA000000000000	QFN48 (586)	0x99AA000000000000	KGD (586)
+7F8FEE8	8	Flag	RW	Sleep Clock Source Flag	<html>Sleep Clock Source Flag:<br>0x00 = External crystal (XTAL32K)<br>0xAA = Internal RCX oscillator (RCX)</html>	Main group	0	2	0	External crystal (XTAL32K)	0xAA00000000000000	Internal RCX oscillator (RCX)
+7F8FEF0	8	Integer	RO	Calibration Flags	<html>Calibration Flags:<br>Bit[63:32] - Reserved<br>Bit[31:16] -<br>0xA5A5 = at least 1 calibration was done<br>0x0000 = no calibration was done<br>Bit[15:6] - Reserved<br>Bit[5] - 1 = VCO trim value is valid<br>Bit[4] - Reserved<br>Bit[3] - 1 = RC16M trim value is valid<br>Bit[2] - 1 = BandGap trim value is valid<br>Bit[1] - 1 = RFIO trim value is valid<br>Bit[0] - 1 = LNA trim value is valid</html>	Main group
+7F8FEF8	8	Integer	RO	Trim value for the LNA	<html>Trim value for the LNA</html>	Main group
+7F8FF00	8	Integer	RO	Trim value for the RFIO capacitance	<html>Trim value for the RFIO capacitance</html>	Main group
+7F8FF08	8	Integer	RO	Trim value for the BandGap	<html>Trim value for the BandGap</html>	Main group
+7F8FF10	8	Integer	RO	Trim value for the RC16M oscillator	<html>Trim value for the RC16M oscillator</html>	Main group
+7F8FF18	8	Integer	RW	Trim value for the XTAL16M oscillator	<html>Trim value for the XTAL16M oscillator</html>	Main group
+7F8FF20	8	Integer	RO	Trim value for the VCO	<html>Trim value for the VCO</html>	Main group
+7F8FF28	120	Integer	RW	Signature of Customer Code (15 64-bit words)	<html>Signature of Customer Code (15 64-bit words)</html>	Main group
+7F8FFA0	8	Flag	RW	Signature Algorithm Selector	<html>Signature Algorithm Selector:<br>0x00 = None<br>0xAA = MD5<br>0x55 = SHA-1<br>0xFF = CRC32</html>	Main group	0	4	0	None	0xAA00000000000000	MD5	0x5500000000000000	SHA-1	0xFF00000000000000	CRC32
+7F8FFA8	8	Integer	RW	Bluetooth Device Address	<html>Bluetooth Device Address (8bytes)</html>	Main group
+7F8FFB0	8	Integer	RW	Company Number	<html>Company Number (8bytes)</html>	Main group
+7F8FFB8	48	Integer	RW	Reserved. Keep to 0x0	<html>Reserved. Keep to 0x0</html>	Main group
+7F8FFE8	8	Integer	RW	Reserved. Keep to 0x0	<html>Reserved. Keep to 0x0</html>	Main group
+7F8FFF0	8	Integer	RW	OTP DMA length (number of 32-bit words)	<html>OTP DMA length (number of 32-bit words to be copied to the SRAM)</html>	Main group
+7F8FFF8	8	Flag	RW	SWD enable flag	<html>SWD enable flag:<br>0x00 = JTAG is enabled<br>0xAA = JTAG is disabled</html>	Main group	0	2	0	JTAG enabled	0xAA00000000000000	JTAG disabled

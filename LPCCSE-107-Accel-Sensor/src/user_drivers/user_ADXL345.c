@@ -22,26 +22,26 @@
 #include "app_easy_timer.h"
 #include "user_accelerometer.h"
 #include "user_i2c.h"
+#include "i2c.h"
+
 
 void init_ADXL345(){
-	#ifdef NO_SENSOR
+#ifdef NO_SENSOR
 	return;//If the demo is ran without a sensor return immediately
-	#else
-	RESERVE_GPIO(,ADXL345_SDA_PORT, ADXL345_SDA_PIN, PID_I2C_SDA);
-	RESERVE_GPIO(,ADXL345_SCL_PORT, ADXL345_SCL_PIN, PID_I2C_SCL);
-	RESERVE_GPIO(,ADXL345_CS_PORT, ADXL345_CS_PIN, PID_GPIO);
-	
-	GPIO_ConfigurePin(ADXL345_CS_PORT, ADXL345_CS_PIN, OUTPUT, PID_GPIO, true);
-	GPIO_ConfigurePin(ADXL345_SDA_PORT, ADXL345_SDA_PIN, INPUT_PULLUP, PID_I2C_SDA, true);
-	GPIO_ConfigurePin(ADXL345_SCL_PORT, ADXL345_SCL_PIN, INPUT_PULLUP, PID_I2C_SCL, true);
-	
-	user_i2c_init(ADXL345_I2C_ADDRESS, I2C_7BIT_ADDR, I2C_FAST, I2C_1BYTE_REGISTER, I2C_1BYTE_ADDR);
-	user_i2c_write_reg(0x2D, 0x8); //Start measuring
-	user_i2c_write_reg(0x31, 0xB); //Switch to 16g full res range
-	user_i2c_write_reg(0x2C, 0x0A); //0x0A = 100 hz data rate
-	#endif //NO_SENSOR
-}
+#else
+    const uint8_t power_ctl_cmd[] = {ADXL345_REG_POWER_CTL, 0x08};      //Set measure mode
+    const uint8_t data_format_cmd[] = {ADXL345_REG_DATA_FORMAT, 0x0B};  //16g range, LSB mode with sign ext, full resolution
+    const uint8_t bw_rate_cmd[] = {ADXL345_REG_BW_RATE, 0x0A};          //100Hz output
 
+    i2c_abort_t abort_code; //May be used for error checking
+
+	//Initialize sensor configuration registers
+    i2c_master_transmit_buffer_sync(power_ctl_cmd, 2, &abort_code, I2C_F_NONE);
+    i2c_master_transmit_buffer_sync(data_format_cmd, 2, &abort_code, I2C_F_NONE);
+    i2c_master_transmit_buffer_sync(bw_rate_cmd, 2, &abort_code, I2C_F_NONE);
+
+#endif //NO_SENSOR
+}
 
 int16_t read_ADXL345_X(){
 	#ifndef NO_SENSOR

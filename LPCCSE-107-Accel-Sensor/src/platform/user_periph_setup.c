@@ -26,7 +26,7 @@
 #include "user_periph_setup.h"       // peripheral configuration
 #include "system_library.h"
 #include "gpio.h"
-#include "uart.h"                    // UART initialization
+#include "i2c.h"
 #include "user_ADXL345.h"
 
 #if DEVELOPMENT_DEBUG
@@ -43,11 +43,11 @@ void GPIO_reservations(void)
 i.e.
     RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);    //Reserve P_01 as Generic Purpose I/O
 */
-
-#ifdef CFG_PRINTF_UART2
-    RESERVE_GPIO(UART2_TX, UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, PID_UART2_TX);
-    RESERVE_GPIO(UART2_RX, UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, PID_UART2_RX);
-#endif
+    
+    // Reserve GPIOs for ADXL345 sensor
+    RESERVE_GPIO(ADXL_GPIO_SDA, ADXL345_SDA_PORT, ADXL345_SDA_PIN, PID_I2C_SDA);
+    RESERVE_GPIO(ADXL_GPIO_SCL, ADXL345_SCL_PORT, ADXL345_SCL_PIN, PID_I2C_SCL);
+    RESERVE_GPIO(ADXL_GPIO_CS, ADXL345_CS_PORT, ADXL345_CS_PIN, PID_GPIO);
 }
 #endif //DEVELOPMENT_DEBUG
 
@@ -63,15 +63,30 @@ i.e.
     // disallow spontaneous flash wake-up
     GPIO_ConfigurePin(SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, OUTPUT, PID_GPIO, true);
 #endif
-
-#ifdef CFG_PRINTF_UART2
-    GPIO_ConfigurePin(UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, OUTPUT, PID_UART2_TX, false);
-    GPIO_ConfigurePin(UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, INPUT, PID_UART2_RX, false);
-#endif
+    
+    // Configure GPIOs for the ADXL345 sensor
+    GPIO_ConfigurePin(ADXL345_CS_PORT, ADXL345_CS_PIN, OUTPUT, PID_GPIO, true);
+    GPIO_ConfigurePin(ADXL345_SDA_PORT, ADXL345_SDA_PIN, INPUT_PULLUP, PID_I2C_SDA, true);
+    GPIO_ConfigurePin(ADXL345_SCL_PORT, ADXL345_SCL_PIN, INPUT_PULLUP, PID_I2C_SCL, true);
 }
 
 void periph_init(void)
 {
+    // Configuration struct for I2C
+    static const i2c_cfg_t i2c_cfg = {
+    .clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET,
+    .clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET,
+    .clock_cfg.fs_hcnt = I2C_FS_SCL_HCNT_REG_RESET,
+    .clock_cfg.fs_lcnt = I2C_FS_SCL_LCNT_REG_RESET,
+    .restart_en = I2C_RESTART_ENABLE,
+    .speed = I2C_SPEED_MODE,
+    .mode = I2C_MODE_MASTER,
+    .addr_mode = I2C_ADDRESS_MODE,
+    .address = ADXL345_I2C_ADDRESS,
+    .tx_fifo_level = 1,
+    .rx_fifo_level = 1,
+    };
+
     // Power up peripherals' power domain
     SetBits16(PMU_CTRL_REG, PERIPH_SLEEP, 0);
     while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
@@ -83,18 +98,12 @@ void periph_init(void)
 
     //Init pads
     set_pad_functions();
+    
+    // Initialize the I2C module
+    i2c_init(&i2c_cfg);
 
-    // (Re)Initialize peripherals
-    // i.e.
-    //  uart_init(UART_BAUDRATE_115K2, UART_FRAC_BAUDRATE_115K2, UART_CHARFORMAT_8);
-
-#ifdef CFG_PRINTF_UART2
-    SetBits16(CLK_PER_REG, UART2_ENABLE, 1);
-    uart2_init(UART_BAUDRATE_115K2, UART_FRAC_BAUDRATE_115K2, UART_CHARFORMAT_8);
-#endif
-
-   // Enable the pads
+    // Enable the pads
     SetBits16(SYS_CTRL_REG, PAD_LATCH_EN, 1);
 		
-		init_ADXL345(); //Initialise the ADXL345
+	init_ADXL345(); //Initialise the ADXL345
 }

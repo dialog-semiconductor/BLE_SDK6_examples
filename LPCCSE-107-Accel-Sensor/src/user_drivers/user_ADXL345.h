@@ -27,7 +27,7 @@
  ****************************************************************************************
  */
 
-#define ADXL345_I2C_ADDRESS  0x1D //This is the sensor address without R/W bit (0x1D or 0x53 for ADXL)
+#define ADXL345_I2C_ADDRESS   0x1D //This is the sensor address without R/W bit (0x1D or 0x53 for ADXL)
 
 //#define NO_SENSOR //Uncomment this line when no sensor is connected
 
@@ -41,6 +41,12 @@
 #define ADXL345_CS_PIN       GPIO_PIN_2
 
 #define NOTIFICATION_DELAY 50 //The time interval between sent notifications
+
+// ADXL345 Registers
+
+#define ADXL345_REG_POWER_CTL       0x2D //Power-saving features control 
+#define ADXL345_REG_DATA_FORMAT     0x31 //Data format control 
+#define ADXL345_REG_BW_RATE         0x2C //Data rate and power mode control 
 
 /*
  * FUNCTION DECLARATIONS

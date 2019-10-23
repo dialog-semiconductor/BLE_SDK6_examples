@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Fri Sep 27 16:14:31 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Oct 22 12:55:21 2019
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -12,7 +12,6 @@ adc_register_interrupt <= USED 0
 adc_reset <= USED 0
 adc_unregister_interrupt <= USED 0
 ;FILE app.o
-app_easy_gap_advertise_with_timeout_stop <= USED 0
 app_easy_gap_dev_config_get_active <= USED 0
 app_easy_gap_directed_advertise_get_active <= USED 0
 app_easy_gap_directed_advertise_start <= USED 0
@@ -38,9 +37,11 @@ app_easy_wakeup <= USED 0
 app_easy_wakeup_free <= USED 0
 app_easy_wakeup_set <= USED 0
 app_msg_utils_api_process_handler <= USED 0
+;FILE app_easy_timer.o
+app_easy_timer_cancel_all <= USED 0
+app_easy_timer_modify <= USED 0
 ;FILE app_msg_utils.o
 app_msg_send_wakeup_ble <= USED 0
-;FILE app_task.o
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
@@ -53,7 +54,6 @@ arch_set_hibernation <= USED 0
 ;FILE arch_system.o
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
-check_sys_startup_period <= USED 0
 ;FILE battery.o
 battery_get_lvl <= USED 0
 battery_get_voltage <= USED 0
@@ -109,7 +109,6 @@ i2c_wait_until_eeprom_ready <= USED 0
 ;FILE jump_table.o
 dummyf <= USED 0
 ;FILE nmi_handler.o
-;FILE nvds.o
 ;FILE otp_cs.o
 otp_cs_get_adc_diff_ge <= USED 0
 otp_cs_get_adc_diff_offset <= USED 0
@@ -120,11 +119,10 @@ otp_cs_get_adc_single_offset <= USED 0
 otp_cs_get_low_power_clock <= USED 0
 ;FILE otp_hdr.o
 ;FILE patch.o
+;FILE prf.o
 ;FILE rf_531.o
 dcoff_calibration <= USED 0
 dis_kdco_cal <= USED 0
-en_hclk <= USED 0
-en_kdtc_cal_mod1 <= USED 0
 kdco_cal_end <= USED 0
 kdco_cal_init <= USED 0
 kdco_calibration <= USED 0
@@ -225,7 +223,6 @@ printf_byte_dec <= USED 0
 ;FILE user_barebone.o
 ;FILE user_periph_setup.o
 ;FILE user_wakeup.o
-reset_event_counter <= USED 0
 ;FILE wkupct_quadec.o
 quad_decoder_clear_irq <= USED 0
 quad_decoder_disable_irq <= USED 0

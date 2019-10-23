@@ -39,8 +39,6 @@
 #include "datasheet.h"
 #include "system_library.h"
 #include "rwip_config.h"
-#include "gpio.h"
-#include "uart.h"
 #include "syscntl.h"
 
 /*

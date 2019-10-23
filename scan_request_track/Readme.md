@@ -1,4 +1,4 @@
-# DA14585/DA14586 Scan Tracking peripheral
+# DA14585/DA14586 - DA14531 Scan Request Track
 
 ---
 
@@ -18,7 +18,7 @@ The example doesn't require any change in the SDK 6.0.12 code as in previous SDK
 
 	- This example runs on The DA14585/DA14586/DA14531 Bluetooth Smart SoC devices.
 	- The Basic / Pro Development kit is needed for this example.
-	- Connect the USB Development kit to the host computer.
+	- Connect the DA145xx Pro Development Kit to the host computer.
 	- UART TX on P0_4 for DA14585/DA14586
 	- UART TX on P0_6 for DA14531
 	- For the cursor to operate on DA14531 on the PRO KIT a fly wire is needed connecting P03 with J10.1 pin.
@@ -26,7 +26,7 @@ The example doesn't require any change in the SDK 6.0.12 code as in previous SDK
 * **Software configuration**
 
 	- This example requires:
-    * Smartsnippets Toolbox 2.0.9.
+    * Smartsnippets Toolbox 2.0.10.
     * SDK6.0.12
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- **A simple serial terminal** should be installed on the PC

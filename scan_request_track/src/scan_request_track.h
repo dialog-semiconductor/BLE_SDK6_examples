@@ -5,7 +5,7 @@
  *
  * @brief Scan Request Track project header file.
  *
- * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -102,7 +102,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
 													/**
  ****************************************************************************************
- * @brief Register the callback for the scan request.
+ * @brief	Register a callback function to be executed upon scan request reception 
  * @param[in] cb   Callback to be executed in a scan request reception.
  * @return void
  ****************************************************************************************

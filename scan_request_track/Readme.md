@@ -19,9 +19,11 @@ The example doesn't require any change in the SDK 6.0.12 code as in previous SDK
 	- This example runs on The DA14585/DA14586/DA14531 Bluetooth Smart SoC devices.
 	- The Basic / Pro Development kit is needed for this example.
 	- Connect the DA145xx Pro Development Kit to the host computer.
-	- UART TX on P0_4 for DA14585/DA14586
-	- UART TX on P0_6 for DA14531
-	- For the cursor to operate on DA14531 on the PRO KIT a fly wire is needed connecting P03 with J10.1 pin.
+	- UART TX on P0_4 for DA14585/DA14586 (place jumper between J1:17 and J1:18)
+	![DA14585_connection_wires](assets/DA14585_connection_wires.png)
+	- UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27)
+	![DA14531_connection_wires](assets/DA14531_connection_wires.png)
+	- For the cursor to operate on DA14531 on the Basic / Pro Development kit a fly wire is needed connecting J2:24 with J8.2 pin (default jumper on J8 should be removed).
 
 * **Software configuration**
 

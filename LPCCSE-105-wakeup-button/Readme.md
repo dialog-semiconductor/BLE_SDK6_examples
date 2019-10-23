@@ -150,7 +150,7 @@ Configuration of the wake up callback (`wkupct_enable_irq`):
 - sel_pins: using `WKUPCT_PIN_SELECT` and an or operator SW2 and SW3 is set as wake up callback.
 - pol_pins: using `WKUPCT_PIN_POLARITY`, an or operator and WKUPCT_PIN_POLARITY_LOW SW2 and SW3 is set to wake up the system at button press.
 	- Button press is equal to polarity low because an internal pull up is used.
-- events_num: is to 1 event (button press) to wake up the system.
+- events_num: is set to 1 event (button press) to wake up the system.
 - deb_time: is set to 30 to prevent button debounce to trigger interrupt/callback.
 
 Configure the callback function:

@@ -76,17 +76,24 @@ int16_t ADXL345_read_Z(){
 	return Z_data;
 }
 
-uint8_t previous[6];
-
 void ADXL345_read_XYZ(uint8_t* xyz){
-	user_i2c_multi_byte_read(ADXL345_REG_DATAX0, xyz, 6);
+    i2c_abort_t abort_code;     //May be used for error checking
+    static uint8_t previous[6]; //Holds the previous measurement
+
+    //Setup multiple-byte read from DATAX0 to DATAZ1 registers
+    const uint8_t reg_addr = ADXL345_REG_DATAX0;
+    i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
+    i2c_master_receive_buffer_sync(xyz, 6, &abort_code, I2C_F_NONE);
+    
+    //Process the received register values
 	for(int i = 0; i < 3; i++){
 		int16_t current =   (xyz[i*2+1] & 0xff) << 8 | (xyz[i*2] & 0xff); //Convert the received data to a 16 bit int
 		int16_t prev = (previous[i*2+1] & 0xff) << 8 | (previous[i*2] & 0xff);
-		current = 0.25 * current + 0.75 * prev; //A very simple smoothing algorithm
+		current = 0.75 * current + 0.25 * prev; //A very simple smoothing algorithm
 		xyz[i*2] = current & 0xff;
 		xyz[i*2+1] = (current >> 8) & 0xff;
 	}
 	
-	memcpy(previous, xyz, 6); //Save the current data
+    //Save the data
+	memcpy(previous, xyz, 6);
 }

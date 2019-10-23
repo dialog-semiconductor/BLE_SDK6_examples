@@ -44,35 +44,71 @@ void ADXL345_init(){
 }
 
 int16_t ADXL345_read_X(){
-	#ifndef NO_SENSOR
-	X_data   =  user_i2c_read_reg(ADXL345_REG_DATAX0) & 0xff;       //Read X LSB
-	X_data  |= (user_i2c_read_reg(ADXL345_REG_DATAX1) & 0xff) << 8; //Read X MSB
-	#else
+#ifndef NO_SENSOR
+    i2c_abort_t abort_code;                 //May be used for error checking
+    uint8_t reg_addr = ADXL345_REG_DATAX0;  //Variable to hold the register address
+    uint8_t byte_received = 0;              //Intermediate storage of the received byte
+    
+    //Get measurement LSB
+    i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
+    i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
+    X_data = byte_received & 0xff;          //Store X LSB
+    
+    //Get measurement MSB
+    reg_addr = ADXL345_REG_DATAX1;
+    i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
+    i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
+    X_data |= (byte_received & 0xff) << 8;  //Store X MSB
+#else
 	//If no sensor is present just increase current data
 	X_data++;
-	#endif //NO_SENSOR
+#endif //NO_SENSOR
 	return X_data;
 }
 
 int16_t ADXL345_read_Y(){
-	#ifndef NO_SENSOR
-	Y_data   =  user_i2c_read_reg(ADXL345_REG_DATAY0) & 0xff;       //Read Y LSB
-	Y_data  |= (user_i2c_read_reg(ADXL345_REG_DATAY1) & 0xff) << 8; //Read Y MSB
-	#else
+#ifndef NO_SENSOR
+    i2c_abort_t abort_code;                 //May be used for error checking
+    uint8_t reg_addr = ADXL345_REG_DATAY0;  //Variable to hold the register address
+    uint8_t byte_received = 0;              //Intermediate storage of the received byte
+    
+    //Get measurement LSB
+    i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
+    i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
+	Y_data = byte_received & 0xff;          //Store Y LSB
+    
+    //Get measurement MSB
+    reg_addr = ADXL345_REG_DATAY1;
+    i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
+    i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
+   	Y_data |= (byte_received & 0xff) << 8;  //Store Y MSB
+#else
 	//If no sensor is present just increase current data
 	Y_data++;
-	#endif //NO_SENSOR
+#endif //NO_SENSOR
 	return Y_data;
 }
 
 int16_t ADXL345_read_Z(){
-	#ifndef NO_SENSOR
-	Z_data   =  user_i2c_read_reg(ADXL345_REG_DATAZ0) & 0xff;       //Read Z LSB
-	Z_data  |= (user_i2c_read_reg(ADXL345_REG_DATAZ1) & 0xff) << 8; //Read Z MSB
-	#else
+#ifndef NO_SENSOR
+    i2c_abort_t abort_code;                 //May be used for error checking
+    uint8_t reg_addr = ADXL345_REG_DATAZ0;  //Variable to hold the register address
+    uint8_t byte_received = 0;              //Intermediate storage of the received byte
+    
+    //Get measurement LSB
+    i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
+    i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
+	Z_data = byte_received & 0xff;          //Store Z LSB
+    
+    //Get measurement MSB
+    reg_addr = ADXL345_REG_DATAZ1;
+    i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
+    i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
+   	Z_data |= (byte_received & 0xff) << 8;  //Store Z MSB
+#else
 	//If no sensor is present just increase current data
 	Z_data++;
-	#endif //NO_SENSOR
+#endif //NO_SENSOR
 	return Z_data;
 }
 

@@ -38,7 +38,6 @@
 #include "user_periph_setup.h"
 #include "datasheet.h"
 #include "gpio.h"
-#include "uart.h"
 
 static void set_pad_functions(void)
 {
@@ -46,9 +45,7 @@ static void set_pad_functions(void)
     i.e. to set P0_1 as Generic purpose Output:
     GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
-    // Configure UART2 pin functionality
-    GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
-
+	
     // Configure LED pin functionality
     GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, false);
 	
@@ -58,23 +55,7 @@ static void set_pad_functions(void)
 	//Configure SW Timer0 PWM pin functionality
     GPIO_ConfigurePin(PWM0_PORT, PWM0_PIN, OUTPUT, PID_PWM0, true);
     GPIO_ConfigurePin(PWM1_PORT, PWM1_PIN, OUTPUT, PID_PWM1, true);
-	
-	// Configure UART2 pin functionality
-    GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 }
-
-// Configuration struct for UART2
-static const uart_cfg_t uart_cfg = {
-    .baud_rate = UART2_BAUDRATE,
-    .data_bits = UART2_DATABITS,
-    .parity = UART2_PARITY,
-    .stop_bits = UART2_STOPBITS,
-    .auto_flow_control = UART2_AFCE,
-    .use_fifo = UART2_FIFO,
-    .tx_fifo_tr_lvl = UART2_TX_FIFO_LEVEL,
-    .rx_fifo_tr_lvl = UART2_RX_FIFO_LEVEL,
-    .intr_priority = 2,
-};
 
 void periph_init(void)
 {
@@ -84,9 +65,6 @@ void periph_init(void)
     while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
     SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
 #endif
-
-    // Initialize UART2
-    uart_initialize(UART2, &uart_cfg);
 
     // Set pad functionality
     set_pad_functions();

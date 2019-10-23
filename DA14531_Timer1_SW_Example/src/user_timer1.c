@@ -46,8 +46,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "arch_system.h"
-#include "uart.h"
-#include "uart_utils.h"
 #include "user_periph_setup.h"
 #include "timer1.h"
 #include "timer0_2.h"
@@ -134,6 +132,13 @@ volatile uint16_t timer0_pwm_setup_expiration_counter;
 #if defined (CAPTURING_MODE)
 
 #if defined ( TIMER0_SOURCE )
+
+/**
+ ****************************************************************************************
+ * @brief Timer0 PWM setup function
+ * @return void
+ ****************************************************************************************
+ */
 void timer0_pwm_setup(void)
 {
 	// Enable the Timer0/Timer2 input clock

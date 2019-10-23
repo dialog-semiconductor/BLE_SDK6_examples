@@ -52,8 +52,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "arch_system.h"
-#include "uart.h"
-#include "uart_utils.h"
 #include "user_periph_setup.h"
 #include "timer1.h"
 #include "timer0_2.h"
@@ -66,8 +64,8 @@
 
 /****************************************************************************************/
 /* Select Counting or Capturing Mode                                                    */
-/*	- COUNTING_MODE : Counting Mode of Timer. Toggling LED GPIO (Default Configuration) */
-/*	- CAPTURING_MODE : Capturing Mode of Timer. Supply MPW to CAPTURE GPIO              */
+/*	- COUNTING_MODE : Counting Mode of Timer1. Toggling LED GPIO (Default Configuration)*/
+/*	- CAPTURING_MODE : Capturing Mode of Timer1. Supply PWM input source to CAPTURE GPIO*/
 /****************************************************************************************/
 #define				COUNTING_MODE
 #undef				CAPTURING_MODE
@@ -84,15 +82,14 @@
 
 /****************************************************************************************/
 /* SW Timer0 - PWM settings                                                  			*/
-/*	- TIMER_ON 	: Set TIMER0_ON_REG register											*/
-/*	- PWM_HIGH 	: Set TIMER0_RELOAD_M_REG register       								*/
-/*	- PWM_LOW 	: Set TIMER0_RELOAD_N_REG register       								*/
+/*	- TIMER_ON 	: Congigure TIMER0_ON_REG register										*/
+/*	- PWM_HIGH 	: Congigure TIMER0_RELOAD_M_REG register       							*/
+/*	- PWM_LOW 	: Congigure TIMER0_RELOAD_N_REG register       							*/
 /****************************************************************************************/
 #define 		TIMER_ON        	1000
 #define 		PWM_HIGH        	500
 #define 		PWM_LOW         	500
 
-// Define the Timer0 reload value
 
 /****************************************************************************************/
 /* Define the Timer0 reload value                                                 		*/

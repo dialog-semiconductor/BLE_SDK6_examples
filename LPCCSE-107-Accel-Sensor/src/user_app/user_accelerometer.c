@@ -223,10 +223,13 @@ void user_app_init(void)
     stored_adv_data_len = USER_ADVERTISE_DATA_LEN;
     memcpy(stored_scan_rsp_data, USER_ADVERTISE_SCAN_RESPONSE_DATA, USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN);
     stored_scan_rsp_data_len = USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN;
-    X_timer = EASY_TIMER_INVALID_TIMER; //Initialise timer handlers
-	  Y_timer = EASY_TIMER_INVALID_TIMER; //Initialise timer handlers
-	  Z_timer = EASY_TIMER_INVALID_TIMER; //Initialise timer handlers
-	  g_timer = EASY_TIMER_INVALID_TIMER; //Initialise timer handlers
+    
+    //Initialize timer handlers
+    X_timer = EASY_TIMER_INVALID_TIMER;
+    Y_timer = EASY_TIMER_INVALID_TIMER;
+    Z_timer = EASY_TIMER_INVALID_TIMER;
+    g_timer = EASY_TIMER_INVALID_TIMER;
+    
     default_app_on_init();
 }
 
@@ -291,25 +294,24 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
         app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     }
 		
-		// Stop the notification timers
-		if(X_timer != EASY_TIMER_INVALID_TIMER){
-			app_easy_timer_cancel(X_timer);
-			X_timer = EASY_TIMER_INVALID_TIMER;
-		}
-		if(Y_timer != EASY_TIMER_INVALID_TIMER){
-			app_easy_timer_cancel(Y_timer);
-			Y_timer = EASY_TIMER_INVALID_TIMER;
-		}
-		if(Z_timer != EASY_TIMER_INVALID_TIMER){
-			app_easy_timer_cancel(Z_timer);
-			Z_timer = EASY_TIMER_INVALID_TIMER;
-		}
-		if(g_timer != EASY_TIMER_INVALID_TIMER){
-			app_easy_timer_cancel(g_timer);
-			g_timer = EASY_TIMER_INVALID_TIMER;
-		}
-		
-		
+    // Stop the notification timers
+    if(X_timer != EASY_TIMER_INVALID_TIMER){
+        app_easy_timer_cancel(X_timer);
+        X_timer = EASY_TIMER_INVALID_TIMER;
+    }
+    if(Y_timer != EASY_TIMER_INVALID_TIMER){
+        app_easy_timer_cancel(Y_timer);
+        Y_timer = EASY_TIMER_INVALID_TIMER;
+    }
+    if(Z_timer != EASY_TIMER_INVALID_TIMER){
+        app_easy_timer_cancel(Z_timer);
+        Z_timer = EASY_TIMER_INVALID_TIMER;
+    }
+    if(g_timer != EASY_TIMER_INVALID_TIMER){
+        app_easy_timer_cancel(g_timer);
+        g_timer = EASY_TIMER_INVALID_TIMER;
+    }
+			
     // Update manufacturer data for the next advertsing event
     mnf_data_update();
     // Restart Advertising
@@ -345,43 +347,46 @@ uint8_t user_int_to_string(int16_t input, uint8_t *s){
 
 void user_svc1_accel_X_send_ntf()
 {	
-	  //Construct the string to send as a notification
-		uint8_t string_length = user_int_to_string(ADXL345_read_X() * 3.9, X_string); //Read data and multipy by 3.9 to get acceleration in mg
-		
-		//Allocate a new message
-		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,                   //Message id
-																													prf_get_task_from_id(TASK_ID_CUSTS1), //Target task
-																													TASK_APP,                             //Source of the message
-																													custs1_val_ntf_ind_req,               //The type of structure in the message,
-																																																//This structure should match the ID
-																																																//The ID's and strucures are found in custs1_task.h
-																													string_length);                       //How many bytes of data will be added
+    //Construct the string to send as a notification
+    uint8_t string_length = user_int_to_string(ADXL345_read_X() * 3.9, X_string);               //Read data and multipy by 3.9 to get acceleration in mg
+    
+    //Allocate a new message
+    struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,                   //Message id
+                                                          prf_get_task_from_id(TASK_ID_CUSTS1), //Target task
+                                                          TASK_APP,                             //Source of the message
+                                                          custs1_val_ntf_ind_req,               //The type of structure in the message,
+                                                          string_length);                       //How many bytes of data will be added
 
-		
-		
-		req->conidx = 0;                            //Connection ID to send the data to (this application can only have one connection(0))
-		req->notification = true;                   //Data is sent as a notification and not as indication
-		req->handle = SVC1_IDX_ACCEL_X_DATA_VAL;    //The handle of the characteristic we want to write to
-		req->length = string_length;                //Data length in bytes
-		memcpy(req->value, X_string, string_length);//Copy the string to the message
+    //Initialize message fields
+    req->conidx = 0;
+    req->notification = true;
+    req->handle = SVC1_IDX_ACCEL_X_DATA_VAL;
+    req->length = string_length;
+    memcpy(req->value, X_string, string_length);
 
-		ke_msg_send(req);                           //Send the message to the task
-		
-		X_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_X_send_ntf); //Set a timer for 100 ms (10*10)
+    //Send the message to the task
+    ke_msg_send(req);
+    
+    //Set a timer for 100 ms (10*10)
+    X_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_X_send_ntf);
 }
 
-void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param){
-	if(param->value[0]){
-		//If the client subscribed to the notification
-		if(X_timer == EASY_TIMER_INVALID_TIMER){ 
-			//Start the X timer if it is not running
-			app_easy_timer(10, user_svc1_accel_X_send_ntf);
+void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param)
+{
+    //Check if the client has subscribed to notifications
+	if(param->value[0])
+    {
+		//Start the timer if it's not running
+		if(X_timer == EASY_TIMER_INVALID_TIMER)
+        {
+            X_timer = app_easy_timer(10, user_svc1_accel_X_send_ntf);
 		}
 	}
-	else{
-		//If the client unsubscribed from the notification
-		if(X_timer != EASY_TIMER_INVALID_TIMER){ 
-			//Stop the X timer if it is running
+	else
+    {
+		//If the client has unsubscribed, invalidate the timer
+		if(X_timer != EASY_TIMER_INVALID_TIMER)
+        {
 			app_easy_timer_cancel(X_timer);
 			X_timer = EASY_TIMER_INVALID_TIMER;
 		}
@@ -390,39 +395,44 @@ void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param){
 
 void user_svc1_accel_Y_send_ntf()
 {
-		uint8_t string_length = user_int_to_string(ADXL345_read_Y() * 3.9, Y_string); //Read data and multipy by 3.9 to get acceleration in mg
-		
-		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-																													prf_get_task_from_id(TASK_ID_CUSTS1),
-																													TASK_APP,
-																													custs1_val_ntf_ind_req,
-																													string_length);
+    //Construct the string to send as a notification
+    uint8_t string_length = user_int_to_string(ADXL345_read_Y() * 3.9, Y_string);               //Read data and multipy by 3.9 to get acceleration in mg
+	
+    struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
+                                                          prf_get_task_from_id(TASK_ID_CUSTS1),
+                                                          TASK_APP,
+                                                          custs1_val_ntf_ind_req,
+                                                          string_length);
+    //Initialize message fields
+    req->conidx = 0;
+    req->notification = true;
+    req->handle = SVC1_IDX_ACCEL_Y_DATA_VAL;
+    req->length = string_length;
+    memcpy(req->value, Y_string, string_length);
 
-		
-		
-		req->conidx = 0;
-		req->notification = true;
-		req->handle = SVC1_IDX_ACCEL_Y_DATA_VAL;
-		req->length = string_length;
-		for(uint8_t i = 0; i < string_length; i++){
-			req->value[i] = Y_string[i];
-		}
-
-		ke_msg_send(req);
-		
-		Y_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Y_send_ntf); //Do this again in 100 ms (10*10)
+    //Send the message to the task
+    ke_msg_send(req);
+    
+    //Set a timer for 100 ms (10*10)
+    Y_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Y_send_ntf);
 }
 
-void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param){
-	if(param->value[0]){
-		if(Y_timer == EASY_TIMER_INVALID_TIMER){ 
-			//Start the Y timer if it is not running
-			Y_timer = app_easy_timer(10, user_svc1_accel_Y_send_ntf);
+void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param)
+{
+    //Check if the client has subscribed to notifications
+    if(param->value[0])
+    {
+        //Start the timer if it's not running
+        if(Y_timer == EASY_TIMER_INVALID_TIMER)
+        {
+            Y_timer = app_easy_timer(10, user_svc1_accel_Y_send_ntf);
 		}
 	}
-	else{
-		if(Y_timer != EASY_TIMER_INVALID_TIMER){ 
-			//Stop the Y timer if it is running
+	else
+    {
+        //If the client has unsubscribed, invalidate the timer
+        if(Y_timer != EASY_TIMER_INVALID_TIMER)
+        {
 			app_easy_timer_cancel(Y_timer);
 			Y_timer = EASY_TIMER_INVALID_TIMER;
 		}
@@ -431,39 +441,44 @@ void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param){
 
 void user_svc1_accel_Z_send_ntf()
 {
-		uint8_t string_length = user_int_to_string(ADXL345_read_Z() * 3.9, Z_string); //Read data and multipy by 3.9 to get acceleration in mg
-		
+    //Construct the string to send as a notification
+    uint8_t string_length = user_int_to_string(ADXL345_read_Z() * 3.9, Z_string);               //Read data and multipy by 3.9 to get acceleration in mg
+    
+    struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
+                                                          prf_get_task_from_id(TASK_ID_CUSTS1),
+                                                          TASK_APP,
+                                                          custs1_val_ntf_ind_req,
+                                                          string_length);
+    //Initialize message fields
+    req->conidx = 0;
+    req->notification = true;
+    req->handle = SVC1_IDX_ACCEL_Z_DATA_VAL;
+    req->length = string_length;
+    memcpy(req->value, Z_string, string_length);
 
-		struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-																													prf_get_task_from_id(TASK_ID_CUSTS1),
-																													TASK_APP,
-																													custs1_val_ntf_ind_req,
-																													string_length);
-
-		
-		req->conidx = 0;
-		req->notification = true;
-		req->handle = SVC1_IDX_ACCEL_Z_DATA_VAL;
-		req->length = string_length;
-		for(uint8_t i = 0; i < string_length; i++){
-			req->value[i] = Z_string[i];
-		}
-
-		ke_msg_send(req);
-		
-		Z_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Z_send_ntf); //Do this again in 100 ms (10*10)
+    //Send the message to the task
+    ke_msg_send(req);
+    
+    //Set a timer for 100 ms (10*10)
+    Z_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Z_send_ntf);
 }
 
-void user_svc1_accel_Z_wr_ntf_handler(struct custs1_val_write_ind const *param){
-	if(param->value[0]){
-		if(Z_timer == EASY_TIMER_INVALID_TIMER){ 
-			//Start the Z timer if it is not running
+void user_svc1_accel_Z_wr_ntf_handler(struct custs1_val_write_ind const *param)
+{
+    //Check if the client has subscribed to notifications
+	if(param->value[0])
+    {
+        //Start the timer if it's not running
+        if(Z_timer == EASY_TIMER_INVALID_TIMER)
+        { 
 			Z_timer = app_easy_timer(10, user_svc1_accel_Z_send_ntf);
 		}
 	}
-	else{
-		if(Z_timer != EASY_TIMER_INVALID_TIMER){ 
-			//Stop the Z timer if it is running
+	else
+    {
+        //If the client has unsubscribed, invalidate the timer
+		if(Z_timer != EASY_TIMER_INVALID_TIMER)
+        {
 			app_easy_timer_cancel(Z_timer);
 			Z_timer = EASY_TIMER_INVALID_TIMER;
 		}
@@ -472,33 +487,45 @@ void user_svc1_accel_Z_wr_ntf_handler(struct custs1_val_write_ind const *param){
 
 void user_svc2_g_timer_cb_handler(void)
 {
-		struct custs1_val_ntf_ind_req *req =
-																				KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-																				prf_get_task_from_id(TASK_ID_CUSTS1),
-																				TASK_APP,
-																				custs1_val_ntf_ind_req,
-																				DEF_SVC2_G_DATA_CHAR_LEN);
-		uint8_t xyz[DEF_SVC2_G_DATA_CHAR_LEN];
-		ADXL345_read_XYZ(xyz);
-		//req->conhdl = app_env->conhdl;
-		req->handle = SVC2_IDX_G_DATA_VAL;
-		req->length = DEF_SVC2_G_DATA_CHAR_LEN;
-		req->notification = true;
-		memcpy(req->value, xyz, DEF_SVC2_G_DATA_CHAR_LEN);
-		ke_msg_send(req);
-		g_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc2_g_timer_cb_handler);
+    struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
+                                                          prf_get_task_from_id(TASK_ID_CUSTS1),
+                                                          TASK_APP,
+                                                          custs1_val_ntf_ind_req,
+                                                          DEF_SVC2_G_DATA_CHAR_LEN);
+    uint8_t xyz[DEF_SVC2_G_DATA_CHAR_LEN];
+    
+    //Read 3-axes measurement
+    ADXL345_read_XYZ(xyz);
+    
+    //Initialize message fields
+    req->handle = SVC2_IDX_G_DATA_VAL;
+    req->length = DEF_SVC2_G_DATA_CHAR_LEN;
+    req->notification = true;
+    memcpy(req->value, xyz, DEF_SVC2_G_DATA_CHAR_LEN);
+    
+    //Send the message to the task
+    ke_msg_send(req);
+    
+    //Set a timer for 100 ms (10*10)
+    g_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc2_g_timer_cb_handler);
 }
 
-void user_svc2_g_wr_ntf_handler(struct custs1_val_write_ind const *param){
-	if(param->value[0]){
-		if(g_timer == EASY_TIMER_INVALID_TIMER){ 
-			//Start the g timer if it is not running
+void user_svc2_g_wr_ntf_handler(struct custs1_val_write_ind const *param)
+{
+    //Check if the client has subscribed to notifications
+	if(param->value[0])
+    {
+        //Start the timer if it's not running
+        if(g_timer == EASY_TIMER_INVALID_TIMER)
+        {
 			g_timer = app_easy_timer(10, user_svc2_g_timer_cb_handler);
 		}
 	}
-	else{
-		if(g_timer != EASY_TIMER_INVALID_TIMER){ 
-			//Stop the g timer if it is running
+	else
+    {
+        //If the client has unsubscribed, invalidate the timer
+        if(g_timer != EASY_TIMER_INVALID_TIMER)
+        {
 			app_easy_timer_cancel(g_timer);
 			g_timer = EASY_TIMER_INVALID_TIMER;
 		}
@@ -511,22 +538,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           ke_task_id_t const src_id)
 {
     switch(msgid)
-    {
-        case GAPC_PARAM_UPDATED_IND:
-        {
-            // Cast the "param" pointer to the appropriate message structure
-            struct gapc_param_updated_ind const *msg_param = (struct gapc_param_updated_ind const *)(param);
-
-            // Check if updated Conn Params filled to preferred ones
-            if ((msg_param->con_interval >= user_connection_param_conf.intv_min) &&
-                (msg_param->con_interval <= user_connection_param_conf.intv_max) &&
-                (msg_param->con_latency == user_connection_param_conf.latency) &&
-                (msg_param->sup_to == user_connection_param_conf.time_out))
-            {
-            }
-        } break;
-				
-				case CUSTS1_VAL_WRITE_IND:
+    {		
+		case CUSTS1_VAL_WRITE_IND:
         {
             struct custs1_val_write_ind const *msg_param = (struct custs1_val_write_ind const *)(param);
 
@@ -553,7 +566,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
             }
         } break;
 				
-				case CUSTS1_VAL_NTF_CFM:
+		case CUSTS1_VAL_NTF_CFM:
         {
             struct custs1_val_ntf_cfm const *msg_param = (struct custs1_val_ntf_cfm const *)(param);
 
@@ -572,6 +585,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                     break;
             }
         } break;
+        
         default:
             break;
     }

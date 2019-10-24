@@ -109,16 +109,12 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 
 
 /*
- * "app_process_catch_rest_cb" symbol handling for __CC_ARM:
- * - Use #define if "user_catch_rest_hndl" symbol exists
+ * "app_process_catch_rest_cb" symbol handling:
+ * - Use #define if "user_catch_rest_hndl" is defined by the user
  * - Use const declaration if "user_catch_rest_hndl" is NULL
  */
-
-#if defined ( __CC_ARM )
-static const catch_rest_event_func_t app_process_catch_rest_cb = (catch_rest_event_func_t)user_catch_rest_hndl;
-#elif defined ( __GNUC__ )
-#define app_process_catch_rest_cb   ((catch_rest_event_func_t)user_catch_rest_hndl)
-#endif
+#define app_process_catch_rest_cb       user_catch_rest_hndl
+// static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
 
 // Default Handler Operations
 

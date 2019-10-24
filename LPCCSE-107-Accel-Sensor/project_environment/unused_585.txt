@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Oct 17 12:33:02 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Oct 24 16:09:54 2019
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -117,15 +117,10 @@ hw_otpc_tdec <= USED 0
 hw_otpc_twr <= USED 0
 hw_otpc_write_rr <= USED 0
 ;FILE i2c.o
-i2c_init <= USED 0
 i2c_master_receive_buffer_async <= USED 0
-i2c_master_receive_buffer_sync <= USED 0
 i2c_master_transmit_buffer_async <= USED 0
-i2c_master_transmit_buffer_sync <= USED 0
 i2c_register_int <= USED 0
 i2c_release <= USED 0
-i2c_setup_master <= USED 0
-i2c_setup_slave <= USED 0
 i2c_slave_receive_buffer_async <= USED 0
 i2c_slave_receive_buffer_sync <= USED 0
 i2c_slave_transmit_buffer_async <= USED 0
@@ -267,11 +262,7 @@ uart_write_buffer <= USED 0
 uart_write_byte <= USED 0
 ;FILE user_accelerometer.o
 ;FILE user_adxl345.o
-;FILE user_i2c.o
-user_i2c_multi_byte_write <= USED 0
-user_i2c_set_register_width <= USED 0
 ;FILE user_periph_setup.o
-set_pad_functions <= USED 0
 ;FILE wkupct_quadec.o
 quad_decoder_disable_irq <= USED 0
 quad_decoder_enable_irq <= USED 0

@@ -21,7 +21,6 @@
 #include "gpio.h"
 #include "app_easy_timer.h"
 #include "user_accelerometer.h"
-#include "user_i2c.h"
 #include "i2c.h"
 
 

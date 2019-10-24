@@ -47,7 +47,6 @@ i.e.
     // Reserve GPIOs for ADXL345 sensor
     RESERVE_GPIO(ADXL_GPIO_SDA, ADXL345_SDA_PORT, ADXL345_SDA_PIN, PID_I2C_SDA);
     RESERVE_GPIO(ADXL_GPIO_SCL, ADXL345_SCL_PORT, ADXL345_SCL_PIN, PID_I2C_SCL);
-    RESERVE_GPIO(ADXL_GPIO_CS, ADXL345_CS_PORT, ADXL345_CS_PIN, PID_GPIO);
 }
 #endif //DEVELOPMENT_DEBUG
 
@@ -65,7 +64,6 @@ i.e.
 #endif
     
     // Configure GPIOs for the ADXL345 sensor
-    GPIO_ConfigurePin(ADXL345_CS_PORT, ADXL345_CS_PIN, OUTPUT, PID_GPIO, true);
     GPIO_ConfigurePin(ADXL345_SDA_PORT, ADXL345_SDA_PIN, INPUT_PULLUP, PID_I2C_SDA, true);
     GPIO_ConfigurePin(ADXL345_SCL_PORT, ADXL345_SCL_PIN, INPUT_PULLUP, PID_I2C_SCL, true);
 }
@@ -87,11 +85,12 @@ void periph_init(void)
     .rx_fifo_level = 1,
     };
 
+#ifndef __DA14531__
     // Power up peripherals' power domain
     SetBits16(PMU_CTRL_REG, PERIPH_SLEEP, 0);
     while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
-
     SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
+#endif
 
     //rom patch
     patch_func();

@@ -27,18 +27,27 @@
  ****************************************************************************************
  */
 
-#define ADXL345_I2C_ADDRESS   0x1D //This is the sensor address without R/W bit (0x1D or 0x53 for ADXL)
+#define ADXL345_I2C_ADDRESS   0x1D      //This is the sensor address without R/W bit (0x1D or 0x53 for ADXL)
 
-//#define NO_SENSOR //Uncomment this line when no sensor is connected
+//#define NO_SENSOR                     //Uncomment this line when no sensor is connected
 
-#define ADXL345_SDA_PORT     GPIO_PORT_1
-#define ADXL345_SDA_PIN      GPIO_PIN_2
+#if defined (__DA14531__)
+
+#define ADXL345_SCL_PORT    GPIO_PORT_0
+#define ADXL345_SCL_PIN     GPIO_PIN_3
+
+#define ADXL345_SDA_PORT    GPIO_PORT_0
+#define ADXL345_SDA_PIN     GPIO_PIN_1
+
+#else
+
+#define ADXL345_SDA_PORT    GPIO_PORT_1
+#define ADXL345_SDA_PIN     GPIO_PIN_1
 												     
-#define ADXL345_SCL_PORT     GPIO_PORT_1
-#define ADXL345_SCL_PIN      GPIO_PIN_0
+#define ADXL345_SCL_PORT    GPIO_PORT_1
+#define ADXL345_SCL_PIN     GPIO_PIN_3
 												     
-#define ADXL345_CS_PORT      GPIO_PORT_0
-#define ADXL345_CS_PIN       GPIO_PIN_2
+#endif
 
 #define NOTIFICATION_DELAY 50 //The time interval between sent notifications
 

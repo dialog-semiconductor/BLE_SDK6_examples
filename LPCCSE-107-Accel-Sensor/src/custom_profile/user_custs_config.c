@@ -5,7 +5,7 @@
  *
  * @brief Custom1/2 Server (CUSTS1/2) profile database structure and initialization.
  *
- * Copyright (c) 2016-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *

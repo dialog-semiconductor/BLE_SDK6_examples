@@ -5,7 +5,7 @@
  *
  * @brief Advanced compile configuration file.
  *
- * Copyright (c) 2014-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2014-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *

@@ -63,8 +63,6 @@
  ****************************************************************************************
  */
 
-
-
 // Manufacturer Specific Data ADV structure type
 struct mnf_specific_data_ad_structure
 {
@@ -82,17 +80,16 @@ struct mnf_specific_data_ad_structure
 uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 timer_hnd app_adv_data_update_timer_used        __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 timer_hnd app_param_update_request_timer_used   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t X_data																	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t Y_data																	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t Z_data																	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t X_string[8] 														__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Y_string[8] 														__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Z_string[8]															__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t X_timer     														__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Y_timer     														__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Z_timer    															__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t g_timer    															__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-// Retained variables
+int16_t X_data									__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+int16_t Y_data									__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+int16_t Z_data									__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t X_string[8] 							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t Y_string[8] 							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t Z_string[8]								__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t X_timer     							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t Y_timer     							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t Z_timer    								__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t g_timer    								__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 struct mnf_specific_data_ad_structure mnf_data  __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 // Index of manufacturer data in advertising data or scan response data (when MSB is 1)
 uint8_t mnf_data_index                          __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
@@ -224,6 +221,12 @@ static void param_update_request_timer_cb()
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
 }
 
+/**
+ **************************************************************************************************
+ * @brief User defined initialization function
+ * @return void
+ **************************************************************************************************
+ */
 void user_app_init(void)
 {
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
@@ -246,6 +249,12 @@ void user_app_init(void)
     default_app_on_init();
 }
 
+/**
+ **************************************************************************************************
+ * @brief User defined function which which will be called when the device starts advertising
+ * @return void
+ **************************************************************************************************
+ */
 void user_app_adv_start(void)
 {
     // Schedule the next advertising data update
@@ -260,6 +269,14 @@ void user_app_adv_start(void)
     app_easy_gap_undirected_advertise_start();
 }
 
+/**
+ **************************************************************************************************
+ * @brief User defined function which which will be called when the device establishes a connection
+ * @param[in] connection_idx Connection ID number
+ * @param[in] param          Pointer to GAPC_CONNECTION_REQ_IND message
+ * @return void
+ **************************************************************************************************
+ */
 void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
     if (app_env[connection_idx].conidx != GAP_INVALID_CONIDX)
@@ -289,6 +306,13 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
     default_app_on_connection(connection_idx, param);
 }
 
+/**
+ *********************************************************************************************
+ * @brief User defined function to handle the completion of undirected advertisement.
+ * @param[in] status    Status code
+ * @return void
+ *********************************************************************************************
+ */
 void user_app_adv_undirect_complete(uint8_t status)
 {
     // If advertising was canceled then update advertising data and start advertising again
@@ -298,6 +322,13 @@ void user_app_adv_undirect_complete(uint8_t status)
     }
 }
 
+/**
+ *********************************************************************************************
+ * @brief User defined function which which will be called when the device closes a connection
+ * @param[in] param Pointer to GAPC_DISCONNECT_IND message
+ * @return void
+ *********************************************************************************************
+ */
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
 {
     // Cancel the parameter update request timer
@@ -331,7 +362,14 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     user_app_adv_start();
 }
 
-
+/**
+ ****************************************************************************************
+ * @brief Helper function to convert a raw measurement to a string.
+ * @param[in]  input   Input raw measurement value
+ * @param[out] s       Pointer to the output string
+ * @return Length of string
+ ****************************************************************************************
+ */
 uint8_t user_int_to_string(int16_t input, uint8_t *s){
 	uint8_t length = 1;
 	if(input < 0){
@@ -357,7 +395,12 @@ uint8_t user_int_to_string(int16_t input, uint8_t *s){
 	return length;
 }
 
-
+/**
+ ****************************************************************************************
+ * @brief User defined function to send a notification of the X-axis acceleration value
+ * @return void
+ ****************************************************************************************
+ */
 void user_svc1_accel_X_send_ntf()
 {	
     //Construct the string to send as a notification
@@ -384,6 +427,15 @@ void user_svc1_accel_X_send_ntf()
     X_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_X_send_ntf);
 }
 
+/**
+ ****************************************************************************************
+ * @brief User defined function which handles notification enablement/disablement
+ *        of X-axis acceleration
+ * @param[in] param   Pointer to a struct which delivers the enabling/disabling of
+ *                    notifications
+ * @return void
+ ****************************************************************************************
+ */
 void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param)
 {
     //Check if the client has subscribed to notifications
@@ -406,6 +458,12 @@ void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param)
 	}
 }
 
+/**
+ ****************************************************************************************
+ * @brief User defined function to send a notification of the Y-axis acceleration value
+ * @return void
+ ****************************************************************************************
+ */
 void user_svc1_accel_Y_send_ntf()
 {
     //Construct the string to send as a notification
@@ -430,6 +488,15 @@ void user_svc1_accel_Y_send_ntf()
     Y_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Y_send_ntf);
 }
 
+/**
+ ****************************************************************************************
+ * @brief User defined function which handles notification enablement/disablement
+ *        of Y-axis acceleration
+ * @param[in] param   Pointer to a struct which delivers the enabling/disabling of
+ *                    notifications
+ * @return void
+ ****************************************************************************************
+ */
 void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param)
 {
     //Check if the client has subscribed to notifications
@@ -452,7 +519,13 @@ void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param)
 	}
 }
 
-void user_svc1_accel_Z_send_ntf()
+/**
+ ****************************************************************************************
+ * @brief User defined function to send a notification of the Z-axis acceleration value
+ * @return void
+ ****************************************************************************************
+ */
+void user_svc1_accel_Z_send_ntf(void)
 {
     //Construct the string to send as a notification
     uint8_t string_length = user_int_to_string(ADXL345_read_Z() * 3.9, Z_string);               //Read data and multipy by 3.9 to get acceleration in mg
@@ -476,6 +549,15 @@ void user_svc1_accel_Z_send_ntf()
     Z_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Z_send_ntf);
 }
 
+/**
+ ****************************************************************************************
+ * @brief User defined function which handles notification enablement/disablement
+ *        of Z-axis acceleration
+ * @param[in] param   Pointer to a struct which delivers the enabling/disabling of
+ *                    notifications
+ * @return void
+ ****************************************************************************************
+ */
 void user_svc1_accel_Z_wr_ntf_handler(struct custs1_val_write_ind const *param)
 {
     //Check if the client has subscribed to notifications
@@ -498,6 +580,12 @@ void user_svc1_accel_Z_wr_ntf_handler(struct custs1_val_write_ind const *param)
 	}
 }
 
+/**
+ ****************************************************************************************
+ * @brief User defined function called when the g timer fires.
+ * @return void
+ ****************************************************************************************
+ */
 void user_svc2_g_timer_cb_handler(void)
 {
     struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
@@ -523,6 +611,14 @@ void user_svc2_g_timer_cb_handler(void)
     g_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc2_g_timer_cb_handler);
 }
 
+/**
+ ****************************************************************************************
+ * @brief User defined function which handles notification enablement/disablement
+ * @param[in] param   Pointer to a struct which delivers the enabling/disabling of
+ *                    notifications
+ * @return void
+ ****************************************************************************************
+ */
 void user_svc2_g_wr_ntf_handler(struct custs1_val_write_ind const *param)
 {
     //Check if the client has subscribed to notifications
@@ -545,6 +641,16 @@ void user_svc2_g_wr_ntf_handler(struct custs1_val_write_ind const *param)
 	}
 }
 
+/**
+ ****************************************************************************************
+ * @brief User defined function which processes Write Notifications.
+ * @param[in] msgid   Type of the message
+ * @param[in] param   Pointer to the message to be processed
+ * @param[in] dest_id Destination task id
+ * @param[in] src_id  Source task id
+ * @return void
+ ****************************************************************************************
+ */
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,

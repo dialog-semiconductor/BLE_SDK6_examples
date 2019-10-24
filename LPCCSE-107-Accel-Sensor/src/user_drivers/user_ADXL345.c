@@ -36,8 +36,13 @@
 #include "user_accelerometer.h"
 #include "i2c.h"
 
-
-void ADXL345_init(){
+/**
+ ****************************************************************************************
+ * @brief ADXL345 sensor initialization function
+ * @return void
+ ****************************************************************************************
+ */
+void ADXL345_init(void){
 #ifdef NO_SENSOR
 	return;//If the demo is ran without a sensor return immediately
 #else
@@ -55,7 +60,13 @@ void ADXL345_init(){
 #endif //NO_SENSOR
 }
 
-int16_t ADXL345_read_X(){
+/**
+ ****************************************************************************************
+ * @brief Read X-axis acceleration registers
+ * @return X-axis acceleration raw value
+ ****************************************************************************************
+ */
+int16_t ADXL345_read_X(void){
 #ifndef NO_SENSOR
     i2c_abort_t abort_code;                 //May be used for error checking
     uint8_t reg_addr = ADXL345_REG_DATAX0;  //Variable to hold the register address
@@ -78,7 +89,13 @@ int16_t ADXL345_read_X(){
 	return X_data;
 }
 
-int16_t ADXL345_read_Y(){
+/**
+ ****************************************************************************************
+ * @brief Read Y-axis acceleration registers
+ * @return Y-axis acceleration raw value
+ ****************************************************************************************
+ */
+int16_t ADXL345_read_Y(void){
 #ifndef NO_SENSOR
     i2c_abort_t abort_code;                 //May be used for error checking
     uint8_t reg_addr = ADXL345_REG_DATAY0;  //Variable to hold the register address
@@ -101,7 +118,13 @@ int16_t ADXL345_read_Y(){
 	return Y_data;
 }
 
-int16_t ADXL345_read_Z(){
+/**
+ ****************************************************************************************
+ * @brief Read Z-axis acceleration registers
+ * @return Z-axis acceleration raw value
+ ****************************************************************************************
+ */
+int16_t ADXL345_read_Z(void){
 #ifndef NO_SENSOR
     i2c_abort_t abort_code;                 //May be used for error checking
     uint8_t reg_addr = ADXL345_REG_DATAZ0;  //Variable to hold the register address
@@ -124,6 +147,13 @@ int16_t ADXL345_read_Z(){
 	return Z_data;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Read all axes acceleration values
+ * @param[in] xyz     Pointer to an array which will hold the measurement
+ * @return void
+ ****************************************************************************************
+ */
 void ADXL345_read_XYZ(uint8_t* xyz){
     i2c_abort_t abort_code;     //May be used for error checking
     static uint8_t previous[6]; //Holds the previous measurement

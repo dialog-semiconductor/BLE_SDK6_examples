@@ -5,7 +5,7 @@
  *
  * @brief Configuration file for the profiles used in the application.
  *
- * Copyright (c) 2017-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2017-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *

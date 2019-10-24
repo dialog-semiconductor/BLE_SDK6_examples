@@ -5,7 +5,7 @@
  *
  * @brief Peripheral project source code.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -131,7 +131,7 @@ static void mnf_data_update()
     
     adc_disable();
 #else
-		double temperature = get_temperature();
+		double temperature = MCP9808_get_temperature();
 #endif 
     length = snprintf((char*)mnf_data.proprietary_data, TEMPERATURE_DATA, SNPRINT_FORMAT, temperature);
     mnf_data.ad_structure_size = sizeof(struct mnf_specific_data_ad_structure ) - sizeof(uint8_t) - (APP_AD_MSD_DATA_LEN - length);

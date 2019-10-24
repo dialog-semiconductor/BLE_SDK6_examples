@@ -68,10 +68,10 @@
 			#define MCP9808_SDA_PORT            GPIO_PORT_0
 			#define MCP9808_SDA_PIN             GPIO_PIN_3
 	#else
-			#define MCP9808_SCL_PORT            GPIO_PORT_2
-			#define MCP9808_SCL_PIN	            GPIO_PIN_1
-			#define MCP9808_SDA_PORT            GPIO_PORT_2
-			#define MCP9808_SDA_PIN             GPIO_PIN_3
+			#define MCP9808_SCL_PORT            GPIO_PORT_0//GPIO_PORT_2
+			#define MCP9808_SCL_PIN	            GPIO_PIN_7//GPIO_PIN_1
+			#define MCP9808_SDA_PORT            GPIO_PORT_1//GPIO_PORT_2
+			#define MCP9808_SDA_PIN             GPIO_PIN_2//GPIO_PIN_3
 	#endif 
 #endif
 

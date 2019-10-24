@@ -83,8 +83,8 @@ void GPIO_reservations(void)
 #endif
 
 #if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)
-	RESERVE_GPIO(,MCP9808_SDA_PORT, MCP9808_SDA_PIN, PID_I2C_SDA);
-	RESERVE_GPIO(,MCP9808_SCL_PORT, MCP9808_SCL_PIN, PID_I2C_SCL);
+	RESERVE_GPIO(SDA,MCP9808_SDA_PORT, MCP9808_SDA_PIN, PID_I2C_SDA);
+	RESERVE_GPIO(SCL,MCP9808_SCL_PORT, MCP9808_SCL_PIN, PID_I2C_SCL);
 #endif 
 }
 
@@ -130,6 +130,8 @@ void periph_init(void)
 		i2c_init(&i2c_cfg);
 #endif
 		
+		//GPIO_reservations();
+		
     // Set pad functionality
     set_pad_functions();
 
@@ -138,6 +140,6 @@ void periph_init(void)
 		
 #if !defined(CFG_USE_INTERNAL_TEMP_SENSOR)		
 		// Must be done after initializing GPIO because this function communicates with the MCP9808 via I2C
-		temperature_sensor_init();
+		MCP9808_init();
 #endif
 }

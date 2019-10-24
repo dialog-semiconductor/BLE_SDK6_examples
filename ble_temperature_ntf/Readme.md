@@ -1,63 +1,102 @@
-﻿# DA14585/DA14586/DA14531 Peripheral BLE- MCP9808 Temperature sensor BLE notifications
+﻿# DA14585/DA14586/DA14531 Peripheral BLE- Measuring temperature using MCP9808 or DA14531 internal sensor 
 
 ---
 
 
 ## Example description
 
-This SDK6 example shows how to use I2C to read the temperature data and send the temperature data via BLE notifications for DA14585/14586 and DA14531.
-The example also demonstrates how to use the internal temperature sensor of the DA14531 (**only applicable on DA14531 devices**)
+This example shows:
+- How to use I2C to read MCP9808 temperature register.
+- How to use I2C to write MCP9808 resolution register.
+- How to measure the temperature using DA14531 internal temperature sensor.
+	- __The internal temperature sensor is not available for the DA14585 and DA14586.__
+
+The functionality can be verified by:
+- BLE notifications.
 
 ## HW and SW configuration
+This example runs on the BLE Smart SoC (System on Chip) devices:
+- DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
+- DA14585/DA14586 daughter board + Basic dev Kit mother board.
 
-	-This example runs on The DA14585,DA14586 and the 14531 Bluetooth Smart SoC devices.	
-	-The Basic / Pro Development kit is needed for this example.
+The user manuals for the development kits can be found:
+- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
-* **Hardware configuration**
-Hardware configurations are the same for all daughterboards.
-	- Connect MCP9808 SCL to to J2 pin 24 (P23)
-	- Connect MCP9808 SDA to to J2 pin 22 (P21)
-	These pins are defined in user_periph_setup.h
-	- Connect MCP9808 VDD to to J2 pin 1 (V3)
-	- Connect MCP9808 GND to to J2 pin 39
-	- Make sure the jumpers are set as shown in the image below
-	- Connect the USB Development kit to the host computer
-	The image below shows the Motherboard with jumper (wire) configuration
+* __Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard__
+	- Using MCP9808 temperature sensor.
+		- Connect Vdd to V3 on J2 (red line in the image below).
+		- Connect Gnd to ground on J2 (black line in the image below).
+		- Connect SCL to P21 on J2 (yellow line in the image below).
+		- Connect SDA to P23 on J2 (blue line in the image below).
+	- Using internal sensor
+		- Apply the jumper configuration of the image shown below.
 
-		![Hardware_Configurations](assets/Hardware_Configurations.png)
+	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
 
-* **Software configuration**
+* __Hardware configuration DA14585/DA14586 using DA145xxDEVKT-P PRO-Motherboard__
+	- Connect Vdd to V3 on J2 (red line in the image below).
+	- Connect Gnd to ground on J2 (black line in the image below).
+	- Connect SCL to P07 on J2 (yellow line in the image below).
+	- Connect SDA to P12 on J2 (blue line in the image below).		
 
-	- This example requires:
-    * Smartsnippets Studio 1.6.3.
-    * SDK6.0.10
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
+	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
+
+* __Hardware configuration DA14585 using the basic dev kit__
+	- Connect Vdd to V3 on J4 (red line in the image below).
+	- Connect Gnd to ground on J4 (black line in the image below).
+	- Connect SCL to P07 on J4 (orange line in the image below).
+	- Connect SDA to P12 on J4 (yellow line in the image below).		
+
+	![Hardware_Configurations](assets/MCP9808_Fritzing.png)
+
+* __Software configuration__
+This example requires:
+	- [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+	- Keil5.
+	- __SEGGER’s J-Link__ tools should be downloaded and installed..
 
 ## How to measure temperature using the DA14531 internal Sensor
-	-Select the build for DA14531
-	-Enable the CFG_USE_INTERNAL_TEMP_SENSOR definition to aquire temperature via the internal temperature sensor 
+	-Select the build for DA14531.
+	-Uncomment the CFG_USE_INTERNAL_TEMP_SENSOR definition (found in da1458x_config_basic.h) to acquire temperature via the internal temperature sensor. See line 205 in the image shown below.
+
+![da1458x_config_basic_capture](assets/da1458x_config_basic_capture.png)
+
 
 ## How to run the example
+### Setup
+Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+1. Start Keil using the `ble_temperature_ntf.uvprojx` Keil project file.
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
+2. Expand the dialog shown in the red box in the image below.
 
-### Initial Setup
+![Expand_Select_Device](assets/Expand_Select_Device.png)
 
- - Open the project in Keil µVision 5 
- - Select your device in the red box shown below (DA14585, DA14586 or DA14531)
-
+3. Select your device: DA14531, DA14586 or DA14585.
+		
 ![Select_Device](assets/Select_Device.png)
- - (optionally) Parameters can be changed in MCP9808.h
- - (optionally) In user_periph_setup.h I2C configuration can be changed, I2C pins included.
- - Compile and launch the example
- - Open "BLE Scanner", this app can be found in the play store, and look for "DLG-TEMP"
 
-If everything went well, you should be able to receive temperature data as the value of the custom characteristic, as shown in the image below:
+4. Compile (F7) and launch (ctrl + F5) the example.\
+If the warning (shown below) pops up press OK.
+ 
+![warning](assets/warning.png)
 
-	![BLE_APP_MCP9808_CAPTURE](assets/BLE_APP_MCP9808_CAPTURE.png)
+## Expected Results
+
+1. Open the BLE scanner app and look for "DLG-TEMP".
+
+2. Connect to the device.
+
+3. Subscribe to the notifications.
+
+If everything went well, you should be able to receive temperature data as the value of the custom characteristic, as shown in the image below.
+
+__Note that the DA14531 internal temperature sensor uses int8_t instead of the double temperature value shown below__
+
+![BLE_APP_MCP9808_CAPTURE](assets/BLE_APP_MCP9808_CAPTURE.png)
+
 
 ## How it works
-
 
 Tutorial 3 on the [Dialog Semiconductor support](https://www.dialog-semiconductor.com/sites/default/files/training_03_custom_profile_gatt_cmd_example_v1.2.pdf) website shows how to make your own custom profile. The **user_catch_rest_hndl** function in user_peripheral.c will handle the messages for our custom profile. This application only has one possible 
 custom action: a write to the notification. When this occurs the **user_temperature_message_handler** function is called. This function will check the contents of the write. If the content of the write equals zero, the temperature timer is canceled. If the value is 
@@ -65,14 +104,16 @@ anything else, a timer is generated that calls **user_send_temperature_ntf** aft
 and the characteristic handle. After the message is sent, the app_easy_timer function is used to schedule the next call to the **user_send_temperature_ntf** function. This will ensure the temperature is transmitted regularly. The app_easy_timer function
 has a resolution of 10ms hence we divide the desired delay in ms by 10.
 
-## Known Limitations
+## Troubleshooting
+- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
 
+- Try a different USB1 cable.
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA14585x or DA14531 Getting Started with the Development Kit UM-B-049.
+- Try different jumper wires, if used.
 
+- Note that the internal temperature sensor only works for the DA14531
+
+- If none of the above helps, please check the user manual according to your daughter board and mother board. User manual can be found ["here"](##HW-and-SW-configuration)
 
 ## License
 

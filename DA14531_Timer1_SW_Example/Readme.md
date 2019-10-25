@@ -15,29 +15,18 @@ The DA14531 product family incorporates three identical HW timer blocks:
 
 1. **Timer 0** is a 16-bit general purpose software programmable timer, which has the ability to generate Pulse Width Modulated (PWM) signals, namely PWM0 and PWM1.
 
-<center>
- <figure>
-  <img src="assets\timer0_block_diagram.PNG" width="80%" height="80%" >
-  <figcaption><i><b>Timer 0 Block Diagram</b></i></figcaption>
-</figure>
-</center>
+![timer0_block_diagram](assets/timer0_block_diagram.PNG)
+
 
 2. **Timer 1** is an 11-bit timer being able to count up or down. It supports Counting and Input Capturing mode and it can be kept active in sleep as the clock source is selectable between **System Clock (sys_clk)** and **Low Power Clock (lp_clk)**.
 
-<center>
- <figure>
-  <img src="assets\timer1_block_diagram.PNG" width="80%" height="80%">
-  <figcaption><i><b>Timer 1 Block Diagram</b></i></figcaption>
-</figure>
-</center>
+![timer1_block_diagram](assets/timer1_block_diagram.PNG)
 
 3. **Timer 2** is basically a PWM generator. It supports six (6) Pulse Width Modulated (PWM) outputs.
 
-<center>
- <figure>
-  <img src="assets\timer2_block_diagram.PNG" width="80%" height="80%">
-  <figcaption><i><b>Timer 2 Block Diagram</b></i></figcaption>
-</figure>
+![timer2_block_diagram](assets/timer2_block_diagram.PNG)
+
+
 </center>- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
 - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
 
@@ -75,11 +64,8 @@ specific GPIO, has been detected.
 - In case of **Counting Mode**, jumpers should be placed on default setup.
 - In case of **Capturing Mode**, jumpers should be placed on default setup, plus extra wiring from J2.27 to J2.21.  
 
-<center>
- <figure>
-  <img src="assets\hw_setup.PNG" width="65%" height="65%">
-</figure>
-</center>
+
+![hw_setup](assets/hw_setup.PNG)
 
 ## How to run the example
 
@@ -214,7 +200,8 @@ In this section, GPIOs definitions are demonstrated as defined in `user_periph_s
 
 4. An interrupt is generated on every rising edge of the Timer0 PWM signal and the `timer1_event1_user_callback_function()` callback function is used for handling timer's interrupt The on board LED is toggling following the **positive edge** of the input pulse.
 
-![timer1_capturing_cb](assets\timer1_capturing_cb.PNG)
+![timer1_capturing_cb](assets/timer1_capturing_cb.PNG)
+
 
 ### Capturing Mode with External PWM Input Source
 

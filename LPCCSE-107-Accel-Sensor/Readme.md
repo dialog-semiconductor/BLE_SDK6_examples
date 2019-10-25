@@ -1,16 +1,14 @@
 
-# DA14585/DA14586 Reading out an I2C accelerometer and sending notification data
+# Reading an I2C accelerometer and sending BLE notifications
 
 ---
 
-
 ## Example description
 
-This SDK6 DA14585 example shows how to communicate with an I2C accelerometer sensor.
-The sensor data gets sent over BLE with a notification. 
+This example shows how to acquire data from an I2C accelerometer and send the measurements with BLE notifications using a DA14531 or DA14585/586 device. This example project also interfaces with an [Evothings](https://evothings.com) app which displays the orientation of the sensor, or you could use a BLE Scanner app to read out the measurements.
 
 An I2C sensor is not necessary to run this example.
-Defining NO_SENSOR in ADXL345.h disables reading of the sensor. 
+Defining NO_SENSOR in ``ADXL345.h`` disables reading of the sensor. 
 The application will send an incrementing number over BLE in this case. 
 
 ## HW and SW configuration
@@ -18,71 +16,91 @@ The application will send an incrementing number over BLE in this case.
 
 ### Hardware configuration
 
-- This example runs on The DA14585/DA14586 Bluetooth Smart SoC devices.
-- The Basic or pro Development kit is needed for this example.
-- Connect the SCL pin of the ADXL345 to pin 1-0 of the development board.
-- Connect the SDA pin of the ADXL345 to pin 1-2 of the development board.
-  - These pins are defined in the *ADXL345.h* file
-  
-![Hardware setup Fritzing](assets/ADXL_Fritzing.png)
-  
-- Make sure the CS pin of the ADXL345 is tied high, this enables I2C mode.
-- The SDO pin is used to select the I2C address, the standard setting in *ADXL345.h* is for SDO high.
-- Connect the USB Development kit to the host computer.
+- This example runs on the DA14531 or DA14585/DA14586 Bluetooth Smart SoC devices.
+- The DA145xx Pro Development Kit is needed for this example.
 
+Follow the hardware configuration according to your daughterboard, DA14531 or DA14585/DA14586.
 
+* **Hardware configuration for DA14531 devices**
+    - Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
+    - Connect the positive rail of your breadboard to pin V3 of the development board and the negative rail to any ground pin of the development board (the ones marked with a dash). Power up the sensor by connecting the 3.3V pin of the ADXL345 to your positive rail and the GND pin of the sensor to your negative rail.
+    - Tie high the SDO and CS pins of the sensor to your positive rail. This enables the sensor to operate in I2C mode and adjusts the I2C sensor address to match the one defined in the project.
+    - Connect the SCL pin of the ADXL345 to pin P23 of the development board.
+    - Connect the SDA pin of the ADXL345 to pin P21 of the development board.
+
+ * **Hardware configuration for DA14585/DA14586 devices**
+    - Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
+    - Connect the positive rail of your breadboard to pin V3 of the development board and the negative rail to any ground pin of the development board (the ones marked with a dash). Power up the sensor by connecting the 3.3V pin of the ADXL345 to your positive rail and the GND pin of the sensor to your negative rail.
+    - Tie high the SDO and CS pins of the sensor to your positive rail. This enables the sensor to operate in I2C mode and adjusts the I2C sensor address to match the one defined in the project.
+    - Connect the SCL pin of the ADXL345 to pin P13 of the development board.
+    - Connect the SDA pin of the ADXL345 to pin P11 of the development board.
+  
 ### Software configuration
 
 - This example requires:
-    - SDK6.0.10
-	- A smartphone with a BLE scanning app (for example BLE scanner on Android or Lightblue on IOS)
+    - SDK v6.0.12 or later
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
+     - An application like LightBlue Explorer should be used to act as a BLE Scanner and view the received measurement values. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.punchthrough.lightblueexplorer) or on the [App Store](https://apps.apple.com/gb/app/lightblue-explorer/id557428110).
 
 ## How to run the example
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
+For initial setup of the example please refer to [this section of the dialog support portal](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
 
 ### Compile and run
 
-- Open the project in Keil µVision 5
+- Start Keil µVision.
   - Optionally, change the parameters in ADXL345.h
-- Compile and run the project
+- Select the DA14531, DA14585 or DA14586 device in the box shown below
+    ![select_5xx_device](assets/select_5xx_device.png)
+- Compile and run the project.
+
+### Connecting to the device
 - Open the BLE scanner app and look for DLG-ACCL
-- Connect to the device
-- Subscribe to the notifications
+    
+    ![device_list](assets/capture_device_list.jpg)
 
-You should now be able to see the live X, Y and Z acceleration(in milli g). This is shown on the screenshot below:
+- Connect to the device. Lightblue will list all the available services.
 
-![Notification screenshot](assets/notification_screenshot.jpg)
+    ![connected](assets/connected.jpg)
+
+- Select the characteristic you wish to explore, like the X acceleration data. 
+
+    ![pick_characteristic](assets/pick_characteristic.jpg)
+
+- Subscribe to notifications and select the UTF-8 String data representation. You will be now ready to receive live the X acceleration (in milli g).
+    
+    ![subscribe](assets/subscribe.jpg)
 
 ## Evothings
 
-This example also comes with an Evothings demo application. The application can connect to the DA14585, and read out the acceleration data.
-There is also a 3d visualization of pitch and roll. The app is shown below.
+This example also comes with an Evothings demo application. The application can connect to the DA14531 or DA14585/DA14586 device and read out the acceleration data. There is also a 3D visualization of pitch and roll. Follow the instructions below to connect.
 
-![App screenshot](assets/app_screenshot.jpg)
+- Download the Evothings Viewer. At the time of writing, the Evothings Viewer is temporarily unavailable on IOS. The Android version of the app is available in the [Google Play store](https://play.google.com/store/apps/details?id=com.evothings.evothingsviewer).
 
-### Installing the Evothings viewer
+- When the Evothings Viewer is started, you are able to connect to the demo project. Input the URL <span style="color:blue; display: inline;">http://lpccs-docs.dialog-semiconductor.com/Evothing/index.html</span> and push the "Connect" button. 
 
-At the time of writing, the Evothings viewer app is temporarily unavailable on IOS, step 3 of the [Evothings download site](https://evothings.com/download/) will get updated once it becomes available again.  
-The Android version of the app is available in the [Google Play store](https://play.google.com/store/apps/details?id=com.evothings.evothingsviewer).
+    ![evothings_connect](assets/evothings_connect.jpg)
 
-### Running the example app
+- When the app is loaded you can start scanning for the DA14531 or DA14585/DA14586 device.
 
-When the Evothings viewer app is started, you are able to connect to the demo project.  
-The project is hosted at <span style="color:red;">INSERT LINK</span>, simply input this URL in the app and tap connect. The app will now load.  
-When the app is loaded you can start scanning for the DA1458x device. If the device is found, the accelerometer data is shown without the device being connected.
-This is possible because the accelerometer data is included in the manufacturer part of the advertisement data. This is handled in the *adv_data_update_timer_cb* function.  
-After a connection is established, the smartphone subscribes to a notification on the DA1458x device. After this has happened, the device will start sending data to the smartphone.
-This notification is handled by the following functions: *user_catch_rest_hndl*, *user_svc2_g_wr_ntf_handler*, *user_svc2_g_timer_cb_handler*. 
+    ![evothings_dlg_index](assets/evothings-dlg-index.jpg)
+
+-  If the device is found, the accelerometer data is shown without the device being connected.
+This is possible because the accelerometer measurements are included in the manufacturer specific data of the advertising packets. 
+
+    ![evothings_dlg_scan](assets/evothings-dlg-scan.jpg)
+
+- After a connection is established, the smartphone subscribes to the G-acceleration service. After this, the device will start sending data to the smartphone. You will be able to see the 3D visual change when you move around the sensor.
+
+    ![evothings_dlg_3d](assets/evothings-dlg-3d.jpg)
 
 ## Known Limitations
 
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- You can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 
 ## License
@@ -90,13 +108,23 @@ This notification is handled by the following functions: *user_catch_rest_hndl*,
 
 **************************************************************************************
 
- Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
- 
- THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND.  THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS.  RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOG’S PRIOR WRITTEN PERMISSION.
- 
- UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS THAT TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED “AS IS”, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND ITS AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY REPRESENTATIONS (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED SOFTWARE IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, AND (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY OR INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED BY THE FCC OR OTHER LIKE AGENCIES.
- 
- IN NO EVENT SHALL DIALOG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
 
+ This software ("Software") is owned by Dialog Semiconductor. By using this Software
+ you agree that Dialog Semiconductor retains all intellectual property and proprietary
+ rights in and to this Software and any use, reproduction, disclosure or distribution
+ of the Software without express written permission or a license agreement from Dialog
+ Semiconductor is strictly prohibited. This Software is solely for use on or in
+ conjunction with Dialog Semiconductor products.
+
+ EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
+ REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
+ IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
+ SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
+ CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+ PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
 
 **************************************************************************************

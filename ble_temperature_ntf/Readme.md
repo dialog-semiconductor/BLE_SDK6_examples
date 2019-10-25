@@ -17,7 +17,7 @@ The functionality can be verified by:
 ## HW and SW configuration
 This example runs on the BLE Smart SoC (System on Chip) devices:
 - DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
-- DA14585/DA14586 daughter board + Basic dev Kit mother board.
+- DA14585/DA14586 daughter board + Basic development Kit mother board.
 
 The user manuals for the development kits can be found:
 - [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
@@ -42,7 +42,7 @@ The user manuals for the development kits can be found:
 
 	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
 
-* __Hardware configuration DA14585 using the basic dev kit__
+* __Hardware configuration DA14585 using the basic development kit__
 	- Connect Vdd to V3 on J4 (red line in the image below).
 	- Connect Gnd to ground on J4 (black line in the image below).
 	- Connect SCL to P07 on J4 (orange line in the image below).
@@ -105,7 +105,7 @@ and the characteristic handle. After the message is sent, the app_easy_timer fun
 has a resolution of 10ms hence we divide the desired delay in ms by 10.
 
 ## Troubleshooting
-- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
+- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic development kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
 
 - Try a different USB1 cable.
 
@@ -113,7 +113,7 @@ has a resolution of 10ms hence we divide the desired delay in ms by 10.
 
 - Note that the internal temperature sensor only works for the DA14531
 
-- If none of the above helps, please check the user manual according to your daughter board and mother board. User manual can be found ["here"](##HW-and-SW-configuration)
+- If none of the above helps, please check the user manual according to your daughter board and mother board. User manual can be found [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard and [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit
 
 ## License
 

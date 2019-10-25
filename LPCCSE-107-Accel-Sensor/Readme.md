@@ -51,7 +51,9 @@ For initial setup of the example please refer to [this section of the dialog sup
 - Start Keil µVision.
   - Optionally, change the parameters in ADXL345.h
 - Select the DA14531, DA14585 or DA14586 device in the box shown below
+
     ![select_5xx_device](assets/select_5xx_device.png)
+
 - Compile and run the project.
 
 ### Connecting to the device

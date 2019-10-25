@@ -73,7 +73,7 @@ i.e.
 
 #ifdef __DA14586__
     // disallow spontaneous flash wake-up
-    GPIO_ConfigurePin(SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, OUTPUT, PID_GPIO, true);
+    GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
 #endif
     
     // Configure GPIOs for the ADXL345 sensor

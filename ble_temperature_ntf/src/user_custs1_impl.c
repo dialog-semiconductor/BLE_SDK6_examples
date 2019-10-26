@@ -5,7 +5,7 @@
  *
  * @brief Peripheral project Custom1 Server implementation source code.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -87,7 +87,7 @@ void user_send_temperature_ntf(void)
     
     adc_disable();
 #else
-		double temperature = get_temperature();
+		double temperature = MCP9808_get_temperature();
 #endif
     
 	if (temperature != previous_temperature){

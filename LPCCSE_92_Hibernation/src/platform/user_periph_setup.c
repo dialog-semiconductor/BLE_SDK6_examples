@@ -43,7 +43,7 @@
 #include "gpio.h"
 #include "uart.h"                    // UART initialization
 #include "app_proxr.h"
-#include "user_proxr.h"
+#include "user_hibernation.h"
 #include "syscntl.h"
 
 #if BLE_BATT_SERVER

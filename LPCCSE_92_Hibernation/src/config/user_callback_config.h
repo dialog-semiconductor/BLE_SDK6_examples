@@ -48,7 +48,7 @@
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
-#include "user_proxr.h"
+#include "user_hibernation.h"
 
 /*
  * LOCAL VARIABLE DEFINITIONS

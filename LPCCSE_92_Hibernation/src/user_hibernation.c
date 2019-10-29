@@ -1,7 +1,7 @@
 /**
  ****************************************************************************************
  *
- * @file user_proxr.c
+ * @file user_hibernation.c
  *
  * @brief Proximity reporter project source code.
  *
@@ -49,7 +49,7 @@
 #include "app_easy_msg_utils.h"
 #include "gpio.h"
 #include "app_security.h"
-#include "user_proxr.h"
+#include "user_hibernation.h"
 #include "arch_api.h"
 #include "app_task.h"
 #include "app_proxr.h"

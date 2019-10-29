@@ -8,28 +8,31 @@
 
 - Using the proximity reporter as the base project, the device advertises until the advertisement timeout occurs during which it is in extended sleep.
 - After the timeout, the device enters hibernation mode
-- P0_5 on the motherboard is used to wake up the device from hibernation to active state and it continues to advertise until the adv_timeout
+- P0_5 on the motherboard is used to wake up the device from hibernation to active state and it continues to advertise until the adv_timeout. **Connect a flywire from P0_5 to ground only when you want to wake-up the device from hibernation mode.** 
 - On wake-up the address 0 is remapped to either OTP or ROM or SysRAM depending on how the device is programmed to wake-up. 
 
 The expected result of the example can be verified by:
-- Connecting the motherboard to the desktop/laptop and observing the power profile in SmartSnippets Studio.
+- Connecting the motherboard to the desktop/laptop and observing the power profile in SmartSnippets Toolbox.
 
 ## HW and SW configuration
 
-This example runs on the BLE Smart SoC (System on Chip) devices:
+This example runs on the DA14531 SoC (System on Chip) device:
 - DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
 	
-The user manuals for the development kits can be found:
+The user manual for the development kits can be found:
 - [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
 
 To run the program from flash or OTP, please visit chapter 11 of the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html )
 
-* **General Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard**
+* **General Hardware configuration of DA14531 using DA145xxDEVKT-P PRO-Motherboard**
 
 	- The general hardware configuration remains the same for the 3 use-cases here. Only for the SPI Flash use-case we need additional jumper settings.
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
 	![Motherboard_Hardware_Configuration_DA14531](assets/jtag.png)
+
+Note: Due to fewer GPIOs in DA14531, the P0_11 GPIO is shared with the software trigger functionality. To get a current profile in the SmartSnippets Toolbox Power Profiler, either remove the jumper J8[1-2]
+	  on the Motherboard (then the software trigger functionality is lost) or map the SW_Trigger functionality button to a different GPIO. 
 	
 * **Software configuration**
 
@@ -42,7 +45,7 @@ To run the program from flash or OTP, please visit chapter 11 of the [SmartSnipp
 ## How to run the example
 ### Setup
 Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
-1. Start Keil using the `prox_reporter.uvprojx` Keil project file.
+1. Start Keil using the `hibernation_example.uvprojx` Keil project file.
  
 2. Expand the dialog shown in the red box in the image below.
 
@@ -65,7 +68,7 @@ To demonstrate the hibernation example there are three use-cases which mainly de
 
 To enter the hibernation after booting from SPI Flash, the following software modification needs to be done. 
 
-1. In Keil, Project explorer, open the *user_proxr.h*
+1. In Keil, Project explorer, open the *user_hibernation.h*
 
 2. In the defines, define CFG_APP_GOTO_HIBERNATION to select the hibernation sleep mode and also define HIBERNATION_SPI and undefine the others,
 
@@ -135,6 +138,8 @@ This will configure the advertising period as 18s after which the device will en
 	
 ![SPI Jtag jumper settings](assets/spi.png)
 
+
+
 ### using OTP 
 
 The process is the same as using SPI as we have seen in the previous section, except we define the HIBERNATION_OTP and undefine the rest, 
@@ -180,13 +185,21 @@ After doing this, repeat the steps from 4 - 6. In order to program the OTP and b
 ### DA14531 with DA145xxDEVKT-P PRO-Motherboard
 1. Open the Power Profiler in the SmartSnippets Toolbox. please refer to chapter 10 Power Profiler in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ). 
 
-2. After running the program either from SysRAM, Flash or OTP, the device advertises for 18s and enters the hibernation mode. On wake-up (using the P0_5) the device advertises again. 
+2. On the Motherboard please remove the jumper J8 [1-2] to be able to see the current profile in the power profiler, as shown in the previous section.
+
+3. After running the program either from SysRAM, Flash or OTP, the device advertises for 18s and enters the hibernation mode. On wake-up (using the P0_5) the device advertises again. 
 
 ![HIBERNATION_powerprofiler](assets/hibernation_powerprofiler.png)
 
-3. End of example.		
+4. End of example.		
+
+## Known Limitations
 
 
+- There are No known limitations for this example. But you can check and refer to the following application note for
+[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
+- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
+- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
 
 ## License
 

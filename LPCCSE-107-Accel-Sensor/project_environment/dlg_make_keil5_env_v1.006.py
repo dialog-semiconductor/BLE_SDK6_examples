@@ -455,22 +455,14 @@ def build_uvprojx_element_various_controls(xml_sub_element, xml_tag):
 		updated_data = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + ";"
 	else: 
 		DLG_WORKING_PROJECT_PARENT_DIRECTORY = "..\\"
-		DLG_INCLUDE_WORKING_PROJECT_DIRECTORY = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'include')
 		DLG_SDK_SUBFOLDER_DIRECTORY = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + DLG_FIND_STR_PATTERN[0][:-1]
 		DLG_THIRD_PARTY_SUBFOLDER_DIRECTORY = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + DLG_FIND_STR_PATTERN[1][:-1]
-		# DLG_UTILITIES_SUBFOLDER_DIRECTORY = os.path.join(DLG_SDK_ROOT_DIRECTORY, 'utilities')
-		DLG_PROJECT_INCLUDE_SUBFOLDER_DIRECTORY = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'src', 'config')
-		DLG_PROJECT_USER_CUST_SUBFOLDER_DIRECTORY = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'src', 'custom_profile')
+		DLG_PROJECT_SOURCE_SUBFOLDER_DIRECTORY = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'src')
 
 		end_ele_char = ";"
-		updated_data = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'src') + end_ele_char
+		updated_data = ""
 
-		for dirpath, dirname, filename in os.walk(DLG_INCLUDE_WORKING_PROJECT_DIRECTORY):
-			updated_data = updated_data + dirpath + end_ele_char
-		for dirpath, dirname, filename in os.walk(DLG_PROJECT_USER_CUST_SUBFOLDER_DIRECTORY):
-			#if x = os.path.basename(dirpath)
-			updated_data = updated_data + dirpath + end_ele_char
-		for dirpath, dirname, filename in os.walk(DLG_PROJECT_INCLUDE_SUBFOLDER_DIRECTORY):
+		for dirpath, dirname, filename in os.walk(DLG_PROJECT_SOURCE_SUBFOLDER_DIRECTORY):
 			#if x = os.path.basename(dirpath)
 			updated_data = updated_data + dirpath + end_ele_char
 		for dirpath, dirname, filename in os.walk(DLG_SDK_SUBFOLDER_DIRECTORY):
@@ -479,10 +471,6 @@ def build_uvprojx_element_various_controls(xml_sub_element, xml_tag):
 		for dirpath, dirname, filename in os.walk(DLG_THIRD_PARTY_SUBFOLDER_DIRECTORY):
 			#if x = os.path.basename(dirpath)
 			updated_data = updated_data + dirpath + end_ele_char
-		# for dirpath, dirname, filename in os.walk(DLG_UTILITIES_SUBFOLDER_DIRECTORY):
-			# if x = os.path.basename(dirpath)
-			# updated_data = updated_data + dirpath + '\\;'
-		# print('DEBUG: updated_data: ' + updated_data)
 
 	for t_sub_element in root.findall(xml_sub_element):
 		# print(t_sub_element.tag)

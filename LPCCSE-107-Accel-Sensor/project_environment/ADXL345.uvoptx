@@ -113,7 +113,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
+        <tIfile>C:\DLG_SDK_UNLINKED\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -148,7 +148,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint></Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -314,7 +314,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
+        <tIfile>C:\DLG_SDK_UNLINKED\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -329,7 +329,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint></Breakpoint>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -467,7 +467,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
+        <tIfile>C:\DLG_SDK_UNLINKED\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -502,7 +502,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint></Breakpoint>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
@@ -1233,7 +1233,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\sdks\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custom_common.c</PathWithFileName>
+      <PathWithFileName>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custom_common.c</PathWithFileName>
       <FilenameWithoutPath>custom_common.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1245,7 +1245,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\sdks\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\src\custs1.c</PathWithFileName>
+      <PathWithFileName>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\src\custs1.c</PathWithFileName>
       <FilenameWithoutPath>custs1.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1257,7 +1257,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\sdks\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</PathWithFileName>
+      <PathWithFileName>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</PathWithFileName>
       <FilenameWithoutPath>custs1_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1269,7 +1269,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\sdks\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\att\attm\attm_db_128.c</PathWithFileName>
+      <PathWithFileName>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\att\attm\attm_db_128.c</PathWithFileName>
       <FilenameWithoutPath>attm_db_128.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1529,7 +1529,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\sdks\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs.c</PathWithFileName>
+      <PathWithFileName>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs.c</PathWithFileName>
       <FilenameWithoutPath>app_customs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1541,7 +1541,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\sdks\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs_common.c</PathWithFileName>
+      <PathWithFileName>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs_common.c</PathWithFileName>
       <FilenameWithoutPath>app_customs_common.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1553,7 +1553,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\sdks\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs_task.c</PathWithFileName>
+      <PathWithFileName>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs_task.c</PathWithFileName>
       <FilenameWithoutPath>app_customs_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

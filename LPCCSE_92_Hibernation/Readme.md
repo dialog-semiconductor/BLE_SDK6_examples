@@ -196,10 +196,8 @@ After doing this, repeat the steps from 4 - 6. In order to program the OTP and b
 ## Known Limitations
 
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+- Refer to the following application note for DA14531 known [hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
+- Also refer to Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forum)
 
 ## License
 

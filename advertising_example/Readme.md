@@ -1,99 +1,176 @@
-# DA14585 - Changing advertising parameters using GPIO interrupts and/or timers
+# DA14585/DA14586/DA14531 - Changing advertising methods using GPIO button interrupt or timer callbacks
 
 ---
 
 
 ## Example description
 
-This SDK6 DA14585 example provides a implementation of a advertising state machine, changing between non-connectible advertising, undirected advertising and sleep state. The advertising state is dependent upon button events by default, but with a simple hash define the user can configure it to be dependent on timers instead. The timings of the states and advertising intervals are pre-compilation configurable as well. The example includes UART messages to a serial console (i.e. Tera Term) and LED indication by turning the LED on during advertising. Both of these options can be turned off if desired.
+This example shows how to:
+- Use a button to switch between advertising methods.
+- Sleep or wake up after pressing a button for 3 seconds.
+- Use timer callbacks to switch between advertising methods. 
+- Use timer callbacks to go to sleep or wake up.
+
+The expected result of the example can be verified by:
+- Connecting a serial terminal on the work station to the MB (Mother Board) using UART.
+- The status of the LED.
+
 ## HW and SW configuration
 
 
 * **Hardware configuration**
 
-	- This example runs on The DA14585 Bluetooth Smart SoC devices.
-	- The Basic or pro Development kit is needed for this example.
-	- Connect the USB Development kit to the host computer.
-	- Button is configured to P1_1 corresponding to SW3 on the Pro Development kit.
-		- For the Basic development kit, an active-low switch should be connected to P1_1 as displayed in the schematic underneath
-	- The jumper settings are displayed in pink in the schematic underneath. These settings are the same for both the pro and basic development kit.
+This example runs on the BLE Smart SoC (System on Chip) devices:
+- DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
+- DA14585/DA14586 basic development kit.
 
-	**DA14585 Schematic**
+The user manuals for the development kits can be found:
+- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
-	![breadboard](assets/advertising_example_schematic.png)
+* __Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard__
+
+	- UART TX: connect P21 on J2 to UTX pin 17 on J1 as shown in the image below (the blue line).
+	- LED jumper on J8 is configured to P0_9 (red box 2).
+	- Button jumper on J19 is configured from SW2 pin to P3_1 (red box 1)
+		- To clarify the J19 configuration from up (see arrow on MB): pin, jumper, jumper, pin, pin. 
+	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector.
+
+	The image below shows the Motherboard with jumper (wire) configuration for the DA14531.
+
+	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
+		
+* __Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard__
+
+	- UART TX jumper on P0_4, located on J1 (red box 1).
+	- LED jumper is configured to P1_0, located on J8 (red box 3).
+	- Button jumper is configured from SW3 pin to P1_1, located on J19 (red box 2).
+	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector.
+
+	The image below shows the Motherboard with jumper configuration for the DA14585
+
+	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
+
+* __Hardware configuration DA14585 using the basic dev kit__
+
+	- UART TX/RX jumper on P0_4/P0_5, located on J4.
+	- LED jumper is configured to P10, located on J9.
+	- An active-low switch should be connected to P1_1, located on J4, as displayed in the following schematic.
+	- Connect the basic dev kit to the working station through USB1 connector.
+
+	![simple_button_basic](assets/simple_button_basic.png)
 
 
-* **Software configuration**
-
-	- This example requires:
-    * Smartsnippets Studio 1.6.3.
-    * SDK6.0.10
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
-
+* __Software configuration__
+This example requires:
+	- [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+	- Keil5.
+	- __SEGGER’s J-Link__ tools should be downloaded and installed.
+	- Serial Terminal software. For example Tera Term or PuTTY.
 
 ## How to run the example
 
-For initial setup of the example please refer to [this](https://support.dialog-semiconductor.com/resource/da1458x-example-setup) section of the dialog support portal.
-The example is running from SRAM. For programming to Flash, see chapter 11 in the [SmartSnippets Toolbox User Manual](https://support.dialog-semiconductor.com/resource/um-b-083-smartsnippets-toolbox-user-manual).
+### Setup
 
-### Initial Setup
+Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+1. Start Keil using the `changing_advertising.uvprojx` Keil project file.
 
- - Start Keil
- - [Optional] Configure the following parameters at the top of the da1458x_config_basic.h file.
- 	- Make sure *ADV_EXAMPLE* is defined.
- 	- Make sure either *ADV_BUTTON_EXAMPLE* **OR** *ADV_TIMER_EXAMPLE* is defined based on which example is preferred.
- 	- Make sure *LED_INDICATION* is defined if this is you preference.
- 	- Make sure *CFG_PRINTF*  is defined if UART messages are desired.
+2. Expand the dialog shown in the red box in the image below.
 
+![Expand_Select_Device](assets/Expand_Select_Device.png)
 
- - [Optional] Configure the following parameters in the advertising_example.h files
+3. Select your device: DA14531, DA14586 or DA14585.
+		
+![Select_Device](assets/Select_Device.png)
+
+4. Open a serial terminal on the work station using for example Tera Term/PuTTY with the following parameters:
+```
+- baud rate: 115200
+- data: 8 bits
+- stop: 1 bit
+- parity: None
+- flow  control: none
+```
+
+5. Compile (F7) and launch (ctrl + F5) the example.\
+If the warning shown below pops up press OK.
+ 
+![warning](assets/warning.png)
+
+## GPIO identification 
+Make sure to read the correct identification according to your mother board and daughter board.
+
+### DA14585/DA14586 GPIO identification with DA145xxDEVKT-P PRO-Motherboard
+1. Identify LED:
+	- The LED controlled in this example is `D5` and the color is `orange`.
+2. Identify button:
+	- `SW3` is used as button in this example
+
+### DA14531 GPIO identification with DA145xxDEVKT-P PRO-Motherboard
+1. Identify LED:
+	- The LED controlled in this example is `D5` and the color is `orange`.
+2. Identify button:
+	- `SW2` is used as button in this example
+
+### DA14585/DA14586 GPIO identification with Basic Dev Kit
+1. Identify LED:
+	- The LED controlled in this example is `USR` and the color is `green`.
+2. Identify button:
+	- The button connected (by the user) to P1_1 on J4
+
+## Expected Results button example
+- The changing advertising example is now running. 
+- Make sure ADV_BUTTON_EXAMPLE is defined in _da1458x_config_basic.h_ (be aware that there is a section for DA14531 and a section for DA14585/DA14586).
+- Make sure that ADV_TIMER_EXAMPLE is __not__ defined.
+- Make sure *CFG_PRINTF*  is defined if UART messages are desired. 
+- The LED status is toggle when the advertising is started. The LED is set inactive when the system is going to sleep. 
+- The image below describes the behavior.
+
+![adv_button_diagram](assets/adv_button_diagram.png)
+
+## Expected Results timer example
+- The changing advertising example is now running.
+- Make sure ADV_TIMER_EXAMPLE is defined in _da1458x_config_basic.h_ (be aware that there is a section for DA14531 and a section for DA14585/DA14586).
+- Make sure that ADV_BUTTON_EXAMPLE is __not__ defined.
+- Make sure *CFG_PRINTF*  is defined if UART messages are desired.
+- The LED status is toggle when the advertising is started. The LED is set inactive when the system is going to sleep. 
+- The image below describes the behavior.
+
+![adv_timer_diagram](assets/adv_timer_diagram.png)
+
+## Optional software configurations
+
+ - The following parameters can be configured in _user_barebone.h_
  	- Set *UNDIRECT_ADV_INTERVAL* to the desired value in milliseconds to configure the undirected advertising interval.
  	- Set *NONCONN_ADV_INTERVAL* to the desired value in milliseconds to configure the non-connectible advertising interval.
  	- Set *UNDIRECT_ADV_DURATION* to the desired value multiplied by 10 milliseconds to determine the duration of the undirected advertising in the timer based example.
  	- Set *NONCONN_ADV_DURATION* to the desired value multiplied by 10 milliseconds to determine the duration of the non-connectible advertising in the timer based example.
  	- Set *SLEEP_DURATION* to the desired value multiplied by 10 milliseconds to determine the sleep duration in the timer based example.
 
-
- - Compile and launch the example
-
- - [Optional] Open the serial terminal of your choice (i.e. Tera Term) with the following parameters.
-	- baud rate: 115200
-	- data: 8 bits
-	- stop: 1 bit
-	- parity: None
-	- flow  control: none
-
-- If *ADV_BUTTON_EXAMPLE* is defined (default), the example will switch states based on button events like shown in the diagram below. In order to differentiate from a long and a short button press in this example a three second timer is started on the positive edge. If the timer expires, a flag will be set, indicating a long button press. Upon button release, the timer will be terminated if it is still running. After this a check will detect if the flag is set or not and determine the state accordingly.
-
-![adv_button_diagram](assets/adv_button_diagram.png)
-
-- if *ADV_TIMER_EXAMPLE* is defined, the example will switch states based on timer events like shown in the diagram below. Upon initiating advertising, a timer is started with a registered callback to update the advertising parameters. In this example however, the callback, instead of updating the parameters, will activate the next state.
-
-![adv_timer_diagram](assets/adv_timer_diagram.png)
-
-
-### About this example
+## About this example
 Starting point for this example is the BLE barebone project from SDK6. This provides the right framework for the advertising events used in this example.
-- The user_barebone.h and user_barebone.c files were renamed to user_adv_example.h and user_adv_example.c. Some changes and additions were made here. These changes can be easily traced as they are marked with the ADV_EXAMPLE flag.
-- Some minor changes were made to the user_peripheral_setup files to accommodate the button functionality and led indication.
-- The user_callback_config.h has been slightly modified. Callback is added for non-connectible advertising as well as a callback to check the last BLE event for the sake of advertising LED indication.
+
+- Comparing to BLE barebone project from SDK6 some changes were made to _user_barebone.c_, these changes can be easily traced as they are marked with the ADV_EXAMPLE flag.
+- Minor changes were made to the _user_peripheral_setup_ files to accommodate the button functionality and LED indication.
+- The user_callback_config.h has been slightly modified. Callback is added for non-connectible advertising.
 - The user_button.h and user_button.c were added. These files accommodate the button functionality used in this example.
 
+## Troubleshooting
+- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
 
-## Known Limitations
+- Try a different USB1 cable.
 
+- Try different jumper wire, if used.
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
-
+- If none of the steps described above help, please check the user manual according to your development kit. 
+	- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+	- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
 ## License
 
 
 **************************************************************************************
-Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
+Copyright (C) 2019 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
 
 THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND.  THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS.  RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOG’S PRIOR WRITTEN PERMISSION.
 

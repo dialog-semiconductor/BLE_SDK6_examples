@@ -5,7 +5,7 @@
  *
  * @brief User configuration file.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -200,7 +200,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "DLG-ADV"
+#define USER_DEVICE_NAME        "DLG-BRBN"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)

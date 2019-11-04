@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Sep 25 15:28:41 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Nov 04 13:04:28 2019
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -73,6 +73,9 @@ read_rcx_freq <= USED 0
 ;FILE battery.o
 battery_get_lvl <= USED 0
 ;FILE diss.o
+;FILE dma.o
+dma_channel_active <= USED 0
+dma_channel_cancel <= USED 0
 ;FILE gpio.o
 GPIO_ConfigurePinPower <= USED 0
 GPIO_DisablePorPin <= USED 0
@@ -178,7 +181,8 @@ set_gauss_modgain <= USED 0
 JT_llm_p256_start_func <= USED 0
 ;FILE spi_58x.o
 spi_disable <= USED 0
-spi_receive <= USED 0
+spi_register_send_cb <= USED 0
+spi_register_transfer_cb <= USED 0
 spi_set_cp_mode <= USED 0
 spi_set_cs_pad <= USED 0
 spi_set_irq_mode <= USED 0
@@ -202,9 +206,11 @@ spi_flash_page_erase <= USED 0
 spi_flash_page_fill <= USED 0
 spi_flash_page_program <= USED 0
 spi_flash_page_program_buffer <= USED 0
+spi_flash_page_program_dma <= USED 0
 spi_flash_power_down <= USED 0
 spi_flash_program_fail <= USED 0
 spi_flash_read_config_reg <= USED 0
+spi_flash_read_data <= USED 0
 spi_flash_read_data_buffer <= USED 0
 spi_flash_read_jedec_id <= USED 0
 spi_flash_read_rems_id <= USED 0
@@ -217,6 +223,7 @@ spi_flash_set_write_enable <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0
+spi_flash_write_data_dma <= USED 0
 spi_flash_write_enable_volatile <= USED 0
 spi_flash_write_status_config_reg <= USED 0
 spi_flash_write_status_reg <= USED 0
@@ -246,7 +253,6 @@ uart_write_byte <= USED 0
 ;FILE user_barebone.o
 ;FILE user_periph_setup.o
 ;FILE user_spi.o
-wait_for_DMA <= USED 0
 ;FILE wkupct_quadec.o
 quad_decoder_disable_irq <= USED 0
 quad_decoder_enable_irq <= USED 0

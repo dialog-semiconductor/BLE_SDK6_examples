@@ -5,7 +5,7 @@
  *
  * @brief Peripherals setup header file.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -91,17 +91,17 @@
 #endif
 		
 #ifdef __DA14586__
-		#define SPI_EN_GPIO_PORT    GPIO_PORT_2
+		#define SPI_EN_GPIO_PORT    GPIO_PORT_0
     #define SPI_EN_GPIO_PIN     GPIO_PIN_3
 
-    #define SPI_CLK_GPIO_PORT   GPIO_PORT_2
+    #define SPI_CLK_GPIO_PORT   GPIO_PORT_0
     #define SPI_CLK_GPIO_PIN    GPIO_PIN_0
 
-    #define SPI_DO_GPIO_PORT    GPIO_PORT_2
-    #define SPI_DO_GPIO_PIN     GPIO_PIN_9
+    #define SPI_DO_GPIO_PORT    GPIO_PORT_0
+    #define SPI_DO_GPIO_PIN     GPIO_PIN_6
 
-    #define SPI_DI_GPIO_PORT    GPIO_PORT_2
-    #define SPI_DI_GPIO_PIN     GPIO_PIN_4
+    #define SPI_DI_GPIO_PORT    GPIO_PORT_0
+    #define SPI_DI_GPIO_PIN     GPIO_PIN_5
 #endif
 #ifdef __DA14585__
 		#define SPI_EN_GPIO_PORT    GPIO_PORT_0

@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Sep 25 16:16:51 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Nov 04 13:04:56 2019
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -38,9 +38,11 @@ app_easy_wakeup <= USED 0
 app_easy_wakeup_free <= USED 0
 app_easy_wakeup_set <= USED 0
 app_msg_utils_api_process_handler <= USED 0
+;FILE app_easy_timer.o
+app_easy_timer_cancel_all <= USED 0
+app_easy_timer_modify <= USED 0
 ;FILE app_msg_utils.o
 app_msg_send_wakeup_ble <= USED 0
-;FILE app_task.o
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
@@ -114,7 +116,6 @@ i2c_wait_until_eeprom_ready <= USED 0
 ;FILE jump_table.o
 dummyf <= USED 0
 ;FILE nmi_handler.o
-;FILE nvds.o
 ;FILE otp_cs.o
 otp_cs_get_adc_diff_ge <= USED 0
 otp_cs_get_adc_diff_offset <= USED 0
@@ -125,6 +126,7 @@ otp_cs_get_adc_single_offset <= USED 0
 otp_cs_get_low_power_clock <= USED 0
 ;FILE otp_hdr.o
 ;FILE patch.o
+;FILE prf.o
 ;FILE rf_531.o
 dcoff_calibration <= USED 0
 dis_kdco_cal <= USED 0

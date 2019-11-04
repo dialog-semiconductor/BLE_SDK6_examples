@@ -44,11 +44,11 @@
 #include "user_spi.h"
 #include "spi_flash.h"
 
-void wait_for_DMA(void){
 #if defined(CFG_SPI_DMA_SUPPORT)
+void wait_for_DMA(void){
 	while(dma_get_channel_state(SPI_DMA_CHANNEL_RX) || dma_get_channel_state(SPI_DMA_CHANNEL_TX)){}
-#endif
 }
+#endif
 
 void demo_spi(void){
 	 uint8_t tx_buffer[TEST_SIZE];

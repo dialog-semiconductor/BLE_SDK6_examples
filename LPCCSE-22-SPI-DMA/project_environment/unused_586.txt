@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Sep 24 15:08:42 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Nov 04 13:04:40 2019
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -180,7 +180,6 @@ set_gauss_modgain <= USED 0
 ;FILE smpc_util.o
 JT_llm_p256_start_func <= USED 0
 ;FILE spi_58x.o
-spi_register_receive_cb <= USED 0
 spi_register_send_cb <= USED 0
 spi_register_transfer_cb <= USED 0
 spi_set_cp_mode <= USED 0
@@ -193,7 +192,6 @@ spi_flash_block_erase <= USED 0
 spi_flash_block_erase_no_wait <= USED 0
 spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
-spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
 spi_flash_enable <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
@@ -212,7 +210,6 @@ spi_flash_program_fail <= USED 0
 spi_flash_read_config_reg <= USED 0
 spi_flash_read_data <= USED 0
 spi_flash_read_data_buffer <= USED 0
-spi_flash_read_data_dma <= USED 0
 spi_flash_read_jedec_id <= USED 0
 spi_flash_read_rems_id <= USED 0
 spi_flash_read_security_reg <= USED 0

@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_barebone.h
+ * @file user_spi.h
  *
  * @brief Barebone application header file.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -99,7 +99,10 @@
  */
 void demo_spi(void);
 
+#if defined(CFG_SPI_DMA_SUPPORT)
 void wait_for_DMA(void);
+#endif
+
 /// @} APP
 
-#endif //_USER_BAREBONE_H_
+#endif //_USER_SPI_H_

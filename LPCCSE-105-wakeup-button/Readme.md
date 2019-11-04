@@ -183,7 +183,7 @@ Configure the callback function:
 
 - If SmartSnippets toolbox is used, is the jumper connected to P1_3 on J8 removed?
 
-- If none of the above steps help, please check the user manual according to your development. 
+- If none of the above steps help, please check the user manual according to your development kit. 
 	- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
 	- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 

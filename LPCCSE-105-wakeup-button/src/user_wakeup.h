@@ -78,4 +78,4 @@ void user_app_wakeup_press_cb(void);
 
 /// @} APP
 
-#endif //_USER_BAREBONE_H_
+#endif //_USER_WAKEUP_H_

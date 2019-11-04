@@ -25,7 +25,7 @@ The user manuals for the development kits can be found:
 - [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
 - [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
-The example is running from SRAM. To run the program from flash please visit chapter 11 of the [SmartSnippets Toolbox User Manual](https://support.dialog-semiconductor.com/resource/um-b-083-smartsnippets-toolbox-user-manual).
+The example is running from SRAM. To run the program from flash please visit chapter 13 of the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/tools/SPIFlashProgrammer.html).
 
 * __Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard__
 
@@ -66,8 +66,10 @@ The example is running from SRAM. To run the program from flash please visit cha
 
 ## How to run the example
 ### Setup
-Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
-1. Start Keil using the `simple_button.uvprojx` Keil project file.
+
+Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html).
+
+1. Start Keil using the `ble_button_wakeup.uvprojx` Keil project file.
  
 2. Expand the dialog shown in the red box in the image below.
 
@@ -98,7 +100,7 @@ If the warning (shown below) pops up press OK.
 ### DA14585/DA14586/DA14531 with DA145xxDEVKT-P PRO-Motherboard
 1. The LED controlled in this example is `D5` and the color is `orange`.
 
-2. Have the serial UART monitor active: status messages will be displayed here. See step `4` in ["How to run the example"](#How-to-run-the-example) for setting up the serial monitor.
+2. Have the serial UART monitor active: status messages will be displayed here. See step `4` in __How to run the example__ for setting up the serial monitor.
 	- Note that UART messages will only be send to your serial monitor if *CFG_PRINTF_UART2* is defined, the definition can be found in *user_periph_setup.h* 
 
 3. (Optional) initialize and start SmartSnippets toolbox.
@@ -135,7 +137,7 @@ If the warning (shown below) pops up press OK.
 	- The button connected to P1_1 is SW3.
 	- The button connected to P0_6 is SW2.
 
-3. Follow the steps from step 2 in [DA14585/DA14586/DA14531 with DA145xxDEVKT-P PRO-Motherboard](###DA14585/DA14586/DA14531-with-DA145xxDEVKT-P-PRO-Motherboard)
+3. Follow the steps from step 2 in __DA14585/DA14586/DA14531 with DA145xxDEVKT-P PRO-Motherboard__
 		
 ## About this Example
 
@@ -181,7 +183,9 @@ Configure the callback function:
 
 - If SmartSnippets toolbox is used, is the jumper connected to P1_3 on J8 removed?
 
-- If none of the above steps help, please check the user manual according to your daughter board and mother board. User manual can be found ["here"](##HW-and-SW-configuration)
+- If none of the above steps help, please check the user manual according to your development kit. 
+	- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+	- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
 
 ## License

@@ -3,20 +3,43 @@
 ###########################################################################################
 # @file		:: dlg_make_keil5_env_v1.006.py
 #
-# @brief	:: This script is used to create DA145 85/86/31 BLE application build environment in KEIL5. 
-#			   You need DA14531/DA14585/DA14586 hardware and SDK6. We always recommeded to take the latest SDK
-#			   from the support website for the new application development.
-#			   Create your project only in the user application space.
-#			   Do not touch any code in the SDK6.
-#			   Store and run this script from the same KEIL5 project folder location.
-#			   Your Keil5 uvprojx file will be ready to run the KEIL5 IDE as an ouput.
+# @brief	:: Last modified: Nov 01st 2019.
 #			   
-#			   Change(s) from v1.004:
-#			   - Code added to parse file path changes in new SDK (6.0.11.933 and up).
-#			   - Characters being read as Unicode was generating errors: culprit files now being read as UTF-8.
+# 			   This script sets up the software development environment links with Dialog's SDK6.
+#              This script is applied only on DA14585/86/31 published small examples in KEIL5.          
+#			   The user needs DA14531/DA14585/DA14586 hardware to run any of these examples on.
+#              
+#              The user is requested to download the latest SDK6 from https://www.dialog-semiconductor.com/.
+#			   Application development on the aforementioned Dailog Semiconductor SoCs are easy to maintain.
+#              The recommendation is to create a project in the user application space.
+#			   This way, the user hardly needs to touch any software code in the SDK6.
+# 			   As a proof to this concept, small example application snippets are created to help users get started.
+#
+#			   Store and run this script in the same location as the KEIL5 *.uvprojx and *.uvoptx files.
+#			   The script can be run from a command line on a windows OS (Power shell or DOS cmd).
+#			   Example cmd:
+#			   python dlg_make_keil5_env_v1.006.py -sdkpath "<user_specific_SDK6_location>"
+#
+
+#			   NOTE:
+#			   - This script can create application environment only for SDK6.0.12.xxxx.
+#			   - Supported commands:
+#			   	python dlg_make_keil5_env_v1.006.py -sdkpath "<user_specific_SDK6_location>"
+#			   
+#			   After successful execution of the above command the Keil5 environment (example *.uvprojx) 
+#			   files will be ready to run the KEIL5 IDE as an ouput.
+#
+#              OR,
+#			   python dlg_make_keil5_env_v1.006.py -sdkpath "clean" 
+#
+#			   After successful execution of the above command the Keil5 environment (example *.uvprojx) 
+#			   files will be unlinked from the SDK6.
+#			    
+#			   This "clean" command is shared to make sure no intermadiate file paths are shared with internal and external
+#			   applicaiton users.
 #				
 #
-# Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
+# Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
 #
 # This software ("Software") is owned by Dialog Semiconductor. By using this Software
 # you agree that Dialog Semiconductor retains all intellectual property and proprietary
@@ -48,8 +71,11 @@ import xml.etree.ElementTree as ET
 '''
 Globals and constants
 '''
-DLG_SDK_ROOT_DIRECTORY = 'C:\\Dialog_workspace\\' # default just for example it will be filled up by sys.argv[1] input
+DLG_SDK_ROOT_DIRECTORY = "C:\\Dialog_workspace\\"	# default just for example it will be filled up by sys.argv[1] input
+DLG_SDK_ROOT_DIRECTORY_TO_WRITE = "C:\DLG_SDK_UNLINKED"
 DLG_WORKING_PROJECT_DIRECTORY = '.'
+CLEAN_PROJ_ENV = False
+IS_PROJ_ENV_IN_SDK = False
 UVOPTX_FILE_EXTENSION = ".uvoptx"
 UVPROJX_FILE_EXTENSION = ".uvprojx"
 DLG_UVOPTX_NAME = "test" + UVOPTX_FILE_EXTENSION
@@ -57,14 +83,16 @@ DLG_UVPROJX_NAME = "test" + UVPROJX_FILE_EXTENSION
 #SOC_ID = 585
 SOC_ID_LIST = ['585','586','531']
 
-SHARED_FOLDER_PATH = 'projects\\target_apps\\peripheral_examples\\shared\\'
+SHARED_FOLDER_PATH = '\\projects\\target_apps\\peripheral_examples\\shared\\'
 
-SCATTER_FILE_PATH = ['sdk\\common_project_files\\scatterfiles\\scatterfile_common.sct', 'sdk\\common_project_files\\scatterfiles\\DA14531.sct']
+SCATTER_FILE_NAME = ["scatterfile_common.sct", "DA14531.sct"]
+SCATTER_FILE_PATH = [('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[0]), ('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[1])]
 SUB_STR_PATTERN_STACK_CONFIG = '.\\..\\..\\..\\..\\..\\sdk\\common_project_files\\'
-DA1458X_STACK_CONFIG = 'sdk\\common_project_files\\'
+DA1458X_STACK_CONFIG = '\\sdk\\common_project_files\\'
 
-COPIED_SCATTER_FILE_PATH = ['.\\..\\src\\config\\copied_scatter_585_586.sct', '.\\..\\src\\config\\copied_scatter_531.sct']
-COPIED_SCATTER_FILE_PATH_1 = ''
+COPIED_SCATTER_FILE_NAME = ["copied_scatter_585_586.sct", "copied_scatter_531.sct"]
+COPIED_SCATTER_FILE_PATH = [('.\\..\\src\\config\\' + COPIED_SCATTER_FILE_NAME[0]), ('.\\..\\src\\config\\' + COPIED_SCATTER_FILE_NAME[1])]
+SDK_PERIPH_EX_SCATTER_FILE_PATH = ""
 
 XML_TAG = ['IncludePath', 'Misc', 'ScatterFile', 'FilePath', 'tIfile']
 DLG_FIND_STR_PATTERN = ['\\sdk\\' , '\\third_party\\', '\\shared\\']
@@ -87,6 +115,23 @@ LOCATION_IDX = 0	#starting location index
 MAX_LOCATION_IDX = 2 #maximum number of file locations applicable for 585 = 0,586 = 1,531 = 2 
 
 
+
+def split_path(path,compare_string):
+    """
+    Returns type: (boolean,string). 
+    Function searches for "compare_string" in "path" with the highest index.
+    if "compare_string" is found in "path" split_path will remove everything in front of it and return (True,Remaining string).
+    For example "path" = 6.0.12.1020/sdk/platform and "compare_string" = /sdk/, (True,"/sdk/platform") will be returned 
+    If "compare_string" was not found in "path" split_path will return (False,path) 
+    """
+
+    index = path.rfind(compare_string)
+
+    if index == -1:
+        return (False,path)
+
+    return (True,path.replace(path[:index],""))
+	
 def write_xml_file(xml_tree, xml_filename):
 	'''
 	Write the given ElementTree tree to an xml file.
@@ -114,7 +159,7 @@ def build_uvoptx_element_targetname(xml_sub_element):
 	'''
 	Update the target name in uvoptx file
 	'''
-	temp_text = DLG_UVPROJX_NAME
+	temp_text = DLG_UVOPTX_NAME
 	temp_list = temp_text.split('.')
 	dlg_uvoptx_file = temp_list[0] + '.uvoptx'
 	#print(dlg_uvoptx_file)
@@ -143,10 +188,9 @@ def build_uvoptx_element_targetname(xml_sub_element):
 	file_pointer.close()	
 	
 
-#build_uvoptx_element_debugopt
-def build_uvoptx_element_debugopt(xml_sub_element):
+def build_uvoptx_element_debugopt(xml_sub_element, xml_tag):
 	'''
-	Update the ini file path in uvoptx file
+	Update the ini file path in .uvoptx file.
 	'''
 	#print(DLG_UVOPTX_NAME)
 	tree = ET.parse(DLG_UVOPTX_NAME)
@@ -155,19 +199,24 @@ def build_uvoptx_element_debugopt(xml_sub_element):
 	for t_sub_element in root.findall(xml_sub_element):
 		#print(t_sub_element.text)
 		temp_text = t_sub_element.text
-		if t_sub_element.tag == XML_TAG[4] and t_sub_element.text != None:
-			my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[0],1)
-			#print(my_t_list)
-			if(len(my_t_list)> 1):
-				single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + DLG_FIND_STR_PATTERN[0] + my_t_list[-1]	
+		if t_sub_element.tag == xml_tag and t_sub_element.text != None:
+			(found_sdk,my_t_list_sdk) = split_path(temp_text,DLG_FIND_STR_PATTERN[0])
+			(found_shared,my_t_list_shared) = split_path(temp_text,DLG_FIND_STR_PATTERN[2])
+
+			if found_sdk and found_shared: #If user named a folder in path sdk or shared 
+				if len(my_t_list_sdk) < len(my_t_list_shared):
+					found_shared = False
+				else:			
+					found_sdk = False
+
+			if(found_sdk):
+				single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + my_t_list_sdk
 				#print(single_text)
 				t_sub_element.text = single_text	
-			else:
-				my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[2],1)
-				if(len(my_t_list)> 1):
-					single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + "\\" + SHARED_FOLDER_PATH + my_t_list[-1]
-					#print(single_text)
-					t_sub_element.text = single_text	
+			elif(found_shared):
+				single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + SHARED_FOLDER_PATH + my_t_list_shared.replace(DLG_FIND_STR_PATTERN[2],"")
+				#print(single_text)
+				t_sub_element.text = single_text
 	# tree.write(DLG_UVOPTX_NAME)
 	
 	# x = '''<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\r\n'''
@@ -181,7 +230,6 @@ def build_uvoptx_element_debugopt(xml_sub_element):
 	#print("INI FILE PATH IS UPDATED ...")
 	
 
-#build_uvoptx_element_ldads
 def build_uvprojx_element_output_name(xml_sub_element):
 	'''
 	Update the output name in uvprojx file
@@ -210,7 +258,7 @@ def build_uvprojx_element_output_name(xml_sub_element):
 		file_pointer.write(x.rstrip('\r\n') + '\n' + file_data)
 	file_pointer.close()
 	
-	
+
 #build_uvoptx_element_ldads
 def build_uvprojx_element_target_name(xml_sub_element):
 	'''
@@ -241,8 +289,7 @@ def build_uvprojx_element_target_name(xml_sub_element):
 	file_pointer.close()	
 		
 	
-#build_uvprojx_element_file
-def build_uvprojx_element_file(xml_sub_element, split_str_pattern):	
+def build_uvprojx_element_file(xml_sub_element, xml_tag):
 	"""
 	Update the directory paths of every file 	
 	"""
@@ -253,36 +300,32 @@ def build_uvprojx_element_file(xml_sub_element, split_str_pattern):
 		#print(t_sub_element.tag)
 		for temp_element in t_sub_element:
 			temp_tag = temp_element.tag
-			temp_text = t_sub_element.find(temp_tag).text			
-			if(temp_tag == XML_TAG[3]):
+			temp_text = t_sub_element.find(temp_tag).text
+			if(temp_tag == xml_tag):
 				#print(temp_tag , ' :: ' , temp_text)
-				my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[0],1)
-				#print(my_t_list)
-				if(len(my_t_list)> 1):
-					single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + DLG_FIND_STR_PATTERN[0] + my_t_list[-1]
+
+				(found_sdk,sdk_string) = split_path(temp_text,DLG_FIND_STR_PATTERN[0])
+				(found_third_party,third_party_string) = split_path(temp_text,DLG_FIND_STR_PATTERN[1])
+				(found_shared,shared_string) = split_path(temp_text,DLG_FIND_STR_PATTERN[2])
+
+				if (found_sdk + found_shared + found_third_party) == 0:
+					#WARNING no sdk path
+					continue	
+				
+				end_of_path = min([sdk_string,third_party_string,shared_string], key=len)
+				single_text = ""
+
+				if end_of_path.find(DLG_FIND_STR_PATTERN[2]) != -1:
+					single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + SHARED_FOLDER_PATH + end_of_path.replace(DLG_FIND_STR_PATTERN[2],"")
 				else:
-					my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[1],1)
-					single_text = temp_text
-					#print(my_t_list)
-					if(len(my_t_list)> 1):
-						single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + DLG_FIND_STR_PATTERN[1] + my_t_list[-1]
-					else:
-						my_t_list = temp_text.split(DLG_FIND_STR_PATTERN[2],1)
-						single_text = temp_text
-						#print(my_t_list)
-						
-						if(len(my_t_list)> 1):
-							single_text = DLG_SDK_ROOT_DIRECTORY.rstrip('\\') + "\\" + SHARED_FOLDER_PATH + my_t_list[-1]
-					#print(my_t_list)
-				#print(single_text)
-					
-				if (os.path.exists(single_text) == True):
+					single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + end_of_path
+
+				if ((os.path.exists(single_text) == True) or (CLEAN_PROJ_ENV == True)):
 					t_sub_element.find(temp_tag).text = single_text
 				else:
 					#print("WARNING :: IT IS AN INVALID DIRECTORY PATH, THIS PATH WILL BE AUTOMATICALLY REMOVED...")
 					pass
-				# print(single_text)
-				
+				print(single_text)
 	
 	# my_file = open(DLG_UVPROJX_NAME,"w") 
 	# x = '''<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\r\n'''
@@ -293,27 +336,30 @@ def build_uvprojx_element_file(xml_sub_element, split_str_pattern):
 	write_xml_file(tree, DLG_UVPROJX_NAME)
 	
 					
-#build_uvprojx_element_ldads_scatterfile
-def build_uvprojx_element_ldads_scatterfile(xml_sub_element):	
+def build_uvprojx_element_ldads_scatterfile(xml_sub_element):
 	"""
-	Modify and update UVPROJX ldads element
+	Modify and update UVPROJX ldads scatterfile element
 	"""
-	
 	loop_idx = location_idx = LOCATION_IDX		
 	max_location_idx = MAX_LOCATION_IDX
 	
 	tree = ET.parse(DLG_UVPROJX_NAME)
 	root = tree.getroot()
 	
-	for t_sub_element in root.findall(xml_sub_element):		
-			if (os.path.exists(str(COPIED_SCATTER_FILE_PATH[location_idx])) == True):			
-				t_sub_element.text = str(COPIED_SCATTER_FILE_PATH[location_idx])
-			elif (os.path.exists(str(COPIED_SCATTER_FILE_PATH_1)) == True):
-				t_sub_element.text = str(COPIED_SCATTER_FILE_PATH_1)
-			
-			loop_idx = loop_idx + 1
-			if (loop_idx == max_location_idx):
-				location_idx = location_idx + 1
+	for t_sub_element in root.findall(xml_sub_element):
+		if(CLEAN_PROJ_ENV == True):
+			if(t_sub_element.text.endswith("peripheral_examples.sct")):	# .sct file in SDK used.
+				t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + SHARED_FOLDER_PATH + "peripheral_examples.sct"
+			else:	# .sct file copied from SDk.
+				t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + COPIED_SCATTER_FILE_NAME[location_idx]
+		elif (os.path.exists(str(COPIED_SCATTER_FILE_PATH[location_idx])) == True):
+			t_sub_element.text = str(COPIED_SCATTER_FILE_PATH[location_idx])
+		elif (os.path.exists(str(SDK_PERIPH_EX_SCATTER_FILE_PATH)) == True):
+			t_sub_element.text = str(SDK_PERIPH_EX_SCATTER_FILE_PATH)
+
+		loop_idx += 1
+		if (loop_idx == max_location_idx):
+			location_idx += 1
 	
 	
 	# my_file = open(DLG_UVPROJX_NAME,"w") 
@@ -323,28 +369,60 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element):
 	# my_file.write((ET.tostring(root, encoding='UTF-8').decode('utf8')))
 	# my_file.close()
 	write_xml_file(tree, DLG_UVPROJX_NAME)
-	
-				
+
+
 def build_uvprojx_element_ldads_misc(xml_sub_element, split_str_pattern):
 	"""
-	Modify and update UVPROJX miscellaneous element
+	Modify and update UVPROJX ldads miscellaneous element
 	"""
+	check_strs = [":", "..\\", ".\\", " "]
+
+
 	tree = ET.parse(DLG_UVPROJX_NAME)
 	root = tree.getroot()
 	
 	# target_name = DLG_UVPROJX_NAME.rstrip(UVPROJX_FILE_EXTENSION) + '_symdef.txt'
 	
 	for t_sub_element in root.findall(xml_sub_element):
-		# print(t_sub_element.tag)
-		# print(t_sub_element.text)
 		if(t_sub_element.text == None):
 			return
-		temp_text = t_sub_element.text
-		temp_text = temp_text.split(DLG_FIND_STR_PATTERN[0],1)	# Split on \\sdk\\.
-		unused_txt_data = temp_text[0].split(DLG_SPLIT_STR_PATTERN[1])	# Split on space.
-		temp_text[0] = unused_txt_data[0]	# Old path minus old sdk path.
-		temp_text[1] = DLG_SDK_ROOT_DIRECTORY + DLG_FIND_STR_PATTERN[0] + temp_text[1]	# Add new sdk path.
-		joined_text = split_str_pattern.join(temp_text)
+		# print(t_sub_element.tag)
+		print("Current LDad Misc: " + t_sub_element.text)
+		misc_element = t_sub_element.text
+
+		(found_sdk,divided_misc) = split_path(misc_element,DLG_FIND_STR_PATTERN[0])
+
+		if (found_sdk) == 0:
+			#WARNING no sdk path
+			pass #continue	
+		
+		feedback_and_path_begin = misc_element.replace(divided_misc,"")
+		# print("ldads_misc: Feedback + previous user path = " + feedback_and_path_begin)
+
+		(found_drive,drive_path) = split_path(feedback_and_path_begin,check_strs[0])
+		(found_relative,relative_path) = split_path(feedback_and_path_begin,check_strs[1])
+		(found_dot,dot_path) = split_path(feedback_and_path_begin,check_strs[2])
+
+		if (found_drive+found_relative+found_dot) == 0:
+			#error
+			pass #continue
+
+		if found_relative:
+			# print("ldads_misc: Relative path = " + relative_path)
+			(found_relative,relative_path) = split_path(feedback_and_path_begin,check_strs[3])
+			feedback = feedback_and_path_begin.replace(relative_path,"") + " "
+		elif found_drive:
+			feedback = feedback_and_path_begin.replace(drive_path,"")
+			# print("ldads_misc: Drive_path = " + drive_path)
+			feedback = feedback[:-1]
+		else:
+			# print("ldads_misc: Dot path = " + dot_path)
+			feedback = feedback_and_path_begin.replace(dot_path,"")
+
+		# print("ldads_misc: feedback = " + feedback)
+
+		t_sub_element.text = feedback + DLG_SDK_ROOT_DIRECTORY_TO_WRITE + divided_misc
+	# Add new sdk path.
 		"""		
 		if(len(temp_list[2])>1):
 			updated_data = ''
@@ -352,8 +430,7 @@ def build_uvprojx_element_ldads_misc(xml_sub_element, split_str_pattern):
 			temp_list[2] = updated_data
 			#print(temp_list[2])
 		"""
-		t_sub_element.text = joined_text
-		
+		print("New LDad Misc    : " + t_sub_element.text)
 	# my_file = open(DLG_UVPROJX_NAME,"w") 
 	# x = '''<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\r\n'''
 	
@@ -364,42 +441,35 @@ def build_uvprojx_element_ldads_misc(xml_sub_element, split_str_pattern):
 	write_xml_file(tree, DLG_UVPROJX_NAME)
 
 
-#build_uvprojx_element_various_controls
-def build_uvprojx_element_various_controls(xml_sub_element, xml_tag, split_str_pattern):	
+def build_uvprojx_element_various_controls(xml_sub_element, xml_tag):
 	"""
 	Modify and update UVPROJX various control element
 	"""
 	tree = ET.parse(DLG_UVPROJX_NAME)
 	root = tree.getroot()
+
+	updated_data = ""
 	
-	DLG_WORKING_PROJECT_PARENT_DIRECTORY = os.path.abspath(os.path.join(DLG_WORKING_PROJECT_DIRECTORY, '..'))
-	DLG_INCLUDE_WORKING_PROJECT_DIRECTORY = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'include')
-	DLG_SDK_SUBFOLDER_DIRECTORY = os.path.join(DLG_SDK_ROOT_DIRECTORY, 'sdk')
-	DLG_THIRD_PARTY_SUBFOLDER_DIRECTORY = os.path.join(DLG_SDK_ROOT_DIRECTORY, 'third_party')
-	# DLG_UTILITIES_SUBFOLDER_DIRECTORY = os.path.join(DLG_SDK_ROOT_DIRECTORY, 'utilities')
-	DLG_PROJECT_INCLUDE_SUBFOLDER_DIRECTORY = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'src', 'config')
-	DLG_PROJECT_USER_CUST_SUBFOLDER_DIRECTORY = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'src', 'custom_profile')
+	if(CLEAN_PROJ_ENV == True):
+		updated_data = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + ";"
+	else: 
+		DLG_WORKING_PROJECT_PARENT_DIRECTORY = "..\\"
+		DLG_SDK_SUBFOLDER_DIRECTORY = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + DLG_FIND_STR_PATTERN[0][:-1]
+		DLG_THIRD_PARTY_SUBFOLDER_DIRECTORY = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + DLG_FIND_STR_PATTERN[1][:-1]
+		DLG_PROJECT_SOURCE_SUBFOLDER_DIRECTORY = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'src')
 
-	updated_data = os.path.join(DLG_WORKING_PROJECT_PARENT_DIRECTORY, 'src') + '\\;'
+		end_ele_char = ";"
+		updated_data = ""
 
-	for dirpath, dirname, filename in os.walk(DLG_INCLUDE_WORKING_PROJECT_DIRECTORY):
-		updated_data = updated_data + dirpath + '\\;'
-	for dirpath, dirname, filename in os.walk(DLG_PROJECT_USER_CUST_SUBFOLDER_DIRECTORY):
-		#if x = os.path.basename(dirpath)
-		updated_data = updated_data + dirpath + '\\;'
-	for dirpath, dirname, filename in os.walk(DLG_PROJECT_INCLUDE_SUBFOLDER_DIRECTORY):
-		#if x = os.path.basename(dirpath)
-		updated_data = updated_data + dirpath + '\\;'
-	for dirpath, dirname, filename in os.walk(DLG_SDK_SUBFOLDER_DIRECTORY):
-		#if x = os.path.basename(dirpath)
-		updated_data = updated_data + dirpath + '\\;'
-	for dirpath, dirname, filename in os.walk(DLG_THIRD_PARTY_SUBFOLDER_DIRECTORY):
-		#if x = os.path.basename(dirpath)
-		updated_data = updated_data + dirpath + '\\;'
-	# for dirpath, dirname, filename in os.walk(DLG_UTILITIES_SUBFOLDER_DIRECTORY):
-		# if x = os.path.basename(dirpath)
-		# updated_data = updated_data + dirpath + '\\;'
-	# print('DEBUG: updated_data: ' + updated_data)
+		for dirpath, dirname, filename in os.walk(DLG_PROJECT_SOURCE_SUBFOLDER_DIRECTORY):
+			#if x = os.path.basename(dirpath)
+			updated_data = updated_data + dirpath + end_ele_char
+		for dirpath, dirname, filename in os.walk(DLG_SDK_SUBFOLDER_DIRECTORY):
+			#if x = os.path.basename(dirpath)
+			updated_data = updated_data + dirpath + end_ele_char
+		for dirpath, dirname, filename in os.walk(DLG_THIRD_PARTY_SUBFOLDER_DIRECTORY):
+			#if x = os.path.basename(dirpath)
+			updated_data = updated_data + dirpath + end_ele_char
 
 	for t_sub_element in root.findall(xml_sub_element):
 		# print(t_sub_element.tag)
@@ -408,6 +478,9 @@ def build_uvprojx_element_various_controls(xml_sub_element, xml_tag, split_str_p
 			if(temp_tag == xml_tag):
 				t_sub_element.find(temp_tag).text = updated_data
 
+	# Print updated_data in a readable format.
+	updated_data = updated_data.replace(";", ";\r\n")
+	print("IncludePath Element Text:\r\n" + updated_data + "End of IncludePath Element Text.\r\n")
 
 	#print(temp_text)
 	#print(updated_data[:-1])
@@ -421,72 +494,138 @@ def build_uvprojx_element_various_controls(xml_sub_element, xml_tag, split_str_p
 	# my_file.write((ET.tostring(root, encoding='UTF-8').decode('utf8')))
 	# my_file.close()	
 	write_xml_file(tree, DLG_UVPROJX_NAME)
+
+
+def calc_proj_env_to_SDK_path():
+	"""
+	Uses relative part of path from project environment to SDK as SDK root.
+	"""
+	global DLG_SDK_ROOT_DIRECTORY
+	relative_path = ""
+	path_diff = DLG_WORKING_PROJECT_DIRECTORY.replace(DLG_SDK_ROOT_DIRECTORY, "")
+
+	while "\\" in path_diff:
+		path_diff = path_diff.replace("\\", "", 1)
+		relative_path += "..\\"
+
+	if relative_path == "":	# If project environment is same as SDK root.
+		relative_path = ".\\"
+
+	print("USING RELATIVE PATH \"" + relative_path + "\" INSTEAD OF ABSOLUTE \"" + DLG_SDK_ROOT_DIRECTORY + "\" AS SDK ROOT ...")
+	DLG_SDK_ROOT_DIRECTORY = relative_path[:-1]
+
+
+def determine_proj_env_in_SDK():
+	"""
+	set IS_PROJ_ENV_IN_SDK to True if project environment is located inside of SDK.
+	"""
+	global IS_PROJ_ENV_IN_SDK
+
+	if(DLG_WORKING_PROJECT_DIRECTORY.startswith(os.path.abspath(DLG_SDK_ROOT_DIRECTORY))):
+		print("PROJECT ENVIRONMENT LOCATED INSIDE OF SDK ...")
+		IS_PROJ_ENV_IN_SDK = True
+	else:
+		# print("PROJECT ENVIRONMENT LOCATED OUTSIDE OF SDK ...")
+		pass
+
+
+def update_scatter_file(xml_sub_element):
+	"""
+	If scatter file(s) present in project environment, copy scatter file(s) data from SDK to proj env.
+	If scatter file(s) not present in proj env, prepare path to scatter file(s) in SDK.
+
+	Exit if scatter file(s) copy process unsuccessful.
+	Return True if successful.
+	"""
+	global SDK_PERIPH_EX_SCATTER_FILE_PATH
+	sub_string = SUB_STR_PATTERN_STACK_CONFIG
+	idx = LOCATION_IDX
+	max_idx = MAX_LOCATION_IDX
+		
+	tree = ET.parse(DLG_UVPROJX_NAME)
+	root = tree.getroot()
+
+	loop_idx = 0
 	
+	for t_sub_element in root.findall(xml_sub_element):
+		if(t_sub_element.text.endswith("peripheral_examples.sct")):
+			SDK_PERIPH_EX_SCATTER_FILE_PATH = str(DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct")
+		else:
+			break
+
+		loop_idx += 1
+		if (loop_idx == max_idx):
+			return True
+
+	# Scatter file path not to .sct in SDK. Copy .sct file to project environment.
+	if(os.path.isdir(".\\..\\src\\config\\") == True):
+		# Update/Create scatter file(s) in proj env with data from SDK scatter file(s).
+		while(idx < max_idx):
+			if(CLEAN_PROJ_ENV == True):
+				if(os.path.exists(COPIED_SCATTER_FILE_PATH[idx]) == True):
+					os.remove(COPIED_SCATTER_FILE_PATH[idx])
+					print("SCATTER FILE " + COPIED_SCATTER_FILE_PATH[idx] + " HAS BEEN CLEANED.")
+				else:
+					print("NO SCATTER FILE " + COPIED_SCATTER_FILE_PATH[idx] + " TO CLEAN.")
+			else:
+				cur_scatter_file_path = DLG_SDK_ROOT_DIRECTORY + SCATTER_FILE_PATH[idx]
+				new_text = ""
+
+				with open(cur_scatter_file_path) as my_file:
+					new_text = my_file.read().replace(sub_string, DLG_SDK_ROOT_DIRECTORY_TO_WRITE + DA1458X_STACK_CONFIG, 1)
+					# print('NewText string : ' + new_text)
+				my_file.close()
+
+				with open(COPIED_SCATTER_FILE_PATH[idx], "w") as my_file:
+					my_file.write(new_text)
+					print("SCATTER FILE IS COPIED ...")
+					print("     FROM LOCATION :: ", cur_scatter_file_path)
+					print("     TO LOCATION :: ", COPIED_SCATTER_FILE_PATH[idx])
+				my_file.close()
+			idx += 1
+		return True
+
+	print("SCATTER FILE COPY PROCESS SUCCEEDED FOR " + str(idx + 1) + " TARGET(S).")
+	return False
+
 
 #create the project and setup the project directory
 def setup_keil5_project_environment():
 	"""
 	Keil5 project environment creation and configuration API
 	This API will create the entire the link between the SDK files
-    and the user application	
+	and the user application
 	"""
-	global root, tree, COPIED_SCATTER_FILE_PATH_1
-	subString = SUB_STR_PATTERN_STACK_CONFIG
-	temp_flag = False
-	idx = LOCATION_IDX
-	max_idx = MAX_LOCATION_IDX
+	global DLG_SDK_ROOT_DIRECTORY_TO_WRITE
 
-	if(os.path.isdir(".\\..\\src\\config\\") == False):
-		COPIED_SCATTER_FILE_PATH_1 = DLG_SDK_ROOT_DIRECTORY + "\\" + SHARED_FOLDER_PATH + "peripheral_examples.sct"
-		#print("SCATTER FILE :: ", COPIED_SCATTER_FILE_PATH_1)
-		temp_flag = True		
+	if(CLEAN_PROJ_ENV == False):
+		if(IS_PROJ_ENV_IN_SDK == True):
+			calc_proj_env_to_SDK_path()
+
+		DLG_SDK_ROOT_DIRECTORY_TO_WRITE = DLG_SDK_ROOT_DIRECTORY
+
+	update_scatter_file(XML_PATTERN_LDADS_SCATTERFILE)
+	build_uvprojx_element_various_controls(XML_PATTERN_VARIOUS_CONTROLS, XML_TAG[0])
+	build_uvprojx_element_ldads_scatterfile(XML_PATTERN_LDADS_SCATTERFILE)
+	build_uvprojx_element_ldads_misc(XML_PATTERN_LDADS_MISC, DLG_SPLIT_STR_PATTERN[1])
+	build_uvprojx_element_file(XML_PATTERN_FILE, XML_TAG[3])
+	#build_uvprojx_element_target_name(XML_PATTERN_TARGET_FILENAME)
+	#build_uvprojx_element_output_name(XML_PATTERN_OUTPUT_FILENAME)
+	build_uvoptx_element_debugopt(XML_PATTERN_TIFILE, XML_TAG[4])
+	#build_uvoptx_element_targetname(XML_PATTERN_OVOPTX_TARGET_FILENAME)
+	
+	if(CLEAN_PROJ_ENV):
+		print("PROJECT ENVIRONMENT HAS BEEN CLEANED SUCCESSFULLY ...")
 	else:
-		while(idx < max_idx):
-			curScatterFilePath = DLG_SDK_ROOT_DIRECTORY + '\\' + SCATTER_FILE_PATH[idx]
-
-			with open(curScatterFilePath) as my_file:
-				newText = my_file.read().replace(subString, DLG_SDK_ROOT_DIRECTORY + '\\' + DA1458X_STACK_CONFIG)
-				# print('NewText string : ' + newText)
-			my_file.close()
-
-			with open(COPIED_SCATTER_FILE_PATH[idx], "w") as my_file:
-				my_file.write(newText)
-				print("SCATTER FILE IS COPIED ...")
-				print("     FROM LOCATION :: ", curScatterFilePath)
-				print("     TO LOCATION :: ", COPIED_SCATTER_FILE_PATH[idx])			
-			my_file.close()
-			idx = idx + 1
-			
-
-		if(idx == 2):
-			temp_flag = True
-		else:
-			print("ERROR: SCATTER FILE COPY PROCESS FAILED")
-			exit()
-		
-	
-	if (temp_flag):
-	
-		build_uvprojx_element_various_controls(XML_PATTERN_VARIOUS_CONTROLS, XML_TAG[0], DLG_SPLIT_STR_PATTERN[0])		
-		build_uvprojx_element_ldads_scatterfile(XML_PATTERN_LDADS_SCATTERFILE)		
-		build_uvprojx_element_ldads_misc(XML_PATTERN_LDADS_MISC, DLG_SPLIT_STR_PATTERN[1])	
-		build_uvprojx_element_file(XML_PATTERN_FILE, DLG_SPLIT_STR_PATTERN[2])					
-		#build_uvprojx_element_target_name(XML_PATTERN_TARGET_FILENAME)	
-		#build_uvprojx_element_output_name(XML_PATTERN_OUTPUT_FILENAME)
-		build_uvoptx_element_debugopt(XML_PATTERN_TIFILE)	
-		#build_uvoptx_element_targetname(XML_PATTERN_OVOPTX_TARGET_FILENAME)
-		
 		print(DLG_UVPROJX_NAME + " IS SUCCESSFULLY UPDATED WITH PROPER SDK PATH ...")
-
 	return
 
-
 #verify it is a dialog keil applicaiton project
-def verify_dlg_keil_app_project(path):	
+def verify_dlg_keil_app_project(path):
 	"""
 	Verify there exist valid keil5 project for Dialog DA14531/DA14585/DA14586 application 
 	software development.
-	Multiple KEIL5 files in the same folder will generate error
+	Multiple KEIL5 files in the same folder will generate error.
 	"""
 	global DLG_UVOPTX_NAME, DLG_UVPROJX_NAME
 	uvprojx_file_extension_counter = 0
@@ -504,7 +643,7 @@ def verify_dlg_keil_app_project(path):
 		return False
 
 	if uvprojx_file_extension_counter == 1:		
-		print('KEIL PROJECT NAME :: ' + path + DLG_UVPROJX_NAME + ' IS A VALID PROJECT DIRECTORY...')
+		print('KEIL PROJECT NAME :: ' + path + "\\" + DLG_UVPROJX_NAME + ' IS A VALID PROJECT DIRECTORY...')
 	elif uvprojx_file_extension_counter > 1:
 		print("ERROR		:	MULTIPLE FILES WITH " + UVPROJX_FILE_EXTENSION + " EXIST ...")
 		print("RESOLUTION	:	ONLY ONE FILE WITH " + UVPROJX_FILE_EXTENSION + " IS EXPECTED INSIDE KEIL PROJECT FOLDER ...")
@@ -523,15 +662,85 @@ def verify_dlg_sdk_root_directory(path):
 	"""
 	files = os.listdir(path)
 	file_name_counter = 0
+
 	for name in files:
 		#print(name)
 		if (name == 'sdk' or name == 'third_party'):
 			file_name_counter += 1
+
 	if (file_name_counter != 2 ):
-		print("ERROR 		:	SDK IS AN INVALID DIRECTORY PATH ... ...")
+		print("ERROR 		:	SDK IS AN INVALID DIRECTORY PATH ...")
 		print("RESOLUTION 	: 	VERIFY THE SDK DIRECTORY PATH ...")
 		return False
+	
 	return True
+
+#Verify project environment directory path.
+def verify_dlg_sdk_proj_env_directory(path):
+	"""
+	Drive letter is not allowed to be project environment.
+	Script checks in parent of 'path': a drive letter like C: doesn't have a parent.
+	"""
+	if(path.find(":\\")+2 >= len(path)):	# If no more characters after drive letter (f.e. "C:\\").
+		return False
+	else:
+		return True
+
+def handle_space_in_path(path):
+	"""
+	For every directory in given path with a space in the string, this function will replace the
+	string of that directory with the DOS short path of this directory.
+	If directory path does not contain a space this function will return path without any changes.
+	"""
+	if path.find(" ") != -1:
+		path_variable = ""
+		path_list = list( filter(None,path.split("\\")) )
+		path = ""
+		i = 0 #dont forget to add up
+
+		while (i < len(path_list)):
+			path_to_dir = ""
+
+			if path_list[i].find(" ") != -1:
+				x = 0
+
+				while (x < i): path_to_dir += path_list[x] + "\\"; x += 1
+
+				os.chdir(path_to_dir)
+				output = os.popen('dir /X').read().split('\n')
+
+				for y in output:
+
+					if y.find(path_list[i]) != -1: 
+						y = y.replace(path_list[i],"")
+						index = len(y)-1
+
+						while index >= 0:
+							if y[index] != " ":
+								break   
+							y = y[:-1]
+							index -= 1
+
+						index = len(y)-1
+
+						while index > 0:
+							if y[index] == " ":
+								path_variable = path_variable[::-1]
+								break
+							path_variable += y[index]
+							index -= 1
+                        
+						path_list[i] = path_variable
+						break
+        
+			path += path_list[i] + "\\"
+			i += 1
+			
+		os.chdir(DLG_WORKING_PROJECT_DIRECTORY)
+	if(path.endswith("\\")):
+		return path[:-1]
+	else:
+		return path
 
 
 def run_application(sdk_path):
@@ -540,32 +749,44 @@ def run_application(sdk_path):
 	Verify if the KEIL5 uvprojx file is valid
 	If both are verified then setup KEIL5 project environment
 	"""
-	global DLG_SDK_ROOT_DIRECTORY, DLG_WORKING_PROJECT_DIRECTORY
-	#os.system('cls') #works only in windows for linux it is 'clear'			
-	
-	DLG_SDK_ROOT_DIRECTORY = str(sdk_path)
-	
-	if (verify_dlg_sdk_root_directory(DLG_SDK_ROOT_DIRECTORY) == False):
-		exit()
+	global DLG_SDK_ROOT_DIRECTORY, DLG_WORKING_PROJECT_DIRECTORY, CLEAN_PROJ_ENV
+	#os.system('cls') #works only in windows for linux it is 'clear'
 
-	print('\nSDK LOCATION :: ' + DLG_SDK_ROOT_DIRECTORY + ' IS FOUND ...')
-	
-	DLG_WORKING_PROJECT_DIRECTORY = str(os.getcwd()) + "\\"
+	DLG_WORKING_PROJECT_DIRECTORY = str(os.getcwd())
+
+	if (verify_dlg_sdk_proj_env_directory(DLG_WORKING_PROJECT_DIRECTORY) == False):
+		print("SCRIPT DOES NOT SUPPORT PROJECT ENVIRONMENT TO BE DRIVE LETTER. \r\nPlease move the project environment into a subfolder of the drive.")
+		exit()
 	
 	if (verify_dlg_keil_app_project(DLG_WORKING_PROJECT_DIRECTORY) == False):
 		print("ABORTING.")
 		exit()
-	
+
+	if(sdk_path == "clean"):
+		CLEAN_PROJ_ENV = True
+		print("CLEANING PROJECT ENVIRONMENT ...")
+	else:
+		DLG_SDK_ROOT_DIRECTORY = str(sdk_path)
+		determine_proj_env_in_SDK()
+
+		if (verify_dlg_sdk_root_directory(DLG_SDK_ROOT_DIRECTORY) == False):
+			exit()
+
+		print('\nSDK LOCATION :: ' + DLG_SDK_ROOT_DIRECTORY + ' IS FOUND ...')
+		
+		if(IS_PROJ_ENV_IN_SDK == False):
+			DLG_SDK_ROOT_DIRECTORY = str(handle_space_in_path(sdk_path))
+
 	setup_keil5_project_environment()
 	
 
 # start application
-if __name__ == "__main__":	
+if __name__ == "__main__":
 	# construct the argument parse and parse the arguments
 	ap = argparse.ArgumentParser()
-	ap.add_argument("-sdkpath", "--sdkpath", required=True,	help="FULL SDK PATH INSIDE DOUBLE QUOTATION")
+	ap.add_argument("-sdkpath", "--sdkpath", required=True ,help="FULL SDK PATH INSIDE DOUBLE QUOTATION OR \"CLEAN\" TO CLEAN PROJECT ENVIRONMENT")
 	args = vars(ap.parse_args())
-	 
+
 	# display a friendly message to the user
 	#print("SDK location {},is the sdk path".format(args["sdkpath"]))	
 	run_application(args["sdkpath"])

@@ -355,7 +355,7 @@
 /* - CFG_NVDS_TAG_BLE_CA_NB_PKT         Number of packets to receive for statistics                             */
 /* - CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT     Number  of bad packets needed to remove a channel                       */
 /****************************************************************************************************************/
-#define CFG_NVDS_TAG_BD_ADDRESS             {0x02, 0x00, 0x00, 0xCA, 0xEA, 0x80}
+#define CFG_NVDS_TAG_BD_ADDRESS             {0x42, 0x11, 0x00, 0xCA, 0xEA, 0x80}
 
 #define CFG_NVDS_TAG_LPCLK_DRIFT            DRIFT_500PPM
 #define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       2000
@@ -447,7 +447,7 @@
 /****************************************************************************************************************/
 /* Maximum uninitialized retained data required by the application.                                             */
 /****************************************************************************************************************/
-#define CFG_RET_DATA_UNINIT_SIZE (0)
+#define CFG_RET_DATA_UNINIT_SIZE (64)
 
 /****************************************************************************************************************/
 /* The Keil scatter file may be provided by the user. If the user provides his own scatter file, the system has */

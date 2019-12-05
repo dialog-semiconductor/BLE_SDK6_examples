@@ -69,7 +69,7 @@
  * Select only one option for privacy / addressing configuration.
  **************************************************************************
  */
-#define USER_CFG_ADDRESS_MODE       APP_CFG_ADDR_PUB
+#define USER_CFG_ADDRESS_MODE       APP_CFG_ADDR_STATIC
 
 /*************************************************************************
  * Controller Privacy Mode:
@@ -95,7 +95,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
+static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
 
 /*
  ****************************************************************************************
@@ -134,7 +134,7 @@ static const struct advertise_configuration user_adv_conf = {
     /// - GAP_GEN_DISCOVERABLE: General discoverable mode
     /// - GAP_LIM_DISCOVERABLE: Limited discoverable mode
     /// - GAP_BROADCASTER_MODE: Broadcaster mode
-    .mode = GAP_GEN_DISCOVERABLE,
+    .mode = GAP_BROADCASTER_MODE,
 
     /// Host information advertising data (GAPM_ADV_NON_CONN and GAPM_ADV_UNDIRECT)
     /// Advertising filter policy:
@@ -174,9 +174,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Advertising data
-#define USER_ADVERTISE_DATA         "\x03"\
-                                    ADV_TYPE_COMPLETE_LIST_16BIT_SERVICE_IDS\
-                                    ADV_UUID_DEVICE_INFORMATION_SERVICE
+#define USER_ADVERTISE_DATA         "\x03\x03\xAA\xFE\x11\x16\xAA\xFE\x20\x00\x00\x00\x1B\x80\x00\x00\x00\x00\x00\x00\x00\x00"
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)
@@ -200,7 +198,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "DLG-BRBN"
+#define USER_DEVICE_NAME        "DLG-HIBER-TIMER"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)
@@ -330,7 +328,7 @@ static const struct default_handlers_configuration  user_default_hnd_conf = {
     // Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
     // It is measured in timer units (3 min). Use MS_TO_TIMERUNITS macro to convert
     // from milliseconds (ms) to timer units.
-    .advertise_period = MS_TO_TIMERUNITS(180000),
+    .advertise_period = MS_TO_TIMERUNITS(18000),
 
     // Configure the security start operation of the default handlers
     // if the security is enabled (CFG_APP_SECURITY)

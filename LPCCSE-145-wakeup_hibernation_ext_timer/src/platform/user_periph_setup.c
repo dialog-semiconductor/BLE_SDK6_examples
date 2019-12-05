@@ -64,6 +64,9 @@ void GPIO_reservations(void)
 #if !defined (__DA14586__)
     RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
 #endif
+    
+    RESERVE_GPIO(HIB_WAKE_UP, HIB_WAKE_UP_PORT, HIB_WAKE_UP_PIN, PID_GPIO);
+    RESERVE_GPIO(HIB_DONE, HIB_DONE_PORT, HIB_DONE_PIN, PID_GPIO);
 }
 
 #endif
@@ -83,6 +86,9 @@ void set_pad_functions(void)
     GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
 #endif
 
+GPIO_ConfigurePin(HIB_WAKE_UP_PORT, HIB_WAKE_UP_PIN, INPUT_PULLUP, PID_GPIO, false); 
+GPIO_ConfigurePin(HIB_DONE_PORT, HIB_DONE_PIN, INPUT_PULLDOWN, PID_GPIO, false); 
+ 
 #if defined (CFG_PRINTF_UART2)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);

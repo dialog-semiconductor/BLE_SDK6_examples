@@ -1,7 +1,7 @@
 /**
  ****************************************************************************************
  *
- * @file user_barebone.c
+ * @file user_hibernation_timer.c
  *
  * @brief Barebone project source code.
  *
@@ -47,38 +47,48 @@
 #include "app_easy_timer.h"
 #include "user_hibernation_timer.h"
 #include "co_bt.h"
+#include "co_math.h"
+#include "battery.h"
+
+#include "user_periph_setup.h"
+#include "spi_flash.h"
+
+#ifdef CFG_DEEP_SLEEP_MODE
+#include "rtc.h"
+#endif
 
 /*
- * TYPE DEFINITIONS
+ * DEFINITIONS
  ****************************************************************************************
  */
+#define PREV_TEMPER_COUNT               5
+#define PREV_TEMPER_INIT_VALUE          25000                                       //In milli-degrees of Celsius
+#define PREV_TEMPER_SET_VALUE           27000                                       //In milli-degrees of Celsius
 
-// Manufacturer Specific Data ADV structure type
-struct mnf_specific_data_ad_structure
-{
-    uint8_t ad_structure_size;
-    uint8_t ad_structure_type;
-    uint8_t company_id[APP_AD_MSD_COMPANY_ID_LEN];
-    uint8_t proprietary_data[APP_AD_MSD_DATA_LEN];
-};
+#define ADV_TIMER_CANCEL_TIMEOUT        2500                                        //In tens of milli-second (x10ms)
+#define DONE_TIMER_TIMEOUT              1                                           //In tens of milli-second (x10ms)
+#define RTC_TIMEOUT                     ADV_TIMER_CANCEL_TIMEOUT / 100              //In seconds
+
+#define ADV_DATA_BATTERY_OFFSET         10                                          //Byte offset of battery level in Advertising Data
+#define ADV_DATA_TEMPER_OFFSET          12                                          //Byte offset of temperature level in Advertising Data
+#define ADV_DATA_ADV_COUNT_OFFSET       14                                          //Byte offset of advertising counter in Advertising Data
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
 
-uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-timer_hnd app_adv_data_update_timer_used        __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-
 // Retained variables
-struct mnf_specific_data_ad_structure mnf_data  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-// Index of manufacturer data in advertising data or scan response data (when MSB is 1)
-uint8_t mnf_data_index                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-uint8_t stored_adv_data_len                     __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data_len                __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-uint8_t stored_adv_data[ADV_DATA_LEN]           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+int32_t saved_temper[PREV_TEMPER_COUNT]       __SECTION("retention_mem_area_uninit"); //Previous saved output temperatures
+uint32_t adv_count                            __SECTION("retention_mem_area_uninit"); //Advertising counter          
+
+timer_hnd adv_timer                           __SECTION("retention_mem_area_uninit"); //Advertising cancel event timer
+
+uint16_t reset_stat_local                     __SECTION("retention_mem_area_uninit"); //Status of RESET_STAT_REG on wake-up or power-on
+
+#ifdef CFG_HIBERNATION_MODE
+timer_hnd done_timer                          __SECTION("retention_mem_area_uninit"); //Deassertion timer for the DONE signal of TPL5010
+#endif
 
 /*
  * FUNCTION DEFINITIONS
@@ -87,237 +97,255 @@ uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __SECTION_ZERO("retention_mem_ar
 
 /**
  ****************************************************************************************
- * @brief Initialize Manufacturer Specific Data
+ * @brief Saves the status of RESET_STAT_REG when the device is powered up or woken up 
+ *        from sleep
+ * @note Provided as a weak function implementation by the SDK. 
  * @return void
  ****************************************************************************************
  */
-static void mnf_data_init()
+void reset_indication(uint16_t reset_stat)
 {
-    mnf_data.ad_structure_size = sizeof(struct mnf_specific_data_ad_structure ) - sizeof(uint8_t); // minus the size of the ad_structure_size field
-    mnf_data.ad_structure_type = GAP_AD_TYPE_MANU_SPECIFIC_DATA;
-    mnf_data.company_id[0] = APP_AD_MSD_COMPANY_ID & 0xFF; // LSB
-    mnf_data.company_id[1] = (APP_AD_MSD_COMPANY_ID >> 8 )& 0xFF; // MSB
-    mnf_data.proprietary_data[0] = 0;
-    mnf_data.proprietary_data[1] = 0;
+    reset_stat_local = reset_stat;
 }
 
 /**
  ****************************************************************************************
- * @brief Update Manufacturer Specific Data
- * @return void
+ * @brief Output the next temperature value. The value is a mathematical random variable
+ *        around the PREV_TEMP_SET_VALUE +/- 500mC.
+ * @return Next temperature value in milli-degrees of Celsius
  ****************************************************************************************
  */
-static void mnf_data_update()
+static int32_t user_update_temper(void)
 {
-    uint16_t data;
-
-    data = mnf_data.proprietary_data[0] | (mnf_data.proprietary_data[1] << 8);
-    data += 1;
-    mnf_data.proprietary_data[0] = data & 0xFF;
-    mnf_data.proprietary_data[1] = (data >> 8) & 0xFF;
-
-    if (data == 0xFFFF) {
-         mnf_data.proprietary_data[0] = 0;
-         mnf_data.proprietary_data[1] = 0;
-    }
-}
-
-/**
- ****************************************************************************************
- * @brief Add an AD structure in the Advertising or Scan Response Data of the 
-  *       GAPM_START_ADVERTISE_CMD parameter struct.
- * @param[in] cmd               GAPM_START_ADVERTISE_CMD parameter struct
- * @param[in] ad_struct_data    AD structure buffer
- * @param[in] ad_struct_len     AD structure length
- * @param[in] adv_connectable   Connectable advertising event or not. It controls whether 
- *                              the advertising data use the full 31 bytes length or only 
- *                              28 bytes (Document CCSv6 - Part 1.3 Flags). 
- * @return void
- */
-static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_struct_data, uint8_t ad_struct_len, uint8_t adv_connectable)
-{
-    uint8_t adv_data_max_size = (adv_connectable) ? (ADV_DATA_LEN - 3) : (ADV_DATA_LEN);
+    uint8_t rand_val;
+    int32_t next_temper_value = 0;
     
-    if ((adv_data_max_size - cmd->info.host.adv_data_len) >= ad_struct_len)
+    //Ask the TRNG for a random byte value
+    rand_val = co_rand_byte();
+    
+    //Sum the previous PREV_TEMPER_COUNT-1 values
+    int i;
+    for (i=1; i<PREV_TEMPER_COUNT; i++)
     {
-        // Append manufacturer data to advertising data
-        memcpy(&cmd->info.host.adv_data[cmd->info.host.adv_data_len], ad_struct_data, ad_struct_len);
+        uint8_t idx = (adv_count + PREV_TEMPER_COUNT - i) % PREV_TEMPER_COUNT;
+        next_temper_value += saved_temper[idx];
+    }
+    
+    //Add the next temperature value and filter it with a moving average
+    next_temper_value += PREV_TEMPER_SET_VALUE + (1000 * rand_val)/255 - 500;
+    next_temper_value /= PREV_TEMPER_COUNT;
 
-        // Update Advertising Data Length
-        cmd->info.host.adv_data_len += ad_struct_len;
-        
-        // Store index of manufacturer data which are included in the advertising data
-        mnf_data_index = cmd->info.host.adv_data_len - sizeof(struct mnf_specific_data_ad_structure);
-    }
-    else if ((SCAN_RSP_DATA_LEN - cmd->info.host.scan_rsp_data_len) >= ad_struct_len)
-    {
-        // Append manufacturer data to scan response data
-        memcpy(&cmd->info.host.scan_rsp_data[cmd->info.host.scan_rsp_data_len], ad_struct_data, ad_struct_len);
-
-        // Update Scan Response Data Length
-        cmd->info.host.scan_rsp_data_len += ad_struct_len;
-        
-        // Store index of manufacturer data which are included in the scan response data
-        mnf_data_index = cmd->info.host.scan_rsp_data_len - sizeof(struct mnf_specific_data_ad_structure);
-        // Mark that manufacturer data is in scan response and not advertising data
-        mnf_data_index |= 0x80;
-    }
-    else
-    {
-        // Manufacturer Specific Data do not fit in either Advertising Data or Scan Response Data
-        ASSERT_WARNING(0);
-    }
-    // Store advertising data length
-    stored_adv_data_len = cmd->info.host.adv_data_len;
-    // Store advertising data
-    memcpy(stored_adv_data, cmd->info.host.adv_data, stored_adv_data_len);
-    // Store scan response data length
-    stored_scan_rsp_data_len = cmd->info.host.scan_rsp_data_len;
-    // Store scan_response data
-    memcpy(stored_scan_rsp_data, cmd->info.host.scan_rsp_data, stored_scan_rsp_data_len);
+    //Update advertising count and store the temperature
+    adv_count++;
+    saved_temper[adv_count % PREV_TEMPER_COUNT] = next_temper_value;
+    
+    return next_temper_value;
 }
 
 /**
  ****************************************************************************************
- * @brief Advertisement data update timer callback function.
+ * @brief Callback function to stop advertising
+ * @return void
+ ****************************************************************************************
+ */
+static void user_non_connectable_advertise_with_timeout_stop_cb(void)
+{
+    app_easy_gap_advertise_stop();
+}
+
+#ifdef CFG_HIBERNATION_MODE
+/**
+ ****************************************************************************************
+ * @brief Callback function to deassert the DONE signal of TPL5010
+ * @return void
+ ****************************************************************************************
+ */
+static void done_timer_cb(void)
+{
+    GPIO_ConfigurePin(HIB_DONE_PORT, HIB_DONE_PIN, INPUT_PULLDOWN, PID_GPIO, false);
+}
+#endif
+
+#if defined(CFG_DEEP_SLEEP_MODE)
+/**
+ ****************************************************************************************
+ * @brief Real-time clock interrupt handler.
+ * @note Stub function
  * @return void
  ****************************************************************************************
 */
-static void adv_data_update_timer_cb()
+static void rtc_interrupt_hdlr(uint8_t event)
 {
-    // If mnd_data_index has MSB set, manufacturer data is stored in scan response
-    uint8_t *mnf_data_storage = (mnf_data_index & 0x80) ? stored_scan_rsp_data : stored_adv_data;
+   //Stub function
+}
+#endif
 
-    // Update manufacturer data
-    mnf_data_update();
+/**
+ ****************************************************************************************
+ * @brief Configures the real-time clock. The interrupt generated will wake us up from
+ *        deep sleep
+ * @return void
+ ****************************************************************************************
+*/
+#ifdef CFG_DEEP_SLEEP_MODE
+static void configure_rtc_wakeup(void)
+{
+    rtc_time_t alarm_time;
 
-    // Update the selected fields of the advertising data (manufacturer data)
-    memcpy(mnf_data_storage + (mnf_data_index & 0x7F), &mnf_data, sizeof(struct mnf_specific_data_ad_structure));
+    // Init RTC
+    rtc_reset();
 
-    // Update advertising data on the fly
-    app_easy_gap_update_adv_data(stored_adv_data, stored_adv_data_len, stored_scan_rsp_data, stored_scan_rsp_data_len);
+    // Configure the RTC clock; RCX is the RTC clock source (14420 Hz)
+    rtc_clk_config(RTC_DIV_DENOM_1000, 14420);
+    rtc_clock_enable();
+
+    rtc_config_t cfg = {.hour_clk_mode = RTC_HOUR_MODE_24H, .keep_rtc = 0};
+
+    rtc_time_t time = {.hour_mode = RTC_HOUR_MODE_24H, .pm_flag = 0, .hour = 0,
+                       .minute = 0, .sec = 0, .hsec = 00};
+
+    // Alarm interrupt in ten seconds
+    alarm_time = time;
+    alarm_time.sec += RTC_TIMEOUT;
+
+    // Initialize RTC, set time and data, register interrupt handler callback function and enable seconds interrupt
+    rtc_init(&cfg);
+
+    // Start RTC
+    rtc_set_time_clndr(&time, NULL);
+    rtc_set_alarm(&alarm_time, NULL, RTC_ALARM_EN_SEC);
+
+    // Clear pending interrupts
+    rtc_get_event_flags();
+    rtc_register_intr(rtc_interrupt_hdlr, RTC_INTR_ALRM);
+}
+#endif
+
+/**
+ ****************************************************************************************
+ * @brief Starts non-connectable advertising and sets a timer to stop it.
+ * @return void
+ ****************************************************************************************
+*/
+static void user_non_connectable_advertise_with_timeout_start(void)
+{
+    //Set up the timer which will cancel the advertising
+    adv_timer = app_easy_timer(ADV_TIMER_CANCEL_TIMEOUT, user_non_connectable_advertise_with_timeout_stop_cb);
     
-    // Restart timer for the next advertising update
-    app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
+    //Start non-connectable advertising
+    app_easy_gap_non_connectable_advertise_start();
 }
 
 /**
  ****************************************************************************************
- * @brief Parameter update request timer callback function.
+ * @brief Handles the update of the Advertising Data fields and starts advertising.
  * @return void
  ****************************************************************************************
 */
-static void param_update_request_timer_cb()
+void user_app_adv_start(void)
 {
-    app_easy_gap_param_update_start(app_connection_idx);
-    app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
+    uint8_t stored_adv_data[ADV_DATA_LEN];
+    int32_t next_temper;
+    uint16_t next_battery;
+    
+    //Get the active advertising configuration struct
+    struct gapm_start_advertise_cmd* cmd;
+    cmd = app_easy_gap_non_connectable_advertise_get_active();
+    
+    //Store advertising data
+    memcpy(stored_adv_data, cmd->info.host.adv_data, cmd->info.host.adv_data_len);
+
+    //Update advertising battery voltage
+    next_battery = battery_get_voltage(BATT_CR2032);
+    
+    stored_adv_data[ADV_DATA_BATTERY_OFFSET]     = (uint8_t) ((next_battery & 0xFF00) >> 8);
+    stored_adv_data[ADV_DATA_BATTERY_OFFSET + 1] = (uint8_t) (next_battery & 0x00FF);
+        
+    //Update advertising temperature
+    next_temper = user_update_temper();
+
+    stored_adv_data[ADV_DATA_TEMPER_OFFSET]     = next_temper / 1000;
+    stored_adv_data[ADV_DATA_TEMPER_OFFSET + 1] = (next_temper - next_temper / 1000) / 10;
+    
+    //Update the advertising count
+    stored_adv_data[ADV_DATA_ADV_COUNT_OFFSET]     = (uint8_t) ((adv_count & 0xFF000000) >> 24);
+    stored_adv_data[ADV_DATA_ADV_COUNT_OFFSET + 1] = (uint8_t) ((adv_count & 0x00FF0000) >> 16);
+    stored_adv_data[ADV_DATA_ADV_COUNT_OFFSET + 2] = (uint8_t) ((adv_count & 0x0000FF00) >> 8);
+    stored_adv_data[ADV_DATA_ADV_COUNT_OFFSET + 3] = (uint8_t) (adv_count & 0x000000FF);
+
+    //Copy the updated fields into the advertising data
+    memcpy(cmd->info.host.adv_data, stored_adv_data, cmd->info.host.adv_data_len);
+  
+    //Start non-connectable advertising
+    user_non_connectable_advertise_with_timeout_start();
 }
 
-void user_app_init(void)
+/**
+ ****************************************************************************************
+ * @brief Initializes the temperature values and the advertising counter on a power-on 
+ *        reset
+ * @return void
+ ****************************************************************************************
+*/
+void user_app_on_init(void)
 {
-    app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
+    //Check if the system was power-cycled
+    if(reset_stat_local == 15) {
+        //Initialize temperature values to PREV_TEMPER_INIT_VALUE
+        int i;
+        for (i=0; i<PREV_TEMPER_COUNT; i++)
+            saved_temper[i] = PREV_TEMPER_INIT_VALUE;
+        
+        //...and advertising count to zero
+        adv_count = 0;
+    }
+
+#ifdef CFG_HIBERNATION_MODE    
+    //Send a DONE pulse as an acknowledgement to TPL5010
+    GPIO_ConfigurePin(HIB_DONE_PORT, HIB_DONE_PIN, OUTPUT, PID_GPIO, true); 
+    done_timer = app_easy_timer(ADV_TIMER_CANCEL_TIMEOUT, done_timer_cb);
+#endif
     
-    // Initialize Manufacturer Specific Data
-    mnf_data_init();
-    
-    // Initialize Advertising and Scan Response Data
-    memcpy(stored_adv_data, USER_ADVERTISE_DATA, USER_ADVERTISE_DATA_LEN);
-    stored_adv_data_len = USER_ADVERTISE_DATA_LEN;
-    memcpy(stored_scan_rsp_data, USER_ADVERTISE_SCAN_RESPONSE_DATA, USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN);
-    stored_scan_rsp_data_len = USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN;
-    
+    //Call the default initialization app
     default_app_on_init();
 }
 
-void user_app_adv_start(void)
-{
-    // Schedule the next advertising data update
-    app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
-    
-    struct gapm_start_advertise_cmd* cmd;
-    cmd = app_easy_gap_undirected_advertise_get_active();
-    
-    // Add manufacturer data to initial advertising or scan response data, if there is enough space
-    app_add_ad_struct(cmd, &mnf_data, sizeof(struct mnf_specific_data_ad_structure), 1);
-
-    app_easy_gap_undirected_advertise_start();
-}
-
-void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
-{
-    if (app_env[connection_idx].conidx != GAP_INVALID_CONIDX)
-    {
-        app_connection_idx = connection_idx;
-
-        // Stop the advertising data update timer
-        app_easy_timer_cancel(app_adv_data_update_timer_used);
-
-        // Check if the parameters of the established connection are the preferred ones.
-        // If not then schedule a connection parameter update request.
-        if ((param->con_interval < user_connection_param_conf.intv_min) ||
-            (param->con_interval > user_connection_param_conf.intv_max) ||
-            (param->con_latency != user_connection_param_conf.latency) ||
-            (param->sup_to != user_connection_param_conf.time_out))
-        {
-            // Connection params are not these that we expect
-            app_param_update_request_timer_used = app_easy_timer(APP_PARAM_UPDATE_REQUEST_TO, param_update_request_timer_cb);
-        }
-    }
-    else
-    {
-        // No connection has been established, restart advertising
-        user_app_adv_start();
-    }
-
-    default_app_on_connection(connection_idx, param);
-}
-
-void user_app_adv_undirect_complete(uint8_t status)
-{
-    // If advertising was canceled then update advertising data and start advertising again
+/**
+ ****************************************************************************************
+ * @brief Function called when we have stopped advertising. 
+          Sets up the configured low-power mode.
+ * @return void
+ ****************************************************************************************
+*/
+void user_app_on_adv_nonconn_complete(uint8_t status)
+{   
+    //Check if advertising was stopped properly
     if (status == GAP_ERR_CANCELED)
     {
-        user_app_adv_start();
-    }
-}
+#ifdef CFG_HIBERNATION_MODE    
+        //Put the system into hibernation mode 
+        arch_set_hibernation(HIB_WAKE_UP_PIN_MASK,
+                             PD_SYS_DOWN_RAM_ON,
+                             PD_SYS_DOWN_RAM_ON,
+                             PD_SYS_DOWN_RAM_ON,
+                             REMAP_ADDR0_TO_RAM1,
+                             false);
+#endif
 
-void user_app_disconnect(struct gapc_disconnect_ind const *param)
-{
-    // Cancel the parameter update request timer
-    if (app_param_update_request_timer_used != EASY_TIMER_INVALID_TIMER)
-    {
-        app_easy_timer_cancel(app_param_update_request_timer_used);
-        app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
-    }
-    // Update manufacturer data for the next advertsing event
-    mnf_data_update();
-    // Restart Advertising
-    user_app_adv_start();
-}
-
-void user_catch_rest_hndl(ke_msg_id_t const msgid,
-                          void const *param,
-                          ke_task_id_t const dest_id,
-                          ke_task_id_t const src_id)
-{
-    switch(msgid)
-    {
-        case GAPC_PARAM_UPDATED_IND:
-        {
-            // Cast the "param" pointer to the appropriate message structure
-            struct gapc_param_updated_ind const *msg_param = (struct gapc_param_updated_ind const *)(param);
-
-            // Check if updated Conn Params filled to preferred ones
-            if ((msg_param->con_interval >= user_connection_param_conf.intv_min) &&
-                (msg_param->con_interval <= user_connection_param_conf.intv_max) &&
-                (msg_param->con_latency == user_connection_param_conf.latency) &&
-                (msg_param->sup_to == user_connection_param_conf.time_out))
-            {
-            }
-        } break;
-
-        default:
-            break;
+#ifdef CFG_DEEP_SLEEP_MODE
+        // Ensure PD_TIM is open
+        SetBits16(PMU_CTRL_REG, TIM_SLEEP, 0);
+        // Wait until PD_TIM is opened
+        while ((GetWord16(SYS_STAT_REG) & TIM_IS_UP) != TIM_IS_UP);
+        
+        // Set up the real-time clock to wake us up from sleep
+        configure_rtc_wakeup();
+        // Put system into deep sleep mode
+        arch_set_deep_sleep(PD_SYS_DOWN_RAM_ON,
+                            PD_SYS_DOWN_RAM_ON,
+                            PD_SYS_DOWN_RAM_ON,
+                            false);
+#endif
     }
 }
 

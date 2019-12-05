@@ -102,6 +102,18 @@
     #define SPI_DI_PIN              GPIO_PIN_5
 #endif
 
+/****************************************************************************************/
+/* Wake-up from hibernation configuration                                               */
+/****************************************************************************************/
+#if defined (__DA14531__) 
+    #define HIB_WAKE_UP_PORT        GPIO_PORT_0
+    #define HIB_WAKE_UP_PIN         GPIO_PIN_5
+    #define HIB_WAKE_UP_PIN_MASK    (1 << HIB_WAKE_UP_PIN)
+    
+    #define HIB_DONE_PORT           GPIO_PORT_0
+    #define HIB_DONE_PIN            GPIO_PIN_4
+#endif
+
 /***************************************************************************************/
 /* Production debug output configuration                                               */
 /***************************************************************************************/

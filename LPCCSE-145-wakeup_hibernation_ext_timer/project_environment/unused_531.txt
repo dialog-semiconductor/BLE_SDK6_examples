@@ -1,13 +1,7 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Nov 18 16:15:39 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Dec 05 11:37:37 2019
 ;VERSION 0.2
 ;FILE adc_531.o
-adc_correct_sample <= USED 0
-adc_disable <= USED 0
 adc_get_temp_async <= USED 0
-adc_input_shift_config <= USED 0
-adc_input_shift_disable <= USED 0
-adc_input_shift_enable <= USED 0
-adc_offset_calibrate <= USED 0
 adc_register_interrupt <= USED 0
 adc_reset <= USED 0
 adc_unregister_interrupt <= USED 0
@@ -17,17 +11,25 @@ app_easy_gap_dev_config_get_active <= USED 0
 app_easy_gap_directed_advertise_get_active <= USED 0
 app_easy_gap_directed_advertise_start <= USED 0
 app_easy_gap_get_peer_features <= USED 0
-app_easy_gap_non_connectable_advertise_get_active <= USED 0
-app_easy_gap_non_connectable_advertise_start <= USED 0
 app_easy_gap_param_update_get_active <= USED 0
+app_easy_gap_param_update_start <= USED 0
 app_easy_gap_start_connection_to <= USED 0
 app_easy_gap_start_connection_to_get_active <= USED 0
 app_easy_gap_start_connection_to_set <= USED 0
+app_easy_gap_undirected_advertise_get_active <= USED 0
+app_easy_gap_undirected_advertise_start <= USED 0
 app_easy_gap_undirected_advertise_with_timeout_start <= USED 0
+app_prf_enable <= USED 0
 ;FILE app_default_handlers.o
 default_advertise_operation <= USED 0
 default_app_generate_unique_static_random_addr <= USED 0
+default_app_on_connection <= USED 0
 default_app_on_disconnect <= USED 0
+default_app_on_get_dev_appearance <= USED 0
+default_app_on_get_dev_name <= USED 0
+default_app_on_get_dev_slv_pref_params <= USED 0
+default_app_on_set_dev_info <= USED 0
+default_app_update_params_request <= USED 0
 ;FILE app_diss.o
 ;FILE app_diss_task.o
 ;FILE app_easy_msg_utils.o
@@ -39,6 +41,7 @@ app_easy_wakeup_free <= USED 0
 app_easy_wakeup_set <= USED 0
 app_msg_utils_api_process_handler <= USED 0
 ;FILE app_easy_timer.o
+app_easy_timer_cancel <= USED 0
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
 ;FILE app_msg_utils.o
@@ -52,7 +55,6 @@ arch_force_active_mode <= USED 0
 arch_get_sleep_mode <= USED 0
 arch_last_rwble_evt_get <= USED 0
 arch_restore_sleep_mode <= USED 0
-arch_set_deep_sleep <= USED 0
 arch_set_hibernation <= USED 0
 ;FILE arch_system.o
 arch_set_pxact_gpio <= USED 0
@@ -60,7 +62,6 @@ arch_wkupct_tweak_deb_time <= USED 0
 check_sys_startup_period <= USED 0
 ;FILE battery.o
 battery_get_lvl <= USED 0
-battery_get_voltage <= USED 0
 ;FILE ble_arp.o
 ;FILE gpio.o
 GPIO_ConfigurePinPower <= USED 0
@@ -115,12 +116,6 @@ i2c_wait_until_eeprom_ready <= USED 0
 dummyf <= USED 0
 ;FILE nmi_handler.o
 ;FILE otp_cs.o
-otp_cs_get_adc_diff_ge <= USED 0
-otp_cs_get_adc_diff_offset <= USED 0
-otp_cs_get_adc_offsh_ge <= USED 0
-otp_cs_get_adc_offsh_offset <= USED 0
-otp_cs_get_adc_single_ge <= USED 0
-otp_cs_get_adc_single_offset <= USED 0
 otp_cs_get_low_power_clock <= USED 0
 ;FILE otp_hdr.o
 ;FILE patch.o
@@ -139,6 +134,10 @@ rf_ldo_cont_mode_en <= USED 0
 rf_nfm_disable <= USED 0
 rf_nfm_enable <= USED 0
 rf_power_down <= USED 0
+;FILE rtc.o
+rtc_get_alarm <= USED 0
+rtc_get_time_clndr <= USED 0
+rtc_unregister_intr <= USED 0
 ;FILE rwble.o
 ;FILE rwip.o
 ;FILE spi_531.o

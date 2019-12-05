@@ -1,9 +1,9 @@
 /**
  ****************************************************************************************
  *
- * @file user_barebone.h
+ * @file user_hibernation_timer.h
  *
- * @brief Barebone application header file.
+ * @brief Hibernation with external timer header file.
  *
  * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
@@ -30,8 +30,8 @@
  ****************************************************************************************
  */
 
-#ifndef _USER_BAREBONE_H_
-#define _USER_BAREBONE_H_
+#ifndef _USER_HIBERNATION_TIMER_H_
+#define _USER_HIBERNATION_TIMER_H_
 
 /**
  ****************************************************************************************
@@ -70,6 +70,14 @@
 #define APP_AD_MSD_COMPANY_ID_LEN           (2)
 #define APP_AD_MSD_DATA_LEN                 (sizeof(uint16_t))
 
+/* Define hibernation mode */
+#undef CFG_HIBERNATION_MODE
+#define  CFG_DEEP_SLEEP_MODE
+
+#if defined(CFG_HIBERNATION_MODE) && defined(CFG_DEEP_SLEEP_MODE)
+#error "Config error: CFG_HIBERNATION_MODE and CFG_DEEP_SLEEP_MODE cannot be defined at the same time"
+#endif
+
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
@@ -81,7 +89,7 @@
  * @return void
  ****************************************************************************************
 */
-void user_app_init(void);
+void user_app_on_init(void);
 
 /**
  ****************************************************************************************
@@ -103,12 +111,12 @@ void user_app_connection(const uint8_t conidx, struct gapc_connection_req_ind co
 
 /**
  ****************************************************************************************
- * @brief Undirect advertising completion function.
+ * @brief Undirect non-connectable advertising completion function.
  * @param[in] status Command complete event message status
  * @return void
  ****************************************************************************************
 */
-void user_app_adv_undirect_complete(uint8_t status);
+void user_app_on_adv_nonconn_complete(uint8_t status);
 
 /**
  ****************************************************************************************
@@ -136,4 +144,4 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
 /// @} APP
 
-#endif //_USER_BAREBONE_H_
+#endif //_USER_HIBERNATION_TIMER_H_

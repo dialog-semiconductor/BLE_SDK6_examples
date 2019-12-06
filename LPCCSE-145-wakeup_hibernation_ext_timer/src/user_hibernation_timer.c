@@ -65,8 +65,14 @@
 #define PREV_TEMPER_SET_VALUE           27000                                       //In milli-degrees of Celsius
 
 #define ADV_TIMER_CANCEL_TIMEOUT        2500                                        //In tens of milli-second (x10ms)
+
+#ifdef CFG_HIBERNATION_MODE
 #define DONE_TIMER_TIMEOUT              1                                           //In tens of milli-second (x10ms)
+#endif
+
+#ifdef CFG_DEEP_SLEEP_MODE
 #define RTC_TIMEOUT                     ADV_TIMER_CANCEL_TIMEOUT / 100              //In seconds
+#endif
 
 #define ADV_DATA_BATTERY_OFFSET         10                                          //Byte offset of battery level in Advertising Data
 #define ADV_DATA_TEMPER_OFFSET          12                                          //Byte offset of temperature level in Advertising Data

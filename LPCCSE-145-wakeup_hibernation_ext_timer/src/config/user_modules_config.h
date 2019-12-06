@@ -64,7 +64,7 @@
 #define EXCLUDE_DLG_TIMER           (0)
 #define EXCLUDE_DLG_MSG             (1)
 #define EXCLUDE_DLG_SEC             (1)
-#define EXCLUDE_DLG_DISS            (0)
+#define EXCLUDE_DLG_DISS            (1)
 #define EXCLUDE_DLG_PROXR           (1)
 #define EXCLUDE_DLG_BASS            (1)
 #define EXCLUDE_DLG_FINDL           (1)

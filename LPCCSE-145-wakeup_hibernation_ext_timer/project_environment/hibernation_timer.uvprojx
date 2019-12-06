@@ -335,7 +335,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>--thumb -c --preinclude da1458x_config_basic.h --preinclude da1458x_config_advanced.h --preinclude user_config.h --bss_threshold=0 --feedback=".\unused_531.txt"</MiscControls>
+              <MiscControls>--thumb -c --preinclude da1458x_config_basic.h --preinclude da1458x_config_advanced.h --preinclude user_config.h  --bss_threshold=0 --feedback=".\unused_531.txt"</MiscControls>
               <Define>__DA14531__</Define>
               <Undefine></Undefine>
               <IncludePath>..\src;..\src\config;..\src\platform;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_ancc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_bass;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_bcss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_bmss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_bond_db;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_common;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_ctsc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_ctss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_custs;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_default_hnd;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_diss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_easy;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_entry;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_findme;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_gattc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_proxr;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_sec;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_suotar;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_udss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_wsss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\controller;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\controller\em;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\controller\llc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\controller\lld;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\controller\llm;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\ea;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\ea\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\em;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\em\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\hci;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\hci\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\hci\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\att;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\att\attc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\att\attm;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\att\atts;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\gap;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\gap\gapc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\gap\gapm;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\gatt;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\gatt\gattc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\gatt\gattm;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\l2c;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\l2c\l2cc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\l2c\l2cm;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\smp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\smp\smpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\host\smp\smpm;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anp\anps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bas;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bas\basc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bas\bass;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bcs;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\blp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\blp\blps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bms;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cpp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cscp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cts;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custs;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis\disc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis\diss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\find;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\find\findl;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\find\findl\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\find\findl\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\find\findt;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\find\findt\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\find\findt\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\gatt;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\glp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\glp\glps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hrp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\htp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\lan;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\lan\lans;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\pasp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\prox;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\rscp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\scpp;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\suota;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\tip;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\tip\tips;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\uds;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\uds\udss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\wss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\rwble;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\rwble_hl;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\common_project_files;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\common_project_files\ldscripts;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\common_project_files\misc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\common_project_files\scatterfiles;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\boot;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\boot\ARM;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\boot\GCC;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\compiler;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\compiler\ARM;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\compiler\GCC;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\ll;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\main;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\arch_console;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\common;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\common\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\crypto;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\dbg;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\dbg\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\gtl;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\gtl\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\gtl\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\h4tl;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\h4tl\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\ke;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\ke\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\ke\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\nvds;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\nvds\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\nvds\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\rf;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\rf\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\rf\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\rwip;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\rwip\api;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\core_modules\rwip\src;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\adc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\battery;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\ble;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\dma;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\gpio;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\hw_otpc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\i2c;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\i2c_eeprom;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\pdm;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\reg;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\rtc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\spi;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\spi_flash;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\syscntl;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\systick;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\timer;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\trng;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\uart;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\wkupct_quadec;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\include;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\system_library;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\system_library\include;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\system_library\output;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\system_library\output\Keil_5;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\utilities;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\utilities\otp_cs;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\utilities\otp_hdr;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\third_party;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\third_party\crc32;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\third_party\hash;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\third_party\irng;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\third_party\micro_ecc;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\third_party\rand;C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\timer</IncludePath>
@@ -542,11 +542,6 @@
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\arch\main\arch_rom.c</FilePath>
             </File>
             <File>
-              <FileName>chacha20.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\third_party\rand\chacha20.c</FilePath>
-            </File>
-            <File>
               <FileName>hash.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\third_party\hash\hash.c</FilePath>
@@ -614,6 +609,57 @@
               <FileName>wkupct_quadec.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>adc_58x.c</FileName>
@@ -743,21 +789,6 @@
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
             </File>
             <File>
-              <FileName>i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\i2c\i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>i2c_eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\uart\uart.c</FilePath>
-            </File>
-            <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
@@ -827,6 +858,57 @@
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\platform\driver\dma\dma.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>rtc.c</FileName>
@@ -878,16 +960,6 @@
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\prf_utils.c</FilePath>
             </File>
-            <File>
-              <FileName>diss.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
-            </File>
-            <File>
-              <FileName>diss_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -909,16 +981,6 @@
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_common\app_task.c</FilePath>
             </File>
             <File>
-              <FileName>app_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_sec\app_security.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_security_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
-            </File>
-            <File>
               <FileName>app_entry_point.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
@@ -932,16 +994,6 @@
               <FileName>app_easy_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_easy_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_easy_msg_utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020GA\SDK_6.0.12.1020\SDK\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_diss.c</FileName>

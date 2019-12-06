@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Dec 05 11:37:37 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Fri Dec 06 12:08:52 2019
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_get_temp_async <= USED 0
@@ -32,14 +32,7 @@ default_app_on_set_dev_info <= USED 0
 default_app_update_params_request <= USED 0
 ;FILE app_diss.o
 ;FILE app_diss_task.o
-;FILE app_easy_msg_utils.o
-app_easy_msg_free_callback <= USED 0
-app_easy_msg_modify <= USED 0
-app_easy_msg_set <= USED 0
-app_easy_wakeup <= USED 0
-app_easy_wakeup_free <= USED 0
-app_easy_wakeup_set <= USED 0
-app_msg_utils_api_process_handler <= USED 0
+app_diss_process_handler <= USED 0
 ;FILE app_easy_timer.o
 app_easy_timer_cancel <= USED 0
 app_easy_timer_cancel_all <= USED 0
@@ -85,33 +78,6 @@ hw_otpc_prog_and_verify <= USED 0
 hw_otpc_read <= USED 0
 hw_otpc_word_prog_and_verify <= USED 0
 hw_otpc_word_read <= USED 0
-;FILE i2c.o
-i2c_init <= USED 0
-i2c_master_receive_buffer_async <= USED 0
-i2c_master_receive_buffer_sync <= USED 0
-i2c_master_transmit_buffer_async <= USED 0
-i2c_master_transmit_buffer_sync <= USED 0
-i2c_register_int <= USED 0
-i2c_release <= USED 0
-i2c_setup_master <= USED 0
-i2c_setup_slave <= USED 0
-i2c_slave_receive_buffer_async <= USED 0
-i2c_slave_receive_buffer_sync <= USED 0
-i2c_slave_transmit_buffer_async <= USED 0
-i2c_slave_transmit_buffer_sync <= USED 0
-i2c_unregister_int <= USED 0
-;FILE i2c_eeprom.o
-i2c_eeprom_configure <= USED 0
-i2c_eeprom_get_configuration <= USED 0
-i2c_eeprom_initialize <= USED 0
-i2c_eeprom_read_byte <= USED 0
-i2c_eeprom_read_data <= USED 0
-i2c_eeprom_release <= USED 0
-i2c_eeprom_update_slave_address <= USED 0
-i2c_eeprom_write_byte <= USED 0
-i2c_eeprom_write_data <= USED 0
-i2c_eeprom_write_page <= USED 0
-i2c_wait_until_eeprom_ready <= USED 0
 ;FILE jump_table.o
 dummyf <= USED 0
 ;FILE nmi_handler.o
@@ -209,35 +175,5 @@ syscntl_por_vbat_low_cfg <= USED 0
 ;FILE system_da14531.o
 SystemCoreClockUpdate <= USED 0
 ;FILE trng.o
-;FILE uart.o
-uart_baudrate_setf <= USED 0
-uart_disable <= USED 0
-uart_disable_flow_control <= USED 0
-uart_enable <= USED 0
-uart_enable_flow_control <= USED 0
-uart_initialize <= USED 0
-uart_read_buffer <= USED 0
-uart_read_byte <= USED 0
-uart_receive <= USED 0
-uart_register_err_cb <= USED 0
-uart_register_rx_cb <= USED 0
-uart_register_tx_cb <= USED 0
-uart_send <= USED 0
-uart_wait_tx_finish <= USED 0
-uart_write_buffer <= USED 0
-uart_write_byte <= USED 0
 ;FILE user_hibernation_timer.o
 ;FILE user_periph_setup.o
-;FILE wkupct_quadec.o
-quad_decoder_clear_irq <= USED 0
-quad_decoder_disable_irq <= USED 0
-quad_decoder_enable_irq <= USED 0
-quad_decoder_init <= USED 0
-quad_decoder_register_callback <= USED 0
-quad_decoder_release <= USED 0
-wkupct2_disable_irq <= USED 0
-wkupct2_enable_irq <= USED 0
-wkupct2_register_callback <= USED 0
-wkupct_disable_irq <= USED 0
-wkupct_enable_irq <= USED 0
-wkupct_register_callback <= USED 0

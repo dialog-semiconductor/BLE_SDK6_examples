@@ -3,7 +3,7 @@
  *
  * @file user_hibernation_timer.c
  *
- * @brief Barebone project source code.
+ * @brief BLE Eddystone beacon with hibernation or deep sleep project source code.
  *
  * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
  *
@@ -46,7 +46,6 @@
 #include "gap.h"
 #include "app_easy_timer.h"
 #include "user_hibernation_timer.h"
-#include "co_bt.h"
 #include "co_math.h"
 #include "battery.h"
 
@@ -79,15 +78,15 @@
  */
 
 // Retained variables
-int32_t saved_temper[PREV_TEMPER_COUNT]       __SECTION("retention_mem_area_uninit"); //Previous saved output temperatures
-uint32_t adv_count                            __SECTION("retention_mem_area_uninit"); //Advertising counter          
+int32_t saved_temper[PREV_TEMPER_COUNT]       __SECTION_ZERO("retention_mem_area_uninit"); //Previous saved output temperatures
+uint32_t adv_count                            __SECTION_ZERO("retention_mem_area_uninit"); //Advertising counter          
 
-timer_hnd adv_timer                           __SECTION("retention_mem_area_uninit"); //Advertising cancel event timer
+timer_hnd adv_timer                           __SECTION_ZERO("retention_mem_area_uninit"); //Advertising cancel event timer
 
-uint16_t reset_stat_local                     __SECTION("retention_mem_area_uninit"); //Status of RESET_STAT_REG on wake-up or power-on
+uint16_t reset_stat_local                     __SECTION_ZERO("retention_mem_area_uninit"); //Status of RESET_STAT_REG on wake-up or power-on
 
 #ifdef CFG_HIBERNATION_MODE
-timer_hnd done_timer                          __SECTION("retention_mem_area_uninit"); //Deassertion timer for the DONE signal of TPL5010
+timer_hnd done_timer                          __SECTION_ZERO("retention_mem_area_uninit"); //Deassertion timer for the DONE signal of TPL5010
 #endif
 
 /*
@@ -142,17 +141,6 @@ static int32_t user_update_temper(void)
     return next_temper_value;
 }
 
-/**
- ****************************************************************************************
- * @brief Callback function to stop advertising
- * @return void
- ****************************************************************************************
- */
-static void user_non_connectable_advertise_with_timeout_stop_cb(void)
-{
-    app_easy_gap_advertise_stop();
-}
-
 #ifdef CFG_HIBERNATION_MODE
 /**
  ****************************************************************************************
@@ -178,7 +166,7 @@ static void rtc_interrupt_hdlr(uint8_t event)
 {
    //Stub function
 }
-#endif
+
 
 /**
  ****************************************************************************************
@@ -187,7 +175,7 @@ static void rtc_interrupt_hdlr(uint8_t event)
  * @return void
  ****************************************************************************************
 */
-#ifdef CFG_DEEP_SLEEP_MODE
+
 static void configure_rtc_wakeup(void)
 {
     rtc_time_t alarm_time;
@@ -220,6 +208,17 @@ static void configure_rtc_wakeup(void)
     rtc_register_intr(rtc_interrupt_hdlr, RTC_INTR_ALRM);
 }
 #endif
+
+/**
+ ****************************************************************************************
+ * @brief Callback function to stop advertising
+ * @return void
+ ****************************************************************************************
+ */
+static void user_non_connectable_advertise_with_timeout_stop_cb(void)
+{
+    app_easy_gap_advertise_stop();
+}
 
 /**
  ****************************************************************************************

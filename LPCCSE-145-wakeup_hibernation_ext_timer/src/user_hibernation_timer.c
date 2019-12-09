@@ -64,7 +64,7 @@
 #define PREV_TEMPER_INIT_VALUE          25000                                       //In milli-degrees of Celsius
 #define PREV_TEMPER_SET_VALUE           27000                                       //In milli-degrees of Celsius
 
-#define ADV_TIMER_CANCEL_TIMEOUT        2500                                        //In tens of milli-second (x10ms)
+#define ADV_TIMER_CANCEL_TIMEOUT        1000                                        //In tens of milli-second (x10ms)
 
 #ifdef CFG_HIBERNATION_MODE
 #define DONE_TIMER_TIMEOUT              1                                           //In tens of milli-second (x10ms)
@@ -331,7 +331,7 @@ void user_app_on_adv_nonconn_complete(uint8_t status)
         //Put the system into hibernation mode 
         arch_set_hibernation(HIB_WAKE_UP_PIN_MASK,
                              PD_SYS_DOWN_RAM_ON,
-                             PD_SYS_DOWN_RAM_ON,
+                             PD_SYS_DOWN_RAM_OFF,
                              PD_SYS_DOWN_RAM_ON,
                              REMAP_ADDR0_TO_RAM1,
                              false);
@@ -346,8 +346,8 @@ void user_app_on_adv_nonconn_complete(uint8_t status)
         // Set up the real-time clock to wake us up from sleep
         configure_rtc_wakeup();
         // Put system into deep sleep mode
-        arch_set_deep_sleep(PD_SYS_DOWN_RAM_ON,
-                            PD_SYS_DOWN_RAM_ON,
+        arch_set_deep_sleep(PD_SYS_DOWN_RAM_OFF,
+                            PD_SYS_DOWN_RAM_OFF,
                             PD_SYS_DOWN_RAM_ON,
                             false);
 #endif

@@ -60,8 +60,8 @@
  */
 
 /* Define hibernation mode */
-#undef CFG_HIBERNATION_MODE
-#define  CFG_DEEP_SLEEP_MODE
+#define CFG_HIBERNATION_MODE
+#undef  CFG_DEEP_SLEEP_MODE
 
 #if defined(CFG_HIBERNATION_MODE) && defined(CFG_DEEP_SLEEP_MODE)
 #error "Config error: CFG_HIBERNATION_MODE and CFG_DEEP_SLEEP_MODE cannot be defined at the same time"

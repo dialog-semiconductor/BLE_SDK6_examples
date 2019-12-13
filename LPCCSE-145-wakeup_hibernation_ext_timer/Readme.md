@@ -11,6 +11,10 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
 ### Hardware configuration for use in deep-sleep mode
 
 - Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
+- Connect the SPI flash and JTAG debugger with the appropriate jumpers on header J1.
+	
+	![deep_sleep_board_cfg](assets/deep_sleep_cfg.png)
+
 
 ### Hardware configuration for use in hibernation mode
 
@@ -18,6 +22,10 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
 - Configure your external timer according to the manufacturer's instructions and connect the wake-up signal of your external timer to P25 of header J2. 
 
 	For this example we used Texas Instruments' TPL5010EVM, in which case you would have to connect the WAKE pin of the module to P25, as well as the DONE pin of the module to P24 of header J2 on the motherboard. If you prefer to supply your external timer from the motherboard, you have to connect the V3 pin of J2 header to AUX_VDD, and the ground pin of the timer to any ground pin (marked with a dash) on the motherboard. Trim the variable resistance to your preferred wake-up time interval.
+
+	You can see the jumper configuration below.
+
+	![hibernation_board_cfg](assets/hibernation_cfg.png)
 
 ### Software configuration
 
@@ -34,9 +42,13 @@ For initial setup of the example please refer to [this section of the dialog sup
 
  - Start Keil
  - Open the header file ``src/user_hibernation_timer.h`` and define either the ``CFG_HIBERNATION_MODE`` or ``CFG_DEEP_SLEEP_MODE`` guard to use the sleep mode you prefer. Make sure to leave the other one undefined.
- - Compile the example. In the deep-sleep or hibernation mode, we can't have the debugger attached, so we can't run the example in a debug session. Follow the next steps to load your executable and run it without the debugger attached.
+ - Compile the example. In the deep-sleep or hibernation mode, we can't have the debugger attached, so we can't run the example in a debug session. 
+ 
+	In deep sleep mode, the DA14531 will initiate a hardware reset on wake-up, and for this reason we would need to load the executable in the SPI flash. You can find more information on how to use the SmartSnippets Toolbox and the SPI Flash Programmer at http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html.
 
-   Start a debugging session.
+ 	For the hibernation mode, follow the next steps to load your executable and run it without the debugger attached. 
+
+    Start a debugging session.
 	![keil-start-debug](assets/keil-start-debug-session.png)
 
 	Stop the debug session. The debugger will detach and your code will run on the DA14531 in the background.

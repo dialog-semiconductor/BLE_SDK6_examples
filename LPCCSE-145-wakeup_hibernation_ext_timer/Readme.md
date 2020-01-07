@@ -41,8 +41,6 @@ For initial setup of the example please refer to [this section of the dialog sup
 ### Initial Setup
 
  - Start Keil
- - Click on the "Select target" drop-down box and choose the DA14531 target.
-	![da14531-target](assets/da14531_target.png)
  - Open the header file ``src/user_hibernation_timer.h`` and define either the ``CFG_HIBERNATION_MODE`` or ``CFG_DEEP_SLEEP_MODE`` guard to use the sleep mode you prefer. Make sure to leave the other one undefined.
  - Compile the example. In the deep-sleep or hibernation mode, we can't have the debugger attached, so we can't run the example in a debug session. 
  

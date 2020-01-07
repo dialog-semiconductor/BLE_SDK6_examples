@@ -44,7 +44,7 @@ For initial setup of the example please refer to [this section of the dialog sup
  - Open the header file ``src/user_hibernation_timer.h`` and define either the ``CFG_HIBERNATION_MODE`` or ``CFG_DEEP_SLEEP_MODE`` guard to use the sleep mode you prefer. Make sure to leave the other one undefined.
  - Compile the example. In the deep-sleep or hibernation mode, we can't have the debugger attached, so we can't run the example in a debug session. 
  
-	In deep sleep mode, the DA14531 will initiate a hardware reset on wake-up, and for this reason we would need to load the executable in the SPI flash. You can find more information on how to use the SmartSnippets Toolbox and the SPI Flash Programmer at http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html.
+	**In deep sleep mode, the DA14531 will initiate a hardware reset on wake-up, and for this reason we would need to load the executable in the SPI flash.** You can find more information on how to use the SmartSnippets Toolbox and the SPI Flash Programmer in the [User Manual for the SmartSnippets Toolbox](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html).
 
  	For the hibernation mode, follow the next steps to load your executable and run it without the debugger attached. 
 

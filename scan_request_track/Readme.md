@@ -62,10 +62,10 @@ For initial setup of the example please refer to [this section of the dialog sup
 ## Known Limitations
 
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software"Forum link").
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 
 ## License
@@ -73,7 +73,7 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 **************************************************************************************
 
- Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
+ Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
 
  This software ("Software") is owned by Dialog Semiconductor. By using this Software
  you agree that Dialog Semiconductor retains all intellectual property and proprietary

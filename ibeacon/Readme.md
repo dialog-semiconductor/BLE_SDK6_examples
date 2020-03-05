@@ -8,10 +8,10 @@ Simple example showing how to implement an iBeacon on the DA14531. All beacon pa
 parameters (advertising interval, UUID etc.) are easily configurable from within the user
 application (user_app.c).
 
-The example is configured to use a random static BD. This is generated upon power on
-or reset and will remain static throughout the life of the device. It is also guaranteed to
-be unique on each DA14531 device (i.e. a different BD address will be generated on each
-DA14531 on which this is example is run).
+The example is configured to use a random static Bluetooth Device address (BD address). This 
+is generated upon power on or reset and will remain static throughout the life of the device. 
+It is also guaranteed to be unique on each DA14531 device (i.e. a different BD address will be 
+generated on each DA14531 on which this is example is run).
 
 By default the output power is set to 0dBm. This can be increase to +2.5dBm by defining the
 macro TX_POWER_2d5Bm (see the macro definitions at the start of the user_app.c file).
@@ -22,17 +22,20 @@ macro TX_POWER_2d5Bm (see the macro definitions at the start of the user_app.c f
 * **Hardware configuration**
 
 	- This example runs on the DA14531 Bluetooth Smart SoC device.
-	- A USB or PRO Development kits is needed for this example.
+	- A [USB](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) or [PRO](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) Development kit is needed for this example.
 	
 * **Software configuration**
 
 	- This example requires:
         * Smartsnippets Studio 2.0.10 (or later)
         * SDK6.0.12 (or later)
+		* SEGGER’s J-Link tools should be downloaded and installed.
 
 ## How to run the example
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da1458x-example-setup.pdf).
+For initial setup of the example please refer to [this section of the dialog support portal](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html).
+
+
 
 ### Initial Setup
 
@@ -42,11 +45,11 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 ## Known Limitations
 
-
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf "known hardware limitations").
+- There are no known limitations for this example. But you can check and refer to the following 
+  application note for known hardware limitations for DA14531 devices:
+  https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf
 - Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
-- You can also refer to the troubleshooting section in the [Getting Started Link](https://www.dialog-semiconductor.com/sites/default/files/um-b-049_da14585da14586_getting_started_guide_v2.1_0.pdf "DA1585x Getting Started with the Development Kit UM-B-049").
+- You can also refer to the troubleshooting section in the [Getting Started with the DA14531 PRO Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
 
 
 ## License

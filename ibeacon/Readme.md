@@ -1,6 +1,6 @@
 # ibeacon
 
-iBeacon Implementation for the DA14531
+iBeacon implementation for the DA14531
 
 ## Example description
 
@@ -13,7 +13,7 @@ is generated upon power on or reset and will remain static throughout the life o
 It is also guaranteed to be unique on each DA14531 device (i.e. a different BD address will be 
 generated on each DA14531 on which this is example is run).
 
-By default the output power is set to 0dBm. This can be increase to +2.5dBm by defining the
+By default the output power is set to 0dBm. This can be increased to +2.5dBm by defining the
 macro TX_POWER_2d5Bm (see the macro definitions at the start of the user_app.c file).
  	
 ## HW and SW configuration
@@ -22,7 +22,7 @@ macro TX_POWER_2d5Bm (see the macro definitions at the start of the user_app.c f
 * **Hardware configuration**
 
 	- This example runs on the DA14531 Bluetooth Smart SoC device.
-	- A [USB](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) or [PRO](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) Development kit is needed for this example.
+	- A DA14531 [USB](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) or [PRO](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) Development kit is needed for this example.
 	
 * **Software configuration**
 

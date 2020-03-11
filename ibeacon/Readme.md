@@ -47,7 +47,7 @@ For initial setup of the example please refer to [this section of the dialog sup
 
 - There are no known limitations for this example. But you can check and refer to the following 
   application note for known hardware limitations for DA14531 devices:
-  https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf
+  [DA14531 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf)
 - Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
 - You can also refer to the troubleshooting section in the [Getting Started with the DA14531 PRO Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
 

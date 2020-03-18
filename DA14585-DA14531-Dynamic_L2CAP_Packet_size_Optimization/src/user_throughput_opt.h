@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_empty_peripheral_template.h
+ * @file user_throughput_opt.h
  *
- * @brief Empty peripheral template project header file.
+ * @brief User Throughput Optimization project header file.
  *
- * Copyright (c) 2012-2018 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2020 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -30,8 +30,8 @@
  ****************************************************************************************
  */
 
-#ifndef _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
-#define _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#ifndef _USER_THROUGHPUT_OPT_H_
+#define _USER_THROUGHPUT_OPT_H_
 
 /**
  ****************************************************************************************
@@ -65,26 +65,6 @@ i.e.
 #include "app_dis_task.h"
 #endif
 *****************************************************************************/
-#define START_LOG_TRANSFER (0xAA)
-#define LOG_SIZE_BYTES			(1024*10)	
-
-#define L2CAP_STD_PKT_LEN		(27)
-#define STD_BUFFER_LEN			(20)
-#define L2CAP_HEADER_SIZE		(4)
-#define ATT_HEADER_SIZE			(3)
-#define MTU_MAX_NON_DLE			(104)
-
-
-#define LE_DATA_LENGTH_FEATURE_MASK (0x20)
-/*
- * TYPE DEFINITIONS
- ****************************************************************************************
- */
-typedef struct log_env{
-		uint8_t 	data_log[LOG_SIZE_BYTES];
-		uint16_t 	buffer_ptr;
-		bool 			log_transfer_in_progress;
-}log_env_t;
 /*
  * DEFINES
  ****************************************************************************************
@@ -95,21 +75,81 @@ typedef struct log_env{
  ****************************************************************************************
  */
 
+/**
+ ****************************************************************************************
+ * @brief Handles connection event
+ * @param[in]   connection_idx Connection index
+ * @param[in]   param Parameters of connection
+ * @return void
+ ****************************************************************************************
+ */
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param);
 
+/**
+ ****************************************************************************************
+ * @brief Handles disconnection event
+ * @param[in]   param Parameters of disconnect message
+ * @return void
+ ****************************************************************************************
+ */
 void user_on_disconnect( struct gapc_disconnect_ind const *param );
 
+/**
+ ****************************************************************************************
+ * @brief Handles the messages that are not handled by the SDK internal mechanisms.
+ * @param[in] msgid      Id of the message received.
+ * @param[in] param      Pointer to the parameters of the message.
+ * @param[in] dest_id    ID of the receiving task instance.
+ * @param[in] src_id     ID of the sending task instance.
+ * @return void
+ ****************************************************************************************
+*/
 void user_process_catch_rest(ke_msg_id_t const msgid, void const *param,
                              ke_task_id_t const dest_id, ke_task_id_t const src_id);
 
+
+/**
+ ****************************************************************************************
+ * @brief Called after stack initialization
+ ****************************************************************************************
+ */
 void user_app_on_set_dev_config_complete(void);
 
+/**
+ ****************************************************************************************
+ * @brief Called on the reception of GAPC_LE_PKT_SIZE_IND
+ * @return void
+ ****************************************************************************************
+ */
 void user_on_data_length_change(uint8_t connection_idx, struct gapc_le_pkt_size_ind *pkt);
 
+/**
+ ****************************************************************************************
+ * @brief Callback of the GAPC_UPDATE_PARAMS rejection (parameter update is rejected)
+ * @param[in]   status status of the message
+ * @return void
+ ****************************************************************************************
+ */
 void user_on_update_params_rejected(const uint8_t  status);
 
+/**
+ ****************************************************************************************
+ * @brief Callback of the GAPC_UPDATE_PARAMS (parameter update is complete)
+ * @return void
+ ****************************************************************************************
+ */
 void user_on_update_params_complete(void);
+
+/**
+ ****************************************************************************************
+ * @brief Handles GAPC peer features indication
+ * @param[in]   connection_idx Connection index
+ * @param[in]   gapc_peer_features_ind pointer to features message indication parameters
+ * @return void
+ ****************************************************************************************
+ */
+void user_app_on_get_peer_features(const uint8_t conn_id, struct gapc_peer_features_ind const * features);
 
 /// @} APP
 
-#endif // _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#endif // _USER_THROUGHPUT_OPT_H_

@@ -123,7 +123,7 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_update_params_request       = default_app_update_params_request,
     .app_on_generate_static_random_addr = default_app_generate_static_random_addr,
     .app_on_svc_changed_cfg_ind         = NULL,
-    .app_on_get_peer_features           = NULL,
+    .app_on_get_peer_features           = user_app_on_get_peer_features,
 #if (BLE_APP_SEC)
     .app_on_pairing_request             = default_app_on_pairing_request,
     .app_on_tk_exch                     = default_app_on_tk_exch,
@@ -162,14 +162,13 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
  * - Use #define if "user_catch_rest_hndl" is defined by the user
  * - Use const declaration if "user_catch_rest_hndl" is NULL
  */
+#define app_process_catch_rest_cb       user_process_catch_rest
+//static const catch_rest_event_func_t app_process_catch_rest_cb = user_process_catch_rest;
+
 
 static const struct default_app_operations user_default_app_operations = {
     .default_operation_adv = default_advertise_operation,
 };
-
-static void (*const app_process_catch_rest_cb)(ke_msg_id_t const msgid, void const *param,
-                                         ke_task_id_t const dest_id, ke_task_id_t const src_id) = user_process_catch_rest;
-
 
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {

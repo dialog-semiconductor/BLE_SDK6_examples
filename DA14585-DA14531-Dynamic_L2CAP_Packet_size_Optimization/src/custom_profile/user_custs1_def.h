@@ -66,8 +66,8 @@
 #define DEF_SVC1_LOG_VAL_CHAR_LEN      251
 
 
-#define DEF_SVC1_CONTROL_POINT_USER_DESC     "Control Point"
-#define DEF_SVC1_LOG_VAL_USER_DESC         		"Sleep Log TX"
+#define DEF_SVC1_CONTROL_POINT_USER_DESC    "Control - send 0xAA"
+#define DEF_SVC1_LOG_VAL_USER_DESC         	"Log Transfer"
 
 
 /// Custom1 Service Data Base Characteristic enum

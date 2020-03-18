@@ -1,6 +1,7 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Dec 12 11:13:20 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Mar 17 11:34:56 2020
 ;VERSION 0.2
 ;FILE adc_58x.o
+adc_disable <= USED 0
 adc_enable <= USED 0
 adc_offset_calibrate <= USED 0
 adc_register_interrupt <= USED 0
@@ -9,6 +10,7 @@ adc_unregister_interrupt <= USED 0
 ;FILE app.o
 active_conhdl_to_conidx <= USED 0
 active_conidx_to_conhdl <= USED 0
+app_easy_gap_advertise_with_timeout_stop <= USED 0
 app_easy_gap_dev_config_get_active <= USED 0
 app_easy_gap_directed_advertise_get_active <= USED 0
 app_easy_gap_directed_advertise_start <= USED 0
@@ -20,6 +22,7 @@ app_easy_gap_start_connection_to <= USED 0
 app_easy_gap_start_connection_to_get_active <= USED 0
 app_easy_gap_start_connection_to_set <= USED 0
 app_easy_gap_undirected_advertise_get_active <= USED 0
+app_easy_gap_undirected_advertise_with_timeout_start <= USED 0
 app_easy_gap_update_adv_data <= USED 0
 app_gattc_svc_changed_cmd_send <= USED 0
 app_set_prf_srv_perm <= USED 0
@@ -39,6 +42,8 @@ app_custs1_init <= USED 0
 app_custs1_val_wr_validate <= USED 0
 ;FILE app_customs_task.o
 ;FILE app_default_handlers.o
+default_advertise_operation <= USED 0
+default_app_generate_static_random_addr <= USED 0
 default_app_generate_unique_static_random_addr <= USED 0
 default_app_on_addr_resolve_failed <= USED 0
 default_app_on_addr_solved_ind <= USED 0
@@ -74,12 +79,15 @@ app_easy_security_pairing_rsp_get_active <= USED 0
 app_easy_security_ral_op <= USED 0
 app_easy_security_ral_sync_with_bdb <= USED 0
 app_easy_security_reject_encryption <= USED 0
+app_easy_security_request <= USED 0
+app_easy_security_request_get_active <= USED 0
 app_easy_security_resolve_bdaddr <= USED 0
 app_easy_security_set_encrypt_req_invalid <= USED 0
 app_easy_security_set_encrypt_req_valid <= USED 0
 app_easy_security_set_ltk_exch <= USED 0
 app_easy_security_tk_get_active <= USED 0
 ;FILE app_easy_timer.o
+app_easy_timer_cancel <= USED 0
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
 ;FILE app_entry_point.o
@@ -102,8 +110,13 @@ arch_ble_ext_wakeup_on <= USED 0
 arch_last_rwble_evt_get <= USED 0
 arch_set_deep_sleep <= USED 0
 ;FILE arch_system.o
+__ARM_common_ll_muluu <= USED 0
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
+calibrate_rcx20 <= USED 0
+lld_sleep_lpcycles_2_us_rcx_func <= USED 0
+lld_sleep_us_2_lpcycles_rcx_func <= USED 0
+read_rcx_freq <= USED 0
 ;FILE attm_db_128.o
 ;FILE battery.o
 battery_get_lvl <= USED 0
@@ -202,6 +215,7 @@ prf_unpack_date_time <= USED 0
 ;FILE rf_585.o
 rf_nfm_disable <= USED 0
 rf_nfm_enable <= USED 0
+rf_nfm_is_enabled <= USED 0
 ;FILE rf_calibration.o
 DCoffsetCalibration_580 <= USED 0
 IffCalibration_580 <= USED 0

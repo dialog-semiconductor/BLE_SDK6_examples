@@ -1,14 +1,7 @@
 /**
  ****************************************************************************************
  *
- * @file user_throughput_opt.c
- * History: search string malam
- * Jon K worked on customer demo to share an optimized project to verify the changes of BLE packet on the fly based on
-     DLE and the MTU size is negotiated. 
-     BLE PKT really is getting set dynamically.
-     
-     Smartphone iOS is used 12.0.xx with iPhone 6, it does not support DLE.
-     iPhone 8 could be more appropriate to demostrate this work as it supports DLE.
+ * @file user_throughput_opt.c.
  *
  * @brief User Throughput Optimization project source code.
  *

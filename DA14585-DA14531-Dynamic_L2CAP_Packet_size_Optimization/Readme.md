@@ -1,4 +1,3 @@
-
 # DA14585/DA14586/DA14531 DLE and L2CAP Packet Optimization
 
 ---
@@ -30,13 +29,13 @@ The user manuals for the development kits can be found:
 * **Special Hardware configuration setup**
 
 * __Hardware configuration using DA145xxDEVKT-P PRO-Motherboard__
-	- When using DA14585 make sure a jumper is across UTX
-	- When using DA14531, Jumper P2_6 from J2 to UTX (Pin 18 on J1) for serial UART communication
-	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
+	- When using DA14585 make sure a jumper is across UTX.
+	- When using DA14531, Jumper P2_6 from J2 to UTX (Pin 18 on J1) for serial UART communication.
+	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png).
 	
 __Hardware configuration using LEGACY DA145xxDEVKT-P PRO-Motherboard__
-	- When using DA14585, make sure the UTX is jumpered across J5 (Default)
-	- When using DA14531, Jumper P2_6 from J7 to UTX (Pin 10)
+	- When using DA14585, make sure the UTX is jumpered across J5 (Default).
+	- When using DA14531, Jumper P2_6 from J7 to UTX (Pin 10).
 
 * **Software configuration**
 
@@ -50,10 +49,10 @@ __Hardware configuration using LEGACY DA145xxDEVKT-P PRO-Motherboard__
 
 
 Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
-1. Start Keil using the `ble_temperature_ntf.uvprojx` Keil project file.
+1. Start Keil using the `tput_optimization.uvprojx` Keil project file.
 
 2. Expand the dialog shown in the red box in the image below.
-![Expand_Select_Device](assets/Expand_Select_Device.png)
+	![Expand_Select_Device](assets/Expand_Select_Device.png)
 
 3. Select your target device: DA14531, DA14585, DA14586
 
@@ -64,21 +63,24 @@ If the warning (shown below) pops up press OK.
 
 ### Running the Example
 
-1. Open a BLE application on your handset and look for "DLG-TPUT"
+1. Open a BLE application on your handset and look for "DIALOG-TPUT"
 
 2. Connect to the device.
-
+	![Connect_Device](assets/Connect_Device.png)
+	
 3. Subscribe to notifications on the Log Transfer characteristic.
+	![Log_Characteristic](assets/Log_Characteristic.png)
 
 4. Write the value to 0xAA to the Control Point Characteristic. 
+	![CP_Characteristic](assets/CP_Characteristic.png)
 
 5. This will begin a log transfer of static bytes. 
 
-6. Check your terminal for debug output and throughput calculation
-![Expand_Select_Device](assets/Terminal_Output.png)
+6. Check your terminal for debug output and throughput calculation.
+	![Terminal_Ouptut](assets/Terminal_Output.png)
 
-##How it works
-###General Logic
+## How it works
+### General Logic
 The example uses a successive approach for optimization throughput.  In the Link Layer, we are limited to two basic buffer sizes depending on
 The support for DLE: 27, 251.  First, we do a peer feature request to see if DLE is supported - If supported, we utilize
 the additional packet space.  From here, we do a connection parameter update, and following the result of this we do an MTU Exchange. 
@@ -88,7 +90,7 @@ our payload then to utilize the the rest of the space.  For non-DLE devices that
 101.  This number is has been emperically determined to provide good throughput in a noisier environment. Full packet utilization provides
 a good enhancement on throughput if otherwised not considered. 
 
-###Note
+### Note
 This example does not consider a more complex connection parameter scheme for throughput optimization.  This would be an excercise to the user.
 Note that DSPS does include this functionality for reference and provides optimal connection parameters for DLE and non-DLE devices.
 
@@ -106,7 +108,7 @@ Note that DSPS does include this functionality for reference and provides optima
 
 **************************************************************************************
 
- Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
+ Copyright (c) 2020 Dialog Semiconductor. All rights reserved.
 
  This software ("Software") is owned by Dialog Semiconductor. By using this Software
  you agree that Dialog Semiconductor retains all intellectual property and proprietary

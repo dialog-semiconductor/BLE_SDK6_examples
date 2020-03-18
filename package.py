@@ -61,7 +61,10 @@ for line in file:
     if obj:
         break
 
-os.environ['EXNAME'] = obj[2]
+print(obj)
+#os.environ['EXNAME'] = obj[2]
+
+os.environ['EXNAME'] = 'DA14585/DA14586/DA14531 DLE and L2CAP Packet Op'
 rootfolder = os.getcwd()
 os.chdir(os.path.join(processor,'..'))
 subprocess.run(["make", "clean"])

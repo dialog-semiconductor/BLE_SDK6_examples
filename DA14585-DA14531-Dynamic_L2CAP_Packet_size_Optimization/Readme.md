@@ -19,24 +19,30 @@ This functionality can be verified by:
 ## HW and SW configuration
 This example runs on the BLE Smart SoC (System on Chip) devices:
 - DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
-- DA14585/DA14586 daughter board + Basic development Kit mother board.
+- DA14585/DA14586 Basic development Kit.
 - DA14531 USB Kit
 
 The user manuals for the development kits can be found:
-- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
-- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
+- [DA14531 Development Kit Product page](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [DA14585 Development Kit Basic](https://www.dialog-semiconductor.com/products/da14585-development-kit-basic) for the Basic Development Kit.
+- [DA14531 USB Development Kit Product page](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) for the DA14531 USB Development Kit.
 
-* **Special Hardware configuration setup**
+* **Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard**
 
-* __Hardware configuration using DA145xxDEVKT-P PRO-Motherboard__
-	- When using DA14585 make sure a jumper is across UTX.
-	- When using DA14531, Jumper P2_6 from J2 to UTX (Pin 18 on J1) for serial UART communication.
-	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png).
+	- When using DA14585/DA14586, Jumper P0_6 from J2 to UTX (Pin 17 on J1).
 	
-__Hardware configuration using LEGACY DA145xxDEVKT-P PRO-Motherboard__
-	- When using DA14585, make sure the UTX is jumpered across J5 (Default).
-	- When using DA14531, Jumper P2_6 from J7 to UTX (Pin 10).
+	![da14585.jpg](assets/da14585.jpg).
+	
+	- When using DA14531, Jumper P2_6 from J2 to UTX (Pin 17 on J1) for serial UART communication.
+	
+	![da14531.jpg](assets/da14531.jpg).
+	
+    - When using DA14531 USB development kit no hardware configurationis needed. You need only to Redefine the UART2_TX_PIN to GPIO_PIN_5 (1 wire UART ) 
+	  
+	  **#define UART2_TX_PIN            GPIO_PIN_5**
 
+	![da14531_usb.png](assets/da14531_usb.png).
+	
 * **Software configuration**
 
 	- This example requires:
@@ -49,9 +55,10 @@ __Hardware configuration using LEGACY DA145xxDEVKT-P PRO-Motherboard__
 
 
 Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
-1. Start Keil using the `tput_optimization.uvprojx` Keil project file.
+-Start Keil using the `tput_optimization.uvprojx` Keil project file.
 
 2. Expand the dialog shown in the red box in the image below.
+	
 	![Expand_Select_Device](assets/Expand_Select_Device.png)
 
 3. Select your target device: DA14531, DA14585, DA14586
@@ -66,17 +73,21 @@ If the warning (shown below) pops up press OK.
 1. Open a BLE application on your handset and look for "DIALOG-TPUT"
 
 2. Connect to the device.
+	
 	![Connect_Device](assets/Connect_Device.png)
 	
 3. Subscribe to notifications on the Log Transfer characteristic.
+	
 	![Log_Characteristic](assets/Log_Characteristic.png)
 
 4. Write the value to 0xAA to the Control Point Characteristic. 
+	
 	![CP_Characteristic](assets/CP_Characteristic.png)
 
 5. This will begin a log transfer of static bytes. 
 
 6. Check your terminal for debug output and throughput calculation.
+	
 	![Terminal_Ouptut](assets/Terminal_Output.png)
 
 ## How it works
@@ -97,10 +108,14 @@ Note that DSPS does include this functionality for reference and provides optima
 
 ## Known Limitations
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://www.dialog-semiconductor.com/bluetooth-low-energy "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software"Forum link").
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+- There are no known limitations for this example. But you can check and refer to the following 
+  application note for known hardware limitations.
+For DA14531 devices:
+  [DA14531 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf)
+For DA14585 devices:
+  [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+- Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
+- You can also refer to the troubleshooting section in the [Getting Started with the DA14531 PRO Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
 
 
 ## License

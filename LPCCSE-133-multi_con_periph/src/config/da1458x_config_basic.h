@@ -205,7 +205,9 @@
 /****************************************************************************************************************/
 /* Enable multiple connections configuration                                                                    */
 /****************************************************************************************************************/
-#define CFG_ENABLE_MULTIPLE_CONN
+#if CFG_MAX_CONNECTIONS > (1)
+    #define CFG_ENABLE_MULTIPLE_CONN
+#endif
 
 #endif
 

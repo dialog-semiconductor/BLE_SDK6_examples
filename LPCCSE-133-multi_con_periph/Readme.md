@@ -39,12 +39,26 @@ The demo exposes a custom profile including 3 services.
 ## SDK Changes
 
 The default settings of the SDK supports only one connection, hence to properly run this example the user should apply changes to the files of the SDK in order to be able to connect to multiple centrals. In the files provided in the example all the SDK code related changes are moved to application level via bypassing the SDK code. Minor changes in the SDK files that should be applied in order to change SDK configuration or override SDK functions should be guarded via the CFG_ENABLE_MULTIMPLE_CONN, which is defined in da1458x_config_basic.h file. The changes are mentioned below:
-- To be able to overide the default functions of the SDK the __ __EXCLUDE_ROM_APP_TASK__ __ be defined in the C/C++ tab in the "options for target" in keil (the ROM functions that correspond to that the specific guard should also be removed from the da14531_symbols.txt).
+- To be able to overide the default functions of the SDK the __ __EXCLUDE_ROM_APP_TASK__ __ should be defined in the C/C++ tab in the "options for target" in keil. 
 
 	![options_for_target](assets/options_for_target.png)
-- app.h : apply to the APP_EASY_MAX_ACTIVE_CONNECTION the maximum connections that should be supported (DA14531 - 3 maximum connections and DA14585/6 - 8 maximum connections)
+
+	The ROM functions that correspond to that the specific guard should also be removed from the da14531_symbols.txt. If not removed the linker will output an error for multiple defined functions. From the error of the linker it is visible to the end user which function should be removed from the .txt file (the da14531_symbols.txt file is located in \sdk\common_project_files\misc\).
+
+	When all ROM functions are commented from the da14531_symbols.txt file the linking should also fail due to the multiple definition of the app_db_init_start() function declared in the user_multi_peripheral.c file. This is an SDK function that it will be overriden via application level code.
+
+	![linker_error](assets/linker_error.png)
+
+- app.h : 
+
+	- apply to the #define APP_EASY_MAX_ACTIVE_CONNECTION the maximum connections that should be supported (DA14531 - 3 maximum connections and DA14585/6 - 8 maximum connections). The maximum supported connections are defined in the BLE_CONNECTION_MAX definition.
 	
-	![app_h](assets/app_h_changes.png)
+		![app_h](assets/app_h_changes.png)
+
+	- apply the following changes according to the below snippet in order for the app_db_init_next() function to be invoked from application level.
+
+		![app_h_changes_init_next](assets/app_h_changes_init_next.png)
+
 - app_task.h : apply to the APP_IDX_MAX the maximum number or task instances that the application should support. This should agree with the max active connections that the device is supporting.
 	
 	![app_task_h](assets/app_task_h_changes.png)
@@ -52,10 +66,10 @@ The default settings of the SDK supports only one connection, hence to properly 
 	- In order to be able to use the app_db_init_next() function in application level for initializing the device's database the "static" identifier should be removed.
 	
 		![app_c_changes_db_init_next](assets/app_c_changes_db_init_next.png)
-	- The app_db_init_start() function needs to be modified to support multiple connections. To apply the changes in application level, in the original SDK function, the __WEAK identifier should be added and provide the new function in application level.
+	- The app_db_init_start() function needs to be modified to support multiple connections. To apply the changes in application level, the SDK function needs to be excluded from the build using the CFG_ENABLE_MULTIPLE_CONN guard. 
 	
 		![app_c_changes_db_init_start](assets/app_c_changes_db_init_start.png)  
-- app_task.c : In app_task.c file the connection and disconnection handlers of the device should be modified in order to support the multiple connection feature. The complete functions supporting multiple connections are located in the user_multi_peripheral.c file of the example. In order to overide the SDK functions a __WEAK identifier is added in the app.c file in the:
+- app_task.c : In app_task.c file the connection and disconnection handlers of the device should be modified in order to support the multiple connection feature. The complete functions supporting multiple connections are located in the user_multi_peripheral.c file of the example. In order to overide the SDK functions a __WEAK identifier is added in the in each function:
 	- gapc_connection_ind_handler
 
 		![gapc_connection_req_ind_handler_change](assets/gapc_connection_req_ind_handler_change.png)

@@ -174,7 +174,7 @@ void user_advertise_operation(void)
 	uint8_t serial_num_struct[SERIAL_NUM_PAYLOAD_LEN];
 	
 	/*
-	* Manufacturer Name UUID 0x2A25 (ATT_CHAR_SERIAL_NB)
+	* Manufacturer SN UUID 0x2A25 (ATT_CHAR_SERIAL_NB)
 	*/
 	serial_num_struct[0] = 0x25;
 	serial_num_struct[1] = 0x2A;

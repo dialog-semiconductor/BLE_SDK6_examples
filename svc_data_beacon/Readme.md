@@ -1,12 +1,12 @@
-------
 
-# DA14531 - DA14585/586 Service Data Beacon
 
-------
+# DA14531-DA14585/586 Service Data Beacon
+
+---
 
 ## Example description
 
-The main purpose of this SW example is to demonstrate creating a **Non-Connectable Advertising** application example that includes service data.   Specifically, this example illustrates the idea of 
+The main purpose of this software example is to demonstrate creating a **Non-Connectable Advertising** application example that includes service data.   Specifically, this example illustrates the idea of 
 including Service Data from a 16-bit UUID as defined by the Bluetooth SIG.  [Bluetooth SIG GAP Flags](https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile/).
 This example uses the Device Information Service, Serial Number characteristic.
 
@@ -38,34 +38,41 @@ For getting more information about the Non-Connectable Advertising, please refer
 ### Compile & Run
 
 - Navigate to ``project_environment`` folder and open the **Keil** project, svc_data_beacon
-- Select the target device you are building for.	
+- Select the target device you are building for, like so,
+
+
 ![Expand_Select_Device](assets/Expand_Select_Device.png)
+
+
 - Compile (F7) and launch (ctrl + F5) the example.
-- You can also download the firmware into SPI Flash. To download the firmware into SPI Flash, the  SPI Flash programmer from SmartSnippets Toolbox should be used, or the stand-alone flash programmer. 
+- You can also download the firmware into SPI Flash. To download the firmware into SPI Flash, the  SPI Flash programmer from SmartSnippets Toolbox should be used as described 
+  [here](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/index.html), or the stand-alone flash programmer. 
 - The serial number characteristic is a string that is set in user_profiles_config.h.  Be sure to change the length accordingly, if you wish to modify this.  
 - This example includes two advertising structures, 1) GAP_LOCAL_NAME 2) Device Serial Number.
 
 
-To verify please take a look at the BLE sniffer log data
+To verify please take a look at the BLE sniffer log data, like so,
 
-1. The data can be seen in any basic sniffer. Notice the two advertising element structures are readily recognized by the sniffer since they comply to the BLE standard.
+- The data can be seen in any basic sniffer. Notice the two advertising element structures are readily recognized by the sniffer since they comply to the BLE standard.
 
-	![beacon_sniffer_data](assets\shapes\beacon_sniffer_data.PNG)
+![beacon_sniffer_data](assets/beacon_sniffer_data.PNG)
 
-2. Using an app such as BLE scanner, the raw bytes can be readily seen as well.  Look for DLG-SVC_DATA and select raw data.
+- Using an app such as BLE scanner, the raw bytes can be readily seen as well.  Look for DLG-SVC_DATA and select raw data, like so,
 
-	![ble_scanner](assets\shapes\beacon_scanner.PNG)
+![ble_scanner](assets/ble_scanner.PNG)
+
 	
-	![ble_scaner_data](assets\shapes\beacon_scanner_data.PNG)
+![ble_scaner_data](assets/ble_scanner_bytes.PNG)
+
 
 ## How it works
-This example illustrates the basics behind using standard Bluetooth SIG practices for placing advertising ``elements`` into advertising payload.
-The standard practice for adding a single advertising element consists of the following:  {1byte - length_byte} , {1-byte gap flag}, {payload}.
-The length byte includes the gap flag and the total lenght of the payload.  The helper function in this example requires the user to specify
-the .len as the length of the payload.  In the serialization, the value of 1 is added to the length to adhere to standard BLE practices. 
-In this specific case, the GAP flags shows a reference to the Core Supplement, Section A part 1.11.  [link](https://www.bluetooth.org/docman/handlers/DownloadDoc.ashx?doc_id=480305).
-We are using 16-bit service Data, since we are exposing the serial number from the Device Information Service.  Referencing the core supplement,
-the payload requires the first two bytes to be the UUID, followed by the service data. 
+- This example illustrates the basics behind using standard Bluetooth SIG practices for placing advertising ``elements`` into advertising payload.
+- The standard practice for adding a single advertising element consists of the following:  
+  {1byte - length_byte} , {1-byte gap flag}, {payload}.
+- The length byte includes the gap flag and the total lenght of the payload.  The helper function in this example requires the user to specify the .len as the length of the payload.  In the serialization, the value of 1 is added to the length to adhere to standard BLE practices. 
+- In this specific case, the GAP flags shows a reference to the Core Supplement, Section A part 1.11.  [link](https://www.bluetooth.org/docman/handlers/DownloadDoc.ashx?doc_id=480305).
+- We are using 16-bit service Data, since we are exposing the serial number from the Device Information Service.  
+- Referencing the core supplement, the payload requires the first two bytes to be the UUID, followed by the service data. 
 
 ## Known Limitations
 
@@ -75,7 +82,8 @@ the payload requires the first two bytes to be the UUID, followed by the service
 
 ## License
 
-------
+
+**************************************************************************************
 
  Copyright (c) 2020 Dialog Semiconductor. All rights reserved.
 
@@ -96,4 +104,4 @@ the payload requires the first two bytes to be the UUID, followed by the service
  PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
 
-------
+**************************************************************************************

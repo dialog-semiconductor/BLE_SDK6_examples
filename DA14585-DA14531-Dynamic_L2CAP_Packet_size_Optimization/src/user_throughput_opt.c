@@ -66,6 +66,9 @@
 
 
 #define LE_DATA_LENGTH_FEATURE_MASK (0x20)
+#define MAX_COLLISION_RETRIES				( 2 ) 
+
+#define MIN_CON_INTERVAL						( MS_TO_DOUBLESLOTS(30) )
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -85,6 +88,9 @@ typedef struct
 	uint16_t 												user_packet_size;
 	struct gapc_param_updated_ind 	user_connection_params;
 	uint32_t 												log_transfer_start_time;
+	timer_hnd												feature_timer;
+	timer_hnd												param_update_timer;
+	uint8_t													collision_retries;
 	
 	log_env_t												user_log_env;
 }tput_envt_t;
@@ -107,6 +113,7 @@ static void user_handle_peer_features(struct gapc_peer_features_ind const *featu
 		{
 				arch_printf("DLE_ON\r\n");
 				tput_env.peer_supports_dle = true;
+				app_easy_gap_set_data_packet_length(tput_env.connection_idx, user_gapm_conf.max_txoctets, user_gapm_conf.max_txtime);
 			
 		}else
 		{
@@ -241,10 +248,25 @@ static void user_exchange_mtu(uint8_t connection_idx)
  * @brief  Callback from SDK for features request to peer
  ****************************************************************************************
  */
+void update_connection_params_cb(void)
+{
+	
+	tput_env.param_update_timer = EASY_TIMER_INVALID_TIMER;
+	if(tput_env.user_connection_params.con_interval > MIN_CON_INTERVAL){
+		app_easy_gap_param_update_start(tput_env.connection_idx);
+	}
+}
+
+
+/**
+ ****************************************************************************************
+ * @brief  Callback from SDK for features request to peer
+ ****************************************************************************************
+ */
 void user_app_on_get_peer_features(const uint8_t conn_id, struct gapc_peer_features_ind const * features)
 {
+		tput_env.feature_timer = EASY_TIMER_INVALID_TIMER;
 		user_handle_peer_features(features);
-		app_easy_gap_param_update_start(conn_id);
 }
 
 /**
@@ -301,6 +323,8 @@ void user_on_data_length_change(uint8_t connection_idx, struct gapc_le_pkt_size_
 {
 	//DLE is supported use this packet length for throughput
 	user_calculate_packet_size();
+	/*exchange mtu*/
+	user_exchange_mtu(tput_env.connection_idx);
 	
 }
 
@@ -325,9 +349,9 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 	
 		arch_printf("%s\r\n", __func__);
 	
-		if(param->con_interval >  user_connection_param_conf.intv_max){
-			app_easy_timer(60 , user_get_peer_features);
-		}
+		tput_env.collision_retries = 0;
+		tput_env.feature_timer = app_easy_timer(60 , user_get_peer_features);
+		tput_env.param_update_timer = app_easy_timer(500, update_connection_params_cb);
 	
 		user_calculate_packet_size();
 }
@@ -341,6 +365,17 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
  */
 void user_on_disconnect( struct gapc_disconnect_ind const *param )
 {
+	
+		if(tput_env.param_update_timer != EASY_TIMER_INVALID_TIMER)
+		{
+			app_easy_timer_cancel(tput_env.param_update_timer);
+			tput_env.param_update_timer = EASY_TIMER_INVALID_TIMER;
+		}
+		if(tput_env.feature_timer != EASY_TIMER_INVALID_TIMER)
+		{
+			app_easy_timer_cancel(tput_env.feature_timer);
+			tput_env.feature_timer = EASY_TIMER_INVALID_TIMER;
+		}
     default_app_on_disconnect(param);
 		//MTU will need to be renegotiated on next connection so re-initialize
 		user_init_user_vals();
@@ -358,19 +393,13 @@ void user_on_update_params_rejected(const uint8_t  status)
 {
 	arch_printf("%s: %d\r\n", __func__, status);
 	
+	/*This only gets called if the scheduler is busy and can't schedule the request (can happen in high throughput applications)*/
 	if( status == LL_ERR_LMP_COLLISION ) {
+		if(tput_env.collision_retries++ < MAX_COLLISION_RETRIES){
         app_easy_gap_param_update_start(tput_env.connection_idx);
-	}else{
-		
-			if(tput_env.peer_supports_dle)
-			{
-
-				app_easy_gap_set_data_packet_length(tput_env.connection_idx, user_gapm_conf.max_txoctets, user_gapm_conf.max_txtime);
-			}
+		}
 	}
-	
-	
-	
+		
 	user_exchange_mtu(tput_env.connection_idx);
 }
 
@@ -384,13 +413,6 @@ void user_on_update_params_rejected(const uint8_t  status)
 void user_on_update_params_complete(void)
 {
 	arch_printf("%s\r\n", __func__);
-	
-	if(tput_env.peer_supports_dle)
-	{
-		
-		app_easy_gap_set_data_packet_length(tput_env.connection_idx, user_gapm_conf.max_txoctets, user_gapm_conf.max_txtime);
-	}
-	
 	user_exchange_mtu(tput_env.connection_idx);
 }
 
@@ -409,7 +431,6 @@ void user_process_catch_rest(ke_msg_id_t const msgid, void const *param,
                              ke_task_id_t const dest_id, ke_task_id_t const src_id) 
 {
 	
-	uint8_t conidx = KE_IDX_GET(src_id);
 	switch(msgid)
 	{
 		case GAPC_PARAM_UPDATED_IND:
@@ -417,8 +438,9 @@ void user_process_catch_rest(ke_msg_id_t const msgid, void const *param,
 
 			struct gapc_param_updated_ind const *msg_param = (struct gapc_param_updated_ind const *)(param);
 			arch_printf("PARAM_UPDATE: %d %d %d \r\n", msg_param->con_interval, msg_param->con_latency, msg_param->sup_to);
+			tput_env.user_connection_params.con_interval = msg_param->con_interval;
 			//We want faster but iOS device might only allow 30 so we don't want to continously call param update
-			if(msg_param->con_interval > (MS_TO_DOUBLESLOTS(30) )){
+			if(msg_param->con_interval > MIN_CON_INTERVAL ){
 					user_update_params();
 			}
 			//connection parameters updated, calculate new parameters
@@ -509,14 +531,12 @@ void user_process_catch_rest(ke_msg_id_t const msgid, void const *param,
 						tput_env.peer_supports_dle = false;
 						arch_printf("GAPC_PEER_FEATURES_IND UNSUPPORTED, DLE OFF\r\n");
 						arch_printf("PARAM UPDATE START\r\n");
-						app_easy_gap_param_update_start(conidx);
 				}   
 				else        
 				{   
 						tput_env.peer_supports_dle = false;
 						arch_printf("GAPC_PEER_FEATURES_IND UKN STATUS, DLE OFF\r\n");
 						arch_printf("PARAM UPDATE START\r\n");
-						app_easy_gap_param_update_start(conidx);
 				}   
 				
 		break;

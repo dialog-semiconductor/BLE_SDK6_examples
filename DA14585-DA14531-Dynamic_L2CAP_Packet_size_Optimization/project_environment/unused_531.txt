@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Mar 17 14:58:53 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Apr 06 14:41:26 2020
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -84,7 +84,6 @@ app_easy_security_set_encrypt_req_valid <= USED 0
 app_easy_security_set_ltk_exch <= USED 0
 app_easy_security_tk_get_active <= USED 0
 ;FILE app_easy_timer.o
-app_easy_timer_cancel <= USED 0
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
 ;FILE app_msg_utils.o

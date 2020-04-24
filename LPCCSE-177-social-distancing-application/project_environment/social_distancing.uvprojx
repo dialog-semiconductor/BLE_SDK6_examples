@@ -975,46 +975,6 @@
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_common\app_task.c</FilePath>
             </File>
             <File>
-              <FileName>app_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_sec\app_security.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_security_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bass.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bass\app_bass.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bass_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bass\app_bass_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_findme.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_findme\app_findme.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_findme_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_findme\app_findme_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_proxr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_proxr\app_proxr.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_proxr_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_proxr\app_proxr_task.c</FilePath>
-            </File>
-            <File>
               <FileName>app_diss.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
@@ -1023,16 +983,6 @@
               <FileName>app_diss_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_suotar.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_suotar\app_suotar.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_suotar_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_suotar\app_suotar_task.c</FilePath>
             </File>
             <File>
               <FileName>app_entry_point.c</FileName>
@@ -1055,11 +1005,6 @@
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
             </File>
             <File>
-              <FileName>app_easy_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
-            </File>
-            <File>
               <FileName>app_customs.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs.c</FilePath>
@@ -1073,11 +1018,6 @@
               <FileName>app_customs_common.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs_common.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bond_db.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
             </File>
             <File>
               <FileName>app_utils.c</FileName>
@@ -2132,46 +2072,6 @@
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_common\app_task.c</FilePath>
             </File>
             <File>
-              <FileName>app_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_sec\app_security.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_security_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bass.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bass\app_bass.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bass_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bass\app_bass_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_findme.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_findme\app_findme.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_findme_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_findme\app_findme_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_proxr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_proxr\app_proxr.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_proxr_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_proxr\app_proxr_task.c</FilePath>
-            </File>
-            <File>
               <FileName>app_diss.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
@@ -2180,16 +2080,6 @@
               <FileName>app_diss_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_suotar.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_suotar\app_suotar.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_suotar_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_suotar\app_suotar_task.c</FilePath>
             </File>
             <File>
               <FileName>app_entry_point.c</FileName>
@@ -2212,11 +2102,6 @@
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
             </File>
             <File>
-              <FileName>app_easy_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
-            </File>
-            <File>
               <FileName>app_customs.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs.c</FilePath>
@@ -2230,11 +2115,6 @@
               <FileName>app_customs_common.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs_common.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bond_db.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
             </File>
             <File>
               <FileName>app_utils.c</FileName>
@@ -3238,46 +3118,6 @@
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_common\app_task.c</FilePath>
             </File>
             <File>
-              <FileName>app_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_sec\app_security.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_security_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bass.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bass\app_bass.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bass_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bass\app_bass_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_findme.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_findme\app_findme.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_findme_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_findme\app_findme_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_proxr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_proxr\app_proxr.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_proxr_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_proxr\app_proxr_task.c</FilePath>
-            </File>
-            <File>
               <FileName>app_diss.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
@@ -3286,16 +3126,6 @@
               <FileName>app_diss_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_suotar.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_suotar\app_suotar.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_suotar_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_suotar\app_suotar_task.c</FilePath>
             </File>
             <File>
               <FileName>app_entry_point.c</FileName>
@@ -3318,11 +3148,6 @@
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
             </File>
             <File>
-              <FileName>app_easy_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
-            </File>
-            <File>
               <FileName>app_customs.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs.c</FilePath>
@@ -3336,11 +3161,6 @@
               <FileName>app_customs_common.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_custs\app_customs_common.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bond_db.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\sdks\6.0.12.1020\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
             </File>
             <File>
               <FileName>app_utils.c</FileName>

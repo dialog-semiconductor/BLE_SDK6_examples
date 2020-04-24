@@ -69,14 +69,6 @@
 /* Duration of timer for connection parameter update request */
 #define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 
-/* Advertising data update timer */
-#define APP_ADV_DATA_UPDATE_TO              (3000)   // 3000*10ms = 30sec, The maximum allowed value is 41943sec (4194300 * 10ms)
-
-/* Manufacturer specific data constants */
-#define APP_AD_MSD_COMPANY_ID       (0xABCD)
-#define APP_AD_MSD_COMPANY_ID_LEN   (2)
-#define APP_AD_MSD_DATA_LEN         (sizeof(uint16_t))
-
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************

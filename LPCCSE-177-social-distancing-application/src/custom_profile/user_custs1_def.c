@@ -5,7 +5,7 @@
  *
  * @brief Custom Server 1 (CUSTS1) profile database definitions.
  *
- * Copyright (c) 2016-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2016-2020 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -60,12 +60,7 @@
 static const att_svc_desc128_t custs1_svc1                      = DEF_SVC1_UUID_128;
 
 static const uint8_t SVC1_CTRL_POINT_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_CTRL_POINT_UUID_128;
-static const uint8_t SVC1_LED_STATE_UUID_128[ATT_UUID_128_LEN]        = DEF_SVC1_LED_STATE_UUID_128;
 static const uint8_t SVC1_ADC_VAL_1_UUID_128[ATT_UUID_128_LEN]        = DEF_SVC1_ADC_VAL_1_UUID_128;
-static const uint8_t SVC1_ADC_VAL_2_UUID_128[ATT_UUID_128_LEN]        = DEF_SVC1_ADC_VAL_2_UUID_128;
-static const uint8_t SVC1_BUTTON_STATE_UUID_128[ATT_UUID_128_LEN]     = DEF_SVC1_BUTTON_STATE_UUID_128;
-static const uint8_t SVC1_INDICATEABLE_UUID_128[ATT_UUID_128_LEN]     = DEF_SVC1_INDICATEABLE_UUID_128;
-static const uint8_t SVC1_LONG_VALUE_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_LONG_VALUE_UUID_128;
 
 // Attribute specifications
 static const uint16_t att_decl_svc       = ATT_DECL_PRIMARY_SERVICE;
@@ -107,19 +102,6 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
                                             sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1,
                                             (uint8_t *) DEF_SVC1_CONTROL_POINT_USER_DESC},
 
-    // LED State Characteristic Declaration
-    [SVC1_IDX_LED_STATE_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            0, 0, NULL},
-
-    // LED State Characteristic Value
-    [SVC1_IDX_LED_STATE_VAL]           = {SVC1_LED_STATE_UUID_128, ATT_UUID_128_LEN, PERM(WR, ENABLE) | PERM(WRITE_COMMAND, ENABLE),
-                                            DEF_SVC1_LED_STATE_CHAR_LEN, 0, NULL},
-
-    // LED State Characteristic User Description
-    [SVC1_IDX_LED_STATE_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_LED_STATE_USER_DESC) - 1, sizeof(DEF_SVC1_LED_STATE_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_LED_STATE_USER_DESC},
-
     // ADC Value 1 Characteristic Declaration
     [SVC1_IDX_ADC_VAL_1_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             0, 0, NULL},
@@ -136,70 +118,6 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
     [SVC1_IDX_ADC_VAL_1_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             sizeof(DEF_SVC1_ADC_VAL_1_USER_DESC) - 1, sizeof(DEF_SVC1_ADC_VAL_1_USER_DESC) - 1,
                                             (uint8_t *) DEF_SVC1_ADC_VAL_1_USER_DESC},
-
-    // ADC Value 2 Characteristic Declaration
-    [SVC1_IDX_ADC_VAL_2_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            0, 0, NULL},
-
-    // ADC Value 2 Characteristic Value
-    [SVC1_IDX_ADC_VAL_2_VAL]           = {SVC1_ADC_VAL_2_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE),
-                                            DEF_SVC1_ADC_VAL_2_CHAR_LEN, 0, NULL},
-
-    // ADC Value 2 Characteristic User Description
-    [SVC1_IDX_ADC_VAL_2_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_ADC_VAL_2_USER_DESC) - 1, sizeof(DEF_SVC1_ADC_VAL_2_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_ADC_VAL_2_USER_DESC},
-
-    // Button State Characteristic Declaration
-    [SVC1_IDX_BUTTON_STATE_CHAR]       = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            0, 0, NULL},
-
-    // Button State Characteristic Value
-    [SVC1_IDX_BUTTON_STATE_VAL]        = {SVC1_BUTTON_STATE_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE) | PERM(NTF, ENABLE),
-                                            DEF_SVC1_BUTTON_STATE_CHAR_LEN, 0, NULL},
-
-    // Button State Client Characteristic Configuration Descriptor
-    [SVC1_IDX_BUTTON_STATE_NTF_CFG]    = {(uint8_t*)&att_desc_cfg, ATT_UUID_16_LEN, PERM(RD, ENABLE) | PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
-                                            sizeof(uint16_t), 0, NULL},
-
-    // Button State Characteristic User Description
-    [SVC1_IDX_BUTTON_STATE_USER_DESC]  = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_BUTTON_STATE_USER_DESC) - 1, sizeof(DEF_SVC1_BUTTON_STATE_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_BUTTON_STATE_USER_DESC},
-
-    // Indicateable Characteristic Declaration
-    [SVC1_IDX_INDICATEABLE_CHAR]       = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            0, 0, NULL},
-
-    // Indicateable Characteristic Value
-    [SVC1_IDX_INDICATEABLE_VAL]        = {SVC1_INDICATEABLE_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE) | PERM(IND, ENABLE),
-                                            DEF_SVC1_INDICATEABLE_CHAR_LEN, 0, NULL},
-
-    // Indicateable Client Characteristic Configuration Descriptor
-    [SVC1_IDX_INDICATEABLE_IND_CFG]    = {(uint8_t*)&att_desc_cfg, ATT_UUID_16_LEN, PERM(RD, ENABLE) | PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
-                                            sizeof(uint16_t), 0, NULL},
-
-    // Indicateable Characteristic User Description
-    [SVC1_IDX_INDICATEABLE_USER_DESC]  = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_INDICATEABLE_USER_DESC) - 1, sizeof(DEF_SVC1_INDICATEABLE_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_INDICATEABLE_USER_DESC},
-
-    // Long Value Characteristic Declaration
-    [SVC1_IDX_LONG_VALUE_CHAR]         = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            0, 0, NULL},
-
-    // Long Value Characteristic Value
-    [SVC1_IDX_LONG_VALUE_VAL]          = {SVC1_LONG_VALUE_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE) | PERM(WR, ENABLE) | PERM(NTF, ENABLE) | PERM(WRITE_REQ, ENABLE),
-                                            DEF_SVC1_LONG_VALUE_CHAR_LEN, 0, NULL},
-
-    // Long Value Client Characteristic Configuration Descriptor
-    [SVC1_IDX_LONG_VALUE_NTF_CFG]      = {(uint8_t*)&att_desc_cfg, ATT_UUID_16_LEN, PERM(RD, ENABLE) | PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
-                                            sizeof(uint16_t), 0, NULL},
-
-    // Long Value Characteristic User Description
-    [SVC1_IDX_LONG_VALUE_USER_DESC]    = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_LONG_VALUE_CHAR_USER_DESC) - 1, sizeof(DEF_SVC1_LONG_VALUE_CHAR_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_LONG_VALUE_CHAR_USER_DESC},
 };
 
 /// @} USER_CONFIG

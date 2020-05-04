@@ -68,6 +68,7 @@
 
 /* Duration of timer for connection parameter update request */
 #define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define USER_SWITCH_ADV_SCAN_TO             (1000)    // 200*10ms = 2sec
 
 /*
  * TYPE DEFINITIONS
@@ -86,6 +87,8 @@
  ****************************************************************************************
 */
 void user_app_init(void);
+
+void user_app_on_scanning_completed(const uint8_t);
 
 /**
  ****************************************************************************************
@@ -139,6 +142,15 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           ke_task_id_t const dest_id,
                           ke_task_id_t const src_id);
 
+ 
+/**
+ ****************************************************************************************
+ * @brief Advertising report.
+ * @param[in] param gap adv report
+ * @return void
+ ****************************************************************************************
+*/                          
+void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param);
 /// @} APP
 
 #endif //_USER_PROFILE_H_

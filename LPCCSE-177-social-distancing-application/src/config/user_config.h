@@ -52,6 +52,17 @@
 /*
  ****************************************************************************************
  *
+ * USER DEFINED
+ *
+ ****************************************************************************************
+ */
+
+#define USER_ADVERTISING_INT_MIN    130 //ms
+#define USER_ADVERTISING_INT_MAX    140 //ms
+
+/*
+ ****************************************************************************************
+ *
  * Privacy / Addressing configuration
  *
  ****************************************************************************************
@@ -109,10 +120,10 @@ static const struct advertise_configuration user_adv_conf = {
     .addr_src = APP_CFG_ADDR_SRC(USER_CFG_ADDRESS_MODE),
 
     /// Minimum interval for advertising
-    .intv_min = MS_TO_BLESLOTS(687.5),                    // 687.5ms
+    .intv_min = MS_TO_BLESLOTS(USER_ADVERTISING_INT_MIN),                   
 
     /// Maximum interval for advertising
-    .intv_max = MS_TO_BLESLOTS(687.5),                    // 687.5ms
+    .intv_max = MS_TO_BLESLOTS(USER_ADVERTISING_INT_MAX),                    // 687.5ms
 
     /**
      *  Advertising channels map:

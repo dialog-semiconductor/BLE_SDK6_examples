@@ -74,7 +74,16 @@
  * TYPE DEFINITIONS
  ****************************************************************************************
  */
+enum user_prox_zones
+{
+    USER_PROX_ZONE_DANGER,
+    USER_PROX_ZONE_WARNING,
+    USER_PROX_ZONE_COARSE,
+    USER_PROX_ZONE_BLE_LIMIT,
+    USER_PROX_ZONE_COUNT
+};
 
+int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-50, -40, -30, -20};
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************

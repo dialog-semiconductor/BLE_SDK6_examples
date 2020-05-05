@@ -59,6 +59,7 @@
 
 #define USER_CON_INTV        30  //ms
 
+
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
@@ -99,9 +100,9 @@ static const struct scan_configuration user_scan_conf ={
     /// Own BD address source of the device
     .addr_src = GAPM_STATIC_ADDR,
     /// Scan interval
-    .interval = 10,
+    .interval = (USER_ADVERTISING_INT_MAX * 3) / 2,
     /// Scan window size
-    .window = 9,
+    .window = USER_ADVERTISING_INT_MIN/3,
     /// Scanning mode
     .mode = GAP_GEN_DISCOVERY,
     /// Scan filter policy
@@ -292,15 +293,6 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
         }
     }
     else
-        arch_printf("FALSE");
-    
-//    if((int8_t)param->report.rssi > -50)
-//        app_easy_gap_start_connection_to_set(param->report.adv_addr_type, (uint8_t *)&param->report.adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
-
-//    // Disable Advertising
-//    struct gapm_cancel_cmd *cmd = app_gapm_cancel_msg_create();
-//    // Send the message
-//    app_gapm_cancel_msg_send(cmd);
-    
+        arch_printf("FALSE");   
 }
 /// @} APP

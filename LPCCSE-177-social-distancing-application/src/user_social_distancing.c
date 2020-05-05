@@ -79,6 +79,8 @@ static bool is_user_connected                   __SECTION_ZERO("retention_mem_ar
 
 static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-50, -40, -30, -20};
 
+static struct user_adv_rssi_node* user_adv_rep_rssi_head = NULL;
+
 struct scan_configuration {
     /// Operation code.
     uint8_t     code;
@@ -119,6 +121,24 @@ static const uint8_t user_custom_srv_uuid[] = DEF_SVC1_UUID_128;
  * FUNCTION DEFINITIONS
  ****************************************************************************************
 */
+static struct user_adv_rssi_node* user_adv_rssi_create_node()
+{
+    if (ke_check_malloc(sizeof(struct user_adv_rssi_node), KE_MEM_ENV))
+    {
+        struct user_adv_rssi_node* temp;
+        
+        temp = (struct user_adv_rssi_node *)ke_malloc(sizeof(struct user_adv_rssi_node), KE_MEM_ENV);
+        memset(&temp->adv_addr, 0, sizeof(temp->adv_addr));
+        memset(&temp->adv_addr_type, 0, sizeof(temp->adv_addr_type));
+        memset(&temp->count, 0, sizeof(temp->count));
+        memset(&temp->mean_rssi, 0, sizeof(temp->mean_rssi));
+        temp->next = NULL;
+        
+        return temp;
+    }
+    
+    return NULL;
+}
 
 static void user_scan_start(void)
 {
@@ -295,6 +315,10 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
         }
     }
     else
-        arch_printf("FALSE");   
+        arch_printf("FALSE");
+
+
+    // Populate advertiser report list
+    
 }
 /// @} APP

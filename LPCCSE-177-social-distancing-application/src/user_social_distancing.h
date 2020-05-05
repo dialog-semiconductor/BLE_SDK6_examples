@@ -84,6 +84,20 @@ enum user_prox_zones
 };
 
 
+struct user_adv_rssi_node
+{
+    ///Advertising address type: public/random
+    uint8_t                     adv_addr_type;
+    ///Advertising address value
+    struct bd_addr              adv_addr;
+    ///Mean RSSI value for advertising packets
+    uint8_t                     mean_rssi;
+    ///Number of times the advertising report has been received
+    uint8_t                     count;
+    ///Next linked node
+    struct user_adv_rssi_node*  next;
+};
+
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************

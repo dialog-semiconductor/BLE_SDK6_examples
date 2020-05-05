@@ -123,7 +123,7 @@ static const struct advertise_configuration user_adv_conf = {
     .intv_min = MS_TO_BLESLOTS(USER_ADVERTISING_INT_MIN),                   
 
     /// Maximum interval for advertising
-    .intv_max = MS_TO_BLESLOTS(USER_ADVERTISING_INT_MAX),                    // 687.5ms
+    .intv_max = MS_TO_BLESLOTS(USER_ADVERTISING_INT_MAX),
 
     /**
      *  Advertising channels map:
@@ -184,13 +184,15 @@ static const struct advertise_configuration user_adv_conf = {
  *    - The maximum length of the user defined response data shall be 31 bytes.
  ****************************************************************************************
  */
+
 /// Advertising data
-#define USER_ADVERTISE_DATA         ("\x03"\
-                                    ADV_TYPE_COMPLETE_LIST_16BIT_SERVICE_IDS\
-                                    ADV_UUID_DEVICE_INFORMATION_SERVICE\
-                                    "\x11"\
-                                    ADV_TYPE_COMPLETE_LIST_128BIT_SERVICE_IDS\
-                                    "\x59\x5A\x08\xE4\x86\x2A\x9E\x8F\xE9\x11\xBC\x7C\x98\x43\x42\x18")
+#define USER_ADVERTISE_DATA         ("\x11"\
+                                    ADV_TYPE_INCOMPLETE_LIST_128BIT_SERVICE_IDS\
+                                    "\xC6\xE9\x79\x4D\xEF\x6F\x41\xE7\xA1\x07\x7F\x15\x47\xD8\x43\xD6"\
+                                    "\x09"\
+                                    ADV_TYPE_MANUFACTURER_SPECIFIC_DATA\
+                                    "\x01\x02\x03\x04\x05\x06\x07\x08")
+
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)

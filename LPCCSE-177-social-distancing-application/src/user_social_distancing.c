@@ -77,6 +77,8 @@ timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_ar
 
 static bool is_user_connected                   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
+static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-50, -40, -30, -20};
+
 struct scan_configuration {
     /// Operation code.
     uint8_t     code;

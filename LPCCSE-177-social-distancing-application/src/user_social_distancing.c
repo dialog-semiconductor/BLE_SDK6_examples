@@ -140,43 +140,46 @@ static struct user_adv_rssi_node* user_adv_rssi_create_node()
     return NULL;
 }
 
-static struct user_adv_rssi_node* user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_report)
+static void user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_report)
 {
     struct user_adv_rssi_node* p;
     struct user_adv_rssi_node* temp;
     
     temp = user_adv_rssi_create_node();
-    memcpy(&temp->adv_addr_type, &adv_report->report.adv_addr_type, sizeof(temp->adv_addr_type));
-    memcpy(&temp->adv_addr, &adv_report->report.adv_addr, sizeof(temp->adv_addr));
-    memcpy(&temp->mean_rssi, &adv_report->report.rssi, sizeof(temp->mean_rssi));
-    (temp->count)++;
-    temp->next = NULL;
-    
-    if (user_adv_rep_rssi_head == NULL) // HEAD is NULL
+    if (temp != NULL)
     {
-        user_adv_rep_rssi_head = temp;
-    }
-    else
-    {
-        p = user_adv_rep_rssi_head;
-        while(memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
-              || p->adv_addr_type != adv_report->report.adv_addr_type) 
-        {
-            if (p->next != NULL)
-                p = p->next;
-            else
-                break;
-        }
+        memcpy(&temp->adv_addr_type, &adv_report->report.adv_addr_type, sizeof(temp->adv_addr_type));
+        memcpy(&temp->adv_addr, &adv_report->report.adv_addr, sizeof(temp->adv_addr));
+        memcpy(&temp->mean_rssi, &adv_report->report.rssi, sizeof(temp->mean_rssi));
+        (temp->count)++;
+        temp->next = NULL;
         
-        if (!memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
-            && p->adv_addr_type == adv_report->report.adv_addr_type)
+        if (user_adv_rep_rssi_head == NULL) // HEAD is NULL
         {
-            p->mean_rssi = (p->count * p->mean_rssi + adv_report->report.rssi) / (p->count + 1);
-            (p->count)++;
+            user_adv_rep_rssi_head = temp;
         }
         else
         {
-            p->next = temp;
+            p = user_adv_rep_rssi_head;
+            while(memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
+                  || p->adv_addr_type != adv_report->report.adv_addr_type) 
+            {
+                if (p->next != NULL)
+                    p = p->next;
+                else
+                    break;
+            }
+            
+            if (!memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
+                && p->adv_addr_type == adv_report->report.adv_addr_type)
+            {
+                p->mean_rssi = ((uint32_t)p->count * (uint32_t)p->mean_rssi + adv_report->report.rssi) / (p->count + 1);
+                (p->count)++;
+            }
+            else
+            {
+                p->next = temp;
+            }
         }
     }
 }

@@ -61,7 +61,7 @@ Now we can start implementing the use-cases for hibernation mode.
 
 To demonstrate the hibernation example there are three use-cases which mainly depends on where the booting is from:
 1. SPI Flash (address 0 remap to ROM)
-2. OTP (address 0 remap to OTP) 
+2. OTP (address 0 remap to ROM) 
 3. SysRAM (address 0 remap to SysRAM1)
 
 ### Using SPI Flash 

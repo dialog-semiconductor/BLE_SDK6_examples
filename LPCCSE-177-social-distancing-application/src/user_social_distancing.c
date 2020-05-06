@@ -184,6 +184,28 @@ static void user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_r
     }
 }
 
+static void user_adv_rssi_print_list()
+{
+    struct user_adv_rssi_node* p;
+
+    p = user_adv_rep_rssi_head;
+    while (p != NULL) 
+    {
+        arch_printf("\r\n List entry:\t");
+        arch_printf("%02x %02x %02x %02x %02x %02x\t",
+        p->adv_addr.addr[5],
+        p->adv_addr.addr[4],
+        p->adv_addr.addr[3],
+        p->adv_addr.addr[2],
+        p->adv_addr.addr[1],
+        p->adv_addr.addr[0]);
+        arch_printf("RSSI: %d\t", (int8_t)p->mean_rssi);
+        arch_printf("Count: %d\t", (int8_t)p->count);
+     
+        p = p->next;
+    }
+}
+
 static void user_scan_start(void)
 {
     struct gapm_start_scan_cmd* cmd = KE_MSG_ALLOC(GAPM_START_SCAN_CMD,
@@ -231,8 +253,8 @@ void user_app_on_scanning_completed(const uint8_t param)
 {
     if (!is_user_connected)
         user_app_adv_start();
-    else
-        app_easy_gap_start_connection_to();
+//    else
+//        app_easy_gap_start_connection_to();
 
 }
 
@@ -353,15 +375,16 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
     
         if((int8_t)param->report.rssi > -50)
         {
-            is_user_connected = true;
+            //is_user_connected = true;
             
-            app_easy_gap_start_connection_to_set(param->report.adv_addr_type, (uint8_t *)&param->report.adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
+            //app_easy_gap_start_connection_to_set(param->report.adv_addr_type, (uint8_t *)&param->report.adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
         }
     }
     else
         arch_printf("FALSE");
 
     // Populate advertiser report list
-    
+    user_adv_rssi_add_node_rssi(param);
+    user_adv_rssi_print_list();
 }
 /// @} APP

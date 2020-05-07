@@ -206,6 +206,28 @@ static void user_adv_rssi_print_list()
     }
 }
 
+static struct user_adv_rssi_node* user_adv_rssi_get_max_rssi_node()
+{
+    struct user_adv_rssi_node* p;
+    struct user_adv_rssi_node* ret = NULL;
+
+    int8_t max_rssi = -128;     // Choose minimum negative value. Could be optimized later if needed.
+    
+    p = user_adv_rep_rssi_head;
+    while (p != NULL) 
+    {
+        if ((int8_t)p->mean_rssi > max_rssi)
+        {
+            max_rssi = (int8_t)p->mean_rssi;
+            ret = p;
+        }
+        
+        p = p->next;
+    }
+    
+    return ret;
+}
+
 static void user_scan_start(void)
 {
     struct gapm_start_scan_cmd* cmd = KE_MSG_ALLOC(GAPM_START_SCAN_CMD,
@@ -251,10 +273,34 @@ void user_app_init(void)
 
 void user_app_on_scanning_completed(const uint8_t param)
 {
+    struct user_adv_rssi_node* p;
+    
+    p = user_adv_rssi_get_max_rssi_node();
+    
+    if (p == NULL)
+        arch_printf("\r\n No nodes stored");
+    else
+    {
+        arch_printf("\r\n Strongest node RSSI: %d", (int8_t)p->mean_rssi);
+        if ((int8_t)p->mean_rssi > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
+        {
+            is_user_connected = true;
+            app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
+        }
+    }
+    
     if (!is_user_connected)
         user_app_adv_start();
-//    else
-//        app_easy_gap_start_connection_to();
+    else
+    {
+        app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
+        app_easy_gap_start_connection_to();
+    }
+    
+//    p = user_adv_rssi_get_max_rssi_node();
+//    
+//    app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
+//    app_easy_gap_start_connection_to();
 
 }
 
@@ -372,13 +418,6 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
     if(!memcmp(report_data + 9, user_custom_srv_uuid, ATT_UUID_128_LEN))
     {
         arch_printf("TRUE");
-    
-        if((int8_t)param->report.rssi > -50)
-        {
-            //is_user_connected = true;
-            
-            //app_easy_gap_start_connection_to_set(param->report.adv_addr_type, (uint8_t *)&param->report.adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
-        }
     }
     else
         arch_printf("FALSE");

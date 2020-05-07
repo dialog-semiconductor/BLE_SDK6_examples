@@ -60,7 +60,7 @@
 static const att_svc_desc128_t custs1_svc1                      = DEF_SVC1_UUID_128;
 
 static const uint8_t SVC1_CTRL_POINT_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_CTRL_POINT_UUID_128;
-static const uint8_t SVC1_ADC_VAL_1_UUID_128[ATT_UUID_128_LEN]        = DEF_SVC1_ADC_VAL_1_UUID_128;
+static const uint8_t SVC1_RSSI_VAL_UUID_128[ATT_UUID_128_LEN]         = DEF_SVC1_RSSI_VAL_UUID_128;
 
 // Attribute specifications
 static const uint16_t att_decl_svc       = ATT_DECL_PRIMARY_SERVICE;
@@ -103,21 +103,21 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
                                             (uint8_t *) DEF_SVC1_CONTROL_POINT_USER_DESC},
 
     // ADC Value 1 Characteristic Declaration
-    [SVC1_IDX_ADC_VAL_1_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+    [SVC1_IDX_RSSI_VAL_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             0, 0, NULL},
 
     // ADC Value 1 Characteristic Value
-    [SVC1_IDX_ADC_VAL_1_VAL]           = {SVC1_ADC_VAL_1_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE) | PERM(NTF, ENABLE),
-                                            DEF_SVC1_ADC_VAL_1_CHAR_LEN, 0, NULL},
+    [SVC1_IDX_RSSI_VAL_VAL]           = {SVC1_RSSI_VAL_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE) | PERM(NTF, ENABLE),
+                                            DEF_SVC1_RSSI_VAL_CHAR_LEN, 0, NULL},
 
     // ADC Value 1 Client Characteristic Configuration Descriptor
-    [SVC1_IDX_ADC_VAL_1_NTF_CFG]       = {(uint8_t*)&att_desc_cfg, ATT_UUID_16_LEN, PERM(RD, ENABLE) | PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
+    [SVC1_IDX_RSSI_VAL_NTF_CFG]       = {(uint8_t*)&att_desc_cfg, ATT_UUID_16_LEN, PERM(RD, ENABLE) | PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
                                             sizeof(uint16_t), 0, NULL},
 
     // ADC Value 1 Characteristic User Description
-    [SVC1_IDX_ADC_VAL_1_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_ADC_VAL_1_USER_DESC) - 1, sizeof(DEF_SVC1_ADC_VAL_1_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_ADC_VAL_1_USER_DESC},
+    [SVC1_IDX_RSSI_VAL_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            sizeof(DEF_SVC1_RSSI_VAL_USER_DESC) - 1, sizeof(DEF_SVC1_RSSI_VAL_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_RSSI_VAL_USER_DESC},
 };
 
 /// @} USER_CONFIG

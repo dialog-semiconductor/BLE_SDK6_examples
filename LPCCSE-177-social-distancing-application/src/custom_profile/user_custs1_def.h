@@ -59,13 +59,13 @@
 #define DEF_SVC1_UUID_128                {0x59, 0x5a, 0x08, 0xe4, 0x86, 0x2a, 0x9e, 0x8f, 0xe9, 0x11, 0xbc, 0x7c, 0x98, 0x43, 0x42, 0x18}
 
 #define DEF_SVC1_CTRL_POINT_UUID_128     {0x20, 0xEE, 0x8D, 0x0C, 0xE1, 0xF0, 0x4A, 0x0C, 0xB3, 0x25, 0xDC, 0x53, 0x6A, 0x68, 0x86, 0x2D}
-#define DEF_SVC1_ADC_VAL_1_UUID_128      {0x17, 0xB9, 0x67, 0x98, 0x4C, 0x66, 0x4C, 0x01, 0x96, 0x33, 0x31, 0xB1, 0x91, 0x59, 0x00, 0x15}
+#define DEF_SVC1_RSSI_VAL_UUID_128       {0x17, 0xB9, 0x67, 0x98, 0x4C, 0x66, 0x4C, 0x01, 0x96, 0x33, 0x31, 0xB1, 0x91, 0x59, 0x00, 0x15}
 
 #define DEF_SVC1_CTRL_POINT_CHAR_LEN     1
-#define DEF_SVC1_ADC_VAL_1_CHAR_LEN      2
+#define DEF_SVC1_RSSI_VAL_CHAR_LEN       2
 
 #define DEF_SVC1_CONTROL_POINT_USER_DESC     "Control Point"
-#define DEF_SVC1_ADC_VAL_1_USER_DESC         "ADC Value 1"
+#define DEF_SVC1_RSSI_VAL_USER_DESC          "RSSI Value"
 
 /// Custom1 Service Data Base Characteristic enum
 enum
@@ -77,10 +77,10 @@ enum
     SVC1_IDX_CONTROL_POINT_VAL,
     SVC1_IDX_CONTROL_POINT_USER_DESC,
 
-    SVC1_IDX_ADC_VAL_1_CHAR,
-    SVC1_IDX_ADC_VAL_1_VAL,
-    SVC1_IDX_ADC_VAL_1_NTF_CFG,
-    SVC1_IDX_ADC_VAL_1_USER_DESC,
+    SVC1_IDX_RSSI_VAL_CHAR,
+    SVC1_IDX_RSSI_VAL_VAL,
+    SVC1_IDX_RSSI_VAL_NTF_CFG,
+    SVC1_IDX_RSSI_VAL_USER_DESC,
 
     CUSTS1_IDX_NB
 };

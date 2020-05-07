@@ -61,7 +61,7 @@ Now we can start implementing the use-cases for hibernation mode.
 
 To demonstrate the hibernation example there are three use-cases which mainly depends on where the booting is from:
 1. SPI Flash (address 0 remap to ROM)
-2. OTP (address 0 remap to OTP) 
+2. OTP (address 0 remap to ROM) 
 3. SysRAM (address 0 remap to SysRAM1)
 
 ### Using SPI Flash 
@@ -149,11 +149,11 @@ The process is the same as using SPI as we have seen in the previous section, ex
 	#define CFG_APP_GOTO_HIBERNATION
 	
 	#undef HIBERNATION_SPI
-	#define HIBERNATION_OTP
+	#define HIBERNATION_OTP 
 	#undef HIBERNATION_SYSRAM
 ```
 
-This would define the configuration of Hibernation mode to remap the address 0 to OTP while booting. 
+This would define the configuration of Hibernation mode to remap the address 0 to ROM while booting. 
 
 ![HIBERNATION_OTP](assets/cfg_hibernation_otp.png)
 

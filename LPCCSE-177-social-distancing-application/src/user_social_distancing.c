@@ -57,8 +57,8 @@
  ****************************************************************************************
  */
 
-#define USER_CON_INTV        30  //ms
-
+#define USER_CON_INTV           30  //ms
+#define USER_CON_RSSI_MAX_NB    4
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
@@ -69,6 +69,7 @@ uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_ar
 timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -263,6 +264,47 @@ static void user_switch_adv_scan_timer_cb()
     app_easy_gap_advertise_stop(); 
 }
 
+static void user_poll_conn_rssi_timer_cb()
+{
+    struct gapc_get_info_cmd *pkt = KE_MSG_ALLOC(GAPC_GET_INFO_CMD,
+                                                KE_BUILD_ID(TASK_GAPC, app_connection_idx),
+                                                TASK_APP, gapc_get_info_cmd);
+
+    pkt->operation = GAPC_GET_CON_RSSI;
+    ke_msg_send(pkt);
+    
+    user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+}
+
+static void user_collect_conn_rssi(uint8_t rssi_val)
+{
+    static uint8_t idx;
+    static uint8_t rssi_values[USER_CON_RSSI_MAX_NB];
+    
+    if (idx < USER_CON_RSSI_MAX_NB)
+    {
+        rssi_values[idx] = rssi_val;
+        idx++;
+    }
+    else
+    {
+        int32_t mean_con_rssi = 0;
+        
+        int i;
+        for (i=0; i<USER_CON_RSSI_MAX_NB; i++)
+            mean_con_rssi += (int8_t) rssi_values[i];
+        mean_con_rssi /= USER_CON_RSSI_MAX_NB;
+        
+        arch_printf("\r\n Mean connection RSSI:%d", mean_con_rssi);
+        
+        idx = 0;
+        memset(rssi_values, 0, sizeof(rssi_values));
+        
+        app_easy_gap_disconnect(app_connection_idx);
+    }
+        
+}
+
 void user_app_init(void)
 {
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
@@ -296,12 +338,6 @@ void user_app_on_scanning_completed(const uint8_t param)
         app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
         app_easy_gap_start_connection_to();
     }
-    
-//    p = user_adv_rssi_get_max_rssi_node();
-//    
-//    app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
-//    app_easy_gap_start_connection_to();
-
 }
 
 void user_app_adv_start(void)
@@ -334,6 +370,33 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
         {    
             app_easy_timer_cancel(user_switch_adv_scan_timer);
         }
+        
+        user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+
+        
+//        // Enable the notifications
+//        struct gattc_write_cmd *wr_char = KE_MSG_ALLOC_DYN(GATTC_WRITE_CMD,
+//                KE_BUILD_ID(TASK_GATTC, connection_idx), TASK_APP,
+//                gattc_write_cmd, sizeof(uint16_t));
+
+//        // Offset
+//        wr_char->offset         = 0x0000;
+//        // cursor always 0
+//        wr_char->cursor         = 0x0000;
+//        // Write Type
+//        wr_char->operation      = GATTC_WRITE;
+//        // Characteristic Value attribute handle
+//        wr_char->handle         = 31;
+//        // Value Length
+//        wr_char->length         = sizeof(uint16_t);
+//        // Auto Execute
+//        wr_char->auto_execute   = true;
+//        // Value
+//        wr_char->value[0] = 1;
+
+//        // Send the message
+//        ke_msg_send(wr_char);
+
     }
     else
     {
@@ -385,6 +448,12 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                 (msg_param->sup_to == user_connection_param_conf.time_out))
             {
             }
+        } break;
+        case GAPC_CON_RSSI_IND:
+        {
+            struct gapc_con_rssi_ind const *msg_param = (struct gapc_con_rssi_ind const *)(param);
+            arch_printf("\r\n Connection RSSI:%d", (int8_t) msg_param->rssi);
+            user_collect_conn_rssi(msg_param->rssi);
         } break;
 
         default:

@@ -300,7 +300,12 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
         idx = 0;
         memset(rssi_values, 0, sizeof(rssi_values));
         
-        app_easy_gap_disconnect(app_connection_idx);
+        if (mean_con_rssi > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
+            ;//placeholder for LED danger alert
+        else if (mean_con_rssi > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
+            ;//placeholder for LED warning alert
+        else if (mean_con_rssi > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
+            ;//placeholder for LED coarse alert
     }
         
 }

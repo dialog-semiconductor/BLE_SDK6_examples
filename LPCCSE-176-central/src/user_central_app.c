@@ -393,7 +393,7 @@ void user_on_adv_report_ind(struct gapm_adv_report_ind const * adv_ind)
 																						format_bd_address(&adv_ind->report.adv_addr) );
 	}
 
-#if CONNECT_TO_PERIPHERAL	
+	#if CONNECT_TO_PERIPHERAL
 	if(conn_to_device)
 	{
 		dbg_block_printf("Connecting to Device...\r\n", NULL);
@@ -404,7 +404,7 @@ void user_on_adv_report_ind(struct gapm_adv_report_ind const * adv_ind)
 		user_ble_gap_stop_scan();
 		
 	}
-#endif
+	#endif
 
 	
 	
@@ -461,6 +461,9 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param )
     default_app_on_disconnect(param);
 		central_app_env.periph_devices[param->conhdl].con_valid = false;
 	
+		if(central_app_env.connection_timer != EASY_TIMER_INVALID_TIMER){
+			app_easy_timer_cancel(central_app_env.connection_timer);
+		}
 		if( central_app_env.num_connections == CFG_MAX_CONNECTIONS)
 		{
 			ble_scan_for_devices();
@@ -487,7 +490,7 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param )
 static void connection_timeout_cb(){
 	
 	central_app_env.connection_timer = EASY_TIMER_INVALID_TIMER;
-	ble_scan_for_devices();
+	user_ble_cancel_connect();
 }
 
 /**
@@ -643,7 +646,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 	
 	
 	uint8_t conn_idx = KE_IDX_GET(src_id);
-	dbg_printf("msg_id:%04x\r\n", msgid);
 	switch(msgid)
 	{
 		case GATTC_CMP_EVT:
@@ -695,7 +697,12 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 		case GAPM_CMP_EVT:
 		{
 			struct gapm_cmp_evt const* evt = (struct gapm_cmp_evt const *)(param);
-			dbg_printf("gapm_cmp_evt: %04X\r\n", evt->operation);
+			
+			if(evt->operation == GAPM_CANCEL)
+			{
+				dbg_printf("Connection Timeout\r\n", NULL);
+				ble_scan_for_devices();
+			}
 			break;
 			
 		}
@@ -721,6 +728,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 				
 			}
 		}break;
+		
 		
 		default:
 			break;

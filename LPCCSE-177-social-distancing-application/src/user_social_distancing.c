@@ -347,7 +347,7 @@ void user_app_on_scanning_completed(const uint8_t param)
 
 void user_app_adv_start(void)
 {
-    int8_t rand_val = co_rand_byte();
+    int8_t rand_val = (int8_t) co_rand_byte();
 
     user_switch_adv_scan_timer = app_easy_timer(USER_SWITCH_ADV_SCAN_TO + rand_val, user_switch_adv_scan_timer_cb);
 
@@ -376,32 +376,7 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
             app_easy_timer_cancel(user_switch_adv_scan_timer);
         }
         
-        user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
-
-        
-//        // Enable the notifications
-//        struct gattc_write_cmd *wr_char = KE_MSG_ALLOC_DYN(GATTC_WRITE_CMD,
-//                KE_BUILD_ID(TASK_GATTC, connection_idx), TASK_APP,
-//                gattc_write_cmd, sizeof(uint16_t));
-
-//        // Offset
-//        wr_char->offset         = 0x0000;
-//        // cursor always 0
-//        wr_char->cursor         = 0x0000;
-//        // Write Type
-//        wr_char->operation      = GATTC_WRITE;
-//        // Characteristic Value attribute handle
-//        wr_char->handle         = 31;
-//        // Value Length
-//        wr_char->length         = sizeof(uint16_t);
-//        // Auto Execute
-//        wr_char->auto_execute   = true;
-//        // Value
-//        wr_char->value[0] = 1;
-
-//        // Send the message
-//        ke_msg_send(wr_char);
-
+        user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);        
     }
     else
     {
@@ -414,7 +389,6 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
 
 void user_app_adv_undirect_complete(uint8_t status)
 {
-    // If advertising was canceled then update advertising data and start advertising again
     if (status == GAP_ERR_CANCELED)
     {
         user_scan_start();

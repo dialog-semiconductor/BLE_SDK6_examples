@@ -69,7 +69,7 @@ uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_ar
 timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-//timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 //timer_hnd user_disconnect_timer                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
@@ -277,7 +277,7 @@ static void user_poll_conn_rssi_timer_cb()
     pkt->operation = GAPC_GET_CON_RSSI;
     ke_msg_send(pkt);
     
-    //user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+    user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
 }
 
 //static void user_disconnect_timer_cb()
@@ -316,7 +316,11 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
         else if (mean_con_rssi > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
             ;//placeholder for LED coarse alert
         
-        //app_easy_gap_disconnect(app_connection_idx);
+        if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
+            app_easy_timer_cancel(user_poll_conn_rssi_timer);
+        user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
+        
+        app_easy_gap_disconnect(app_connection_idx);
     }
         
 }
@@ -394,7 +398,7 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
             user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
         }
         
-        //user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+        user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
         //user_disconnect_timer = app_easy_timer(USER_DISCONNECT_TO, user_disconnect_timer_cb);      
     }
     else

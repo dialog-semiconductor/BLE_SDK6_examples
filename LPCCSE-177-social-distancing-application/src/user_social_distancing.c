@@ -69,7 +69,8 @@ uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_ar
 timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+//timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+//timer_hnd user_disconnect_timer                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -133,6 +134,7 @@ static struct user_adv_rssi_node* user_adv_rssi_create_node()
         memset(&temp->adv_addr_type, 0, sizeof(temp->adv_addr_type));
         memset(&temp->count, 0, sizeof(temp->count));
         memset(&temp->mean_rssi, 0, sizeof(temp->mean_rssi));
+        temp->accessed = false;
         temp->next = NULL;
         
         return temp;
@@ -152,6 +154,7 @@ static void user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_r
         memcpy(&temp->adv_addr_type, &adv_report->report.adv_addr_type, sizeof(temp->adv_addr_type));
         memcpy(&temp->adv_addr, &adv_report->report.adv_addr, sizeof(temp->adv_addr));
         memcpy(&temp->mean_rssi, &adv_report->report.rssi, sizeof(temp->mean_rssi));
+        temp->accessed = false;
         (temp->count)++;
         temp->next = NULL;
         
@@ -201,6 +204,7 @@ static void user_adv_rssi_print_list()
         p->adv_addr.addr[1],
         p->adv_addr.addr[0]);
         arch_printf("RSSI: %d\t", (int8_t)p->mean_rssi);
+        arch_printf("Accessed: %d\t", p->accessed? 1: 0);
         arch_printf("Count: %d\t", (int8_t)p->count);
      
         p = p->next;
@@ -260,7 +264,7 @@ static void param_update_request_timer_cb()
 static void user_switch_adv_scan_timer_cb()
 {
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
-    
+
     app_easy_gap_advertise_stop(); 
 }
 
@@ -273,8 +277,13 @@ static void user_poll_conn_rssi_timer_cb()
     pkt->operation = GAPC_GET_CON_RSSI;
     ke_msg_send(pkt);
     
-    user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+    //user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
 }
+
+//static void user_disconnect_timer_cb()
+//{   
+//    app_easy_gap_disconnect(app_connection_idx);
+//}
 
 static void user_collect_conn_rssi(uint8_t rssi_val)
 {
@@ -306,6 +315,8 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
             ;//placeholder for LED warning alert
         else if (mean_con_rssi > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
             ;//placeholder for LED coarse alert
+        
+        //app_easy_gap_disconnect(app_connection_idx);
     }
         
 }
@@ -314,6 +325,7 @@ void user_app_init(void)
 {
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
+    //user_disconnect_timer = EASY_TIMER_INVALID_TIMER;
     
     default_app_on_init();
 }
@@ -340,6 +352,11 @@ void user_app_on_scanning_completed(const uint8_t param)
         user_app_adv_start();
     else
     {
+        p->accessed = true;
+        
+        arch_printf("\r\nOn access:");
+        user_adv_rssi_print_list();
+        
         app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
         app_easy_gap_start_connection_to();
     }
@@ -374,9 +391,11 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
         if(user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
         {    
             app_easy_timer_cancel(user_switch_adv_scan_timer);
+            user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
         }
         
-        user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);        
+        //user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+        //user_disconnect_timer = app_easy_timer(USER_DISCONNECT_TO, user_disconnect_timer_cb);      
     }
     else
     {
@@ -391,6 +410,11 @@ void user_app_adv_undirect_complete(uint8_t status)
 {
     if (status == GAP_ERR_CANCELED)
     {
+        if (user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
+        {
+            app_easy_timer_cancel(user_switch_adv_scan_timer);
+            user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
+        }
         user_scan_start();
     }
 }
@@ -403,6 +427,12 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
         app_easy_timer_cancel(app_param_update_request_timer_used);
         app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     }
+    
+//    if (user_disconnect_timer != EASY_TIMER_INVALID_TIMER)
+//    {
+//        app_easy_timer_cancel(user_disconnect_timer);
+//        user_disconnect_timer = EASY_TIMER_INVALID_TIMER;
+//    }
 
     // Restart Advertising
     user_app_adv_start();

@@ -69,8 +69,8 @@
 /* Duration of timer for connection parameter update request */
 #define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 #define USER_SWITCH_ADV_SCAN_TO             (1000)    // 200*10ms = 2sec
-#define USER_UPD_CONN_RSSI_TO               (3)    // 200*10ms = 2sec
-#define USER_DISCONNECT_TO                  (300)   
+#define USER_UPD_CONN_RSSI_TO               (100)    // 200*10ms = 2sec
+#define USER_DISCONNECT_TO                  (500)   
 
 /*
  * TYPE DEFINITIONS

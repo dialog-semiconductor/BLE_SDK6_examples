@@ -71,6 +71,7 @@ timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_ar
 timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_disconnect_timer                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd user_initiator_timer                  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -79,9 +80,9 @@ timer_hnd user_disconnect_timer                 __SECTION_ZERO("retention_mem_ar
 
 static bool is_user_connected                   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
-static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-50, -40, -30, -20};
+static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-30, -40, -50, -60}; 
 
-static struct user_adv_rssi_node* user_adv_rep_rssi_head = NULL;
+static struct user_adv_rssi_node* user_adv_rep_rssi_head  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 struct scan_configuration {
     /// Operation code.
@@ -221,7 +222,7 @@ static struct user_adv_rssi_node* user_adv_rssi_get_max_rssi_node()
     p = user_adv_rep_rssi_head;
     while (p != NULL) 
     {
-        if ((int8_t)p->mean_rssi > max_rssi)
+        if ((int8_t)p->mean_rssi > max_rssi && !(p->accessed))
         {
             max_rssi = (int8_t)p->mean_rssi;
             ret = p;
@@ -231,6 +232,24 @@ static struct user_adv_rssi_node* user_adv_rssi_get_max_rssi_node()
     }
     
     return ret;
+}
+
+static bool user_adv_rssi_list_has_candidate()
+{
+    struct user_adv_rssi_node* p;
+    
+    p = user_adv_rep_rssi_head;
+    while (p != NULL) 
+    {
+        if ((int8_t)p->mean_rssi > user_prox_zones_rssi[USER_PROX_ZONE_COARSE] && !(p->accessed))
+        {
+            return true;
+        }
+        
+        p = p->next;
+    }
+    
+    return false;
 }
 
 static void user_scan_start(void)
@@ -278,6 +297,30 @@ static void user_poll_conn_rssi_timer_cb()
     ke_msg_send(pkt);
     
     user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+}
+
+static void user_initiator_timer_cb()
+{
+    struct user_adv_rssi_node* p;
+    
+    p = user_adv_rssi_get_max_rssi_node(); // Change get max rssi to CHECK FOR ACCESSED
+
+    arch_printf("\r\nOn initiate:");
+    user_adv_rssi_print_list();
+    
+    if (p != NULL)
+    {
+        user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
+        
+        p->accessed = true;
+        
+        app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
+        app_easy_gap_start_connection_to();
+    }
+    else
+    {
+        ;//List has been traversed, clear it.
+    }
 }
 
 static void user_disconnect_timer_cb()
@@ -332,12 +375,14 @@ void user_app_init(void)
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
     user_disconnect_timer = EASY_TIMER_INVALID_TIMER;
+    user_initiator_timer = EASY_TIMER_INVALID_TIMER;
     
     default_app_on_init();
 }
 
 void user_app_on_scanning_completed(const uint8_t param)
 {
+    bool has_conn_candidate;
     struct user_adv_rssi_node* p;
     
     p = user_adv_rssi_get_max_rssi_node();
@@ -347,25 +392,29 @@ void user_app_on_scanning_completed(const uint8_t param)
     else
     {
         arch_printf("\r\n Strongest node RSSI: %d", (int8_t)p->mean_rssi);
-        if ((int8_t)p->mean_rssi > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
-        {
-            is_user_connected = true;
-            app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
-        }
     }
     
-    if (!is_user_connected)
-        user_app_adv_start();
-    else
+    has_conn_candidate = user_adv_rssi_list_has_candidate();
+    
+    if (has_conn_candidate)
     {
-        p->accessed = true;
-        
-        arch_printf("\r\nOn access:");
-        user_adv_rssi_print_list();
-        
-        app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
-        app_easy_gap_start_connection_to();
+        user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
     }
+    else
+        user_app_adv_start();
+    
+//    if (!is_user_connected)
+//        user_app_adv_start();
+//    else
+//    {
+//        p->accessed = true;
+//        
+//        arch_printf("\r\nOn access:");
+//        user_adv_rssi_print_list();
+//        
+//        app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
+//        app_easy_gap_start_connection_to();
+//    }
 }
 
 void user_app_adv_start(void)

@@ -252,6 +252,21 @@ static bool user_adv_rssi_list_has_candidate()
     return false;
 }
 
+static void user_adv_rssi_list_clear()
+{
+    struct user_adv_rssi_node* p;
+    
+    p = user_adv_rep_rssi_head;
+    while (p != NULL) 
+    {
+        struct user_adv_rssi_node* next;
+        
+        next = p->next;
+        ke_free(p);
+        p = next;
+    }
+}
+
 static void user_scan_start(void)
 {
     struct gapm_start_scan_cmd* cmd = KE_MSG_ALLOC(GAPM_START_SCAN_CMD,
@@ -319,7 +334,12 @@ static void user_initiator_timer_cb()
     }
     else
     {
-        ;//List has been traversed, clear it.
+        user_initiator_timer = EASY_TIMER_INVALID_TIMER;
+        user_adv_rssi_list_clear();
+        arch_printf("\r\nOn list clear:");
+        user_adv_rssi_print_list();
+
+        //user_app_adv_start();
     }
 }
 
@@ -402,19 +422,6 @@ void user_app_on_scanning_completed(const uint8_t param)
     }
     else
         user_app_adv_start();
-    
-//    if (!is_user_connected)
-//        user_app_adv_start();
-//    else
-//    {
-//        p->accessed = true;
-//        
-//        arch_printf("\r\nOn access:");
-//        user_adv_rssi_print_list();
-//        
-//        app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
-//        app_easy_gap_start_connection_to();
-//    }
 }
 
 void user_app_adv_start(void)
@@ -483,7 +490,7 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     }
     
     // Restart Advertising
-    user_app_adv_start();
+    // user_app_adv_start();
 }
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,

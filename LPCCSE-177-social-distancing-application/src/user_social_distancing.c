@@ -72,6 +72,7 @@ timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_ar
 timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_disconnect_timer                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_initiator_timer                  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd user_disconnect_to_timer              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -265,6 +266,8 @@ static void user_adv_rssi_list_clear()
         ke_free(p);
         p = next;
     }
+    
+    user_adv_rep_rssi_head = NULL;
 }
 
 static void user_scan_start(void)
@@ -304,6 +307,8 @@ static void user_switch_adv_scan_timer_cb()
 
 static void user_poll_conn_rssi_timer_cb()
 {
+    if (ke_state_get(TASK_APP) == APP_CONNECTED)
+    {
     struct gapc_get_info_cmd *pkt = KE_MSG_ALLOC(GAPC_GET_INFO_CMD,
                                                 KE_BUILD_ID(TASK_GAPC, app_connection_idx),
                                                 TASK_APP, gapc_get_info_cmd);
@@ -311,7 +316,18 @@ static void user_poll_conn_rssi_timer_cb()
     pkt->operation = GAPC_GET_CON_RSSI;
     ke_msg_send(pkt);
     
+    arch_printf("\r\nOn RSSI timer callback: Set RSSI timer");
+    }
     user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+}
+
+static void user_disconnect_to_timer_cb()
+{
+    struct gapm_cancel_cmd *cmd = app_gapm_cancel_msg_create();
+    // Send the message
+    app_gapm_cancel_msg_send(cmd);
+    
+    user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
 }
 
 static void user_initiator_timer_cb()
@@ -323,15 +339,25 @@ static void user_initiator_timer_cb()
     arch_printf("\r\nOn initiate:");
     user_adv_rssi_print_list();
     
-    if (p != NULL)
+    if (p != NULL && (ke_state_get(TASK_APP) == APP_CONNECTABLE))
     {
+       
         user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
+        user_disconnect_to_timer = app_easy_timer(USER_DISCONNECT_TO_TO, user_disconnect_to_timer_cb);
         
         p->accessed = true;
+        
+        // Get the state
+        arch_printf("\r\nState in initiator timer: %x", ke_state_get(TASK_APP));
         
         app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
         app_easy_gap_start_connection_to();
     }
+    else if (ke_state_get(TASK_APP) != APP_CONNECTABLE)
+    {
+        user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
+        app_easy_gap_disconnect(app_connection_idx);
+    }        
     else
     {
         user_initiator_timer = EASY_TIMER_INVALID_TIMER;
@@ -339,7 +365,7 @@ static void user_initiator_timer_cb()
         arch_printf("\r\nOn list clear:");
         user_adv_rssi_print_list();
 
-        //user_app_adv_start();
+        user_app_adv_start();
     }
 }
 
@@ -382,10 +408,15 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
             ;//placeholder for LED coarse alert
         
         if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
+        {
+            arch_printf("\r\nOn RSSI collect: Cancel RSSI timer if not invalid");
             app_easy_timer_cancel(user_poll_conn_rssi_timer);
+        }
+        arch_printf("\r\nOn RSSI collect: Invalidate RSSI timer");
         user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
         
-        user_disconnect_timer = app_easy_timer(USER_DISCONNECT_TO, user_disconnect_timer_cb);
+        //user_disconnect_timer = app_easy_timer(USER_DISCONNECT_TO, user_disconnect_timer_cb);
+        app_easy_gap_disconnect(app_connection_idx);
     }
         
 }
@@ -396,6 +427,7 @@ void user_app_init(void)
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
     user_disconnect_timer = EASY_TIMER_INVALID_TIMER;
     user_initiator_timer = EASY_TIMER_INVALID_TIMER;
+    user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
     
     default_app_on_init();
 }
@@ -456,7 +488,20 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
             user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
         }
         
-        user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+        if(user_disconnect_to_timer != EASY_TIMER_INVALID_TIMER)
+        {   
+            wdg_reload(WATCHDOG_DEFAULT_PERIOD);
+            wdg_resume ();
+    
+            app_easy_timer_cancel(user_disconnect_to_timer);
+            user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
+        }
+        
+        if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
+        {
+            arch_printf("\r\nOn connection: Set RSSI timer");
+            user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+        }
     }
     else
     {
@@ -488,6 +533,8 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
         app_easy_timer_cancel(app_param_update_request_timer_used);
         app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     }
+    
+    ke_state_set(TASK_APP, APP_CONNECTABLE);
     
     // Restart Advertising
     // user_app_adv_start();

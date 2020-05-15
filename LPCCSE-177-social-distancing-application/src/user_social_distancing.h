@@ -72,6 +72,7 @@
 #define USER_UPD_CONN_RSSI_TO               (20)    // 200*10ms = 2sec
 #define USER_DISCONNECT_TO                  (500)   
 #define USER_INITIATOR_TO                   (1000)    // 200*10ms = 2sec
+#define USER_DISCONNECT_TO_TO               (700)    // 200*10ms = 2sec
 
 /*
  * TYPE DEFINITIONS

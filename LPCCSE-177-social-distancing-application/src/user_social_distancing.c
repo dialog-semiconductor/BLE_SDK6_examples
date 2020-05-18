@@ -369,12 +369,6 @@ static void user_initiator_timer_cb()
     }
 }
 
-static void user_disconnect_timer_cb()
-{   
-    user_disconnect_timer = EASY_TIMER_INVALID_TIMER;
-    app_easy_gap_disconnect(app_connection_idx);
-}
-
 static void user_collect_conn_rssi(uint8_t rssi_val)
 {
     static uint8_t idx;
@@ -415,7 +409,6 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
         arch_printf("\r\nOn RSSI collect: Invalidate RSSI timer");
         user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
         
-        //user_disconnect_timer = app_easy_timer(USER_DISCONNECT_TO, user_disconnect_timer_cb);
         app_easy_gap_disconnect(app_connection_idx);
     }
         

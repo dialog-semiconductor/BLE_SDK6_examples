@@ -57,16 +57,14 @@
  */
 
 // Service 1 of the custom server 1
-static const att_svc_desc128_t custs1_svc1                      = DEF_SVC1_UUID_128;
+static const att_svc_desc128_t custs1_svc1                                  = DEF_SVC1_UUID_128;
 
-static const uint8_t SVC1_CTRL_POINT_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_CTRL_POINT_UUID_128;
-static const uint8_t SVC1_RSSI_VAL_UUID_128[ATT_UUID_128_LEN]         = DEF_SVC1_RSSI_VAL_UUID_128;
+static const uint8_t SVC1_REMOTE_WRITE_UUID_128[ATT_UUID_128_LEN]           = DEF_SVC1_REMOTE_WRITE_128;
 
 // Attribute specifications
-static const uint16_t att_decl_svc       = ATT_DECL_PRIMARY_SERVICE;
-static const uint16_t att_decl_char      = ATT_DECL_CHARACTERISTIC;
-static const uint16_t att_desc_cfg       = ATT_DESC_CLIENT_CHAR_CFG;
-static const uint16_t att_desc_user_desc = ATT_DESC_CHAR_USER_DESCRIPTION;
+static const uint16_t att_decl_svc                                          = ATT_DECL_PRIMARY_SERVICE;
+static const uint16_t att_decl_char                                         = ATT_DECL_CHARACTERISTIC;
+static const uint16_t att_desc_user_desc                                    = ATT_DESC_CHAR_USER_DESCRIPTION;
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
@@ -86,38 +84,21 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
      */
 
     // Service 1 Declaration
-    [SVC1_IDX_SVC]                     = {(uint8_t*)&att_decl_svc, ATT_UUID_128_LEN, PERM(RD, ENABLE),
+    [SVC1_IDX_SVC]                      = {(uint8_t*)&att_decl_svc, ATT_UUID_128_LEN, PERM(RD, ENABLE),
                                             sizeof(custs1_svc1), sizeof(custs1_svc1), (uint8_t*)&custs1_svc1},
 
-    // Control Point Characteristic Declaration
-    [SVC1_IDX_CONTROL_POINT_CHAR]      = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            0, 0, NULL},
-
-    // Control Point Characteristic Value
-    [SVC1_IDX_CONTROL_POINT_VAL]       = {SVC1_CTRL_POINT_UUID_128, ATT_UUID_128_LEN, PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
-                                            DEF_SVC1_CTRL_POINT_CHAR_LEN, 0, NULL},
-
-    // Control Point Characteristic User Description
-    [SVC1_IDX_CONTROL_POINT_USER_DESC] = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_CONTROL_POINT_USER_DESC},
-
     // ADC Value 1 Characteristic Declaration
-    [SVC1_IDX_RSSI_VAL_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+    [SVC1_IDX_REMOTE_WRITE_CHAR]        = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             0, 0, NULL},
 
     // ADC Value 1 Characteristic Value
-    [SVC1_IDX_RSSI_VAL_VAL]           = {SVC1_RSSI_VAL_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE) | PERM(NTF, ENABLE),
-                                            DEF_SVC1_RSSI_VAL_CHAR_LEN, 0, NULL},
-
-    // ADC Value 1 Client Characteristic Configuration Descriptor
-    [SVC1_IDX_RSSI_VAL_NTF_CFG]       = {(uint8_t*)&att_desc_cfg, ATT_UUID_16_LEN, PERM(RD, ENABLE) | PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
-                                            sizeof(uint16_t), 0, NULL},
+    [SVC1_IDX_REMOTE_WRITE_VAL]         = {SVC1_REMOTE_WRITE_UUID_128, ATT_UUID_128_LEN, PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
+                                            DEF_SVC1_REMOTE_WRITE_CHAR_LEN, 0, NULL},
 
     // ADC Value 1 Characteristic User Description
-    [SVC1_IDX_RSSI_VAL_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_RSSI_VAL_USER_DESC) - 1, sizeof(DEF_SVC1_RSSI_VAL_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_RSSI_VAL_USER_DESC},
+    [SVC1_IDX_REMOTE_WRITE_USER_DESC]   = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            sizeof(DEF_SVC1_REMOTE_WRITE_DESC) - 1, sizeof(DEF_SVC1_REMOTE_WRITE_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_REMOTE_WRITE_DESC},
 };
 
 /// @} USER_CONFIG

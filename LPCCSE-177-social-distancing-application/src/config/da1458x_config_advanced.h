@@ -355,7 +355,7 @@
 /* - CFG_NVDS_TAG_BLE_CA_NB_PKT         Number of packets to receive for statistics                             */
 /* - CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT     Number  of bad packets needed to remove a channel                       */
 /****************************************************************************************************************/
-#define CFG_NVDS_TAG_BD_ADDRESS             {0x07, 0x00, 0x70, 0xCA, 0xEA, 0x80}
+#define CFG_NVDS_TAG_BD_ADDRESS             {0x08, 0x00, 0x70, 0xCA, 0xEA, 0x80}
 
 #define CFG_NVDS_TAG_LPCLK_DRIFT            DRIFT_500PPM
 #define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       2000
@@ -370,7 +370,7 @@
 /* "da14531_with_heap_logging.lib" in project structure under sdk_arch. Developer must stop execution           */
 /* and type disp_heaplog in debugger's command window. Heap memory statistics will be displayed on window       */
 /****************************************************************************************************************/
-#define CFG_LOG_HEAP_USAGE
+#undef CFG_LOG_HEAP_USAGE
 
 /****************************************************************************************************************/
 /* Enables the BLE statistics measurement feature.                                                              */

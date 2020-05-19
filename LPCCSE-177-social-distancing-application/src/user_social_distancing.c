@@ -619,12 +619,11 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
     if(!memcmp(report_data + 9, user_custom_srv_uuid, ATT_UUID_128_LEN))
     {
         arch_printf("TRUE");
+        // Populate advertiser report list
+        user_adv_rssi_add_node_rssi(param);
+        user_adv_rssi_print_list();
     }
     else
         arch_printf("FALSE");
-
-    // Populate advertiser report list
-    user_adv_rssi_add_node_rssi(param);
-    user_adv_rssi_print_list();
 }
 /// @} APP

@@ -56,6 +56,8 @@
  * DEFINES
  ****************************************************************************************
  */
+extern struct mem_usage_log heap_usage_env;
+
 
 #define USER_CON_INTV           30  //ms
 #define USER_CON_RSSI_MAX_NB    4
@@ -66,11 +68,12 @@
  */
 
 uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+bool user_is_advertiser                         __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+
 timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-timer_hnd user_disconnect_timer                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_initiator_timer                  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_disconnect_to_timer              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
@@ -265,6 +268,7 @@ static void user_adv_rssi_list_clear()
         next = p->next;
         ke_free(p);
         p = next;
+        arch_printf("\r\nIn list clear, memory is: %d", heap_usage_env.used_sz);
     }
     
     user_adv_rep_rssi_head = NULL;
@@ -327,6 +331,9 @@ static void user_disconnect_to_timer_cb()
     // Send the message
     app_gapm_cancel_msg_send(cmd);
     
+    
+    arch_printf("\r\nDisconnect timer called");
+
     user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
 }
 
@@ -353,8 +360,9 @@ static void user_initiator_timer_cb()
         app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
         app_easy_gap_start_connection_to();
     }
-    else if (ke_state_get(TASK_APP) != APP_CONNECTABLE)
+    else if (ke_state_get(TASK_APP) == APP_CONNECTED)
     {
+        arch_printf("\r\nState in initiator timer: %x", ke_state_get(TASK_APP));
         user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
         app_easy_gap_disconnect(app_connection_idx);
     }        
@@ -418,7 +426,6 @@ void user_app_init(void)
 {
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
-    user_disconnect_timer = EASY_TIMER_INVALID_TIMER;
     user_initiator_timer = EASY_TIMER_INVALID_TIMER;
     user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
     
@@ -453,6 +460,7 @@ void user_app_adv_start(void)
 {
     int8_t rand_val = (int8_t) co_rand_byte();
 
+    user_is_advertiser = true;
     user_switch_adv_scan_timer = app_easy_timer(USER_SWITCH_ADV_SCAN_TO + rand_val, user_switch_adv_scan_timer_cb);
 
     app_easy_gap_undirected_advertise_start();
@@ -475,25 +483,25 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
             app_param_update_request_timer_used = app_easy_timer(APP_PARAM_UPDATE_REQUEST_TO, param_update_request_timer_cb);
         }
         
-        if(user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
-        {    
-            app_easy_timer_cancel(user_switch_adv_scan_timer);
-            user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
-        }
-        
-        if(user_disconnect_to_timer != EASY_TIMER_INVALID_TIMER)
-        {   
-            wdg_reload(WATCHDOG_DEFAULT_PERIOD);
-            wdg_resume ();
-    
-            app_easy_timer_cancel(user_disconnect_to_timer);
-            user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
-        }
-        
-        if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
-        {
-            arch_printf("\r\nOn connection: Set RSSI timer");
-            user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+//        if (user_is_advertiser == true)
+//        {
+            if(user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
+            {    
+                app_easy_timer_cancel(user_switch_adv_scan_timer);
+                user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
+            }
+            
+            if(user_disconnect_to_timer != EASY_TIMER_INVALID_TIMER)
+            {      
+                app_easy_timer_cancel(user_disconnect_to_timer);
+                user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
+            }
+            
+            if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
+            {
+                arch_printf("\r\nOn connection: Set RSSI timer");
+                user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+//            }
         }
     }
     else
@@ -509,6 +517,8 @@ void user_app_adv_undirect_complete(uint8_t status)
 {
     if (status == GAP_ERR_CANCELED)
     {
+        user_is_advertiser = false;
+
         if (user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
         {
             app_easy_timer_cancel(user_switch_adv_scan_timer);
@@ -530,7 +540,7 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     ke_state_set(TASK_APP, APP_CONNECTABLE);
     
     // Restart Advertising
-    // user_app_adv_start();
+    user_app_adv_start();
 }
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,

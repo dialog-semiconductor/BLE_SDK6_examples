@@ -153,40 +153,54 @@ static void user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_r
     struct user_adv_rssi_node* p;
     struct user_adv_rssi_node* temp;
     
-    temp = user_adv_rssi_create_node();
-    if (temp != NULL)
+    // Check if HEAD is NULL, THIS HAS TO BE FIRST
+    if (user_adv_rep_rssi_head == NULL) // HEAD is NULL
     {
-        memcpy(&temp->adv_addr_type, &adv_report->report.adv_addr_type, sizeof(temp->adv_addr_type));
-        memcpy(&temp->adv_addr, &adv_report->report.adv_addr, sizeof(temp->adv_addr));
-        memcpy(&temp->mean_rssi, &adv_report->report.rssi, sizeof(temp->mean_rssi));
-        temp->accessed = false;
-        (temp->count)++;
-        temp->next = NULL;
-        
-        if (user_adv_rep_rssi_head == NULL) // HEAD is NULL
+        temp = user_adv_rssi_create_node();
+        if (temp != NULL)
         {
+            // Copy advertising report to node and initialize
+            memcpy(&temp->adv_addr_type, &adv_report->report.adv_addr_type, sizeof(temp->adv_addr_type));
+            memcpy(&temp->adv_addr, &adv_report->report.adv_addr, sizeof(temp->adv_addr));
+            memcpy(&temp->mean_rssi, &adv_report->report.rssi, sizeof(temp->mean_rssi));
+            temp->accessed = false;
+            (temp->count)++;
+            temp->next = NULL;
+            
             user_adv_rep_rssi_head = temp;
         }
-        else
+    }
+    else
+    {
+        p = user_adv_rep_rssi_head;
+        while(memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
+              || p->adv_addr_type != adv_report->report.adv_addr_type) 
         {
-            p = user_adv_rep_rssi_head;
-            while(memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
-                  || p->adv_addr_type != adv_report->report.adv_addr_type) 
-            {
-                if (p->next != NULL)
-                    p = p->next;
-                else
-                    break;
-            }
-            
-            if (!memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
-                && p->adv_addr_type == adv_report->report.adv_addr_type)
-            {
-                p->mean_rssi = ((uint32_t)p->count * (uint32_t)p->mean_rssi + adv_report->report.rssi) / (p->count + 1);
-                (p->count)++;
-            }
+            if (p->next != NULL)
+                p = p->next;
             else
+                break;
+        }
+        
+        if (!memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
+            && p->adv_addr_type == adv_report->report.adv_addr_type)
+        {
+            p->mean_rssi = ((uint32_t)p->count * (uint32_t)p->mean_rssi + adv_report->report.rssi) / (p->count + 1);
+            (p->count)++;
+        }
+        else // This is a new node
+        {
+            temp = user_adv_rssi_create_node();
+            if (temp != NULL)
             {
+                // Copy advertising report to node and initialize
+                memcpy(&temp->adv_addr_type, &adv_report->report.adv_addr_type, sizeof(temp->adv_addr_type));
+                memcpy(&temp->adv_addr, &adv_report->report.adv_addr, sizeof(temp->adv_addr));
+                memcpy(&temp->mean_rssi, &adv_report->report.rssi, sizeof(temp->mean_rssi));
+                temp->accessed = false;
+                (temp->count)++;
+                temp->next = NULL;
+                
                 p->next = temp;
             }
         }
@@ -436,6 +450,11 @@ void user_app_on_scanning_completed(const uint8_t param)
 {
     bool has_conn_candidate;
     struct user_adv_rssi_node* p;
+    
+    // Disable Scanning
+    struct gapm_cancel_cmd *cmd = app_gapm_cancel_msg_create();
+    // Send the message
+    app_gapm_cancel_msg_send(cmd);
     
     p = user_adv_rssi_get_max_rssi_node();
     

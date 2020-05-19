@@ -188,7 +188,7 @@ static const struct advertise_configuration user_adv_conf = {
 /// Advertising data
 #define USER_ADVERTISE_DATA         ("\x11"\
                                     ADV_TYPE_INCOMPLETE_LIST_128BIT_SERVICE_IDS\
-                                    "\xC6\xE9\x79\x4D\xEF\x6F\x41\xE7\xA1\x07\x7F\x15\x47\xD8\x43\xD6"\
+                                    "\x59\x5a\x08\xe4\x86\x2a\x9e\x8f\xe9\x11\xbc\x7c\x98\x43\x42\x18"\
                                     "\x09"\
                                     ADV_TYPE_MANUFACTURER_SPECIFIC_DATA\
                                     "\x01\x02\x03\x04\x05\x06\x07\x08")

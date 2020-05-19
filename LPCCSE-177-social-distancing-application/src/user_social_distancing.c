@@ -616,7 +616,7 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
     param->report.adv_addr.addr[0]);
     arch_printf("%d\t", (int8_t)param->report.rssi);
     
-    if(!memcmp(report_data + 9, user_custom_srv_uuid, ATT_UUID_128_LEN))
+    if(!memcmp(report_data + 5, user_custom_srv_uuid, ATT_UUID_128_LEN))
     {
         arch_printf("TRUE");
         // Populate advertiser report list

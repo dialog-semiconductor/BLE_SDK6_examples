@@ -115,6 +115,9 @@
 #endif
 #endif
 
+#define ALERT_PORT                  GPIO_PORT_0
+#define ALERT_PIN                   GPIO_PIN_5
+
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************

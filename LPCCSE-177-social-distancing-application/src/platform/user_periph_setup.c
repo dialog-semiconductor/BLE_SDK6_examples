@@ -42,11 +42,13 @@
 #include "gpio.h"
 #include "uart.h"
 #include "syscntl.h"
+#include "user_led_alert.h"
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
+extern alert_led_t led_alert;
 
 #if DEVELOPMENT_DEBUG
 
@@ -64,6 +66,9 @@ void GPIO_reservations(void)
 #if !defined (__DA14586__)
     RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
 #endif
+    
+        
+    RESERVE_GPIO(ALERT, ALERT_PORT, ALERT_PIN, PID_GPIO);
 }
 
 #endif
@@ -87,6 +92,8 @@ void set_pad_functions(void)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
+    
+    GPIO_ConfigurePin(ALERT_PORT, ALERT_PIN, OUTPUT, PID_GPIO, led_alert.state);
 }
 
 #if defined (CFG_PRINTF_UART2)

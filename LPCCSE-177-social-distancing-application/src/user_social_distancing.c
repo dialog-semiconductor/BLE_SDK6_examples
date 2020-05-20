@@ -51,6 +51,9 @@
 #include "user_custs1_def.h"
 #include "co_bt.h"
 #include "arch_console.h"
+#include "user_led_alert.h"
+#include "custs1_task.h"
+#include "gattc_task.h"
 
 /*
  * DEFINES
@@ -62,6 +65,9 @@ extern struct mem_usage_log heap_usage_env;
 #define USER_CON_INTV           30  //ms
 #define USER_CON_RSSI_MAX_NB    4
 
+//#define RSSI_VAL_HANDLE         14
+#define RSSI_VAL_HANDLE         27
+
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
@@ -69,6 +75,7 @@ extern struct mem_usage_log heap_usage_env;
 
 uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 bool user_is_advertiser                         __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+static int8_t rssi_con_value                    __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
@@ -288,6 +295,34 @@ static void user_adv_rssi_list_clear()
     user_adv_rep_rssi_head = NULL;
 }
 
+static void perform_rssi_write_to_peer(uint8_t rssi)
+{
+    arch_printf("\r\nPerform RSSI write to peer");
+    
+    struct gattc_write_cmd *wr_char = KE_MSG_ALLOC_DYN(GATTC_WRITE_CMD,
+                KE_BUILD_ID(TASK_GATTC, 0), KE_BUILD_ID(TASK_APP, 0),
+                gattc_write_cmd, sizeof(uint8_t));
+    
+    // Offset
+    wr_char->offset         = 0x0000;
+    // cursor always 0
+    wr_char->cursor         = 0x0000;
+    // Write Type
+    wr_char->operation      = GATTC_WRITE;
+    // Characteristic Value attribute handle
+    wr_char->handle         = RSSI_VAL_HANDLE;
+    // Value Length
+    wr_char->length         = sizeof(uint8_t);
+    // Auto Execute
+    wr_char->auto_execute   = true;
+    // Value
+    memcpy(&wr_char->value[0], &rssi, sizeof(uint8_t));
+
+    // Send the message
+    ke_msg_send(wr_char);
+    
+}
+
 static void user_scan_start(void)
 {
     struct gapm_start_scan_cmd* cmd = KE_MSG_ALLOC(GAPM_START_SCAN_CMD,
@@ -327,14 +362,14 @@ static void user_poll_conn_rssi_timer_cb()
 {
     if (ke_state_get(TASK_APP) == APP_CONNECTED)
     {
-    struct gapc_get_info_cmd *pkt = KE_MSG_ALLOC(GAPC_GET_INFO_CMD,
-                                                KE_BUILD_ID(TASK_GAPC, app_connection_idx),
-                                                TASK_APP, gapc_get_info_cmd);
+        struct gapc_get_info_cmd *pkt = KE_MSG_ALLOC(GAPC_GET_INFO_CMD,
+                                                    KE_BUILD_ID(TASK_GAPC, app_connection_idx),
+                                                    TASK_APP, gapc_get_info_cmd);
 
-    pkt->operation = GAPC_GET_CON_RSSI;
-    ke_msg_send(pkt);
-    
-    arch_printf("\r\nOn RSSI timer callback: Set RSSI timer");
+        pkt->operation = GAPC_GET_CON_RSSI;
+        ke_msg_send(pkt);
+        
+        arch_printf("\r\nOn RSSI timer callback: Set RSSI timer");
     }
     user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
 }
@@ -394,7 +429,6 @@ static void user_initiator_timer_cb()
 static void user_collect_conn_rssi(uint8_t rssi_val)
 {
     static uint8_t idx;
-    static int8_t rssi_con_value = -128;
 
     if (idx < USER_CON_RSSI_MAX_NB)
     {
@@ -408,20 +442,31 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
         arch_printf("\r\n Strongest connection RSSI:%d", rssi_con_value);
         
         idx = 0;
-        rssi_con_value = -128;
         
         if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
-            ;//placeholder for LED danger alert
+        {
+            arch_printf("\r\nIn danger zone");
+            alert_user_start(DANGER_ZONE);//placeholder for LED danger alert
+        }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
-            ;//placeholder for LED warning alert
+        {
+            arch_printf("\r\nIn warning zone");
+            alert_user_start(WARNING_ZONE);//placeholder for LED warning alert
+        }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
-            ;//placeholder for LED coarse alert
+        {   
+            arch_printf("\r\nIn coarse zone");
+            alert_user_start(COARSE_ZONE);//placeholder for LED coarse alert
+        }
         
         if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
         {
             arch_printf("\r\nOn RSSI collect: Cancel RSSI timer if not invalid");
             app_easy_timer_cancel(user_poll_conn_rssi_timer);
         }
+        
+        rssi_con_value = -128;
+        
         arch_printf("\r\nOn RSSI collect: Invalidate RSSI timer");
         user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
         
@@ -436,6 +481,10 @@ void user_app_init(void)
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
     user_initiator_timer = EASY_TIMER_INVALID_TIMER;
     user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
+    
+    rssi_con_value = -128;
+    
+    alert_user_init();
     
     default_app_on_init();
 }
@@ -552,8 +601,24 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     
     ke_state_set(TASK_APP, APP_CONNECTABLE);
     
+    alert_user_stop();
+    
     // Restart Advertising
     user_app_adv_start();
+}
+
+/*
+ * Handler for accepting the rssi of the peer device
+ */
+static void rssi_write_ind_handler(ke_msg_id_t const msgid,
+                                      struct custs1_val_write_ind const *param,
+                                      ke_task_id_t const dest_id,
+                                      ke_task_id_t const src_id)
+{
+    arch_printf("\r\n Peer RSSI: %d", (int8_t)param->value[0]);
+    if(rssi_con_value < (int8_t) param->value[0])
+        rssi_con_value = (int8_t) param->value[0];
+        //memcpy(&rssi_con_peer_dev_min, &param->value[0], param->length);   
 }
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
@@ -575,13 +640,35 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                 (msg_param->sup_to == user_connection_param_conf.time_out))
             {
             }
-        } break;
+        } break;   
+        case CUSTS1_VAL_WRITE_IND:
+        {
+            struct custs1_val_write_ind const *msg_param = (struct custs1_val_write_ind const *)(param);
+            
+            switch(msg_param->handle)
+            {
+                case SVC1_IDX_REMOTE_WRITE_VAL:
+                    rssi_write_ind_handler(msgid, msg_param, dest_id, src_id);
+                    break;
+            }
+        } break;   
         case GAPC_CON_RSSI_IND:
         {
             struct gapc_con_rssi_ind const *msg_param = (struct gapc_con_rssi_ind const *)(param);
+            
+            // Write the received RSSI to the peer device
+            perform_rssi_write_to_peer((int8_t) msg_param->rssi);
+            
             user_collect_conn_rssi(msg_param->rssi);
         } break;
-
+        case GATTC_CMP_EVT:
+        {
+//            struct gattc_cmp_evt const *msg_param = (struct gattc_cmp_evt const *)(param);
+//            if(msg_param->operation == GATTC_WRITE)
+//                if(msg_param->status != ATT_ERR_NO_ERROR)
+//                    while(1);
+        } break;
+        
         default:
             break;
     }

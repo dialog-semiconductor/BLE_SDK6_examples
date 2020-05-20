@@ -394,33 +394,27 @@ static void user_initiator_timer_cb()
 static void user_collect_conn_rssi(uint8_t rssi_val)
 {
     static uint8_t idx;
-    static uint8_t rssi_values[USER_CON_RSSI_MAX_NB];
-    
+    static int8_t rssi_con_value = -128;
+
     if (idx < USER_CON_RSSI_MAX_NB)
     {
         arch_printf("\r\n Connection RSSI:%d", (int8_t) rssi_val);
-        rssi_values[idx] = rssi_val;
+        if (rssi_con_value < (int8_t) rssi_val)
+            rssi_con_value = (int8_t) rssi_val;
         idx++;
     }
     else
-    {
-        int32_t mean_con_rssi = 0;
-        
-        int i;
-        for (i=0; i<USER_CON_RSSI_MAX_NB; i++)
-            mean_con_rssi += (int8_t) rssi_values[i];
-        mean_con_rssi /= USER_CON_RSSI_MAX_NB;
-        
-        arch_printf("\r\n Mean connection RSSI:%d", mean_con_rssi);
+    {      
+        arch_printf("\r\n Strongest connection RSSI:%d", rssi_con_value);
         
         idx = 0;
-        memset(rssi_values, 0, sizeof(rssi_values));
+        rssi_con_value = -128;
         
-        if (mean_con_rssi > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
+        if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
             ;//placeholder for LED danger alert
-        else if (mean_con_rssi > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
+        else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
             ;//placeholder for LED warning alert
-        else if (mean_con_rssi > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
+        else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
             ;//placeholder for LED coarse alert
         
         if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)

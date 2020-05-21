@@ -154,7 +154,7 @@ static void user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_r
     struct user_adv_rssi_node* p;
     struct user_adv_rssi_node* temp;
     
-    // Check if HEAD is NULL, THIS HAS TO BE FIRST
+    // Check if HEAD is NULL
     if (user_adv_rep_rssi_head == NULL) // HEAD is NULL
     {
         temp = user_adv_rssi_create_node();
@@ -236,7 +236,7 @@ static struct user_adv_rssi_node* user_adv_rssi_get_max_rssi_node()
     struct user_adv_rssi_node* p;
     struct user_adv_rssi_node* ret = NULL;
 
-    int8_t max_rssi = -128;     // Choose minimum negative value. Could be optimized later if needed.
+    int8_t max_rssi = -128;     // Choose minimum negative value.
     
     p = user_adv_rep_rssi_head;
     while (p != NULL) 
@@ -289,9 +289,7 @@ static void user_adv_rssi_list_clear()
 }
 
 static void perform_rssi_write_to_peer(uint8_t rssi)
-{
-    arch_printf("\r\nPerform RSSI write to peer");
-    
+{  
     struct gattc_write_cmd *wr_char = KE_MSG_ALLOC_DYN(GATTC_WRITE_CMD,
                 KE_BUILD_ID(TASK_GATTC, 0), KE_BUILD_ID(TASK_APP, 0),
                 gattc_write_cmd, sizeof(uint8_t));
@@ -355,9 +353,8 @@ static void user_poll_conn_rssi_timer_cb()
 
         pkt->operation = GAPC_GET_CON_RSSI;
         ke_msg_send(pkt);
-        
-        arch_printf("\r\nOn RSSI timer callback: Set RSSI timer");
     }
+    
     user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
 }
 
@@ -366,9 +363,6 @@ static void user_disconnect_to_timer_cb()
     struct gapm_cancel_cmd *cmd = app_gapm_cancel_msg_create();
     // Send the message
     app_gapm_cancel_msg_send(cmd);
-    
-    
-    arch_printf("\r\nDisconnect timer called");
 
     user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
 }
@@ -390,15 +384,11 @@ static void user_initiator_timer_cb()
         
         p->accessed = true;
         
-        // Get the state
-        arch_printf("\r\nState in initiator timer: %x", ke_state_get(TASK_APP));
-        
         app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
         app_easy_gap_start_connection_to();
     }
     else if (ke_state_get(TASK_APP) == APP_CONNECTED)
     {
-        arch_printf("\r\nState in initiator timer: %x", ke_state_get(TASK_APP));
         user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
         app_easy_gap_disconnect(app_connection_idx);
     }        
@@ -406,7 +396,6 @@ static void user_initiator_timer_cb()
     {
         user_initiator_timer = EASY_TIMER_INVALID_TIMER;
         user_adv_rssi_list_clear();
-        arch_printf("\r\nOn list clear:");
         user_adv_rssi_print_list();
 
         user_app_adv_start();
@@ -426,35 +415,33 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
     }
     else
     {      
-        arch_printf("\r\n Strongest connection RSSI:%d", rssi_con_value);
+        arch_printf("\r\n Maximum connection RSSI:%d", rssi_con_value);
         
         idx = 0;
         
         if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
         {
             arch_printf("\r\nIn danger zone");
-            alert_user_start(DANGER_ZONE);//placeholder for LED danger alert
+            alert_user_start(DANGER_ZONE);
         }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
         {
             arch_printf("\r\nIn warning zone");
-            alert_user_start(WARNING_ZONE);//placeholder for LED warning alert
+            alert_user_start(WARNING_ZONE);
         }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
         {   
             arch_printf("\r\nIn coarse zone");
-            alert_user_start(COARSE_ZONE);//placeholder for LED coarse alert
+            alert_user_start(COARSE_ZONE);
         }
         
         if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
         {
-            arch_printf("\r\nOn RSSI collect: Cancel RSSI timer if not invalid");
             app_easy_timer_cancel(user_poll_conn_rssi_timer);
         }
         
         rssi_con_value = -128;
         
-        arch_printf("\r\nOn RSSI collect: Invalidate RSSI timer");
         user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
         
         app_easy_gap_disconnect(app_connection_idx);
@@ -507,8 +494,6 @@ void user_app_on_scanning_completed(const uint8_t param)
 void user_app_adv_start(void)
 {
     int8_t rand_val = (int8_t) co_rand_byte();
-
-//    user_is_advertiser = true;
     user_switch_adv_scan_timer = app_easy_timer(USER_SWITCH_ADV_SCAN_TO + rand_val, user_switch_adv_scan_timer_cb);
 
     app_easy_gap_undirected_advertise_start();
@@ -580,8 +565,7 @@ static void rssi_write_ind_handler(ke_msg_id_t const msgid,
 {
     arch_printf("\r\n Peer RSSI: %d", (int8_t)param->value[0]);
     if(rssi_con_value < (int8_t) param->value[0])
-        rssi_con_value = (int8_t) param->value[0];
-        //memcpy(&rssi_con_peer_dev_min, &param->value[0], param->length);   
+        rssi_con_value = (int8_t) param->value[0]; 
 }
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
@@ -590,20 +574,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           ke_task_id_t const src_id)
 {
     switch(msgid)
-    {
-        case GAPC_PARAM_UPDATED_IND:
-        {
-            // Cast the "param" pointer to the appropriate message structure
-            struct gapc_param_updated_ind const *msg_param = (struct gapc_param_updated_ind const *)(param);
-
-            // Check if updated Conn Params filled to preferred ones
-            if ((msg_param->con_interval >= user_connection_param_conf.intv_min) &&
-                (msg_param->con_interval <= user_connection_param_conf.intv_max) &&
-                (msg_param->con_latency == user_connection_param_conf.latency) &&
-                (msg_param->sup_to == user_connection_param_conf.time_out))
-            {
-            }
-        } break;   
+    {  
         case CUSTS1_VAL_WRITE_IND:
         {
             struct custs1_val_write_ind const *msg_param = (struct custs1_val_write_ind const *)(param);
@@ -648,23 +619,11 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
     memcpy(report_data, param->report.data, param->report.data_len);
     report_data[param->report.data_len] = '\0';
     
-    arch_printf("\r\n%02x %02x %02x %02x %02x %02x\t",
-    param->report.adv_addr.addr[5],
-    param->report.adv_addr.addr[4],
-    param->report.adv_addr.addr[3],
-    param->report.adv_addr.addr[2],
-    param->report.adv_addr.addr[1],
-    param->report.adv_addr.addr[0]);
-    arch_printf("%d\t", (int8_t)param->report.rssi);
-    
     if(!memcmp(report_data + 5, user_custom_srv_uuid, ATT_UUID_128_LEN))
     {
-        arch_printf("TRUE");
         // Populate advertiser report list
         user_adv_rssi_add_node_rssi(param);
         user_adv_rssi_print_list();
     }
-    else
-        arch_printf("FALSE");
 }
 /// @} APP

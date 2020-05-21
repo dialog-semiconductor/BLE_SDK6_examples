@@ -59,14 +59,11 @@
  * DEFINES
  ****************************************************************************************
  */
-extern struct mem_usage_log heap_usage_env;
 
+#define USER_CON_INTV           30  //BLE Connection Interval in ms
+#define USER_CON_RSSI_MAX_NB    4   //Maximum number of RSSI measurements
 
-#define USER_CON_INTV           30  //ms
-#define USER_CON_RSSI_MAX_NB    4
-
-//#define RSSI_VAL_HANDLE         14
-#define RSSI_VAL_HANDLE         27
+#define RSSI_VAL_HANDLE         27  //Handle of RSSI value characteristic
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
@@ -74,7 +71,7 @@ extern struct mem_usage_log heap_usage_env;
  */
 
 uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-bool user_is_advertiser                         __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+//bool user_is_advertiser                         __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 static int8_t rssi_con_value                    __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
@@ -289,7 +286,6 @@ static void user_adv_rssi_list_clear()
         next = p->next;
         ke_free(p);
         p = next;
-        arch_printf("\r\nIn list clear, memory is: %d", heap_usage_env.used_sz);
     }
     
     user_adv_rep_rssi_head = NULL;
@@ -522,7 +518,7 @@ void user_app_adv_start(void)
 {
     int8_t rand_val = (int8_t) co_rand_byte();
 
-    user_is_advertiser = true;
+//    user_is_advertiser = true;
     user_switch_adv_scan_timer = app_easy_timer(USER_SWITCH_ADV_SCAN_TO + rand_val, user_switch_adv_scan_timer_cb);
 
     app_easy_gap_undirected_advertise_start();
@@ -579,7 +575,7 @@ void user_app_adv_undirect_complete(uint8_t status)
 {
     if (status == GAP_ERR_CANCELED)
     {
-        user_is_advertiser = false;
+//        user_is_advertiser = false;
 
         if (user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
         {

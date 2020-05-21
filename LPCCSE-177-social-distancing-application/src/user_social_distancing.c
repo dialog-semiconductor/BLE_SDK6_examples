@@ -71,10 +71,7 @@
  */
 
 uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-//bool user_is_advertiser                         __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 static int8_t rssi_con_value                    __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-
-timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
@@ -341,12 +338,6 @@ static void user_scan_start(void)
     ke_state_set(TASK_APP, APP_CONNECTABLE);
 }
 
-static void param_update_request_timer_cb()
-{
-    app_easy_gap_param_update_start(app_connection_idx);
-    app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
-}
-
 static void user_switch_adv_scan_timer_cb()
 {
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
@@ -473,7 +464,6 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
 
 void user_app_init(void)
 {
-    app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
     user_initiator_timer = EASY_TIMER_INVALID_TIMER;
     user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
@@ -529,37 +519,23 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
     if (app_env[connection_idx].conidx != GAP_INVALID_CONIDX)
     {
         app_connection_idx = connection_idx;
-
-        // Check if the parameters of the established connection are the preferred ones.
-        // If not then schedule a connection parameter update request.
-        if ((param->con_interval < user_connection_param_conf.intv_min) ||
-            (param->con_interval > user_connection_param_conf.intv_max) ||
-            (param->con_latency != user_connection_param_conf.latency) ||
-            (param->sup_to != user_connection_param_conf.time_out))
-        {
-            // Connection params are not these that we expect
-            app_param_update_request_timer_used = app_easy_timer(APP_PARAM_UPDATE_REQUEST_TO, param_update_request_timer_cb);
+      
+        if(user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
+        {    
+            app_easy_timer_cancel(user_switch_adv_scan_timer);
+            user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
         }
         
-//        if (user_is_advertiser == true)
-//        {
-            if(user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
-            {    
-                app_easy_timer_cancel(user_switch_adv_scan_timer);
-                user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
-            }
-            
-            if(user_disconnect_to_timer != EASY_TIMER_INVALID_TIMER)
-            {      
-                app_easy_timer_cancel(user_disconnect_to_timer);
-                user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
-            }
-            
-            if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
-            {
-                arch_printf("\r\nOn connection: Set RSSI timer");
-                user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
-//            }
+        if(user_disconnect_to_timer != EASY_TIMER_INVALID_TIMER)
+        {      
+            app_easy_timer_cancel(user_disconnect_to_timer);
+            user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
+        }
+        
+        if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
+        {
+            arch_printf("\r\nOn connection: Set RSSI timer");
+            user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
         }
     }
     else
@@ -575,8 +551,6 @@ void user_app_adv_undirect_complete(uint8_t status)
 {
     if (status == GAP_ERR_CANCELED)
     {
-//        user_is_advertiser = false;
-
         if (user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
         {
             app_easy_timer_cancel(user_switch_adv_scan_timer);
@@ -587,14 +561,7 @@ void user_app_adv_undirect_complete(uint8_t status)
 }
 
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
-{
-    // Cancel the parameter update request timer
-    if (app_param_update_request_timer_used != EASY_TIMER_INVALID_TIMER)
-    {
-        app_easy_timer_cancel(app_param_update_request_timer_used);
-        app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
-    }
-    
+{  
     ke_state_set(TASK_APP, APP_CONNECTABLE);
     
     alert_user_stop();
@@ -659,10 +626,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
         } break;
         case GATTC_CMP_EVT:
         {
-//            struct gattc_cmp_evt const *msg_param = (struct gattc_cmp_evt const *)(param);
-//            if(msg_param->operation == GATTC_WRITE)
-//                if(msg_param->status != ATT_ERR_NO_ERROR)
-//                    while(1);
+            //Placeholder upon GATT Complete Event
         } break;
         
         default:

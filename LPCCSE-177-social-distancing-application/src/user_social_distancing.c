@@ -85,7 +85,7 @@ timer_hnd user_disconnect_to_timer              __SECTION_ZERO("retention_mem_ar
 
 static bool is_user_connected                   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
-static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-30, -40, -50, -60}; 
+static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-59, -64, -76, -80}; 
 
 static struct user_adv_rssi_node* user_adv_rep_rssi_head  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
@@ -548,7 +548,6 @@ void user_app_adv_undirect_complete(uint8_t status)
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
 {  
     ke_state_set(TASK_APP, APP_CONNECTABLE);
-    
     alert_user_stop();
     
     // Restart Advertising

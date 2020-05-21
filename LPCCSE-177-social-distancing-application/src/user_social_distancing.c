@@ -59,6 +59,8 @@
  * DEFINES
  ****************************************************************************************
  */
+#undef  USER_CFG_DA14531_MOD        //Define for use with the DA14531 module
+
 
 #define USER_CON_INTV           30  //BLE Connection Interval in ms
 #define USER_CON_RSSI_MAX_NB    4   //Maximum number of RSSI measurements
@@ -82,8 +84,6 @@ timer_hnd user_disconnect_to_timer              __SECTION_ZERO("retention_mem_ar
  * LOCAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
-
-static bool is_user_connected                   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-59, -64, -76, -80}; 
 
@@ -129,6 +129,14 @@ static const uint8_t user_custom_srv_uuid[] = DEF_SVC1_UUID_128;
  * FUNCTION DEFINITIONS
  ****************************************************************************************
 */
+
+/**
+ ****************************************************************************************
+ * @brief Creates a node of an advertising report in the dynamic list
+ * @return A pointer to the node created
+ ****************************************************************************************
+ */
+
 static struct user_adv_rssi_node* user_adv_rssi_create_node()
 {
     if (ke_check_malloc(sizeof(struct user_adv_rssi_node), KE_MEM_ENV))
@@ -149,13 +157,20 @@ static struct user_adv_rssi_node* user_adv_rssi_create_node()
     return NULL;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Adds a node of an advertising report in the dynamic list
+ * @param[in] adv_report The advertising report to be added as a node
+ * @note If the advertising device exists in the list, it increments its count
+ * @return void
+ ****************************************************************************************
+ */
 static void user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_report)
 {
     struct user_adv_rssi_node* p;
     struct user_adv_rssi_node* temp;
     
-    // Check if HEAD is NULL
-    if (user_adv_rep_rssi_head == NULL) // HEAD is NULL
+    if (user_adv_rep_rssi_head == NULL)
     {
         temp = user_adv_rssi_create_node();
         if (temp != NULL)
@@ -207,7 +222,12 @@ static void user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_r
         }
     }
 }
-
+/**
+ ****************************************************************************************
+ * @brief Traverses the list and prints out its nodes
+ * @return void
+ ****************************************************************************************
+ */
 static void user_adv_rssi_print_list()
 {
     struct user_adv_rssi_node* p;
@@ -231,6 +251,12 @@ static void user_adv_rssi_print_list()
     }
 }
 
+/**
+ ****************************************************************************************
+ * @brief Retrieve the node with the maximum RSSI value
+ * @return A pointer to the maximum RSSI node
+ ****************************************************************************************
+ */
 static struct user_adv_rssi_node* user_adv_rssi_get_max_rssi_node()
 {
     struct user_adv_rssi_node* p;
@@ -253,6 +279,12 @@ static struct user_adv_rssi_node* user_adv_rssi_get_max_rssi_node()
     return ret;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Checks the list for a connection candidate
+ * @return true if there is a connection candidate, false otherwise
+ ****************************************************************************************
+ */
 static bool user_adv_rssi_list_has_candidate()
 {
     struct user_adv_rssi_node* p;
@@ -271,6 +303,12 @@ static bool user_adv_rssi_list_has_candidate()
     return false;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Clears the list and frees up the allocated heap
+ * @return void
+ ****************************************************************************************
+ */
 static void user_adv_rssi_list_clear()
 {
     struct user_adv_rssi_node* p;
@@ -288,6 +326,14 @@ static void user_adv_rssi_list_clear()
     user_adv_rep_rssi_head = NULL;
 }
 
+
+/**
+ ****************************************************************************************
+ * @brief Performs a write operation to the peer device
+ * @param[in] rssi The RSSI value to be written
+ * @return void
+ ****************************************************************************************
+ */
 static void perform_rssi_write_to_peer(uint8_t rssi)
 {  
     struct gattc_write_cmd *wr_char = KE_MSG_ALLOC_DYN(GATTC_WRITE_CMD,
@@ -314,6 +360,29 @@ static void perform_rssi_write_to_peer(uint8_t rssi)
     
 }
 
+/**
+ ****************************************************************************************
+ * @brief Collects RSSI values and decides the proximity zone
+ * @param[in] rssi_val The current RSSI value
+ * @return void
+ ****************************************************************************************
+ */
+static void rssi_write_ind_handler(ke_msg_id_t const msgid,
+                                      struct custs1_val_write_ind const *param,
+                                      ke_task_id_t const dest_id,
+                                      ke_task_id_t const src_id)
+{
+    arch_printf("\r\n Peer RSSI: %d", (int8_t)param->value[0]);
+    if(rssi_con_value < (int8_t) param->value[0])
+        rssi_con_value = (int8_t) param->value[0]; 
+}
+
+/**
+ ****************************************************************************************
+ * @brief Start scanning for devices 
+ * @return void
+ ****************************************************************************************
+ */
 static void user_scan_start(void)
 {
     struct gapm_start_scan_cmd* cmd = KE_MSG_ALLOC(GAPM_START_SCAN_CMD,
@@ -336,6 +405,12 @@ static void user_scan_start(void)
     ke_state_set(TASK_APP, APP_CONNECTABLE);
 }
 
+/**
+ ****************************************************************************************
+ * @brief Timer callback function to stop advertising
+ * @return void
+ ****************************************************************************************
+ */
 static void user_switch_adv_scan_timer_cb()
 {
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
@@ -343,6 +418,12 @@ static void user_switch_adv_scan_timer_cb()
     app_easy_gap_advertise_stop(); 
 }
 
+/**
+ ****************************************************************************************
+ * @brief Timer callback function to poll the connection RSSI
+ * @return void
+ ****************************************************************************************
+ */
 static void user_poll_conn_rssi_timer_cb()
 {
     if (ke_state_get(TASK_APP) == APP_CONNECTED)
@@ -358,6 +439,12 @@ static void user_poll_conn_rssi_timer_cb()
     user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
 }
 
+/**
+ ****************************************************************************************
+ * @brief Timer callback function to disconnect in case a connection request times out
+ * @return void
+ ****************************************************************************************
+ */
 static void user_disconnect_to_timer_cb()
 {
     struct gapm_cancel_cmd *cmd = app_gapm_cancel_msg_create();
@@ -367,6 +454,12 @@ static void user_disconnect_to_timer_cb()
     user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Timer callback function to initiate connections with peer devices
+ * @return void
+ ****************************************************************************************
+ */
 static void user_initiator_timer_cb()
 {
     struct user_adv_rssi_node* p;
@@ -402,6 +495,13 @@ static void user_initiator_timer_cb()
     }
 }
 
+/**
+ ****************************************************************************************
+ * @brief Collects RSSI values and decides the proximity zone
+ * @param[in] rssi_val The current RSSI value
+ * @return void
+ ****************************************************************************************
+ */
 static void user_collect_conn_rssi(uint8_t rssi_val)
 {
     static uint8_t idx;
@@ -448,6 +548,12 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
     }
         
 }
+
+/*
+ * SDK configured callback functions
+ ****************************************************************************************
+ */
+
 
 void user_app_init(void)
 {
@@ -554,19 +660,6 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     user_app_adv_start();
 }
 
-/*
- * Handler for accepting the rssi of the peer device
- */
-static void rssi_write_ind_handler(ke_msg_id_t const msgid,
-                                      struct custs1_val_write_ind const *param,
-                                      ke_task_id_t const dest_id,
-                                      ke_task_id_t const src_id)
-{
-    arch_printf("\r\n Peer RSSI: %d", (int8_t)param->value[0]);
-    if(rssi_con_value < (int8_t) param->value[0])
-        rssi_con_value = (int8_t) param->value[0]; 
-}
-
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,
@@ -604,13 +697,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
     }
 }
 
-/**
- ****************************************************************************************
- * @brief Handles advertise reports
- * @param[in]   param Parameters of advertise report message
- * @return void
- ****************************************************************************************
- */
 void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
 {
     uint8_t report_data[ADV_DATA_LEN + 1];

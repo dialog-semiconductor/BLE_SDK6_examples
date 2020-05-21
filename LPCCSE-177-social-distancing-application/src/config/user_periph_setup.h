@@ -116,8 +116,11 @@
 #endif
 
 #define ALERT_PORT                  GPIO_PORT_0
+#ifdef USER_CFG_DA14531_MOD
+#define ALERT_PIN                   GPIO_PIN_9
+#else
 #define ALERT_PIN                   GPIO_PIN_5
-
+#endif
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************

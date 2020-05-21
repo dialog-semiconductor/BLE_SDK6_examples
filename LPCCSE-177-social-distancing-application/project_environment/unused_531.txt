@@ -1,8 +1,9 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon May 04 12:26:24 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu May 21 18:47:27 2020
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
 adc_disable <= USED 0
+adc_get_sample <= USED 0
 adc_get_temp_async <= USED 0
 adc_input_shift_config <= USED 0
 adc_input_shift_disable <= USED 0
@@ -20,6 +21,7 @@ app_easy_gap_get_peer_features <= USED 0
 app_easy_gap_non_connectable_advertise_get_active <= USED 0
 app_easy_gap_non_connectable_advertise_start <= USED 0
 app_easy_gap_param_update_get_active <= USED 0
+app_easy_gap_param_update_start <= USED 0
 app_easy_gap_start_connection_to_get_active <= USED 0
 app_easy_gap_undirected_advertise_get_active <= USED 0
 app_easy_gap_undirected_advertise_with_timeout_start <= USED 0
@@ -47,6 +49,10 @@ app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
 ;FILE app_msg_utils.o
 app_msg_send_wakeup_ble <= USED 0
+;FILE app_task.o
+;FILE app_utils.o
+app_fill_random_byte_array <= USED 0
+app_get_address_type <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
@@ -54,7 +60,6 @@ arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
 arch_last_rwble_evt_get <= USED 0
 arch_set_deep_sleep <= USED 0
-arch_set_hibernation <= USED 0
 ;FILE arch_system.o
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
@@ -158,7 +163,7 @@ spi_send <= USED 0
 spi_set_bitmode <= USED 0
 spi_set_cp_mode <= USED 0
 spi_set_cs_mode <= USED 0
-spi_set_irq_mode <= USED 0
+spi_set_speed <= USED 0
 spi_transaction <= USED 0
 spi_transfer <= USED 0
 ;FILE spi_flash.o
@@ -220,6 +225,7 @@ uart_read_byte <= USED 0
 uart_receive <= USED 0
 uart_register_err_cb <= USED 0
 uart_register_rx_cb <= USED 0
+;FILE user_led_alert.o
 ;FILE user_periph_setup.o
 ;FILE user_social_distancing.o
 ;FILE wkupct_quadec.o

@@ -87,15 +87,15 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
     [SVC1_IDX_SVC]                      = {(uint8_t*)&att_decl_svc, ATT_UUID_128_LEN, PERM(RD, ENABLE),
                                             sizeof(custs1_svc1), sizeof(custs1_svc1), (uint8_t*)&custs1_svc1},
 
-    // ADC Value 1 Characteristic Declaration
+    // Remote Write Characteristic Declaration
     [SVC1_IDX_REMOTE_WRITE_CHAR]        = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             0, 0, NULL},
 
-    // ADC Value 1 Characteristic Value
+    // Remate Write Characteristic Value
     [SVC1_IDX_REMOTE_WRITE_VAL]         = {SVC1_REMOTE_WRITE_UUID_128, ATT_UUID_128_LEN, PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
                                             DEF_SVC1_REMOTE_WRITE_CHAR_LEN, 0, NULL},
 
-    // ADC Value 1 Characteristic User Description
+    // Remote Write Characteristic User Description
     [SVC1_IDX_REMOTE_WRITE_USER_DESC]   = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             sizeof(DEF_SVC1_REMOTE_WRITE_DESC) - 1, sizeof(DEF_SVC1_REMOTE_WRITE_DESC) - 1,
                                             (uint8_t *) DEF_SVC1_REMOTE_WRITE_DESC},

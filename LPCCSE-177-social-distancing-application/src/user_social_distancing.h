@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_profile.h
+ * @file user_social_distancing.h
  *
- * @brief Bare Bone application header file.
+ * @brief Social Distancing application header file.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2020 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -30,8 +30,8 @@
  ****************************************************************************************
  */
 
-#ifndef _USER_PROFILE_H_
-#define _USER_PROFILE_H_
+#ifndef _USER_SOCIAL_DISTANCING_H_
+#define _USER_SOCIAL_DISTANCING_H_
 
 /**
  ****************************************************************************************
@@ -67,12 +67,10 @@
  */
 
 /* Duration of timer for connection parameter update request */
-#define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
-#define USER_SWITCH_ADV_SCAN_TO             (1000)    // 200*10ms = 2sec
-#define USER_UPD_CONN_RSSI_TO               (20)    // 200*10ms = 2sec
-#define USER_DISCONNECT_TO                  (500)   
-#define USER_INITIATOR_TO                   (1000)    // 200*10ms = 2sec
-#define USER_DISCONNECT_TO_TO               (700)    // 200*10ms = 2sec
+#define USER_SWITCH_ADV_SCAN_TO             (1000)    // 1000*10ms = 10sec
+#define USER_UPD_CONN_RSSI_TO               (20)      // 20*10ms = 200msec
+#define USER_INITIATOR_TO                   (1000)    // 1000*10ms = 10sec
+#define USER_DISCONNECT_TO_TO               (700)     // 700*10ms = 7sec
 
 /*
  * TYPE DEFINITIONS
@@ -117,6 +115,12 @@ struct user_adv_rssi_node
 */
 void user_app_init(void);
 
+/**
+ ****************************************************************************************
+ * @brief Function called when scanning completes.
+ * @return void
+ ****************************************************************************************
+*/
 void user_app_on_scanning_completed(const uint8_t);
 
 /**
@@ -182,4 +186,4 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param);
 /// @} APP
 
-#endif //_USER_PROFILE_H_
+#endif //_USER_SOCIAL_DISTANCING_H_

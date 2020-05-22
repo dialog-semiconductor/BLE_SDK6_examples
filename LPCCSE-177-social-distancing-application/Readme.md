@@ -14,6 +14,7 @@ This example configures a DA14531 device to be used for social distancing purpos
 - Connect the JTAG debugger with the appropriate jumpers as seen below on header J1.
 - Connect the left pin of the UTX row on header J1 with P26 on header J2 with a flywire.
 - Connect P25 on header J2 with the bottom pin of header J8 with a flywire.	
+	
 	![motherboard_with_daughter_conf](media/DevKit531_585_586.png)
 
 
@@ -43,13 +44,13 @@ For initial setup of the example please refer to [this section of the dialog sup
  - Compile the example by pressing the "Build" button. 
  - For exploring the functionality of this example, you should have two or more devices available. You can run the executable from the SPI flash memory (have a look at the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) for instructions), or you could run a Debug session.
 
-    Start a debugging session.
-	![keil-start-debug](media/keil-start-debug-session.png)
+    Start a debugging session and then press the "Run" button or F5.
 	
-	and then press the "Run" button or F5.
-
+![keil-start-debug](media/keil-start-debug-session.png)
+	
  ### Monitoring distance
 You should complete the previous steps for two or more devices. Once your motherboard is connected, there will be two COM ports enumerated as shown in the following figure.
+
 ![com-ports](media/com_ports.png)
 
 Open your serial port terminal and choose the first one as your port. Configure the connection with baud rate 115200, 8 data bits and 1 stop bit, no parity and no flow control.

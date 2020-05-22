@@ -85,7 +85,7 @@ timer_hnd user_disconnect_to_timer              __SECTION_ZERO("retention_mem_ar
  ****************************************************************************************
  */
 
-static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-59, -64, -76, -80}; 
+static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-59, -62, -70, -80}; 
 
 static struct user_adv_rssi_node* user_adv_rep_rssi_head  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 

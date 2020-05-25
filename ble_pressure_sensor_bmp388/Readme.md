@@ -1,4 +1,4 @@
-# ble_pressure_sensor_bmp388
+# ble pressure sensor bmp388
 
 Digital Pressure Sensor with Bluetooth LE
 
@@ -17,7 +17,7 @@ Simple example showing how to interface the DA14531 with the Bosch BMP388 Digita
 * **Software configuration**
 
     - This example requires:
-        * Smartsnippets Studio 2.0.10 (or later)
+        * Smartsnippets Studio 2.0.12 (or later)
         * SDK6.0.14 (or later)
         * SEGGER’s J-Link tools should be downloaded and installed.
 
@@ -30,13 +30,13 @@ the example application before proceeding with the following instructions to set
 
 ![MikroBUS Board](assets/PRO-DK-MikroBus-BMP388.svg)
 
-2.  You'll also need to connect the following jumper wire to the Development Kit PRO motherboard:
+2.  You'll also need to connect the following jumper wire to the Development Kit PRO motherboard (to connect the INT pin on the BMP388 sensor to P0_8 on the DA14531):
 
         - J2 pin 15 to pin 29 (INT)
 
 ![DA14531 Jumper Wires](assets/PRO-DK-Jumper-Wires-SPI.svg)
 
-NOTE: The BMP388 has both SPI and I2C interfaces. By default the MikroBUS board, and this example, are configured to use the SPI interface. If you want to use the I2C interface instead then
+NOTE: The BMP388 has both SPI and I2C interfaces. By default, the MikroBUS board, and this example, are configured to use the SPI interface. If you want to use the I2C interface instead then
 the following additional jumper wires should be connected to the Development Kit PRO motherboard.
 
         - J2 pin 9 to pin 28 (SDA)
@@ -44,11 +44,11 @@ the following additional jumper wires should be connected to the Development Kit
 
 ![DA14531 Jumper Wires](assets/PRO-DK-Jumper-Wires-I2C.svg)
 
-If you want to use the I2C interface you will also need to configure the example by changing the BMP interface type in the file bmp388.h as follows:
+If you want to use the I2C interface, you will also need to configure the example by changing the BMP interface type in the file bmp388.h as follows:
 
         #define BMP388_INTERFACE          BMP388_I2C
 
-Finally you'll need to change the jumper settings on the BMP388 MikroBUS board to use the I2C interface. See [MIKROE_3566](https://www.mikroe.com/pressure-5-click) for further details.
+Finally, you'll need to change the jumper settings on the BMP388 MikroBUS board to use the I2C interface. See [MIKROE_3566](https://www.mikroe.com/pressure-5-click) for further details.
 
 3.  Setup a terminal (such as TeraTerm) so you can monitor the UART debug output from the DA14531: 
 

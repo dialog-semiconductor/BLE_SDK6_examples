@@ -59,8 +59,6 @@
  * DEFINES
  ****************************************************************************************
  */
-#undef  USER_CFG_DA14531_MOD        //Define for use with the DA14531 module
-
 
 #define USER_CON_INTV           30  //BLE Connection Interval in ms
 #define USER_CON_RSSI_MAX_NB    4   //Maximum number of RSSI measurements

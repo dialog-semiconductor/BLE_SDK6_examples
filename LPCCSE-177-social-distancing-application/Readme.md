@@ -40,7 +40,7 @@ For initial setup of the example please refer to [this section of the dialog sup
 ### Initial Setup
 
  - Start Keil
- - Open the file ``src/user_social_distancing.c`` and define ``USER_CFG_DA14531_MOD`` for use with the DA14531 Module.
+ - Open the file ``src/config/user_periph_setup.h`` and define ``USER_CFG_DA14531_MOD`` for use with the DA14531 Module.
  - Compile the example by pressing the "Build" button. 
  - For exploring the functionality of this example, you should have two or more devices available. You can run the executable from the SPI flash memory (have a look at the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) for instructions), or you could run a Debug session.
 

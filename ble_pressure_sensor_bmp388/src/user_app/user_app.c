@@ -147,7 +147,7 @@ void user_app_on_db_init_complete(void)
  ****************************************************************************************
  * @brief   Called when central connects to peripheral.
  *
- * @param   TODO
+ * @param   conidx - Connection index.
  *
  * @return  None
  ****************************************************************************************
@@ -165,7 +165,7 @@ void user_app_on_connection(uint8_t conidx, struct gapc_connection_req_ind const
  ****************************************************************************************
  * @brief   Called when central disconnects from peripheral.
  *
- * @param   TODO
+ * @param   param - Disconnect parameters
  *
  * @return  None
  ****************************************************************************************
@@ -183,7 +183,7 @@ void user_app_on_disconnect(struct gapc_disconnect_ind const *param)
  ****************************************************************************************
  * @brief   Callback for handling messages from custom profile.
  *
- * @param   TODO
+ * @param   msgid - Message ID
  *
  * @return  None
  ****************************************************************************************
@@ -224,11 +224,11 @@ void user_app_catch_rest_hndl(ke_msg_id_t const msgid,
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Wakeup callback.
  *
- * @param   TODO
+ * @param   None.
  *
- * @return  TODO
+ * @return  None.
  ****************************************************************************************
 */
 static void wakeup_callback(void)
@@ -283,11 +283,11 @@ static void wakeup_callback(void)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Measure timer callback.
  *
- * @param   TODO
+ * @param   None.
  *
- * @return  TODO
+ * @return  None.
  ****************************************************************************************
 */
 static void measure_timer_cb(void)
@@ -307,9 +307,9 @@ static void measure_timer_cb(void)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Set temperature characteristic value.
  *
- * @param   TODO
+ * @param   value - Temperature value
  *
  * @return  None
  ****************************************************************************************
@@ -331,9 +331,9 @@ static void set_temperature_char_value(uint16_t value)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Set pressure characteristic value.
  *
- * @param   TODO
+ * @param   value - Pressure value
  *
  * @return  None
  ****************************************************************************************
@@ -355,9 +355,9 @@ static void set_pressure_char_value(uint32_t value)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Send temperature notification.
  *
- * @param   TODO
+ * @param   value - Temperature value
  *
  * @return  None
  ****************************************************************************************
@@ -380,9 +380,9 @@ static void send_temperature_char_notify(uint16_t value)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Send pressure notification.
  *
- * @param   TODO
+ * @param   value - Pressure value
  *
  * @return  None
  ****************************************************************************************

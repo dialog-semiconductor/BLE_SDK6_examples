@@ -73,11 +73,11 @@ static void set_dev_addr(uint8_t addr);
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Sets device I2C address.
  *
- * @param   TODO
+ * @param   addr - I2C address
  *
- * @return  TODO
+ * @return  None.
  ****************************************************************************************
 */
 static void set_dev_addr(uint8_t addr)
@@ -96,11 +96,11 @@ static void set_dev_addr(uint8_t addr)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Perform an I2C read.
  *
- * @param   TODO
+ * @param   dev_addr - Device I2C address
  *
- * @return  TODO
+ * @return  0 on success, otherwise fail.
  ****************************************************************************************
 */
 int i2cm_read(uint8_t dev_addr, uint8_t * const data, uint8_t len, bool add_stop)
@@ -128,11 +128,11 @@ int i2cm_read(uint8_t dev_addr, uint8_t * const data, uint8_t len, bool add_stop
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Perform an I2C write.
  *
- * @param   TODO
+ * @param   dev_addr - Device I2C address.
  *
- * @return  TODO
+ * @return  0 on success, otherwise fail.
  ****************************************************************************************
 */
 int i2cm_write(uint8_t dev_addr, uint8_t const * const buffer, uint8_t len, bool add_stop)

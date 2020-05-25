@@ -260,9 +260,9 @@ static float compenstate_pressure(uint32_t uncomp_press, struct bmp388_calib_dat
  ****************************************************************************************
  * @brief   Initialize the BMP388 driver and the device.
  *
- * @param   TODO
+ * @param   None.
  *
- * @return  0 on success, and non-zero error code on failure
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_init(void)
@@ -286,7 +286,7 @@ int bmp388_init(void)
  ****************************************************************************************
  * @brief   Configure the BMP388 sensor
  *
- * @param   TODO
+ * @param   cfg - Pointer to the configuration to be applied.
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************
@@ -308,11 +308,11 @@ int bmp388_config(struct bmp388_cfg * const cfg)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Start a measurement.
  *
- * @param   TODO
+ * @param   mode - Power control mode.
  *
- * @return  TODO
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_start_meas(uint8_t mode, uint8_t press_en, uint8_t temp_en)
@@ -330,7 +330,7 @@ int bmp388_start_meas(uint8_t mode, uint8_t press_en, uint8_t temp_en)
  ****************************************************************************************
  * @brief   Dump the contents of the BMP388 registers
  *
- * @param   TODO
+ * @param   dbg_printf - Pointer to printf function used to output debug data.
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************
@@ -361,11 +361,11 @@ int bmp388_dump_regs(bmp388_dbg_printf dbg_printf)
 
 /**
  ****************************************************************************************
- * @brief
+ * @brief   Get interrupt status.
  *
- * @param   TODO
+ * @param   status
  *
- * @return
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_get_int_status(uint8_t * const status)
@@ -375,11 +375,11 @@ int bmp388_get_int_status(uint8_t * const status)
 
 /**
  ****************************************************************************************
- * @brief
+ * @brief   Get pressure data ready status.
  *
- * @param   TODO
+ * @param   None.
  *
- * @return
+ * @return  True if pressure ready, otherwise false.
  ****************************************************************************************
 */
 bool bmp388_drdy_press(void)
@@ -400,9 +400,9 @@ bool bmp388_drdy_press(void)
 
 /**
  ****************************************************************************************
- * @brief
+ * @brief   Get temperature data ready status.
  *
- * @return
+ * @return  True if temperature data ready, otherwise false.
  ****************************************************************************************
 */
 bool bmp388_drdy_temp(void)
@@ -487,11 +487,11 @@ int bmp388_set_mode(uint8_t mode)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Enable data ready interrupt.
  *
- * @param   TODO
+ * @param   None.
  *
- * @return  TODO
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_enable_drdy_int(void)
@@ -504,11 +504,11 @@ int bmp388_enable_drdy_int(void)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Disable data ready interrupt.
  *
- * @param   TODO
+ * @param   None.
  *
- * @return  TODO
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_disable_drdy_int(void)
@@ -521,11 +521,11 @@ int bmp388_disable_drdy_int(void)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Set interrupt output level.
  *
- * @param   TODO
+ * @param   level - active high or low.
  *
- * @return  TODO
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_set_int_active_level(uint8_t level)
@@ -538,11 +538,11 @@ int bmp388_set_int_active_level(uint8_t level)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Enable temperature measurement.
  *
- * @param   TODO
+ * @param   None.
  *
- * @return  TODO
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_enable_temp_meas(void)
@@ -555,11 +555,11 @@ int bmp388_enable_temp_meas(void)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Enable pressure measurement.
  *
- * @param   TODO
+ * @param   None.
  *
- * @return  TODO
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_enable_press_meas(void)
@@ -614,11 +614,11 @@ int ret;
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Set output data reate.
  *
- * @param   TODO
+ * @param   odr - output data rate.
  *
- * @return  TODO
+ * @return  0 on success, and non-zero error code on failure.
  ****************************************************************************************
 */
 int bmp388_set_odr(uint8_t odr)
@@ -653,9 +653,9 @@ int bmp388_get_chip_id(uint8_t * const chip_id)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Get calibrate temperature value.
  *
- * @param   TODO
+ * @param   temp - temperature.
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************
@@ -678,9 +678,9 @@ int bmp388_get_temperature(int16_t * const temp)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Get calibrated pressure value.
  *
- * @param   TODO
+ * @param   press - pressure value.
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************
@@ -703,9 +703,9 @@ int bmp388_get_pressure(uint32_t * const press)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Read calibration data from BMP388
  *
- * @param   TODO
+ * @param   calib_data - storage for calibration data.
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************
@@ -761,11 +761,11 @@ static int read_calib_data(struct bmp388_calib_data *calib_data)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Calculated compentated temperature value.
  *
- * @param   TODO
+ * @param   uncomp_temp - raw temperature value
  *
- * @return  TODO
+ * @return  Calibrated temperature value
  ****************************************************************************************
 */
 static float compenstate_temperature(uint32_t uncomp_temp, struct bmp388_calib_data *calib_data)
@@ -783,11 +783,11 @@ static float compenstate_temperature(uint32_t uncomp_temp, struct bmp388_calib_d
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Calculated compentated pressure value.
  *
- * @param   TODO
+ * @param   uncomp_temp - raw pressure value
  *
- * @return  TODO
+ * @return  Calibrated pressure value
  ****************************************************************************************
 */
 static float compenstate_pressure(uint32_t uncomp_press, struct bmp388_calib_data *calib_data)
@@ -847,7 +847,7 @@ static void us_delay(uint32_t delay_us)
  ****************************************************************************************
  * @brief   Perform read-modify-write on a bit field within a register.
  *
- * @param   TODO
+ * @param   addr - register address
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************
@@ -869,9 +869,9 @@ static int set_reg_field(uint8_t addr, uint8_t pos, uint8_t msk, uint8_t val)
 
 /**
  ****************************************************************************************
- * @brief   TODO
+ * @brief   Get a register field.
  *
- * @param   TODO
+ * @param   addr - register address
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************

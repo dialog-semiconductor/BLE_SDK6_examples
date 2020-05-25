@@ -609,30 +609,6 @@
               <FileType>1</FileType>
               <FilePath>C:\sdks\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\utilities\otp_hdr\otp_hdr.c</FilePath>
             </File>
-            <File>
-              <FileName>da14531_with_heap_logging.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>C:\sdks\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14531_with_heap_logging.lib</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds/>
-              </FileOption>
-            </File>
           </Files>
         </Group>
         <Group>

@@ -570,6 +570,9 @@ void user_app_on_scanning_completed(const uint8_t param)
     bool has_conn_candidate;
     struct user_adv_rssi_node* p;
     
+    // Disable LED
+    alert_user_stop();
+    
     // Disable Scanning
     struct gapm_cancel_cmd *cmd = app_gapm_cancel_msg_create();
     // Send the message
@@ -598,7 +601,7 @@ void user_app_adv_start(void)
 {
     int8_t rand_val = (int8_t) co_rand_byte();
     user_switch_adv_scan_timer = app_easy_timer(USER_SWITCH_ADV_SCAN_TO + rand_val, user_switch_adv_scan_timer_cb);
-
+    
     app_easy_gap_undirected_advertise_start();
 }
 
@@ -650,7 +653,6 @@ void user_app_adv_undirect_complete(uint8_t status)
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
 {  
     ke_state_set(TASK_APP, APP_CONNECTABLE);
-    alert_user_stop();
     
     // Restart Advertising
     user_app_adv_start();

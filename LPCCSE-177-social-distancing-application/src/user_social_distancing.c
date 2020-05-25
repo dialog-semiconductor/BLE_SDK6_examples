@@ -370,7 +370,6 @@ static void rssi_write_ind_handler(ke_msg_id_t const msgid,
                                       ke_task_id_t const dest_id,
                                       ke_task_id_t const src_id)
 {
-    arch_printf("\r\n Peer RSSI: %d", (int8_t)param->value[0]);
     if(rssi_con_value < (int8_t) param->value[0])
         rssi_con_value = (int8_t) param->value[0]; 
 }
@@ -464,7 +463,6 @@ static void user_initiator_timer_cb()
     
     p = user_adv_rssi_get_max_rssi_node(); // Change get max rssi to CHECK FOR ACCESSED
 
-    arch_printf("\r\nOn initiate:");
     user_adv_rssi_print_list();
     
     if (p != NULL && (ke_state_get(TASK_APP) == APP_CONNECTABLE))
@@ -506,7 +504,6 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
 
     if (idx < USER_CON_RSSI_MAX_NB)
     {
-        arch_printf("\r\n Connection RSSI:%d", (int8_t) rssi_val);
         if (rssi_con_value < (int8_t) rssi_val)
             rssi_con_value = (int8_t) rssi_val;
         idx++;
@@ -623,7 +620,6 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
         
         if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
         {
-            arch_printf("\r\nOn connection: Set RSSI timer");
             user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
         }
     }

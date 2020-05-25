@@ -66,7 +66,7 @@
  ****************************************************************************************
  */
 
-#define USER_SWITCH_ADV_SCAN_TO             (1000)    // 1000*10ms = 10sec
+#define USER_SWITCH_ADV_SCAN_TO             (500)    // 500*10ms = 5sec
 #define USER_UPD_CONN_RSSI_TO               (20)      // 20*10ms = 200msec
 #define USER_INITIATOR_TO                   (500)     // 500*10ms = 5sec
 #define USER_DISCONNECT_TO_TO               (400)     // 400*10ms = 4sec

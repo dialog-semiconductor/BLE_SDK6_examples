@@ -57,7 +57,6 @@
 */
 void timer_alert_cb(void)
 {
-    led_alert.alert_timer_hnd = EASY_TIMER_INVALID_TIMER;
     if(led_alert.state)
     {
         GPIO_SetInactive(ALERT_PORT, ALERT_PIN);
@@ -84,6 +83,7 @@ void alert_user_stop(void)
     led_alert.alert_active = false;
     if (led_alert.alert_timer_hnd != EASY_TIMER_INVALID_TIMER)
         app_easy_timer_cancel(led_alert.alert_timer_hnd);
+    led_alert.alert_timer_hnd = EASY_TIMER_INVALID_TIMER;
     GPIO_SetInactive(ALERT_PORT, ALERT_PIN);
     led_alert.state = false;
     led_alert.alert_type = INVALID_ZONE;
@@ -95,4 +95,4 @@ void alert_user_start(uint16_t danger_zone)
     led_alert.alert_type = danger_zone;
     led_alert.cb();
 }
- /// @} APP
+/// @} APP

@@ -230,6 +230,8 @@ static void user_adv_rssi_print_list()
 {
     struct user_adv_rssi_node* p;
 
+    arch_printf("\r\nStored list:");
+    
     p = user_adv_rep_rssi_head;
     while (p != NULL) 
     {

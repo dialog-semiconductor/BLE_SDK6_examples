@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon May 25 11:24:14 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon May 25 11:45:08 2020
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -109,9 +109,6 @@ arch_set_deep_sleep <= USED 0
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
 check_sys_startup_period <= USED 0
-;FILE battery.o
-battery_get_lvl <= USED 0
-battery_get_voltage <= USED 0
 ;FILE ble_arp.o
 ;FILE bmp388.o
 bmp388_disable_drdy_int <= USED 0

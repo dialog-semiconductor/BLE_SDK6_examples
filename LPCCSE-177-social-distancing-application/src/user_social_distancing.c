@@ -59,7 +59,8 @@
  * DEFINES
  ****************************************************************************************
  */
-
+#define USER_RUNN_AVG_LENGTH    5   //Length of the running average filter
+ 
 #define USER_CON_INTV           30  //BLE Connection Interval in ms
 #define USER_CON_RSSI_MAX_NB    4   //Maximum number of RSSI measurements
 
@@ -198,8 +199,16 @@ static void user_adv_rssi_add_node_rssi(struct gapm_adv_report_ind const * adv_r
         
         if (!memcmp(&p->adv_addr, &adv_report->report.adv_addr, sizeof(p->adv_addr))
             && p->adv_addr_type == adv_report->report.adv_addr_type)
-        {
-            p->mean_rssi = ((uint32_t)p->count * (uint32_t)p->mean_rssi + adv_report->report.rssi) / (p->count + 1);
+        {           
+            if (p->count < USER_RUNN_AVG_LENGTH)
+            {
+                p->mean_rssi = ((uint32_t)adv_report->report.rssi + (uint32_t)p->mean_rssi) / 2;
+            }
+            else
+            {
+                
+                p->mean_rssi = ( (USER_RUNN_AVG_LENGTH - 1) * (uint32_t)p->mean_rssi + adv_report->report.rssi) / USER_RUNN_AVG_LENGTH ;
+            }
             (p->count)++;
         }
         else // This is a new node

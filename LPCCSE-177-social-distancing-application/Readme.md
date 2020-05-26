@@ -5,8 +5,17 @@
 This example configures a DA14531 device to be used for social distancing purposes. This Social Distancing Tag (SDT) is a reference software example that targets mainly, but not exclusively, wearable devices allowing its users to be warned in the case they do not comply with social distancing recommendations. In the COVID-19 pandemic context, the SDT users should not gather with a physical distance lower than 1.5m. The users in a professional environment should be warned they are not complying with the recommended physical distanciation.
 
 ## HW and SW configuration
-- This example runs on the DA14531 Bluetooth Smart SoC devices.	
+- This example runs on the DA14531 Bluetooth Smart SoC devices.
+- You will need to have two target devices, the DA14531 Smartbond daughterboard evaluation kit or the DA14531 Smartbond TINY module. One of them is recommended to be the DA14531 Smartbond TINY module.
 - The DA145xx Pro Development Kit is needed for this example, and it can be used with the DA14531 Smartbond daughterboard evaluation kits or the DA14531 Smartbond TINY module.
+
+### Hardware configuration for use with the DA14531 Smartbond TINY Module
+
+- Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
+- Connect the jumpers as shown in the graphic for downloading your binary to the SPI flash via the one-wire UART.
+- For using the LED mounted on the module PCB, you can find more instructions on the  [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/sites/default/files/um-b-141_da14531_smartbond_tinytm_module_development_kit_hardware_user_manual_1.1.pdf)
+
+	![motherboard_with_module_conf](media/pro_with_module.png)
 
 ### Hardware configuration for use with the DA14531 Smartbond daughterboard
 
@@ -16,15 +25,6 @@ This example configures a DA14531 device to be used for social distancing purpos
 - Connect P25 on header J2 with the bottom pin of header J8 with a flywire.	
 	
 	![motherboard_with_daughter_conf](media/DevKit531_585_586.png)
-
-
-### Hardware configuration for use with the DA14531 Smartbond TINY Module
-
-- Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
-- Connect the jumpers as shown in the graphic for downloading your binary to the SPI flash via the one-wire UART.
-- For using the LED mounted on the module PCB, you can find more instructions on the  [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/sites/default/files/um-b-141_da14531_smartbond_tinytm_module_development_kit_hardware_user_manual_1.1.pdf)
-
-	![motherboard_with_module_conf](media/DevKit531_585_586_module.png)
 
 ### Software configuration
 
@@ -42,20 +42,33 @@ For initial setup of the example please refer to [this section of the dialog sup
  - Start Keil
  - Open the file ``src/config/user_periph_setup.h`` and define ``USER_CFG_DA14531_MOD`` for use with the DA14531 Module.
  - Compile the example by pressing the "Build" button. 
- - For exploring the functionality of this example, you should have two or more devices available. You can run the executable from the SPI flash memory (have a look at the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) for instructions), or you could run a Debug session.
+ - Load the executable to the SPI flash memory (have a look at the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) for instructions) and disconnect the DA14531 module from the motherboard. Insert a type CR2032 battery to the module.
 
-    Start a debugging session and then press the "Run" button or F5.
+ - Connect the second target device and connect the pins as shown in the second figure with flywires. Undefine in ``src/config/user_periph_setup.h`` the ``USER_CFG_DA14531_MOD`` macro.
+ - Open up your Device Manager (for Windows OS) and there will be two COM ports enumerated as shown in the following figure.
+
+![com-ports](media/com_ports.png)
+
+- Open your serial port terminal and choose the first one as your port. Configure the connection with baud rate 115200, 8 data bits and 1 stop bit, no parity and no flow control. For PuTTY you should configure your Session as in the following picture
+
+![putty-session](media/putty_session.png)
+
+and under Connection -> Serial
+
+![putty-serial](media/putty_serial.png)
+
+and press "Open".
+
+- In Keil, start a debugging session and then press the "Run" button or F5.
 	
 ![keil-start-debug](media/keil-start-debug-session.png)
 	
  ### Monitoring distance
-You should complete the previous steps for two or more devices. Once your motherboard is connected, there will be two COM ports enumerated as shown in the following figure.
+At this point you will have the executable running on your DA14531 module and on the device connected to your motherboard, with the latter printing messages on your serial port terminal. 
 
-![com-ports](media/com_ports.png)
+The device will switch between being a BLE Advertiser and a Scanner. In the Advertising state peer devices will detect its presence and measure its Received Signal Strength Indicator (RSSI). In the Scanning state, it will detect peer devices nearby and store their address, RSSI and the number of times an advertising report has been received, and this information will be put in a dynamic list. To rule out the case that a device has been momentarily in the vicinity, the RSSIs are filtered with a running average filter. 
 
-Open your serial port terminal and choose the first one as your port. Configure the connection with baud rate 115200, 8 data bits and 1 stop bit, no parity and no flow control.
-
-The device will switch between being a BLE Advertiser and a Scanner. When scanning completes, you will see the peer device showing up in the list on your serial terminal, and if the distance between the devices is too close, the LED will blink.
+When scanning completes, the dynamic list entries will be print, the list will be traversed and if there is a device with a strong signal nearby, it will initiate a connection. Upon connection, the entry list will be marked as "Accessed", and then the devices will exchange their measured RSSIs through a GATT service for a configurable number of times and the maximum RSSI will be used as an indication for the distance. At this point, the LED will blink according to the proximity zone that the devices are in. The same procedure will be repeated with every device that is in close range, and then an advertising and scanning cycle will start again.
 
 ## Known Limitations
 

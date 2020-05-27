@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon May 11 10:57:49 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed May 27 13:55:11 2020
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -37,11 +37,6 @@ default_app_bdb_get_stored_irks <= USED 0
 default_app_bdb_init <= USED 0
 default_app_bdb_remove_entry <= USED 0
 default_app_bdb_search_entry <= USED 0
-;FILE app_customs.o
-app_custs1_init <= USED 0
-;FILE app_customs_common.o
-app_custs1_val_wr_validate <= USED 0
-;FILE app_customs_task.o
 ;FILE app_default_handlers.o
 default_advertise_operation <= USED 0
 default_app_generate_unique_static_random_addr <= USED 0
@@ -51,8 +46,6 @@ default_app_on_csrk_exch <= USED 0
 default_app_on_encrypt_req_ind <= USED 0
 default_app_on_pairing_succeeded <= USED 0
 default_app_on_ral_cmp_evt <= USED 0
-;FILE app_diss.o
-;FILE app_diss_task.o
 ;FILE app_easy_msg_utils.o
 app_easy_msg_free_callback <= USED 0
 app_easy_msg_modify <= USED 0
@@ -277,7 +270,6 @@ uart_receive <= USED 0
 uart_register_err_cb <= USED 0
 uart_register_rx_cb <= USED 0
 ;FILE user_ble_gap.o
-user_ble_cancel_connect <= USED 0
 ;FILE user_ble_gatt.o
 ;FILE user_central_app.o
 ;FILE user_periph_setup.o

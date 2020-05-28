@@ -239,12 +239,13 @@ static void user_adv_rssi_print_list()
 {
     struct user_adv_rssi_node* p;
 
-    arch_printf("\r\nStored list:");
+    arch_printf("\r\nSTORED LIST:");
     
     p = user_adv_rep_rssi_head;
     while (p != NULL) 
     {
-        arch_printf("\r\n List entry:\t");
+        arch_printf("\r\n LIST ENTRY:\t");
+        arch_printf("BD ADDRESS:\t");
         arch_printf("%02x %02x %02x %02x %02x %02x\t",
         p->adv_addr.addr[5],
         p->adv_addr.addr[4],
@@ -253,8 +254,8 @@ static void user_adv_rssi_print_list()
         p->adv_addr.addr[1],
         p->adv_addr.addr[0]);
         arch_printf("RSSI: %d\t", (int8_t)p->mean_rssi);
-        arch_printf("Accessed: %d\t", p->accessed? 1: 0);
-        arch_printf("Count: %d\t", (int8_t)p->count);
+        arch_printf("IS ACCESSED: %s\t", p->accessed? "True" : "False");
+        arch_printf("FOUND: %d time(s)\t\r\n", (int8_t)p->count);
      
         p = p->next;
     }
@@ -405,6 +406,8 @@ static void user_scan_start(void)
     cmd->mode = user_scan_conf.mode;
     cmd->filt_policy = user_scan_conf.filt_policy;
     cmd->filter_duplic =user_scan_conf.filter_duplic;
+    
+    arch_printf("\033[0;36m\r\n" USER_DEVICE_NAME ": SCANNING\r\n\033[0m");
 
     // Send the message
     ke_msg_send(cmd);
@@ -490,13 +493,15 @@ static void user_initiator_timer_cb()
     else if (ke_state_get(TASK_APP) == APP_CONNECTED)
     {
         user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
+        
+        arch_printf("\r\n" USER_DEVICE_NAME ": DISCONNECTING\r\n");
+        
         app_easy_gap_disconnect(app_connection_idx);
     }        
     else
     {
         user_initiator_timer = EASY_TIMER_INVALID_TIMER;
         user_adv_rssi_list_clear();
-        user_adv_rssi_print_list();
 
         user_app_adv_start();
     }
@@ -521,24 +526,24 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
     }
     else
     {      
-        arch_printf("\r\n Maximum connection RSSI:%d", rssi_con_value);
+        arch_printf("\r\nINFO: STRONGEST RSSI IN CONNECTED STATE: %d\r\n", rssi_con_value);
         
         idx = 0;
         
         if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
-        {
-            arch_printf("\r\nIn danger zone");
+        {   
             alert_user_start(DANGER_ZONE);
+            arch_printf("\033[1;31m\r\nINFO: " USER_DEVICE_NAME " IS IN DANGER ZONE\r\n\033[0m");
         }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
-        {
-            arch_printf("\r\nIn warning zone");
+        {            
             alert_user_start(WARNING_ZONE);
+            arch_printf("\033[01;33m\r\nINFO: " USER_DEVICE_NAME " IS IN WARNING ZONE\r\n\033[0m");
         }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
-        {   
-            arch_printf("\r\nIn coarse zone");
+        {               
             alert_user_start(COARSE_ZONE);
+            arch_printf("\033[1;36m\r\nINFO: " USER_DEVICE_NAME " IS IN COARSE ZONE\r\n\033[0m");
         }
         
         if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
@@ -579,6 +584,8 @@ void user_app_on_scanning_completed(const uint8_t param)
     bool has_conn_candidate;
     struct user_adv_rssi_node* p;
     
+    arch_printf("\033[0;36m\r\n" USER_DEVICE_NAME ": SCAN COMPLETED\r\n\033[0m");
+
     // Disable LED
     alert_user_stop();
     
@@ -590,10 +597,10 @@ void user_app_on_scanning_completed(const uint8_t param)
     p = user_adv_rssi_get_max_rssi_node();
     
     if (p == NULL)
-        arch_printf("\r\n No nodes stored");
+        arch_printf("\r\nINFO: NO NODE FOUND\r\n");
     else
     {
-        arch_printf("\r\n Strongest node RSSI: %d", (int8_t)p->mean_rssi);
+        arch_printf("\r\nINFO: THE STRONGEST NODE WITH RSSI %d FOUND\r\n", (int8_t)p->mean_rssi);
     }
     
     has_conn_candidate = user_adv_rssi_list_has_candidate();
@@ -612,6 +619,7 @@ void user_app_adv_start(void)
     user_switch_adv_scan_timer = app_easy_timer(USER_SWITCH_ADV_SCAN_TO + rand_val, user_switch_adv_scan_timer_cb);
     
     app_easy_gap_undirected_advertise_start();
+    arch_printf("\033[0;32m\r\n" USER_DEVICE_NAME ": ADVERTISING\r\n\033[0m");
 }
 
 void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
@@ -632,6 +640,8 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
             user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
         }
         
+        arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTING\r\n");
+        
         if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
         {
             user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
@@ -648,6 +658,7 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
 
 void user_app_adv_undirect_complete(uint8_t status)
 {
+    arch_printf("\033[0;32m\r\n" USER_DEVICE_NAME ": ADVERTISING COMPLETED\r\n\033[0m");
     if (status == GAP_ERR_CANCELED)
     {
         if (user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
@@ -662,6 +673,7 @@ void user_app_adv_undirect_complete(uint8_t status)
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
 {  
     ke_state_set(TASK_APP, APP_CONNECTABLE);
+    arch_printf("\r\n" USER_DEVICE_NAME ": DISCONNECTED\r\n");
     
     // Restart Advertising
     user_app_adv_start();
@@ -688,6 +700,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
         case GAPC_CON_RSSI_IND:
         {
             struct gapc_con_rssi_ind const *msg_param = (struct gapc_con_rssi_ind const *)(param);
+            arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTED\r\n");
             
             // Write the received RSSI to the peer device
             perform_rssi_write_to_peer((int8_t) msg_param->rssi);

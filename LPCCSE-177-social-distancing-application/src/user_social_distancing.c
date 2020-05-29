@@ -372,9 +372,11 @@ static void perform_rssi_write_to_peer(uint8_t rssi)
 
 /**
  ****************************************************************************************
- * @brief Collects RSSI values and decides the proximity zone
- * @param[in] rssi_val The current RSSI value
- * @return void
+ * @brief Receives RSSI value on connection from peer device
+ * @param[in] msgid Id of the message received
+ * @param[in] param Parameters of the @ref CUSTS1_VAL_WRITE_IND message
+ * @param[in] dest_id ID of the receiving task instance
+ * @param[in] src_id ID of the sending task instance
  ****************************************************************************************
  */
 static void rssi_write_ind_handler(ke_msg_id_t const msgid,

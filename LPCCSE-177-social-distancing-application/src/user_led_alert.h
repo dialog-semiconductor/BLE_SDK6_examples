@@ -75,26 +75,58 @@
  * TYPE DEFINITIONS
  ****************************************************************************************
  */
-typedef void(*timer_led_alert_cb_t)(void);
- 
+typedef void (*timer_led_alert_cb_t)(void);
+
+
+/**
+ ****************************************************************************************
+ * @brief A structure to represent an alert object
+ ****************************************************************************************
+ */
 typedef struct {
     bool                    state;
     bool                    alert_active;
     timer_hnd               alert_timer_hnd;
     timer_led_alert_cb_t    cb;
-    uint16_t                 alert_type;      
-}alert_led_t;
+    uint16_t                alert_type;      
+} alert_led_t;
 
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
  */
+
+/**
+ ****************************************************************************************
+ * @brief Timer callback function for proximity alert
+ * @return void
+ ****************************************************************************************
+ */
 void timer_alert_cb(void);
 
+/**
+ ****************************************************************************************
+ * @brief Initialization function for proximity alert
+ * @return void
+ ****************************************************************************************
+ */
 void alert_user_init(void);
 
+/**
+ ****************************************************************************************
+ * @brief Stops the proximity proximity alert
+ * @return void
+ ****************************************************************************************
+ */
 void alert_user_stop(void);
 
+/**
+ ****************************************************************************************
+ * @brief Starts the proximity alert
+ * @param[in] danger_zone The proximity zone as determined by the RSSI
+ * @return void
+ ****************************************************************************************
+ */
 void alert_user_start(uint16_t danger_zone);
 
 /// @} APP

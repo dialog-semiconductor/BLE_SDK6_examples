@@ -177,8 +177,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
  
 /**
  ****************************************************************************************
- * @brief Advertising report.
- * @param[in] param gap adv report
+ * @brief Advertising report callback.
+ * @param[in] param GAP advertising report
  * @return void
  ****************************************************************************************
 */                          

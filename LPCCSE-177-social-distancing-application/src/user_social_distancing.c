@@ -122,8 +122,6 @@ static const struct scan_configuration user_scan_conf ={
     .filter_duplic = SCAN_FILT_DUPLIC_EN
 };
 
-static const uint8_t user_custom_srv_uuid[] = DEF_SVC1_UUID_128;
-
 /*
  * FUNCTION DEFINITIONS
  ****************************************************************************************
@@ -722,7 +720,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
 {
     uint8_t report_data[ADV_DATA_LEN + 1];
-    
+    const uint8_t user_custom_srv_uuid[] = DEF_SVC1_UUID_128;
+
     memcpy(report_data, param->report.data, param->report.data_len);
     report_data[param->report.data_len] = '\0';
     

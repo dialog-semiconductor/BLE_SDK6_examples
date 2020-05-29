@@ -70,6 +70,16 @@ The device will switch between being a BLE Advertiser and a Scanner. In the Adve
 
 When scanning completes, the dynamic list entries will be print, the list will be traversed and if there is a device with a strong signal nearby, it will initiate a connection. Upon connection, the entry list will be marked as "Accessed", and then the devices will exchange their measured RSSIs through a GATT service for a configurable number of times and the maximum RSSI will be used as an indication for the distance. At this point, the LED will blink according to the proximity zone that the devices are in. The same procedure will be repeated with every device that is in close range, and then an advertising and scanning cycle will start again.
 
+### Implementation details
+
+When the device gets initialized, the function ``user_app_adv_start()`` will be called as the default advertising operation. This will set a timer which will time out after ``USER_SWITCH_ADV_SCAN_TO`` plus a small random value, which in turn will call the ``user_switch_adv_scan_timer_cb()``. When this callback function is called, it will stop the advertising and it will enter the Scanner state.
+
+Scanning starts with the function ``user_scan_start()`` and is configured with the parameters of ``user_scan_conf`` struct. At this point, if there is an active alert, it will be canceled. Every time a new advertising report is received, the function ``user_app_on_adv_report_ind()`` will be called, which will add a peer device's advertising report in a dynamic list. 
+
+When scanning completes, the ``user_app_on_scanning_completed()`` function will be called. The list will be searched to check the maximum RSSI node (if there is one) and if it exceeds the RSSI threshold, a connection will be initiated. If not, the device will enter another Advertising/Scanning cycle.
+
+Connections are initiated with the ``user_initiator_timer_cb()`` every ``USER_INITIATOR_TO`` interval. Upon connection, the function ``user_poll_conn_rssi_timer_cb`` will check the connection RSSI every ``USER_UPD_CONN_RSSI_TO`` interval and in turn the function ``user_collect_conn_rssi()`` will collect the measurements. After ``USER_CON_RSSI_MAX_NB`` measurements, the link will be disconnected. The list will be traversed to find the next connection candidate, and when the list is exhausted, a new Advertising/Scanning cycle will begin.  
+
 ## Known Limitations
 
 

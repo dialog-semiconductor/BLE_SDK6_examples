@@ -700,7 +700,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
         case GAPC_CON_RSSI_IND:
         {
             struct gapc_con_rssi_ind const *msg_param = (struct gapc_con_rssi_ind const *)(param);
-            arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTED\r\n");
+            arch_printf("\r\n" USER_DEVICE_NAME ": ACQUIRE RSSI\r\n");
             
             // Write the received RSSI to the peer device
             perform_rssi_write_to_peer((int8_t) msg_param->rssi);

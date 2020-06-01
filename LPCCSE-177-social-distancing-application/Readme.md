@@ -70,6 +70,25 @@ The device will switch between being a BLE Advertiser and a Scanner. In the Adve
 
 When scanning completes, the dynamic list entries will be print, the list will be traversed and if there is a device with a strong signal nearby, it will initiate a connection. Upon connection, the entry list will be marked as "Accessed", and then the devices will exchange their measured RSSIs through a GATT service for a configurable number of times and the maximum RSSI will be used as an indication for the distance. At this point, the LED will blink according to the proximity zone that the devices are in. The same procedure will be repeated with every device that is in close range, and then an advertising and scanning cycle will start again.
 
+You can monitor the device state on the UART output. Below is a list of all the associated messages:
+
+* DLG-SDT-D1: ADVERTISING: The device is advertising its presence to peer devices.
+* DLG-SDT-D1: ADVERTISING COMPLETED: The device has completed advertising.
+* DLG-SDT-D1: SCANNING: The device is searching for peer devices.
+* DLG-SDT-D1: SCAN COMPLETED: The device has finished searching for peer devices.
+
+When an advertising report is received, all the entries of the dynamic list will be printed out:
+
+* STORED LIST:
+  LIST ENTRY:    BD ADDRESS:     80 ea ca a0 06 aa       RSSI: -57       IS ACCESSED: False      FOUND: 1 time(s) : The list entry stores the BD Address of the peer device, the filtered RSSI value, a flag which indicates if a connection has been initiated, and the number of advertising reports that have been received.
+
+When a connection is initiated:
+* DLG-SDT-D1: ACQUIRE RSSI: At this point the device is measuring the connection RSSI
+* INFO: STRONGEST RSSI IN CONNECTED STATE: -44: This is the strongest RSSI measured and determines the proximity zone.
+* INFO: DLG-SDT-D1 IS IN DANGER ZONE: The device has determined the proximity zone and the associated indication will be triggered.
+* DLG-SDT-D1: DISCONNECTED: The current connection has been dropped, and the device will either check for another proximity candidate or start advertising its presence. 
+
+
 ### Implementation details
 
 When the device gets initialized, the function ``user_app_adv_start()`` will be called as the default advertising operation. This will set a timer which will time out after ``USER_SWITCH_ADV_SCAN_TO`` plus a small random value, which in turn will call the ``user_switch_adv_scan_timer_cb()``. When this callback function is called, it will stop the advertising and it will enter the Scanner state.
@@ -78,7 +97,7 @@ Scanning starts with the function ``user_scan_start()`` and is configured with t
 
 When scanning completes, the ``user_app_on_scanning_completed()`` function will be called. The list will be searched to check the maximum RSSI node (if there is one) and if it exceeds the RSSI threshold, a connection will be initiated. If not, the device will enter another Advertising/Scanning cycle.
 
-Connections are initiated with the ``user_initiator_timer_cb()`` every ``USER_INITIATOR_TO`` interval. Upon connection, the function ``user_poll_conn_rssi_timer_cb`` will check the connection RSSI every ``USER_UPD_CONN_RSSI_TO`` interval and in turn the function ``user_collect_conn_rssi()`` will collect the measurements. After ``USER_CON_RSSI_MAX_NB`` measurements, the link will be disconnected. The list will be traversed to find the next connection candidate, and when the list is exhausted, a new Advertising/Scanning cycle will begin.  
+Connections are initiated with the ``user_initiator_timer_cb()`` every ``USER_INITIATOR_TO`` interval. Upon connection, the function ``user_poll_conn_rssi_timer_cb`` will check the connection RSSI every ``USER_UPD_CONN_RSSI_TO`` interval and in turn the function ``user_collect_conn_rssi()`` will collect the measurements. This will also trigger an RSSI exchange with the peer device. If the strongest RSSI, peer or own, exceeds the thresholds defined in ``user_prox_zones_rssi`` array, an alert will start, which will blink with a frequency related to the proximity zone that was estimated. After ``USER_CON_RSSI_MAX_NB`` measurements, the link will be disconnected. The list will be traversed to find the next connection candidate, and when the list is exhausted, a new Advertising/Scanning cycle will begin.  
 
 ## Known Limitations
 

@@ -1,4 +1,4 @@
-# Social Distancing Tag software example
+# DA14531 Social Distancing Tag software example
 
 ## Example description
 
@@ -13,7 +13,7 @@ This example configures a DA14531 device to be used for social distancing purpos
 
 - Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
 - Connect the jumpers as shown in the graphic for downloading your binary to the SPI flash via the one-wire UART.
-- For using the LED mounted on the module PCB, you can find more instructions on the  [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/sites/default/files/um-b-141_da14531_smartbond_tinytm_module_development_kit_hardware_user_manual_1.1.pdf)
+- For using the LED mounted on the module PCB, you can find more instructions on the  [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/da14531-module-HW-DevKit-UM)
 
 	![motherboard_with_module_conf](media/pro_with_module.png)
 

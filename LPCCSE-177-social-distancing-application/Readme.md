@@ -77,6 +77,10 @@ You can monitor the device state on the UART output. Below is a list of all the 
 * DLG-SDT-D1: SCANNING: The device is searching for peer devices.
 * DLG-SDT-D1: SCAN COMPLETED: The device has finished searching for peer devices.
 
+In the next figure you can see the case when no device has been detected and Social Distancing Tag will switch between being an Advertiser and a Scanner.
+
+![putty_no_node](media/putty_no_node.png)
+
 When an advertising report is received, all the entries of the dynamic list will be printed out:
 
 * STORED LIST:
@@ -88,6 +92,9 @@ When a connection is initiated:
 * INFO: DLG-SDT-D1 IS IN DANGER ZONE: The device has determined the proximity zone and the associated indication will be triggered.
 * DLG-SDT-D1: DISCONNECTED: The current connection has been dropped, and the device will either check for another proximity candidate or start advertising its presence. 
 
+This procedure can be seen in the next screenshot:
+
+![putty_danger_sone](media/putty_danger_zone.png)
 
 ### Implementation details
 

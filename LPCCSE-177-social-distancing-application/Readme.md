@@ -12,17 +12,17 @@ This example configures a DA14531 device to be used for social distancing purpos
 ### Hardware configuration for use with the DA14531 Smartbond TINY Module
 
 - Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
-- Connect the jumpers as shown in the graphic for downloading your binary to the SPI flash via the one-wire UART.
+- Connect the jumpers as shown in the graphic for downloading your binary to the SPI flash via the one-wire UART. Connect the left pin of the UTX row on header J1 with P26 on header J2 with a flywire for UART output.
 - For using the LED mounted on the module PCB, you can find more instructions on the  [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/da14531-module-HW-DevKit-UM)
 
-	![motherboard_with_module_conf](media/pro_with_module.png)
+	![motherboard_with_module_conf](media/module.jpg)
 
 ### Hardware configuration for use with the DA14531 Smartbond daughterboard
 
 - Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
 - Connect the JTAG debugger with the appropriate jumpers as seen below on header J1.
-- Connect the left pin of the UTX row on header J1 with P26 on header J2 with a flywire.
-- Connect P25 on header J2 with the bottom pin of header J8 with a flywire.	
+- Connect the left pin of the UTX row on header J1 with P26 on header J2 with a flywire for UART output.
+- Connect P25 on header J2 with the bottom pin of header J8 with a flywire for the LED indication.	
 	
 	![motherboard_with_daughter_conf](media/DevKit531_585_586.png)
 

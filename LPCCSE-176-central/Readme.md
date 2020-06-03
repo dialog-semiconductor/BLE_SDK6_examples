@@ -30,9 +30,7 @@ The user manuals for the development kits can be found:
 
 * **Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard**
 
-	- When using DA14585/DA14586, Jumper P0_6 from J2 to UTX (Pin 17 on J1).
-	
-	![da14585.jpg](assets/da14585.jpg).
+	- When using DA14585/DA14586, witht the proper project configuration, the UTX jumper needs to be placed.
 	
 	- When using DA14531, Jumper P2_6 from J2 to UTX (Pin 17 on J1) for serial UART communication.
 	

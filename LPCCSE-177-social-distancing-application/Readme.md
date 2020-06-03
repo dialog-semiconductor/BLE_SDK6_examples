@@ -97,6 +97,7 @@ This procedure can be seen in the next screenshot:
 ![putty_danger_sone](media/putty_danger_zone.png)
 
 ### Implementation details
+The threshold levels that determine the proximity zone are defined in ``user_social_distancing.c`` in the array named ``user_prox_zones_rssi``. Four proximity zones are defined, namely Danger Zone, Warning Zone, Coarse Zone, and BLE Limit Zone. In there, you can change the RSSI thresholds to the ones that are most suitable for your application.  
 
 When the device gets initialized, the function ``user_app_adv_start()`` will be called as the default advertising operation. This will set a timer which will time out after ``USER_SWITCH_ADV_SCAN_TO`` plus a small random value, which in turn will call the ``user_switch_adv_scan_timer_cb()``. When this callback function is called, it will stop the advertising and it will enter the Scanner state.
 

@@ -65,18 +65,18 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
 	uint8_t val = 0;
     memcpy(&val, &param->value[0], param->length);
 
-	if( val == CUSTS1_WDOG )
+	if (val == CUSTS1_WDOG)
 	{	
 		/*Triggering the WDOG timer to generates a WDOG (SYS) reset at value 0 and can not be frozen by Software.*/	
 		SetBits16( WATCHDOG_CTRL_REG , NMI_RST , 1);
 		while(1);
 	}
-	else if( val == CUSTS1_SW_RESET )
+	else if (val == CUSTS1_SW_RESET)
 	{
 		/*Generating a Software Reset.*/	
 		SetBits16(SYS_CTRL_REG, SW_RESET, 1);
 	}
-	else if( val == CUSTS1_POR )
+	else if (val == CUSTS1_POR)
 	{
 		/*Enabling the P0_5 as Power-On Reset (POR) source. A high polarity signal will cause a POR on P0_5.*/
 		GPIO_EnablePorPin( GPIO_POR_PORT, GPIO_POR_PIN, GPIO_POR_PIN_POLARITY_HIGH , POR_TIME_VAL );

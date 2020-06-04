@@ -3,9 +3,9 @@
  *
  * @file user_reset_mechanism.h
  *
- * @brief Peripheral project header file.
+ * @brief Reset Mechanism SW Example header file.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2020 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *

@@ -3,9 +3,9 @@
  *
  * @file user_reset_mechanism.c
  *
- * @brief Peripheral project source code.
+ * @brief Reset Mechanism SW Example source code.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2020 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -182,9 +182,6 @@ void user_app_init(void)
 
 void user_app_adv_start(void)
 {
-    struct gapm_start_advertise_cmd* cmd;
-    cmd = app_easy_gap_undirected_advertise_get_active();
-	
     app_easy_gap_undirected_advertise_start();
 }
 

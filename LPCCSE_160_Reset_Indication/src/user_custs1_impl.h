@@ -3,9 +3,9 @@
  *
  * @file user_custs1_impl.h
  *
- * @brief Peripheral project Custom1 Server implementation header file.
+ * @brief Reset Mechanism SW Example Custom1 Server implementation header file.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2020 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -62,13 +62,13 @@
  */
 #define POR_TIME_VAL 						(0x3F)
  
-  enum
+enum
 {
 	CUSTS1_NO_RESET = 0,
-	CUSTS1_WDOG 	,
-	CUSTS1_SW_RESET ,
-	CUSTS1_HW_RESET ,
-	CUSTS1_POR ,
+	CUSTS1_WDOG,
+	CUSTS1_SW_RESET,
+	CUSTS1_HW_RESET,
+	CUSTS1_POR,
 };
 
 /*

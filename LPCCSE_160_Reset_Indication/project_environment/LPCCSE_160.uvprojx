@@ -604,11 +604,6 @@
               <FilePath>.\..\..\..\..\..\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
             </File>
             <File>
-              <FileName>rf_585.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
-            </File>
-            <File>
               <FileName>ble_arp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\sdk\platform\core_modules\rf\src\ble_arp.c</FilePath>

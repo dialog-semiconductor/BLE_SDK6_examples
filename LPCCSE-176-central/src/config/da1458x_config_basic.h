@@ -90,7 +90,7 @@
 /* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implented using UART2, else UART1 */
 /* will be used.                                                                                                */
 /****************************************************************************************************************/
-#undef CFG_PRINTF
+#define CFG_PRINTF
 #ifdef CFG_PRINTF
     #define CFG_PRINTF_UART2
 #endif

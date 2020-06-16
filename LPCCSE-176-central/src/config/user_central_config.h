@@ -7,7 +7,7 @@
 #define SCAN_FILTER_TX_POWER							(3)
 #define SCAN_FILTER_MFG_DATA							(4)
 
-#define	SCAN_FILTER												(SCAN_FILTER_NAME )
+#define	SCAN_FILTER												(SCAN_FILTER_NAME)
 
 #define CONNECT_TO_PERIPHERAL							(1)
 

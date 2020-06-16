@@ -54,8 +54,8 @@
 /* Used BLE profiles (used by "rwprf_config.h").                                       */
 /***************************************************************************************/
 
-#define CFG_PRF_DISS
-#define CFG_PRF_CUST1
+#undef CFG_PRF_DISS
+#undef CFG_PRF_CUST1
 
 /***************************************************************************************/
 /* Profile application configuration section                                           */

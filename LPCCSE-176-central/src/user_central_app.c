@@ -92,17 +92,22 @@ central_app_env_t central_app_env;
 static void configure_alert_button(void);
 #endif
 
+#if (SCAN_FILTER == (SCAN_FILTER_NAME) || SCAN_FILTER == SCAN_FILTER_NONE) 
 static inline void format_adv_string(uint8_t * data, uint8_t len, char *out_string)
 {
 	memcpy(out_string, data, len);
 	out_string[len] = '\0';
 	
 }
+#endif
 /* return true if UUIDs match */
 static bool match_uuid(uint8_t * uuid1, uint8_t *uuid2, uint8_t len)
 {
 	return !memcmp(uuid1, uuid2, len);
 }
+
+#if (SCAN_FILTER == SCAN_FILTER_NONE || SCAN_FILTER == SCAN_FILTER_16_BIT_SVC_DATA || SCAN_FILTER == SCAN_FILTER_MFG_DATA)
+
 /* return static buffer with formatted hex string */
 static char *format_hex_string(uint8_t *data, uint8_t len)	
 {
@@ -119,6 +124,8 @@ static char *format_hex_string(uint8_t *data, uint8_t len)
 	return buf;
 	
 }
+
+#endif
 	/* return static buffer with formatted address */
 static const char *format_bd_address(const struct bd_addr *addr)
 {
@@ -284,12 +291,11 @@ static void ble_scan_for_devices()
  */
 void user_on_adv_report_ind(struct gapm_adv_report_ind const * adv_ind)
 {
-
-
-	struct bd_addr dev_addr = adv_ind->report.adv_addr;
 	bool dev_found = false;
+	
 #if CONNECT_TO_PERIPHERAL == 1
 	bool conn_to_device = false;
+	struct bd_addr dev_addr = adv_ind->report.adv_addr;
 #endif 
 
 	uint8_t num_ad_elements = user_ble_gap_get_adv_num_elements(adv_ind->report.data, 

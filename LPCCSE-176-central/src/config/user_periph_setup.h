@@ -62,6 +62,9 @@
 #else
     #define UART2_TX_PORT           GPIO_PORT_0
     #define UART2_TX_PIN            GPIO_PIN_4
+	
+	#define GPIO_BUTTON_PORT				GPIO_PORT_0
+	#define GPIO_BUTTON_PIN					GPIO_PIN_6
 #endif
 
 // Define UART2 Settings

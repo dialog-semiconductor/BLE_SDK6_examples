@@ -70,13 +70,13 @@ If the warning (shown below) pops up press OK.
 ### Running the Example - Scan and Connect
 
 1. Verify that your central started via the Terminal.  The default settings of the central will start scanning for devices that use a GAP_LOCAL_NAME (0x09) GAP flag type. If there are no devices in the area, there will be no output. 
-	![terminal_local_name_output](assets/terminal_local_name_output)
+	![terminal_local_name_output](assets/terminal_local_name_output.png)
 
 2. The project is configured to filter for proximity reporters and to connect to the first advertismenet seen. On a seperate board, run proximity reporter.  Go within the SDK to target_apps/ble_examples/prox_reporter, open the project and compile and run as you did for this example.
 
 3. If running from JTAG and the original example is deployed via JTAG, be sure to assign the proper JTAG serial number to each target.  In Keil, this can be done by right clicking on the project and going to Options for Target ....  Go to Debug then settings and select the serial number that matches the sticker on the board.
 
-	![debug_jtag_settings](assets/debug_jtag_settings)
+	![debug_jtag_settings](assets/debug_jtag_settings.png)
 	
 3. Once running, verify in the terminal that you see output for the connection and service discovery. 
 	
@@ -84,7 +84,7 @@ If the warning (shown below) pops up press OK.
 
 4. After the service discovery, you can press the button the central device.  This will write to the alert service and start blinking the LED on the proximity reporter.  You should also see the write over the terminal if sent properly.
 
-	![Gatt_Write](assets/Gatt_Write)
+	![Gatt_Write](assets/Gatt_Write.png)
 	
 ### Running the Example - Scan for all devices
 
@@ -96,7 +96,7 @@ If the warning (shown below) pops up press OK.
 
 4.  All Local BLE devices will now be displayed over the terminal.
 
-	![terminal_no_filter](assets/terminal_no_filter)
+	![terminal_no_filter](assets/terminal_no_filter.png)
 
 
 ### General Project Notes

@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\out_DA14531\Objects\</OutputDirectory>
-          <OutputName>reset_mechanism_531</OutputName>
+          <OutputName>DA14531_reset_indication</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>

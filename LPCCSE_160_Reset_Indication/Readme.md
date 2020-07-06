@@ -11,11 +11,11 @@ This SW example aims to demonstrate how to handle different ways of reset mechan
 
 ## Key Features
 - Store data in the uninitialized section of the Retention-RAM
-- Detect sourse of :
+- Detect source of :
     - Hardware reset
     - Software reset
-    -  Reset by WDOG expiration
-    -  Power-on-Reset
+    - Reset by WDOG expiration
+    - Power-on-Reset
 - Using UART2 for debugging purposes
 - 128-bit UUID custom profile
 
@@ -29,14 +29,14 @@ This SW example aims to demonstrate how to handle different ways of reset mechan
 
   - For running the example on a **DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard** the following configuration is required.         
       - Connect the DA145xx Pro Development Kit to the host computer.
-      - UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionallity.
+      - UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionality.
 	
 	![DA14531_connection_wires](assets/DA14531_connection_wires.PNG)
 
 * **Software configuration**
 
 	This example requires:
-    * Smartsnippets Toolbox 2.0.14.
+    * SmartSnippets Toolbox 5.0.14.
     * SDK6.0.14
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- **A simple serial terminal** should be installed on the PC (e.g. Putty or Teraterm)
@@ -74,7 +74,7 @@ The BLE database contains 2 characteristics as shown in the table below
 > __Note:__ 
 For more information on adding characteristics in a custom service database and creating Custom Profiles, see [this tutorial](http://lpccs-docs.dialog-semiconductor.com/tutorial-custom-profile-DA145xx/introduction.html).
 
-User can explicitely cause a RESET by writing the appropriate value in the "Control Point" characteristic, as shown in the table below:
+User can explicitly  cause a RESET by writing the appropriate value in the "Control Point" characteristic, as shown in the table below:
 
 <table>
   <caption> <b> <i> Values of Control Point characteristic</i></b></caption>
@@ -101,12 +101,12 @@ User can explicitely cause a RESET by writing the appropriate value in the "Cont
 </table>
 
 > __Note:__ 
-In case of the **Hardware Reset**, the RESET button in the Evaluation Board shouls be used. 
+In case of the **Hardware Reset**, the RESET button in the Evaluation Board should be used. 
 
 > __Note:__ 
-When the POR is selected, a high voltage should be applied on P0_6.
+The the POR is enabled, a high polarity signal will cause a POR on P0_5.
 
-Table below demonstrates the the different values of the "Reset Detection" characteristic:
+Table below demonstrates the different values of the "Reset Detection" characteristic:
 
 <table>
   <caption> <b> <i>Values of Reset Detection characteristic</i></b></caption>
@@ -141,7 +141,7 @@ Table below demonstrates the the different values of the "Reset Detection" chara
 
 ## Reset Mechanism in DA14531
 
-See **Section 5** in [DA14531 datasheet](https://www.dialog-semiconductor.com/da14531_datasheet) for more detailed information on RESET fanctionality.
+See **Section 5** in [DA14531 datasheet](https://www.dialog-semiconductor.com/da14531_datasheet) for more detailed information on RESET functionality .
 
 There are three (3) main reset signals in the DA14531:
 - ***Power-On Reset (POR) :*** it is optional triggered by a GPIO set as the POR source with a
@@ -152,7 +152,7 @@ period of time (less than the programmable delay for POR)
 
 The SDK6 provides a function-wrapper, namely ``reset_indication()``  to notify the application that system has been reset. This function reads the **RESET_STAT_REG** register. 
 
-Depending on the sourse of the reset, the bits in the **RESET_STAT_REG**. The table below is showing the different values (in hex) of **RESET_STAT_REG** :
+Depending on the source of the reset, the bits in the **RESET_STAT_REG**. The table below is showing the different values (in hex) of **RESET_STAT_REG** :
 
 <table>
   <caption> <b> <i>Values of RESET_STAT_REG</i></b></caption>
@@ -213,7 +213,7 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 
 ### Initial Setup
 
-- For the initial setup of the example please refer to [this section](https://support.dialog-semiconductor.com/resource/da1458x-example-setup) of the dialog support portal.
+- For the initial setup of the example please refer to [this section](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html) of the dialog support portal.
 
 - For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
 
@@ -221,11 +221,12 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 
 1. Open the project via Keil µVision 5
 
-2. Build the project and load it onto target. The project can be run either from ``System-RAM`` or ``SPI Flash``. 
+2. Build the project and load it to target. The project can be run either from ``System-RAM`` or ``SPI Flash``. 
     > __Note:__ 
-    In case of SPI Flash, the **Flash Programmer** from SmartSnippets Toolbox shoudl be used. Refer to the [user manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/index.html) to get familiar with the SmartSnippets Toolbox.
+    In case of SPI Flash, the [Flash Programmer](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) from SmartSnippets Toolbox should be used. Refer to the [user manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/index.html) to get familiar with the SmartSnippets Toolbox.
 
-3. Set up a serial terminal sesion by selecting the proper virtual COM port and set the port configuration as shown below:
+
+3. Set up a serial terminal session by selecting the proper virtual COM port and set the port configuration as shown below:
       - Baudrate: 115200
       - Data: 8 bits
       - Stop: 1 bit
@@ -235,7 +236,7 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
     > __Note:__ 
     Refer to **Section 10** in [Get Started tutorial](http://lpccs-docs.dialog-semiconductor.com/Tutorial_SDK6/serial_port.html) for more information on enabling the UART for debugging purposes.
 
-4. In the initial boot, the following message should displayed in the Serial Terminal:
+4. In the initial boot, the following message should be displayed in the Serial Terminal:
 
     ![first_boot_msg](assets/first_boot_msg.PNG)
 
@@ -251,7 +252,7 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 
 8. Write **0x01** for triggering a WDOG. 
 
-9. After the device reboots, in the serial terminal the following message should be displayed indicating that the sourse of the RESET was the WDOG expiration.
+9. After the device reboots, in the serial terminal the following message should be displayed indicating that the source of the RESET was the WDOG expiration.
 
     ![wdog](assets/wdog.PNG)
 
@@ -260,10 +261,9 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 ## Known Limitations
 
 
-- There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+- There are no known limitations for this example. But you can check and refer to the following application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+- For general support questions, please contact the [Dialog Forum](https://www.dialog-semiconductor.com/forum).
+- You can also refer to the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 
 ## License

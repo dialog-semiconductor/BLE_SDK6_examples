@@ -50,9 +50,11 @@
 #include "gpio.h"
 #include "app_security.h"
 #include "user_hibernation.h"
+#include "arch_hibernation.h"
 #include "arch_api.h"
 #include "app_task.h"
 #include "app_proxr.h"
+
 
 #include "gpio.h"
 

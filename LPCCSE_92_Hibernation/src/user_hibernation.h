@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_proxr.h
+ * @file user_hibernation.h
  *
- * @brief Proximity Project application header file.
+ * @brief Hibernation demonstration application header file.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2020 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -30,8 +30,8 @@
  ****************************************************************************************
  */
 
-#ifndef _USER_PROXR_H_
-#define _USER_PROXR_H_
+#ifndef _USER_HIBERNATION_H_
+#define _USER_HIBERNATION_H_
 
 /**
  ****************************************************************************************

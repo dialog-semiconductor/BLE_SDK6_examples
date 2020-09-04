@@ -183,6 +183,24 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
  ****************************************************************************************
 */                          
 void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param);
+      
+/**
+ ****************************************************************************************
+ * @brief Connection attempt callback.
+ * @param[in] void
+ * @return void
+ ****************************************************************************************
+*/                                
+void user_app_on_connect_failed(void);
+    
+/**
+ ****************************************************************************************
+ * @brief Start a connection attempt to the next available node.
+ * @param[in] void
+ * @return true if node found and a connection attempt starts false otherwise 
+ ****************************************************************************************
+*/     
+bool initiate_connection_attempt(void);
 /// @} APP
 
 #endif //_USER_SOCIAL_DISTANCING_H_

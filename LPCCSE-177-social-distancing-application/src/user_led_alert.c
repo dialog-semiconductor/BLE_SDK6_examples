@@ -55,8 +55,10 @@
  * FUNCTION DEFINITIONS
  ****************************************************************************************
 */
+
 void timer_alert_cb(void)
 {
+    
     if(led_alert.state)
     {
         GPIO_SetInactive(ALERT_PORT, ALERT_PIN);
@@ -65,9 +67,20 @@ void timer_alert_cb(void)
     else
     {
         GPIO_SetActive(ALERT_PORT, ALERT_PIN);
-        led_alert.state = true;
+        led_alert.state = true;        
     }
-    led_alert.alert_timer_hnd = app_easy_timer(led_alert.alert_type, led_alert.cb);
+    
+    led_alert.alert_type--;
+    
+    if (led_alert.alert_type == 0)
+    {
+        alert_user_stop();
+        if(led_alert.cmp_cb!=NULL)
+            led_alert.cmp_cb();
+    }
+    else
+        led_alert.alert_timer_hnd = app_easy_timer(ALERT_LED_ON, timer_alert_cb);
+    
 }
 
 void alert_user_init(void)
@@ -81,18 +94,17 @@ void alert_user_init(void)
 void alert_user_stop(void)
 {
     led_alert.alert_active = false;
-    if (led_alert.alert_timer_hnd != EASY_TIMER_INVALID_TIMER)
-        app_easy_timer_cancel(led_alert.alert_timer_hnd);
     led_alert.alert_timer_hnd = EASY_TIMER_INVALID_TIMER;
     GPIO_SetInactive(ALERT_PORT, ALERT_PIN);
     led_alert.state = false;
     led_alert.alert_type = INVALID_ZONE;
 }
 
-void alert_user_start(uint16_t danger_zone)
+void alert_user_start(uint16_t danger_zone, alert_cmp_t cmp_cb)
 {
     led_alert.alert_active = true;
     led_alert.alert_type = danger_zone;
+    led_alert.cmp_cb = cmp_cb;
     led_alert.cb();
 }
 /// @} APP

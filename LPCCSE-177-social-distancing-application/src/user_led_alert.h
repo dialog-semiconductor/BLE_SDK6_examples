@@ -66,16 +66,22 @@
  * DEFINES
  ****************************************************************************************
  */
+#define ALERT_LED_ON                        (10)        // 100ms stay on
+
 #define INVALID_ZONE                        (0)
-#define DANGER_ZONE                         (10)        // 100ms blinking in DANGER ZONE
-#define WARNING_ZONE                        (50)        // 500ms blinking in WARNING ZONE
-#define COARSE_ZONE                         (100)       // 1sec blinking in COARSE ZONE
+
+#define BLINK(x)                            (x*2)
+
+#define DANGER_ZONE                         BLINK(5)
+#define WARNING_ZONE                        BLINK(2)
+#define COARSE_ZONE                         BLINK(1)
 
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
  */
 typedef void (*timer_led_alert_cb_t)(void);
+typedef void (*alert_cmp_t)(void);
 
 
 /**
@@ -84,11 +90,12 @@ typedef void (*timer_led_alert_cb_t)(void);
  ****************************************************************************************
  */
 typedef struct {
-    bool                    state;
-    bool                    alert_active;
-    timer_hnd               alert_timer_hnd;
-    timer_led_alert_cb_t    cb;
-    uint16_t                alert_type;      
+    bool                    state;              // pin state
+    bool                    alert_active;       // alert mechanish is running
+    timer_hnd               alert_timer_hnd;    // timer handler of led alert 
+    timer_led_alert_cb_t    cb;                 // timer callback handles blink
+    alert_cmp_t             cmp_cb;             // callback when alert is done
+    uint16_t                alert_type;         // alert type
 } alert_led_t;
 
 /*
@@ -127,7 +134,7 @@ void alert_user_stop(void);
  * @return void
  ****************************************************************************************
  */
-void alert_user_start(uint16_t danger_zone);
+void alert_user_start(uint16_t danger_zone, alert_cmp_t cb);
 
 /// @} APP
 

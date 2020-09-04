@@ -54,6 +54,8 @@
 #include "user_led_alert.h"
 #include "custs1_task.h"
 #include "gattc_task.h"
+#include "llc_task.h"
+#include "llc.h"
 
 /*
  * DEFINES
@@ -78,6 +80,11 @@ timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_ar
 timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_initiator_timer                  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_disconnect_to_timer              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+
+bool is_initiator                               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+bool init_con_pending                           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+
+static void user_collect_conn_rssi(uint8_t rssi_val);
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -436,18 +443,16 @@ static void user_switch_adv_scan_timer_cb()
  ****************************************************************************************
  */
 static void user_poll_conn_rssi_timer_cb()
-{
-    if (ke_state_get(TASK_APP) == APP_CONNECTED)
-    {
-        struct gapc_get_info_cmd *pkt = KE_MSG_ALLOC(GAPC_GET_INFO_CMD,
-                                                    KE_BUILD_ID(TASK_GAPC, app_connection_idx),
-                                                    TASK_APP, gapc_get_info_cmd);
-
-        pkt->operation = GAPC_GET_CON_RSSI;
-        ke_msg_send(pkt);
-    }
+{    
+    user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
     
-    user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+    if (ke_state_get(KE_BUILD_ID(TASK_LLC, gapc_get_conhdl(app_connection_idx)))== LLC_CONNECTED)
+    {
+        // Write the received RSSI to the peer device
+        perform_rssi_write_to_peer((int8_t) llc_env[gapc_get_conhdl(app_connection_idx)]->rssi);
+        
+        user_collect_conn_rssi(llc_env[gapc_get_conhdl(app_connection_idx)]->rssi);
+    }
 }
 
 /**
@@ -465,46 +470,9 @@ static void user_disconnect_to_timer_cb()
     user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
 }
 
-/**
- ****************************************************************************************
- * @brief Timer callback function to initiate connections with peer devices
- * @return void
- ****************************************************************************************
- */
-static void user_initiator_timer_cb()
+static void app_easy_gap_disconnect_wrapper(void)
 {
-    struct user_adv_rssi_node* p;
-    
-    p = user_adv_rssi_get_max_rssi_node(); // Change get max rssi to CHECK FOR ACCESSED
-
-    user_adv_rssi_print_list();
-    
-    if (p != NULL && (ke_state_get(TASK_APP) == APP_CONNECTABLE))
-    {
-       
-        user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
-        user_disconnect_to_timer = app_easy_timer(USER_DISCONNECT_TO_TO, user_disconnect_to_timer_cb);
-        
-        p->accessed = true;
-        
-        app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
-        app_easy_gap_start_connection_to();
-    }
-    else if (ke_state_get(TASK_APP) == APP_CONNECTED)
-    {
-        user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
-        
-        arch_printf("\r\n" USER_DEVICE_NAME ": DISCONNECTING\r\n");
-        
-        app_easy_gap_disconnect(app_connection_idx);
-    }        
-    else
-    {
-        user_initiator_timer = EASY_TIMER_INVALID_TIMER;
-        user_adv_rssi_list_clear();
-
-        user_app_adv_start();
-    }
+    app_easy_gap_disconnect(app_connection_idx);
 }
 
 /**
@@ -516,13 +484,16 @@ static void user_initiator_timer_cb()
  */
 static void user_collect_conn_rssi(uint8_t rssi_val)
 {
-    static uint8_t idx;
+    static uint8_t idx                                  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
-    if (idx < USER_CON_RSSI_MAX_NB)
+    if (rssi_con_value < (int8_t) rssi_val)
+        rssi_con_value = (int8_t) rssi_val;
+    idx++;
+        
+    if(idx <= USER_CON_RSSI_MAX_NB)
     {
-        if (rssi_con_value < (int8_t) rssi_val)
-            rssi_con_value = (int8_t) rssi_val;
-        idx++;
+        user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
+        arch_printf("\r\nRSSI POLLING\r\n");
     }
     else
     {      
@@ -532,30 +503,21 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
         
         if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
         {   
-            alert_user_start(DANGER_ZONE);
+            alert_user_start(DANGER_ZONE, (is_initiator)?(app_easy_gap_disconnect_wrapper) : (NULL));
             arch_printf("\033[1;31m\r\nINFO: " USER_DEVICE_NAME " IS IN DANGER ZONE\r\n\033[0m");
         }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
         {            
-            alert_user_start(WARNING_ZONE);
+            alert_user_start(WARNING_ZONE, (is_initiator)?(app_easy_gap_disconnect_wrapper) : (NULL));
             arch_printf("\033[01;33m\r\nINFO: " USER_DEVICE_NAME " IS IN WARNING ZONE\r\n\033[0m");
         }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
         {               
-            alert_user_start(COARSE_ZONE);
+            alert_user_start(COARSE_ZONE, (is_initiator)?(app_easy_gap_disconnect_wrapper) : (NULL));
             arch_printf("\033[1;36m\r\nINFO: " USER_DEVICE_NAME " IS IN COARSE ZONE\r\n\033[0m");
         }
         
-        if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
-        {
-            app_easy_timer_cancel(user_poll_conn_rssi_timer);
-        }
-        
         rssi_con_value = -128;
-        
-        user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
-        
-        app_easy_gap_disconnect(app_connection_idx);
     }
         
 }
@@ -581,18 +543,9 @@ void user_app_init(void)
 
 void user_app_on_scanning_completed(const uint8_t param)
 {
-    bool has_conn_candidate;
     struct user_adv_rssi_node* p;
     
     arch_printf("\033[0;36m\r\n" USER_DEVICE_NAME ": SCAN COMPLETED\r\n\033[0m");
-
-    // Disable LED
-    alert_user_stop();
-    
-    // Disable Scanning
-    struct gapm_cancel_cmd *cmd = app_gapm_cancel_msg_create();
-    // Send the message
-    app_gapm_cancel_msg_send(cmd);
     
     p = user_adv_rssi_get_max_rssi_node();
     
@@ -603,14 +556,11 @@ void user_app_on_scanning_completed(const uint8_t param)
         arch_printf("\r\nINFO: THE STRONGEST NODE WITH RSSI %d FOUND\r\n", (int8_t)p->mean_rssi);
     }
     
-    has_conn_candidate = user_adv_rssi_list_has_candidate();
-    
-    if (has_conn_candidate)
+    if(!initiate_connection_attempt())
     {
-        user_initiator_timer = app_easy_timer(USER_INITIATOR_TO, user_initiator_timer_cb);
-    }
-    else
+        /* No nodes found to be connected start advertising */
         user_app_adv_start();
+    }
 }
 
 void user_app_adv_start(void)
@@ -626,6 +576,18 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
 {
     if (app_env[connection_idx].conidx != GAP_INVALID_CONIDX)
     {
+        
+        if (init_con_pending)           // Check if the device has started a connection request
+        {
+            is_initiator = true;        // If a connection request has started it means that the device is the initiator
+            init_con_pending = false;   // No pending connection request is submited
+        }
+        
+        if(is_initiator)
+            arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTED AS INITIATOR\r\n");
+        else
+            arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTED AS SLAVE\r\n");
+        
         app_connection_idx = connection_idx;
       
         if(user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
@@ -640,10 +602,9 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
             user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
         }
         
-        arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTING\r\n");
-        
         if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
         {
+            arch_printf("POLLING TIMER STARTED");
             user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
         }
     }
@@ -671,12 +632,94 @@ void user_app_adv_undirect_complete(uint8_t status)
 }
 
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
-{  
+{
     ke_state_set(TASK_APP, APP_CONNECTABLE);
-    arch_printf("\r\n" USER_DEVICE_NAME ": DISCONNECTED\r\n");
+    arch_printf("\r\n" USER_DEVICE_NAME ": DISCONNECTED with reason %02x\r\n", param->reason);
     
-    // Restart Advertising
-    user_app_adv_start();
+    is_initiator = false;
+    
+    /* Assuming that only the initiator of the connection will end up to disconnection with this reason */
+    if(param->reason == CO_ERROR_CON_TERM_BY_LOCAL_HOST)
+    {
+        if(!initiate_connection_attempt())
+        {
+            arch_printf(" CLEAR LIST AND SCAN AGAIN \r\n");
+            /* Clear the list */
+            user_adv_rssi_list_clear();
+            /* No more nodes to connect to, start advertising */
+            user_app_adv_start();
+        }
+    }
+    else if (param->reason == CO_ERROR_REMOTE_USER_TERM_CON)
+    {
+        /* 
+        * The disconnection occured because the other side issued a disconnect
+        * since only the initiator can issue a disconnect means that the next
+        * BLE operation for the device should be a scanning
+        */
+        user_scan_start();
+    }
+    else
+    {
+        /* 
+        * Disconnection occured for another reason reinitialize polling
+        * timer. This is responsible for the disconnection.
+        */
+        if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
+        {
+            app_easy_timer_cancel(user_poll_conn_rssi_timer);
+            user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
+        }
+        
+        /* In case of an unknown disconnection reason also clear the list */
+        user_adv_rssi_list_clear();
+        
+        user_app_adv_start();
+    }
+    
+}
+
+bool initiate_connection_attempt(void)
+{
+    bool found_node = false;
+    
+    struct user_adv_rssi_node* p;
+    p = user_adv_rssi_get_max_rssi_node(); // Change get max rssi to CHECK FOR ACCESSED
+    
+    bool has_candidate = user_adv_rssi_list_has_candidate();
+    uint8_t state = ke_state_get(TASK_APP);
+    
+    //if (user_adv_rssi_list_has_candidate() && p != NULL && (ke_state_get(TASK_APP) == APP_CONNECTABLE))
+    if (has_candidate && p != NULL && (state == APP_CONNECTABLE))
+    {
+        arch_printf(" MOVING TO NEXT NODE \r\n");
+        /* If there is a candidate the connect to start the attempt of the connection */
+        app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
+        app_easy_gap_start_connection_to();
+        p->accessed = true;
+        /* Indicate that the device has started a connection attempt */
+        init_con_pending = true;
+        arch_printf("\r\n" USER_DEVICE_NAME ": ATTEMPT FOR CONNECTION\r\n");
+        /* Start a timer to for the command to be cancelled in case there is no connection */
+        user_disconnect_to_timer = app_easy_timer(USER_DISCONNECT_TO_TO, user_disconnect_to_timer_cb);
+        found_node = true;
+    }
+    return found_node;
+}
+
+void user_app_on_connect_failed(void)
+{
+    init_con_pending = false;
+    /* Check if there is another node to be connected to */
+    if(!initiate_connection_attempt())
+    {
+        /* No more nodes to connect to, start advertising */
+        arch_printf(" CLEAR LIST AND SCAN AGAIN \r\n");
+        /* Clear the list */
+        user_adv_rssi_list_clear();
+        
+        user_app_adv_start();
+    }
 }
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
@@ -697,16 +740,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                     break;
             }
         } break;   
-        case GAPC_CON_RSSI_IND:
-        {
-            struct gapc_con_rssi_ind const *msg_param = (struct gapc_con_rssi_ind const *)(param);
-            arch_printf("\r\n" USER_DEVICE_NAME ": ACQUIRE RSSI\r\n");
-            
-            // Write the received RSSI to the peer device
-            perform_rssi_write_to_peer((int8_t) msg_param->rssi);
-            
-            user_collect_conn_rssi(msg_param->rssi);
-        } break;
+        
         case GATTC_CMP_EVT:
         {
             //Placeholder upon GATT Complete Event

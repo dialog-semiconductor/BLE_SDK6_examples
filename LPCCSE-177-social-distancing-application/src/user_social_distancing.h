@@ -65,11 +65,34 @@
  * DEFINES
  ****************************************************************************************
  */
+#define USER_SCANNING_TIMEOUT               (1)     // Setting this to 0 defaults to the scanning timeout 10 seconds
+#define ADVERTISING_TIMEOUT_msec            (5000)  // Advertising timeout
+#define SCANNING_PERCENTAGE                 (60)    // Scanning timeout based on advertising timeout
+#define CONNECT_INIT_PERCENTAGE             (30)    // Connection attempt timeout based on advertising timeout
 
-#define USER_SWITCH_ADV_SCAN_TO             (500)    // 500*10ms = 5sec
-#define USER_UPD_CONN_RSSI_TO               (20)      // 20*10ms = 200msec
-#define USER_INITIATOR_TO                   (500)     // 500*10ms = 5sec
-#define USER_DISCONNECT_TO_TO               (400)     // 400*10ms = 4sec
+#define USER_SWITCH_ADV_SCAN_TO             (ADVERTISING_TIMEOUT_msec/10)
+
+#if USER_SCANNING_TIMEOUT
+#define USER_SCANNING_TO                    ((ADVERTISING_TIMEOUT_msec*SCANNING_PERCENTAGE)/1000)
+#endif
+
+#define USER_INITIATE_CONN_TO               ((ADVERTISING_TIMEOUT_msec*CONNECT_INIT_PERCENTAGE)/1000)
+
+#define USER_UPD_CONN_RSSI_TO               (20)    // 20*10ms = 200msec
+
+
+#ifdef CFG_PRINTF
+#define BOLD                                "1"
+#define PLAIN                               "0"
+
+#define RED(x)                           "\033["x";31m"
+#define GREEN(x)                         "\033["x";32m"
+#define YELLOW(x)                        "\033["x";33m"
+#define BLUE(x)                          "\033["x";34m"
+#define MAGENTA(x)                       "\033["x";35m"
+#define CYAN(x)                          "\033["x";36m"
+#define RESET_COLOUR                     "\033[0m"
+#endif
 
 /*
  * TYPE DEFINITIONS

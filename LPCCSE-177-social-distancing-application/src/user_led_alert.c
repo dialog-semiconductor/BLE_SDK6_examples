@@ -76,7 +76,7 @@ void timer_alert_cb(void)
     {
         alert_user_stop();
         if(led_alert.cmp_cb!=NULL)
-            led_alert.cmp_cb();
+            led_alert.cmp_cb(led_alert.con_idx);
     }
     else
         led_alert.alert_timer_hnd = app_easy_timer(ALERT_LED_ON, timer_alert_cb);
@@ -100,10 +100,11 @@ void alert_user_stop(void)
     led_alert.alert_type = INVALID_ZONE;
 }
 
-void alert_user_start(uint16_t danger_zone, alert_cmp_t cmp_cb)
+void alert_user_start(uint16_t danger_zone, alert_cmp_t cmp_cb, uint8_t con_idx)
 {
     led_alert.alert_active = true;
     led_alert.alert_type = danger_zone;
+    led_alert.con_idx = con_idx;
     led_alert.cmp_cb = cmp_cb;
     led_alert.cb();
 }

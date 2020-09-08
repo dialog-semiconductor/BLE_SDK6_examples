@@ -78,8 +78,11 @@ static int8_t rssi_con_value                    __SECTION_ZERO("retention_mem_ar
 
 timer_hnd user_switch_adv_scan_timer            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd user_poll_conn_rssi_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-timer_hnd user_initiator_timer                  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-timer_hnd user_disconnect_to_timer              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd initiate_connection_timer             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+
+#if (USER_SCANNING_TIMEOUT)
+timer_hnd user_scan_timeout_timer               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+#endif
 
 bool is_initiator                               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 bool init_con_pending                           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
@@ -326,6 +329,8 @@ static bool user_adv_rssi_list_has_candidate()
  */
 static void user_adv_rssi_list_clear()
 {
+    arch_printf("\r\n CLEAR LIST \r\n");
+    
     struct user_adv_rssi_node* p;
     
     p = user_adv_rep_rssi_head;
@@ -390,8 +395,28 @@ static void rssi_write_ind_handler(ke_msg_id_t const msgid,
                                       ke_task_id_t const src_id)
 {
     if(rssi_con_value < (int8_t) param->value[0])
+    {
         rssi_con_value = (int8_t) param->value[0]; 
+    }
+    arch_printf(YELLOW(PLAIN) "\n\rRECEIVED RSSI VALUE %d \n\r" RESET_COLOUR,(int8_t)param->value[0]);
 }
+
+/**
+ ****************************************************************************************
+ * @brief Scanning timer callback for cancelling scanning operation 
+ * @return void
+ ****************************************************************************************
+ */
+#if USER_SCANNING_TIMEOUT
+static void user_scanning_timeout_timer_cb(void)
+{
+    user_scan_timeout_timer = EASY_TIMER_INVALID_TIMER;
+    
+    struct gapm_cancel_cmd *cmd = app_gapm_cancel_msg_create();
+
+    app_gapm_cancel_msg_send(cmd);
+}
+#endif
 
 /**
  ****************************************************************************************
@@ -414,13 +439,18 @@ static void user_scan_start(void)
     cmd->filt_policy = user_scan_conf.filt_policy;
     cmd->filter_duplic =user_scan_conf.filter_duplic;
     
-    arch_printf("\033[0;36m\r\n" USER_DEVICE_NAME ": SCANNING\r\n\033[0m");
-
+    arch_printf(CYAN(BOLD) "\r\n" USER_DEVICE_NAME ": SCANNING\r\n" RESET_COLOUR);
+    
     // Send the message
     ke_msg_send(cmd);
 
     // We are now connectable
     ke_state_set(TASK_APP, APP_CONNECTABLE);
+    
+    #if USER_SCANNING_TIMEOUT
+    int8_t rand_val = (int8_t) co_rand_byte();
+    user_scan_timeout_timer = app_easy_timer(USER_SCANNING_TO + rand_val, user_scanning_timeout_timer_cb);
+    #endif
 }
 
 /**
@@ -467,12 +497,7 @@ static void user_disconnect_to_timer_cb()
     // Send the message
     app_gapm_cancel_msg_send(cmd);
 
-    user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
-}
-
-static void app_easy_gap_disconnect_wrapper(void)
-{
-    app_easy_gap_disconnect(app_connection_idx);
+    initiate_connection_timer = EASY_TIMER_INVALID_TIMER;
 }
 
 /**
@@ -493,7 +518,7 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
     if(idx <= USER_CON_RSSI_MAX_NB)
     {
         user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
-        arch_printf("\r\nRSSI POLLING\r\n");
+        arch_printf("\r\nLOCAL RSSI VALUE %d\r\n", (int8_t)rssi_val);
     }
     else
     {      
@@ -503,18 +528,18 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
         
         if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
         {   
-            alert_user_start(DANGER_ZONE, (is_initiator)?(app_easy_gap_disconnect_wrapper) : (NULL));
-            arch_printf("\033[1;31m\r\nINFO: " USER_DEVICE_NAME " IS IN DANGER ZONE\r\n\033[0m");
+            alert_user_start(DANGER_ZONE, (is_initiator)?(app_easy_gap_disconnect) : (NULL), app_connection_idx);
+            arch_printf(RED(BOLD) "\r\nINFO:" USER_DEVICE_NAME " IS IN DANGER ZONE\r\n" RESET_COLOUR);
         }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
         {            
-            alert_user_start(WARNING_ZONE, (is_initiator)?(app_easy_gap_disconnect_wrapper) : (NULL));
-            arch_printf("\033[01;33m\r\nINFO: " USER_DEVICE_NAME " IS IN WARNING ZONE\r\n\033[0m");
+            alert_user_start(WARNING_ZONE, (is_initiator)?(app_easy_gap_disconnect) : (NULL), app_connection_idx);
+            arch_printf(YELLOW(BOLD) "\r\nINFO:" USER_DEVICE_NAME " IS IN WARNING ZONE\r\n" RESET_COLOUR);
         }
         else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
         {               
-            alert_user_start(COARSE_ZONE, (is_initiator)?(app_easy_gap_disconnect_wrapper) : (NULL));
-            arch_printf("\033[1;36m\r\nINFO: " USER_DEVICE_NAME " IS IN COARSE ZONE\r\n\033[0m");
+            alert_user_start(COARSE_ZONE, (is_initiator)?(app_easy_gap_disconnect) : (NULL), app_connection_idx);
+            arch_printf(GREEN(BOLD) "\r\nINFO:" USER_DEVICE_NAME " IS IN COARSE ZONE\r\n" RESET_COLOUR);
         }
         
         rssi_con_value = -128;
@@ -531,8 +556,10 @@ static void user_collect_conn_rssi(uint8_t rssi_val)
 void user_app_init(void)
 {
     user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
-    user_initiator_timer = EASY_TIMER_INVALID_TIMER;
-    user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
+    initiate_connection_timer = EASY_TIMER_INVALID_TIMER;
+    #if USER_SCANNING_TIMEOUT
+    user_scan_timeout_timer = EASY_TIMER_INVALID_TIMER;
+    #endif
     
     rssi_con_value = -128;
     
@@ -545,12 +572,14 @@ void user_app_on_scanning_completed(const uint8_t param)
 {
     struct user_adv_rssi_node* p;
     
-    arch_printf("\033[0;36m\r\n" USER_DEVICE_NAME ": SCAN COMPLETED\r\n\033[0m");
-    
     p = user_adv_rssi_get_max_rssi_node();
     
+    arch_printf(CYAN(PLAIN) "\r\n" USER_DEVICE_NAME ": SCAN COMPLETED\r\n" RESET_COLOUR);
+    
     if (p == NULL)
+    {
         arch_printf("\r\nINFO: NO NODE FOUND\r\n");
+    }
     else
     {
         arch_printf("\r\nINFO: THE STRONGEST NODE WITH RSSI %d FOUND\r\n", (int8_t)p->mean_rssi);
@@ -569,7 +598,7 @@ void user_app_adv_start(void)
     user_switch_adv_scan_timer = app_easy_timer(USER_SWITCH_ADV_SCAN_TO + rand_val, user_switch_adv_scan_timer_cb);
     
     app_easy_gap_undirected_advertise_start();
-    arch_printf("\033[0;32m\r\n" USER_DEVICE_NAME ": ADVERTISING\r\n\033[0m");
+    arch_printf(GREEN(BOLD) "\r\n" USER_DEVICE_NAME ": ADVERTISING\r\n" RESET_COLOUR);
 }
 
 void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
@@ -584,9 +613,13 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
         }
         
         if(is_initiator)
-            arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTED AS INITIATOR\r\n");
+        {
+            arch_printf(YELLOW(BOLD) "\r\n" USER_DEVICE_NAME ": CONNECTED AS INITIATOR\r\n" RESET_COLOUR);
+        }
         else
-            arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTED AS SLAVE\r\n");
+        {
+            arch_printf(YELLOW(BOLD) "\r\n" USER_DEVICE_NAME ": CONNECTED AS SLAVE\r\n" RESET_COLOUR);
+        }
         
         app_connection_idx = connection_idx;
       
@@ -596,22 +629,25 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
             user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
         }
         
-        if(user_disconnect_to_timer != EASY_TIMER_INVALID_TIMER)
+        if(initiate_connection_timer != EASY_TIMER_INVALID_TIMER)
         {      
-            app_easy_timer_cancel(user_disconnect_to_timer);
-            user_disconnect_to_timer = EASY_TIMER_INVALID_TIMER;
+            app_easy_timer_cancel(initiate_connection_timer);
+            initiate_connection_timer = EASY_TIMER_INVALID_TIMER;
         }
         
-        if (user_poll_conn_rssi_timer == EASY_TIMER_INVALID_TIMER)
-        {
-            arch_printf("POLLING TIMER STARTED");
-            user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
-        }
+        /* Start the RSSI polling timer upon connection */
+        user_poll_conn_rssi_timer = app_easy_timer(USER_UPD_CONN_RSSI_TO, user_poll_conn_rssi_timer_cb);
     }
     else
     {
-        // No connection has been established, restart advertising
-        user_app_adv_start();
+        // No connection has been established, either initiate a new connection or start advertising
+        if(!initiate_connection_attempt())
+        {
+            /* Clear the list */
+            user_adv_rssi_list_clear();
+            /* No more nodes to connect to, start advertising */
+            user_app_adv_start();
+        }
     }
 
     default_app_on_connection(connection_idx, param);
@@ -619,63 +655,52 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
 
 void user_app_adv_undirect_complete(uint8_t status)
 {
-    arch_printf("\033[0;32m\r\n" USER_DEVICE_NAME ": ADVERTISING COMPLETED\r\n\033[0m");
+    arch_printf(GREEN(PLAIN)"\r\n" USER_DEVICE_NAME ": ADVERTISING COMPLETED\r\n" RESET_COLOUR);
+    
+    /* 
+    * If the callback occurs with status GAP_ERR_CANCELED it means that the adv timer has elapsed
+    * thus there is no need checking and cancelling. If a connection occures the adv timer will
+    * be cancelled from the connection handler
+    */
     if (status == GAP_ERR_CANCELED)
-    {
-        if (user_switch_adv_scan_timer != EASY_TIMER_INVALID_TIMER)
-        {
-            app_easy_timer_cancel(user_switch_adv_scan_timer);
-            user_switch_adv_scan_timer = EASY_TIMER_INVALID_TIMER;
-        }
         user_scan_start();
-    }
 }
 
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
 {
     ke_state_set(TASK_APP, APP_CONNECTABLE);
-    arch_printf("\r\n" USER_DEVICE_NAME ": DISCONNECTED with reason %02x\r\n", param->reason);
     
-    is_initiator = false;
+    arch_printf("\r\n" USER_DEVICE_NAME ": DISCONNECTED WITH REASON %02x\r\n", param->reason);
     
-    /* Assuming that only the initiator of the connection will end up to disconnection with this reason */
-    if(param->reason == CO_ERROR_CON_TERM_BY_LOCAL_HOST)
-    {
+    /* 
+    * If the current device was the initiator and a disconnection occured regardless the reason
+    * move to next node to attempt a new connection for the next available node.
+    */
+    if(is_initiator)
+    {   
         if(!initiate_connection_attempt())
         {
-            arch_printf(" CLEAR LIST AND SCAN AGAIN \r\n");
             /* Clear the list */
             user_adv_rssi_list_clear();
             /* No more nodes to connect to, start advertising */
             user_app_adv_start();
         }
     }
-    else if (param->reason == CO_ERROR_REMOTE_USER_TERM_CON)
-    {
-        /* 
-        * The disconnection occured because the other side issued a disconnect
-        * since only the initiator can issue a disconnect means that the next
-        * BLE operation for the device should be a scanning
-        */
-        user_scan_start();
-    }
     else
     {
-        /* 
-        * Disconnection occured for another reason reinitialize polling
-        * timer. This is responsible for the disconnection.
-        */
-        if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
-        {
-            app_easy_timer_cancel(user_poll_conn_rssi_timer);
-            user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
-        }
-        
-        /* In case of an unknown disconnection reason also clear the list */
-        user_adv_rssi_list_clear();
-        
-        user_app_adv_start();
+        /* Always start scan if disconnected as slave, no matter the disconnection reason */
+        user_scan_start();
     }
+    
+    /* Always check if the rssi polling timer is active, if its active make sure to cancel it */
+    if (user_poll_conn_rssi_timer != EASY_TIMER_INVALID_TIMER)
+    {
+        app_easy_timer_cancel(user_poll_conn_rssi_timer);
+        user_poll_conn_rssi_timer = EASY_TIMER_INVALID_TIMER;
+    }
+    
+    /* Clear the initiator flag  */
+    is_initiator = false;
     
 }
 
@@ -686,22 +711,17 @@ bool initiate_connection_attempt(void)
     struct user_adv_rssi_node* p;
     p = user_adv_rssi_get_max_rssi_node(); // Change get max rssi to CHECK FOR ACCESSED
     
-    bool has_candidate = user_adv_rssi_list_has_candidate();
-    uint8_t state = ke_state_get(TASK_APP);
-    
-    //if (user_adv_rssi_list_has_candidate() && p != NULL && (ke_state_get(TASK_APP) == APP_CONNECTABLE))
-    if (has_candidate && p != NULL && (state == APP_CONNECTABLE))
+    if (user_adv_rssi_list_has_candidate() && p != NULL && (ke_state_get(TASK_APP) == APP_CONNECTABLE))
     {
-        arch_printf(" MOVING TO NEXT NODE \r\n");
+        arch_printf("\r\n" USER_DEVICE_NAME ": ATTEMPT FOR CONNECTION\r\n");
         /* If there is a candidate the connect to start the attempt of the connection */
         app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
         app_easy_gap_start_connection_to();
         p->accessed = true;
         /* Indicate that the device has started a connection attempt */
         init_con_pending = true;
-        arch_printf("\r\n" USER_DEVICE_NAME ": ATTEMPT FOR CONNECTION\r\n");
         /* Start a timer to for the command to be cancelled in case there is no connection */
-        user_disconnect_to_timer = app_easy_timer(USER_DISCONNECT_TO_TO, user_disconnect_to_timer_cb);
+        initiate_connection_timer = app_easy_timer(USER_INITIATE_CONN_TO, user_disconnect_to_timer_cb);
         found_node = true;
     }
     return found_node;
@@ -709,12 +729,12 @@ bool initiate_connection_attempt(void)
 
 void user_app_on_connect_failed(void)
 {
+    arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTION INITIATION FAILED\r\n");
+    
     init_con_pending = false;
     /* Check if there is another node to be connected to */
     if(!initiate_connection_attempt())
     {
-        /* No more nodes to connect to, start advertising */
-        arch_printf(" CLEAR LIST AND SCAN AGAIN \r\n");
         /* Clear the list */
         user_adv_rssi_list_clear();
         
@@ -739,11 +759,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                     rssi_write_ind_handler(msgid, msg_param, dest_id, src_id);
                     break;
             }
-        } break;   
-        
-        case GATTC_CMP_EVT:
-        {
-            //Placeholder upon GATT Complete Event
         } break;
         
         default:

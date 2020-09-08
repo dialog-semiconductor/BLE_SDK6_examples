@@ -81,7 +81,7 @@
  ****************************************************************************************
  */
 typedef void (*timer_led_alert_cb_t)(void);
-typedef void (*alert_cmp_t)(void);
+typedef void (*alert_cmp_t)(uint8_t);
 
 
 /**
@@ -96,6 +96,7 @@ typedef struct {
     timer_led_alert_cb_t    cb;                 // timer callback handles blink
     alert_cmp_t             cmp_cb;             // callback when alert is done
     uint16_t                alert_type;         // alert type
+    uint8_t                 con_idx;            // connection index
 } alert_led_t;
 
 /*
@@ -134,7 +135,7 @@ void alert_user_stop(void);
  * @return void
  ****************************************************************************************
  */
-void alert_user_start(uint16_t danger_zone, alert_cmp_t cb);
+void alert_user_start(uint16_t danger_zone, alert_cmp_t cb, uint8_t con_idx);
 
 /// @} APP
 

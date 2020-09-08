@@ -216,7 +216,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "DLG-SDT-D2"
+#define USER_DEVICE_NAME        "DLG-SDT-D1"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)

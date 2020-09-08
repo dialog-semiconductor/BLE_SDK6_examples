@@ -66,12 +66,11 @@
  * DEFINES
  ****************************************************************************************
  */
-#define ALERT_LED_ON                        (10)        // 100ms stay on
-
-#define INVALID_ZONE                        (0)
+#define ALERT_LED_ON                        (10)
 
 #define BLINK(x)                            (x*2)
 
+#define INVALID_ZONE                        (0)
 #define DANGER_ZONE                         BLINK(5)
 #define WARNING_ZONE                        BLINK(2)
 #define COARSE_ZONE                         BLINK(1)
@@ -122,7 +121,7 @@ void alert_user_init(void);
 
 /**
  ****************************************************************************************
- * @brief Stops the proximity proximity alert
+ * @brief Stops the proximity alert
  * @return void
  ****************************************************************************************
  */
@@ -131,7 +130,9 @@ void alert_user_stop(void);
 /**
  ****************************************************************************************
  * @brief Starts the proximity alert
- * @param[in] danger_zone The proximity zone as determined by the RSSI
+ * @param[in] danger_zone, The proximity zone defines the amount of on/off alerts
+ * @param[in] cb, callback, for the action after the alert is done
+ * @param[in] con_idx, connection index of the current connection
  * @return void
  ****************************************************************************************
  */

@@ -43,14 +43,6 @@
 #include "uart.h"
 
 
-/*
- * DEFINES
- ****************************************************************************************
- */
- 
-#undef  USER_CFG_DA14531_MOD        //Define for use with the DA14531 module
-
-
 /****************************************************************************************/
 /* UART2 configuration to use with arch_console print messages                          */
 /****************************************************************************************/
@@ -118,11 +110,7 @@
 #endif
 
 #define ALERT_PORT                  GPIO_PORT_0
-#ifdef USER_CFG_DA14531_MOD
 #define ALERT_PIN                   GPIO_PIN_9
-#else
-#define ALERT_PIN                   GPIO_PIN_5
-#endif
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************

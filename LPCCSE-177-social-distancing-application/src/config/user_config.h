@@ -80,7 +80,7 @@
  * Select only one option for privacy / addressing configuration.
  **************************************************************************
  */
-#define USER_CFG_ADDRESS_MODE       APP_CFG_ADDR_PUB
+#define USER_CFG_ADDRESS_MODE       APP_CFG_ADDR_STATIC
 
 /*************************************************************************
  * Controller Privacy Mode:

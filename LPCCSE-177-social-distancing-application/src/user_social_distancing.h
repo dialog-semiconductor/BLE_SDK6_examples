@@ -224,6 +224,14 @@ void user_app_on_connect_failed(void);
  ****************************************************************************************
 */     
 bool initiate_connection_attempt(void);
+
+/**
+ ****************************************************************************************
+ * @brief User function for generating and storing a static random bd address
+ * @param[out] pointer that will hold the generated bd address 
+ ****************************************************************************************
+*/   
+void user_on_app_generate_unique_static_random_addr(struct bd_addr *addr);
 /// @} APP
 
 #endif //_USER_SOCIAL_DISTANCING_H_

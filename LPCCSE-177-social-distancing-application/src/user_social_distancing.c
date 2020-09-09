@@ -83,6 +83,7 @@ timer_hnd user_scan_timeout_timer               __SECTION_ZERO("retention_mem_ar
 bool is_initiator                               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 bool init_con_pending                           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint8_t rssi_exchanged                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+char bd_addr[18]                                __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * FUNCTION DECLARATION
@@ -438,7 +439,7 @@ static void user_scan_start(void)
     cmd->filt_policy = user_scan_conf.filt_policy;
     cmd->filter_duplic =user_scan_conf.filter_duplic;
     
-    arch_printf(CYAN(BOLD) "\r\n" USER_DEVICE_NAME ": SCANNING\r\n" RESET_COLOUR);
+    arch_printf(CYAN(BOLD) "\r\n%s: SCANNING\n\r" RESET_COLOUR, bd_addr);
     
     // Send the message
     ke_msg_send(cmd);
@@ -530,17 +531,17 @@ static void proximity_estimation_alert(void)
     if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_DANGER])
     {   
         alert_user_start(DANGER_ZONE, (is_initiator)?(app_easy_gap_disconnect) : (NULL), app_connection_idx);
-        arch_printf(RED(BOLD) "\r\nINFO:" USER_DEVICE_NAME " IS IN DANGER ZONE\r\n" RESET_COLOUR);
+        arch_printf(RED(BOLD) "\r\nINFO: %s IS IN DANGER ZONE\r\n" RESET_COLOUR, bd_addr);
     }
     else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_WARNING])
     {            
         alert_user_start(WARNING_ZONE, (is_initiator)?(app_easy_gap_disconnect) : (NULL), app_connection_idx);
-        arch_printf(YELLOW(BOLD) "\r\nINFO:" USER_DEVICE_NAME " IS IN WARNING ZONE\r\n" RESET_COLOUR);
+        arch_printf(YELLOW(BOLD) "\r\nINFO: %s IS IN WARNING ZONE\r\n" RESET_COLOUR, bd_addr);
     }
     else if (rssi_con_value > user_prox_zones_rssi[USER_PROX_ZONE_COARSE])
     {               
         alert_user_start(COARSE_ZONE, (is_initiator)?(app_easy_gap_disconnect) : (NULL), app_connection_idx);
-        arch_printf(GREEN(BOLD) "\r\nINFO:" USER_DEVICE_NAME " IS IN COARSE ZONE\r\n" RESET_COLOUR);
+        arch_printf(GREEN(BOLD) "\r\nINFO: %s IS IN COARSE ZONE\r\n" RESET_COLOUR, bd_addr);
     }
     else if (is_initiator)
         app_easy_gap_disconnect(app_connection_idx);
@@ -557,7 +558,7 @@ bool initiate_connection_attempt(void)
     
     if (user_adv_rssi_list_has_candidate() && p != NULL && (ke_state_get(TASK_APP) == APP_CONNECTABLE))
     {
-        arch_printf("\r\n" USER_DEVICE_NAME ": ATTEMPT FOR CONNECTION\r\n");
+        arch_printf("\r\n%s: ATTEMPT FOR CONNECTION\r\n", bd_addr);
         /* If there is a candidate the connect to start the attempt of the connection */
         app_easy_gap_start_connection_to_set(p->adv_addr_type, (uint8_t *)&p->adv_addr.addr, MS_TO_DOUBLESLOTS(USER_CON_INTV));
         app_easy_gap_start_connection_to();
@@ -591,6 +592,8 @@ void user_app_init(void)
     alert_user_init();
     
     default_app_on_init();
+    
+
 }
 
 void user_app_on_scanning_completed(const uint8_t param)
@@ -599,7 +602,7 @@ void user_app_on_scanning_completed(const uint8_t param)
     
     p = user_adv_rssi_get_max_rssi_node();
     
-    arch_printf(CYAN(PLAIN) "\r\n" USER_DEVICE_NAME ": SCAN COMPLETED\r\n" RESET_COLOUR);
+    arch_printf(CYAN(PLAIN) "\r\n%s: SCAN COMPLETED\r\n" RESET_COLOUR, bd_addr);
     
     if (p == NULL)
     {
@@ -622,7 +625,7 @@ void user_app_adv_start(void)
     int8_t rand_val = (int8_t) co_rand_byte();
     user_switch_adv_scan_timer = app_easy_timer(USER_SWITCH_ADV_SCAN_TO + rand_val, user_switch_adv_scan_timer_cb);
     app_easy_gap_undirected_advertise_start();
-    arch_printf(GREEN(BOLD) "\r\n" USER_DEVICE_NAME ": ADVERTISING\r\n" RESET_COLOUR);
+    arch_printf(GREEN(BOLD) "\r\n%s: ADVERTISING\r\n" RESET_COLOUR, bd_addr);
 }
 
 void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
@@ -638,11 +641,11 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
         
         if(is_initiator)
         {
-            arch_printf(YELLOW(BOLD) "\r\n" USER_DEVICE_NAME ": CONNECTED AS INITIATOR\r\n" RESET_COLOUR);
+            arch_printf(YELLOW(BOLD) "\r\n%s: CONNECTED AS INITIATOR\r\n" RESET_COLOUR, bd_addr);
         }
         else
         {
-            arch_printf(YELLOW(BOLD) "\r\n" USER_DEVICE_NAME ": CONNECTED AS SLAVE\r\n" RESET_COLOUR);
+            arch_printf(YELLOW(BOLD) "\r\n%s: CONNECTED AS SLAVE\r\n" RESET_COLOUR, bd_addr);
         }
         
         app_connection_idx = connection_idx;
@@ -683,7 +686,7 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
 
 void user_app_adv_undirect_complete(uint8_t status)
 {
-    arch_printf(GREEN(PLAIN)"\r\n" USER_DEVICE_NAME ": ADVERTISING COMPLETED\r\n" RESET_COLOUR);
+    arch_printf(GREEN(PLAIN)"\r\n%s: ADVERTISING COMPLETED\r\n" RESET_COLOUR, bd_addr);
     
     /* 
     * If the callback occurs with status GAP_ERR_CANCELED it means that the adv timer has elapsed
@@ -698,7 +701,7 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
 {
     ke_state_set(TASK_APP, APP_CONNECTABLE);
     
-    arch_printf("\r\n" USER_DEVICE_NAME ": DISCONNECTED WITH REASON %02x\r\n", param->reason);
+    arch_printf(YELLOW(BOLD)"\r\n%s: DISCONNECTED WITH REASON %02x\r\n" RESET_COLOUR, bd_addr, param->reason);
     
     /* 
     * If the current device was the initiator and a disconnection occured regardless the reason
@@ -734,7 +737,7 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
 
 void user_app_on_connect_failed(void)
 {
-    arch_printf("\r\n" USER_DEVICE_NAME ": CONNECTION INITIATION FAILED\r\n");
+    arch_printf("\r\n%s: CONNECTION INITIATION FAILED\r\n", bd_addr);
     
     init_con_pending = false;
     /* Check if there is another node to be connected to */
@@ -785,5 +788,11 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
         user_adv_rssi_add_node_rssi(param);
         user_adv_rssi_print_list();
     }
+}
+
+void user_on_app_generate_unique_static_random_addr(struct bd_addr *addr)
+{
+    default_app_generate_unique_static_random_addr(addr);
+    sprintf(bd_addr, "%02x:%02x:%02x:%02x:%02x:%02x", addr->addr[5], addr->addr[4],addr->addr[3],addr->addr[2],addr->addr[1],addr->addr[0]);
 }
 /// @} APP

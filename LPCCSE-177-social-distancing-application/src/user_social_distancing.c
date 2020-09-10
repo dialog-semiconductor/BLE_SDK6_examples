@@ -129,7 +129,7 @@ static const struct scan_configuration user_scan_conf ={
     /// Scan filter policy
     .filt_policy = SCAN_ALLOW_ADV_ALL,
     /// Scan duplicate filtering policy
-    .filter_duplic = SCAN_FILT_DUPLIC_EN
+    .filter_duplic = SCAN_FILT_DUPLIC_DIS
 };
 
 /*
@@ -600,9 +600,11 @@ void user_app_on_scanning_completed(const uint8_t param)
 {
     struct user_adv_rssi_node* p;
     
-    p = user_adv_rssi_get_max_rssi_node();
-    
     arch_printf(CYAN(PLAIN) "\r\n%s: SCAN COMPLETED\r\n" RESET_COLOUR, bd_addr);
+    
+    user_adv_rssi_print_list();
+    
+    p = user_adv_rssi_get_max_rssi_node();
     
     if (p == NULL)
     {
@@ -709,6 +711,8 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     */
     if(is_initiator)
     {   
+        user_adv_rssi_print_list();
+        
         if(!initiate_connection_attempt())
         {
             /* Clear the list */
@@ -786,7 +790,7 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
     {
         // Populate advertiser report list
         user_adv_rssi_add_node_rssi(param);
-        user_adv_rssi_print_list();
+        //user_adv_rssi_print_list();
     }
 }
 

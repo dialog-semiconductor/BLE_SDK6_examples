@@ -56,7 +56,7 @@
  ****************************************************************************************
 */
 
-void timer_alert_cb(void)
+static void timer_alert_cb(void)
 {
     
     if(led_alert.state)
@@ -70,23 +70,15 @@ void timer_alert_cb(void)
         led_alert.state = true;        
     }
     
-    led_alert.alert_type--;
-    
-    if (led_alert.alert_type == 0)
-    {
-        alert_user_stop();
-        if(led_alert.cmp_cb!=NULL)
-            led_alert.cmp_cb(led_alert.con_idx);
-    }
-    else
-        led_alert.alert_timer_hnd = app_easy_timer(ALERT_LED_ON, timer_alert_cb);
+    led_alert.alert_timer_interval_hnd = app_easy_timer(led_alert.alert_type, timer_alert_cb);
     
 }
 
 void alert_user_init(void)
 {
     led_alert.alert_active = false;
-    led_alert.alert_timer_hnd = EASY_TIMER_INVALID_TIMER;
+    led_alert.alert_timer_interval_hnd = EASY_TIMER_INVALID_TIMER;
+    led_alert.alert_timer_end_hnd = EASY_TIMER_INVALID_TIMER;
     led_alert.cb = timer_alert_cb;
     led_alert.state = false;
 }
@@ -94,10 +86,21 @@ void alert_user_init(void)
 void alert_user_stop(void)
 {
     led_alert.alert_active = false;
-    led_alert.alert_timer_hnd = EASY_TIMER_INVALID_TIMER;
+    if (led_alert.alert_timer_interval_hnd != EASY_TIMER_INVALID_TIMER)
+        app_easy_timer_cancel(led_alert.alert_timer_interval_hnd);
+    
+    led_alert.alert_timer_interval_hnd = EASY_TIMER_INVALID_TIMER;
+    led_alert.alert_timer_end_hnd = EASY_TIMER_INVALID_TIMER;
     GPIO_SetInactive(ALERT_PORT, ALERT_PIN);
     led_alert.state = false;
     led_alert.alert_type = INVALID_ZONE;
+}
+
+static void timer_end_alert_cb(void)
+{
+    alert_user_stop();
+    if(led_alert.cmp_cb!=NULL)
+        led_alert.cmp_cb(led_alert.con_idx);
 }
 
 void alert_user_start(uint16_t danger_zone, alert_cmp_t cmp_cb, uint8_t con_idx)
@@ -107,5 +110,6 @@ void alert_user_start(uint16_t danger_zone, alert_cmp_t cmp_cb, uint8_t con_idx)
     led_alert.con_idx = con_idx;
     led_alert.cmp_cb = cmp_cb;
     led_alert.cb();
+    led_alert.alert_timer_end_hnd = app_easy_timer(ALERT_TIME, timer_end_alert_cb);
 }
 /// @} APP

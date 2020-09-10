@@ -96,7 +96,7 @@ static void proximity_estimation_alert(void);
  ****************************************************************************************
  */
 static struct user_adv_rssi_node* user_adv_rep_rssi_head  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-59, -62, -70, -80}; 
+static const int8_t user_prox_zones_rssi[USER_PROX_ZONE_COUNT] = {-59, -62, -70, -80};
 
 struct scan_configuration {
     /// Operation code.
@@ -129,7 +129,7 @@ static const struct scan_configuration user_scan_conf ={
     /// Scan filter policy
     .filt_policy = SCAN_ALLOW_ADV_ALL,
     /// Scan duplicate filtering policy
-    .filter_duplic = SCAN_FILT_DUPLIC_DIS
+    .filter_duplic = SCAN_FILT_DUPLIC_EN
 };
 
 /*
@@ -790,7 +790,6 @@ void user_app_on_adv_report_ind(struct gapm_adv_report_ind const * param)
     {
         // Populate advertiser report list
         user_adv_rssi_add_node_rssi(param);
-        //user_adv_rssi_print_list();
     }
 }
 

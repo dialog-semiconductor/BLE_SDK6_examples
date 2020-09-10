@@ -66,14 +66,11 @@
  * DEFINES
  ****************************************************************************************
  */
-#define ALERT_LED_ON                        (10)
-
-#define BLINK(x)                            (x*2)
-
 #define INVALID_ZONE                        (0)
-#define DANGER_ZONE                         BLINK(5)
-#define WARNING_ZONE                        BLINK(2)
-#define COARSE_ZONE                         BLINK(1)
+#define DANGER_ZONE                         2   // 20ms
+#define WARNING_ZONE                        10  // 100ms
+#define COARSE_ZONE                         15  // 150ms
+#define ALERT_TIME                          100 // 1sec
 
 /*
  * TYPE DEFINITIONS
@@ -91,7 +88,8 @@ typedef void (*alert_cmp_t)(uint8_t);
 typedef struct {
     bool                    state;              // pin state
     bool                    alert_active;       // alert mechanish is running
-    timer_hnd               alert_timer_hnd;    // timer handler of led alert 
+    timer_hnd               alert_timer_interval_hnd;    // timer handler of led alert
+    timer_hnd               alert_timer_end_hnd;
     timer_led_alert_cb_t    cb;                 // timer callback handles blink
     alert_cmp_t             cmp_cb;             // callback when alert is done
     uint16_t                alert_type;         // alert type

@@ -2,12 +2,12 @@
 
 ## Example description
 
-This example configures a DA14531 device to be used for social distancing purposes. This Social Distancing Tag (SDT) is a reference software example that targets mainly, but not exclusively, wearable devices allowing its users to be warned in the case they do not comply with social distancing recommendations. In the COVID-19 pandemic context, the SDT users should not gather with a physical distance lower than 1.5m. The users in a professional environment should be warned they are not complying with the recommended physical distanciation.
+This example configures a DA14531 device to be used for social distancing purposes. This Social Distancing Tag (SDT) is a reference software example that targets mainly, but not exclusively, wearable devices allowing its users to be warned in the case they do not comply with social distancing recommendations. In the COVID-19 pandemic context, the SDT users should not gather with a physical distance lower than 1.5m. The users in a professional environment should be warned that they are not complying with the recommended physical distanciation.
 
 ## HW and SW configuration
 - This example runs on the DA14531 Bluetooth Smart SoC devices.
 - You will need to have at least two target devices to run the example. The DA14531 Smartbond daughterboard evaluation kit or the DA14531 Smartbond TINY module or the DA14531 USB kit can be used.
-- The DA145xx Pro Development Kit is needed for this example in order to print out the messages generated from the SW. Along with the motherboard the DA14531 Smartbond daughterboard evaluation kits or the DA14531 Smartbond TINY module can be used.
+- The DA145xx Pro Development Kit is needed for this example in order to print out the messages generated from the SW. Along with the motherboard, the DA14531 Smartbond daughterboard evaluation kits or the DA14531 Smartbond TINY module can be used.
 
 ### Hardware configuration for use with the DA14531 Smartbond TINY Module
 
@@ -19,7 +19,7 @@ This example configures a DA14531 device to be used for social distancing purpos
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D2 on TINY module.
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin. 
 
-	![motherboard_with_module_conf](media/module.jpg)
+	![motherboard_with_module_conf](media/DevKit531_TINY.png)
 
 ### Hardware configuration for use with the DA14531 Smartbond daughterboard
 
@@ -30,7 +30,7 @@ This example configures a DA14531 device to be used for social distancing purpos
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D5 on DA14xxx Pro Development Kit for the case of the DA14531 daughtercard.
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin.	
 	
-	![motherboard_with_daughter_conf](media/DevKit531_585_586.png)
+	![motherboard_with_daughter_conf](media/DevKit531.png)
 
 ### Software configuration
 
@@ -49,7 +49,7 @@ For initial setup of the example please refer to [this section of the dialog sup
  - Compile the example by pressing the "Build" button. 
  - Depending on the available devices on the end user side, one can either burn the SPI flash of the TINY module and detach the TINY module from the motherboard, apply a coin cell battery and operate. Or download the fw directly to RAM on a TINY module or a DA14531 daughtercard and remain attach to the motherboard in order to print out the messages generated. On this demo setup both DA14531 used remain connected to their motherboards and both are printing on different terminals.
  - For loading the executable to the SPI flash memory (have a look at the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) for instructions).
- - As soon as there are two devices up and running open up your Device Manager (for Windows OS) and there will be four COM ports enumerated as shown in the following figure. In this case there are two motherboards connected on the PC each motherboard exposes one pair of serial ports each. Always choose the lowest port number of each pair for printing out UART messages.
+ - As soon as the devices are hooked on the PC open up your Device Manager (for Windows OS) and there will be four COM ports enumerated as shown in the following figure. In this case there are two motherboards connected on the PC each motherboard exposes one pair of serial ports each. Always choose the lowest port number of each pair for printing out UART messages genarated from the fw.
 
 ![com-ports](media/four_com_ports.png)
 
@@ -74,7 +74,7 @@ The device will switch between being a BLE Advertiser and a Scanner. In the Adve
 
 When scanning completes, the dynamic list entries will be printed, the list will be traversed and if there is a device with a strong signal nearby the scanning device will initiate a connection. The "nearby strong signal" is assumed a device with an RSSI smaller then -70dbm (this threshold is configurable from the user_prox_zones_rssi array). Upon connection, the entry list will be marked as "Accessed", and then the devices will exchange their measured RSSIs through a GATT service for a configurable number of times and the maximum RSSI will be used as an indication for the distance. At this point, the LED will blink according to the proximity zone that the devices are in. The same procedure will be repeated with every device that is in close range, and then an advertising and scanning cycle will start again.
 
-As allready mentioned the devices running the SDT SW are going through periods of Advertising, Scanning and if a peer is a candidate it will initiate a connection procedure. The amount of time the above three actions are taking place in configurable through the ADVERTISING_TIMEOUT_msec definition which determines the amount of the advertising period. The scanning and connection initiation periods are defined as percentages of the advertising period via the SCANNING_PERCENTAGE and the CONNECT_INIT_PERCENTAGE definitions.
+**``WARNING:`` There are cases where a device that performs scan may not report all nearby devices or when initiating a connection the connection might fail. That may occur because the other device has switched to scanning mode or it is allready connected with another device**
 
 The SW uses a unique static random address that derives from the OTP header data. 
 
@@ -127,7 +127,9 @@ Scanning starts with the function ``user_scan_start()`` and is configured with t
 
 When scanning completes, the ``user_app_on_scanning_completed()`` function will be called. The list will be searched to check the maximum RSSI node (if there is one) and if it exceeds the RSSI threshold, a connection will be initiated. If not, the device will enter another Advertising/Scanning cycle.
 
-Connections are initiated with the ``user_app_on_scanning_completed()`` via the ``initiate_connection_attempt()`` either when the previous connection is over or if the ``USER_INITIATE_CONN_TO time`` elapses. Upon connection, the function ``user_poll_conn_rssi_timer_cb`` will check the connection RSSI every ``USER_UPD_CONN_RSSI_TO`` interval and in turn the same will collect the measurements. This will also trigger an RSSI exchange with the peer device. If the strongest RSSI, peer or own, exceeds the thresholds defined in ``user_prox_zones_rssi`` array, an alert will start, which will blink with a frequency related to the proximity zone that was estimated. After ``USER_CON_RSSI_MAX_NB`` measurements and as soon as the alert is done the link will be disconnected. The list will be traversed to find the next connection candidate, and when the list is exhausted, a new Advertising/Scanning cycle will begin.  
+Connections are initiated with the ``user_app_on_scanning_completed()`` via the ``initiate_connection_attempt()`` either when the previous connection is over or if the ``USER_INITIATE_CONN_TO time`` elapses. Upon connection, the function ``user_poll_conn_rssi_timer_cb`` will check the connection RSSI every ``USER_UPD_CONN_RSSI_TO`` interval and in turn the same will collect the measurements. This will also trigger an RSSI exchange with the peer device. If the strongest RSSI, peer or own, exceeds the thresholds defined in ``user_prox_zones_rssi`` array, an alert will start, which will blink with a frequency related to the proximity zone that was estimated. After ``USER_CON_RSSI_MAX_NB`` measurements and as soon as the alert is done the link will be disconnected. The list will be traversed to find the next connection candidate, and when the list is exhausted, a new Advertising/Scanning cycle will begin.
+
+As allready mentioned the devices running the SDT SW are going through periods of Advertising, Scanning and if a peer is a candidate it will initiate a connection procedure. The amount of time the above three actions are taking place in configurable through the ``ADVERTISING_TIMEOUT_msec`` definition which determines the amount of the advertising period. The scanning and connection initiation periods are defined as percentages of the advertising period via the ``SCANNING_PERCENTAGE`` and the ``CONNECT_INIT_PERCENTAGE`` definitions.
 
 ## Known Limitations
 

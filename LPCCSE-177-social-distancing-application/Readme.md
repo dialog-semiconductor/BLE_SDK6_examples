@@ -41,15 +41,15 @@ This example configures a DA14531 device to be used for social distancing purpos
 
 ## How to run the example
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+The example comes along with the latest SDK6 release. The project is located under the ``SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\projects\target_apps\social_distancing_demo``
 
 ### Initial Setup
 
  - Start Keil
  - Compile the example by pressing the "Build" button. 
- - Depending on the available devices on the end user side, one can either burn the SPI flash of the TINY module and detach the TINY module from the motherboard, apply a coin cell battery and operate. Or download the fw directly to RAM on a TINY module or a DA14531 daughtercard and remain attach to the motherboard in order to print out the messages generated. On this demo setup both DA14531 used remain connected to their motherboards and both are printing on different terminals.
+ - Depending on the available devices on the end user side, one can either burn the SPI flash of the TINY module and detach the TINY module from the motherboard, apply a coin cell battery and operate. Or download the fw directly to RAM on a TINY module or a DA14531 daughtercard and remain attach to the motherboard in order to print out the messages generated. On this demo setup only two devices are used and both DA14531 used remain connected to their motherboards and both are printing on different terminals.
  - For loading the executable to the SPI flash memory (have a look at the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) for instructions).
- - As soon as the devices are hooked on the PC open up your Device Manager (for Windows OS) and there will be four COM ports enumerated as shown in the following figure. In this case there are two motherboards connected on the PC each motherboard exposes one pair of serial ports each. Always choose the lowest port number of each pair for printing out UART messages genarated from the fw.
+ - As soon as the devices are hooked on the PC open up your Device Manager (for Windows OS) and there will be four COM ports enumerated as shown in the following figure. In this case there are two motherboards connected on the PC each motherboard exposes one pair of serial ports each. Always choose the lowest port number of each pair for printing out UART messages generated from the fw.
 
 ![com-ports](media/four_com_ports.png)
 
@@ -67,6 +67,12 @@ and press "Open".
 	
 ![keil-start-debug](media/keil-start-debug-session.png)
 	
+ ### Programming using the Dialog SmartBond Flash Programmer Standalone tool
+ The SDT example is also available for downloading/flashing via the Flash programmer Standalone tool. Via pressing the ``Online Resources`` button you can select the Social Distancing project .hex and directly burn the file into the flash.
+ For more information regarding the Flash Programmer Standalone tool check the below link:
+  - [Dialog Smartbond Flash Programmer User Manual](http://lpccs-docs.dialog-semiconductor.com/um-b-138/introduction.html)
+
+ 
  ### Monitoring distance
 At this point you should have the executable running on two DA14531.
 
@@ -74,7 +80,7 @@ The device will switch between being a BLE Advertiser and a Scanner. In the Adve
 
 When scanning completes, the dynamic list entries will be printed, the list will be traversed and if there is a device with a strong signal nearby the scanning device will initiate a connection. The "nearby strong signal" is assumed a device with an RSSI smaller then -70dbm (this threshold is configurable from the user_prox_zones_rssi array). Upon connection, the entry list will be marked as "Accessed", and then the devices will exchange their measured RSSIs through a GATT service for a configurable number of times and the maximum RSSI will be used as an indication for the distance. At this point, the LED will blink according to the proximity zone that the devices are in. The same procedure will be repeated with every device that is in close range, and then an advertising and scanning cycle will start again.
 
-**``WARNING:`` There are cases where a device that performs scan may not report all nearby devices or when initiating a connection the connection might fail. That may occur because the other device has switched to scanning mode or it is allready connected with another device**
+**``WARNING:`` There are cases where a device that performs scan may not report all nearby devices or when initiating a connection the connection might fail. That may occur because the other device has switched to scanning mode or it is already connected with another device**
 
 The SW uses a unique static random address that derives from the OTP header data. 
 
@@ -99,11 +105,11 @@ When the device completes with the scanning period it will go through the advert
 2. INFO: THE STRONGEST NODE WITH RSSI -47 FOUND: This is the strongest RSSI measured during scanning.
 3. CA:1B:32:07:AB:C3: ATTEMPT FOR CONNECTION: The device initiates a connection request to the specific device.
 4. CA:1B:32:07:AB:C3: CONNECTED AS INITIATOR: The connection request was successful and the device is the initiator on this connection (on the peer device a message CONNECTED AS SLAVE should be prompted).
-5. LOCAL RSSI VALUE -47: The local received signal strength is obtained, exchanged with the peer and printed 4 times.
-6. RECEIVED RSSI VALUE -47: The received RSSI is obtained from the peer and printed 4 times.
+5. LOCAL RSSI VALUE -47: The local received signal strength is obtained, send to the peer through the GATT service and also printed 4 times.
+6. RECEIVED RSSI VALUE -47: The received RSSI is obtained from the peer through GATT service and printed 4 times.
 7. INFO: STRONGEST RSSI IN CONNECTED STATE: -46: Indicating the strongest RSSI obtained from the exchange.
-8. INFO: ca:1b:32:07:ab:c3 IS IN DANGER ZONE: based on the value of the RSSI the device is located in very close proximity with another device.
-9. ca:1b:32:07:ab:c3: DISCONNECTED WITH REASON 16: After the alert is done the devices get disconnected. the disconnection request is issued always from the initiator of the connection, hence the disconnection reasons should be. 
+8. INFO: CA:1B:32:07:AB:C3 IS IN DANGER ZONE: based on the value of the RSSI the device is located in very close proximity with another device.
+9. CA:1B:32:07:AB:C3: DISCONNECTED WITH REASON 16: After the alert is done the devices get disconnected. the disconnection request is issued always from the initiator of the connection, hence the disconnection reasons should be. 
   * The 0x16 corresponds to the reason ERROR_CON_TERM_BY_LOCAL_HOST at the initiator side.
   * The 0x13 corresponds to the reason ERROR_REMOTE_USER_TERM_CON at the slave side
   * There are cases where a disconnection occurs for different reasons (other than 0x16 or 0x13), due to various errors that my occur during connection or timeouts.
@@ -125,11 +131,21 @@ When the device gets initialized, the function ``user_app_adv_start()`` will be 
 
 Scanning starts with the function ``user_scan_start()`` and is configured with the parameters of ``user_scan_conf`` struct. Every time a new advertising report is received, the function ``user_app_on_adv_report_ind()`` will be called, which will add a peer device's advertising report in a dynamic list. 
 
-When scanning completes, the ``user_app_on_scanning_completed()`` function will be called. The list will be searched to check the maximum RSSI node (if there is one) and if it exceeds the RSSI threshold, a connection will be initiated. If not, the device will enter another Advertising/Scanning cycle.
+While scanning for advertising devices the scanner will populate a list with the found devices along with the RSSI value which was obtained while advertising and some additional data. Based on this advertising RSSI value the scanner will later decide if the device is located in close proximity and if it is, a connection attempt will start. The close proximity threshold is defined by the ``user_prox_zones_rssi[USER_PROX_ZONE_COARSE]``. The values of the advertising RSSI are populated in two ways. Either have the stack filter all advertising messages that come from the same device so the advertising RSSI is obtained by a single message or instruct the stack not to filter the messages and report to the application all the advertising messages tracked. In the later case the scanner will perfrom a running average filter over the RSSI's received from the same device. To enable or disable the above functionality the user should assign in the ``user_scan_config.filter_duplic`` structure either ``SCAN_FILT_DUPLIC_EN`` for enabling stack filtering and get a signle RSSI value per device or ``SCAN_FILT_DUPLIC_DIS`` for accepting all advertising messages and perform the running average.
 
-Connections are initiated with the ``user_app_on_scanning_completed()`` via the ``initiate_connection_attempt()`` either when the previous connection is over or if the ``USER_INITIATE_CONN_TO time`` elapses. Upon connection, the function ``user_poll_conn_rssi_timer_cb`` will check the connection RSSI every ``USER_UPD_CONN_RSSI_TO`` interval and in turn the same will collect the measurements. This will also trigger an RSSI exchange with the peer device. If the strongest RSSI, peer or own, exceeds the thresholds defined in ``user_prox_zones_rssi`` array, an alert will start, which will blink with a frequency related to the proximity zone that was estimated. After ``USER_CON_RSSI_MAX_NB`` measurements and as soon as the alert is done the link will be disconnected. The list will be traversed to find the next connection candidate, and when the list is exhausted, a new Advertising/Scanning cycle will begin.
+When scanning completes, the ``user_app_on_scanning_completed()`` function will be called. The list will be searched to check the maximum RSSI node (if there is one) and if it exceeds the advertising RSSI threshold, a connection will be initiated. If not, the device will enter another Advertising/Scanning cycle.
 
-As allready mentioned the devices running the SDT SW are going through periods of Advertising, Scanning and if a peer is a candidate it will initiate a connection procedure. The amount of time the above three actions are taking place in configurable through the ``ADVERTISING_TIMEOUT_msec`` definition which determines the amount of the advertising period. The scanning and connection initiation periods are defined as percentages of the advertising period via the ``SCANNING_PERCENTAGE`` and the ``CONNECT_INIT_PERCENTAGE`` definitions.
+The reason the device is performing connections instead of estimating proximity using the RSSI from the advertising messages is due to the fact that, while in connection the device operates over a larger range of channels than advertising resulting in more accurate RSSI measurements.
+
+Connections are initiated with the ``user_app_on_scanning_completed()`` via the ``initiate_connection_attempt()`` either when the previous connection is over or if the ``USER_INITIATE_CONN_TO`` time elapses. Upon connection, the function ``user_poll_conn_rssi_timer_cb`` will check the connection RSSI every ``USER_UPD_CONN_RSSI_TO`` interval and in turn the same will collect the measurements. This will also trigger an RSSI exchange with the peer device. If the strongest RSSI, peer or own, exceeds the thresholds defined in ``user_prox_zones_rssi`` array, an alert will start, which will blink with a frequency related to the proximity zone that was estimated. After ``USER_CON_RSSI_MAX_NB`` measurements and as soon as the alert is done the link will be disconnected. The list will be traversed to find the next connection candidate, and when the list is exhausted, a new Advertising/Scanning cycle will begin.
+
+The indication of the proximity is done via blinking the LED on the device. The ON/OFF period of the alert depends on the proximity zone estimation. The ON/OFF periods are configurable through the below definitions:
+- ``#define DANGER_ZONE`` : default 20ms period
+- ``#define WARNING_ZONE``: default 100ms period
+- ``#define COARSE_ZONE`` : default 150ms period
+Along with the timers that control the alert interval, a seperate timer is also started that counts down until the disconnection event is issued from the initiator of the connection. This time is also configurable via the ``ALERT_TIME`` which defaults to 1 second. 
+
+As already mentioned the devices running the SDT SW are going through periods of Advertising, Scanning and if a peer is a candidate it will initiate a connection procedure. The amount of time the above three actions are taking place in configurable through the ``ADVERTISING_TIMEOUT_msec`` definition which determines the amount of the advertising period. The scanning and connection initiation periods are defined as percentages of the advertising period via the ``SCANNING_PERCENTAGE`` and the ``CONNECT_INIT_PERCENTAGE`` definitions. Additionally in order to avoid identical Advertising and Scanning periods for each device a random offset is also added in each Advertising / Scanning period.  
 
 ## Known Limitations
 

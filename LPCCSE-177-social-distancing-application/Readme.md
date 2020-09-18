@@ -13,8 +13,7 @@ Example requirements:
 
 - The USB1 connector of the DA145xx Pro Development Kit should be connected to the host computer
 - The jumpers should be connected as shown in the graphic for downloading your binary to the RAM either via JTAG (using Keil or Smart Snippets Toolbox) or via UART using the P05 single wire UART configuration (only via the Smart Snippets Toolbox)
-- For more information on burning the flash on the TINY module, see:
-  - [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/da14531-module-HW-DevKit-UM)
+- For more information on burning the flash on the TINY module, see [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/da14531-module-HW-DevKit-UM).
 
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D2 on TINY module
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin
@@ -25,8 +24,7 @@ Example requirements:
 
 - The USB1 connector of the DA145xx Pro Development Kit should be connected to the host computer
 - The jumpers should be connected as shown in the graphic for downloading your binary to the RAM either via JTAG (using Keil or Smart Snippets Toolbox) or via UART using the P05 single wire UART configuration (only via the Smart Snippets Toolbox)
-- For more information on burning the onboard flash on DA14xxx Pro Development Kit, see:
-  - [DA14531 Development Kit Pro Hardware User Manual](https://www.dialog-semiconductor.com/sites/default/files/um-b-114_da14531_devkit_pro_hardware_user_manual_1v2.pdf)
+- For more information on burning the onboard flash on DA14xxx Pro Development Kit, see [DA14531 Development Kit Pro Hardware User Manual](https://www.dialog-semiconductor.com/um-114-da14531-development-kit-pro).
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D5 on DA14xxx Pro Development Kit for the case of the DA14531 daughtercard
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
 	
@@ -36,8 +34,8 @@ Example requirements:
 
 - The USB J1 connector of the USB Development Kit should be connected to the host computer
 - The switches should be configured as shown in the graphic for downloading your binary to the RAM either via JTAG (using Keil or Smart Snippets Toolbox) or via UART using the P05 single wire UART configuration (only via the Smart Snippets Toolbox)
-- For more information on burning the onboard flash on DA14531 USB Development Kit, see:
-  - [DA14531 USB Development Kit Hardware](https://www.dialog-semiconductor.com/sites/default/files/um-b-125_da14531_usb_development_kit_hw_manual_1v1.pdf)
+- For more information on burning the onboard flash on DA14531 USB Development Kit, see [DA14531 USB Development Kit Hardware](https://www.dialog-semiconductor.com/UM-B-125-da14531-usb-HW-Devkit).
+  
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D7 on DA14531 USB Development Kit.
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
 	
@@ -67,21 +65,22 @@ The example is delivered with the latest SDK6 release. The project is located un
 5. After the devices are connected the PC, open **Device Manager** (for Windows OS) and see four COM ports enumerated as shown in the following figure.
    In this example, two motherboards are connected to the PC and each motherboard exposes one pair of serial ports each. Always choose the lowest port number of each pair for printing out UART messages generated from the fw.
 
-![com-ports](media/four_com_ports.png)
+	![com-ports](media/four_com_ports.png)
+
 
 6. Open your serial port terminal and choose the lowest port for each connected motherboard.
 7. Configure the connection with baud rate 115200, 8 data bits and 1 stop bit, no parity and no flow control, and then press **Open**.
    - For PuTTY, configure your Session as follows:
 
-![putty-session](media/putty_session.png)
+	![putty-session](media/putty_session.png)
 
    - For Connection -> Serial as follows:
 
-![putty-serial](media/putty_serial.png)
+	![putty-serial](media/putty_serial.png)
 
 8. In Keil, start a debugging session, and then press **Run** or F5 (for downloading to RAM using Keil option).
 	
-![keil-start-debug](media/keil-start-debug-session.png)
+	![keil-start-debug](media/keil-start-debug-session.png)
 	
  ### Program Using the Dialog SmartBond Flash Programmer Standalone Tool
  The SDT example is also available for downloading/flashing via the Flash programmer Standalone tool. To select the Social Distancing project .hex and directly burn the file into the flash, press the **Online Resources** button.
@@ -115,7 +114,13 @@ When a scanning operation completes, all the entries of the dynamic list are pri
 * STORED LIST:
   LIST ENTRY:    BD ADDRESS:     XX XX XX XX XX XX       RSSI: -57       IS ACCESSED: False      FOUND: 1 time(s) : The list entry stores the BD Address of the peer device, the filtered RSSI value, a flag which indicates if a connection is initiated, and the number of received advertising reports.
 
-When the device completes the scanning, it goes through the advertising list and initiates connections with all the available devices in the list, starting with the strongest RSSI node. After a connection is established, both devices exchange their RSSI values 4 times (this parameter is configurable via USER_CON_RSSI_MAX_NB definition). The strongest exchanged RSSI value is taken to initiate the corresponding alert:
+When the device completes the scanning, it goes through the advertising list and initiates connections with all the available devices in the list, starting with the strongest RSSI node. After a connection is established, both devices exchange their RSSI values 4 times (this parameter is configurable via USER_CON_RSSI_MAX_NB definition). The strongest exchanged RSSI value is taken to initiate the corresponding alert.
+
+This procedure is shown in the next screenshot:
+
+![putty_danger_sone_as_initiator](media/putty_danger_zone_as_initiator.png)
+
+
 1. CA:1B:32:07:AB:C3: SCAN COMPLETED : Completed the scanning period.
 2. INFO: THE STRONGEST NODE WITH RSSI -47 FOUND: This is the strongest RSSI measured during scanning.
 3. CA:1B:32:07:AB:C3: ATTEMPT FOR CONNECTION: The device initiates a connection request to the specific device.
@@ -125,15 +130,14 @@ When the device completes the scanning, it goes through the advertising list and
 7. INFO: STRONGEST RSSI IN CONNECTED STATE: -46: Indicates the strongest RSSI obtained from the exchange.
 8. INFO: CA:1B:32:07:AB:C3 IS IN DANGER ZONE: The device is located in very close proximity with another device based on the RSSI value.
 9. CA:1B:32:07:AB:C3: DISCONNECTED WITH REASON 16: After the alert is finished, the devices disconnect. The disconnection request is issued always from the initiator of the connection, hence the disconnection reasons should be.
-  * The 0x16 corresponds to the reason ERROR_CON_TERM_BY_LOCAL_HOST at the initiator side
-  * The 0x13 corresponds to the reason ERROR_REMOTE_USER_TERM_CON at the slave side
-  * Sometimes a disconnection occurs for the reasons other than 0x16 or 0x13, due to various errors that my happen during connection or timeouts
+  
+	- The 0x16 corresponds to the reason ERROR_CON_TERM_BY_LOCAL_HOST at the initiator side
+	- The 0x13 corresponds to the reason ERROR_REMOTE_USER_TERM_CON at the slave side
+	- Sometimes a disconnection occurs for the reasons other than 0x16 or 0x13, due to various errors that my happen during connection or timeouts
+
 10. LIST ENTRY:    BD ADDRESS:     80 ea ca a0 06 8a       RSSI: -47       IS ACCESSED: True       FOUND: 6 time(s): After the disconnection, the device indicates the current status of the scanned devices marking the disconnected one as accessed.
 11. CLEAR LIST: The device checks for the devices to connect to available in scanning list. If no other devices are available, the device clears the scanning list and starts advertising again. If the scanning list contains the devices that are not accessed yet, then the device initiates a connection to next available node.
 
-This procedure is shown in the next screenshot:
-
-![putty_danger_sone_as_initiator](media/putty_danger_zone_as_initiator.png)
 
 The corresponding procedure from the slave side is shown in the next screenshot (it is taken from the same device in another instance when the devices is connected as slave):
 

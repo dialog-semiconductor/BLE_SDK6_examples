@@ -13,7 +13,8 @@ Example requirements:
 
 - The USB1 connector of the DA145xx Pro Development Kit should be connected to the host computer
 - The jumpers should be connected as shown in the graphic for downloading your binary to the RAM either via JTAG (using Keil or Smart Snippets Toolbox) or via UART using the P05 single wire UART configuration (only via the Smart Snippets Toolbox)
-- For more information on burning the flash on the TINY module, see [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/da14531-module-HW-DevKit-UM)
+- For more information on burning the flash on the TINY module, see:
+  - [DA14531 Smartbond TINY Module Development Kit Hardware User Manual](https://www.dialog-semiconductor.com/da14531-module-HW-DevKit-UM)
 
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D2 on TINY module
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin
@@ -30,6 +31,17 @@ Example requirements:
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
 	
 	![motherboard_with_daughter_conf](media/DevKit531.png)
+
+### Hardware Configuration for the DA14531 USB Kit
+
+- The USB J1 connector of the USB Development Kit should be connected to the host computer
+- The switches should be configured as shown in the graphic for downloading your binary to the RAM either via JTAG (using Keil or Smart Snippets Toolbox) or via UART using the P05 single wire UART configuration (only via the Smart Snippets Toolbox)
+- For more information on burning the onboard flash on DA14531 USB Development Kit, see:
+  - [DA14531 USB Development Kit Hardware](https://www.dialog-semiconductor.com/sites/default/files/um-b-125_da14531_usb_development_kit_hw_manual_1v1.pdf)
+- The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D7 on DA14531 USB Development Kit.
+- The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
+	
+	![da14531_USB_kit](media/da14531_usbkit.png)
 
 ### Software Configuration
 

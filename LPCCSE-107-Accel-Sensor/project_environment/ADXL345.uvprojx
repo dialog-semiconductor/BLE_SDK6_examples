@@ -369,7 +369,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DLG_SDK_UNLINKEDcopied_scatter_585_586.sct</ScatterFile>
+            <ScatterFile>C:\DLG_SDK_UNLINKED\copied_scatter_585_586.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>--feedback=".\unused_585.txt" C:\DLG_SDK_UNLINKED\sdk\common_project_files\misc\da14585_symbols.txt  --symdefs=prox_reporter_585_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
@@ -1663,7 +1663,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DLG_SDK_UNLINKEDcopied_scatter_585_586.sct</ScatterFile>
+            <ScatterFile>C:\DLG_SDK_UNLINKED\copied_scatter_585_586.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>--feedback=".\unused_586.txt" C:\DLG_SDK_UNLINKED\sdk\common_project_files\misc\da14585_symbols.txt  --symdefs=prox_reporter_586_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
@@ -2957,7 +2957,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DLG_SDK_UNLINKEDcopied_scatter_531.sct</ScatterFile>
+            <ScatterFile>C:\DLG_SDK_UNLINKED\copied_scatter_531.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>--feedback=".\unused_531.txt" C:\DLG_SDK_UNLINKED\sdk\common_project_files\misc\da14531_symbols.txt  --symdefs=prox_reporter_531_symdef.txt --any_placement=best_fit --datacompressor off</Misc>

@@ -64,6 +64,15 @@
     #define UART2_TX_PIN            GPIO_PIN_4
 #endif
 
+
+/****************************************************************************************/
+/* Debug define                                                                         */
+/****************************************************************************************/
+// The DA14531 doesn't have a lot of pins. As one of the four ADC inputs is shared with SWD
+// It's inpossible to use SWD together with four analog inputs.
+// If this is defined, both joysticks will share the same x axis input. And SWD is not disabled  
+#define DEBUGGING
+
 // Define UART2 Settings
 #define UART2_BAUDRATE              UART_BAUDRATE_115200
 #define UART2_DATABITS              UART_DATABITS_8
@@ -118,10 +127,17 @@
 #endif
 
 /****************************************************************************************/
-/* Gamepad buttons configuration                                                                  */
+/* Gamepad buttons configuration                                                        */
 /****************************************************************************************/
 #if defined (__DA14531__)
-		//TODO: add DA14531 support
+    #define GAMEPAD_BUTTON_A_PORT   GPIO_PORT_0
+    #define GAMEPAD_BUTTON_A_PIN    GPIO_PIN_3
+		#define GAMEPAD_BUTTON_B_PORT   GPIO_PORT_0
+    #define GAMEPAD_BUTTON_B_PIN    GPIO_PIN_4
+		#define GAMEPAD_BUTTON_STA_PORT GPIO_PORT_0
+    #define GAMEPAD_BUTTON_STA_PIN  GPIO_PIN_11
+		#define GAMEPAD_BUTTON_SEL_PORT GPIO_PORT_0
+    #define GAMEPAD_BUTTON_SEL_PIN  GPIO_PIN_9
 #else
     #define GAMEPAD_BUTTON_A_PORT   GPIO_PORT_2
     #define GAMEPAD_BUTTON_A_PIN    GPIO_PIN_0
@@ -134,10 +150,21 @@
 #endif
 
 /****************************************************************************************/
-/* Gamepad joysticks configuration                                                                  */
+/* Gamepad joysticks configuration                                                      */
 /****************************************************************************************/
 #if defined (__DA14531__)
-		//TODO: add DA14531 support
+    #define GAMEPAD_LS_X_PORT   GPIO_PORT_0
+    #define GAMEPAD_LS_X_PIN    GPIO_PIN_1
+    #define GAMEPAD_LS_Y_PORT   GPIO_PORT_0
+    #define GAMEPAD_LS_Y_PIN    GPIO_PIN_6
+		#define GAMEPAD_RS_X_PORT   GPIO_PORT_0
+#ifdef DEBUGGING
+    #define GAMEPAD_RS_X_PIN    GPIO_PIN_1
+#else
+    #define GAMEPAD_RS_X_PIN    GPIO_PIN_2
+#endif
+		#define GAMEPAD_RS_Y_PORT   GPIO_PORT_0
+    #define GAMEPAD_RS_Y_PIN    GPIO_PIN_7
 #else
     #define GAMEPAD_LS_X_PORT   GPIO_PORT_0
     #define GAMEPAD_LS_X_PIN    GPIO_PIN_0

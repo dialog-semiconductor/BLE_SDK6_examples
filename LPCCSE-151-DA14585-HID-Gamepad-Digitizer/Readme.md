@@ -24,7 +24,7 @@ A DA14585/6 HID gamepad demo project. Used to demonstrate the usage of HID featu
 * **Hardware configuration**
 
 Required componets:
-- DA145xxDEVKT-P PRO-Motherboard, with DA1458x daughter board QFN40/48.
+- DA145xxDEVKT-P PRO-Motherboard, with DA1458x daughter board QFN40/48. Or a DA14531 daughterboard, the module board does not have enough pins for this example.
 
 The user manual for the development kits can be found:
 - [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
@@ -32,7 +32,7 @@ The user manual for the development kits can be found:
 - 2-axis analog joystick with push button * 2
 
 ![Joystick Module](assets/Joystick_module.jpg)
-- Wire Connection:
+- Wire Connection for DA14585 and DA14586:
 	- Joystick 1 (Regard as left stick, or **LS** in the code):
 		- Power supply - VBAT
 		- Ground - GND
@@ -50,9 +50,29 @@ The user manual for the development kits can be found:
 	- Buttons:
 		- put jumper J10 to enable buttons on the dev kit mother board
 		- SW2 - P0_6 (set for button "Select", active LOW)
-		- SW2 - P1_1 (set for button "Start", active LOW)
+		- SW3 - P1_1 (set for button "Start", active LOW)
+		
+- Wire Connection for DA14531:
+	- Joystick 1 (Regard as left stick, or **LS** in the code):
+		- Power supply - VBAT
+		- Ground - GND
+		- X axis - P0_1
+		- Y axis - P0_6
+		- Push Button - P0_3 (set for button "A", active HIGH)
+
+	- Joystick 2 (Regard as right stick, or **RS** in the code):
+		- Power supply - VBAT
+		- Ground - GND
+		- X axis - P0_2 or not connected, based on DEBUGGING flag
+		- Y axis - P0_7
+		- Push Button - P0_4 (set for button "B", active HIGH)
+	
+	- Buttons:
+		- SW - P0_9 (set for button "Select", active LOW)
+		- SW3 - P0_11 (set for button "Start", active LOW)
 		
 - If the joystick module is not available, make sure to set **CFG_USE_JOYSTICKS** to 0 in order to disable related codes and prevent the device sending funny HID reports
+- One of the four ADC channels is shared with the SWD debugging. Therefore there is a flag added in user_periph_setup.h undefining this flag will enable the fourth channel, but debugging will be impossible. 
 
 ![Hardware Setup](assets/HW_setup.jpg)
 

@@ -1,9 +1,9 @@
 #! /usr/bin/python
 '''
 ###########################################################################################
-# @file		:: dlg_make_keil5_env_v1.010.py
+# @file		:: dlg_make_keil5_env_v2.000.py
 #
-# @brief	:: Last modified: Apr 16th 2020.
+# @brief	:: Last modified: May 7th 2020.
 #			   
 # 			   This script sets up the software development environment links with Dialog's SDK6.
 #              This script is applied only on DA14585/86/31 published small examples in KEIL5.          
@@ -18,26 +18,26 @@
 #			   Store and run this script in the same location as the KEIL5 *.uvprojx and *.uvoptx files.
 #			   The script can be run from a command line on a windows OS (Power shell or DOS cmd).
 #			   Example cmd:
-#			   python dlg_make_keil5_env_v1.010.py -sdkpath "<user_specific_SDK6_location>"
+#			   python dlg_make_keil5_env_v2.000.py -sdkpath "<user_specific_SDK6_location>"
 #
 #
 #			   NOTE:
 #			   - This script can create application environment only for SDK6.0.14.xxxx.
-#			   - During the time of release the script was tested on SDK6.0.13.1103.
+#			   - During the time of release the script was tested on SDK6.0.14.1114.
 #			   - Supported commands:
-#			   	python dlg_make_keil5_env_v1.010.py -sdkpath "<user_specific_SDK6_location>"
+#			   	python dlg_make_keil5_env_v2.000.py -sdkpath "<user_specific_SDK6_location>"
 #			   
 #			   After successful execution of the above command the Keil5 environment (example *.uvprojx) 
 #			   files will be ready to run the KEIL5 IDE as an ouput.
 #
 #              OR,
-#			   python dlg_make_keil5_env_v1.010.py -sdkpath "clean" 
+#			   python dlg_make_keil5_env_v2.000.py -sdkpath "clean" 
 #
 #			   After successful execution of the above command the Keil5 environment (example *.uvprojx) 
 #			   files will be unlinked from the SDK6.
 #			    
 #			   This "clean" command is shared to make sure no intermadiate file paths are shared with internal and external
-#			   applicaiton users.
+#			   application users.
 #				
 #
 # Copyright (c) 2020 Dialog Semiconductor. All rights reserved.

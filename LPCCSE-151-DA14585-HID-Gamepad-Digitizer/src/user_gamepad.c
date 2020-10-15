@@ -319,13 +319,27 @@ void user_usDelay(uint32_t nof_us)
 uint32_t adc_get_raw_sample(adc_input_se_t channel)
 {
     uint32_t adc_sample, adc_sample2;
+	  #ifdef __DA14531__	
+    adc_config_t cfg =
+    {
+        .input_mode = ADC_INPUT_MODE_SINGLE_ENDED,
+        .input = channel,
+        .smpl_time_mult = 1,
+        .continuous = false,
+        .input_attenuator = ADC_INPUT_ATTN_4X,
+        .oversampling = 2
+    };
+		
+		adc_init(&cfg);
+		
+		adc_sample = adc_get_sample();
+    #else
     adc_config_t cfg =
     {
         .mode = ADC_INPUT_MODE_SINGLE_ENDED,
         .sign = true,
         .attn = true
     };
-
     adc_init(&cfg);
     user_usDelay(20);
 
@@ -334,7 +348,7 @@ uint32_t adc_get_raw_sample(adc_input_se_t channel)
     adc_sample = adc_get_sample();
     user_usDelay(1);
 
-    cfg.sign = false;
+    //cfg.sign = false;
     adc_init(&cfg);
     adc_set_se_input(channel);
 
@@ -343,6 +357,7 @@ uint32_t adc_get_raw_sample(adc_input_se_t channel)
     // enough
     adc_sample = (adc_sample2 + adc_sample);
     adc_disable();
+	  #endif
 
     return adc_sample;
 }
@@ -486,10 +501,17 @@ void user_gamepad_update_joystick(void){
  ****************************************************************************************
  */
 void user_gamepad_axis_polling_cb(void){
+	#ifdef __DA14531__
+	gamepad_status.ls.raw_x = adc_get_raw_sample(ADC_INPUT_SE_P0_1);
+	gamepad_status.ls.raw_y = adc_get_raw_sample(ADC_INPUT_SE_P0_6);
+	gamepad_status.rs.raw_x = adc_get_raw_sample(ADC_INPUT_SE_P0_2);
+	gamepad_status.rs.raw_y = adc_get_raw_sample(ADC_INPUT_SE_P0_7);
+	#else
 	gamepad_status.ls.raw_x = adc_get_raw_sample(ADC_INPUT_SE_P0_0);
 	gamepad_status.ls.raw_y = adc_get_raw_sample(ADC_INPUT_SE_P0_1);
 	gamepad_status.rs.raw_x = adc_get_raw_sample(ADC_INPUT_SE_P0_2);
-	gamepad_status.rs.raw_y = adc_get_raw_sample(ADC_INPUT_SE_P0_3);
+	gamepad_status.rs.raw_y = adc_get_raw_sample(ADC_INPUT_SE_P0_3);	
+	#endif
 	user_gamepad_update_joystick();
 	if(axis_polling_on)
 		axis_update_timer_used = app_easy_timer(AXIS_UPDATE_PER, user_gamepad_axis_polling_cb);

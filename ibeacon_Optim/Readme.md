@@ -1,21 +1,189 @@
-# ibeacon
+# Optimized Software for ibeacon
 
-iBeacon implementation for the DA14531
+Optimized Software implementation for ibeacon on the DA14531
 
 ## Example description
 
-Simple example showing how to implement an iBeacon on the DA14531. All beacon payload
-parameters (advertising interval, UUID etc.) are easily configurable from within the user
-application (user_app.c).
+The example is an update of the ibeacon SW, below the main modifications, basically in this example we demonstrate how to:
 
-The example is configured to use a random static Bluetooth Device address (BD address). This 
-is generated upon power on or reset and will remain static throughout the life of the device. 
-It is also guaranteed to be unique on each DA14531 device (i.e. a different BD address will be 
-generated on each DA14531 on which this is example is run).
+- Alternate Static random address: change the device address in every advertising event
+- Alternate Tx output power level: change the Tx output power level in every advertising event
+- Alternate User advertising data: change the Beacon advertising payload in every advertising event 
 
-By default the output power is set to 0dBm. This can be increased to +2.5dBm by defining the
-macro TX_POWER_2d5Bm (see the macro definitions at the start of the user_app.c file).
- 	
+A new ibeacon structure has been created to allow the alternating and the advertising interval is set to 10 s.
+
+```` C
+/* Set the advertising rate */
+#define ADV_INTERVAL_ms							10000
+````
+
+```` C
+ibeacon_adv_payload_t adv_payload;
+ibeacon_adv_payload_t_new adv_payload_new;
+````
+
+
+```` C
+if(change_bd_addr_flag % 2)
+
+{
+	user_app_adv_start();
+
+	/* Alternate User advertising data*/
+	memcpy(store_adv_data, &adv_payload, sizeof(ibeacon_adv_payload_t));
+	store_adv_data_len = sizeof(ibeacon_adv_payload_t);
+
+	/* Alternate Tx output power, Set output power to maximum value (0dBm) */
+	rf_pa_pwr_set(RF_TX_PWR_LVL_0d0);
+
+	/* Alternate Static random address */
+	llm_le_env.rand_add.addr[0] = 0x11;
+	llm_le_env.rand_add.addr[1] = 0x12;
+	llm_le_env.rand_add.addr[2] = 0x13;
+	llm_le_env.rand_add.addr[3] = 0x14;
+	llm_le_env.rand_add.addr[4] = 0x15;
+	llm_le_env.rand_add.addr[5] = 0x16;
+
+}
+else 
+
+{
+	user_app_adv_start_new();
+
+	/* Alternate User advertising data*/
+	memcpy(store_adv_data, &adv_payload_new, sizeof(ibeacon_adv_payload_t_new));
+	store_adv_data_len = sizeof(ibeacon_adv_payload_t_new);
+
+	/* Alternate Tx output power, Set output power to maximum value (+2.5dBm) */
+	rf_pa_pwr_set(RF_TX_PWR_LVL_PLUS_2d5);
+
+	/* Alternate Static random address */
+	llm_le_env.rand_add.addr[0] = 0x01;
+	llm_le_env.rand_add.addr[1] = 0x02;
+	llm_le_env.rand_add.addr[2] = 0x03;
+	llm_le_env.rand_add.addr[3] = 0x04;
+	llm_le_env.rand_add.addr[4] = 0x05;
+	llm_le_env.rand_add.addr[5] = 0x06;
+}	 
+
+````
+
+![Alternate Static random address](assets/alternate.jpg)
+![Alternate Tx output power level](assets/power_alternate.jpg)
+
+In this example we are showing also how to tune the DA14531 for a minimum current consumption.
+When the changes are applied to the SDK, the current consumption will be decreased by 18%. 
+
+**Below the list of changes for power improvement:**
+
+- Optimize  the time between Tx pulses
+
+````
+rwble.c :
+
+__BLEIRQ void rwble_isr(void)
+{
+.....
+   /* Optimize  the time between Tx pulses */
+	ble_advtim_set (500);
+}
+
+````
+
+![Optimize  the time between Tx pulses](assets/interchannel.jpg)
+
+
+
+- Lower the clock speed on the AMBA when sleep preparation 
+
+````
+arch_system.c :
+
+__WEAK bool app_use_lower_clocks_check(void)
+{
+	 return true;
+}
+````
+![Lower the clock speed on the AMBA](assets/power_clock.jpg)
+
+- Remove RCX read and calibration
+
+````
+arch_main.c :
+
+#if defined (__DA14531__)
+       // rcx20_read_freq(false);
+#endif
+
+````
+
+- Reduce RF calibration routine 
+
+````
+arch_system.c :
+
+void conditionally_run_radio_cals(void)
+{
+#if defined (__DA14531__)
+    // 531 case
+    uint32_t current_time = lld_evt_time_get();
+
+    if (current_time < last_temp_time)
+    {
+        last_temp_time = 0;
+    }
+
+    if ((current_time - last_temp_time) >= 500000)
+    {
+ 
+
+````
+- Reduce XTAL32M wait time 
+
+````
+otp_cs.c :
+
+#define XTAL32M_WAIT_TRIM_TIME_USEC      (500)  // 500 usec
+ 
+````
+
+- Optimize xtal start-up time
+
+````
+arch.h :
+
+#if defined (__DA14531__)
+#define HW_STARTUP_TIME_IN_XTAL32K_CYCLES    (11)   // 11 LP clocks for startup state machine handling
+#define HW_STARTUP_TIME_IN_RCX_CYCLES        (7)    // 7 LP clocks for startup state machine handling
+#define RCX_BLE_PWR_UP_TO_SLP_IRQ_USEC       (60)
+#define XTAL32K_BLE_PWR_UP_TO_SLP_IRQ_USEC   (45)
+#endif
+ 
+````
+
+The results are given in the below screenshots:
+
+- Average power consumption  with no software optimization : **2,77 uA**
+
+![Average power consumption  : No SW optmisation](assets/results_no_optim.jpg)
+
+
+- Average power consumption  with software optimization : **2,27 uA**
+
+![Average power consumption : With SW optimization](assets/results_optim.jpg)
+
+- Average power consumption during sleep : **1,2 uA**
+
+![Average power consumption : With SW optimization](assets/sleep_current.jpg)
+
+**Estimate battery life**
+
+Battery life can be calculated when you know the average current consumption of the device and the energy capacity of your battery.
+Battery Lifetime Estimator tool can be used and it can be loaded (from the Smartsnippets toolbox) by selecting the “Power Monitor” under Layout in the Toolbar or the “Battery Lifetime Estimator” under Tools.
+
+
+Because the example needs changes into the SDK we are providing within the source directory all the modified files. 
+	
 ## HW and SW configuration
 
 
@@ -27,8 +195,8 @@ macro TX_POWER_2d5Bm (see the macro definitions at the start of the user_app.c f
 * **Software configuration**
 
 	- This example requires:
-        * Smartsnippets Studio 2.0.10 (or later)
-        * SDK6.0.12 (or later)
+        * Smartsnippets Studio 2.0.14 (or later)
+        * SDK6.0.14 (or later)
 		* SEGGER’s J-Link tools should be downloaded and installed.
 
 ## How to run the example

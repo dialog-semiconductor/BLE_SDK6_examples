@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>ARMCM0P</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.4.0</PackID>
+          <PackID>ARM.CMSIS.5.7.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -338,7 +338,7 @@
               <MiscControls>--thumb -c --preinclude da1458x_config_basic.h --preinclude da1458x_config_advanced.h --preinclude user_config.h --bss_threshold=0 --feedback=".\unused_531.txt"</MiscControls>
               <Define>__DA14531__</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\DLG_SDK_UNLINKED;</IncludePath>
+              <IncludePath>C:\DLG_SDK_UNLINKED</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -488,62 +488,6 @@
               <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\trng\trng.c</FilePath>
             </File>
             <File>
-              <FileName>spi_58x.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi\spi_58x.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>0</AlwaysBuild>
-                  <GenerateAssemblyFile>0</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>0</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <uGnu>2</uGnu>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>2</vShortEn>
-                    <vShortWch>2</vShortWch>
-                    <v6Lto>2</v6Lto>
-                    <v6WtE>2</v6WtE>
-                    <v6Rtti>2</v6Rtti>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
               <FileName>spi_531.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi\spi_531.c</FilePath>
@@ -567,6 +511,11 @@
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+            </File>
+            <File>
+              <FileName>battery.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\battery\battery.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -735,9 +684,9 @@
   </Targets>
 
   <RTE>
-    <apis></apis>
-    <components></components>
-    <files></files>
+    <apis/>
+    <components/>
+    <files/>
   </RTE>
 
 </Project>

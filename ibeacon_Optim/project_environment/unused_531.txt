@@ -1,13 +1,7 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Feb 12 11:46:48 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Oct 19 22:40:34 2020
 ;VERSION 0.2
 ;FILE adc_531.o
-adc_correct_sample <= USED 0
-adc_disable <= USED 0
 adc_get_temp_async <= USED 0
-adc_input_shift_config <= USED 0
-adc_input_shift_disable <= USED 0
-adc_input_shift_enable <= USED 0
-adc_offset_calibrate <= USED 0
 adc_register_interrupt <= USED 0
 adc_reset <= USED 0
 adc_unregister_interrupt <= USED 0
@@ -95,21 +89,23 @@ app_msg_send_wakeup_ble <= USED 0
 app_sec_gen_csrk <= USED 0
 app_sec_gen_tk <= USED 0
 ;FILE app_security_task.o
+;FILE app_task.o
+;FILE app_utils.o
+app_get_address_type <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
 arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
 arch_force_active_mode <= USED 0
-arch_get_sleep_mode <= USED 0
 arch_last_rwble_evt_get <= USED 0
 arch_restore_sleep_mode <= USED 0
 arch_set_deep_sleep <= USED 0
-arch_set_hibernation <= USED 0
 ;FILE arch_system.o
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
 check_sys_startup_period <= USED 0
+;FILE battery.o
 ;FILE ble_arp.o
 ;FILE gpio.o
 GPIO_ConfigurePinPower <= USED 0
@@ -136,8 +132,6 @@ hw_otpc_word_read <= USED 0
 dummyf <= USED 0
 ;FILE nmi_handler.o
 ;FILE otp_cs.o
-otp_cs_get_adc_offsh_ge <= USED 0
-otp_cs_get_adc_offsh_offset <= USED 0
 otp_cs_get_low_power_clock <= USED 0
 ;FILE otp_hdr.o
 ;FILE patch.o
@@ -167,7 +161,6 @@ spi_register_send_cb <= USED 0
 spi_register_transfer_cb <= USED 0
 spi_send <= USED 0
 spi_set_cs_mode <= USED 0
-spi_set_irq_mode <= USED 0
 spi_transfer <= USED 0
 ;FILE spi_flash.o
 spi_flash_auto_detect <= USED 0

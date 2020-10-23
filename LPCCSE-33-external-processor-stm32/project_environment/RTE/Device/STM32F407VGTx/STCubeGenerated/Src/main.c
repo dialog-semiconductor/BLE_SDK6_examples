@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "boot_codeless.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,7 +89,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  boot_codeless(&huart3,ONE_WIRE, RESET_DA14531_GPIO_Port, RESET_DA14531_Pin);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -189,14 +189,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(RESET_DA14531_GPIO_Port, RESET_DA14531_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : RESET_Pin */
-  GPIO_InitStruct.Pin = RESET_Pin;
+  /*Configure GPIO pin : RESET_DA14531_Pin */
+  GPIO_InitStruct.Pin = RESET_DA14531_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(RESET_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(RESET_DA14531_GPIO_Port, &GPIO_InitStruct);
 
 }
 

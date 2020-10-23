@@ -58,8 +58,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define RESET_Pin GPIO_PIN_3
-#define RESET_GPIO_Port GPIOA
+#define RESET_DA14531_Pin GPIO_PIN_3
+#define RESET_DA14531_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

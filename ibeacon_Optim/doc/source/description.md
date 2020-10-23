@@ -1,16 +1,16 @@
-# Power optimized Dynamic advertising
-
-Optimized Software implementation for ibeacon on the DA14531
-
 ## Example description
 
-The example is an update of the ibeacon SW, below the main modifications, basically in this example we demonstrate how to:
+The example demonstrates an optimized software implementation for ibeacon on the DA14531, it can be downloaded from [A14531 Power optimized Dynamic advertising](http://lpccs-docs.dialog-semiconductor.com/SW_Example/SDK6/DA14531_Power_optimized_Dynamic_advertising.zip)
+
+The example is an update of the [ibeacon SW](https://www.dialog-semiconductor.com/sites/default/files/da14531_ibeacon.zip), below the main modifications, basically we demonstrate how to:
 
 - Alternate Static random address: change the device address in every advertising event
 - Alternate Tx output power level: change the Tx output power level in every advertising event
 - Alternate User advertising data: change the Beacon advertising payload in every advertising event 
 
 A new ibeacon structure has been created to allow the alternating and the advertising interval is set to 10 s.
+
+Because the example needs changes into the SDK we are providing within the source directory for all the modified files: *src\modified_files*
 
 ```` C
 /* Set the advertising rate */
@@ -181,9 +181,6 @@ The results are given in the below screenshots:
 Battery life can be calculated when you know the average current consumption of the device and the energy capacity of your battery.
 Battery Lifetime Estimator tool can be used and it can be loaded (from the Smartsnippets toolbox) by selecting the “Power Monitor” under Layout in the Toolbar or the “Battery Lifetime Estimator” under Tools.
 
-
-Because the example needs changes into the SDK we are providing within the source directory all the modified files. 
-	
 ## HW and SW configuration
 
 

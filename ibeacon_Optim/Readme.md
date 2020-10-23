@@ -1,4 +1,4 @@
-# Optimized Software for ibeacon
+# Power optimized Dynamic advertising
 
 Optimized Software implementation for ibeacon on the DA14531
 

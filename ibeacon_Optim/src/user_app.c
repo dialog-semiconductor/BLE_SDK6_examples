@@ -71,7 +71,7 @@ ibeacon_adv_payload_t_new adv_payload_new;
 extern uint8_t change_bd_addr_flag;
 extern uint8_t seed_region;
 uint8_t batt_voltage = 0;
-//daily timer variable, each iteration through the main while loop increments the interval_countz
+//daily timer variable, each iteration through the main while loop increments the interval_count
 uint32_t interval_count = ADC_BATT_INTERVAL;
 			
 uint32_t  MajorMinor = 0;

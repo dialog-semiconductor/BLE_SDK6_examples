@@ -22,7 +22,7 @@ The user manual for the development kits can be found:
 ### General Hardware configuration using the DA145xxDEVKT-P PRO-Motherboard and Clicker 2 for STM32
 
 - Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector (only needed for power).
-- Connect the J-Link Segger to the Clicker 2 for STM32 using the ST-LINK wiring
+- Connect the J-Link Segger to the Clicker 2 for STM32 using the ARM-debug wiring
 - Connect the Clicker 2 for STM32 to the PRO-Motherboard:
   
   * Clicker 2 pins PD8 and PD9 together with a 1k resistor

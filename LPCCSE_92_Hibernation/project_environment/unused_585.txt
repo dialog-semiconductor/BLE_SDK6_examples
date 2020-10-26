@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Jul 01 19:30:16 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Aug 20 23:04:46 2020
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -274,9 +274,9 @@ uart_send <= USED 0
 uart_wait_tx_finish <= USED 0
 uart_write_buffer <= USED 0
 uart_write_byte <= USED 0
-;FILE user_periph_setup.o
-;FILE user_proxr.o
+;FILE user_hibernation.o
 put_system_into_deep_sleep <= USED 0
+;FILE user_periph_setup.o
 ;FILE wkupct_quadec.o
 quad_decoder_disable_irq <= USED 0
 quad_decoder_enable_irq <= USED 0

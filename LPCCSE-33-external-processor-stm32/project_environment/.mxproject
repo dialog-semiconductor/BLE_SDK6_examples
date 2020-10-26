@@ -7,8 +7,8 @@ HeaderPath=C:\Users\dlegiers\STM32Cube\Repository\STM32Cube_FW_F4_V1.25.1\Driver
 CDefines=USE_HAL_DRIVER;STM32F407xx;USE_HAL_DRIVER;USE_HAL_DRIVER;
 
 [PreviousGenFiles]
-HeaderPath=C:/sdk6/LPCCSE-33-external-processor-stm32/project_environment/RTE/Device/STM32F407VGTx/STCubeGenerated/Inc
+HeaderPath=C:/sdk6/LPCCSE-33-external-processor-stm32/project_environment/Inc
 HeaderFiles=stm32f4xx_it.h;stm32f4xx_hal_conf.h;main.h;
-SourcePath=C:/sdk6/LPCCSE-33-external-processor-stm32/project_environment/RTE/Device/STM32F407VGTx/STCubeGenerated/Src
+SourcePath=C:/sdk6/LPCCSE-33-external-processor-stm32/project_environment/Src
 SourceFiles=stm32f4xx_it.c;stm32f4xx_hal_msp.c;main.c;
 

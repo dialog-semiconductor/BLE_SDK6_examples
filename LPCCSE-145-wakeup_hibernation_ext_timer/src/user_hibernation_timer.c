@@ -5,7 +5,7 @@
  *
  * @brief BLE Eddystone beacon with hibernation or deep sleep project source code.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2020 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -46,6 +46,7 @@
 #include "gap.h"
 #include "app_easy_timer.h"
 #include "user_hibernation_timer.h"
+#include "arch_hibernation.h"
 #include "co_math.h"
 #include "battery.h"
 

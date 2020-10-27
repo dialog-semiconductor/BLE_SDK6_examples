@@ -1,3 +1,42 @@
+/**
+ ****************************************************************************************
+ *
+ * @file boot_codeless.c
+ *
+ * @brief Codeless boot process source code.
+ *
+ * Copyright (c) 2012-2020 Dialog Semiconductor. All rights reserved.
+ *
+ * This software ("Software") is owned by Dialog Semiconductor.
+ *
+ * By using this Software you agree that Dialog Semiconductor retains all
+ * intellectual property and proprietary rights in and to this Software and any
+ * use, reproduction, disclosure or distribution of the Software without express
+ * written permission or a license agreement from Dialog Semiconductor is
+ * strictly prohibited. This Software is solely for use on or in conjunction
+ * with Dialog Semiconductor products.
+ *
+ * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
+ * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
+ * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
+ * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
+ * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+ * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+ * OF THE SOFTWARE.
+ *
+ ****************************************************************************************
+ */
+
+/**
+ ****************************************************************************************
+ * @addtogroup APP
+ * @{
+ ****************************************************************************************
+ */
+ 
 /*******************************************************************************************************/
 /*INCLUDES *********************************************************************************************/
 /*******************************************************************************************************/
@@ -35,6 +74,16 @@ static codeless_boot_error_t check_crc(UART_HandleTypeDef*, uart_wire_t, const u
 /*FUNCTION DEFINITIONS *********************************************************************************/
 /*******************************************************************************************************/
 
+/**
+ ****************************************************************************************
+ * @brief Start the boot process to boot codeless to the DA14531
+ * @param[in] uarth - pointer to a HAL UART handle
+ * @param[in] mode - select which uart mode to use to boot codeless
+ * @param[in] resetPort - pointer to the port of the reset pin
+ * @param[in] resetPin - pin number of the reset pin
+ * @return an ok or error for the boot process
+ ****************************************************************************************
+ */
 codeless_boot_error_t boot_codeless(UART_HandleTypeDef * uarth, uart_wire_t mode, GPIO_TypeDef* resetPort, uint16_t resetPin){
 	const uint16_t codelessSize = sizeof(codelessData);
 	uint8_t crc;
@@ -49,6 +98,14 @@ codeless_boot_error_t boot_codeless(UART_HandleTypeDef * uarth, uart_wire_t mode
 	return BOOT_OK;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Calculates the CRC for the given bootcode
+ * @param[in] pCodelessData - pointer to the data for the boot code
+ * @param[in] codelessSize - size of the Codeless boot code
+ * @return the CRC for the given bootcode
+ ****************************************************************************************
+ */
 static uint8_t crc_calculate(const uint8_t * pCodelessData, const uint16_t codelessSize){
 	uint8_t crc;
 	size_t i;
@@ -61,6 +118,15 @@ static uint8_t crc_calculate(const uint8_t * pCodelessData, const uint16_t codel
 	return crc;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Send a reset signal to the DA14531 and waits for the STX (start of transmissoin byte)
+ * @param[in] uarth - pointer to the HAL UART handle
+ * @param[in] resetPort - pointer to the port of the reset pin
+ * @param[in] resetPin - pin number of the reset pin
+ * @return an ok or error for the boot process
+ ****************************************************************************************
+ */
 static codeless_boot_error_t wait_for_start_of_boot(UART_HandleTypeDef * uarth, GPIO_TypeDef * resetPort, uint16_t resetPin){
 	uint8_t uartBuffer;
 	HAL_StatusTypeDef uartStatus;
@@ -79,11 +145,20 @@ static codeless_boot_error_t wait_for_start_of_boot(UART_HandleTypeDef * uarth, 
 		return BOOT_ERROR;
 	}
 
-	HAL_GPIO_WritePin(resetPort, resetPin, RESET);
+	HAL_GPIO_WritePin(resetPort, resetPin, GPIO_PIN_RESET);
 
 	return BOOT_OK;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Send a reset signal to the DA14531 and waits for the STX (start of transmissoin byte)
+ * @param[in] uarth - pointer to the HAL UART handle
+ * @param[in] mode - select which uart mode to use
+ * @param[in] codelessSize - amount of bytes in the bootcode
+ * @return an ok or error for the boot process
+ ****************************************************************************************
+ */
 static codeless_boot_error_t send_header(UART_HandleTypeDef * uarth, uart_wire_t mode, uint16_t codelessSize){
 	HAL_StatusTypeDef uartStatus;
 	uint8_t header[HEADER_SIZE];
@@ -114,6 +189,16 @@ static codeless_boot_error_t send_header(UART_HandleTypeDef * uarth, uart_wire_t
 	return BOOT_OK;
 }
 
+/**
+ ****************************************************************************************
+ * @brief Send a reset signal to the DA14531 and waits for the STX (start of transmissoin byte)
+ * @param[in] uarth - pointer to the HAL UART handle
+ * @param[in] mode - select which uart mode to use
+ * @param[in] pCodelessData - pointer to the data for the boot code
+ * @param[in] codelessSize - amount of bytes in the bootcode
+ * @return an ok or error for the boot process
+ ****************************************************************************************
+ */
 static codeless_boot_error_t send_data(UART_HandleTypeDef* uarth, uart_wire_t mode, const uint8_t* pCodelessData, const uint16_t codelessSize){
 	HAL_StatusTypeDef uartStatus;
 	uint16_t i;
@@ -136,6 +221,16 @@ static codeless_boot_error_t send_data(UART_HandleTypeDef* uarth, uart_wire_t mo
 
 	return BOOT_OK;
 }
+
+/**
+ ****************************************************************************************
+ * @brief Send a reset signal to the DA14531 and waits for the STX (start of transmissoin byte)
+ * @param[in] uarth - pointer to the HAL UART handle
+ * @param[in] mode - select which uart mode to use
+ * @param[in] crc - the crc to compare with the crc send by the DA14531
+ * @return an ok or error for the boot process
+ ****************************************************************************************
+ */
 static codeless_boot_error_t check_crc(UART_HandleTypeDef* uarth, uart_wire_t mode, const uint8_t crc){
 	HAL_StatusTypeDef uartStatus;
 	uint8_t crc_buffer;
@@ -160,3 +255,4 @@ static codeless_boot_error_t check_crc(UART_HandleTypeDef* uarth, uart_wire_t mo
 	return BOOT_OK;
 }
 
+/// @} APP

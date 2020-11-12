@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\DA14531</IncludePath>
+              <IncludePath>../Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32F4xx/Include; ../Drivers/CMSIS/Include; ..\DA14531</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -509,14 +509,14 @@
           <GroupName>DA14531</GroupName>
           <Files>
             <File>
-              <FileName>boot_codeless.c</FileName>
+              <FileName>boot_da14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\DA14531\boot_codeless.c</FilePath>
+              <FilePath>..\DA14531\boot_da14531.c</FilePath>
             </File>
             <File>
-              <FileName>codeless_config.h</FileName>
+              <FileName>boot_config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\DA14531\codeless_config.h</FilePath>
+              <FilePath>..\DA14531\boot_config.h</FilePath>
             </File>
           </Files>
         </Group>

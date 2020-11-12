@@ -22,7 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "boot_codeless.h"
+#include "boot_da14531.h"
+#include "codeless_image.h" //This image is just used as an example, any other image for the DA14531 can be used
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,7 +90,10 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-  boot_codeless(&huart3,ONE_WIRE, RESET_DA14531_GPIO_Port, RESET_DA14531_Pin);
+  
+  uint8_t crc = crc_calculate(codelessData, sizeof(codelessData));
+  boot_da14531(&huart3, TWO_WIRE, crc, codelessData, sizeof(codelessData));
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -208,7 +208,7 @@
 
   <Group>
     <GroupName>Application/MDK-ARM</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -503,8 +503,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\DA14531\boot_codeless.c</PathWithFileName>
-      <FilenameWithoutPath>boot_codeless.c</FilenameWithoutPath>
+      <PathWithFileName>..\DA14531\boot_da14531.c</PathWithFileName>
+      <FilenameWithoutPath>boot_da14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -515,8 +515,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\DA14531\codeless_config.h</PathWithFileName>
-      <FilenameWithoutPath>codeless_config.h</FilenameWithoutPath>
+      <PathWithFileName>..\DA14531\boot_config.h</PathWithFileName>
+      <FilenameWithoutPath>boot_config.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

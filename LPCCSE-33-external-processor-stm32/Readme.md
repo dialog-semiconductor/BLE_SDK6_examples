@@ -7,33 +7,23 @@
 
 The DA14531 has an integrated ARM Cortex M0+ and can be used for programming and controlling the SoC. Due to the small form factor the ARM Cortex has its limitations. A solution for the limitations of the integrated microprocessor can be to use an external microprocessor. To control the DA14531 with this microprocessor some code is still needed on the DA14531. Fortunately the DA14531 can execute code from RAM that can be loaded in during its bootsequence. This way a microcontroller can load a program onto the DA14531.
 
-The goal of this example is to show how to load a program into the RAM of the DA14531 via a STM32 microcontroller. This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is called Codeless. The interface that is used for booting Codeless is 1 wire UART. Codeless is a solution by Dialog to interface with the DA14531 with AT commands. More info on Codeless and its use can be found on [here](https://www.dialog-semiconductor.com/products/smartbond-codeless-commands). In this example it will only be used to verify that the program has loaded correctly.
+The goal of this example is to show how to load a program into the RAM of the DA14531 via a STM32 microcontroller. This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is called Codeless. The interface that is used for booting Codeless is UART. Codeless is a solution by Dialog to interface with the DA14531 with AT commands. More info on Codeless and its use can be found on [here](https://www.dialog-semiconductor.com/products/smartbond-codeless-commands). In this example it will only be used to verify that the program has loaded correctly.
 
 ## HW and SW configuration
 
 ### Required hardware
 
-- DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
 - A pc workstation
-- Clicker 2 for STM32 Developmentboard by MikroE [(Link to Clicker 2 for STM32)](https://www.mikroe.com/clicker-2-stm32f4)
-- J-Link SEGGER
-
-The user manual for the development kits can be found:
-
-- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- Clicker 2 for STM32 developmentboard by MikroE
+- A DA14531 Clickboard (BLE TINY click) programmed with the secondary bootloader (*secondary_bootloader.bin* is included with the project. Info on programming the DA14531 flash can be found [here](http://lpccs-docs.dialog-semiconductor.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/05_Software_Development_Tools/Software_Development_Tools.html) )
+- SEGGER J-Link
 
 ### General Hardware configuration using the DA145xxDEVKT-P PRO-Motherboard and Clicker 2 for STM32
 
-- Connect the DA145xxDEVKT-P PRO-Motherboard to the work station through USB1 connector (only needed for power).
-- Connect the headers on the PRO-Motherboard as on the image below
-- Connect the J-Link Segger to the Clicker 2 for STM32 J-TAG header using the ARM-debug wiring
-- Connect the Clicker 2 for STM32 to the PRO-Motherboard:
-  * Clicker 2 pins PD8 and PD9 together with a 1k resistor (to create a 1 wire UART interface)
-  * Clicker 2 pin PD9 to pin P25 on the PRO-Motherboard
-  * Clicker 2 pin PA3 to pin P20 on the PRO-Motherboard
-  * Add a 10k pullup resistor to pin P23 on the PRO-Motherboard
+- Connect the J-Link Segger to the Clicker 2 for STM32 J-TAG header using SWD configuration
+- Put the DA14531 Clickboard in the second MikroBUS slot of the Clicker 2 for STM32 (slot 1 can be used, but changes have to be made to the code configuration. This is explained further on in this document)
 
-![Clicker_2_for_STM32_to_DA14531_Connections](assets/uart.png)
+![clickboard_config](assets/clickboard.png)
 
 ### Software configuration
 
@@ -41,15 +31,14 @@ The user manual for the development kits can be found:
 
 - Keil 5
 - **SEGGER’s J-Link** tools should be downloaded and installed.
-- BLE scanner for your smartphone (in this example BLE Scanner for Android is used which can be found [here](https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner&hl=nl&gl=US))
-
+- BLE scanner for your smartphone (in this example BLE Scanner for Android is used)
 
 **Flow of the code**
 ![code_flow_of_boot](assets/boot_flow.png)
 
 **Running the code**
-Open the Keil project file located in **project environment** folder and once it has opened click the **Options for target...** Button. In this screen goto Debug and set the debugger to **J-LINK / J-TRACE Cortex**
-after that click on the **Settings** Button. Within this screen select the J-link module that is connected and set the **Port:** to **SW**. Save these settings.
+Open the Keil project file located in **project environment** folder and once it has opened click the **Options for target...** Button. In this screen go to Debug and set the debugger to **J-LINK / J-TRACE Cortex**
+After setting the debugger click on the **Settings** Button. Within this screen select the J-link module that is connected and set the **Port:** to **SW**. Save these settings.
 
 ![CubeMX_debug](assets/debug.png)
 ![CubeMX_debug_settings](assets/debug_settings.png)
@@ -65,24 +54,29 @@ In the debug screen press the **Run** button or the **F5** key to start the prog
 
 ## Expected Result
 
-After about 5 seconds when the run button is pressed the DA14531 should start advertising itself as **CLv2**. Down below a screenshot can be seen from BLE scanner for Android after the boot was succesful.
+After about 5 seconds when the run button is pressed the DA14531 should start advertising itself as **CLv2** (this is the standard advertising name for Codeless). Down below a screenshot can be seen from BLE scanner for Android after the boot was succesful.
 
 ![BLE_result](assets/result.png)
 
 ## Code settings
 
-There are settings within the code that can be changed if needed. The first one being which interface to use,
-either 1 wire UART or 2 wire UART can be chosen as a parameter of the boot functions.
+The booting process has two options 1 wire UART and 2 wire UART, in this example the booting process is done through 2 wire UART. This can be configured by either passing _TWO\_WIRE_ or _ONE\_WIRE_ to the booting function.
+
+Another important parameter of the boot function is the CRC parameter. The CRC is to check whether the code received by the DA14531 is correct. It is calculated with the _crc_calculate_ function and passed to the boot function.
 
 ![keil_one_wire_uart](assets/uart_config.png)
 
-The second one being, which version of Codeless to boot the DA14531 with. This settings can be found in the **codeless_config.h** file. At the moment the three versions of Codeless are **Standalones 1, Standalone 2 and Datapump**. More detailed info on each version of Codesless can be found [here](http://lpccs-docs.dialog-semiconductor.com/UM-140-DA145x-CodeLess/atcommands.html).The other settings in this file are the attempt amount to boot and the timeout time of uart communication. The boot attempts are the amount of tries the STM32 takes to boot codeless. The timeout time specifies the amount of time in milliseconds how long the STM32 waits for a response from the DA14531.
+Within the boot_config.h file two settings can be found. The BOOT_ATTEMPTS and TIMEOUT_TIME define these settings. The BOOT_ATTEMPTS dictates how many attempts should be taken to start the booting process. The TIMEOUT_TIME defines the amount of time the UART should wait before a byte as received, this is a blocking process.
 
 ![keil_boot_config](assets/boot.png)
+
+## Side Notes
 
 The project is setup using STM32CubeMX and the .ioc is provided with the project so changes can be made should they be necesarry for the user. The settings used in STM32CubeMX are as follows:
 
 ![CubeMX_pinout](assets/pinout.png)
+
+As an example the UART pins can be changed to pins **PD5** and **PD6** to use the first MikroBUS slot. Keep in mind that the UART handle changes in the code and that the correct one should be passed to the boot function.
 
 ## Known Limitations
 

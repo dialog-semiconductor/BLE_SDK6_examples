@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>ARMCM0</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.6.0</PackID>
+          <PackID>ARM.CMSIS.5.7.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x0,0x0) IRAM(0x0,0x0) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -185,6 +185,7 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
             <RvdsMve>0</RvdsMve>
+            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>0</StupSel>
@@ -338,7 +339,7 @@
               <MiscControls>--thumb -c</MiscControls>
               <Define>__DA14585__ __NON_BLE_EXAMPLE__</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\Git\Keil_uVision5\sdk6\simple_button\src\;C:\Git\Keil_uVision5\sdk6\simple_button\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ancc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bass\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bcss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bmss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bond_db\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_common\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ctsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ctss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_custs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_default_hnd\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_diss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_easy\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_entry\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_findme\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_gattc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_proxr\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_sec\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_suotar\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_udss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_wsss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\em\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\llc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\lld\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\llm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\ea\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\ea\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\em\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\em\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\attc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\attm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\atts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\gapc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\gapm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\gattc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\gattm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\l2cc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\l2cm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\smpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\smpm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\rwble\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\rwble_hl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\ldscripts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\misc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\scatterfiles\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\GCC\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\ARM\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\GCC\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\ll\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\main\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\arch_console\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\common\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\common\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\crypto\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\dbg\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\dbg\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\h4tl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\h4tl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\adc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\battery\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\ble\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\dma\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\gpio\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\i2c\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\i2c_eeprom\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\pdm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\reg\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\rtc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi_flash\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\syscntl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\systick\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\timer\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\trng\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\wkupct_quadec\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\output\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\output\Keil_5\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_cs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_hdr\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\crc32\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\hash\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\irng\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\micro_ecc\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\rand\</IncludePath>
+              <IncludePath>C:\DLG_SDK_UNLINKED;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -351,7 +352,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <uClangAs>0</uClangAs>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -369,7 +370,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DiaSemi\SDKs\6.0.12.1020\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
+            <ScatterFile>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -385,17 +386,17 @@
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
             </File>
             <File>
               <FileName>startup_DA14585_586.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
             </File>
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -451,7 +452,7 @@
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -480,7 +481,7 @@
                     <NoWarn>2</NoWarn>
                     <uSurpInc>2</uSurpInc>
                     <useXO>2</useXO>
-                    <uClangAs>2</uClangAs>
+                    <ClangAsOpt>0</ClangAsOpt>
                     <VariousControls>
                       <MiscControls></MiscControls>
                       <Define></Define>
@@ -494,7 +495,7 @@
             <File>
               <FileName>exceptions.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -504,37 +505,37 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>uart_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\uart_utils.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart_utils.c</FilePath>
             </File>
             <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\systick\systick.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\systick\systick.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -590,7 +591,7 @@
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -646,7 +647,7 @@
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -702,7 +703,7 @@
             <File>
               <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi\spi_58x.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi\spi_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -773,7 +774,7 @@
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -789,7 +790,7 @@
         <TargetCommonOption>
           <Device>ARMCM0</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.6.0</PackID>
+          <PackID>ARM.CMSIS.5.7.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x0,0x0) IRAM(0x0,0x0) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -958,6 +959,7 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
             <RvdsMve>0</RvdsMve>
+            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>0</StupSel>
@@ -1111,7 +1113,7 @@
               <MiscControls>--thumb -c</MiscControls>
               <Define>__DA14586__ __NON_BLE_EXAMPLE__</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\Git\Keil_uVision5\sdk6\simple_button\src\;C:\Git\Keil_uVision5\sdk6\simple_button\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ancc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bass\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bcss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bmss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bond_db\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_common\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ctsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ctss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_custs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_default_hnd\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_diss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_easy\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_entry\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_findme\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_gattc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_proxr\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_sec\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_suotar\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_udss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_wsss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\em\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\llc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\lld\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\llm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\ea\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\ea\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\em\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\em\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\attc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\attm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\atts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\gapc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\gapm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\gattc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\gattm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\l2cc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\l2cm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\smpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\smpm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\rwble\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\rwble_hl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\ldscripts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\misc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\scatterfiles\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\GCC\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\ARM\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\GCC\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\ll\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\main\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\arch_console\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\common\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\common\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\crypto\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\dbg\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\dbg\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\h4tl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\h4tl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\adc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\battery\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\ble\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\dma\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\gpio\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\i2c\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\i2c_eeprom\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\pdm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\reg\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\rtc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi_flash\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\syscntl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\systick\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\timer\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\trng\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\wkupct_quadec\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\output\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\output\Keil_5\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_cs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_hdr\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\crc32\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\hash\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\irng\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\micro_ecc\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\rand\;</IncludePath>
+              <IncludePath>C:\DLG_SDK_UNLINKED;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1124,7 +1126,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <uClangAs>0</uClangAs>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -1142,7 +1144,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DiaSemi\SDKs\6.0.12.1020\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
+            <ScatterFile>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -1158,17 +1160,17 @@
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
             </File>
             <File>
               <FileName>startup_DA14585_586.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
             </File>
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1224,7 +1226,7 @@
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1253,7 +1255,7 @@
                     <NoWarn>2</NoWarn>
                     <uSurpInc>2</uSurpInc>
                     <useXO>2</useXO>
-                    <uClangAs>2</uClangAs>
+                    <ClangAsOpt>0</ClangAsOpt>
                     <VariousControls>
                       <MiscControls></MiscControls>
                       <Define></Define>
@@ -1267,7 +1269,7 @@
             <File>
               <FileName>exceptions.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1277,37 +1279,37 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>uart_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\uart_utils.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart_utils.c</FilePath>
             </File>
             <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\systick\systick.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\systick\systick.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1363,17 +1365,17 @@
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
             </File>
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
             </File>
             <File>
               <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi\spi_58x.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi\spi_58x.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1393,7 +1395,7 @@
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1409,7 +1411,7 @@
         <TargetCommonOption>
           <Device>ARMCM0P</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.6.0</PackID>
+          <PackID>ARM.CMSIS.5.7.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -1578,6 +1580,7 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
             <RvdsMve>0</RvdsMve>
+            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -1731,7 +1734,7 @@
               <MiscControls>--thumb -c</MiscControls>
               <Define>__DA14531__ __NON_BLE_EXAMPLE__</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\Git\Keil_uVision5\sdk6\simple_button\src\;C:\Git\Keil_uVision5\sdk6\simple_button\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ancc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bass\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bcss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bmss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_bond_db\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_common\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ctsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_ctss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_custs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_default_hnd\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_diss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_easy\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_entry\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_findme\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_gattc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_proxr\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_sec\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_suotar\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_udss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\app_modules\src\app_wsss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\em\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\llc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\lld\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\controller\llm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\ea\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\ea\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\em\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\em\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\hci\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\attc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\attm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\att\atts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\gapc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gap\gapm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\gattc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\gatt\gattm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\l2cc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\l2c\l2cm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\smpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\host\smp\smpm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anc\ancc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\anp\anps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\basc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bas\bass\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bcs\bcss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\blp\blps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\bms\bmss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cppc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cpp\cpps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cscp\cscps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\cts\ctss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\custom\custs\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\disc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\dis\diss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findl\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\find\findt\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\gatt\gatt_client\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\glp\glps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpbh\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogpd\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hogp\hogprh\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\hrp\hrps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\htp\htpt\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lanc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\lan\lans\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\paspc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\pasp\pasps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxm\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\prox\proxr\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscpc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\rscp\rscps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scppc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\scpp\scpps\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\suota\suotar\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tipc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\tip\tips\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udsc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\uds\udss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wssc\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\profiles\wss\wsss\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\rwble\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\ble_stack\rwble_hl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\ldscripts\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\misc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\common_project_files\scatterfiles\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\GCC\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\ARM\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\compiler\GCC\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\ll\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\main\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\arch_console\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\common\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\common\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\crypto\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\dbg\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\dbg\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\gtl\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\h4tl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\h4tl\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\ke\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\nvds\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rf\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\api\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\core_modules\rwip\src\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\adc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\battery\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\ble\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\dma\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\gpio\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\i2c\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\i2c_eeprom\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\pdm\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\reg\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\rtc\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi_flash\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\syscntl\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\systick\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\timer\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\trng\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\wkupct_quadec\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\include\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\output\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\system_library\output\Keil_5\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_cs\;C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_hdr\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\crc32\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\hash\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\irng\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\micro_ecc\;C:\DiaSemi\SDKs\6.0.12.1020\third_party\rand\</IncludePath>
+              <IncludePath>C:\DLG_SDK_UNLINKED;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1744,7 +1747,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <uClangAs>0</uClangAs>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -1762,7 +1765,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DiaSemi\SDKs\6.0.12.1020\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
+            <ScatterFile>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -1778,7 +1781,7 @@
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1834,7 +1837,7 @@
             <File>
               <FileName>startup_DA14585_586.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1863,7 +1866,7 @@
                     <NoWarn>2</NoWarn>
                     <uSurpInc>2</uSurpInc>
                     <useXO>2</useXO>
-                    <uClangAs>2</uClangAs>
+                    <ClangAsOpt>0</ClangAsOpt>
                     <VariousControls>
                       <MiscControls></MiscControls>
                       <Define></Define>
@@ -1877,17 +1880,17 @@
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14531.c</FilePath>
             </File>
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
             </File>
             <File>
               <FileName>exceptions.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1897,32 +1900,32 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>uart_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\uart\uart_utils.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart_utils.c</FilePath>
             </File>
             <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\systick\systick.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\systick\systick.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1978,17 +1981,17 @@
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
             </File>
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
             </File>
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2044,7 +2047,7 @@
             <File>
               <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\driver\spi\spi_58x.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi\spi_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2115,7 +2118,7 @@
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\SDKs\6.0.12.1020\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2124,9 +2127,24 @@
   </Targets>
 
   <RTE>
-    <apis/>
-    <components/>
-    <files/>
+    <apis></apis>
+    <components></components>
+    <files></files>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>&lt;Project Info&gt;</LayName>
+        <LayDesc></LayDesc>
+        <LayUrl></LayUrl>
+        <LayKeys></LayKeys>
+        <LayCat></LayCat>
+        <LayLic></LayLic>
+        <LayTarg>0</LayTarg>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

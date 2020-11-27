@@ -1,8 +1,11 @@
-# Multirole Example
+# DA14531/585/586 Multirole Example
 
 ## Example Description
 
-The example demonstrates the capabilities of the DA14531 as a Central and a peripheral i.e. scan and advertise role. 
+The example demonstrates the capabilities of the DA14531/585/586 as a Central and a peripheral i.e. scan and advertise role. 
+
+**Note**: This example applies for DA14585/586 as well. The DA14531 is capabable of handling upto 3 connections and the DA14585/586 can handle upto 8 connections.
+
 The project works as a Central connecting to 2 peripherals, and once connected, it advertises so another central can connect to it.
 
 **Note**: This project assumes that the 2 peripherals will stay connected to the DA14531 central. 
@@ -57,7 +60,9 @@ Note: To configure you device with different BD addresses, follow [here](http://
 
 **Note**: Use any android/iPhone BLE scanner to connect/disconnect to/from the DA14531.
 
-## Use-cases from the example
+## Supported use-cases from the example
+
+Below mentioned are the two main use-cases that is supported using this example. In future releases, more use-cases will be added especially with regards to the disconnections.
 
 For the ease of understanding, following notations are used. 
 
@@ -80,7 +85,7 @@ For the ease of understanding, following notations are used.
 - C1 connects to P0 again
 
 **Note**: While using iPhone, if you wish to disconnect C1 from DA14531 device, please check the iPhone bluetooth settings as the phone might have to be disconnected from there. 
-Once it disconnects, you will see the P0 advetising again while beind connected to P1 and P2. 
+Once it disconnects, you will see P0 advertising again while being connected to P1 and P2. 
 For Android, you can use any BLE scanner app to connect and disconnect.
 
 
@@ -105,6 +110,9 @@ This can be verified in the UART logs.
 
 ![logs.jpg](assets/logs.jpg)
 
+## Limitations
+
+- The current example doesn't handle the disconnecion of P1, P2 from their cenral C0. This will be handled in future release.
 
 ## Troubleshooting
 

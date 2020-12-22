@@ -30,7 +30,7 @@
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
-#include "user_empty_peripheral_template.h"
+#include "user_coex_demo.h"
 
 /*
  * FUNCTION DECLARATIONS

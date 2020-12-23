@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Aug 20 23:58:06 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Dec 17 15:32:30 2020
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_get_temp_async <= USED 0
@@ -72,6 +72,8 @@ app_easy_security_tk_get_active <= USED 0
 ;FILE app_easy_timer.o
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
+;FILE app_easy_whitelist.o
+app_easy_manage_wlist <= USED 0
 ;FILE app_msg_utils.o
 app_msg_send_wakeup_ble <= USED 0
 ;FILE app_proxr.o
@@ -86,7 +88,6 @@ app_sec_gen_tk <= USED 0
 ;FILE app_utils.o
 app_get_address_type <= USED 0
 ;FILE arch_hibernation.o
-arch_hibernation_restore <= USED 0
 arch_set_stateful_hibernation <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
@@ -221,6 +222,8 @@ spi_flash_write_enable_volatile <= USED 0
 spi_flash_write_status_config_reg <= USED 0
 spi_flash_write_status_reg <= USED 0
 ;FILE startup_da14531.o
+_store_core_registers <= USED 0
+_store_primask <= USED 0
 ;FILE syscntl.o
 syscntl_dcdc_turn_off <= USED 0
 syscntl_dcdc_turn_on_in_buck <= USED 0

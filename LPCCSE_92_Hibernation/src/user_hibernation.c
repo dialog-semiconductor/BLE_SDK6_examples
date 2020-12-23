@@ -1,31 +1,13 @@
 /**
  ****************************************************************************************
  *
- * @file user_hibernation.c
+ * @file user_proxr.c
  *
  * @brief Proximity reporter project source code.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2015-2020 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -50,13 +32,13 @@
 #include "gpio.h"
 #include "app_security.h"
 #include "user_hibernation.h"
-#include "arch_hibernation.h"
+#include "arch.h"
 #include "arch_api.h"
+#if defined (__DA14531__) && (defined (CFG_APP_GOTO_HIBERNATION) || defined (CFG_APP_GOTO_STATEFUL_HIBERNATION))
+#include "arch_hibernation.h"
+#endif
 #include "app_task.h"
 #include "app_proxr.h"
-
-
-#include "gpio.h"
 
 #if defined (__DA14531__)
 #include "rtc.h"
@@ -79,7 +61,6 @@
 /**
  ****************************************************************************************
  * @brief Handles APP_WAKEUP_MSG sent when device exits deep sleep. Triggered by button press.
- * @return void
  ****************************************************************************************
 */
 static void app_wakeup_cb(void)
@@ -94,7 +75,6 @@ static void app_wakeup_cb(void)
 /**
  ****************************************************************************************
  * @brief Routine to resume system from sleep state.
- * @return void
  ****************************************************************************************
  */
 static void app_resume_system_from_sleep(void)
@@ -118,7 +98,6 @@ static void app_resume_system_from_sleep(void)
 /**
  ****************************************************************************************
  * @brief Button press callback function. Registered in WKUPCT driver.
- * @return void
  ****************************************************************************************
  */
 static void app_button_press_cb(void)
@@ -194,13 +173,12 @@ void user_app_on_disconnect(struct gapc_disconnect_ind const *param)
 #endif
 }
 
-#if defined (__DA14531__)
+//#if defined (__DA14531__)
 
 #if defined (CFG_EXT_SLEEP_WAKEUP_RTC) || defined (CFG_DEEP_SLEEP_WAKEUP_RTC)
 /**
  ****************************************************************************************
  * @brief RTC interrupt handler routine for wakeup.
- * @return void
  ****************************************************************************************
 */
 
@@ -214,7 +192,6 @@ static void rtc_interrupt_hdlr(uint8_t event)
 /**
  ****************************************************************************************
  * @brief Configure RTC to generate an interrupt after 10 seconds.
- * @return void
  ****************************************************************************************
 */
 static void configure_rtc_wakeup(void)
@@ -257,7 +234,6 @@ static void configure_rtc_wakeup(void)
 /**
  ****************************************************************************************
  * @brief Timer1 interrupt handler routine for wakeup.
- * @return void
  ****************************************************************************************
 */
 
@@ -271,7 +247,6 @@ static void timer1_interrupt_hdlr(void)
 /**
  ****************************************************************************************
  * @brief Configure Timer1 to generate an interrupt when it reaches its max value.
- * @return void
  ****************************************************************************************
 */
 static void configure_timer1_wakeup(void)
@@ -294,151 +269,96 @@ static void configure_timer1_wakeup(void)
 }
 #endif
 
-#if defined (CFG_APP_GOTO_DEEP_SLEEP)
-/**
- ****************************************************************************************
- * @brief Put the system into deep sleep mode. It demonstrates the deep sleep mode usage
- *        and how the system can wake up from it. The exit from the deep sleep state causes 
- *        a system reboot.
- * @note  The system can wake up from deep sleep by:
- *          - external wake up interrupt, caused e.g. by button press (properly configured GPIO pin)
- *          - power on reset, caused e.g. by button press (properly configured GPIO pin)
- *          - interrupt generated from RTC
- *          - interrupt generated from Timer1
- *        When the system exits deep sleep state, the boot process is triggered.
- *        The application code has to be programmed in an external memory resource or
- *        in the OTP memory, in order for the system to reboot properly.
- * @return void
- ****************************************************************************************
-*/
-static void put_system_into_deep_sleep(void)
+void user_app_on_init(void)
 {
-#if defined (CFG_DEEP_SLEEP_WAKEUP_POR)
-    // Configure button for POR
-    GPIO_EnablePorPin(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, GPIO_POR_PIN_POLARITY_LOW, GPIO_GetPorTime());
-#endif
-
-#if defined (CFG_DEEP_SLEEP_WAKEUP_GPIO)
-    wkupct_enable_irq(WKUPCT_PIN_SELECT(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN), // Select pin
-                      WKUPCT_PIN_POLARITY(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, WKUPCT_PIN_POLARITY_LOW), // Polarity low
-                      1, // 1 event
-                      0); // debouncing time = 0
-#endif
-
-#if defined (CFG_DEEP_SLEEP_WAKEUP_RTC)
-    configure_rtc_wakeup();
-#endif
-
-#if defined (CFG_DEEP_SLEEP_WAKEUP_TIMER1)
-    configure_timer1_wakeup();
-#endif
-
-    // Go to deep sleep
-    arch_set_deep_sleep(CFG_DEEP_SLEEP_RAM1,
-                        CFG_DEEP_SLEEP_RAM2,
-                        CFG_DEEP_SLEEP_RAM3,
-                        CFG_DEEP_SLEEP_PAD_LATCH_EN);
-}
-#endif // (CFG_APP_GOTO_DEEP_SLEEP)
-
-#else
-
-/**
- ****************************************************************************************
- * @brief Put the system into deep sleep mode. It demonstrates the deep sleep mode usage
- *        and how the system can wake up from it. Once the system enters deep sleep state
- *        it retains NO RAM blocks. The exit from the deep sleep state causes a system
- *        reboot.
- * @note  The system can wake up from deep sleep by:
- *          - external wake up interrupt, caused e.g. by button press (properly configured GPIO pin)
- *          - power on reset, caused e.g. by button press (properly configured GPIO pin)
- *          - H/W reset button press or power cycle (at any time)
- *        When the system exits deep sleep state, the boot process is triggered.
- *        The application code has to be programmed in an external memory resource or
- *        in the OTP memory, in order for the system to reboot properly.
- * @return void
- ****************************************************************************************
-*/
-void put_system_into_deep_sleep(void)
-{
-#if defined (CFG_DEEP_SLEEP_WAKEUP_GPIO)
-    // Configure button for wake-up interrupt
-    app_button_enable();
-
-    // Set deep sleep - external interrupt wake up
-    arch_set_deep_sleep(true);
-
-#elif defined (CFG_DEEP_SLEEP_WAKEUP_POR)
-    // Configure button for POR
-    GPIO_EnablePorPin(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, GPIO_POR_PIN_POLARITY_LOW, GPIO_GetPorTime());
-
-    // Set deep sleep - POR wake up
-    arch_set_deep_sleep(false);
-
-#else
-    // Do nothing.
-    // The system will eventually enter the selected Extended sleep state.
-    // A button press will wake up the system if the respective GPIO is configured as a wake up interrupt.
-#endif
+	spi_flash_power_down();
+	
+	default_app_on_init();
 }
 
-#endif
 
 void app_advertise_complete(const uint8_t status)
 {
-#if (BLE_PROX_REPORTER)
-    app_proxr_alert_stop();
-#endif
+    if ((status == GAP_ERR_NO_ERROR) || (status == GAP_ERR_CANCELED))
+    {
 
-    // Disable wakeup for BLE and timer events. Only external (GPIO) wakeup events can wakeup processor.
+#if (BLE_PROX_REPORTER)
+        app_proxr_alert_stop();
+#endif
+    }
+
     if (status == GAP_ERR_CANCELED)
     {
         arch_ble_ext_wakeup_on();
-    }
 
 #if defined (__DA14531__)
     // Configure PD_TIM
 #if defined (CFG_EXT_SLEEP_WAKEUP_RTC) || defined (CFG_EXT_SLEEP_WAKEUP_TIMER1) || \
     defined (CFG_DEEP_SLEEP_WAKEUP_RTC) || defined (CFG_DEEP_SLEEP_WAKEUP_TIMER1)
-    // Ensure PD_TIM is open
-    SetBits16(PMU_CTRL_REG, TIM_SLEEP, 0);
-    // Wait until PD_TIM is opened
-    while ((GetWord16(SYS_STAT_REG) & TIM_IS_UP) != TIM_IS_UP);
+        // Ensure PD_TIM is open
+        SetBits16(PMU_CTRL_REG, TIM_SLEEP, 0);
+        // Wait until PD_TIM is opened
+        while ((GetWord16(SYS_STAT_REG) & TIM_IS_UP) != TIM_IS_UP);
 #else
-    // Close PD_TIM
-    SetBits16(PMU_CTRL_REG, TIM_SLEEP, 1);
-    // Wait until PD_TIM is closed
-    while ((GetWord16(SYS_STAT_REG) & TIM_IS_DOWN) != TIM_IS_DOWN);
+        // Close PD_TIM
+        SetBits16(PMU_CTRL_REG, TIM_SLEEP, 1);
+        // Wait until PD_TIM is closed
+        while ((GetWord16(SYS_STAT_REG) & TIM_IS_DOWN) != TIM_IS_DOWN);
 #endif
 #endif
 
-#if defined (CFG_APP_GOTO_DEEP_SLEEP)
-    // Put system into deep sleep
-    put_system_into_deep_sleep();
-#elif defined (__DA14531__) && defined (CFG_APP_GOTO_HIBERNATION)
-    // Put system into hibernation
-    arch_set_hibernation(HIB_WAKE_UP_PIN_MASK,
-                         CFG_HIBERNATION_RAM1,
-                         CFG_HIBERNATION_RAM2,
-                         CFG_HIBERNATION_RAM3,
-                         CFG_HIBERNATION_REMAP,
-                         CFG_HIBERNATION_PAD_LATCH_EN
-                        );
-												
-		//power down the flash after entering hibernation mode										
-		spi_flash_power_down();
 
+#if defined (__DA14531__) && defined (CFG_APP_GOTO_HIBERNATION)
+			
+				//powering down flash before entering hibernation 
+				spi_flash_power_down(); 			
+				
+        // Put system into hibernation
+        arch_set_hibernation(HIB_WAKE_UP_PIN_MASK,
+                             CFG_HIBERNATION_RAM1,
+                             CFG_HIBERNATION_RAM2,
+                             CFG_HIBERNATION_RAM3,
+                             CFG_HIBERNATION_REMAP,
+                             CFG_HIBERNATION_PAD_LATCH_EN);
+#elif defined (__DA14531__) && defined (CFG_APP_GOTO_STATEFUL_HIBERNATION)
+       
+				
+				//powering down flash before entering state-aware hibernation
+				spi_flash_power_down(); 	
+				
+				 // Put system into stateful hibernation
+        arch_set_stateful_hibernation(HIB_WAKE_UP_PIN_MASK,
+                                      CFG_STATEFUL_HIBERNATION_RAM1,
+                                      CFG_STATEFUL_HIBERNATION_RAM2,
+                                      CFG_STATEFUL_HIBERNATION_RAM3,
+                                      CFG_STATEFUL_HIBERNATION_REMAP,
+                                      CFG_STATEFUL_HIBERNATION_PAD_LATCH_EN);
+        #if (DEVELOPMENT_DEBUG)
+            // Turn on the orange LED (D5 on the 376-18-B Motherboard)
+            SetWord16(P09_MODE_REG, ((uint32_t) OUTPUT) | ((uint32_t) PID_GPIO));
+            SetWord16(P0_SET_DATA_REG, 1 << GPIO_ALERT_LED_PIN);
+            // Keep it on for a couple of seconds
+            for (uint32_t i = 4*2000000; i != 0; i--)
+            {
+                __NOP();
+            }
+            // Turn it off
+            SetWord16(P0_RESET_DATA_REG, 1 << GPIO_ALERT_LED_PIN);
+        #endif // DEVELOPMENT_DEBUG
+
+        // Configure button to trigger wake-up interrupt from extended sleep
+        app_button_enable();
 #elif defined (__DA14531__) && defined (CFG_EXT_SLEEP_WAKEUP_RTC)
-    // Configure RTC to trigger wake-up interrupt from extended sleep
-    configure_rtc_wakeup();
+        // Configure RTC to trigger wake-up interrupt from extended sleep
+        configure_rtc_wakeup();
 #elif defined (__DA14531__) && defined (CFG_EXT_SLEEP_WAKEUP_TIMER1)
-    // Configure TIMER1 to trigger wake-up interrupt from extended sleep
-    configure_timer1_wakeup();
+        // Configure TIMER1 to trigger wake-up interrupt from extended sleep
+        configure_timer1_wakeup();
 #else
-    // Configure button to trigger wake-up interrupt from extended sleep
-    app_button_enable();
+        // Configure button to trigger wake-up interrupt from extended sleep
+        app_button_enable();
 #endif
-		
+    }
 }
 
 /// @} APP

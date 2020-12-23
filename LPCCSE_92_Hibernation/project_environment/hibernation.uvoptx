@@ -22,327 +22,6 @@
   </DaveTm>
 
   <Target>
-    <TargetName>DA14585</TargetName>
-    <ToolsetNumber>0x4</ToolsetNumber>
-    <ToolsetName>ARM-ADS</ToolsetName>
-    <TargetOption>
-      <CLKADS>12000000</CLKADS>
-      <OPTTT>
-        <gFlags>1</gFlags>
-        <BeepAtEnd>1</BeepAtEnd>
-        <RunSim>0</RunSim>
-        <RunTarget>1</RunTarget>
-        <RunAbUc>0</RunAbUc>
-      </OPTTT>
-      <OPTHX>
-        <HexSelection>1</HexSelection>
-        <FlashByte>65535</FlashByte>
-        <HexRangeLowAddress>0</HexRangeLowAddress>
-        <HexRangeHighAddress>0</HexRangeHighAddress>
-        <HexOffset>0</HexOffset>
-      </OPTHX>
-      <OPTLEX>
-        <PageWidth>79</PageWidth>
-        <PageLength>66</PageLength>
-        <TabStop>8</TabStop>
-        <ListingPath>.\out_DA14585\Listings\</ListingPath>
-      </OPTLEX>
-      <ListingPage>
-        <CreateCListing>1</CreateCListing>
-        <CreateAListing>1</CreateAListing>
-        <CreateLListing>1</CreateLListing>
-        <CreateIListing>0</CreateIListing>
-        <AsmCond>1</AsmCond>
-        <AsmSymb>1</AsmSymb>
-        <AsmXref>0</AsmXref>
-        <CCond>1</CCond>
-        <CCode>0</CCode>
-        <CListInc>0</CListInc>
-        <CSymb>0</CSymb>
-        <LinkerCodeListing>0</LinkerCodeListing>
-      </ListingPage>
-      <OPTXL>
-        <LMap>1</LMap>
-        <LComments>1</LComments>
-        <LGenerateSymbols>1</LGenerateSymbols>
-        <LLibSym>1</LLibSym>
-        <LLines>1</LLines>
-        <LLocSym>1</LLocSym>
-        <LPubSym>1</LPubSym>
-        <LXref>0</LXref>
-        <LExpSel>0</LExpSel>
-      </OPTXL>
-      <OPTFL>
-        <tvExp>1</tvExp>
-        <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>0</IsCurrentTarget>
-      </OPTFL>
-      <CpuCode>7</CpuCode>
-      <DebugOpt>
-        <uSim>0</uSim>
-        <uTrg>1</uTrg>
-        <sLdApp>0</sLdApp>
-        <sGomain>0</sGomain>
-        <sRbreak>1</sRbreak>
-        <sRwatch>1</sRwatch>
-        <sRmem>1</sRmem>
-        <sRfunc>1</sRfunc>
-        <sRbox>1</sRbox>
-        <tLdApp>0</tLdApp>
-        <tGomain>0</tGomain>
-        <tRbreak>1</tRbreak>
-        <tRwatch>1</tRwatch>
-        <tRmem>1</tRmem>
-        <tRfunc>0</tRfunc>
-        <tRbox>1</tRbox>
-        <tRtrace>1</tRtrace>
-        <sRSysVw>1</sRSysVw>
-        <tRSysVw>1</tRSysVw>
-        <sRunDeb>0</sRunDeb>
-        <sLrtime>0</sLrtime>
-        <bEvRecOn>1</bEvRecOn>
-        <bSchkAxf>0</bSchkAxf>
-        <bTchkAxf>0</bTchkAxf>
-        <nTsel>4</nTsel>
-        <sDll></sDll>
-        <sDllPa></sDllPa>
-        <sDlgDll></sDlgDll>
-        <sDlgPa></sDlgPa>
-        <sIfile></sIfile>
-        <tDll></tDll>
-        <tDllPa></tDllPa>
-        <tDlgDll></tDlgDll>
-        <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
-        <pMon>Segger\JL2CM3.dll</pMon>
-      </DebugOpt>
-      <TargetDriverDllRegistry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMRTXEVENTFLAGS</Key>
-          <Name>-L70 -Z18 -C0 -M0 -T1</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMDBGFLAGS</Key>
-          <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>JL2CM3</Key>
-          <Name>-U480066799 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN0</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>UL2CM3</Key>
-          <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</Name>
-        </SetRegEntry>
-      </TargetDriverDllRegistry>
-      <Breakpoint/>
-      <Tracepoint>
-        <THDelay>0</THDelay>
-      </Tracepoint>
-      <DebugFlag>
-        <trace>0</trace>
-        <periodic>0</periodic>
-        <aLwin>1</aLwin>
-        <aCover>0</aCover>
-        <aSer1>0</aSer1>
-        <aSer2>0</aSer2>
-        <aPa>0</aPa>
-        <viewmode>1</viewmode>
-        <vrSel>0</vrSel>
-        <aSym>0</aSym>
-        <aTbox>0</aTbox>
-        <AscS1>0</AscS1>
-        <AscS2>0</AscS2>
-        <AscS3>0</AscS3>
-        <aSer3>0</aSer3>
-        <eProf>0</eProf>
-        <aLa>0</aLa>
-        <aPa1>0</aPa1>
-        <AscS4>0</AscS4>
-        <aSer4>0</aSer4>
-        <StkLoc>0</StkLoc>
-        <TrcWin>0</TrcWin>
-        <newCpu>0</newCpu>
-        <uProt>0</uProt>
-      </DebugFlag>
-      <LintExecutable></LintExecutable>
-      <LintConfigFile></LintConfigFile>
-      <bLintAuto>0</bLintAuto>
-      <bAutoGenD>0</bAutoGenD>
-      <LntExFlags>0</LntExFlags>
-      <pMisraName></pMisraName>
-      <pszMrule></pszMrule>
-      <pSingCmds></pSingCmds>
-      <pMultCmds></pMultCmds>
-      <pMisraNamep></pMisraNamep>
-      <pszMrulep></pszMrulep>
-      <pSingCmdsp></pSingCmdsp>
-      <pMultCmdsp></pMultCmdsp>
-    </TargetOption>
-  </Target>
-
-  <Target>
-    <TargetName>DA14586</TargetName>
-    <ToolsetNumber>0x4</ToolsetNumber>
-    <ToolsetName>ARM-ADS</ToolsetName>
-    <TargetOption>
-      <CLKADS>12000000</CLKADS>
-      <OPTTT>
-        <gFlags>1</gFlags>
-        <BeepAtEnd>1</BeepAtEnd>
-        <RunSim>0</RunSim>
-        <RunTarget>1</RunTarget>
-        <RunAbUc>0</RunAbUc>
-      </OPTTT>
-      <OPTHX>
-        <HexSelection>1</HexSelection>
-        <FlashByte>65535</FlashByte>
-        <HexRangeLowAddress>0</HexRangeLowAddress>
-        <HexRangeHighAddress>0</HexRangeHighAddress>
-        <HexOffset>0</HexOffset>
-      </OPTHX>
-      <OPTLEX>
-        <PageWidth>79</PageWidth>
-        <PageLength>66</PageLength>
-        <TabStop>8</TabStop>
-        <ListingPath>.\out_DA14586\Listings\</ListingPath>
-      </OPTLEX>
-      <ListingPage>
-        <CreateCListing>1</CreateCListing>
-        <CreateAListing>1</CreateAListing>
-        <CreateLListing>1</CreateLListing>
-        <CreateIListing>0</CreateIListing>
-        <AsmCond>1</AsmCond>
-        <AsmSymb>1</AsmSymb>
-        <AsmXref>0</AsmXref>
-        <CCond>1</CCond>
-        <CCode>0</CCode>
-        <CListInc>0</CListInc>
-        <CSymb>0</CSymb>
-        <LinkerCodeListing>0</LinkerCodeListing>
-      </ListingPage>
-      <OPTXL>
-        <LMap>1</LMap>
-        <LComments>1</LComments>
-        <LGenerateSymbols>1</LGenerateSymbols>
-        <LLibSym>1</LLibSym>
-        <LLines>1</LLines>
-        <LLocSym>1</LLocSym>
-        <LPubSym>1</LPubSym>
-        <LXref>0</LXref>
-        <LExpSel>0</LExpSel>
-      </OPTXL>
-      <OPTFL>
-        <tvExp>1</tvExp>
-        <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>0</IsCurrentTarget>
-      </OPTFL>
-      <CpuCode>7</CpuCode>
-      <DebugOpt>
-        <uSim>0</uSim>
-        <uTrg>1</uTrg>
-        <sLdApp>0</sLdApp>
-        <sGomain>0</sGomain>
-        <sRbreak>1</sRbreak>
-        <sRwatch>1</sRwatch>
-        <sRmem>1</sRmem>
-        <sRfunc>1</sRfunc>
-        <sRbox>1</sRbox>
-        <tLdApp>0</tLdApp>
-        <tGomain>0</tGomain>
-        <tRbreak>1</tRbreak>
-        <tRwatch>1</tRwatch>
-        <tRmem>1</tRmem>
-        <tRfunc>0</tRfunc>
-        <tRbox>1</tRbox>
-        <tRtrace>1</tRtrace>
-        <sRSysVw>1</sRSysVw>
-        <tRSysVw>1</tRSysVw>
-        <sRunDeb>0</sRunDeb>
-        <sLrtime>0</sLrtime>
-        <bEvRecOn>1</bEvRecOn>
-        <bSchkAxf>0</bSchkAxf>
-        <bTchkAxf>0</bTchkAxf>
-        <nTsel>4</nTsel>
-        <sDll></sDll>
-        <sDllPa></sDllPa>
-        <sDlgDll></sDlgDll>
-        <sDlgPa></sDlgPa>
-        <sIfile></sIfile>
-        <tDll></tDll>
-        <tDllPa></tDllPa>
-        <tDlgDll></tDlgDll>
-        <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
-        <pMon>Segger\JL2CM3.dll</pMon>
-      </DebugOpt>
-      <TargetDriverDllRegistry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>JL2CM3</Key>
-          <Name>-U-O78 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN0</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>UL2CM3</Key>
-          <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</Name>
-        </SetRegEntry>
-      </TargetDriverDllRegistry>
-      <Breakpoint/>
-      <Tracepoint>
-        <THDelay>0</THDelay>
-      </Tracepoint>
-      <DebugFlag>
-        <trace>0</trace>
-        <periodic>0</periodic>
-        <aLwin>0</aLwin>
-        <aCover>0</aCover>
-        <aSer1>0</aSer1>
-        <aSer2>0</aSer2>
-        <aPa>0</aPa>
-        <viewmode>0</viewmode>
-        <vrSel>0</vrSel>
-        <aSym>0</aSym>
-        <aTbox>0</aTbox>
-        <AscS1>0</AscS1>
-        <AscS2>0</AscS2>
-        <AscS3>0</AscS3>
-        <aSer3>0</aSer3>
-        <eProf>0</eProf>
-        <aLa>0</aLa>
-        <aPa1>0</aPa1>
-        <AscS4>0</AscS4>
-        <aSer4>0</aSer4>
-        <StkLoc>0</StkLoc>
-        <TrcWin>0</TrcWin>
-        <newCpu>0</newCpu>
-        <uProt>0</uProt>
-      </DebugFlag>
-      <LintExecutable></LintExecutable>
-      <LintConfigFile></LintConfigFile>
-      <bLintAuto>0</bLintAuto>
-      <bAutoGenD>0</bAutoGenD>
-      <LntExFlags>0</LntExFlags>
-      <pMisraName></pMisraName>
-      <pszMrule></pszMrule>
-      <pSingCmds></pSingCmds>
-      <pMultCmds></pMultCmds>
-      <pMisraNamep></pMisraNamep>
-      <pszMrulep></pszMrulep>
-      <pSingCmdsp></pSingCmdsp>
-      <pMultCmdsp></pMultCmdsp>
-    </TargetOption>
-  </Target>
-
-  <Target>
     <TargetName>DA14531</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
@@ -434,15 +113,10 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
+        <tIfile>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGUARM</Key>
-          <Name></Name>
-        </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>ARMRTXEVENTFLAGS</Key>
@@ -461,7 +135,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U483055254 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BC11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN0</Name>
+          <Name>-U480070054 -O78 -S4 -ZTIFSpeedSel2000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BC11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN0</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -528,8 +202,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
-      <FilenameWithoutPath>system_DA14585_586.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
+      <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -540,8 +214,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
-      <FilenameWithoutPath>startup_DA14585_586.s</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
+      <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -552,43 +226,19 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
-      <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>4</FileNumber>
-      <FileType>2</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
-      <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>5</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\hardfault_handler.c</PathWithFileName>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\main\hardfault_handler.c</PathWithFileName>
       <FilenameWithoutPath>hardfault_handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>6</FileNumber>
+      <FileNumber>4</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\nmi_handler.c</PathWithFileName>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\main\nmi_handler.c</PathWithFileName>
       <FilenameWithoutPath>nmi_handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -597,10 +247,34 @@
 
   <Group>
     <GroupName>sdk_arch</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>5</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\core_modules\arch_console\arch_console.c</PathWithFileName>
+      <FilenameWithoutPath>arch_console.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>6</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\core_modules\nvds\src\nvds.c</PathWithFileName>
+      <FilenameWithoutPath>nvds.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
     <File>
       <GroupNumber>2</GroupNumber>
       <FileNumber>7</FileNumber>
@@ -608,8 +282,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\arch_console\arch_console.c</PathWithFileName>
-      <FilenameWithoutPath>arch_console.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\main\arch_main.c</PathWithFileName>
+      <FilenameWithoutPath>arch_main.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -620,8 +294,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\nvds\src\nvds.c</PathWithFileName>
-      <FilenameWithoutPath>nvds.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\main\jump_table.c</PathWithFileName>
+      <FilenameWithoutPath>jump_table.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -632,8 +306,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_main.c</PathWithFileName>
-      <FilenameWithoutPath>arch_main.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\main\arch_sleep.c</PathWithFileName>
+      <FilenameWithoutPath>arch_sleep.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -644,8 +318,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\jump_table.c</PathWithFileName>
-      <FilenameWithoutPath>jump_table.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\main\arch_system.c</PathWithFileName>
+      <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -656,8 +330,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_sleep.c</PathWithFileName>
-      <FilenameWithoutPath>arch_sleep.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\main\arch_hibernation.c</PathWithFileName>
+      <FilenameWithoutPath>arch_hibernation.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -668,8 +342,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_system.c</PathWithFileName>
-      <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\arch\main\arch_rom.c</PathWithFileName>
+      <FilenameWithoutPath>arch_rom.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -680,8 +354,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_rom.c</PathWithFileName>
-      <FilenameWithoutPath>arch_rom.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\third_party\rand\chacha20.c</PathWithFileName>
+      <FilenameWithoutPath>chacha20.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -692,20 +366,20 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\third_party\rand\chacha20.c</PathWithFileName>
-      <FilenameWithoutPath>chacha20.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\third_party\hash\hash.c</PathWithFileName>
+      <FilenameWithoutPath>hash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>2</GroupNumber>
       <FileNumber>15</FileNumber>
-      <FileType>1</FileType>
+      <FileType>4</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\third_party\hash\hash.c</PathWithFileName>
-      <FilenameWithoutPath>hash.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
+      <FilenameWithoutPath>da14585_586.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -716,20 +390,20 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
-      <FilenameWithoutPath>da14585_586.lib</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\system_library\output\Keil_5\da14531.lib</PathWithFileName>
+      <FilenameWithoutPath>da14531.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>2</GroupNumber>
       <FileNumber>17</FileNumber>
-      <FileType>4</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14531.lib</PathWithFileName>
-      <FilenameWithoutPath>da14531.lib</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
+      <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -740,32 +414,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
-      <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>19</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\utilities\otp_hdr\otp_hdr.c</PathWithFileName>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\utilities\otp_hdr\otp_hdr.c</PathWithFileName>
       <FilenameWithoutPath>otp_hdr.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>20</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_hibernation.c</PathWithFileName>
-      <FilenameWithoutPath>arch_hibernation.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -779,13 +429,37 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>3</GroupNumber>
+      <FileNumber>19</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
+      <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>20</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
+      <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
       <FileNumber>21</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
-      <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</PathWithFileName>
+      <FilenameWithoutPath>wkupct_quadec.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -796,8 +470,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
-      <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\battery\battery.c</PathWithFileName>
+      <FilenameWithoutPath>battery.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -808,8 +482,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</PathWithFileName>
-      <FilenameWithoutPath>wkupct_quadec.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\dma\dma.c</PathWithFileName>
+      <FilenameWithoutPath>dma.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -820,8 +494,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\battery\battery.c</PathWithFileName>
-      <FilenameWithoutPath>battery.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\adc\adc_58x.c</PathWithFileName>
+      <FilenameWithoutPath>adc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -832,8 +506,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\dma\dma.c</PathWithFileName>
-      <FilenameWithoutPath>dma.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\adc\adc_531.c</PathWithFileName>
+      <FilenameWithoutPath>adc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -844,8 +518,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_58x.c</PathWithFileName>
-      <FilenameWithoutPath>adc_58x.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\uart\uart.c</PathWithFileName>
+      <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -856,8 +530,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_531.c</PathWithFileName>
-      <FilenameWithoutPath>adc_531.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
+      <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -868,8 +542,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\uart\uart.c</PathWithFileName>
-      <FilenameWithoutPath>uart.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\spi\spi_531.c</PathWithFileName>
+      <FilenameWithoutPath>spi_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -880,8 +554,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
-      <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
+      <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -892,8 +566,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\spi\spi_531.c</PathWithFileName>
-      <FilenameWithoutPath>spi_531.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
+      <FilenameWithoutPath>i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -904,8 +578,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
-      <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</PathWithFileName>
+      <FilenameWithoutPath>i2c_eeprom.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -916,8 +590,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
-      <FilenameWithoutPath>i2c.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
+      <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -928,8 +602,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</PathWithFileName>
-      <FilenameWithoutPath>i2c_eeprom.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
+      <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -940,8 +614,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
-      <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\trng\trng.c</PathWithFileName>
+      <FilenameWithoutPath>trng.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -952,8 +626,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
-      <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\rtc\rtc.c</PathWithFileName>
+      <FilenameWithoutPath>rtc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -964,31 +638,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\trng\trng.c</PathWithFileName>
-      <FilenameWithoutPath>trng.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>37</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\rtc\rtc.c</PathWithFileName>
-      <FilenameWithoutPath>rtc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>38</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\timer\timer1.c</PathWithFileName>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\driver\timer\timer1.c</PathWithFileName>
       <FilenameWithoutPath>timer1.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1003,13 +653,37 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>4</GroupNumber>
+      <FileNumber>37</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\core_modules\rf\src\rf_585.c</PathWithFileName>
+      <FilenameWithoutPath>rf_585.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>4</GroupNumber>
+      <FileNumber>38</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\rwble\rwble.c</PathWithFileName>
+      <FilenameWithoutPath>rwble.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>4</GroupNumber>
       <FileNumber>39</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_585.c</PathWithFileName>
-      <FilenameWithoutPath>rf_585.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\core_modules\rwip\src\rwip.c</PathWithFileName>
+      <FilenameWithoutPath>rwip.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1020,8 +694,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\rwble\rwble.c</PathWithFileName>
-      <FilenameWithoutPath>rwble.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\core_modules\rf\src\ble_arp.c</PathWithFileName>
+      <FilenameWithoutPath>ble_arp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1032,31 +706,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rwip\src\rwip.c</PathWithFileName>
-      <FilenameWithoutPath>rwip.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>42</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\ble_arp.c</PathWithFileName>
-      <FilenameWithoutPath>ble_arp.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>43</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_531.c</PathWithFileName>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\platform\core_modules\rf\src\rf_531.c</PathWithFileName>
       <FilenameWithoutPath>rf_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1071,13 +721,37 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>5</GroupNumber>
+      <FileNumber>42</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\prf.c</PathWithFileName>
+      <FilenameWithoutPath>prf.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>43</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\prf_utils.c</PathWithFileName>
+      <FilenameWithoutPath>prf_utils.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
       <FileNumber>44</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prf.c</PathWithFileName>
-      <FilenameWithoutPath>prf.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\dis\diss\src\diss.c</PathWithFileName>
+      <FilenameWithoutPath>diss.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1088,8 +762,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prf_utils.c</PathWithFileName>
-      <FilenameWithoutPath>prf_utils.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</PathWithFileName>
+      <FilenameWithoutPath>diss_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1100,8 +774,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\dis\diss\src\diss.c</PathWithFileName>
-      <FilenameWithoutPath>diss.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\bas\bass\src\bass.c</PathWithFileName>
+      <FilenameWithoutPath>bass.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1112,8 +786,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</PathWithFileName>
-      <FilenameWithoutPath>diss_task.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\bas\bass\src\bass_task.c</PathWithFileName>
+      <FilenameWithoutPath>bass_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1124,8 +798,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\bas\bass\src\bass.c</PathWithFileName>
-      <FilenameWithoutPath>bass.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\prox\proxr\src\proxr.c</PathWithFileName>
+      <FilenameWithoutPath>proxr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1136,8 +810,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\bas\bass\src\bass_task.c</PathWithFileName>
-      <FilenameWithoutPath>bass_task.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\prox\proxr\src\proxr_task.c</PathWithFileName>
+      <FilenameWithoutPath>proxr_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1148,8 +822,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prox\proxr\src\proxr.c</PathWithFileName>
-      <FilenameWithoutPath>proxr.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\suota\suotar\src\suotar.c</PathWithFileName>
+      <FilenameWithoutPath>suotar.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1160,31 +834,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prox\proxr\src\proxr_task.c</PathWithFileName>
-      <FilenameWithoutPath>proxr_task.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>52</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\suota\suotar\src\suotar.c</PathWithFileName>
-      <FilenameWithoutPath>suotar.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>53</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\suota\suotar\src\suotar_task.c</PathWithFileName>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\ble_stack\profiles\suota\suotar\src\suotar_task.c</PathWithFileName>
       <FilenameWithoutPath>suotar_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1199,13 +849,37 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>6</GroupNumber>
+      <FileNumber>52</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</PathWithFileName>
+      <FilenameWithoutPath>app_default_handlers.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>53</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_common\app.c</PathWithFileName>
+      <FilenameWithoutPath>app.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
       <FileNumber>54</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</PathWithFileName>
-      <FilenameWithoutPath>app_default_handlers.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_common\app_task.c</PathWithFileName>
+      <FilenameWithoutPath>app_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1216,8 +890,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_common\app.c</PathWithFileName>
-      <FilenameWithoutPath>app.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_sec\app_security.c</PathWithFileName>
+      <FilenameWithoutPath>app_security.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1228,8 +902,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_common\app_task.c</PathWithFileName>
-      <FilenameWithoutPath>app_task.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_sec\app_security_task.c</PathWithFileName>
+      <FilenameWithoutPath>app_security_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1240,8 +914,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_sec\app_security.c</PathWithFileName>
-      <FilenameWithoutPath>app_security.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_entry\app_entry_point.c</PathWithFileName>
+      <FilenameWithoutPath>app_entry_point.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1252,8 +926,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_sec\app_security_task.c</PathWithFileName>
-      <FilenameWithoutPath>app_security_task.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_common\app_msg_utils.c</PathWithFileName>
+      <FilenameWithoutPath>app_msg_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1264,8 +938,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_entry\app_entry_point.c</PathWithFileName>
-      <FilenameWithoutPath>app_entry_point.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</PathWithFileName>
+      <FilenameWithoutPath>app_easy_msg_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1276,8 +950,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_common\app_msg_utils.c</PathWithFileName>
-      <FilenameWithoutPath>app_msg_utils.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_easy\app_easy_security.c</PathWithFileName>
+      <FilenameWithoutPath>app_easy_security.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1288,8 +962,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</PathWithFileName>
-      <FilenameWithoutPath>app_easy_msg_utils.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_easy\app_easy_timer.c</PathWithFileName>
+      <FilenameWithoutPath>app_easy_timer.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1300,8 +974,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_easy\app_easy_security.c</PathWithFileName>
-      <FilenameWithoutPath>app_easy_security.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_diss\app_diss.c</PathWithFileName>
+      <FilenameWithoutPath>app_diss.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1312,8 +986,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_easy\app_easy_timer.c</PathWithFileName>
-      <FilenameWithoutPath>app_easy_timer.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_diss\app_diss_task.c</PathWithFileName>
+      <FilenameWithoutPath>app_diss_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1324,8 +998,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_diss\app_diss.c</PathWithFileName>
-      <FilenameWithoutPath>app_diss.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_bass\app_bass.c</PathWithFileName>
+      <FilenameWithoutPath>app_bass.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1336,8 +1010,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_diss\app_diss_task.c</PathWithFileName>
-      <FilenameWithoutPath>app_diss_task.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_bass\app_bass_task.c</PathWithFileName>
+      <FilenameWithoutPath>app_bass_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1348,8 +1022,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_bass\app_bass.c</PathWithFileName>
-      <FilenameWithoutPath>app_bass.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_proxr\app_proxr.c</PathWithFileName>
+      <FilenameWithoutPath>app_proxr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1360,8 +1034,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_bass\app_bass_task.c</PathWithFileName>
-      <FilenameWithoutPath>app_bass_task.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_proxr\app_proxr_task.c</PathWithFileName>
+      <FilenameWithoutPath>app_proxr_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1372,8 +1046,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_proxr\app_proxr.c</PathWithFileName>
-      <FilenameWithoutPath>app_proxr.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_suotar\app_suotar.c</PathWithFileName>
+      <FilenameWithoutPath>app_suotar.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1384,8 +1058,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_proxr\app_proxr_task.c</PathWithFileName>
-      <FilenameWithoutPath>app_proxr_task.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_suotar\app_suotar_task.c</PathWithFileName>
+      <FilenameWithoutPath>app_suotar_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1396,8 +1070,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_suotar\app_suotar.c</PathWithFileName>
-      <FilenameWithoutPath>app_suotar.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_bond_db\app_bond_db.c</PathWithFileName>
+      <FilenameWithoutPath>app_bond_db.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1408,8 +1082,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_suotar\app_suotar_task.c</PathWithFileName>
-      <FilenameWithoutPath>app_suotar_task.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_common\app_utils.c</PathWithFileName>
+      <FilenameWithoutPath>app_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1420,20 +1094,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_bond_db\app_bond_db.c</PathWithFileName>
-      <FilenameWithoutPath>app_bond_db.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>6</GroupNumber>
-      <FileNumber>73</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\nilmer\Downloads\SDK_6.0.14.1114\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_common\app_utils.c</PathWithFileName>
-      <FilenameWithoutPath>app_utils.c</FilenameWithoutPath>
+      <PathWithFileName>C:\Workspace\LPCCSE_Avanish\LPCCSE-92-Hibernation_example\DA145xx_SDK\6.0.14.1114.2\sdk\app_modules\src\app_easy\app_easy_whitelist.c</PathWithFileName>
+      <FilenameWithoutPath>app_easy_whitelist.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1447,7 +1109,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>74</FileNumber>
+      <FileNumber>73</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1459,7 +1121,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>75</FileNumber>
+      <FileNumber>74</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1471,7 +1133,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>76</FileNumber>
+      <FileNumber>75</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1483,7 +1145,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>77</FileNumber>
+      <FileNumber>76</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1495,7 +1157,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>78</FileNumber>
+      <FileNumber>77</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1507,7 +1169,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>79</FileNumber>
+      <FileNumber>78</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1519,7 +1181,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>80</FileNumber>
+      <FileNumber>79</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1533,13 +1195,13 @@
 
   <Group>
     <GroupName>user_platform</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>81</FileNumber>
+      <FileNumber>80</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1559,9 +1221,9 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>82</FileNumber>
+      <FileNumber>81</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\user_hibernation.c</PathWithFileName>

@@ -1,67 +1,117 @@
 ﻿
-# Configuring DA14531 hibernation mode
-
----
-
+# Configuring DA14531 hibernation and state-aware hibernation mode
 
 ## Example description
 
-- Using the proximity reporter as the base project, the device advertises until the advertisement timeout occurs during which it is in extended sleep.
-- After the timeout, the device enters hibernation mode
-- P0_5 on the motherboard is used to wake up the device from hibernation to active state and it continues to advertise until the adv_timeout. **Connect a flywire from P0_5 to ground only when you want to wake-up the device from hibernation mode.** 
-- On wake-up the address 0 is remapped to either OTP or ROM or SysRAM depending on how the device is programmed to wake-up. 
+- This project starts with undirected connectable advertising
+- In between 2 advertising events extended sleep is applied
+- There is a maximum advertising period set
+- After the maximum advertising period is over, the device enters hibernation/state-aware hibernation mode
+- P0_5 (P2_5 on the DK Pro motherboard) is used to wake up the device from hibernation 
+
+- With respect to the state-aware hibernation, after the device enters the hibernation mode as explained above, external event via GPIO P0_5 (P2_5 on the motherboard) wakes up the device and DA14531 continues exection of application code from where it left before entering hibernation.
+
+Note:
+- On wake-up from the hibernation mode the memory address 0x00 can be remapped either to OTP or ROM when using Flash memory or SysRAM depending on how the device is configured and programmed to handle hibernation wake-up mechanism. 
 
 The expected result of the example can be verified by:
-- Connecting the motherboard to the desktop/laptop and observing the power profile in SmartSnippets Toolbox.
+- Connecting the motherboard to the desktop/laptop and observing the power profile in SmartSnippets Studio.
 
 ## HW and SW configuration
 
-This example runs on the DA14531 SoC (System on Chip) device:
-- DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
+This example runs on the BLE Smart SoC (System on Chip) devices:
+- DA14531 daughter board or DA14531 Tiny Module + DA145xxDEVKT-P PRO-Motherboard.
 	
-The user manual for the development kits can be found:
+The user manuals for the development kits can be found:
 - [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+
+- [here](http://lpccs-docs.dialog-semiconductor.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/index.html) for the DA14531 Tiny Module getting started
 
 To run the program from flash or OTP, please visit chapter 11 of the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html )
 
-* **General Hardware configuration of DA14531 using DA145xxDEVKT-P PRO-Motherboard**
+* **General Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard**
 
-	- The general hardware configuration remains the same for the 3 use-cases here. Only for the SPI Flash use-case we need additional jumper settings.
+	- The general hardware configuration remains the same for the 3 use-cases here. Only for the SPI Flash use-case (not for module) we need additional jumper settings.
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
 	![Motherboard_Hardware_Configuration_DA14531](assets/jtag.png)
-
-Note: Due to fewer GPIOs in DA14531, the P0_11 GPIO is shared with the software trigger functionality. To get a current profile in the SmartSnippets Toolbox Power Profiler, either remove the jumper J8[1-2]
-	  on the Motherboard (then the software trigger functionality is lost) or map the SW_Trigger functionality button to a different GPIO. 
 	
 * **Software configuration**
 
 	- This example requires:
-	* SmartSnippets Toolbox v5.0.10
-    * [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest)
+	* SmartSnippets Toolbox v5.0.14
+    * [SDK6.0.14.1114](https://www.dialog-semiconductor.com/da14531_sdk_latest)
 	* Keil5
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ## How to run the example
+
 ### Setup
 Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+
 1. Start Keil using the `hibernation_example.uvprojx` Keil project file.
  
 2. Expand the dialog shown in the red box in the image below.
 
-![Expand_Select_Device](assets/keil_531.png)
+	![Expand_Select_Device](assets/keil_531.png)
+
 
 3. Select the device: DA14531
 
 4. Compile (F7) the program
 
-Now we can start implementing the use-cases for hibernation mode. 
+5. Open the system_DA14531.c, comment out the following, 
 
-## Use-case
+	```
+		//    if ((GetBits16(HIBERN_CTRL_REG, HIBERNATION_ENABLE) == 1) &&
+		//        (GetBits16(SYS_CTRL_REG, REMAP_ADR0) > 1))
+	```
 
-To demonstrate the hibernation example there are three use-cases which mainly depends on where the booting is from:
-1. SPI Flash (address 0 remap to ROM)
-2. OTP (address 0 remap to ROM) 
+	and add the follwing, 
+
+	```
+		if ((GetBits16(HIBERN_CTRL_REG, HIBERNATION_ENABLE) == 1) &&
+			GetWord16(RESET_STAT_REG) == 0)
+	```
+
+	as shown in the figure below
+	
+	![Hibernation_code_modification](assets/system_531.png)	
+
+6. Open the user_hibernation.h and declare the following function,
+
+	```
+		void user_app_on_init(void);
+	```
+	
+7. Open the user_hibernation.c and add the function, like so, 
+
+	```
+		void user_app_on_init(void)
+		{
+			spi_flash_power_down();
+			
+			default_app_on_init();
+		}
+	```
+	![user_app_on_init function](assets/userinit.png)	
+
+8. Open the user_callback_config.h, and replace the default_app_on_init with user_app_on_init, like so, 
+
+	```
+		.app_on_init            = user_app_on_init,
+	```
+	![callback function](assets/callback.png)
+	
+9. Save and compile 
+	
+Now we can start implementing the use-cases. 
+
+## Use-case 1 - Hibernation Mode
+
+To demonstrate the hibernation example there are three use-cases that depends on selecting the source of booting of a firmware either from:
+1. SPI Flash (address 0 remap to ROM) OR
+2. OTP (address 0 remap to OTP) OR 
 3. SysRAM (address 0 remap to SysRAM1)
 
 ### Using SPI Flash 
@@ -72,75 +122,74 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 2. In the defines, define CFG_APP_GOTO_HIBERNATION to select the hibernation sleep mode and also define HIBERNATION_SPI and undefine the others,
 
-```
-#if defined (__DA14531__)
-	#define CFG_APP_GOTO_HIBERNATION
-	
-	#define HIBERNATION_SPI
-	#undef HIBERNATION_OTP
-	#undef HIBERNATION_SYSRAM
-```
+	```
+	#if defined (__DA14531__)
+		#define CFG_APP_GOTO_HIBERNATION
+		
+		#define HIBERNATION_SPI
+		#undef HIBERNATION_OTP
+		#undef HIBERNATION_SYSRAM
+	```
 
 3. In the Hibernation mode configuration, this selection switches off all the three RAM blocks and remap the address 0 to ROM as shown below, 
 
-![HIBERNATION_SPI](assets/cfg_hibernation_spi.png)
+	![HIBERNATION_SPI](assets/cfg_hibernation_spi.png)
+	
 
 4. In *user_periph_setup.h* file configure the GPIO that would be used to wake-up the device from hibernation mode. In our case we have chosen P0_5 as the wake-up GPIO. 
 
-```
-/****************************************************************************************/
-/* Wake-up from hibernation configuration                                               */
-/****************************************************************************************/
-#if defined (__DA14531__) 
-    #define HIB_WAKE_UP_PORT        GPIO_PORT_0
-    #define HIB_WAKE_UP_PIN         GPIO_PIN_5
-    #define HIB_WAKE_UP_PIN_MASK    (1 << HIB_WAKE_UP_PIN)
-#endif
-```
+	```
+	/****************************************************************************************/
+	/* Wake-up from hibernation configuration                                               */
+	/****************************************************************************************/
+	#if defined (__DA14531__) 
+		#define HIB_WAKE_UP_PORT        GPIO_PORT_0
+		#define HIB_WAKE_UP_PIN         GPIO_PIN_5
+		#define HIB_WAKE_UP_PIN_MASK    (1 << HIB_WAKE_UP_PIN)
+	#endif
+	```
 
 5. Specify the advertisement period in the *user_config* file,  
 
-```
-/*
- ****************************************************************************************
- *
- * Default handlers configuration (applies only for @app_default_handlers.c)
- *
- ****************************************************************************************
- */
-static const struct default_handlers_configuration  user_default_hnd_conf = {
-    // Configure the advertise operation used by the default handlers
-    // Possible values:
-    //  - DEF_ADV_FOREVER
-    //  - DEF_ADV_WITH_TIMEOUT
-    .adv_scenario = DEF_ADV_WITH_TIMEOUT,
+	```
+	/*
+	 ****************************************************************************************
+	 *
+	 * Default handlers configuration (applies only for @app_default_handlers.c)
+	 *
+	 ****************************************************************************************
+	 */
+	static const struct default_handlers_configuration  user_default_hnd_conf = {
+		// Configure the advertise operation used by the default handlers
+		// Possible values:
+		//  - DEF_ADV_FOREVER
+		//  - DEF_ADV_WITH_TIMEOUT
+		.adv_scenario = DEF_ADV_WITH_TIMEOUT,
 
-    // Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
-    // It is measured in timer units. Use MS_TO_TIMERUNITS macro to convert
-    // from milliseconds (ms) to timer units.
-    .advertise_period = MS_TO_TIMERUNITS(18000), //this is for 18s
+		// Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
+		// It is measured in timer units. Use MS_TO_TIMERUNITS macro to convert
+		// from milliseconds (ms) to timer units.
+		.advertise_period = MS_TO_TIMERUNITS(18000), //this is for 30s
 
-    // Configure the security start operation of the default handlers
-    // if the security is enabled (CFG_APP_SECURITY)
-    // Possible values:
-    //  - DEF_SEC_REQ_NEVER
-    //  - DEF_SEC_REQ_ON_CONNECT
-    .security_request_scenario = DEF_SEC_REQ_NEVER
-};
+		// Configure the security start operation of the default handlers
+		// if the security is enabled (CFG_APP_SECURITY)
+		// Possible values:
+		//  - DEF_SEC_REQ_NEVER
+		//  - DEF_SEC_REQ_ON_CONNECT
+		.security_request_scenario = DEF_SEC_REQ_NEVER
+	};
 
-```
+	```
 
-This will configure the advertising period as 18s after which the device will enter the hibernation mode. To wake-up from hibernation use the P0_5 which was configured before as wake-up GPIO.
+	This will configure the advertising period as 18s after which the device will enter the hibernation mode. To wake-up from hibernation use the P0_5 which was configured before as wake-up GPIO.
 
 6. Save all the changes done in the project and Compile (F7).
 
 7. Program the DA14531 using the compiled hex file and boot from flash. To do this, please refer to chatper 13 SPI Flash Programmer in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
 	
-![SPI Jtag jumper settings](assets/spi.png)
+	![SPI Jtag jumper settings](assets/spi.png)
 
-
-
-### using OTP 
+### Using OTP 
 
 The process is the same as using SPI as we have seen in the previous section, except we define the HIBERNATION_OTP and undefine the rest, 
 
@@ -149,11 +198,11 @@ The process is the same as using SPI as we have seen in the previous section, ex
 	#define CFG_APP_GOTO_HIBERNATION
 	
 	#undef HIBERNATION_SPI
-	#define HIBERNATION_OTP 
+	#define HIBERNATION_OTP
 	#undef HIBERNATION_SYSRAM
 ```
 
-This would define the configuration of Hibernation mode to remap the address 0 to ROM while booting. 
+This would define the configuration of Hibernation mode to remap the address 0 to OTP while booting. 
 
 ![HIBERNATION_OTP](assets/cfg_hibernation_otp.png)
 
@@ -177,34 +226,120 @@ This would define the configuration of Hibernation mode to remap the address 0 t
 
 ![HIBERNATION_SYSRAM1](assets/cfg_hibernation_sysram.png)
 
+After doing this, repeat the steps from 4 - 7. In order to program the OTP and boot from OTP, please refer to chapter 8 Booter in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
 
-After doing this, repeat the steps from 4 - 6. In order to program the OTP and boot from OTP, please refer to chapter 8 Booter in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
+
+## Use-case 2
+
+To demonstrate the state-aware hibernation example, the following software modification needs to be done. 
+
+1. In Keil, Project explorer, open the *user_hibernation.h*
+
+2. In the defines, define CFG_APP_GOTO_STATEFUL_HIBERNATION to select the state aware hibernation mode and undefine CFG_APP_GOTO_HIBERNATION,
+
+	```
+	#if defined (__DA14531__)	
+		#undef CFG_APP_GOTO_HIBERNATION
+		#define CFG_APP_GOTO_STATEFUL_HIBERNATION
+	```
+
+3. Additionally, CFG_STATEFUL_HIBERNATION shall be defined (in Options for Target 'DA14531' --> Asm --> Conditional Assembly Control Symbols --> Define) 
+
+	![Keil state-aware define](assets/keil_state.png)
+
+
+4. In the state aware hibernation mode configuration, this selection switches off all the three RAM blocks and remap the address 0 to ROM as shown below, 
+
+	![HIBERNATION_SPI](assets/cfg_hibernation_spi.png)
+
+5. In *user_periph_setup.h* file configure the GPIO that would be used to wake-up the device from hibernation mode. In our case we have chosen P0_5 as the wake-up GPIO. 
+
+	```
+	/****************************************************************************************/
+	/* Wake-up from hibernation configuration                                               */
+	/****************************************************************************************/
+	#if defined (__DA14531__) 
+		#define HIB_WAKE_UP_PORT        GPIO_PORT_0
+		#define HIB_WAKE_UP_PIN         GPIO_PIN_5
+		#define HIB_WAKE_UP_PIN_MASK    (1 << HIB_WAKE_UP_PIN)
+	#endif
+	```
+
+6. Specify the advertisement period in the *user_config* file,  
+
+	```
+	/*
+	 ****************************************************************************************
+	 *
+	 * Default handlers configuration (applies only for @app_default_handlers.c)
+	 *
+	 ****************************************************************************************
+	 */
+	static const struct default_handlers_configuration  user_default_hnd_conf = {
+		// Configure the advertise operation used by the default handlers
+		// Possible values:
+		//  - DEF_ADV_FOREVER
+		//  - DEF_ADV_WITH_TIMEOUT
+		.adv_scenario = DEF_ADV_WITH_TIMEOUT,
+
+		// Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
+		// It is measured in timer units. Use MS_TO_TIMERUNITS macro to convert
+		// from milliseconds (ms) to timer units.
+		.advertise_period = MS_TO_TIMERUNITS(18000), //this is for 30s
+
+		// Configure the security start operation of the default handlers
+		// if the security is enabled (CFG_APP_SECURITY)
+		// Possible values:
+		//  - DEF_SEC_REQ_NEVER
+		//  - DEF_SEC_REQ_ON_CONNECT
+		.security_request_scenario = DEF_SEC_REQ_NEVER
+	};
+
+	```
+
+	This will configure the advertising period as 18s after which the device will enter the hibernation mode. To wake-up from hibernation use the P0_5 which was configured before as wake-up GPIO.
+
+7. Save all the changes done in the project and Compile (F7).
+
+8. Connect P23 (on J2 header of the motherboard) to V3 (J2 header of the motherboard) using a fly-wire. 
+
+9. Run the code from either Keil (RAM) or from SPI flash, the device will start advertising for the selected duration (step 5) and then enter state-aware hibernation mode.
+
+10. Move the fly-wire from V3 to Ground, the device will wake up and the LED D5 (LED D2 on the module) will turn on for a second or two and get turned off. 
+	Both the processor state and system register content will be restored – code execution will resume from the point the device went to stateful hibernation.
+
+11. It will enter extended sleep mode (as configured) and will wait for interrupt to occur (button press on SW2 of the motherboard) and it will advertise for the advertisement period set, and will go back to state aware hibernation mode. 
 
 ## Expected Result
 
 ### DA14531 with DA145xxDEVKT-P PRO-Motherboard
 1. Open the Power Profiler in the SmartSnippets Toolbox. please refer to chapter 10 Power Profiler in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ). 
 
-2. On the Motherboard please remove the jumper J8 [1-2] to be able to see the current profile in the power profiler, as shown in the previous section.
+2. After running the program either from SysRAM, Flash or OTP, the device advertises for 30s and enters the hibernation mode. On wake-up (using the P0_5) the device advertises again. 
 
-3. After running the program either from SysRAM, Flash or OTP, the device advertises for 18s and enters the hibernation mode. On wake-up (using the P0_5) the device advertises again. 
+	![HIBERNATION_powerprofiler](assets/hibernation_powerprofiler.png)
 
-![HIBERNATION_powerprofiler](assets/hibernation_powerprofiler.png)
-
-4. End of example.		
-
-## Known Limitations
+3. End of example.		
 
 
-- Refer to the following application note for DA14531 known [hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-- Also refer to Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forum)
+## Troubleshooting
+
+- Try a different USB1 cable.
+
+- Try different jumper wires, if used.
+
+- Verify using any BLE scanner that the device is advertising. 
+
+- If none of the above helps, please check with the customer support team who would be glad to provide you the solution.
+
+
 
 ## License
 
 
 **************************************************************************************
 
- Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
+ Copyright (c) 2020 Dialog Semiconductor. All rights reserved.
 
  This software ("Software") is owned by Dialog Semiconductor. By using this Software
  you agree that Dialog Semiconductor retains all intellectual property and proprietary

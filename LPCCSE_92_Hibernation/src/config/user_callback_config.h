@@ -5,27 +5,9 @@
  *
  * @brief Callback functions configuration file.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2015-2020 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -132,11 +114,12 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
  * - Use #define if "user_catch_rest_hndl" symbol exists
  * - Use const declaration if "user_catch_rest_hndl" is NULL
  */
-
 #if defined ( __CC_ARM )
-static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
+  static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
 #elif defined ( __GNUC__ )
-#define app_process_catch_rest_cb   ((const catch_rest_event_func_t)NULL)
+  #define app_process_catch_rest_cb   ((const catch_rest_event_func_t)NULL)
+#elif defined ( __ICCARM__)
+  #define app_process_catch_rest_cb   ((const catch_rest_event_func_t)NULL)
 #endif
 
 // Default Handler Operations
@@ -145,7 +128,7 @@ static const struct default_app_operations user_default_app_operations = {
 };
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
-    .app_on_init            = default_app_on_init,
+    .app_on_init            = user_app_on_init,//default_app_on_init,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,

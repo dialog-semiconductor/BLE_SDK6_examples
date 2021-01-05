@@ -91,8 +91,12 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
   
-  uint8_t crc = crc_calculate(codelessData, sizeof(codelessData));
-  boot_da14531(&huart3, TWO_WIRE, crc, codelessData, sizeof(codelessData));
+  uint8_t crc = crc_calculate(CODELESS, sizeof(CODELESS));
+  boot_da14531(&huart3, TWO_WIRE, crc, CODELESS, CODELESS_SIZE);
+  
+  //A precalculated CRC can also be used, as this saves time. This image has a precalculated CRC
+  //and the boot_da14531 call would look as follows to use it:
+  //boot_da14531(&huart3, TWO_WIRE, CODELESS_CRC, CODELESS, CODELESS_SIZE);
   
   /* USER CODE END 2 */
 

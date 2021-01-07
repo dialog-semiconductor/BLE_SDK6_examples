@@ -72,7 +72,7 @@
  * Register button to GPIO and configure active edge 
  ****************************************************************************************
  */
-void user_gamepad_register_button(button_map_t button_index, uint8_t port, uint8_t pin, uint8_t polarity){
+void user_gamepad_register_button(button_map_t button_index, GPIO_PORT port, GPIO_PIN pin, uint8_t polarity){
 	gamepad_status.buttons[button_index].valid = true;
 	gamepad_status.buttons[button_index].port = port;
 	gamepad_status.buttons[button_index].pin = pin;
@@ -318,7 +318,7 @@ void user_usDelay(uint32_t nof_us)
  */
 uint32_t adc_get_raw_sample(adc_input_se_t channel)
 {
-    uint32_t adc_sample, adc_sample2;
+    uint32_t adc_sample;
 	  #ifdef __DA14531__	
     adc_config_t cfg =
     {
@@ -334,6 +334,7 @@ uint32_t adc_get_raw_sample(adc_input_se_t channel)
 		
 		adc_sample = adc_get_sample();
     #else
+    uint32_t adc_sample2;
     adc_config_t cfg =
     {
         .mode = ADC_INPUT_MODE_SINGLE_ENDED,

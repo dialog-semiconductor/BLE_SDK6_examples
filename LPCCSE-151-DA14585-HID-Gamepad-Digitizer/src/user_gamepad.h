@@ -102,8 +102,8 @@ struct gamepad_digitizer_map_joystick_t{
 struct gamepad_button_t
 {
 	bool															valid;														
-	uint8_t 													port;
-	uint8_t           								pin;
+	GPIO_PORT 													port;
+	GPIO_PIN           								pin;
 	uint8_t 													polarity;
 	bool															is_pressed;
 	uint8_t 													mt_index;

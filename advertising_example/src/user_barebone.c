@@ -51,9 +51,6 @@
 #include "uart_utils.h"
 #include "user_periph_setup.h"
 
-advertising_state adv_state         __SECTION_ZERO("retention_mem_area0");
-
-extern last_ble_evt arch_rwble_last_event;
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -72,7 +69,8 @@ struct mnf_specific_data_ad_structure
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
-
+extern advertising_state adv_state;
+bool is_led_active                              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint8_t app_connection_idx                      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd app_adv_data_update_timer_used        __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 timer_hnd app_param_update_request_timer_used   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
@@ -92,9 +90,9 @@ uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __SECTION_ZERO("retention_mem_ar
 */
 
 // Timer example function declaration
-#ifdef ADV_TIMER_EXAMPLE
-		static void user_resume_from_sleep(void);
-#endif //ADV_TIMER_EXAMPLE 
+#if defined(ADV_EXAMPLE) && !defined(ADV_BUTTON_EXAMPLE)
+static void user_resume_from_sleep(void);
+#endif 
 
 /**
  ****************************************************************************************
@@ -188,13 +186,18 @@ static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_str
     memcpy(stored_scan_rsp_data, cmd->info.host.scan_rsp_data, stored_scan_rsp_data_len);
 }
 
-void toggle_led(void){
-	
-	if ( GPIO_GetPinStatus(LED_PORT, LED_PIN) ){
-		GPIO_SetInactive(LED_PORT, LED_PIN);		
-	}else{
-		GPIO_SetActive(LED_PORT, LED_PIN);
-	}
+void toggle_led(void)
+{
+    if(is_led_active)
+    {
+        GPIO_SetInactive(LED_PORT, LED_PIN);
+        is_led_active = false;
+    }
+    else
+    {
+        GPIO_SetActive(LED_PORT, LED_PIN);
+        is_led_active = true;
+    }
 }
 
 /**
@@ -214,13 +217,15 @@ static void adv_data_update_timer_cb()
     // Update the selected fields of the advertising data (manufacturer data)
     memcpy(mnf_data_storage + (mnf_data_index & 0x7F), &mnf_data, sizeof(struct mnf_specific_data_ad_structure));
 
+#if !defined(ADV_EXAMPLE)
     // Update advertising data on the fly
     app_easy_gap_update_adv_data(stored_adv_data, stored_adv_data_len, stored_scan_rsp_data, stored_scan_rsp_data_len);
+    app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
+#endif
     
-//    // Restart timer for the next advertising update
-//    app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);  test
-    // Stop advertising air operation - a timer will wake-up the system
+#if defined(ADV_EXAMPLE) && !defined(ADV_BUTTON_EXAMPLE)
     app_easy_gap_advertise_stop();
+#endif
 }
 
 /**
@@ -237,11 +242,11 @@ static void param_update_request_timer_cb()
 
 void user_app_init(void)
 {
-		adv_state = UNDIRECT_ADVERTISING;
-		
-		#ifdef ADV_BUTTON_EXAMPLE
-				user_init_button_interrupt(GPIO_SW_PORT, GPIO_SW_PIN);
-		#endif
+    adv_state = UNDIRECT_ADVERTISING;
+    
+#ifdef ADV_BUTTON_EXAMPLE
+    user_button_enable(GPIO_SW_PORT, GPIO_SW_PIN);
+#endif
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     
     // Initialize Manufacturer Specific Data
@@ -258,37 +263,20 @@ void user_app_init(void)
 
 void user_app_adv_start(void)
 {
-	#ifndef ADV_EXAMPLE
-		// Schedule the next advertising data update
-		app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
+#ifndef ADV_EXAMPLE
+    // Schedule the next advertising data update
+    app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
 
-		struct gapm_start_advertise_cmd* cmd;
-		cmd = app_easy_gap_undirected_advertise_get_active();
+    struct gapm_start_advertise_cmd* cmd;
+    cmd = app_easy_gap_undirected_advertise_get_active();
 
-		// Add manufacturer data to initial advertising or scan response data, if there is enough space
-		app_add_ad_struct(cmd, &mnf_data, sizeof(struct mnf_specific_data_ad_structure), 1);
+    // Add manufacturer data to initial advertising or scan response data, if there is enough space
+    app_add_ad_struct(cmd, &mnf_data, sizeof(struct mnf_specific_data_ad_structure), 1);
 
-
-		app_easy_gap_undirected_advertise_start();
-	#else
-		switch (adv_state)
-		{
-			case UNDIRECT_ADVERTISING:
-				toggle_led();
-				user_undirect_adv_start();
-			break;
-			case NONCON_ADVERTISING:
-				toggle_led();
-				user_noncon_adv_start();
-			break;
-			case SLEEP:
-				GPIO_SetInactive(LED_PORT, LED_PIN);
-				user_enable_extended_sleep();
-			break;
-			default :
-				user_undirect_adv_start();
-		}
-	#endif
+    app_easy_gap_undirected_advertise_start();
+#else
+    user_start_advertising();
+#endif
 }
 
 void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
@@ -314,9 +302,9 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
     else
     {
         // No connection has been established, restart advertising
-				#ifdef ADV_TIMER_EXAMPLE
-						user_change_adv_state(UNDIRECT_ADVERTISING);
-				#endif
+#if defined(ADV_EXAMPLE) && !defined(ADV_BUTTON_EXAMPLE)
+        user_change_adv_state(UNDIRECT_ADVERTISING);
+#endif
         user_app_adv_start();
     }
 
@@ -329,23 +317,22 @@ void user_app_adv_undirect_complete(uint8_t status)
     // If advertising was canceled then update advertising data and start advertising again
     if (status == GAP_ERR_CANCELED)
     {
-			#ifdef ADV_TIMER_EXAMPLE
-				user_change_adv_state(NONCON_ADVERTISING);
-			#endif
+#if defined(ADV_EXAMPLE) && !defined(ADV_BUTTON_EXAMPLE)
+        user_change_adv_state(NONCON_ADVERTISING);
+#endif
         user_app_adv_start();
     }
 }
 
 void user_app_adv_nonconn_complete(uint8_t status)
-{
-		
-		// If advertising was canceled then update advertising data and start advertising again
+{	
+	// If advertising was canceled then update advertising data and start advertising again
     if (status == GAP_ERR_CANCELED)
     {
-		#ifdef ADV_TIMER_EXAMPLE
-				user_change_adv_state(SLEEP);
-		#endif
-				user_app_adv_start();
+#if defined(ADV_EXAMPLE) && !defined(ADV_BUTTON_EXAMPLE)
+        user_change_adv_state(PERMANENT_SLEEP);
+#endif
+		user_app_adv_start();
     }
 }
 
@@ -359,11 +346,11 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     }
     // Update manufacturer data for the next advertsing event
     mnf_data_update();
+    
     // Restart Advertising
-		
-		#ifdef ADV_EXAMPLE
-				user_change_adv_state(UNDIRECT_ADVERTISING);
-		#endif
+#ifdef ADV_EXAMPLE
+    user_change_adv_state(UNDIRECT_ADVERTISING);
+#endif
 		
     user_app_adv_start();
 }
@@ -404,14 +391,18 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 */ 
 void user_undirect_adv_start(void)
 {
+#if !defined(ADV_BUTTON_EXAMPLE)
     // Schedule the next advertising data update
     app_adv_data_update_timer_used = app_easy_timer(UNDIRECT_ADV_DURATION, adv_data_update_timer_cb);
+#else
+    adv_data_update_timer_cb();
+#endif
     
     struct gapm_start_advertise_cmd* cmd;
     cmd = app_easy_gap_undirected_advertise_get_active();
     
-		cmd->intv_min = MS_TO_BLESLOTS(UNDIRECT_ADV_INTERVAL);
-		cmd->intv_max = MS_TO_BLESLOTS(UNDIRECT_ADV_INTERVAL);
+    cmd->intv_min = MS_TO_BLESLOTS(UNDIRECT_ADV_INTERVAL);
+    cmd->intv_max = MS_TO_BLESLOTS(UNDIRECT_ADV_INTERVAL);
 		
     // Add manufacturer data to initial advertising or scan response data, if there is enough space
     app_add_ad_struct(cmd, &mnf_data, sizeof(struct mnf_specific_data_ad_structure), 1);
@@ -427,22 +418,26 @@ void user_undirect_adv_start(void)
 */ 
 void user_noncon_adv_start(void)
 {
-		// Schedule the next advertising data update
+#if !defined(ADV_BUTTON_EXAMPLE)
+	// Schedule the next advertising data update
     app_adv_data_update_timer_used = app_easy_timer(NONCONN_ADV_DURATION, adv_data_update_timer_cb);
+#else
+    adv_data_update_timer_cb();
+#endif
 	
-		struct gapm_start_advertise_cmd* cmd;
-		cmd = app_easy_gap_non_connectable_advertise_get_active();
-		
-		cmd->intv_min = MS_TO_BLESLOTS(NONCONN_ADV_INTERVAL);
-		cmd->intv_max = MS_TO_BLESLOTS(NONCONN_ADV_INTERVAL);
+    struct gapm_start_advertise_cmd* cmd;
+    cmd = app_easy_gap_non_connectable_advertise_get_active();
+    
+    cmd->intv_min = MS_TO_BLESLOTS(NONCONN_ADV_INTERVAL);
+    cmd->intv_max = MS_TO_BLESLOTS(NONCONN_ADV_INTERVAL);
 	
-		// Add manufacturer data to initial advertising or scan response data, if there is enough space
+	// Add manufacturer data to initial advertising or scan response data, if there is enough space
     app_add_ad_struct(cmd, &mnf_data, sizeof(struct mnf_specific_data_ad_structure), 1);
 	
-		app_easy_gap_non_connectable_advertise_start();
+	app_easy_gap_non_connectable_advertise_start();
 }
 
-#ifdef ADV_TIMER_EXAMPLE
+#if defined(ADV_EXAMPLE) && !defined(ADV_BUTTON_EXAMPLE)
 /**
  ****************************************************************************************
  * @brief Callback when waking op the system to start advertising
@@ -450,18 +445,16 @@ void user_noncon_adv_start(void)
  ****************************************************************************************
 */
 void user_resume_from_sleep(void)
-{
-    arch_disable_sleep();
+{		
+#if !defined(__DA14531__)
+    if (GetBits16(SYS_STAT_REG, PER_IS_DOWN))
+    {
+             periph_init();
+    }
+#endif
 		
-		#if !defined(__DA14531__)
-			if (GetBits16(SYS_STAT_REG, PER_IS_DOWN))
-			{
-					 periph_init();
-			}
-		#endif
-		
-		user_change_adv_state(UNDIRECT_ADVERTISING);
-		user_app_adv_start();
+    user_change_adv_state(UNDIRECT_ADVERTISING);
+    user_app_adv_start();
 }
 #endif
 
@@ -471,53 +464,57 @@ void user_resume_from_sleep(void)
  * @return void
  ****************************************************************************************
 */                   
-void user_enable_extended_sleep(void)
+void user_enable_permanent_extended_sleep(void)
 {
-		arch_set_sleep_mode(ARCH_EXT_SLEEP_ON);
-    arch_set_extended_sleep(false);
-
-		#ifdef ADV_TIMER_EXAMPLE
-				app_easy_timer(SLEEP_DURATION, user_resume_from_sleep);
-		#endif
+	arch_set_sleep_mode(ARCH_EXT_SLEEP_ON);
+    GPIO_SetInactive(LED_PORT, LED_PIN);
+    is_led_active = false;
+#if defined(ADV_EXAMPLE) && !defined(ADV_BUTTON_EXAMPLE) 
+    app_easy_timer(SLEEP_DURATION, user_resume_from_sleep);
+#else
+    arch_ble_ext_wakeup_on();
+#endif
 }
 
-/**
- ****************************************************************************************
- * @brief Function to set the advertising state
-					[Optional] If CFG_PRINTF is defined the advertising state will be send to
-					a UART serial terminal (i.e. Tera Term).
- * @return void
- ****************************************************************************************
-*/
 void user_change_adv_state(advertising_state state)
 {
-	switch (state)
-	{
-			case UNDIRECT_ADVERTISING:
-					adv_state = UNDIRECT_ADVERTISING;
-					#ifdef CFG_PRINTF
-							printf_string(UART2,"\n\n\rAdvertising state changed to undirected advertising...");
-					#endif
-					break;
-			case NONCON_ADVERTISING:
-					adv_state = NONCON_ADVERTISING;
-					#ifdef CFG_PRINTF
-							printf_string(UART2,"\n\n\rAdvertising state changed to nonconnectable advertising...");
-					#endif
-					break;
-			case SLEEP:
-					adv_state = SLEEP;
-					#ifdef CFG_PRINTF
-							printf_string(UART2,"\n\n\rAdvertising turned off, system going to sleep...");
-					#endif
-					break;
-			default :
-					adv_state = NONCON_ADVERTISING;
-					#ifdef CFG_PRINTF
-							printf_string(UART2,"\n\n\rAdvertising state changed to undirected advertising...");
-					#endif
-	}	
+    adv_state = state;
+    
+#ifdef CFG_PRINTF
+    if(adv_state == UNDIRECT_ADVERTISING)
+        printf_string(UART2,"\n\n\rAdvertising state changed to undirected advertising...");
+    else if (adv_state == NONCON_ADVERTISING)
+        printf_string(UART2,"\n\n\rAdvertising state changed to nonconnectable advertising...");
+    else if (adv_state == PERMANENT_SLEEP)
+        printf_string(UART2,"\n\n\rAdvertising turned off, system going to sleep...");
+#endif //CFG_PRINTF
+    
+    app_easy_gap_advertise_stop();
 }
+
+void user_start_advertising(void)
+{
+    switch(adv_state)
+    {
+        case UNDIRECT_ADVERTISING:
+            toggle_led();
+            user_undirect_adv_start();
+            break;
+        case NONCON_ADVERTISING:
+            toggle_led();
+            user_noncon_adv_start();
+            break;
+        case PERMANENT_SLEEP:
+            user_enable_permanent_extended_sleep();
+            break;
+        default:
+            user_noncon_adv_start();
+            break;
+    }
+}
+
 #endif //ADV_EXAMPLE
+
+
 
 /// @} APP

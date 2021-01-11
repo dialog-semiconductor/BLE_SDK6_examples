@@ -48,25 +48,26 @@
  * INCLUDE FILES
  ****************************************************************************************
  */
- 
-#if defined(ADV_BUTTON_EXAMPLE)
-
-#include "gpio.h" 
 
 /*
  * DEFINES
  ****************************************************************************************
  */
+ #define GOTO_SLEEP_TIME        300
 
+
+#include "gpio.h" 
+
+#ifdef ADV_BUTTON_EXAMPLE
 /**
  ****************************************************************************************
- * @brief Setting the parameters of a button interrupt which differentiates between a
- * 				long (equal to or more than three seconds) and a short press (less than three 
- * 				seconds).
+ * @brief Enable the wakeup controller peripheral and initialize the wakeup callbacks
+ * @param[in] Set the port of the pin that wakes up the device
+ * @param[in] Set the pin that will wake up the device
  * @return void
  ****************************************************************************************
 */
-void user_init_button_interrupt(GPIO_PORT gpio_port, GPIO_PIN gpio_pin);
+void user_button_enable(GPIO_PORT gpio_port, GPIO_PIN gpio_pin);
 /// @} APP
 
 #endif //ADV_BUTTON_EXAMPLE

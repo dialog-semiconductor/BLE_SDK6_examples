@@ -120,17 +120,16 @@ Make sure to read the correct identification according to your mother board and 
 
 ## Expected Results button example
 - The changing advertising example is now running. 
-- Make sure ADV_BUTTON_EXAMPLE is defined in _da1458x_config_basic.h_ (be aware that there is a section for DA14531 and a section for DA14585/DA14586).
-- Make sure that ADV_TIMER_EXAMPLE is __not__ defined.
-- Make sure *CFG_PRINTF*  is defined if UART messages are desired. 
-- The LED status is toggle when the advertising is started. The LED is set inactive when the system is going to sleep. 
+- Make sure that the ADV_EXAMPLE and the ADV_BUTTON_EXAMPLE are both defined defined in _user_config.h_.
+- Make sure *CFG_PRINTF*  is defined if UART messages are desired.
+- The LED status is toggle when the advertising is started. The LED state will toggle between advertising changes and will remain off during permanent sleep periods. 
 - The image below describes the behavior.
 
 ![adv_button_diagram](assets/adv_button_diagram.png)
 
 ## Expected Results timer example
 - The changing advertising example is now running.
-- Make sure ADV_TIMER_EXAMPLE is defined in _da1458x_config_basic.h_ (be aware that there is a section for DA14531 and a section for DA14585/DA14586).
+- Make sure ADV_EXAMPLE is defined in _user_config.h_ (if only the ADV_EXAMPLE definition is enabled the demo will change the advertising state via timer).
 - Make sure that ADV_BUTTON_EXAMPLE is __not__ defined.
 - Make sure *CFG_PRINTF*  is defined if UART messages are desired.
 - The LED status is toggle when the advertising is started. The LED is set inactive when the system is going to sleep. 

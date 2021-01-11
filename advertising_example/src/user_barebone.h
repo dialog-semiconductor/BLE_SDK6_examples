@@ -60,13 +60,13 @@
  */
 
 // Configurable advertising intervals
-#define UNDIRECT_ADV_INTERVAL	150		//(150 	* 1msec 	=  150msec)
-#define NONCONN_ADV_INTERVAL	1050	//(1050 * 1msec		= 1050msec)
+#define UNDIRECT_ADV_INTERVAL	            150		//(150 	* 1msec 	=  150msec)
+#define NONCONN_ADV_INTERVAL	            1050	//(1050 * 1msec		= 1050msec)
 
 // Configurable state lenght (for timer based example)
-#define	UNDIRECT_ADV_DURATION	200		//(200 	* 10msec 	= 		2sec)
-#define	NONCONN_ADV_DURATION	300		//(300 	* 10msec 	= 		3sec)
-#define SLEEP_DURATION				250		//(250 	* 10msec 	= 	2.5sec) 
+#define	UNDIRECT_ADV_DURATION	            200		//(200 	* 10msec 	= 	2sec)
+#define	NONCONN_ADV_DURATION	            300		//(300 	* 10msec 	= 	3sec)
+#define SLEEP_DURATION		                250		//(250 	* 10msec 	= 	2.5sec) 
 
 /* Duration of timer for connection parameter update request */
 #define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
@@ -81,9 +81,9 @@
 
 typedef enum 
 {
-		UNDIRECT_ADVERTISING,
-		NONCON_ADVERTISING,
-		SLEEP 						
+    UNDIRECT_ADVERTISING,
+    NONCON_ADVERTISING,
+    PERMANENT_SLEEP 						
 }advertising_state;
 						 
 /*
@@ -126,15 +126,6 @@ void user_app_connection(const uint8_t conidx, struct gapc_connection_req_ind co
 */
 void user_app_adv_undirect_complete(uint8_t status);
 
-
-/**
- ****************************************************************************************
- * @brief Callback checking BLE events to toggle LED
- * @return void
- ****************************************************************************************
-*/
-arch_main_loop_callback_ret_t user_ble_powered_on(void);
-
 /**
  ****************************************************************************************
  * @brief nonconn advertising completion function.
@@ -172,7 +163,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
  * @return void
  ****************************************************************************************
 */
-
 void user_noncon_adv_start(void);
 
 /**
@@ -181,28 +171,35 @@ void user_noncon_adv_start(void);
  * @return void
  ****************************************************************************************
 */
-
 void user_undirect_adv_start(void);
 
 
 /**
  ****************************************************************************************
- * @brief Send the device to sleep .
- * @param[in] none
+ * @brief Set the device in permanent sleep mode.
  * @return void
  ****************************************************************************************
 */                          
-void user_enable_extended_sleep(void);
-                          
+void user_enable_permanent_extended_sleep(void);                          
 
 /**
  ****************************************************************************************
- * @brief Function controlling the advertising state
+ * @brief Change the advertising type according to the state variable
+ * @param[in] state of the advertising to change to
  * @return void
  ****************************************************************************************
 */
-
 void user_change_adv_state(advertising_state state);
+
+/**
+ ****************************************************************************************
+ * @brief Depending on the state parameter the device will initiate the correposponding
+ *          action, either connectable or non-connectable advertising or sleep.
+ * @param[in] state of the advertising that should be initiated
+ * @return void
+ ****************************************************************************************
+*/
+void user_start_advertising(void);
 
 /// @} APP
 

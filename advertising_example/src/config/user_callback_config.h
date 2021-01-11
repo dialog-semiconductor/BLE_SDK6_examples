@@ -122,7 +122,7 @@ static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     // called and may potentially affect the main loop.
     .app_on_ble_powered     = NULL,
 
-		.app_on_system_powered = NULL,
+    .app_on_system_powered  = NULL,
 
     .app_before_sleep       = NULL,
     .app_validate_sleep     = NULL,

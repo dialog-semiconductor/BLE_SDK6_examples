@@ -52,7 +52,6 @@
 /****************************************************************************************/
 /* UART2 configuration to use with arch_console print messages                          */
 /****************************************************************************************/
-#define CFG_PRINTF_UART2
 // Define UART2 Tx Pad
 #if defined (__DA14531__)
     #define UART2_TX_PORT           GPIO_PORT_0

@@ -69,22 +69,17 @@
 /* Duration of timer for connection parameter update request */
 #define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 
-/* Advertising data update timer */
-#define APP_ADV_DATA_UPDATE_TO              (10)   // 10*10ms = 100msec, The maximum allowed value is 41943sec (4194300 * 10ms)
-
 /* Manufacturer specific data constants */
-#define APP_AD_MSD_COMPANY_ID       (0xABCD)
-#define APP_AD_MSD_COMPANY_ID_LEN   (2)
-#define APP_AD_MSD_DATA_LEN          6
+#define APP_AD_MSD_COMPANY_ID               (0xABCD)
+#define APP_AD_MSD_COMPANY_ID_LEN           (2)
+#define APP_AD_MSD_DATA_LEN                 6
+
+#define APP_NTF_DATA_SEND_INTV              (10)
 
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
  */
-
-int16_t extern X_data;
-int16_t extern Y_data;
-int16_t extern Z_data;
 
 /*
  * FUNCTION DECLARATIONS
@@ -151,6 +146,13 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           ke_task_id_t const dest_id,
                           ke_task_id_t const src_id);
 
+/**
+ ****************************************************************************************
+ * @brief Updates the advertising string with the data from the accelerometer.
+ * @return void
+ ****************************************************************************************
+*/
+void adv_data_update_timer_cb(void);
 /// @} APP
 
 #endif //_USER_PROFILE_H_

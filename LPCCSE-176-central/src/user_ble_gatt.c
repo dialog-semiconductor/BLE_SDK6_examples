@@ -87,13 +87,13 @@ void user_gatt_discover_all_services(uint8_t con_idx, uint16_t start_handle)
  * @return void
  ****************************************************************************************
  */
-void user_ble_gatt_write(uint8_t op, uint8_t con_idx, uint16_t handle, uint8_t *data, uint8_t data_len)
+void user_ble_gatt_write(uint8_t op, uint8_t con_idx, uint16_t handle, uint8_t *data, uint16_t data_len)
 {
 	struct gattc_write_cmd *cmd  = KE_MSG_ALLOC_DYN(GATTC_WRITE_CMD,
 																									 KE_BUILD_ID(TASK_GATTC, con_idx),
 																									 TASK_APP,
 																									 gattc_write_cmd,
-																									 sizeof(struct gattc_write_cmd) );
+																									 sizeof(struct gattc_write_cmd) + data_len);
 
 	cmd->operation = op;
 	cmd->auto_execute = 1;

@@ -74,14 +74,33 @@
 /****************************************************************************************/
 /* SPI configuration                                                                    */
 /****************************************************************************************/
-#define SPI_EN_PORT             		GPIO_PORT_0
-#define SPI_EN_PIN              		GPIO_PIN_1
-#define SPI_CLK_PORT            		GPIO_PORT_0
-#define SPI_CLK_PIN             		GPIO_PIN_4
-#define SPI_DO_PORT             		GPIO_PORT_0
-#define SPI_DO_PIN              		GPIO_PIN_0
-#define SPI_DI_PORT             		GPIO_PORT_0
-#define SPI_DI_PIN              		GPIO_PIN_3
+// Define SPI Pads
+#if defined (__DA14531__)
+    #define SPI_EN_PORT             GPIO_PORT_0
+    #define SPI_EN_PIN              GPIO_PIN_1
+
+    #define SPI_CLK_PORT            GPIO_PORT_0
+    #define SPI_CLK_PIN             GPIO_PIN_4
+
+    #define SPI_DO_PORT             GPIO_PORT_0
+    #define SPI_DO_PIN              GPIO_PIN_0
+
+    #define SPI_DI_PORT             GPIO_PORT_0
+    #define SPI_DI_PIN              GPIO_PIN_3
+
+#elif !defined (__DA14586__)
+    #define SPI_EN_PORT             GPIO_PORT_0
+    #define SPI_EN_PIN              GPIO_PIN_3
+
+    #define SPI_CLK_PORT            GPIO_PORT_0
+    #define SPI_CLK_PIN             GPIO_PIN_0
+
+    #define SPI_DO_PORT             GPIO_PORT_0
+    #define SPI_DO_PIN              GPIO_PIN_6
+
+    #define SPI_DI_PORT             GPIO_PORT_0
+    #define SPI_DI_PIN              GPIO_PIN_5
+#endif
 
 /***************************************************************************************/
 /* Production debug output configuration                                               */

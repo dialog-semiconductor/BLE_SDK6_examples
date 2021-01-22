@@ -52,7 +52,6 @@
  ****************************************************************************************
  */
 /* Select output power */
-#define TX_POWER_0dBm
 #undef  TX_POWER_2d5Bm
 
 /* Advertising payload field sizes */
@@ -72,12 +71,14 @@
 #define BEACON_TYPE_0								0x02
 #define BEACON_TYPE_1								0x15
 
-#ifdef TX_POWER_0dBm
+#if defined (TX_POWER_2d5Bm)
+#define MEASURED_POWER                          0xC7
+#if !defined (__DA14531__)
+    #error "Config error: Can not define TX_POWER_2d5Bm when device selected is DA14585 or DA14586."
+#endif
+#else    
 /* Output power 0dBm */
 #define MEASURED_POWER							0xC5
-#else
-/* Output power 2.5dBm */
-#define MEASURED_POWER							0xC7
 #endif
 
 /* User defined advertising fields */
@@ -130,7 +131,7 @@ void user_app_on_init(void)
 			 reduce current consumption. */
 		(void)spi_flash_power_down();	
 		
-		#ifdef TX_POWER_2d5Bm
+		#if defined (__DA14531__) && defined (TX_POWER_2d5Bm)
 				/* Set output power to maximum value (+2.5dBm) */
 				rf_pa_pwr_set(RF_TX_PWR_LVL_PLUS_2d5);
 		#endif

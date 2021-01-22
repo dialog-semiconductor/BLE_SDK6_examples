@@ -113,7 +113,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
+        <tIfile>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -294,7 +294,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
+        <tIfile>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\sysram_case23.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -799,14 +799,13 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
+        <tIfile>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -901,7 +900,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14585_586.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -913,7 +912,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14585_586.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -925,7 +924,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -937,7 +936,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -949,7 +948,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\main\hardfault_handler.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\hardfault_handler.c</PathWithFileName>
       <FilenameWithoutPath>hardfault_handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -961,7 +960,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\main\nmi_handler.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\nmi_handler.c</PathWithFileName>
       <FilenameWithoutPath>nmi_handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -981,7 +980,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\core_modules\arch_console\arch_console.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\arch_console\arch_console.c</PathWithFileName>
       <FilenameWithoutPath>arch_console.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -993,7 +992,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\core_modules\nvds\src\nvds.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\nvds\src\nvds.c</PathWithFileName>
       <FilenameWithoutPath>nvds.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1005,7 +1004,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\main\arch_main.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_main.c</PathWithFileName>
       <FilenameWithoutPath>arch_main.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1017,7 +1016,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\main\jump_table.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\jump_table.c</PathWithFileName>
       <FilenameWithoutPath>jump_table.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1029,7 +1028,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\main\arch_sleep.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_sleep.c</PathWithFileName>
       <FilenameWithoutPath>arch_sleep.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1041,7 +1040,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\main\arch_system.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_system.c</PathWithFileName>
       <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1053,7 +1052,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\arch\main\arch_rom.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\arch_rom.c</PathWithFileName>
       <FilenameWithoutPath>arch_rom.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1065,7 +1064,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\third_party\rand\chacha20.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\third_party\rand\chacha20.c</PathWithFileName>
       <FilenameWithoutPath>chacha20.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1077,7 +1076,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\third_party\hash\hash.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\third_party\hash\hash.c</PathWithFileName>
       <FilenameWithoutPath>hash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1089,7 +1088,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
       <FilenameWithoutPath>da14585_586.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1101,7 +1100,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\system_library\output\Keil_5\da14531.lib</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14531.lib</PathWithFileName>
       <FilenameWithoutPath>da14531.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1113,7 +1112,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
       <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1125,7 +1124,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\utilities\otp_hdr\otp_hdr.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\utilities\otp_hdr\otp_hdr.c</PathWithFileName>
       <FilenameWithoutPath>otp_hdr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1145,7 +1144,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
       <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1157,7 +1156,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1169,7 +1168,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</PathWithFileName>
       <FilenameWithoutPath>wkupct_quadec.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1181,7 +1180,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\battery\battery.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\battery\battery.c</PathWithFileName>
       <FilenameWithoutPath>battery.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1193,7 +1192,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\adc\adc_58x.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_58x.c</PathWithFileName>
       <FilenameWithoutPath>adc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1205,7 +1204,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\adc\adc_531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_531.c</PathWithFileName>
       <FilenameWithoutPath>adc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1217,7 +1216,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\trng\trng.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\trng\trng.c</PathWithFileName>
       <FilenameWithoutPath>trng.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1229,7 +1228,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
       <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1241,7 +1240,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\spi\spi_531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\spi\spi_531.c</PathWithFileName>
       <FilenameWithoutPath>spi_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1253,7 +1252,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
       <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1265,7 +1264,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</PathWithFileName>
       <FilenameWithoutPath>i2c_eeprom.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1277,7 +1276,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\systick\systick.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\systick\systick.c</PathWithFileName>
       <FilenameWithoutPath>systick.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1289,7 +1288,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\uart\uart.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\uart\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1301,7 +1300,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1313,7 +1312,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1325,7 +1324,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\dma\dma.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\dma\dma.c</PathWithFileName>
       <FilenameWithoutPath>dma.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1337,7 +1336,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
       <FilenameWithoutPath>i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1357,7 +1356,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\core_modules\rf\src\rf_585.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_585.c</PathWithFileName>
       <FilenameWithoutPath>rf_585.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1369,7 +1368,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\rwble\rwble.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\rwble\rwble.c</PathWithFileName>
       <FilenameWithoutPath>rwble.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1381,7 +1380,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\core_modules\rwip\src\rwip.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rwip\src\rwip.c</PathWithFileName>
       <FilenameWithoutPath>rwip.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1393,7 +1392,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\core_modules\rf\src\ble_arp.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\ble_arp.c</PathWithFileName>
       <FilenameWithoutPath>ble_arp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1405,7 +1404,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\platform\core_modules\rf\src\rf_531.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_531.c</PathWithFileName>
       <FilenameWithoutPath>rf_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1425,7 +1424,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\host\att\attm\attm_db_128.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\host\att\attm\attm_db_128.c</PathWithFileName>
       <FilenameWithoutPath>attm_db_128.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1437,7 +1436,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\bas\basc\src\basc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\bas\basc\src\basc.c</PathWithFileName>
       <FilenameWithoutPath>basc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1449,7 +1448,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\bas\basc\src\basc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\bas\basc\src\basc_task.c</PathWithFileName>
       <FilenameWithoutPath>basc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1461,7 +1460,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\bas\bass\src\bass.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\bas\bass\src\bass.c</PathWithFileName>
       <FilenameWithoutPath>bass.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1473,7 +1472,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\bas\bass\src\bass_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\bas\bass\src\bass_task.c</PathWithFileName>
       <FilenameWithoutPath>bass_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1485,7 +1484,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\blp\blpc\src\blpc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\blp\blpc\src\blpc.c</PathWithFileName>
       <FilenameWithoutPath>blpc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1497,7 +1496,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\blp\blpc\src\blpc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\blp\blpc\src\blpc_task.c</PathWithFileName>
       <FilenameWithoutPath>blpc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1509,7 +1508,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\blp\blps\src\blps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\blp\blps\src\blps.c</PathWithFileName>
       <FilenameWithoutPath>blps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1521,7 +1520,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\blp\blps\src\blps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\blp\blps\src\blps_task.c</PathWithFileName>
       <FilenameWithoutPath>blps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1533,7 +1532,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\dis\disc\src\disc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\dis\disc\src\disc.c</PathWithFileName>
       <FilenameWithoutPath>disc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1545,7 +1544,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\dis\disc\src\disc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\dis\disc\src\disc_task.c</PathWithFileName>
       <FilenameWithoutPath>disc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1557,7 +1556,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\dis\diss\src\diss.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\dis\diss\src\diss.c</PathWithFileName>
       <FilenameWithoutPath>diss.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1569,7 +1568,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</PathWithFileName>
       <FilenameWithoutPath>diss_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1581,7 +1580,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\find\findt\src\findt.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\find\findt\src\findt.c</PathWithFileName>
       <FilenameWithoutPath>findt.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1593,7 +1592,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\find\findt\src\findt_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\find\findt\src\findt_task.c</PathWithFileName>
       <FilenameWithoutPath>findt_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1605,7 +1604,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hogp\hogpbh\src\hogpbh.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hogp\hogpbh\src\hogpbh.c</PathWithFileName>
       <FilenameWithoutPath>hogpbh.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1617,7 +1616,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hogp\hogpbh\src\hogpbh_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hogp\hogpbh\src\hogpbh_task.c</PathWithFileName>
       <FilenameWithoutPath>hogpbh_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1629,7 +1628,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hogp\hogpd\src\hogpd.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hogp\hogpd\src\hogpd.c</PathWithFileName>
       <FilenameWithoutPath>hogpd.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1641,7 +1640,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hogp\hogpd\src\hogpd_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hogp\hogpd\src\hogpd_task.c</PathWithFileName>
       <FilenameWithoutPath>hogpd_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1653,7 +1652,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hogp\hogprh\src\hogprh.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hogp\hogprh\src\hogprh.c</PathWithFileName>
       <FilenameWithoutPath>hogprh.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1665,7 +1664,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hogp\hogprh\src\hogprh_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hogp\hogprh\src\hogprh_task.c</PathWithFileName>
       <FilenameWithoutPath>hogprh_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1677,7 +1676,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hrp\hrpc\src\hrpc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hrp\hrpc\src\hrpc.c</PathWithFileName>
       <FilenameWithoutPath>hrpc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1689,7 +1688,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hrp\hrpc\src\hrpc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hrp\hrpc\src\hrpc_task.c</PathWithFileName>
       <FilenameWithoutPath>hrpc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1701,7 +1700,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hrp\hrps\src\hrps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hrp\hrps\src\hrps.c</PathWithFileName>
       <FilenameWithoutPath>hrps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1713,7 +1712,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\hrp\hrps\src\hrps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\hrp\hrps\src\hrps_task.c</PathWithFileName>
       <FilenameWithoutPath>hrps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1725,7 +1724,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\htp\htpc\src\htpc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\htp\htpc\src\htpc.c</PathWithFileName>
       <FilenameWithoutPath>htpc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1737,7 +1736,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\htp\htpc\src\htpc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\htp\htpc\src\htpc_task.c</PathWithFileName>
       <FilenameWithoutPath>htpc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1749,7 +1748,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\htp\htpt\src\htpt.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\htp\htpt\src\htpt.c</PathWithFileName>
       <FilenameWithoutPath>htpt.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1761,7 +1760,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\htp\htpt\src\htpt_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\htp\htpt\src\htpt_task.c</PathWithFileName>
       <FilenameWithoutPath>htpt_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1773,7 +1772,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\prox\proxm\src\proxm.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prox\proxm\src\proxm.c</PathWithFileName>
       <FilenameWithoutPath>proxm.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1785,7 +1784,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\prox\proxm\src\proxm_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prox\proxm\src\proxm_task.c</PathWithFileName>
       <FilenameWithoutPath>proxm_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1797,7 +1796,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\prox\proxr\src\proxr.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prox\proxr\src\proxr.c</PathWithFileName>
       <FilenameWithoutPath>proxr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1809,7 +1808,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\prox\proxr\src\proxr_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prox\proxr\src\proxr_task.c</PathWithFileName>
       <FilenameWithoutPath>proxr_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1821,7 +1820,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\scpp\scppc\src\scppc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\scpp\scppc\src\scppc.c</PathWithFileName>
       <FilenameWithoutPath>scppc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1833,7 +1832,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\scpp\scppc\src\scppc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\scpp\scppc\src\scppc_task.c</PathWithFileName>
       <FilenameWithoutPath>scppc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1845,7 +1844,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\scpp\scpps\src\scpps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\scpp\scpps\src\scpps.c</PathWithFileName>
       <FilenameWithoutPath>scpps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1857,7 +1856,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\scpp\scpps\src\scpps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\scpp\scpps\src\scpps_task.c</PathWithFileName>
       <FilenameWithoutPath>scpps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1869,7 +1868,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\anp\anpc\src\anpc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\anp\anpc\src\anpc.c</PathWithFileName>
       <FilenameWithoutPath>anpc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1881,7 +1880,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\anp\anpc\src\anpc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\anp\anpc\src\anpc_task.c</PathWithFileName>
       <FilenameWithoutPath>anpc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1893,7 +1892,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\anp\anps\src\anps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\anp\anps\src\anps.c</PathWithFileName>
       <FilenameWithoutPath>anps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1905,7 +1904,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\anp\anps\src\anps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\anp\anps\src\anps_task.c</PathWithFileName>
       <FilenameWithoutPath>anps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1917,7 +1916,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\cscp\cscpc\src\cscpc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\cscp\cscpc\src\cscpc.c</PathWithFileName>
       <FilenameWithoutPath>cscpc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1929,7 +1928,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\cscp\cscpc\src\cscpc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\cscp\cscpc\src\cscpc_task.c</PathWithFileName>
       <FilenameWithoutPath>cscpc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1941,7 +1940,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\cscp\cscps\src\cscps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\cscp\cscps\src\cscps.c</PathWithFileName>
       <FilenameWithoutPath>cscps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1953,7 +1952,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\cscp\cscps\src\cscps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\cscp\cscps\src\cscps_task.c</PathWithFileName>
       <FilenameWithoutPath>cscps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1965,7 +1964,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\glp\glpc\src\glpc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\glp\glpc\src\glpc.c</PathWithFileName>
       <FilenameWithoutPath>glpc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1977,7 +1976,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\glp\glpc\src\glpc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\glp\glpc\src\glpc_task.c</PathWithFileName>
       <FilenameWithoutPath>glpc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1989,7 +1988,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\glp\glps\src\glps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\glp\glps\src\glps.c</PathWithFileName>
       <FilenameWithoutPath>glps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2001,7 +2000,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\glp\glps\src\glps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\glp\glps\src\glps_task.c</PathWithFileName>
       <FilenameWithoutPath>glps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2013,7 +2012,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\pasp\paspc\src\paspc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\pasp\paspc\src\paspc.c</PathWithFileName>
       <FilenameWithoutPath>paspc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2025,7 +2024,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\pasp\paspc\src\paspc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\pasp\paspc\src\paspc_task.c</PathWithFileName>
       <FilenameWithoutPath>paspc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2037,7 +2036,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\pasp\pasps\src\pasps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\pasp\pasps\src\pasps.c</PathWithFileName>
       <FilenameWithoutPath>pasps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2049,7 +2048,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\pasp\pasps\src\pasps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\pasp\pasps\src\pasps_task.c</PathWithFileName>
       <FilenameWithoutPath>pasps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2061,7 +2060,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\rscp\rscpc\src\rscpc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\rscp\rscpc\src\rscpc.c</PathWithFileName>
       <FilenameWithoutPath>rscpc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2073,7 +2072,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\rscp\rscpc\src\rscpc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\rscp\rscpc\src\rscpc_task.c</PathWithFileName>
       <FilenameWithoutPath>rscpc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2085,7 +2084,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\rscp\rscps\src\rscps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\rscp\rscps\src\rscps.c</PathWithFileName>
       <FilenameWithoutPath>rscps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2097,7 +2096,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\rscp\rscps\src\rscps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\rscp\rscps\src\rscps_task.c</PathWithFileName>
       <FilenameWithoutPath>rscps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2109,7 +2108,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\tip\tipc\src\tipc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\tip\tipc\src\tipc.c</PathWithFileName>
       <FilenameWithoutPath>tipc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2121,7 +2120,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\tip\tipc\src\tipc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\tip\tipc\src\tipc_task.c</PathWithFileName>
       <FilenameWithoutPath>tipc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2133,7 +2132,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\tip\tips\src\tips.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\tip\tips\src\tips.c</PathWithFileName>
       <FilenameWithoutPath>tips.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2145,7 +2144,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\tip\tips\src\tips_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\tip\tips\src\tips_task.c</PathWithFileName>
       <FilenameWithoutPath>tips_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2157,7 +2156,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\find\findl\src\findl.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\find\findl\src\findl.c</PathWithFileName>
       <FilenameWithoutPath>findl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2169,7 +2168,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\find\findl\src\findl_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\find\findl\src\findl_task.c</PathWithFileName>
       <FilenameWithoutPath>findl_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2181,7 +2180,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\cpp\cppc\src\cppc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\cpp\cppc\src\cppc.c</PathWithFileName>
       <FilenameWithoutPath>cppc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2193,7 +2192,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\cpp\cppc\src\cppc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\cpp\cppc\src\cppc_task.c</PathWithFileName>
       <FilenameWithoutPath>cppc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2205,7 +2204,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\cpp\cpps\src\cpps.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\cpp\cpps\src\cpps.c</PathWithFileName>
       <FilenameWithoutPath>cpps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2217,7 +2216,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\cpp\cpps\src\cpps_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\cpp\cpps\src\cpps_task.c</PathWithFileName>
       <FilenameWithoutPath>cpps_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2229,7 +2228,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\lan\lanc\src\lanc.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\lan\lanc\src\lanc.c</PathWithFileName>
       <FilenameWithoutPath>lanc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2241,7 +2240,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\lan\lanc\src\lanc_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\lan\lanc\src\lanc_task.c</PathWithFileName>
       <FilenameWithoutPath>lanc_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2253,7 +2252,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\lan\lans\src\lans.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\lan\lans\src\lans.c</PathWithFileName>
       <FilenameWithoutPath>lans.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2265,7 +2264,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\lan\lans\src\lans_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\lan\lans\src\lans_task.c</PathWithFileName>
       <FilenameWithoutPath>lans_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2277,7 +2276,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\suota\suotar\src\suotar.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\suota\suotar\src\suotar.c</PathWithFileName>
       <FilenameWithoutPath>suotar.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2289,7 +2288,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\suota\suotar\src\suotar_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\suota\suotar\src\suotar_task.c</PathWithFileName>
       <FilenameWithoutPath>suotar_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2301,7 +2300,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\custom\custom_common.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\custom\custom_common.c</PathWithFileName>
       <FilenameWithoutPath>custom_common.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2313,7 +2312,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\custom\custs\src\custs1.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\custom\custs\src\custs1.c</PathWithFileName>
       <FilenameWithoutPath>custs1.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2325,7 +2324,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</PathWithFileName>
       <FilenameWithoutPath>custs1_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2337,7 +2336,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\custom\custs\src\custs2.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\custom\custs\src\custs2.c</PathWithFileName>
       <FilenameWithoutPath>custs2.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2349,7 +2348,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\custom\custs\src\custs2_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\custom\custs\src\custs2_task.c</PathWithFileName>
       <FilenameWithoutPath>custs2_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2361,7 +2360,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\prf.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prf.c</PathWithFileName>
       <FilenameWithoutPath>prf.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2373,7 +2372,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\ble_stack\profiles\prf_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\ble_stack\profiles\prf_utils.c</PathWithFileName>
       <FilenameWithoutPath>prf_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2393,7 +2392,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</PathWithFileName>
       <FilenameWithoutPath>app_default_handlers.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2405,7 +2404,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_common\app.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_common\app.c</PathWithFileName>
       <FilenameWithoutPath>app.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2417,7 +2416,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_common\app_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_common\app_task.c</PathWithFileName>
       <FilenameWithoutPath>app_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2429,7 +2428,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_sec\app_security.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_sec\app_security.c</PathWithFileName>
       <FilenameWithoutPath>app_security.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2441,7 +2440,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_sec\app_security_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_sec\app_security_task.c</PathWithFileName>
       <FilenameWithoutPath>app_security_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2453,7 +2452,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_bass\app_bass.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_bass\app_bass.c</PathWithFileName>
       <FilenameWithoutPath>app_bass.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2465,7 +2464,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_bass\app_bass_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_bass\app_bass_task.c</PathWithFileName>
       <FilenameWithoutPath>app_bass_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2477,7 +2476,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_findme\app_findme.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_findme\app_findme.c</PathWithFileName>
       <FilenameWithoutPath>app_findme.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2489,7 +2488,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_findme\app_findme_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_findme\app_findme_task.c</PathWithFileName>
       <FilenameWithoutPath>app_findme_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2501,7 +2500,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_proxr\app_proxr.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_proxr\app_proxr.c</PathWithFileName>
       <FilenameWithoutPath>app_proxr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2513,7 +2512,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_proxr\app_proxr_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_proxr\app_proxr_task.c</PathWithFileName>
       <FilenameWithoutPath>app_proxr_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2525,7 +2524,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_diss\app_diss.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_diss\app_diss.c</PathWithFileName>
       <FilenameWithoutPath>app_diss.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2537,7 +2536,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_diss\app_diss_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_diss\app_diss_task.c</PathWithFileName>
       <FilenameWithoutPath>app_diss_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2549,7 +2548,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_suotar\app_suotar.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_suotar\app_suotar.c</PathWithFileName>
       <FilenameWithoutPath>app_suotar.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2561,7 +2560,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_suotar\app_suotar_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_suotar\app_suotar_task.c</PathWithFileName>
       <FilenameWithoutPath>app_suotar_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2573,7 +2572,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_entry\app_entry_point.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_entry\app_entry_point.c</PathWithFileName>
       <FilenameWithoutPath>app_entry_point.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2585,7 +2584,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_common\app_msg_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_common\app_msg_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_msg_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2597,7 +2596,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_msg_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2609,7 +2608,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_easy\app_easy_security.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_easy\app_easy_security.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_security.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2621,7 +2620,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_easy\app_easy_timer.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_easy\app_easy_timer.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_timer.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2633,7 +2632,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_custs\app_customs.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_custs\app_customs.c</PathWithFileName>
       <FilenameWithoutPath>app_customs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2645,7 +2644,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_custs\app_customs_task.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_custs\app_customs_task.c</PathWithFileName>
       <FilenameWithoutPath>app_customs_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2657,7 +2656,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_custs\app_customs_common.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_custs\app_customs_common.c</PathWithFileName>
       <FilenameWithoutPath>app_customs_common.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2669,7 +2668,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_bond_db\app_bond_db.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_bond_db\app_bond_db.c</PathWithFileName>
       <FilenameWithoutPath>app_bond_db.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2681,7 +2680,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DA14531\SDKs\6.0.12.1020.2_L2CAP_opt_port\SDK\6.0.12.1020.2\sdk\app_modules\src\app_common\app_utils.c</PathWithFileName>
+      <PathWithFileName>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\app_modules\src\app_common\app_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2782,7 +2781,7 @@
 
   <Group>
     <GroupName>user_custom_profile</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2814,7 +2813,7 @@
 
   <Group>
     <GroupName>user_platform</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

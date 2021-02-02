@@ -36,10 +36,7 @@
 /* Used BLE profiles (used by "rwprf_config.h").                                       */
 /***************************************************************************************/
 
-#define CFG_PRF_DISS
 #define CFG_PRF_PXPR
-#define CFG_PRF_SUOTAR
-#define CFG_PRF_BASS
 
 /***************************************************************************************/
 /* Profile application configuration section                                           */

@@ -202,7 +202,7 @@ The process is the same as using SPI as we have seen in the previous section, ex
 	#undef HIBERNATION_SYSRAM
 ```
 
-This would define the configuration of Hibernation mode to remap the address 0 to ROM while booting. 
+This would define the configuration of Hibernation mode to remap the address 0 to OTP while booting. 
 
 ![HIBERNATION_OTP](assets/cfg_hibernation_otp.png)
 

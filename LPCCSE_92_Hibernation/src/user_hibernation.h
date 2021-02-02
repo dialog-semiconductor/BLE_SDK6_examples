@@ -15,17 +15,6 @@
 #ifndef _USER_PROXR_H_
 #define _USER_PROXR_H_
 
-/**
- ****************************************************************************************
- * @addtogroup APP
- * @ingroup RICOW
- *
- * @brief User Application entry point.
- *
- * @{
- ****************************************************************************************
- */
-
 /*
  * INCLUDE FILES
  ****************************************************************************************
@@ -56,9 +45,9 @@
 #undef CFG_APP_GOTO_STATEFUL_HIBERNATION
 
 #if defined (CFG_APP_GOTO_HIBERNATION)
-	#define HIBERNATION_SPI
+	#undef HIBERNATION_SPI
 	#undef HIBERNATION_OTP
-	#undef HIBERNATION_SYSRAM
+	#define HIBERNATION_SYSRAM
 
 #if defined (HIBERNATION_SPI)
 /****************************************************************************************
@@ -109,33 +98,6 @@
 
 #endif // __DA14531__
 
-#if defined (CFG_APP_GOTO_DEEP_SLEEP) && (defined (CFG_APP_GOTO_HIBERNATION) || defined (CFG_APP_GOTO_STATEFUL_HIBERNATION))
-    #error "Config error: Can not define both CFG_APP_GOTO_DEEP_SLEEP and CFG_APP_GOTO_HIBERNATION/CFG_APP_GOTO_STATEFUL_HIBERNATION."
-#endif
-
-//#if defined (CFG_SPI_FLASH_ENABLE) && (defined (CFG_APP_GOTO_HIBERNATION) || defined (CFG_APP_GOTO_STATEFUL_HIBERNATION))
-//    #error "Config error: Can not define both CFG_SPI_FLASH_ENABLE and CFG_APP_GOTO_HIBERNATION/CFG_APP_GOTO_STATEFUL_HIBERNATION."
-//#endif
-
-
-/****************************************************************************************
-* Wake-up from Extended Sleep Configuration                                             *
-* Selects the trigger mechanism to wake up from extended sleep.                         *
-*                                                                                       *
-* - CFG_EXT_SLEEP_WAKEUP_RTC       - Wake up from RTC Timer (only in DA14531)           *
-*                                                                                       *
-* - CFG_EXT_SLEEP_WAKEUP_TIMER1    - Wake up from Timer1 (only in DA14531)              *
-*                                                                                       *
-* NOTE:                                                                                 *
-* If none is defined, then system will wake up from extended sleep by button press.     *
-****************************************************************************************/
-#undef CFG_EXT_SLEEP_WAKEUP_RTC
-#undef CFG_EXT_SLEEP_WAKEUP_TIMER1
-
-#if defined (CFG_EXT_SLEEP_WAKEUP_RTC) && defined (CFG_EXT_SLEEP_WAKEUP_TIMER1)
-    #error "Config error: Can not define both CFG_EXT_SLEEP_WAKEUP_RTC and CFG_EXT_SLEEP_WAKEUP_TIMER1."
-#endif
-
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
@@ -156,16 +118,6 @@ void app_button_enable(void);
  ****************************************************************************************
  */
 void app_advertise_complete(const uint8_t status);
-
-#if (BLE_SUOTA_RECEIVER)
-/**
- ****************************************************************************************
- * @brief Function called when the SUOTAR status changes.
- * @param[in] suotar_event SUOTAR_START or SUOTAR_STOP
- ****************************************************************************************
- */
-void on_suotar_status_change(const uint8_t suotar_event);
-#endif // BLE_SUOTA_RECEIVER
 
 /**
  ****************************************************************************************

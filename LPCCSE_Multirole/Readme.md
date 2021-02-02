@@ -11,16 +11,27 @@ The project works as a Central connecting to 2 peripherals, and once connected, 
 **Note**: This project assumes that the 2 peripherals will stay connected to the DA14531 central. 
 
 ## HW setup
- - 3 DA14531 Pro kit with Module/Daugherboard connected to host computer via USB and an android or iPhone.
- - For Central, extra jumpers are required for the UART to see the communication logs. Use fly wires from **J1_TxD to P26**.
+ - 3 DA14531 Pro-DK kit with Module/Daugherboard connected to host computer via USB and an android or iPhone.
+ - For Central, extra jumpers are required for the UART to see the communication logs. Check the setup shown below for DA14531 and DA14585/586.
+ 
+ <ins>DA14531 daughterboard</ins>
  
  ![da14531.jpg](assets/da14531.jpg)
+ 
+  <ins>DA14531 module</ins>
+  
+ ![module.jpg](assets/module.jpg)
+ 
+ <ins>DA14585 daughterboard</ins>
+ 
+ ![da14585.jpg](assets/da14585.jpg)
+ 
  
  The user manuals for the development kits can be found [here](https://www.dialog-semiconductor.com/um-114-da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
 
 ## SW setup 
 
- - SDK 6.0.14.1112 
+ - SDK 6.0.14.1114 
  - SmartSnippets Toolbox 5.0.14.3038 
  - a terminal for UART logs (teraterm, termite, etc..)
  
@@ -29,11 +40,11 @@ The project works as a Central connecting to 2 peripherals, and once connected, 
 1. Download Prox_reporter binaries with **different BD addresses and default device name "DLG-PROXR"** to 2 DA14531 devices (as explained [here](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/getting_started/getting_started.html)). 
 You can refer to this [document](http://lpccs-docs.dialog-semiconductor.com/um-b-138/introduction.html) to program the flash with the prox_reporter binaries. Press reset (SW1) on the motherboard and verify with an Android device that they have all started advertising
 
-Note: To configure you device with different BD addresses, follow [here](http://lpccs-docs.dialog-semiconductor.com/DA145xx_Advertising_Tutorial/setting_the_BD_address_and_device_name.html#setting-the-bd-address)
+Note: To configure your device with different BD addresses, follow [here](http://lpccs-docs.dialog-semiconductor.com/DA145xx_Advertising_Tutorial/setting_the_BD_address_and_device_name.html#setting-the-bd-address)
 
 2. Use the python script (in the Multirole project folder) to link the SDK path to the example. More information [here](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html)
 
-3. Using Keil IDE, open the multirole project and compile.
+3. Using Keil IDE, open the multirole project and compile the project to build the indexes. You will see errors but ignore it for this step, error will go away after the compilation in step 7.
 
 4. To be able to overide the default functions of the SDK the __ EXCLUDE_ROM_APP_TASK __ should be defined in the C/C++ tab in the "options for target" in keil, like so,
 
@@ -47,7 +58,7 @@ Note: To configure you device with different BD addresses, follow [here](http://
 	
 6. Open File explorer on your computer, navigate to the project, like so, 
 
-	`C:\......\6.0.14.1112\sdk\common_project_files\misc`
+	`C:\......\6.0.14.1114\sdk\common_project_files\misc`
 	
 	in the misc folder, open da14531_symbols.txt in a text editor, and comment out the __EXCLUDE_ROM_APP_TASK__ parts. Use a semi-colon (";") to comment out.
 	
@@ -60,9 +71,9 @@ Note: To configure you device with different BD addresses, follow [here](http://
 
 **Note**: Use any android/iPhone BLE scanner to connect/disconnect to/from the DA14531.
 
-## Supported use-cases from the example
+## Supported use-case for the example
 
-Below mentioned are the two main use-cases that is supported using this example. In future releases, more use-cases will be added especially with regards to the disconnections.
+Below mentioned is the use-case that is supported with this example. In future releases, more use-cases will be added especially with regards to the disconnections.
 
 For the ease of understanding, following notations are used. 
 
@@ -70,26 +81,7 @@ For the ease of understanding, following notations are used.
 * P1,P2 -> DA14531 peripheral 
 * C1 -> Phone central
 
-**Use case 1:** The flow of this use-case is mentioned below. Basically the central starts to scan first, then two peripherals start to advertise and get connected to the central. 
-
-<ins>Connection</ins>
-- First C0 starts to scan
-- P1 advertises and gets connected
-- P2 advertises and gets connected
-- P0 advertises
-- C1 connects to P0 
-
-<ins>Disconnection<ins>
-- C1 disconnects
-- P0 advertises
-- C1 connects to P0 again
-
-**Note**: While using iPhone, if you wish to disconnect C1 from DA14531 device, please check the iPhone bluetooth settings as the phone might have to be disconnected from there. 
-Once it disconnects, you will see P0 advertising again while being connected to P1 and P2. 
-For Android, you can use any BLE scanner app to connect and disconnect.
-
-
-**Use case 2:** The flow of this use-case is mentioned below. Basically the peripherals starts to advertise first and then the Central starts scan process, and it finds and connects to 2 peripherals. 
+**Use case:** The flow of this use-case is mentioned below. Basically the peripherals starts to advertise first and then the Central starts scan process, and it finds and connects to 2 peripherals. 
 
 <ins>Connection<ins>
 - P1 is advertising
@@ -103,8 +95,11 @@ For Android, you can use any BLE scanner app to connect and disconnect.
 - P0 advertises
 - C1 connects to P0 again
 
-
 This can be verified in the UART logs.
+
+**Note**: While using iPhone, if you wish to disconnect C1 from DA14531 device, please check the iPhone bluetooth settings as the phone might have to be disconnected from there. 
+Once it disconnects, you will see P0 advertising again while being connected to P1 and P2. 
+For Android, you can use any BLE scanner app to connect and disconnect.
 
 **Note**: UART terminal: 921600, no flow control
 

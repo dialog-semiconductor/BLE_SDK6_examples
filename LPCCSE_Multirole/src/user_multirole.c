@@ -61,22 +61,14 @@
 #define SCAN_WINDOW_MS	(50)
 
 
-//static const uint8_t dummy_code1[96*64] __USED; 
-//static const uint8_t dummy_code2[12*32] __USED; 
-//static const uint8_t dummy_code3[4*32] __USED; 
-
 bool device_1 = false;
 bool device_2 = false;
 bool device_3 = false;
-
-
 
 typedef struct
 {
 	struct bd_addr addr;
 }connecting_device_t;
-
-//connecting_device_t connecting_device;
 
 typedef struct
 {
@@ -97,9 +89,6 @@ central_app_env_t central_app_env;
  ****************************************************************************************
 */
 
-#ifdef ENABLE_IAS
-static void configure_alert_button(void);
-#endif
 
 #if (SCAN_FILTER == (SCAN_FILTER_NAME) || SCAN_FILTER == SCAN_FILTER_NONE) 
 static inline void format_adv_string(uint8_t * data, uint8_t len, char *out_string)
@@ -109,11 +98,7 @@ static inline void format_adv_string(uint8_t * data, uint8_t len, char *out_stri
 	
 }
 #endif
-/* return true if UUIDs match */
-//static bool match_uuid(uint8_t * uuid1, uint8_t *uuid2, uint8_t len)
-//{
-//	return !memcmp(uuid1, uuid2, len);
-//}
+
 
 #if (SCAN_FILTER == SCAN_FILTER_NONE || SCAN_FILTER == SCAN_FILTER_16_BIT_SVC_DATA || SCAN_FILTER == SCAN_FILTER_MFG_DATA)
 
@@ -153,105 +138,7 @@ static const char *format_bd_address(const struct bd_addr *addr)
 
         return buf;
 }
-/* return static buffer with formatted UUID */
-//static const char *format_uuid(att_uuid_t *uuid)
-//{
-//        static char buf[37];
 
-//        if (uuid->type == ATT_UUID_16) {
-//                sprintf(buf, "0x%04x", uuid->uuid.uuid16);
-//        } else {
-//                int i;
-//                int idx = 0;
-
-//                for (i = ATT_UUID_LENGTH; i > 0; i--) {
-//                        if (i == 12 || i == 10 || i == 8 || i == 6) {
-//                                buf[idx++] = '-';
-//                        }
-
-//                        idx += sprintf(&buf[idx], "%02x", uuid->uuid.uuid128[i - 1]);
-//                }
-//        }
-
-//        return buf;
-//}
-
-/* return static buffer with characteristics properties mask */
-//static const char *format_properties(uint8_t properties)
-//{
-//        static const char props_str[] = "BRXWNISE"; // each letter corresponds to single property
-//        static char buf[9];
-//        int i;
-
-//        // copy full properties mask
-//        memcpy(buf, props_str, sizeof(props_str));
-
-//        for (i = 0; i < 8; i++) {
-//                // clear letter from mask if property not present
-//                if ((properties & (1 << i)) == 0) {
-//                        buf[i] = '-';
-//                }
-//        }
-
-//        return buf;
-//}
-
-#ifdef ENABLE_IAS
-/**
- ****************************************************************************************
- * @brief callback from alert button
- * @return void
- ****************************************************************************************
- */
-static void app_button_press_cb()
-{
-	uint8_t i;
-	for(i = 0; i < CFG_MAX_CONNECTIONS ; i++)
-	{
-		
-		if(central_app_env.periph_devices[i].con_valid){
-			if(central_app_env.periph_devices[i].serv_disc.ias_alert_counter > 1)
-			{
-				central_app_env.periph_devices[i].serv_disc.ias_alert_counter = 0;
-			}else
-			{
-				central_app_env.periph_devices[i].serv_disc.ias_alert_counter++;
-			}
-			
-
-			user_ble_gatt_write(central_app_env.periph_devices[i].serv_disc.ias_write_op,
-														central_app_env.periph_devices[i].con_idx, 
-														central_app_env.periph_devices[i].serv_disc.ias_char.c.value_handle, 
-														&central_app_env.periph_devices[i].serv_disc.ias_alert_counter, 
-														sizeof(uint8_t));
-		
-			//dbg_printf("Write Alert Level: %d \r\n", central_app_env.periph_devices[i].serv_disc.ias_alert_counter);
-		}
-		
-	}
-	
-	configure_alert_button();
-}
-
-/**
- ****************************************************************************************
- * @brief configure alert button
- * @return void
- ****************************************************************************************
- */
-static void configure_alert_button()
-{
-	wkupct_register_callback(app_button_press_cb);
-
-
-	wkupct_enable_irq(WKUPCT_PIN_SELECT(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN), // select pin (GPIO_BUTTON_PORT, GPIO_BUTTON_PIN)
-										WKUPCT_PIN_POLARITY(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, WKUPCT_PIN_POLARITY_LOW), // polarity low
-										1, // 1 event
-										0x3F); // debouncing time = 63
-
-	
-}
-#endif 
 
 /**
  ****************************************************************************************
@@ -418,10 +305,6 @@ void user_on_adv_report_ind(struct gapm_adv_report_ind const * adv_ind)
 		user_ble_gap_stop_scan(); 
 	}
 	#endif
-
-	
-	
-
 }
 
 /**
@@ -458,16 +341,6 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 			
 			app_easy_gap_undirected_advertise_start(); 
 		}
-	
-			
-		
-
-#ifdef ENABLE_IAS		
-		central_app_env.periph_devices[connection_idx].serv_disc.ias_handle_valid = false;
-#endif
-#ifdef ENABLE_BAS
-		central_app_env.periph_devices[connection_idx].serv_disc.bas_handle_valid = false;
-#endif
 		
 		user_gatt_discover_all_services(connection_idx, 1);
 }
@@ -493,14 +366,6 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param )
 			dbg_printf("user_on_disconnect timer check ...\r\n", NULL);	
 		}
 		
-//		if( central_app_env.num_connections == CFG_MAX_CONNECTIONS)
-//			{
-//			dbg_printf("user_on_disconnect num_connections\r\n", NULL);			
-//			ble_scan_for_devices();
-//		}
-//		
-//		central_app_env.num_connections--;
-		
 		if (central_app_env.connect_to_periph )
 		{
 			app_easy_gap_undirected_advertise_start(); 
@@ -513,28 +378,8 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param )
 		{
 			ble_scan_for_devices();
 		}
-//		
-//		if (central_app_env.connect_to_periph && central_app_env.num_connections ==2)
-//		{
-//			app_easy_gap_undirected_advertise_start();
-//		}
-//		
-//		if (!central_app_env.connect_to_periph)
-//		{
-//			ble_scan_for_devices();
-//		}
-		
-		
-		
+
 		dbg_printf("%s: reason:%02x\r\n", __func__, param->reason);
-#ifdef ENABLE_IAS		
-		if(central_app_env.num_connections < 1)
-		{
-			wkupct_disable_irq();
-		}
-#endif
-		
-		
 }
 
 /**
@@ -558,15 +403,7 @@ static void connection_timeout_cb(){
  ****************************************************************************************
  */
 void user_on_scanning_completed(uint8_t reason)
-{
-	
-//	if(reason == GAP_ERR_CANCELED && central_app_env.connect_to_periph)
-//	{
-//		user_ble_gap_connect(central_app_env.connect_to_addr.addr, central_app_env.connect_to_addr_type);
-//		central_app_env.connection_timer = app_easy_timer(CONNECTION_TIMEOUT_10MS, connection_timeout_cb);
-//		
-//	}
-	
+{	
 	if(reason == GAP_ERR_CANCELED)
 	{
 		user_ble_gap_connect(central_app_env.connect_to_addr.addr, central_app_env.connect_to_addr_type);
@@ -596,93 +433,12 @@ void user_app_on_set_dev_config_complete(void)
 static void handle_svc_ind(uint8_t con_idx, struct gattc_sdp_svc_ind const *disc_svc)
 {
 	service_info_t *svc = ke_malloc(user_ble_get_svc_size(disc_svc), KE_MEM_NON_RETENTION);
-//	dbg_block_printf("%s: conn_idx=%04x start_h=%04x end_h=%04x\r\n", __func__, con_idx,
-//                                                                        disc_svc->start_hdl, disc_svc->end_hdl);
 
 	user_gatt_parse_service(disc_svc, svc, con_idx);
-	
-	uint16_t i;
-	
-#ifdef ENABLE_IAS
-	bool ias_uuid_match;
-	uint16_t ias_uuid = ATT_SVC_IMMEDIATE_ALERT;
-	uint16_t ias_alert_uuid = ATT_CHAR_ALERT_LEVEL;
-	if(svc->svc_uuid.type == ATT_UUID_16){
-		ias_uuid_match = match_uuid((uint8_t *)&ias_uuid, (uint8_t *)&svc->svc_uuid.uuid.uuid16, sizeof(uint16_t));
-	}
-	
-	if(ias_uuid_match){
-		//dbg_block_printf("Immediate Alert Service: ", NULL);
-	}
-#endif 
-	
-#ifdef ENABLE_BAS
-	bool bas_uuid_match;
-	uint16_t bas_uuid = ATT_SVC_BATTERY_SERVICE;
-	uint16_t bas_level_uuid= ATT_CHAR_BATTERY_LEVEL;
-	
-	if(svc->svc_uuid.type == ATT_UUID_16){
-		bas_uuid_match = match_uuid((uint8_t *)&bas_uuid, (uint8_t *)&svc->svc_uuid.uuid.uuid16, sizeof(uint16_t));
-	}
-	if(bas_uuid_match){
-		//dbg_block_printf("Battery Service: ", NULL);
-	}
-#endif
-	//dbg_block_printf("%s: \r\n", format_uuid(&svc->svc_uuid) );
-	for(i = 0 ; i<svc->num_chars; i++)
-	{
-		//gattc_chars_t *gatt_char = &svc->items[i];
-#ifdef ENABLE_IAS
-		if(ias_uuid_match)
-		{
-			if( match_uuid( (uint8_t *)&ias_alert_uuid , (uint8_t *)&gatt_char->uuid.uuid, 2) )
-			{
-				memcpy(&central_app_env.periph_devices[con_idx].serv_disc.ias_char, 
-																									gatt_char, sizeof(gattc_chars_t) );
-				
-				central_app_env.periph_devices[con_idx].serv_disc.ias_handle_valid = true;
-				//dbg_block_printf("\tAlert Level Char\r\n", NULL);
-				
-				if(gatt_char->c.properties & GATT_PROP_WRITE)
-				{
-					central_app_env.periph_devices[con_idx].serv_disc.ias_write_op = GATTC_WRITE;
-				}
-				else if(gatt_char->c.properties & GATT_PROP_WRITE_NO_RESP)
-				{
-					central_app_env.periph_devices[con_idx].serv_disc.ias_write_op = GATTC_WRITE_NO_RESPONSE;	
-				}
-				else if(gatt_char->c.properties & GATT_PROP_WRITE_SIGNED)
-				{
-					central_app_env.periph_devices[con_idx].serv_disc.ias_write_op = GATTC_WRITE_SIGNED;	
-				}else
-				{		
-					central_app_env.periph_devices[con_idx].serv_disc.ias_handle_valid = false;
-				}
-			}
-		}
-#endif 
-#ifdef ENABLE_BAS
-		if(bas_uuid_match)
-		{
-			if( match_uuid( (uint8_t *)&bas_level_uuid , (uint8_t *)&gatt_char->uuid.uuid, 2) )
-			{
-				memcpy(&central_app_env.periph_devices[con_idx].serv_disc.bas_char, 
-																										gatt_char, sizeof(gattc_chars_t));
-				
-				central_app_env.periph_devices[con_idx].serv_disc.bas_handle_valid = true;
-				//dbg_block_printf("\tBattery Level Char\r\n", NULL);
-			}
-		}
-#endif 
-//		dbg_block_printf("\t%04x char %s prop=%02x (%s)\r\n", gatt_char->handle,
-//                                                format_uuid(&gatt_char->uuid), gatt_char->c.properties,
-//                                                format_properties(gatt_char->c.properties));	
-	}
-	
+		
 	ke_free(svc);
 	
 	central_app_env.periph_devices[con_idx].serv_disc.last_handle = disc_svc->end_hdl;
-	
 	
 }
 
@@ -714,8 +470,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 			{
 				case GATTC_SDP_DISC_SVC_ALL:
 				{
-					
-					//dbg_printf("Completion Event: GATTC_DISC_ALL_SVC: status: %04X\r\n", evt->status);
 					if(evt->status != CO_ERROR_NO_ERROR){
 
 							user_gatt_discover_all_services(conn_idx, central_app_env.periph_devices[conn_idx].serv_disc.last_handle);
@@ -728,11 +482,11 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 				}break;
 				case GATTC_WRITE:
 				{
-					//dbg_printf("Completion Event: GATTC_WRITE\r\n", evt->operation);
+					
 					break;
 				}
 				case GATTC_READ:
-					//dbg_printf("GATTC_READ: status: %04x\r\n", evt->status);
+					
 					break;
 				
 				default:
@@ -743,13 +497,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 		
 		case GATTC_EVENT_IND:
 		{
-			//struct gattc_event_ind const *ind = (struct gattc_event_ind const *)param;
-#ifdef ENABLE_BAS
-			if(ind->handle == central_app_env.periph_devices[conn_idx].serv_disc.bas_char.c.value_handle)
-			{
-				//dbg_printf("Battery Level Changed: %d \r\n", ind->value[0]);			
-			}
-#endif		
+	
 		}break;
 		
 		case GAPM_CMP_EVT:
@@ -774,27 +522,11 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 		
 		case GATTC_READ_IND:
 		{
-			//struct gattc_read_ind const *ind = (struct gattc_read_ind const*)param;
-#ifdef ENABLE_BAS
-			if(ind->handle == central_app_env.periph_devices[conn_idx].serv_disc.bas_char.c.value_handle)
-			{
-				//dbg_printf("Battery Level Read: %d \r\n", ind->value[0]);
-			}else
-#endif 
-			{
-				//dbg_printf("GATTC_READ_IND: handle: %04x\r\n", ind->handle);
-				
-			}
 		}break;
-		
-		
+				
 		default:
-			break;
-		
-	}
-	
-	
-}
- 
+			break;		
+	}	
+} 
 
 /// @} APP

@@ -48,6 +48,7 @@
 #include "user_hibernation_timer.h"
 #include "co_math.h"
 #include "battery.h"
+#include "arch_hibernation.h"
 
 #include "user_periph_setup.h"
 #include "spi_flash.h"

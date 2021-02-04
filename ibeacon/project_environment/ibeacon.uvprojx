@@ -14,16 +14,16 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>ARMCM0P</Device>
+          <Device>ARMCM0</Device>
           <Vendor>ARM</Vendor>
           <PackID>ARM.CMSIS.5.6.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
-          <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ESEL ELITTLE</Cpu>
+          <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
           <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:ARMCM0P$Device\ARM\ARMCM0plus\Include\ARMCM0plus.h</RegisterFile>
+          <RegisterFile>$$Device:ARMCM0$Device\ARM\ARMCM0\Include\ARMCM0.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -33,7 +33,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:ARMCM0P$Device\ARM\SVD\ARMCM0P.svd</SFDFile>
+          <SFDFile></SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -112,11 +112,11 @@
           <SimDllName>SARMCM3.DLL</SimDllName>
           <SimDllArguments>  </SimDllArguments>
           <SimDlgDll>DARMCM1.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pCM0+</SimDlgDllArguments>
+          <SimDlgDllArguments>-pCM0</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
           <TargetDllArguments> </TargetDllArguments>
           <TargetDlgDll>TARMCM1.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pCM0+</TargetDlgDllArguments>
+          <TargetDlgDllArguments>-pCM0</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -138,7 +138,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -174,7 +174,7 @@
             <AdsLsxf>1</AdsLsxf>
             <RvctClst>0</RvctClst>
             <GenPPlst>0</GenPPlst>
-            <AdsCpuType>"Cortex-M0+"</AdsCpuType>
+            <AdsCpuType>"Cortex-M0"</AdsCpuType>
             <RvctDeviceName></RvctDeviceName>
             <mOS>0</mOS>
             <uocRom>0</uocRom>
@@ -369,7 +369,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\scatterfiles\DA14585_586.sct</ScatterFile>
+            <ScatterFile>.\..\src\config\copied_scatter_585_586.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>--feedback=".\unused_585.txt" C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\da14585_symbols.txt  --symdefs=ibeacon_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
@@ -382,6 +382,16 @@
         <Group>
           <GroupName>sdk_boot</GroupName>
           <Files>
+            <File>
+              <FileName>system_DA14585_586.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+            </File>
+            <File>
+              <FileName>startup_DA14585_586.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+            </File>
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
@@ -491,16 +501,6 @@
               <FileType>1</FileType>
               <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\nmi_handler.c</FilePath>
             </File>
-            <File>
-              <FileName>system_DA14585_586.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
-            </File>
-            <File>
-              <FileName>startup_DA14585_586.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -579,6 +579,57 @@
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>otp_hdr.c</FileName>
@@ -588,7 +639,7 @@
             <File>
               <FileName>da14585_586.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -604,6 +655,57 @@
               <FileName>adc_531.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_531.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>trng.c</FileName>
@@ -796,12 +898,12 @@
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
             </File>
             <File>
               <FileName>adc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_58x.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_58x.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -831,7 +933,7 @@
             <File>
               <FileName>rf_585.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -980,16 +1082,16 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>ARMCM0P</Device>
+          <Device>ARMCM0</Device>
           <Vendor>ARM</Vendor>
           <PackID>ARM.CMSIS.5.6.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
-          <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ESEL ELITTLE</Cpu>
+          <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
           <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:ARMCM0P$Device\ARM\ARMCM0plus\Include\ARMCM0plus.h</RegisterFile>
+          <RegisterFile>$$Device:ARMCM0$Device\ARM\ARMCM0\Include\ARMCM0.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -999,7 +1101,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:ARMCM0P$Device\ARM\SVD\ARMCM0P.svd</SFDFile>
+          <SFDFile></SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -1078,11 +1180,11 @@
           <SimDllName>SARMCM3.DLL</SimDllName>
           <SimDllArguments>  </SimDllArguments>
           <SimDlgDll>DARMCM1.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pCM0+</SimDlgDllArguments>
+          <SimDlgDllArguments>-pCM0</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
           <TargetDllArguments> </TargetDllArguments>
           <TargetDlgDll>TARMCM1.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pCM0+</TargetDlgDllArguments>
+          <TargetDlgDllArguments>-pCM0</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -1104,7 +1206,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -1140,7 +1242,7 @@
             <AdsLsxf>1</AdsLsxf>
             <RvctClst>0</RvctClst>
             <GenPPlst>0</GenPPlst>
-            <AdsCpuType>"Cortex-M0+"</AdsCpuType>
+            <AdsCpuType>"Cortex-M0"</AdsCpuType>
             <RvctDeviceName></RvctDeviceName>
             <mOS>0</mOS>
             <uocRom>0</uocRom>
@@ -1335,7 +1437,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\scatterfiles\DA14585_586.sct</ScatterFile>
+            <ScatterFile>.\..\src\config\copied_scatter_585_586.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>--feedback=".\unused_586.txt" C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\da14585_symbols.txt  --symdefs=ibeacon_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
@@ -1348,6 +1450,16 @@
         <Group>
           <GroupName>sdk_boot</GroupName>
           <Files>
+            <File>
+              <FileName>system_DA14585_586.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+            </File>
+            <File>
+              <FileName>startup_DA14585_586.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+            </File>
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
@@ -1457,16 +1569,6 @@
               <FileType>1</FileType>
               <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\nmi_handler.c</FilePath>
             </File>
-            <File>
-              <FileName>system_DA14585_586.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
-            </File>
-            <File>
-              <FileName>startup_DA14585_586.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1545,6 +1647,57 @@
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>otp_hdr.c</FileName>
@@ -1554,7 +1707,7 @@
             <File>
               <FileName>da14585_586.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -1570,6 +1723,57 @@
               <FileName>adc_531.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_531.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>trng.c</FileName>
@@ -1762,12 +1966,12 @@
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
             </File>
             <File>
               <FileName>adc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_58x.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_58x.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1793,62 +1997,11 @@
               <FileName>rf_531.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_531.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <uGnu>2</uGnu>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>2</vShortEn>
-                    <vShortWch>2</vShortWch>
-                    <v6Lto>2</v6Lto>
-                    <v6WtE>2</v6WtE>
-                    <v6Rtti>2</v6Rtti>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
             </File>
             <File>
               <FileName>rf_585.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2352,7 +2505,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\scatterfiles\DA14531.sct</ScatterFile>
+            <ScatterFile>.\..\src\config\copied_scatter_531.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>--feedback=".\unused_531.txt" C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\common_project_files\misc\da14531_symbols.txt  --symdefs=ibeacon_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
@@ -2365,26 +2518,6 @@
         <Group>
           <GroupName>sdk_boot</GroupName>
           <Files>
-            <File>
-              <FileName>system_DA14531.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14531.c</FilePath>
-            </File>
-            <File>
-              <FileName>startup_DA14531.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
-            </File>
-            <File>
-              <FileName>hardfault_handler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\hardfault_handler.c</FilePath>
-            </File>
-            <File>
-              <FileName>nmi_handler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\nmi_handler.c</FilePath>
-            </File>
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
@@ -2484,6 +2617,26 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>system_DA14531.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+            </File>
+            <File>
+              <FileName>startup_DA14531.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+            </File>
+            <File>
+              <FileName>hardfault_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\hardfault_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>nmi_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\arch\main\nmi_handler.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2552,7 +2705,26 @@
             <File>
               <FileName>da14585_586.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds/>
+              </FileOption>
             </File>
           </Files>
         </Group>
@@ -2658,12 +2830,63 @@
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>adc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_58x.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\driver\adc\adc_58x.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2693,7 +2916,7 @@
             <File>
               <FileName>rf_585.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
+              <FilePath>C:\Users\mtzanida\Desktop\sw_examples_test\DA145xx_SDK\6.0.14.1114\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
             </File>
           </Files>
         </Group>

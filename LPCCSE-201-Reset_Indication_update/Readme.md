@@ -6,26 +6,58 @@
 ------
 
 ## Example Description
-This SW example aims to demonstrate how to handle different ways of reset mechanism in DA14531 SoC.
+Both DA14531 and DA14585/586 devices comprise three main reset signals that can be triggered from different sources, the reset signals are 
+* **POR** : Triggred when VDD (VBAT_LOW and VBAT_HIGH rails only for the DA14531) voltage crosses the minimum voltage threshold value or optionally triggered by a configured GPIO or if the RST pad is held high for more than the POR_TIMER_REG value.
+* **HW RESET** : Triggered by the RST pad (P00 for the DA14531), the watchdog, or when waking up from sleep while having the RESET_ON_WAKEUP bit set. 
+* **SW RESET** : Triggered when setting the SW_RESET bit.
 
+The current SW example demonstrates how to issue and identify the different kinds of reset on the DA14531 and DA14585/586 devices as well as identifying if the device issued a Hardfault or an NMI Handler.
+
+The DA14531 includes a special register that indicates the reset source previously occured (RESET_STAT_REG) while in order to identify the reset source on the DA14585/586 devices registers that retain their values, through the different kinds of resets, are used. The SDK 6.0.14.1114 includes a weak function in the system_init() which can be implemented on user space in order for the application to be aware of the current reset.    
 
 ## Key Features
-- Store data in the uninitialized section of the Retention-RAM
+- Store data in the uninitialized section of the Retention-RAM for tracking an NMI or a Hardfault.
 - Detect source of :
     - Hardware reset
     - Software reset
     - Reset by WDOG expiration
     - Power-on-Reset
 - Using UART2 for debugging purposes
-- 128-bit UUID custom profile
+- 128-bit UUID custom profile 
+    - For reading the previous reset reason.
+    - For issuing a new reset.
+
+## SDK modifications
+The current example uses the un-initialized data section in order to store identification flags for the application code to be aware if an NMI or a Hardfault has occured. The identification flag is preceded and followed by 32bit magic values that act as memory integrity check.
+For setting the flags minor changes has to be applied in the SDK in order for the flags to be set if the NMI or the Hardfault handler occurs. The user will have to add: 
+- For the Hardfault:
+  - Include the user_reser_mechanism.h file in the hardfaut_handler.c:
+    ```c
+    #include "user_reset_mechanism.h"
+    ```
+  - In the top of the HardFault_HandlerC() function, invoke the function:
+    ```c 
+    user_set_hardfault_flag(); 
+    ```
+- For the NMI:
+  - Include the user_reser_mechanism.h file in the nmi_handler.c:
+    ```c
+    #include "user_reset_mechanism.h"
+    ``` 
+  - At the top of the NMI_HandlerC() function, invoke the function:
+    ```c 
+    user_set_watchdog_flag(); 
+    ```
 
 ## HW and SW configuration
 
 * **Hardware configuration**
-	- This example runs on DA14531 Bluetooth Smart SoC device.
-  - Any of the following DA14531 Development Kits can be used : 
+	- This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC device.
+  - Any of the following Development Kits can be used : 
     - DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard
     - DA14531 SmartBond TINY™ Module + DA145xxDEVKT-P PRO Motherboard
+    - DA14585 Daughter board + DA145xxDEVKT-P PRO Motherboard
+    - DA14586 Daughter board + DA145xxDEVKT-P PRO Motherboard
 
   - For running the example on a **DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard** the following configuration is required.         
       - Connect the DA145xx Pro Development Kit to the host computer.
@@ -59,14 +91,14 @@ The BLE database contains 2 characteristics as shown in the table below
   <tr class="odd">
   <td style="text-align: left;">Control Point</td>
   <td style="text-align: left;">Write</td>
-  <td style="text-align: left;">2</td>
+  <td style="text-align: left;">1</td>
   <td style="text-align: left;">Accept commands from peer</td>
   </tr>
   <tr class="even">
   <td style="text-align: left;">Reset Detection</td>
   <td style="text-align: left;">Read</td>
-  <td style="text-align: left;">20</td>
-  <td style="text-align: left;">Update the source of the reset in the peer device</td>
+  <td style="text-align: left;">2</td>
+  <td style="text-align: left;">Source of the reset and fault in the peer device</td>
   </tr>
 </tbody>
 </table>
@@ -81,30 +113,43 @@ User can explicitly  cause a RESET by writing the appropriate value in the "Cont
 <thead>
   <tr class="header">
   <th style="text-align: left;">Value</th>
+  <th style="text-align: left">Enumeration</th>
   <th style="text-align: left;">Description</th>
   </tr>
 </thead>
 <tbody>
   <tr class="odd">
   <td style="text-align: left;"> 0x01</td>
-  <td style="text-align: left;"> Triggering the WDOG timer to generates a WDOG (SYS) reset at value 0 and can not be frozen by Software.</td>
+  <td style="text-align: left;"> TRIGGER_WDOG_NMI</td>
+  <td style="text-align: left;"> Trigger the WDOG timer to generate an NMI interrupt at 0. The device if DEVELOPMENT_DEBUG is undefined will issue a SW reset</td>
   </tr>
-  <tr class="even">
+   <tr class="even">
   <td style="text-align: left;"> 0x02</td>
-  <td style="text-align: left;">Generating a Software Reset be setting the SYS_CTRL_REG[SW_RESET] bitfield to  1.</td>
+  <td style="text-align: left;"> TRIGGER_HARDFAULT</td>
+  <td style="text-align: left;"> Trigger a Hardfault interrupt by unaligned memory access will cause the Hardfault handler to execute and in turn by waiting in a while(1) loop the NMI Handler will issue a SW reset.</td>
+  </tr>
+  <tr class="odd">
+  <td style="text-align: left;"> 0x03</td>
+  <td style="text-align: left;"> TRIGGER_WDOG_RESET</td>
+  <td style="text-align: left;"> Trigger the WDOG timer to generate a HW reset (NMI interrupt will not occur)</td>
   </tr>
   <tr class="even">
   <td style="text-align: left;"> 0x04</td>
-  <td style="text-align: left;">Enabling the P0_5 as Power-On Reset (POR) source. A high polarity signal will cause a POR on P0_5.</td>
+  <td style="text-align: left;"> TRIGGER_SW_RESET</td>
+  <td style="text-align: left;"> Trigger a Software Reset be setting the SYS_CTRL_REG[SW_RESET] bitfield to  1.</td>
+  </tr>
+  <tr class="odd">
+  <td style="text-align: left;"> 0x05</td>
+  <td style="text-align: left;"> TRIGGER_HW_RESET</td>
+  <td style="text-align: left;"> Trigger a HW reset by enabling RESET_ON_WAKEUP, sleep is enabled and on wake up the device will reset. The same reset can also be triggered by the RST pad or P00 (for the DA14531).</td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;"> 0x06</td>
+  <td style="text-align: left;"> TRIGGER_POR_RESET</td>
+  <td style="text-align: left;"> Trigger a POR reset on P0_5 when pin goes high. The code will activate the internal pull up and de-activate sleep until the reset occurs.</td>
   </tr>
 </tbody>
 </table>
-
-> __Note:__ 
-In case of the **Hardware Reset**, the RESET button in the Evaluation Board should be used. 
-
-> __Note:__ 
-The the POR is enabled, a high polarity signal will cause a POR on P0_5.
 
 Table below demonstrates the different values of the "Reset Detection" characteristic:
 
@@ -113,46 +158,56 @@ Table below demonstrates the different values of the "Reset Detection" character
 <thead>
   <tr class="header">
   <th style="text-align: left;">Description</th>
-  <th style="text-align: center;">Value</th>
+  <th style="text-align: center;">Value (DA14531)</th>
+  <th style="text-align: center;">Value (DA14585/586)</th>
   </tr>
 </thead>
 <tbody>
   <tr class="odd">
   <td style="text-align: left;">No RESET</td>
-  <td style="text-align: center;"> 0x00 </td>
+  <td style="text-align: center;" colspan="2"> 0x0000 </td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;">SW reset NMI has occured</td>
+  <td style="text-align: center;" colspan="2"> 0x0204 </td>
+  </tr>
   <tr class="odd">
-  <td style="text-align: left;">WDOG</td>
-  <td style="text-align: center;"> 0x01 </td>
+  <td style="text-align: left;">SW reset Hardfault has occured</td>
+  <td style="text-align: center;" colspan="2"> 0x0304 </td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;">HW Reset caused by Watchdog</td>
+  <td style="text-align: center;"> 0x000E </td>
+  <td style="text-align: center;"> 0x0006 </td>
   </tr>
   <tr class="odd">
   <td style="text-align: left;">Software Reset</td>
-  <td style="text-align: center;"> 0x02 </td>
+  <td style="text-align: center;" colspan="2"> 0x0004 </td>
   </tr>
-  <tr class="odd">
+  </tr>
+  <tr class="even">
   <td style="text-align: left;">Hardware Reset</td>
-  <td style="text-align: center;"> 0x03 </td>
+  <td style="text-align: center;" colspan="2"> 0x0006 </td>
   </tr>
-  <tr class="odd">
-  <td style="text-align: left;">Power-on-Reset</td>
-  <td style="text-align: center;"> 0x04 </td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;">Power on Reset</td>
+  <td style="text-align: center;" colspan="2"> 0x000F </td>
   </tr>
 </tbody>
 </table>
 
+>__Note:__
+The DA14585/586 is not able to identify the difference between a HW reset that occured from the watchdog or a common HW reset occured from the RST pad or RESET_ON_WAKEUP.
+
+>__Note:__
+Since the DA14585/586 doesn't include a HW for reset identification the determination of the reset type is done via reading register values that either retain their state depending on the reset. The values assigned for the reset types in the DA14585 by the fw are identical to the ones that the DA14531 HW uses.
+
 ## Reset Mechanism in DA14531
 
-See **Section 5** in [DA14531 datasheet](https://www.dialog-semiconductor.com/da14531_datasheet) for more detailed information on RESET functionality .
+See **Section 5** in [DA14531 datasheet](https://www.dialog-semiconductor.com/da14531_datasheet) for more detailed information on RESET functionality.
 
-There are three (3) main reset signals in the DA14531:
-- ***Power-On Reset (POR) :*** it is optional triggered by a GPIO set as the POR source with a
-selectable polarity and/or the RST pad (P0_0) after a programmable time delay
-- ***HW reset :*** it is optional triggered by the RST pad (P0_0) when it becomes active for a short
-period of time (less than the programmable delay for POR)
-- ***SW reset :*** it is triggered by writing the SYS_CTRL_REG[SW_RESET] bit
-
-The SDK6 provides a function-wrapper, namely ``reset_indication()``  to notify the application that system has been reset. This function reads the **RESET_STAT_REG** register. 
-
-Depending on the source of the reset, the bits in the **RESET_STAT_REG**. The table below is showing the different values (in hex) of **RESET_STAT_REG** :
+As mentioned the DA14531 includes a special register for identifying the 
 
 <table>
   <caption> <b> <i>Values of RESET_STAT_REG</i></b></caption>
@@ -193,7 +248,7 @@ Depending on the source of the reset, the bits in the **RESET_STAT_REG**. The ta
   <td style="text-align: center;">1</td>
   <td style="text-align: center;">0</td>
   <td style="text-align: center;">0x06</td>
-  <td style="text-align: left;">HWRESET_VAL/td>
+  <td style="text-align: left;">HWRESET_VAL</td>
   </tr>
   <tr class="odd">
   <td style="text-align: left;">Power-on-Reset</td>
@@ -216,6 +271,8 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 - For the initial setup of the example please refer to [this section](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html) of the dialog support portal.
 
 - For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
+
+- For the DA14585/586 Getting started guide you can refer to this [link](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
 
 ### Compile & Run
 
@@ -246,17 +303,17 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 
 6. Connect to the ``Reset Detection``
 
-7. Once the device is connected to the cell phone, a custom service with two(2) should be detected.
+7. Once the device is connected to the cell phone, a custom service with two characteristics should be detected.
 
     ![reset_detection_con](assets/reset_detection_conn.PNG)
 
-8. Write **0x01** for triggering a WDOG. 
+8. Write **0x02** for triggering a Hardfault. 
 
 9. After the device reboots, in the serial terminal the following message should be displayed indicating that the source of the RESET was the WDOG expiration.
 
-    ![wdog](assets/wdog.PNG)
+    ![wdog](assets/Hardfault.PNG)
 
-10. If it is re-connected to the mobile application, the value  of the **Reset detection** characteristic should be **0x01**. 
+10. If it is re-connected to the mobile application, the value  of the **Reset detection** characteristic should be **0x0304**. 
 
 ## Known Limitations
 

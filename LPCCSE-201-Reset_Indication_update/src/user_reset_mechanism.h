@@ -162,14 +162,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,
                           ke_task_id_t const src_id);
-						  
-/**
- ****************************************************************************************
- * @brief Handles the sourse of the reset and indicate the application
- * @return void
- ****************************************************************************************
-*/
-void user_reset_indication(void);
                           
 /**
  ****************************************************************************************

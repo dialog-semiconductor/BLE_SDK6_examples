@@ -69,8 +69,8 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
     {
         case TRIGGER_WDOG_RESET:
         {
-            const char wdg_nmi_msg[] = "The device will reset by the Watchdog Reset no NMI will occur";
-            /*Reload the value of the watchdog so we have time to print a mesage*/
+            const char wdg_nmi_msg[] = "The device will reset by the Watchdog Reset no NMI will occur\n\r";
+            /*Reload the value of the watchdog to make sure the message will be printed*/
             wdg_reload(WATCHDOG_DEFAULT_PERIOD);
             uart_send(UART2, (uint8_t*)wdg_nmi_msg, sizeof(wdg_nmi_msg), UART_OP_BLOCKING);
             /*Triggering the WDOG timer to generates a WDOG (SYS) reset at value 0 and can not be frozen by Software.*/	
@@ -80,14 +80,14 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
             break;
         case TRIGGER_HARDFAULT:
         {
-            const char hrd_fault_msg[] = "The device will hit the Hardfault handler";
+            const char hrd_fault_msg[] = "The device will hit the Hardfault handler\n\r";
             uart_send(UART2, (uint8_t*)hrd_fault_msg, sizeof(hrd_fault_msg), UART_OP_BLOCKING);
             *(uint32_t *)0x01 = 0x90;
         }
             break;
         case TRIGGER_WDOG_NMI:
         {
-            const char wdg_rst_msg[] = "The device will reset by a SW reset, NMI will occur";
+            const char wdg_rst_msg[] = "The device will reset by a SW reset, NMI will occur\n\r";
             /*Reload the value of the watchdog so we have time to print a mesage*/
             wdg_reload(WATCHDOG_DEFAULT_PERIOD);
             uart_send(UART2, (uint8_t*)wdg_rst_msg, sizeof(wdg_rst_msg), UART_OP_BLOCKING);
@@ -98,33 +98,21 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
             break;
         case TRIGGER_SW_RESET:
         {
-            const char sw_rst_msg[] = "The device will reset by a SW reset";
+            const char sw_rst_msg[] = "The device will reset by a SW reset\n\r";
             uart_send(UART2, (uint8_t*)sw_rst_msg, sizeof(sw_rst_msg), UART_OP_BLOCKING);
-            usDelay(25);    // Give some time for the UART to transmit the last character before reset
+            usDelay(100);    // Give some time for the UART to transmit the last character before reset
             /*Generating a Software Reset.*/	
             SetBits16(SYS_CTRL_REG, SW_RESET, 1);
         }
             break;
         case TRIGGER_HW_RESET:
         {
-            const char hw_rst_msg[] = "The device will reset by a HW reset (via the RESET_ON_WAKEUP)";
+            const char hw_rst_msg[] = "The device will reset by a HW reset (via the RESET_ON_WAKEUP)\n\r";
             uart_send(UART2, (uint8_t*)hw_rst_msg, sizeof(hw_rst_msg), UART_OP_BLOCKING);
-            usDelay(25);    // Give some time for the UART to transmit the last character before reset
-#if (__DA14531__) && (0)
-            /* 
-             * For generating a HW reset with no WDOG we will set the P00 high. The system won't allow while reset 
-             * function is enabled to use P00, thus we achieve that by disabling the reset, charge the line and 
-             * enable the reset function on P00 again.
-             */
-            GPIO_Disable_HW_Reset();                                                // Disable the reset function from P00
-            GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_0, OUTPUT, PID_GPIO, true);     // Set P00 to active to charge the line
-            GPIO_Enable_HW_Reset();                                                 // Activate reset again
-#else
             // Enable sleep
             arch_set_extended_sleep(false);
             // Perform HW reset on wake-up
             SetBits16(PMU_CTRL_REG, RESET_ON_WAKEUP, 1);
-#endif
         }
             break;
 
@@ -136,7 +124,7 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
             GPIO_EnablePorPin( GPIO_POR_PORT, GPIO_POR_PIN, GPIO_POR_PIN_POLARITY_HIGH , POR_TIME_VAL );
             /* Activate the pull up on the pin to force the POR reset */
             GPIO_ConfigurePin( GPIO_POR_PORT, GPIO_POR_PIN, INPUT_PULLUP, PID_GPIO, false );
-            /* Disable sleep in order for the periph init not to run again */
+            /* Disable sleep in order for the periph init not to run again and change the state of the pin*/
             arch_disable_sleep();
             break;
         }

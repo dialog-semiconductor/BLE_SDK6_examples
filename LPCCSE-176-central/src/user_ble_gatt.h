@@ -100,7 +100,7 @@ void user_gatt_read_simple(uint8_t con_idx, uint16_t handle);
  * @return void
  ****************************************************************************************
  */
-void user_ble_gatt_write(uint8_t op, uint8_t con_idx, uint16_t handle, uint8_t *data, uint8_t data_len);
+void user_ble_gatt_write(uint8_t op, uint8_t con_idx, uint16_t handle, uint8_t *data, uint16_t data_len);
 
 
 /**

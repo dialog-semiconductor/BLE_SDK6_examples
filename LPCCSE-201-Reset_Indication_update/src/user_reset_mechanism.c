@@ -95,11 +95,18 @@ void reset_indication(uint16_t reset_stat)
 	latest_reset_status = reset_stat ;
 #else
     // The reset value of the POR_TIMER_REG is not retained only when POR occurs 
-    if(reset_stat != 0x18)
+    if(reset_stat == 0x18)
+    {
+        SetWord16(POR_TIMER_REG, POR_TIME & POR_TIME_VAL);
         latest_reset_status = PORESET_VAL;
+    }
+    // The default value of the TRIM_CTRL_REG is 0xA2 and swicthed to 0x00 when POWER_OPTIMIZATIONS are used 
+    // if TRIM_CTRL_REG has switched back to default a HW reset has occured.
+    // TODO: Assert warning if power optimizations are not used
+    else if(GetWord8(TRIM_CTRL_REG) == XTAL16M_TRIM_DELAY_SETTING)
+        latest_reset_status = HWRESET_VAL;
     else
-        // The DA14585 cannot tell the difference between a HW or a SW reset, so its either POR or a RESET
-        latest_reset_status = SWRESET_VAL; 
+        latest_reset_status = SWRESET_VAL;
 #endif
     latest_reset_status |= (uint16_t)latest_fault_status[FAULT_INDEX] << 8;
 }
@@ -123,8 +130,8 @@ void user_set_watchdog_flag(void)
 void user_error_check(void)
 {
     // Read the magic values from the un-initialized area
-    volatile uint32_t magic_num_1 = co_read32p(&latest_fault_status[MAGIC_NUM_1_INDEX]);
-    volatile uint32_t magic_num_2 = co_read32p(&latest_fault_status[MAGIC_NUM_2_INDEX]);
+    uint32_t magic_num_1 = co_read32p(&latest_fault_status[MAGIC_NUM_1_INDEX]);
+    uint32_t magic_num_2 = co_read32p(&latest_fault_status[MAGIC_NUM_2_INDEX]);
     
     // Check if the magic values are valid
     if (magic_num_1 == MAGIC_NUM_1 && magic_num_2 == MAGIC_NUM_2)
@@ -151,8 +158,8 @@ void user_error_check(void)
 */
 void user_reset_indication(void)
 {
-    volatile uint8_t reset = latest_reset_status & 0xFF;
-    volatile uint8_t fault = (latest_reset_status >> 8);
+    uint8_t reset = latest_reset_status & 0xFF;
+    uint8_t fault = (latest_reset_status >> 8);
     
 	switch(reset)
 	{
@@ -169,9 +176,13 @@ void user_reset_indication(void)
             * turn asserts the SW reset in the SYS_CTRL_REG
             */
             if(fault & HARDFAULT_OCCURED)
+            {
                 arch_printf("\n\r****** SW RESET DUE TO HARDFAULT ******\n\r");
+            }
             else if (fault & NMI_OCCURED)
+            {
                 arch_printf("\n\r****** SW RESET DUE TO NMI WATCHDOG ******\n\r");
+            }
         }
 		break;
 		

@@ -107,9 +107,10 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
             break;
         case TRIGGER_HW_RESET:
         {
-            const char hw_rst_msg[] = "The device will reset by a HW reset";
+            const char hw_rst_msg[] = "The device will reset by a HW reset (via the RESET_ON_WAKEUP)";
             uart_send(UART2, (uint8_t*)hw_rst_msg, sizeof(hw_rst_msg), UART_OP_BLOCKING);
             usDelay(25);    // Give some time for the UART to transmit the last character before reset
+#if (__DA14531__) && (0)
             /* 
              * For generating a HW reset with no WDOG we will set the P00 high. The system won't allow while reset 
              * function is enabled to use P00, thus we achieve that by disabling the reset, charge the line and 
@@ -118,21 +119,30 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
             GPIO_Disable_HW_Reset();                                                // Disable the reset function from P00
             GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_0, OUTPUT, PID_GPIO, true);     // Set P00 to active to charge the line
             GPIO_Enable_HW_Reset();                                                 // Activate reset again
+#else
+            // Enable sleep
+            arch_set_extended_sleep(false);
+            // Perform HW reset on wake-up
+            SetBits16(PMU_CTRL_REG, RESET_ON_WAKEUP, 1);
+#endif
         }
             break;
+
         case TRIGGER_POR_RESET:
         {
-            const char por_rst_msg[] = "The device will reset by a POR reset";
+            const char por_rst_msg[] = "The device will reset by a POR reset\n\r";
             uart_send(UART2, (uint8_t*)por_rst_msg, sizeof(por_rst_msg), UART_OP_BLOCKING);
             /* Enabling the P0_5 as Power-On Reset (POR) source. A high polarity signal will cause a POR on P0_5. */
             GPIO_EnablePorPin( GPIO_POR_PORT, GPIO_POR_PIN, GPIO_POR_PIN_POLARITY_HIGH , POR_TIME_VAL );
             /* Activate the pull up on the pin to force the POR reset */
             GPIO_ConfigurePin( GPIO_POR_PORT, GPIO_POR_PIN, INPUT_PULLUP, PID_GPIO, false );
+            /* Disable sleep in order for the periph init not to run again */
+            arch_disable_sleep();
             break;
         }
         default:
         {
-            const char no_rst_msg[] = "Not a valid message to trigger a reset";
+            const char no_rst_msg[] = "Not a valid message to trigger a reset\n\r";
             uart_send(UART2, (uint8_t*)no_rst_msg, sizeof(no_rst_msg), UART_OP_BLOCKING);
         }
             break;

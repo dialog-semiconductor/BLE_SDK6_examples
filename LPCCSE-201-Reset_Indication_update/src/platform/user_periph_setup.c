@@ -69,8 +69,6 @@ void GPIO_reservations(void)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
 
-    RESERVE_GPIO(LED, GPIO_LED_PORT, GPIO_LED_PIN, PID_GPIO);
-
 #if !defined (__DA14586__)
     RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
 #endif
@@ -102,8 +100,6 @@ void set_pad_functions(void)
 #endif
 
     GPIO_ConfigurePin(GPIO_POR_PORT, GPIO_POR_PIN, INPUT_PULLDOWN, PID_GPIO, false);
-	
-	GPIO_ConfigurePin(GPIO_LED_PORT, GPIO_LED_PIN, OUTPUT, PID_GPIO, false);
 }
 
 #if defined (CFG_PRINTF_UART2)

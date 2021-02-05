@@ -86,6 +86,7 @@
 
 // Retained variables
 int32_t saved_temper[PREV_TEMPER_COUNT]       __SECTION_ZERO("retention_mem_area_uninit"); //Previous saved output temperatures
+uint32_t wakeup_count                         __SECTION_ZERO("retention_mem_area_uninit"); //Wake-up counter
 uint32_t adv_count                            __SECTION_ZERO("retention_mem_area_uninit"); //Advertising counter          
 
 timer_hnd adv_timer                           __SECTION_ZERO("retention_mem_area_uninit"); //Advertising cancel event timer
@@ -133,7 +134,7 @@ static int32_t user_update_temper(void)
     int i;
     for (i=1; i<PREV_TEMPER_COUNT; i++)
     {
-        uint8_t idx = (adv_count + PREV_TEMPER_COUNT - i) % PREV_TEMPER_COUNT;
+        uint8_t idx = (wakeup_count + PREV_TEMPER_COUNT - i) % PREV_TEMPER_COUNT;
         next_temper_value += saved_temper[idx];
     }
     
@@ -142,8 +143,8 @@ static int32_t user_update_temper(void)
     next_temper_value /= PREV_TEMPER_COUNT;
 
     //Update advertising count and store the temperature
-    adv_count++;
-    saved_temper[adv_count % PREV_TEMPER_COUNT] = next_temper_value;
+    wakeup_count++;
+    saved_temper[wakeup_count % PREV_TEMPER_COUNT] = next_temper_value;
     
     return next_temper_value;
 }
@@ -302,7 +303,8 @@ void user_app_on_init(void)
         for (i=0; i<PREV_TEMPER_COUNT; i++)
             saved_temper[i] = PREV_TEMPER_INIT_VALUE;
         
-        //...and advertising count to zero
+        //...and advertising and wake-up count to zero
+        wakeup_count = 0;
         adv_count = 0;
     }
 
@@ -353,6 +355,30 @@ void user_app_on_adv_nonconn_complete(uint8_t status)
                             false);
 #endif
     }
+}
+
+/**
+ ****************************************************************************************
+ * @brief Function called when BLE is powered. 
+          Sets up the configured low-power mode.
+ * @return GOTO_SLEEP
+ * @note Return type allows the device to enter sleep.
+ ****************************************************************************************
+*/
+arch_main_loop_callback_ret_t user_on_ble_powered(void)
+{
+    uint8_t last_ble_event;
+
+    last_ble_event = arch_last_rwble_evt_get();
+
+    if (last_ble_event  == BLE_EVT_END)
+    {
+        adv_count = adv_count/3;
+        adv_count++;
+        adv_count = 3*adv_count;
+    }
+
+    return GOTO_SLEEP;
 }
 
 /// @} APP

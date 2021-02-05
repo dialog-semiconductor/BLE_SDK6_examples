@@ -53,6 +53,7 @@
 #include "app_task.h"                  // application task
 #include "app.h"                       // application definitions
 #include "app_callback.h"
+#include "arch_api.h"
 
 /*
  * DEFINES
@@ -60,8 +61,8 @@
  */
 
 /* Define hibernation mode */
-#define CFG_HIBERNATION_MODE
-#undef  CFG_DEEP_SLEEP_MODE
+#undef CFG_HIBERNATION_MODE
+#define  CFG_DEEP_SLEEP_MODE
 
 #if defined(CFG_HIBERNATION_MODE) && defined(CFG_DEEP_SLEEP_MODE)
 #error "Config error: CFG_HIBERNATION_MODE and CFG_DEEP_SLEEP_MODE cannot be defined at the same time"
@@ -96,6 +97,15 @@ void user_app_adv_start(void);
  ****************************************************************************************
 */
 void user_app_on_adv_nonconn_complete(uint8_t status);
+
+/**
+ ****************************************************************************************
+ * @brief Function called when BLE is powered. 
+ * @return GOTO_SLEEP
+ * @note Return type allows the device to enter sleep.
+ ****************************************************************************************
+*/
+arch_main_loop_callback_ret_t user_on_ble_powered(void);
 
 /// @} APP
 

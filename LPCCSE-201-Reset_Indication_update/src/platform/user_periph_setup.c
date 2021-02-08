@@ -43,6 +43,11 @@
 #include "uart.h"
 #include "syscntl.h"
 
+#if defined (CFG_SPI_FLASH_ENABLE)
+#include "spi.h"
+#include "spi_flash.h"
+#endif
+
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
@@ -72,9 +77,18 @@ void GPIO_reservations(void)
 #if !defined (__DA14586__)
     RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
 #endif
-	
+
+#if defined (CFG_SPI_FLASH_ENABLE) && !defined(__DA14586__)
+    RESERVE_GPIO(SPI_CLK, SPI_CLK_PORT, SPI_CLK_PIN, PID_SPI_CLK);
+#if !defined (CFG_PRINTF_UART2) || defined (__DA14531__)
+    RESERVE_GPIO(SPI_DO,  SPI_DO_PORT,  SPI_DO_PIN,  PID_SPI_DO);
+#endif
+    RESERVE_GPIO(SPI_DI,  SPI_DI_PORT,  SPI_DI_PIN,  PID_SPI_DI);
+#endif
+
+#if defined(__DA14531__) || defined (__DA14586__)
 	RESERVE_GPIO(POR,GPIO_POR_PORT, GPIO_POR_PIN, PID_GPIO);
-	
+#endif
 }
 	
 #endif

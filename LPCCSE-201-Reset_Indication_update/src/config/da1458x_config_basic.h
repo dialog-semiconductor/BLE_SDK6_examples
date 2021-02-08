@@ -36,7 +36,7 @@
 #include "da1458x_stack_config.h"
 #include "user_profiles_config.h"
 
-#if !defined (__DA14531__) && !defined (__ES2_DA14531__)
+#if !defined (__DA14531__)
 
 /***************************************************************************************************************/
 /* Integrated or external processor configuration                                                              */
@@ -100,7 +100,7 @@
 /* SPI FLASH  (#define CFG_SPI_FLASH_ENABLE)                                                                    */
 /* I2C EEPROM (#define CFG_I2C_EEPROM_ENABLE)                                                                   */
 /****************************************************************************************************************/
-#undef CFG_SPI_FLASH_ENABLE
+#define CFG_SPI_FLASH_ENABLE
 #undef CFG_I2C_EEPROM_ENABLE
 
 /****************************************************************************************************************/
@@ -181,7 +181,7 @@
 /* SPI FLASH  (#define CFG_SPI_FLASH_ENABLE)                                                                    */
 /* I2C EEPROM (#define CFG_I2C_EEPROM_ENABLE)                                                                   */
 /****************************************************************************************************************/
-#undef CFG_SPI_FLASH_ENABLE
+#define CFG_SPI_FLASH_ENABLE
 #undef CFG_I2C_EEPROM_ENABLE
 
 /****************************************************************************************************************/

@@ -1,35 +1,38 @@
 
 ------
 
-# Different ways of handling RESET mechanism in DA14531
+# Reset type identification on DA14585/586, DA14531
 
 ------
 
 ## Example Description
-Both DA14531 and DA14585/586 devices comprise three main reset signals that can be triggered from different sources, the reset signals are 
+Both DA14531 and DA14585/586 devices comprise three main reset signals that can be triggered from different sources, the reset signals are:
 * **POR** : Triggred when VDD (VBAT_LOW and VBAT_HIGH rails only for the DA14531) voltage crosses the minimum voltage threshold value or optionally triggered by a configured GPIO or if the RST pad is held high for more than the POR_TIMER_REG value.
 * **HW RESET** : Triggered by the RST pad (P00 for the DA14531), the watchdog, or when waking up from sleep while having the RESET_ON_WAKEUP bit set. 
 * **SW RESET** : Triggered when setting the SW_RESET bit.
 
-The current SW example demonstrates how to issue and identify the different kinds of reset on the DA14531 and DA14585/586 devices as well as identifying if the device issued a Hardfault or an NMI Handler.
+The current SW example demonstrates how to issue and identify the different kinds of reset on the DA14531 and DA14585/586 devices as well as identifying if the device run into a Hardfault or an NMI interrupt.
 
-The DA14531 includes a special register that indicates the reset source previously occured (RESET_STAT_REG) while in order to identify the reset source on the DA14585/586 devices registers that retain their values, through the different kinds of resets, are used. The SDK 6.0.14.1114 includes a weak function in the system_init() which can be implemented on user space in order for the application to be aware of the current reset.    
+The DA14531 includes a special register that indicates the reset source previously occured (RESET_STAT_REG) while in order to identify the reset source on the DA14585/586 devices registers that retain their values, through the different kinds of reset signals, are used. The SDK 6.0.14.1114 includes a weak function in the system_init() which can be implemented on user space in order for the application to be aware of the current reset.
 
 ## Key Features
 - Store data in the uninitialized section of the Retention-RAM for tracking an NMI or a Hardfault.
-- Detect source of :
+- Detect the following reset signals:
     - Hardware reset
     - Software reset
-    - Reset by WDOG expiration
+    - HW Reset by WDOG expiration (only for DA14531)
     - Power-on-Reset
-- Using UART2 for debugging purposes
+- Using UART2 for debugging purposes.
 - 128-bit UUID custom profile 
-    - For reading the previous reset reason.
-    - For issuing a new reset.
+    - For reading the current reset reason.
+    - For issuing a reset.
 
 ## SDK modifications
-The current example uses the un-initialized data section in order to store identification flags for the application code to be aware if an NMI or a Hardfault has occured. The identification flag is preceded and followed by 32bit magic values that act as memory integrity check.
-For setting the flags minor changes has to be applied in the SDK in order for the flags to be set if the NMI or the Hardfault handler occurs. The user will have to add: 
+The current example uses the un-initialized data section in order to store identification flags for the application code to be aware if an NMI or a Hardfault has occured. The identification flag is preceded and followed by 32bit magic values that act as memory integrity check. 
+
+When the fw is build with the **CFG_DEVELOPMENT_DEBUG** flag defined, and an NMI or a Hardfault occurs, will halt the processor either in a while(1) loop or in a breakpoint in order for the developer to check the issue via the debugger. For reseting the device as soon as one of those interrupts occur the **CFG_DEVELOPMENT_DEBUG** flag should be undefined. In that case the fw will issue a SW reset and start execution of the bootrom. By default the example has the flag undefined for demonstrating the fault recognition functionality.
+
+For setting the fault flags minor changes has to be applied in the SDK in order to set the corresponding flag if the NMI or the Hardfault handler executes. The user will have to add: 
 - For the Hardfault:
   - Include the user_reser_mechanism.h file in the hardfaut_handler.c:
     ```c
@@ -63,15 +66,24 @@ For setting the flags minor changes has to be applied in the SDK in order for th
       - Connect the DA145xx Pro Development Kit to the host computer.
       - UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionality.
 	
-	![DA14531_connection_wires](assets/DA14531_connection_wires.PNG)
+	![DA14531_connection_wires](assets/hardware_setup_531.jpg)
+
+  - For running the example on a **DA14585/586 Daughter board + DA145xxDEVKT-P PRO Motherboard** the following configuration is required.         
+      - Connect the DA145xx Pro Development Kit to the host computer.
+      - UART TX on P0_6 for DA14585/586 (Place wire between J1:17 and J2:11) for printing functionality.
+	
+	![DA14531_connection_wires](assets/hardware_setup_585.jpg)
 
 * **Software configuration**
 
-	This example requires:
-    * SmartSnippets Toolbox 5.0.14.
-    * SDK6.0.14
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
-	- **A simple serial terminal** should be installed on the PC (e.g. Putty or Teraterm)
+This example requires:
+* SmartSnippets Toolbox 5.0.14.
+* SDK6.0.14
+* **SEGGER’s J-Link** tools should be downloaded and installed.
+* **A simple serial terminal** should be installed on the PC (e.g. Putty or Teraterm).
+* The example provides also the below options:
+  * define **CFG_PRINTF** (in da1458x_config_basic.h) for printing the reset reason and faults when start up (by default enabled in the SW example).
+  * define **CFG_SPI_FLASH_ENABLE** (in da1458x_config_basic.h) for powering off the flash in case the device boots from the external SPI memory (by default enabled in the SW example).
 
 ## Custom profile
 An 128-bit UUID custom profile is included with 1 custom service. 
@@ -126,7 +138,7 @@ User can explicitly  cause a RESET by writing the appropriate value in the "Cont
    <tr class="even">
   <td style="text-align: left;"> 0x02</td>
   <td style="text-align: left;"> TRIGGER_HARDFAULT</td>
-  <td style="text-align: left;"> Trigger a Hardfault interrupt by unaligned memory access will cause the Hardfault handler to execute and in turn by waiting in a while(1) loop the NMI Handler will issue a SW reset.</td>
+  <td style="text-align: left;"> Trigger a Hardfault interrupt by unaligned memory access, this will cause the Hardfault handler to execute and in turn by waiting in a while(1) loop the NMI Handler will issue a SW reset.</td>
   </tr>
   <tr class="odd">
   <td style="text-align: left;"> 0x03</td>
@@ -276,14 +288,18 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 
 ### Compile & Run
 
-1. Open the project via Keil µVision 5
+1. Open the project via Keil µVision 5.
 
-2. Build the project and load it to target. The project can be run either from ``System-RAM`` or ``SPI Flash``. 
+2. Select the proper build for the corresponding device (DA14531, DA14585, DA14586).
+
+    ![first_boot_msg](assets/device_selection.PNG)
+
+3. Build the project and load it to target. The project can be run either from ``System-RAM`` or ``SPI Flash``. 
     > __Note:__ 
     In case of SPI Flash, the [Flash Programmer](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) from SmartSnippets Toolbox should be used. Refer to the [user manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/index.html) to get familiar with the SmartSnippets Toolbox.
 
 
-3. Set up a serial terminal session by selecting the proper virtual COM port and set the port configuration as shown below:
+4. Set up a serial terminal session by selecting the proper virtual COM port and set the port configuration as shown below:
       - Baudrate: 115200
       - Data: 8 bits
       - Stop: 1 bit
@@ -293,27 +309,31 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
     > __Note:__ 
     Refer to **Section 10** in [Get Started tutorial](http://lpccs-docs.dialog-semiconductor.com/Tutorial_SDK6/serial_port.html) for more information on enabling the UART for debugging purposes.
 
-4. In the initial boot, the following message should be displayed in the Serial Terminal:
+5. In the initial boot (the device is has just powered up), the following message should be displayed in the Serial Terminal:
 
     ![first_boot_msg](assets/first_boot_msg.PNG)
 
-5. Open a generic BLE mobile application and the ``Reset Detection`` device name should be detected, as shown below.
+6. Open a generic BLE mobile application and the ``Reset Detection`` device name should be detected, as shown below.
 
     ![reset_detection_adv](assets/reset_detection_adv.PNG)
 
-6. Connect to the ``Reset Detection``
+7. Connect to the ``Reset Detection``
 
-7. Once the device is connected to the cell phone, a custom service with two characteristics should be detected.
+8. Once the device is connected to the cell phone, a custom service with two characteristics should be detected. Feel free to read the second characteristic **Reset Detection** which indicates the reset reason. 
 
-    ![reset_detection_con](assets/reset_detection_conn.PNG)
+    ![reset_detection_por](assets/reset_detection_por.PNG)
 
-8. Write **0x02** for triggering a Hardfault. 
+9. Write **0x02** for triggering a Hardfault on the first characteristic **Control Point**. The device will indicate that a Hardfault will occur and will reset.
+    ![hardfault_trigger](assets/Hardfault_trigger.PNG)
 
-9. After the device reboots, in the serial terminal the following message should be displayed indicating that the source of the RESET was the WDOG expiration.
+10. After the code has reached the hardfault the watchdog will be reloaded and the device will halt in a while(1) loop until the watchdog elapses (provided that the CFG_DEVELOPMENT_DEBUG is undefined). As soon as the watchdog elapses the NMI Handler will occur and the device will SW reset and start executing the ROM booter. If there is no image in the SPI or the memory is not connected to the device the image will have to be downloaded again via Keil, eitherwise the booter will boot using image from the SPI flash. The following message will be printed on the terminal on start up.
 
-    ![wdog](assets/Hardfault.PNG)
+    ![reboot_from_hardfault](assets/reboot_from_hardfault.PNG)
 
-10. If it is re-connected to the mobile application, the value  of the **Reset detection** characteristic should be **0x0304**. 
+    > __Note:__ 
+    In case the fw is re-downloaded via Keil the debugger will issue a HW reset on the device, this will be identified by the code and a HW reset will be presented as the reason of reset. On the other hand if the image is downloaded from the SPI flash the reset will be identified as a SW reset. 
+
+11. If it is re-connected to the mobile application, the value  of the **Reset detection** characteristic should be **0x0306**. 
 
 ## Known Limitations
 

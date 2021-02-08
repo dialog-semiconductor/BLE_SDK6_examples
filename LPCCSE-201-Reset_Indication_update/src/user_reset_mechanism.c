@@ -51,6 +51,11 @@
 #include "co_bt.h"
 #include "arch_console.h"
 
+#if defined (CFG_SPI_FLASH_ENABLE)
+#include "user_periph_setup.h"
+#include "spi_flash.h"
+#endif
+
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -208,13 +213,53 @@ static void print_reset_fault_reason(void)
     arch_printf("Reset reason: 0x%02x, Fault reason 0x%02x\n\r", reset, fault);
 }
 
+#if defined (CFG_SPI_FLASH_ENABLE)
+// Configuration struct for SPI
+static const spi_cfg_t spi_cfg = {
+    .spi_ms = SPI_MS_MODE,
+    .spi_cp = SPI_CP_MODE,
+    .spi_speed = SPI_SPEED_MODE,
+    .spi_wsz = SPI_WSZ,
+    .spi_cs = SPI_CS,
+    .cs_pad.port = SPI_EN_PORT,
+    .cs_pad.pin = SPI_EN_PIN,
+#if defined (__DA14531__)
+    .spi_capture = SPI_EDGE_CAPTURE,
+#endif
+};
+
+// Configuration struct for SPI FLASH
+static const spi_flash_cfg_t spi_flash_cfg = {
+    .chip_size = SPI_FLASH_DEV_SIZE,
+};
+#endif
+
 void user_app_init(void)
 {
+/*Configure the SPI interface in order to shut down the flash after start up*/
+#if defined (CFG_SPI_FLASH_ENABLE)
+    GPIO_ConfigurePin(SPI_CLK_PORT, SPI_CLK_PIN, OUTPUT, PID_SPI_CLK, false);
+    GPIO_ConfigurePin(SPI_DO_PORT,  SPI_DO_PIN,  OUTPUT, PID_SPI_DO,  false);
+    GPIO_ConfigurePin(SPI_DI_PORT,  SPI_DI_PIN,  INPUT,  PID_SPI_DI,  false);
+
+    // Configure SPI Flash environment
+    spi_flash_configure_env(&spi_flash_cfg);
+    // Initialize SPI
+    spi_initialize(&spi_cfg);
+    spi_flash_power_down();
+    spi_disable();
+#if !defined(__DA14531__)    
+    // Configure UART2 TX Pad
+    GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
+#endif
+#endif
+    
+#if defined (CFG_PRINTF)  
+	print_reset_fault_reason();
+#endif		
+	
     app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     
-#if defined (CFG_PRINTF)    
-	print_reset_fault_reason();
-#endif			
     default_app_on_init();
 }
 

@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Feb 03 16:33:30 2021
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Feb 09 15:43:57 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_get_temp_async <= USED 0
@@ -52,7 +52,6 @@ arch_set_stateful_hibernation <= USED 0
 arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
 arch_force_active_mode <= USED 0
-arch_last_rwble_evt_get <= USED 0
 arch_restore_sleep_mode <= USED 0
 arch_set_deep_sleep <= USED 0
 ;FILE arch_system.o

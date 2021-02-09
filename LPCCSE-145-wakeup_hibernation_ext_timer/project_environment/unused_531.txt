@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Feb 03 16:33:30 2021
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Feb 09 15:33:11 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_get_temp_async <= USED 0
@@ -45,6 +45,7 @@ app_fill_random_byte_array <= USED 0
 app_get_address_type <= USED 0
 ;FILE arch_hibernation.o
 arch_hibernation_restore <= USED 0
+arch_set_hibernation <= USED 0
 arch_set_stateful_hibernation <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
@@ -52,9 +53,7 @@ arch_set_stateful_hibernation <= USED 0
 arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
 arch_force_active_mode <= USED 0
-arch_last_rwble_evt_get <= USED 0
 arch_restore_sleep_mode <= USED 0
-arch_set_deep_sleep <= USED 0
 ;FILE arch_system.o
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
@@ -109,10 +108,6 @@ rf_power_down <= USED 0
 ;FILE rtc.o
 rtc_get_alarm <= USED 0
 rtc_get_time_clndr <= USED 0
-rtc_init <= USED 0
-rtc_register_intr <= USED 0
-rtc_set_alarm <= USED 0
-rtc_set_time_clndr <= USED 0
 rtc_unregister_intr <= USED 0
 ;FILE rwble.o
 ;FILE rwip.o

@@ -36,7 +36,7 @@
 #include "da1458x_stack_config.h"
 #include "user_profiles_config.h"
 
-#if !defined (__DA14531__) && !defined (__ES2_DA14531__)
+#if !defined (__DA14531__)
 
 /***************************************************************************************************************/
 /* Integrated or external processor configuration                                                              */

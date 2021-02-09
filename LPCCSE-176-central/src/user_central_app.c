@@ -536,8 +536,7 @@ void user_app_on_set_dev_config_complete(void)
 		*/
 		default_app_on_set_dev_config_complete();
 	
-		ble_gap_error_t err = user_ble_gap_start_scan(true, SCAN_INTVL_MS, SCAN_WINDOW_MS, false);
-		ASSERT_ERROR(err == BLE_GAP_ERROR_NO_ERROR);
+		ble_scan_for_devices();
 }
 
 

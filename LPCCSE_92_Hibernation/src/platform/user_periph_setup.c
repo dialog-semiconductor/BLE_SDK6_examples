@@ -5,27 +5,9 @@
  *
  * @brief Peripherals setup and initialization.
  *
- * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2012-2020 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -46,15 +28,6 @@
 #include "user_hibernation.h"
 #include "syscntl.h"
 
-#if BLE_BATT_SERVER
-#include "app_bass.h"
-#endif
-
-#if (USE_RANGE_EXT)
-#include "range_ext_api.h"
-#include "sky66111.h"
-#endif
-
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
@@ -63,11 +36,6 @@
 #if defined (CFG_SPI_FLASH_ENABLE)
 #include "spi.h"
 #include "spi_flash.h"
-#endif
-
-#if defined (CFG_I2C_EEPROM_ENABLE)
-#include "i2c.h"
-#include "i2c_eeprom.h"
 #endif
 
 /*
@@ -86,7 +54,7 @@ void GPIO_reservations(void)
     // Push Button
     RESERVE_GPIO(PUSH_BUTTON, GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, PID_GPIO);
 
-#if defined (__DA14531__) && defined (CFG_APP_GOTO_HIBERNATION)
+#if defined (__DA14531__) && (defined (CFG_APP_GOTO_HIBERNATION) || defined (CFG_APP_GOTO_STATEFUL_HIBERNATION))
     // Wake up from hibernation pin
     RESERVE_GPIO(HIB_WAKE_UP, HIB_WAKE_UP_PORT, HIB_WAKE_UP_PIN, PID_GPIO);
 #endif
@@ -94,16 +62,6 @@ void GPIO_reservations(void)
 #if BLE_PROX_REPORTER
     // Alert LED
     RESERVE_GPIO(GREEN_LED, GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN, PID_GPIO);
-#endif
-
-#if (BLE_BATT_SERVER && USE_BAT_LEVEL_ALERT)
-    // Battery alert LED
-    RESERVE_GPIO(RED_LED, GPIO_BAT_LED_PORT, GPIO_BAT_LED_PIN, PID_GPIO);
-#endif
-
-#if defined (CFG_PRINTF_UART2)
-    // UART2 Tx pin
-    RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
 
 #if defined (CFG_SPI_FLASH_ENABLE) && !defined (__DA14586__)
@@ -114,16 +72,6 @@ void GPIO_reservations(void)
     RESERVE_GPIO(SPI_DI, SPI_DI_PORT, SPI_DI_PIN, PID_SPI_DI);
 #endif
 
-#if defined (CFG_I2C_EEPROM_ENABLE)
-    // I2C EEPROM
-    RESERVE_GPIO(I2C_SCL, I2C_SCL_PORT, I2C_SCL_PIN, PID_I2C_SCL);
-    RESERVE_GPIO(I2C_SDA, I2C_SDA_PORT, I2C_SDA_PIN, PID_I2C_SDA);
-#endif
-
-#if (USE_RANGE_EXT)
-    // Range extender
-    range_ext.init_gpio(NULL);
-#endif
 }
 #endif //DEVELOPMENT_DEBUG
 
@@ -142,24 +90,14 @@ void set_pad_functions(void)        // set gpio port function mode
     // Push Button
     GPIO_ConfigurePin(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, INPUT_PULLUP, PID_GPIO, false);
 
-#if defined (__DA14531__) && defined (CFG_APP_GOTO_HIBERNATION)
+#if defined (__DA14531__) && (defined (CFG_APP_GOTO_HIBERNATION) || defined (CFG_APP_GOTO_STATEFUL_HIBERNATION))
     // Wake up from hibernation pin
-    GPIO_ConfigurePin(HIB_WAKE_UP_PORT, HIB_WAKE_UP_PIN, INPUT_PULLUP, PID_GPIO, false); 
+    GPIO_ConfigurePin(HIB_WAKE_UP_PORT, HIB_WAKE_UP_PIN, INPUT_PULLUP, PID_GPIO, false);
 #endif
 
 #if (BLE_PROX_REPORTER)
     // Alert LED
     GPIO_ConfigurePin(GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN, OUTPUT, PID_GPIO, false);
-#endif
-
-#if (BLE_BATT_SERVER && USE_BAT_LEVEL_ALERT)
-    // Battery alert LED
-    GPIO_ConfigurePin(GPIO_BAT_LED_PORT, GPIO_BAT_LED_PIN, OUTPUT, PID_GPIO, false);
-#endif
-
-#if defined (CFG_PRINTF_UART2)
-    // UART2 Tx pin
-    GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
 
 #if defined (CFG_SPI_FLASH_ENABLE)
@@ -170,32 +108,8 @@ void set_pad_functions(void)        // set gpio port function mode
     GPIO_ConfigurePin(SPI_DI_PORT, SPI_DI_PIN, INPUT, PID_SPI_DI, false);
 #endif
 
-#if defined (CFG_I2C_EEPROM_ENABLE)
-    // I2C EEPROM
-    GPIO_ConfigurePin(I2C_SCL_PORT, I2C_SCL_PIN, INPUT, PID_I2C_SCL, false);
-    GPIO_ConfigurePin(I2C_SDA_PORT, I2C_SDA_PIN, INPUT, PID_I2C_SDA, false);
-#endif
-
-#if (USE_RANGE_EXT)
-    // Range extender
-    range_ext.enable(MAX_POWER, NULL);
-#endif
 }
 
-#if defined (CFG_PRINTF_UART2)
-// Configuration struct for UART2
-static const uart_cfg_t uart_cfg = {
-    .baud_rate = UART2_BAUDRATE,
-    .data_bits = UART2_DATABITS,
-    .parity = UART2_PARITY,
-    .stop_bits = UART2_STOPBITS,
-    .auto_flow_control = UART2_AFCE,
-    .use_fifo = UART2_FIFO,
-    .tx_fifo_tr_lvl = UART2_TX_FIFO_LEVEL,
-    .rx_fifo_tr_lvl = UART2_RX_FIFO_LEVEL,
-    .intr_priority = 2,
-};
-#endif
 
 #if defined (CFG_SPI_FLASH_ENABLE)
 // Configuration struct for SPI
@@ -218,29 +132,6 @@ static const spi_flash_cfg_t spi_flash_cfg = {
 };
 #endif
 
-#if defined (CFG_I2C_EEPROM_ENABLE)
-// Configuration struct for I2C
-static const i2c_cfg_t i2c_cfg = {
-    .clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET,
-    .clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET,
-    .clock_cfg.fs_hcnt = I2C_FS_SCL_HCNT_REG_RESET,
-    .clock_cfg.fs_lcnt = I2C_FS_SCL_LCNT_REG_RESET,
-    .restart_en = I2C_RESTART_ENABLE,
-    .speed = I2C_SPEED_MODE,
-    .mode = I2C_MODE_MASTER,
-    .addr_mode = I2C_ADDRESS_MODE,
-    .address = I2C_SLAVE_ADDRESS,
-    .tx_fifo_level = 1,
-    .rx_fifo_level = 1,
-};
-
-// Configuration struct for I2C EEPROM
-static const i2c_eeprom_cfg_t i2c_eeprom_cfg = {
-    .size = I2C_EEPROM_DEV_SIZE,
-    .page_size = I2C_EEPROM_PAGE_SIZE,
-    .address_size = I2C_ADDRESS_SIZE,
-};
-#endif
 
 void periph_init(void)  // set i2c, spi, uart, uart2 serial clks
 {
@@ -260,11 +151,6 @@ void periph_init(void)  // set i2c, spi, uart, uart2 serial clks
     // ROM patch
     patch_func();
 
-    // Initialize peripherals
-#if defined (CFG_PRINTF_UART2)
-    // Initialize UART2
-    uart_initialize(UART2, &uart_cfg);
-#endif
 
 #if defined (CFG_SPI_FLASH_ENABLE)
     // Configure SPI Flash environment
@@ -274,24 +160,12 @@ void periph_init(void)  // set i2c, spi, uart, uart2 serial clks
     spi_initialize(&spi_cfg);
 #endif
 
-#if defined (CFG_I2C_EEPROM_ENABLE)
-    // Configure I2C EEPROM environment
-    i2c_eeprom_configure(&i2c_cfg, &i2c_eeprom_cfg);
-
-    // Initialize I2C
-    i2c_eeprom_initialize();
-#endif
-
     // Set pad functionality
     set_pad_functions();
 
 #if (BLE_PROX_REPORTER)
     app_proxr_port_reinit(GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN);
     app_button_enable();
-#endif
-
-#if BLE_BATT_SERVER
-    app_batt_port_reinit();
 #endif
 
     // Enable the pads

@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Fri Oct 25 12:01:50 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Oct 01 15:12:07 2020
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -10,6 +10,7 @@ adc_unregister_interrupt <= USED 0
 ;FILE app.o
 active_conhdl_to_conidx <= USED 0
 active_conidx_to_conhdl <= USED 0
+app_easy_gap_advertise_stop <= USED 0
 app_easy_gap_advertise_with_timeout_stop <= USED 0
 app_easy_gap_dev_config_get_active <= USED 0
 app_easy_gap_directed_advertise_get_active <= USED 0

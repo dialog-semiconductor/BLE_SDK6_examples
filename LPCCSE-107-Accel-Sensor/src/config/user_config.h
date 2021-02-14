@@ -43,11 +43,13 @@
 #include "app_default_handlers.h"
 #include "app_adv_data.h"
 #include "co_bt.h"
+#include "user_accelerometer.h"
 
 /*
  * DEFINES
  ****************************************************************************************
  */
+#define NO_SENSOR                     // Set this if there is no sensor connected
 
 /*
  ****************************************************************************************
@@ -95,7 +97,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
+static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
 
 /*
  ****************************************************************************************
@@ -497,5 +499,7 @@ static const struct security_configuration user_security_conf = {
     .sec_req        = GAP_NO_SEC,
     #endif
 };
+
+#define DLG_EVENT_HANDLER_EXIT()                  adv_data_update_timer_cb();
 
 #endif // _USER_CONFIG_H_

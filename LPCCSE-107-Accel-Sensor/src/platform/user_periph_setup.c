@@ -56,10 +56,11 @@ void GPIO_reservations(void)
 i.e.
     RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);    //Reserve P_01 as Generic Purpose I/O
 */
-    
+#ifndef NO_SENSOR
     // Reserve GPIOs for ADXL345 sensor
     RESERVE_GPIO(ADXL_GPIO_SDA, ADXL345_SDA_PORT, ADXL345_SDA_PIN, PID_I2C_SDA);
     RESERVE_GPIO(ADXL_GPIO_SCL, ADXL345_SCL_PORT, ADXL345_SCL_PIN, PID_I2C_SCL);
+#endif
 }
 #endif //DEVELOPMENT_DEBUG
 
@@ -75,10 +76,12 @@ i.e.
     // disallow spontaneous flash wake-up
     GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
 #endif
-    
+
+#ifndef NO_SENSOR    
     // Configure GPIOs for the ADXL345 sensor
     GPIO_ConfigurePin(ADXL345_SDA_PORT, ADXL345_SDA_PIN, INPUT_PULLUP, PID_I2C_SDA, true);
     GPIO_ConfigurePin(ADXL345_SCL_PORT, ADXL345_SCL_PIN, INPUT_PULLUP, PID_I2C_SCL, true);
+#endif
 }
 
 void periph_init(void)

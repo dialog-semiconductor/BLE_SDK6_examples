@@ -35,6 +35,13 @@
 #include "app_easy_timer.h"
 #include "user_accelerometer.h"
 #include "i2c.h"
+#include "compiler.h"
+
+#ifdef NO_SENSOR
+uint16_t dummy_x     __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint16_t dummy_y     __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint16_t dummy_z     __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+#endif
 
 /**
  ****************************************************************************************
@@ -66,7 +73,9 @@ void ADXL345_init(void){
  * @return X-axis acceleration raw value
  ****************************************************************************************
  */
-int16_t ADXL345_read_X(void){
+int16_t ADXL345_read_X(void)
+{
+    int16_t axis_read;                      //Readout of the sensor or dummy
 #ifndef NO_SENSOR
     i2c_abort_t abort_code;                 //May be used for error checking
     uint8_t reg_addr = ADXL345_REG_DATAX0;  //Variable to hold the register address
@@ -75,18 +84,19 @@ int16_t ADXL345_read_X(void){
     //Get measurement LSB
     i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
     i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
-    X_data = byte_received & 0xff;          //Store X LSB
+    axis_read = byte_received & 0xff;          //Store X LSB
     
     //Get measurement MSB
     reg_addr = ADXL345_REG_DATAX1;
     i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
     i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
-    X_data |= (byte_received & 0xff) << 8;  //Store X MSB
+    axis_read |= (byte_received & 0xff) << 8;  //Store X MSB
 #else
 	//If no sensor is present just increase current data
-	X_data++;
+    dummy_x++;
+	axis_read = dummy_x;
 #endif //NO_SENSOR
-	return X_data;
+	return axis_read;
 }
 
 /**
@@ -95,7 +105,9 @@ int16_t ADXL345_read_X(void){
  * @return Y-axis acceleration raw value
  ****************************************************************************************
  */
-int16_t ADXL345_read_Y(void){
+int16_t ADXL345_read_Y(void)
+{
+    int16_t axis_read;                      //Readout of the sensor or dummy
 #ifndef NO_SENSOR
     i2c_abort_t abort_code;                 //May be used for error checking
     uint8_t reg_addr = ADXL345_REG_DATAY0;  //Variable to hold the register address
@@ -104,18 +116,19 @@ int16_t ADXL345_read_Y(void){
     //Get measurement LSB
     i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
     i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
-	Y_data = byte_received & 0xff;          //Store Y LSB
+	axis_read = byte_received & 0xff;          //Store Y LSB
     
     //Get measurement MSB
     reg_addr = ADXL345_REG_DATAY1;
     i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
     i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
-   	Y_data |= (byte_received & 0xff) << 8;  //Store Y MSB
+   	axis_read |= (byte_received & 0xff) << 8;  //Store Y MSB
 #else
 	//If no sensor is present just increase current data
-	Y_data++;
+    dummy_y++;
+	axis_read = (int16_t)dummy_y;
 #endif //NO_SENSOR
-	return Y_data;
+	return axis_read;
 }
 
 /**
@@ -124,7 +137,9 @@ int16_t ADXL345_read_Y(void){
  * @return Z-axis acceleration raw value
  ****************************************************************************************
  */
-int16_t ADXL345_read_Z(void){
+int16_t ADXL345_read_Z(void)
+{
+    int16_t axis_read;                      //Readout of the sensor or dummy
 #ifndef NO_SENSOR
     i2c_abort_t abort_code;                 //May be used for error checking
     uint8_t reg_addr = ADXL345_REG_DATAZ0;  //Variable to hold the register address
@@ -133,18 +148,19 @@ int16_t ADXL345_read_Z(void){
     //Get measurement LSB
     i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
     i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
-	Z_data = byte_received & 0xff;          //Store Z LSB
+	axis_read = byte_received & 0xff;          //Store Z LSB
     
     //Get measurement MSB
     reg_addr = ADXL345_REG_DATAZ1;
     i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
     i2c_master_receive_buffer_sync(&byte_received, 1, &abort_code, I2C_F_NONE);
-   	Z_data |= (byte_received & 0xff) << 8;  //Store Z MSB
+   	axis_read |= (byte_received & 0xff) << 8;  //Store Z MSB
 #else
 	//If no sensor is present just increase current data
-	Z_data++;
+    dummy_z++;
+	axis_read = (int16_t)dummy_z;
 #endif //NO_SENSOR
-	return Z_data;
+	return axis_read;
 }
 
 /**
@@ -155,9 +171,9 @@ int16_t ADXL345_read_Z(void){
  ****************************************************************************************
  */
 void ADXL345_read_XYZ(uint8_t* xyz){
+    static uint8_t previous[6] __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY//Holds the previous measurement
+#ifndef NO_SENSOR
     i2c_abort_t abort_code;     //May be used for error checking
-    static uint8_t previous[6]; //Holds the previous measurement
-
     //Setup multiple-byte read from DATAX0 to DATAZ1 registers
     const uint8_t reg_addr = ADXL345_REG_DATAX0;
     i2c_master_transmit_buffer_sync(&reg_addr, 1, &abort_code, I2C_F_NONE);
@@ -171,7 +187,16 @@ void ADXL345_read_XYZ(uint8_t* xyz){
 		xyz[i*2] = current & 0xff;
 		xyz[i*2+1] = (current >> 8) & 0xff;
 	}
-	
     //Save the data
 	memcpy(previous, xyz, 6);
+#else
+    // Send dummy data if no sensor is attached
+    dummy_x++;
+    dummy_y++;
+    dummy_z++;
+    
+    co_write16p(xyz, dummy_x);
+    co_write16p(&xyz[2], dummy_y);
+    co_write16p(&xyz[4], dummy_z);
+#endif	
 }

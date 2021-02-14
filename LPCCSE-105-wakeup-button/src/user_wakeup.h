@@ -56,21 +56,12 @@
  */
 
 #define DEBOUNCE_TIME 					30 // Time in ms, can be a value from 0 to 63 
-#define EVENTS_BEFORE_INTERRUPT 1  // Must be a 8 bits value
-
-enum { 
-				INTERRUPT_DISABLE = 0,
-				INTERRUPT_ENABLE
-		 };
+#define EVENTS_BEFORE_INTERRUPT         1  // Must be a 8 bits value
 
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
  */
-
-#if defined(__DA14531__)
-void user_reset_event_counter(void);
-#endif
 
 void user_wakeup_example_init(void);
 

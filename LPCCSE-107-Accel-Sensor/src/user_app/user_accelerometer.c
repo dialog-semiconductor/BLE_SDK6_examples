@@ -62,6 +62,10 @@
  * TYPE DEFINITIONS
  ****************************************************************************************
  */
+#define X_AXIS_BITFLAG      (1 << 0)
+#define Y_AXIS_BITFLAG      (1 << 1)
+#define Z_AXIS_BITFLAG      (1 << 2)
+#define G_DATA_BITFLAG      (1 << 3)
 
 // Manufacturer Specific Data ADV structure type
 struct mnf_specific_data_ad_structure
@@ -78,18 +82,8 @@ struct mnf_specific_data_ad_structure
  */
 
 uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd app_adv_data_update_timer_used        __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 timer_hnd app_param_update_request_timer_used   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t X_data									__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t Y_data									__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t Z_data									__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t X_string[8] 							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Y_string[8] 							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Z_string[8]								__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t X_timer     							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Y_timer     							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Z_timer    								__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t g_timer    								__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+
 struct mnf_specific_data_ad_structure mnf_data  __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 // Index of manufacturer data in advertising data or scan response data (when MSB is 1)
 uint8_t mnf_data_index                          __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
@@ -98,6 +92,12 @@ uint8_t stored_scan_rsp_data_len                __attribute__((section("retentio
 uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
 
+// Timer set for pushing notifications for the ntf enabled characteristics
+timer_hnd axis_ntf_timer_handler                __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+// Bit field variable for holding the enabled notification subscriptions
+uint8_t axis_active_subscriptions               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+// Bit field variable for holding the pending confirmations for the released notifications
+uint8_t axis_ntf_cfm_pending                    __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 /*
  * FUNCTION DEFINITIONS
  ****************************************************************************************
@@ -191,22 +191,22 @@ static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_str
  * @return void
  ****************************************************************************************
 */
-static void adv_data_update_timer_cb()
+void adv_data_update_timer_cb(void)
 {
-    // If mnd_data_index has MSB set, manufacturer data is stored in scan response
-    uint8_t *mnf_data_storage = (mnf_data_index & 0x80) ? stored_scan_rsp_data : stored_adv_data;
+    if(ke_state_get(TASK_APP) == APP_CONNECTABLE)
+    {
+        // If mnd_data_index has MSB set, manufacturer data is stored in scan response
+        uint8_t *mnf_data_storage = (mnf_data_index & 0x80) ? stored_scan_rsp_data : stored_adv_data;
 
-    // Update manufacturer data
-    mnf_data_update();
+        // Update manufacturer data
+        mnf_data_update();
 
-    // Update the selected fields of the advertising data (manufacturer data)
-    memcpy(mnf_data_storage + (mnf_data_index & 0x7F), &mnf_data, sizeof(struct mnf_specific_data_ad_structure));
+        // Update the selected fields of the advertising data (manufacturer data)
+        memcpy(mnf_data_storage + (mnf_data_index & 0x7F), &mnf_data, sizeof(struct mnf_specific_data_ad_structure));
 
-    // Update advertising data on the fly
-    app_easy_gap_update_adv_data(stored_adv_data, stored_adv_data_len, stored_scan_rsp_data, stored_scan_rsp_data_len);
-    
-    // Restart timer for the next advertising update
-    app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
+        // Update advertising data on the fly
+        app_easy_gap_update_adv_data(stored_adv_data, stored_adv_data_len, stored_scan_rsp_data, stored_scan_rsp_data_len);
+    }
 }
 
 /**
@@ -240,11 +240,7 @@ void user_app_init(void)
     memcpy(stored_scan_rsp_data, USER_ADVERTISE_SCAN_RESPONSE_DATA, USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN);
     stored_scan_rsp_data_len = USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN;
     
-    //Initialize timer handlers
-    X_timer = EASY_TIMER_INVALID_TIMER;
-    Y_timer = EASY_TIMER_INVALID_TIMER;
-    Z_timer = EASY_TIMER_INVALID_TIMER;
-    g_timer = EASY_TIMER_INVALID_TIMER;
+    axis_ntf_timer_handler = EASY_TIMER_INVALID_TIMER;
     
     default_app_on_init();
 }
@@ -256,10 +252,7 @@ void user_app_init(void)
  **************************************************************************************************
  */
 void user_app_adv_start(void)
-{
-    // Schedule the next advertising data update
-    app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
-    
+{   
     struct gapm_start_advertise_cmd* cmd;
     cmd = app_easy_gap_undirected_advertise_get_active();
     
@@ -282,9 +275,6 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
     if (app_env[connection_idx].conidx != GAP_INVALID_CONIDX)
     {
         app_connection_idx = connection_idx;
-
-        // Stop the advertising data update timer
-        app_easy_timer_cancel(app_adv_data_update_timer_used);
 
         // Check if the parameters of the established connection are the preferred ones.
         // If not then schedule a connection parameter update request.
@@ -337,23 +327,12 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
         app_easy_timer_cancel(app_param_update_request_timer_used);
         app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     }
-		
-    // Stop the notification timers
-    if(X_timer != EASY_TIMER_INVALID_TIMER){
-        app_easy_timer_cancel(X_timer);
-        X_timer = EASY_TIMER_INVALID_TIMER;
-    }
-    if(Y_timer != EASY_TIMER_INVALID_TIMER){
-        app_easy_timer_cancel(Y_timer);
-        Y_timer = EASY_TIMER_INVALID_TIMER;
-    }
-    if(Z_timer != EASY_TIMER_INVALID_TIMER){
-        app_easy_timer_cancel(Z_timer);
-        Z_timer = EASY_TIMER_INVALID_TIMER;
-    }
-    if(g_timer != EASY_TIMER_INVALID_TIMER){
-        app_easy_timer_cancel(g_timer);
-        g_timer = EASY_TIMER_INVALID_TIMER;
+    
+    // Stop the notification timer
+    if(axis_ntf_timer_handler != EASY_TIMER_INVALID_TIMER)
+    {
+        app_easy_timer_cancel(axis_ntf_timer_handler);
+        axis_ntf_timer_handler = EASY_TIMER_INVALID_TIMER;
     }
 			
     // Update manufacturer data for the next advertsing event
@@ -370,7 +349,7 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
  * @return Length of string
  ****************************************************************************************
  */
-uint8_t user_int_to_string(int16_t input, uint8_t *s){
+static uint8_t user_int_to_string(int16_t input, uint8_t *s){
 	uint8_t length = 1;
 	if(input < 0){
 		s[0] = '-';
@@ -397,196 +376,53 @@ uint8_t user_int_to_string(int16_t input, uint8_t *s){
 
 /**
  ****************************************************************************************
- * @brief User defined function to send a notification of the X-axis acceleration value
+ * @brief Set/Clear that for a specific characteristic the application waits for a 
+ *        notification confirmation for the notification that was just send.
+ * @param[in] the characteristic that has a pending notification
+ * @param[in] set or clear the pending flag for the characteristic
  * @return void
  ****************************************************************************************
  */
-void user_svc1_accel_X_send_ntf()
-{	
+static void ntf_send_set_clear_pending(uint8_t ntf, bool clear)
+{
+    clear ? (axis_ntf_cfm_pending &= ~ntf) : (axis_ntf_cfm_pending |= ntf);
+}
+
+/**
+ ****************************************************************************************
+ * @brief Send a notification for the 3 available axis data.
+ * @return void
+ ****************************************************************************************
+ */
+static void user_svc1_accel_data_send_ntf(int16_t axis_data, uint16_t handle)
+{
+    uint8_t axis_val[8];
     //Construct the string to send as a notification
-    uint8_t string_length = user_int_to_string(ADXL345_read_X() * 3.9, X_string);               //Read data and multipy by 3.9 to get acceleration in mg
-    
-    //Allocate a new message
-    struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,                   //Message id
-                                                          prf_get_task_from_id(TASK_ID_CUSTS1), //Target task
-                                                          TASK_APP,                             //Source of the message
-                                                          custs1_val_ntf_ind_req,               //The type of structure in the message,
-                                                          string_length);                       //How many bytes of data will be added
-
-    //Initialize message fields
-    req->conidx = 0;
-    req->notification = true;
-    req->handle = SVC1_IDX_ACCEL_X_DATA_VAL;
-    req->length = string_length;
-    memcpy(req->value, X_string, string_length);
-
-    //Send the message to the task
-    ke_msg_send(req);
-    
-    //Set a timer for 100 ms (10*10)
-    X_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_X_send_ntf);
-}
-
-/**
- ****************************************************************************************
- * @brief User defined function which handles notification enablement/disablement
- *        of X-axis acceleration
- * @param[in] param   Pointer to a struct which delivers the enabling/disabling of
- *                    notifications
- * @return void
- ****************************************************************************************
- */
-void user_svc1_accel_X_wr_ntf_handler(struct custs1_val_write_ind const *param)
-{
-    //Check if the client has subscribed to notifications
-	if(param->value[0])
-    {
-		//Start the timer if it's not running
-		if(X_timer == EASY_TIMER_INVALID_TIMER)
-        {
-            X_timer = app_easy_timer(10, user_svc1_accel_X_send_ntf);
-		}
-	}
-	else
-    {
-		//If the client has unsubscribed, invalidate the timer
-		if(X_timer != EASY_TIMER_INVALID_TIMER)
-        {
-			app_easy_timer_cancel(X_timer);
-			X_timer = EASY_TIMER_INVALID_TIMER;
-		}
-	}
-}
-
-/**
- ****************************************************************************************
- * @brief User defined function to send a notification of the Y-axis acceleration value
- * @return void
- ****************************************************************************************
- */
-void user_svc1_accel_Y_send_ntf()
-{
-    //Construct the string to send as a notification
-    uint8_t string_length = user_int_to_string(ADXL345_read_Y() * 3.9, Y_string);               //Read data and multipy by 3.9 to get acceleration in mg
-	
-    struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-                                                          prf_get_task_from_id(TASK_ID_CUSTS1),
-                                                          TASK_APP,
-                                                          custs1_val_ntf_ind_req,
-                                                          string_length);
-    //Initialize message fields
-    req->conidx = 0;
-    req->notification = true;
-    req->handle = SVC1_IDX_ACCEL_Y_DATA_VAL;
-    req->length = string_length;
-    memcpy(req->value, Y_string, string_length);
-
-    //Send the message to the task
-    ke_msg_send(req);
-    
-    //Set a timer for 100 ms (10*10)
-    Y_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Y_send_ntf);
-}
-
-/**
- ****************************************************************************************
- * @brief User defined function which handles notification enablement/disablement
- *        of Y-axis acceleration
- * @param[in] param   Pointer to a struct which delivers the enabling/disabling of
- *                    notifications
- * @return void
- ****************************************************************************************
- */
-void user_svc1_accel_Y_wr_ntf_handler(struct custs1_val_write_ind const *param)
-{
-    //Check if the client has subscribed to notifications
-    if(param->value[0])
-    {
-        //Start the timer if it's not running
-        if(Y_timer == EASY_TIMER_INVALID_TIMER)
-        {
-            Y_timer = app_easy_timer(10, user_svc1_accel_Y_send_ntf);
-		}
-	}
-	else
-    {
-        //If the client has unsubscribed, invalidate the timer
-        if(Y_timer != EASY_TIMER_INVALID_TIMER)
-        {
-			app_easy_timer_cancel(Y_timer);
-			Y_timer = EASY_TIMER_INVALID_TIMER;
-		}
-	}
-}
-
-/**
- ****************************************************************************************
- * @brief User defined function to send a notification of the Z-axis acceleration value
- * @return void
- ****************************************************************************************
- */
-void user_svc1_accel_Z_send_ntf(void)
-{
-    //Construct the string to send as a notification
-    uint8_t string_length = user_int_to_string(ADXL345_read_Z() * 3.9, Z_string);               //Read data and multipy by 3.9 to get acceleration in mg
+    uint8_t string_length = user_int_to_string(axis_data * 3.9, axis_val);    //Read data and multipy by 3.9 to get acceleration in mg
     
     struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-                                                          prf_get_task_from_id(TASK_ID_CUSTS1),
-                                                          TASK_APP,
-                                                          custs1_val_ntf_ind_req,
-                                                          string_length);
-    //Initialize message fields
+                                                      prf_get_task_from_id(TASK_ID_CUSTS1),
+                                                      TASK_APP,
+                                                      custs1_val_ntf_ind_req,
+                                                      string_length);
+    // Intialize message fields
     req->conidx = 0;
     req->notification = true;
-    req->handle = SVC1_IDX_ACCEL_Z_DATA_VAL;
+    req->handle = handle;
     req->length = string_length;
-    memcpy(req->value, Z_string, string_length);
-
+    memcpy(req->value, axis_val, string_length);
+    
     //Send the message to the task
     ke_msg_send(req);
-    
-    //Set a timer for 100 ms (10*10)
-    Z_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc1_accel_Z_send_ntf);
 }
 
 /**
  ****************************************************************************************
- * @brief User defined function which handles notification enablement/disablement
- *        of Z-axis acceleration
- * @param[in] param   Pointer to a struct which delivers the enabling/disabling of
- *                    notifications
+ * @brief Send a notification for the for the g data.
  * @return void
  ****************************************************************************************
  */
-void user_svc1_accel_Z_wr_ntf_handler(struct custs1_val_write_ind const *param)
-{
-    //Check if the client has subscribed to notifications
-	if(param->value[0])
-    {
-        //Start the timer if it's not running
-        if(Z_timer == EASY_TIMER_INVALID_TIMER)
-        { 
-			Z_timer = app_easy_timer(10, user_svc1_accel_Z_send_ntf);
-		}
-	}
-	else
-    {
-        //If the client has unsubscribed, invalidate the timer
-		if(Z_timer != EASY_TIMER_INVALID_TIMER)
-        {
-			app_easy_timer_cancel(Z_timer);
-			Z_timer = EASY_TIMER_INVALID_TIMER;
-		}
-	}
-}
-
-/**
- ****************************************************************************************
- * @brief User defined function called when the g timer fires.
- * @return void
- ****************************************************************************************
- */
-void user_svc2_g_timer_cb_handler(void)
+static void user_svc2_g_data_send_ntf(void)
 {
     struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
                                                           prf_get_task_from_id(TASK_ID_CUSTS1),
@@ -606,39 +442,70 @@ void user_svc2_g_timer_cb_handler(void)
     
     //Send the message to the task
     ke_msg_send(req);
-    
-    //Set a timer for 100 ms (10*10)
-    g_timer = app_easy_timer(NOTIFICATION_DELAY / 10, user_svc2_g_timer_cb_handler);
 }
 
 /**
  ****************************************************************************************
- * @brief User defined function which handles notification enablement/disablement
- * @param[in] param   Pointer to a struct which delivers the enabling/disabling of
- *                    notifications
+ * @brief Timer handler for the main timer responsible for the notification sending.
  * @return void
  ****************************************************************************************
  */
-void user_svc2_g_wr_ntf_handler(struct custs1_val_write_ind const *param)
+static void send_notifications_timer_handler(void)
 {
-    //Check if the client has subscribed to notifications
-	if(param->value[0])
+    if((axis_active_subscriptions & X_AXIS_BITFLAG) && !(axis_ntf_cfm_pending & X_AXIS_BITFLAG))
     {
-        //Start the timer if it's not running
-        if(g_timer == EASY_TIMER_INVALID_TIMER)
-        {
-			g_timer = app_easy_timer(10, user_svc2_g_timer_cb_handler);
-		}
-	}
-	else
+        user_svc1_accel_data_send_ntf(ADXL345_read_X(), SVC1_IDX_ACCEL_X_DATA_VAL);
+        ntf_send_set_clear_pending(X_AXIS_BITFLAG, false);
+    }
+    if(axis_active_subscriptions & Y_AXIS_BITFLAG && !(axis_ntf_cfm_pending & Y_AXIS_BITFLAG))
     {
-        //If the client has unsubscribed, invalidate the timer
-        if(g_timer != EASY_TIMER_INVALID_TIMER)
-        {
-			app_easy_timer_cancel(g_timer);
-			g_timer = EASY_TIMER_INVALID_TIMER;
-		}
-	}
+        user_svc1_accel_data_send_ntf(ADXL345_read_Y(), SVC1_IDX_ACCEL_Y_DATA_VAL);
+        ntf_send_set_clear_pending(Y_AXIS_BITFLAG, false);
+    }
+    if(axis_active_subscriptions & Z_AXIS_BITFLAG && !(axis_ntf_cfm_pending & Z_AXIS_BITFLAG))
+    {
+        user_svc1_accel_data_send_ntf(ADXL345_read_Z(), SVC1_IDX_ACCEL_Z_DATA_VAL);
+        ntf_send_set_clear_pending(Z_AXIS_BITFLAG, false);
+    }
+    if(axis_active_subscriptions & G_DATA_BITFLAG && !(axis_ntf_cfm_pending & G_DATA_BITFLAG))
+    {
+        user_svc2_g_data_send_ntf();
+        ntf_send_set_clear_pending(G_DATA_BITFLAG, false);
+    }
+    // Restart the timer
+    axis_ntf_timer_handler = app_easy_timer(APP_NTF_DATA_SEND_INTV, send_notifications_timer_handler);
+}
+
+/**
+ ****************************************************************************************
+ * @brief Function checks if the value received is valid for enabling subscription if at
+ *        least one subscription is enabled the timer is running.
+ * @param[in] param   pointer to the struct that holds the received data
+ * @return void
+ ****************************************************************************************
+ */
+static void user_individual_axis_subscr_ntf_handler(struct custs1_val_write_ind const *param)
+{    
+    if(param->handle == SVC1_IDX_ACCEL_X_NTF_CFG)
+        co_read16p(param->value) == PRF_CLI_START_NTF ? (axis_active_subscriptions |= X_AXIS_BITFLAG) : (axis_active_subscriptions &= ~X_AXIS_BITFLAG);
+    
+    if(param->handle == SVC1_IDX_ACCEL_Y_NTF_CFG)
+        co_read16p(param->value) == PRF_CLI_START_NTF ? (axis_active_subscriptions |= Y_AXIS_BITFLAG) : (axis_active_subscriptions &= ~Y_AXIS_BITFLAG);
+    
+    if(param->handle == SVC1_IDX_ACCEL_Z_NTF_CFG)
+        co_read16p(param->value) == PRF_CLI_START_NTF ? (axis_active_subscriptions |= Z_AXIS_BITFLAG) : (axis_active_subscriptions &= ~Z_AXIS_BITFLAG);
+    
+    if(param->handle == SVC2_IDX_G_NTF_CFG)
+        co_read16p(param->value) == PRF_CLI_START_NTF ? (axis_active_subscriptions |= G_DATA_BITFLAG) : (axis_active_subscriptions &= ~G_DATA_BITFLAG);
+    
+    // If still there are no active subscriptions cancel the timer
+    if(axis_active_subscriptions == 0 && axis_ntf_timer_handler != EASY_TIMER_INVALID_TIMER)
+    {
+        app_easy_timer_cancel(axis_ntf_timer_handler);
+        axis_ntf_timer_handler = EASY_TIMER_INVALID_TIMER;
+    }
+    else if (axis_active_subscriptions != 0 && axis_ntf_timer_handler == EASY_TIMER_INVALID_TIMER)
+        axis_ntf_timer_handler = app_easy_timer(APP_NTF_DATA_SEND_INTV, send_notifications_timer_handler);
 }
 
 /**
@@ -665,41 +532,34 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
             switch (msg_param->handle)
             {
                 case SVC1_IDX_ACCEL_X_NTF_CFG:
-                    user_svc1_accel_X_wr_ntf_handler(msg_param);
-                    break;
-
                 case SVC1_IDX_ACCEL_Y_NTF_CFG:
-                    user_svc1_accel_Y_wr_ntf_handler(msg_param);
-                    break;
-
                 case SVC1_IDX_ACCEL_Z_NTF_CFG:
-                    user_svc1_accel_Z_wr_ntf_handler(msg_param);
-                    break;
-
                 case SVC2_IDX_G_NTF_CFG:
-                    user_svc2_g_wr_ntf_handler(msg_param);
+                    user_individual_axis_subscr_ntf_handler(msg_param);
                     break;
-								
                 default:
                     break;
             }
         } break;
-				
-		case CUSTS1_VAL_NTF_CFM:
+        
+        case CUSTS1_VAL_NTF_CFM:
         {
             struct custs1_val_ntf_cfm const *msg_param = (struct custs1_val_ntf_cfm const *)(param);
-
+            
             switch (msg_param->handle)
             {
                 case SVC1_IDX_ACCEL_X_DATA_VAL:
+                    ntf_send_set_clear_pending(X_AXIS_BITFLAG, true);
                     break;
-
                 case SVC1_IDX_ACCEL_Y_DATA_VAL:
+                    ntf_send_set_clear_pending(Y_AXIS_BITFLAG, true);
                     break;
-
                 case SVC1_IDX_ACCEL_Z_DATA_VAL:
+                    ntf_send_set_clear_pending(Z_AXIS_BITFLAG, true);
                     break;
-
+                case SVC2_IDX_G_DATA_VAL:
+                    ntf_send_set_clear_pending(G_DATA_BITFLAG, true);
+                    break;
                 default:
                     break;
             }

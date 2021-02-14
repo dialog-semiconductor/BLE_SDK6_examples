@@ -120,25 +120,6 @@
     #define CFG_PRINTF_UART2
 #endif
 
-/****************************************************************************************************************/
-/* Advertising Example. Enables advertising example on top of the barebone project. If ADV_EXAMPLE is defined,	*/
-/* define either ADV_TIMER_EXAMPLE for the timer based example OR ADV_BUTTON_EXAMPLE for the button based 			*/
-/* example.                                                                    																	*/
-/****************************************************************************************************************/
-
-#define ADV_EXAMPLE		
-
-#ifdef ADV_EXAMPLE
-		#define ADV_BUTTON_EXAMPLE
-		
-		#ifndef	ADV_BUTTON_EXAMPLE
-			#define ADV_TIMER_EXAMPLE
-		#else
-			#undef ADV_TIMER_EXAMPLE
-		#endif
-		
-#endif
-
 #else
 
 
@@ -231,24 +212,6 @@
 #define CFG_PRINTF
 #ifdef CFG_PRINTF
     #define CFG_PRINTF_UART2
-#endif
-
-/****************************************************************************************************************/
-/* Advertising Example. Enables advertising example on top of the barebone project. If ADV_EXAMPLE is defined,	*/
-/* define either ADV_TIMER_EXAMPLE for the timer based example OR ADV_BUTTON_EXAMPLE for the button based 			*/
-/* example.                                                                    																	*/
-/****************************************************************************************************************/
-
-#define ADV_EXAMPLE		
-
-#ifdef ADV_EXAMPLE
-		#define ADV_BUTTON_EXAMPLE
-		
-		#ifndef	ADV_BUTTON_EXAMPLE
-			#define ADV_TIMER_EXAMPLE
-		#else
-			#undef ADV_TIMER_EXAMPLE
-		#endif
 #endif
 
 #endif

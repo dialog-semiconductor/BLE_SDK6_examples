@@ -42,8 +42,6 @@
 
 #define ADXL345_I2C_ADDRESS   0x1D      //This is the sensor address without R/W bit (0x1D or 0x53 for ADXL)
 
-//#define NO_SENSOR                     //Uncomment this line when no sensor is connected
-
 #if defined (__DA14531__)
 
 #define ADXL345_SCL_PORT    GPIO_PORT_0
@@ -61,8 +59,6 @@
 #define ADXL345_SCL_PIN     GPIO_PIN_3
 												     
 #endif
-
-#define NOTIFICATION_DELAY 50 //The time interval between sent notifications
 
 // ADXL345 Registers
 

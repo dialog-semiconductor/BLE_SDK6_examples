@@ -48,6 +48,12 @@
  * DEFINES
  ****************************************************************************************
  */
+ 
+#undef ADV_EXAMPLE                 // Enable the advertising example on top of the barebone project
+/***************************************************************************************************/
+/* The example operates by default using timers, define the ADV_BUTTON_EXAMPLE for button operation*/
+/***************************************************************************************************/
+#undef ADV_BUTTON_EXAMPLE
 
 /*
  ****************************************************************************************
@@ -95,7 +101,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
+static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
 
 /*
  ****************************************************************************************

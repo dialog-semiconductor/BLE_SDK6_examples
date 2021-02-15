@@ -49,6 +49,8 @@
 #include "arch_hibernation.h"
 #include "co_math.h"
 #include "battery.h"
+#include "adc.h"
+#include "arch_hibernation.h"
 
 #include "user_periph_setup.h"
 #include "spi_flash.h"
@@ -61,10 +63,6 @@
  * DEFINITIONS
  ****************************************************************************************
  */
-#define PREV_TEMPER_COUNT               5
-#define PREV_TEMPER_INIT_VALUE          25000                                       //In milli-degrees of Celsius
-#define PREV_TEMPER_SET_VALUE           27000                                       //In milli-degrees of Celsius
-
 #define ADV_TIMER_CANCEL_TIMEOUT        1000                                        //In tens of milli-second (x10ms)
 
 #ifdef CFG_HIBERNATION_MODE
@@ -85,7 +83,7 @@
  */
 
 // Retained variables
-int32_t saved_temper[PREV_TEMPER_COUNT]       __SECTION_ZERO("retention_mem_area_uninit"); //Previous saved output temperatures
+uint32_t wakeup_count                         __SECTION_ZERO("retention_mem_area_uninit"); //Wake-up counter
 uint32_t adv_count                            __SECTION_ZERO("retention_mem_area_uninit"); //Advertising counter          
 
 timer_hnd adv_timer                           __SECTION_ZERO("retention_mem_area_uninit"); //Advertising cancel event timer
@@ -112,40 +110,6 @@ timer_hnd done_timer                          __SECTION_ZERO("retention_mem_area
 void reset_indication(uint16_t reset_stat)
 {
     reset_stat_local = reset_stat;
-}
-
-/**
- ****************************************************************************************
- * @brief Output the next temperature value. The value is a mathematical random variable
- *        around the PREV_TEMP_SET_VALUE +/- 500mC.
- * @return Next temperature value in milli-degrees of Celsius
- ****************************************************************************************
- */
-static int32_t user_update_temper(void)
-{
-    uint8_t rand_val;
-    int32_t next_temper_value = 0;
-    
-    //Ask the TRNG for a random byte value
-    rand_val = co_rand_byte();
-    
-    //Sum the previous PREV_TEMPER_COUNT-1 values
-    int i;
-    for (i=1; i<PREV_TEMPER_COUNT; i++)
-    {
-        uint8_t idx = (adv_count + PREV_TEMPER_COUNT - i) % PREV_TEMPER_COUNT;
-        next_temper_value += saved_temper[idx];
-    }
-    
-    //Add the next temperature value and filter it with a moving average
-    next_temper_value += PREV_TEMPER_SET_VALUE + (1000 * rand_val)/255 - 500;
-    next_temper_value /= PREV_TEMPER_COUNT;
-
-    //Update advertising count and store the temperature
-    adv_count++;
-    saved_temper[adv_count % PREV_TEMPER_COUNT] = next_temper_value;
-    
-    return next_temper_value;
 }
 
 #ifdef CFG_HIBERNATION_MODE
@@ -266,12 +230,22 @@ void user_app_adv_start(void)
     
     stored_adv_data[ADV_DATA_BATTERY_OFFSET]     = (uint8_t) ((next_battery & 0xFF00) >> 8);
     stored_adv_data[ADV_DATA_BATTERY_OFFSET + 1] = (uint8_t) (next_battery & 0x00FF);
-        
+    
     //Update advertising temperature
-    next_temper = user_update_temper();
+    adc_config_t cfg =
+    {
+        .input_mode = ADC_INPUT_MODE_SINGLE_ENDED,
+        .input      = ADC_INPUT_SE_TEMP_SENS,
+        .continuous = false
+    };
 
-    stored_adv_data[ADV_DATA_TEMPER_OFFSET]     = next_temper / 1000;
-    stored_adv_data[ADV_DATA_TEMPER_OFFSET + 1] = (next_temper - next_temper / 1000) / 10;
+    // Initialize and enable ADC
+    adc_init(&cfg);
+    
+    next_temper = (uint32_t) adc_get_temp();
+
+    stored_adv_data[ADV_DATA_TEMPER_OFFSET]     = next_temper;
+    stored_adv_data[ADV_DATA_TEMPER_OFFSET + 1] = 0;
     
     //Update the advertising count
     stored_adv_data[ADV_DATA_ADV_COUNT_OFFSET]     = (uint8_t) ((adv_count & 0xFF000000) >> 24);
@@ -297,15 +271,11 @@ void user_app_on_init(void)
 {
     //Check if the system was power-cycled
     if(reset_stat_local == 15) {
-        //Initialize temperature values to PREV_TEMPER_INIT_VALUE
-        int i;
-        for (i=0; i<PREV_TEMPER_COUNT; i++)
-            saved_temper[i] = PREV_TEMPER_INIT_VALUE;
-        
-        //...and advertising count to zero
+        //Initialize advertising and wake-up count to zero
+        wakeup_count = 0;
         adv_count = 0;
     }
-
+    
 #ifdef CFG_HIBERNATION_MODE    
     //Send a DONE pulse as an acknowledgement to TPL5010
     GPIO_ConfigurePin(HIB_DONE_PORT, HIB_DONE_PIN, OUTPUT, PID_GPIO, true); 
@@ -353,6 +323,30 @@ void user_app_on_adv_nonconn_complete(uint8_t status)
                             false);
 #endif
     }
+}
+
+/**
+ ****************************************************************************************
+ * @brief Function called when BLE is powered. 
+          Sets up the configured low-power mode.
+ * @return GOTO_SLEEP
+ * @note Return type allows the device to enter sleep.
+ ****************************************************************************************
+*/
+arch_main_loop_callback_ret_t user_on_ble_powered(void)
+{
+    uint8_t last_ble_event;
+
+    last_ble_event = arch_last_rwble_evt_get();
+
+    if (last_ble_event  == BLE_EVT_END)
+    {
+        adv_count = adv_count/3;
+        adv_count++;
+        adv_count = 3*adv_count;
+    }
+
+    return GOTO_SLEEP;
 }
 
 /// @} APP

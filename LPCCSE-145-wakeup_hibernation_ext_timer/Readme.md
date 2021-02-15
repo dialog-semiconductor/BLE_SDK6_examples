@@ -2,7 +2,7 @@
 
 ## Example description
 
-This example configures a DA14531 device to be used as an Eddystone beacon. The beacon advertises with a random static device address for a set amount of time, after which it drops to hibernation mode or deep-sleep mode. While advertising, the device will utilize the extended-sleep mode in between advertising events. Previous advertising data are retained in RAM to be used in subsequent advertising. The system wakes up from the real-time clock in deep-sleep mode, or from an external timer upon a GPIO toggle in hibernation mode.
+This example configures a DA14531 device to be used as an Eddystone beacon. The beacon advertises with a random static device address for a set amount of time, after which it drops to hibernation mode or deep-sleep mode. While advertising, the device will utilize the extended-sleep mode in between advertising events. The advertising data include the number of Advertisement PDUs and the temperature acquired by the die sensor. The system wakes up from the real-time clock in deep-sleep mode, or from an external timer upon a GPIO toggle in hibernation mode.
 
 ## HW and SW configuration
 - This example runs on the DA14531 Bluetooth Smart SoC devices.	
@@ -30,7 +30,7 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
 ### Software configuration
 
  This example requires:
- - SDK v6.0.12 or later
+ - SDK v6.0.14 or later
  - **SEGGER’s J-Link** tools should be downloaded and installed.
  - Additionaly, an application like BLE Scanner from Bluepixel Technologies should be used to check advertising of our beacon. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner) or on the [App Store](https://apps.apple.com/us/app/ble-scanner-4-0/id1221763603).
 
@@ -61,14 +61,11 @@ For initial setup of the example please refer to [this section of the dialog sup
  	
 	 ![ble-scanner-eddystone-beacon](assets/ble-scanner-eddystone-beacon.jpg)
 
-   You can inspect in the beacon's telemetry data the device's battery level, the simulated temperature, and the advertising counter.
+   You can inspect in the beacon's telemetry data the device's battery level, the die temperature, and the advertising counter.
 
 ### Configuring the example
 The configuration options are local to the ``user_hibernation_timer.c`` file and you can adjust them with the appropriate defines.
 
-- ``PREV_TEMPER_COUNT``: The count of the previous temperatures that will be stored in RAM and will be used by the moving-average filter to compute the next temperature.
-- ``PREV_TEMPER_INIT_VALUE``: The temperature that will be used as an initialization value on power-on for the previous stored temperatures. Units are in milli-degrees of Celsius.
-- ``PREV_TEMPER_SET_VALUE``: The temperature set value. A random number in the range of +/-500 milli-degrees of Celsius will be added to simulate noise in measurements. Units are in milli-degrees of Celsius.
 - ``ADV_TIMER_CANCEL_TIMEOUT``: The duration of advertising. The device will drop to extended-sleep mode in between advertising events.
 - ``DONE_TIMER_TIMEOUT``: Used to deassert the DONE signal of the TPL5010 in hibernation mode.
 - ``RTC_TIMEOUT``: The time after which the real-time clock will wake the system up from deep-sleep mode.

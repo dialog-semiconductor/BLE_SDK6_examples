@@ -120,7 +120,7 @@ static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     // The user has to take into account the watchdog timer handling (keep it running,
     // freeze it, reload it, resume it, etc), when the app_on_ble_powered() is being
     // called and may potentially affect the main loop.
-    .app_on_ble_powered     = NULL,
+    .app_on_ble_powered     = user_on_ble_powered,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,

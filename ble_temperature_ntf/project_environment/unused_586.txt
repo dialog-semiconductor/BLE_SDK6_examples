@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Sep 23 10:51:36 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Feb 16 20:16:47 2021
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -139,6 +139,7 @@ i2c_wait_until_eeprom_ready <= USED 0
 ;FILE jump_table.o
 dummyf <= USED 0
 ;FILE mcp9808.o
+MCP9808_get_resolution_register <= USED 0
 ;FILE nmi_handler.o
 ;FILE nvds.o
 ;FILE otp_hdr.o

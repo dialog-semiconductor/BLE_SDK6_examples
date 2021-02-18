@@ -274,11 +274,19 @@ static void wakeup_callback(void)
     /* Restart timer that wil trigger periodic measurement */
     measure_timer = app_easy_timer(MEASURE_PERIOD, measure_timer_cb);
   }
-
+#if defined (__DA14531__)
   /* When callback is triggered event counter is not set to 0 on the DA14531, it
      has to be manually cleared otherwise no further wake up interrupts will be
      generated. */
   SetWord16(WKUP_IRQ_STATUS_REG, WKUP_CNTR_RST);
+
+#else
+	
+	  SetWord16(WKUP_RESET_IRQ_REG, 1);                                 // Reset interrupt
+    SetWord16(WKUP_RESET_CNTR_REG, 0);                                // Reset event counter
+	
+	#endif
+	
 }
 
 /**

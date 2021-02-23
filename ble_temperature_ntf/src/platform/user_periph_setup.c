@@ -107,6 +107,10 @@ void set_pad_functions(void)
 void periph_init(void)
 {
 #if defined (__DA14531__)
+	SetBits16(SYS_CTRL_REG, DEBUGGER_ENABLE, 0);
+#endif
+	
+#if defined (__DA14531__)
     // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
     syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
 

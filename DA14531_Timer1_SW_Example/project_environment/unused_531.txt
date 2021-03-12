@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Mar 11 19:47:06 2021
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Fri Mar 12 15:29:56 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -46,7 +46,11 @@ default_app_on_pairing_succeeded <= USED 0
 default_app_on_ral_cmp_evt <= USED 0
 ;FILE app_easy_msg_utils.o
 app_easy_msg_free_callback <= USED 0
+app_easy_msg_modify <= USED 0
+app_easy_msg_set <= USED 0
+app_easy_wakeup <= USED 0
 app_easy_wakeup_free <= USED 0
+app_easy_wakeup_set <= USED 0
 ;FILE app_easy_security.o
 app_easy_security_accept_encryption <= USED 0
 app_easy_security_bdb_add_entry <= USED 0
@@ -74,7 +78,6 @@ app_easy_security_set_encrypt_req_valid <= USED 0
 app_easy_security_set_ltk_exch <= USED 0
 app_easy_security_tk_get_active <= USED 0
 ;FILE app_easy_timer.o
-app_easy_timer <= USED 0
 app_easy_timer_cancel <= USED 0
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
@@ -116,6 +119,7 @@ GPIO_EnableIRQ <= USED 0
 GPIO_EnablePorPin <= USED 0
 GPIO_GetIRQInputLevel <= USED 0
 GPIO_GetPinFunction <= USED 0
+GPIO_GetPinStatus <= USED 0
 GPIO_GetPorTime <= USED 0
 GPIO_RegisterCallback <= USED 0
 GPIO_SetIRQInputLevel <= USED 0
@@ -263,17 +267,10 @@ systick_value <= USED 0
 systick_wait <= USED 0
 ;FILE timer0.o
 timer0_disable_irq <= USED 0
-timer0_enable_irq <= USED 0
-timer0_init <= USED 0
-timer0_register_callback <= USED 0
-timer0_release <= USED 0
-timer0_set <= USED 0
-timer0_start <= USED 0
-timer0_stop <= USED 0
 ;FILE timer1.o
 timer1_count_register_callback <= USED 0
-timer1_disable_irq <= USED 0
 timer1_event1_register_callback <= USED 0
+timer1_event2_config <= USED 0
 timer1_event2_register_callback <= USED 0
 timer1_is_in1_ovrflw_occurred <= USED 0
 timer1_is_in2_ovrflw_occurred <= USED 0

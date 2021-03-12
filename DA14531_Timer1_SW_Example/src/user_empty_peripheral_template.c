@@ -64,7 +64,7 @@ static timer1_count_options_t timer1_config =
 	.reload_val	= 	RELOAD_VALUE
 };
 
-
+#if ( ENABLE_PULSE_MEASURING || ENABLE_FREQ_COUNTING)
 //Timer1 capture / period count configuration structure
 static timer1_event_options_t timer1_event_config_ch1 = 
 {	
@@ -86,6 +86,7 @@ static timer1_event_options_t timer1_event_config_ch1 =
 	/*GPIO pin to be monitored*/
 	.gpio_pin			=		EVENT_PIN,
 };
+#endif
 
 #if ENABLE_PULSE_MEASURING
 static timer1_event_options_t timer1_event_config_ch2 = 
@@ -143,6 +144,10 @@ enum pulse_meas_sm_state sm_state               __SECTION_ZERO("retention_mem_ar
 bool first_measurement                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 #endif
 
+#if (ENABLE_TMR_COUNTING)
+uint8_t timer1_cnt_ovf                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+bool led_state                                  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+#endif
 extern uint32_t rcx_freq;
 
 /*
@@ -153,11 +158,11 @@ extern uint32_t rcx_freq;
 static void perform_freq_measurement(void);
 #endif
 
-#if (ENABLE_PULSE_MEASURING)
+#if (ENABLE_PULSE_MEASURING || ENABLE_TMR_COUNTING )
 static void timer1_overflow(void);
 #endif
 
-#if (PWM_TIMER0_ENABLE)
+#if (PWM_TIMER0_ENABLE && ENABLE_FREQ_COUNTING)
 /**
  ****************************************************************************************
  * @brief Timer0 PWM setup function
@@ -207,6 +212,12 @@ void user_app_init(void)
     default_app_on_init();
     
     timer1_initialize();
+
+#if (ENABLE_TMR_COUNTING)
+    timer1_clear_all_events();
+    timer1_enable_irq();
+    timer1_start();
+#endif
     
 #if (ENABLE_PULSE_MEASURING)
     initialize_pulse_length_measure();
@@ -223,17 +234,64 @@ void user_app_adv_start(void)
     default_advertise_operation();  
 }
 
+void timer1_initialize(void)
+{
+    /*Enable PD_TIM power domain*/
+	SetBits16(PMU_CTRL_REG, TIM_SLEEP, 0);                  // Enable the PD_TIM
+#if (ENABLE_PULSE_MEASURING | ENABLE_TMR_COUNTING)
+    timer1_count_config(&timer1_config, timer1_overflow);   // Set the capture counting configurations for the timer
+#elif (ENABLE_FREQ_COUNTING)
+    timer1_count_config(&timer1_config, NULL);              // Set the frequency counting configurations for the timer
+#endif
+
+#ifdef CFG_PRINTF
+    arch_printf("Timer 1 is initialized \n\r") ;
+#endif // CFG_PRINTF
+}
+
+#if (ENABLE_TMR_COUNTING)
+
+static void user_timer_wakeup_ble(void)
+{
+#ifdef CFG_PRINTF
+    arch_printf("BLE is awake via timer 1\n\r");
+#endif
+}
+
+static void toggle_led(void)
+{
+    if(led_state)
+    {
+        GPIO_SetInactive(GPIO_LED_PORT, GPIO_LED_PIN);
+        led_state = false;
+    }
+    else
+    {
+        GPIO_SetActive(GPIO_LED_PORT, GPIO_LED_PIN);
+        led_state = true;
+    }
+}
+
+static void timer1_overflow(void)
+{
+    if (timer1_cnt_ovf == TIMER1_OVF_COUNTER)
+    {
+        toggle_led();
+        
+        timer1_cnt_ovf = 0;
+        /* Wake up the device and print out the measured time */
+        arch_ble_force_wakeup();                // Force the BLE to wake up
+        app_easy_wakeup_set(user_timer_wakeup_ble);
+        app_easy_wakeup();                      // Send the message to print
+    }
+    
+    timer1_cnt_ovf++;
+}
+
+#endif
+
 #if (ENABLE_FREQ_COUNTING)
-/**
- ****************************************************************************************
- * @brief Handles the messages that are not handled by the SDK internal mechanisms.
- * @param[in] msgid   Id of the message received.
- * @param[in] param   Pointer to the parameters of the message.
- * @param[in] dest_id ID of the receiving task instance.
- * @param[in] src_id  ID of the sending task instance.
- * @return void
- ****************************************************************************************
-*/
+
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,
@@ -256,7 +314,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
             arch_printf("Pulses during measurement period %d\n\r", meas->captrure_val) ;
             arch_printf("Frequency measured is %d Hz\n\r", frequency) ;
             
-#if (PWM_TIMER0_ENABLE)            
+#if (PWM_TIMER0_ENABLE && ENABLE_FREQ_COUNTING)            
             timer0_release();
             arch_set_extended_sleep(false);
 #endif  // PWM_TIMER0_ENABLE
@@ -269,28 +327,9 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
     }
 }
 
-#endif
-
-void timer1_initialize(void)
-{
-    /*Enable PD_TIM power domain*/
-	SetBits16(PMU_CTRL_REG, TIM_SLEEP, 0);                  // Enable the PD_TIM
-#if (ENABLE_PULSE_MEASURING)
-    timer1_count_config(&timer1_config, timer1_overflow);   // Set the capture counting configurations for the timer
-#elif (ENABLE_FREQ_COUNTING)
-    timer1_count_config(&timer1_config, NULL);              // Set the frequency counting configurations for the timer
-#endif
-
-#ifdef CFG_PRINTF
-    arch_printf("Timer 1 is initialized \n\r") ;
-#endif // CFG_PRINTF
-}
-
-#if (ENABLE_FREQ_COUNTING)
-
 static void perform_freq_measurement(void)
 {       
-#if (PWM_TIMER0_ENABLE)
+#if (PWM_TIMER0_ENABLE && ENABLE_FREQ_COUNTING)
     // Disable Sleep, Timer 0 is not active while sleep
     arch_disable_sleep();
     // Start Timer0

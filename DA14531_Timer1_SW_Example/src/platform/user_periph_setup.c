@@ -29,6 +29,9 @@
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
+#if (ENABLE_TMR_COUNTING)
+extern bool led_state;
+#endif
 
 #if DEVELOPMENT_DEBUG
 
@@ -44,6 +47,10 @@ void GPIO_reservations(void)
 	
 #if (ENABLE_FREQ_COUNTING)	
 	RESERVE_GPIO(PWM0, PWM0_PORT, PWM0_PIN, PID_PWM0);
+#endif
+    
+#if (ENABLE_TMR_COUNTING)
+    RESERVE_GPIO(LED, GPIO_LED_PORT, GPIO_LED_PIN, PID_GPIO);
 #endif
 	
 #if defined (CFG_PRINTF_UART2)
@@ -72,6 +79,10 @@ void set_pad_functions(void)
 	
 #if (ENABLE_FREQ_COUNTING)
 	GPIO_ConfigurePin(PWM0_PORT, PWM0_PIN, OUTPUT, PID_PWM0, true);
+#endif
+    
+#if (ENABLE_TMR_COUNTING)
+    GPIO_ConfigurePin(GPIO_LED_PORT, GPIO_LED_PIN, OUTPUT, PID_GPIO, led_state);
 #endif
 	
 #if defined (CFG_PRINTF_UART2)

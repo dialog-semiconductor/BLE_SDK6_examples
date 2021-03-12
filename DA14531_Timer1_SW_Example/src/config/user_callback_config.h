@@ -143,7 +143,7 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
  */
 #if (ENABLE_FREQ_COUNTING)
 #define app_process_catch_rest_cb       user_catch_rest_hndl
-#elif (ENABLE_PULSE_MEASURING)
+#elif (ENABLE_PULSE_MEASURING || ENABLE_TMR_COUNTING)
 static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
 #endif
 

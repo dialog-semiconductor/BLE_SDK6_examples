@@ -33,21 +33,21 @@
 * from timer 0 can be used for the demo (PWM_TIMER0_ENABLE). Set the MAX frequency 
 * applied to the GPIO for the sw to properly set the counting period MAX_APPLIED_FREQUENCY_KHZ.
 *****************************************************************************************/
-#define ENABLE_FREQ_COUNTING            (0)
-#define PWM_TIMER0_ENABLE               (0)
+#define ENABLE_FREQ_COUNTING            (1)
+#define PWM_TIMER0_ENABLE               (1)
 #define EXTERNAL_FREQUENCY_HZ           (0) // Set to the value of the external applied frequency else 0
 
 /*****************************************************************************************
 * Measure a low pulse length
 *****************************************************************************************/
-#define ENABLE_PULSE_MEASURING          (1)                  
+#define ENABLE_PULSE_MEASURING          (0)                  
 
 /*
  * SW EXAMPLE TIMER 1 SETTINGS
  ****************************************************************************************
  */
-#if (ENABLE_FREQ_COUNTING) && (ENABLE_PULSE_MEASURING)
-#error "Enabling Timer 1 in counter and capture mode is not supported by the demo"
+#if ( ENABLE_FREQ_COUNTING + ENABLE_PULSE_MEASURING + ENABLE_TMR_COUNTING ) > 1
+#error "Select only 1 timer configuration for running the demo"
 #endif
 
 #if (ENABLE_FREQ_COUNTING)
@@ -116,7 +116,9 @@
     #define EVENT_TYPE              TIM1_EVENT_TYPE_CAP
     #define EDGE_TYPE               TIM1_EVENT_EDGE_FALLING
 #else
-    #define INTERRUPT_MASK_TMR      TIM1_IRQ_MASK_ON
+    #define INPUT_CLK               TIMER1_ON_LPCLK
+    #define INTERRUPT_MASK_TMR      TIM1_IRQ_MASK_OFF
+    #define TIMER1_OVF_COUNTER      7                   // Using the LP clock, timer1 
 #endif
 
 #endif  // _DEMO_CONFIG_H_

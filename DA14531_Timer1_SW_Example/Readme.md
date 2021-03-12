@@ -5,27 +5,20 @@
 
 ------
 
-## Example Δescription
+## Example Description
 
-This software example demonstrates using the ***TIMER1*** hardware block. In this demonstration, ***TIMER1*** is configured to ***Counting Mode*** and ***Capturing Mode***.
+This software example demonstrates using **TIMER1** hardware block. The sw example exposes the basic functions that **TIMER1** offers through the following use cases:
+1. **Simple counting** which is enabled via setting the **ENABLE_TMR_COUNTING** definition to 1 in the demo_config.h file. In this case **TIMER1** is used as an ordinary counter/timer and exposes the capability of the timer to run while sleep and wake up the device.
+2. **Frequency measurement** exposes the counting capability of the hw and is enabled via setting the **ENABLE_FREQ_COUNTING** definition to 1 in the demo_config.h file. In this case **TIMER1** is used as a frequency counter and measures the frequency which is applied on a software specified pin.
+3. **Pulse measurement** exposes the capturing capability of the hw and is enabled via setting the **ENABLE_PULSE_MEASURING** definition to 1 in the demo_config.h file. In this case **TIMER1** is used to measure the length of a low or a high pulse applied on a specified pin. 
 
 ## Introduction
 
-The DA14531 product family incorporates three identical HW timer blocks: 
+The DA14531 product family incorporates three HW timer blocks Timer0, Timer1, Timer2. From the affordmentioned timers only Timer1 is capable of running while the device is in sleep mode since its physicaly located in a seperate power domain. Thus timer 1 can be used as a wake up source while the device is in extended or deep sleep.  
 
-1. **Timer 0** is a 16-bit general purpose software programmable timer, which has the ability to generate Pulse Width Modulated (PWM) signals, namely PWM0 and PWM1.
-
-![timer0_block_diagram](assets/timer0_block_diagram.PNG)
-
-
-2. **Timer 1** is an 11-bit timer being able to count up or down. It supports Counting and Input Capturing mode and it can be kept active in sleep as the clock source is selectable between **System Clock (sys_clk)** and **Low Power Clock (lp_clk)**.
+**Timer 1** is an 11-bit timer being able to count up or down. It supports Counting and Input Capturing mode and use as clock source either the **System Clock (sys_clk)** or **Low Power Clock (lp_clk)**. Off course when the device is in sleep mode and the timer should be kept active the LP clock source should be selected.
 
 ![timer1_block_diagram](assets/timer1_block_diagram.PNG)
-
-3. **Timer 2** is basically a PWM generator. It supports six (6) Pulse Width Modulated (PWM) outputs.
-
-![timer2_block_diagram](assets/timer2_block_diagram.PNG)
-
 
 </center>- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
 - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
@@ -42,12 +35,18 @@ For getting more information about the HW Timers on DA14531, please refer to the
 
 ## Timer 1
 
-Accoridng to the datasheet, Timer1 is powerd by the **PD_TIM power domain** which can be kept powered even if the system enters sleep mode. It can operate either in **count up** or **count down** mode, generate an interrupt when the timer reaches the **max/min value** or the **threshold**. As described in the **Example description**, two (2) modes are demonstrated in this software example:
+Timer1 is powerd by the **PD_TIM power domain** which can be kept powered even if the system enters sleep mode. It can operate either in **count up** or **count down** mode, generate an interrupt when the timer reaches the **max/min value** or the **threshold**. As mentioned in the **Example description**, three different functionalities are demonstrated in this software example:
 
-1. **Counting Mode**: Timer1 generates an interrupt upon a configurable amount of edges, on a
-specific GPIO, has been detected.
+1. **Timer Functionality**: In this example the DA14531 device is in sleep mode and **TIMER1** HW is running in the background. When the timer overflows it will generate an interrupt and wake up the device.
 
-2. **Capturing Mode**: Timer1 captures a snapshot of either its own counter (11 bits) or the RTC port (22bits) after an edge on a GPIO has been detected.
+2. **Capturing Functionality**: In this sw configuration the sw exposes the capture capabilities of the timer by measuring in microseconds the amount of time a GPIO is forced low or high. When starting up the sw will check the status of the assigned GPIO (by default P11). The current status of the line will be assigned as the idle state of the line. Then the sw will monitor the GPIO via timer1. Upon a rising or a falling edge timer1 will capture the current value of the timer and will wake up on every overflow interrupt in order to count the overflows (if any) until the GPIO is released and returned to its idle state. As soon as the GPIO is released and returns to its idle state the corresponding falling or rising edge will also be captured and the sw will report the diff between the two events on the next timer1 overflow interrupt.
+
+    ***Usefull Note***:
+
+    The demo is using the SW2 button for toggling the line high or low, due to the bouncing of the switch miscounts may occur, especially if the system clock is used as a clock source for timer1. In 
+
+
+3. **Counter Functionality**: In the sw configuration 
 
 ## Software Configuration
 

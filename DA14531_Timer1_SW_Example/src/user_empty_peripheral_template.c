@@ -130,13 +130,11 @@ static tim0_2_clk_div_config_t clk_div_config =
 uint16_t capture_val_evt1                       __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint16_t capture_val_evt2                       __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint32_t event_in_cycles	                    __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-
-uint16_t meas_timeout                           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-uint32_t ovf_dur_measurement                    __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint32_t number_of_reloads                      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /* Pulse measurement related variables */
 enum pulse_meas_sm_state sm_state               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+enum pulse_meas_sm_state idle_state             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 #endif
 
@@ -393,20 +391,21 @@ static void timer1_overflow(void)
      * The ovf int is checked first in the ISR, check if an event has occured before that
      * if it did, dont increase the overflow counting
     */
-    if(!GetBits32(TIMER1_STATUS_REG, TIMER1_IN2_EVENT))
+    if(!GetBits32(TIMER1_STATUS_REG, TIMER1_IN2_EVENT) || !GetBits32(TIMER1_STATUS_REG, TIMER1_IN1_EVENT))
         number_of_reloads++;
     
-//    meas_timeout--;
-    
-//    if(meas_timeout == 0 && sm_state == HIGH_WAIT_LOW_ST)
-    if(sm_state == HIGH_WAIT_LOW_ST)
+    if(sm_state == idle_state)
     {
+        number_of_reloads--;
         timer1_enable_overflow_intr(false);
-        event_in_cycles = (((ovf_dur_measurement << 11) + capture_val_evt2) - capture_val_evt1);
+        event_in_cycles = (idle_state == HIGH_WAIT_LOW_ST) ? 
+        (((number_of_reloads << 11) + capture_val_evt2) - capture_val_evt1) : 
+        (((number_of_reloads << 11) + capture_val_evt1) - capture_val_evt2);
+        
         capture_val_evt1 = 0;
         capture_val_evt2 = 0;
         number_of_reloads = 0;
-        ovf_dur_measurement = 0;
+
         /* Wake up the device and print out the measured time */
         arch_ble_force_wakeup();    // Force the BLE to wake up
         app_easy_wakeup();          // Send the message to print
@@ -465,7 +464,8 @@ static void timer1_end_of_measurement_cb(void)
 */
 static void initialize_pulse_length_sm(void)
 {
-    sm_state = (GPIO_GetPinStatus(GPIO_SIGNAL_PORT, GPIO_SIGNAL_PIN)) ? HIGH_WAIT_LOW_ST : LOW_WAIT_HIGH_ST;
+    idle_state = (GPIO_GetPinStatus(GPIO_SIGNAL_PORT, GPIO_SIGNAL_PIN)) ? HIGH_WAIT_LOW_ST : LOW_WAIT_HIGH_ST;
+    sm_state = idle_state;
 }
 
 void initialize_pulse_length_measure(void)
@@ -490,8 +490,6 @@ void initialize_pulse_length_measure(void)
 
 static void pulse_measure_sm(enum pulse_meas_sm_events event)
 {   
-//    meas_timeout = MEASUREMENT_END_IN_CLK;
-    
     switch(sm_state)
     {
         case HIGH_WAIT_LOW_ST:
@@ -503,12 +501,14 @@ static void pulse_measure_sm(enum pulse_meas_sm_events event)
                     break;
                 case FALLING_EDGE_EVT:
                 {
-                    // make sure that this is a valid low and that we dont have allready captured a falling edge
                     if(!GPIO_GetPinStatus(GPIO_SIGNAL_PORT, GPIO_SIGNAL_PIN) && capture_val_evt1 == 0 )
                     {
                         TOGGLE_CURSOR(FALLING_EDGE)
-                        timer1_enable_overflow_intr(true);
                         capture_val_evt1 = timer1_get_event_ch1_capture_value();
+                        
+                        if(idle_state != LOW_WAIT_HIGH_ST)
+                            timer1_enable_overflow_intr(true);
+                        
                         sm_state = LOW_WAIT_HIGH_ST;
                     }
                 }
@@ -523,12 +523,14 @@ static void pulse_measure_sm(enum pulse_meas_sm_events event)
             {
                 case RISING_EDGE_EVT:
                 {
-                    // make sure that this is a valid high and that we dont have allready captured a rising edge
                     if (GPIO_GetPinStatus(GPIO_SIGNAL_PORT, GPIO_SIGNAL_PIN) && capture_val_evt2 == 0)
                     {
                         TOGGLE_CURSOR(RISING_EDGE)
                         capture_val_evt2 = timer1_get_event_ch2_capture_value();
-                        ovf_dur_measurement = number_of_reloads;
+                        
+                        if(idle_state != HIGH_WAIT_LOW_ST)
+                            timer1_enable_overflow_intr(true);          // start measuring
+                        
                         sm_state = HIGH_WAIT_LOW_ST;
                     }
                 }

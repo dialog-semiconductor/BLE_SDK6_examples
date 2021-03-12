@@ -33,14 +33,14 @@
 * from timer 0 can be used for the demo (PWM_TIMER0_ENABLE). Set the MAX frequency 
 * applied to the GPIO for the sw to properly set the counting period MAX_APPLIED_FREQUENCY_KHZ.
 *****************************************************************************************/
-#define ENABLE_FREQ_COUNTING            (1)
-#define PWM_TIMER0_ENABLE               (1)
+#define ENABLE_FREQ_COUNTING            (0)
+#define PWM_TIMER0_ENABLE               (0)
 #define EXTERNAL_FREQUENCY_HZ           (0) // Set to the value of the external applied frequency else 0
 
 /*****************************************************************************************
 * Measure a low pulse length
 *****************************************************************************************/
-#define ENABLE_PULSE_MEASURING          (0)                  
+#define ENABLE_PULSE_MEASURING          (1)                  
 
 /*
  * SW EXAMPLE TIMER 1 SETTINGS
@@ -79,7 +79,7 @@
 
 /* Generic event Settings */
 #define STAMP_TYPE                      TIM1_EVENT_STAMP_CNT        
-#define EVENT_PIN                       (tim1_event_gpio_pin_t)(GPIO_BUTTON_PIN + 1)
+#define EVENT_PIN                       (tim1_event_gpio_pin_t)(GPIO_SIGNAL_PIN + 1)
 
 /* Timer and Event Settings when frequency counting is enabled */
 #if ENABLE_FREQ_COUNTING
@@ -118,7 +118,7 @@
 #else
     #define INPUT_CLK               TIMER1_ON_LPCLK
     #define INTERRUPT_MASK_TMR      TIM1_IRQ_MASK_OFF
-    #define TIMER1_OVF_COUNTER      7                   // Using the LP clock, timer1 
+    #define TIMER1_OVF_COUNTER      7                   // Using the LP clock, timer1 overflows at around 140ms * 7 is approximatelly 1 sec
 #endif
 
 #endif  // _DEMO_CONFIG_H_

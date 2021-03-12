@@ -3242,7 +3242,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>HGò	ã7@wHGò	ã7@wHGò	</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -3270,24 +3269,7 @@
           <Name></Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>242</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>133968878</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\..\src\user_empty_peripheral_template.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\empty_peripheral_template_531\../src/user_empty_peripheral_template.c\242</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>

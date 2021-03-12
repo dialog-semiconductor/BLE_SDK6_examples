@@ -58,14 +58,9 @@
 /****************************************************************************************/
 /* Button configuration                                                                 */
 /****************************************************************************************/
-#if (ENABLE_PULSE_MEASURING || ENABLE_FREQ_COUNTING)
-#define GPIO_BUTTON_PORT        GPIO_PORT_0
-#define GPIO_BUTTON_PIN         GPIO_PIN_11
-#endif
-
-#if (ENABLE_FREQ_COUNTING)
-#define PWM0_PORT               GPIO_PORT_0
-#define PWM0_PIN                GPIO_PIN_4
+#if (ENABLE_PULSE_MEASURING) || (ENABLE_FREQ_COUNTING && PWM_TIMER0_ENABLE)
+#define GPIO_SIGNAL_PORT        GPIO_PORT_0
+#define GPIO_SIGNAL_PIN         GPIO_PIN_11
 #endif
 
 #if (ENABLE_TMR_COUNTING)

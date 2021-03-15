@@ -577,7 +577,7 @@
                   <IncludeLibraryModules></IncludeLibraryModules>
                   <ComprImg>1</ComprImg>
                 </CommonProperty>
-                <FileArmAds/>
+                <FileArmAds></FileArmAds>
               </FileOption>
             </File>
             <File>
@@ -1795,7 +1795,7 @@
                   <IncludeLibraryModules></IncludeLibraryModules>
                   <ComprImg>1</ComprImg>
                 </CommonProperty>
-                <FileArmAds/>
+                <FileArmAds></FileArmAds>
               </FileOption>
             </File>
             <File>
@@ -2723,7 +2723,7 @@
               <MiscControls>--thumb -c --preinclude da1458x_config_basic.h --preinclude da1458x_config_advanced.h --preinclude user_config.h --bss_threshold=0 --feedback=".\unused_531.txt"</MiscControls>
               <Define>__DA14531__</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\DLG_SDK_UNLINKED</IncludePath>
+              <IncludePath>C:\DLG_SDK_UNLINKED;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2957,7 +2957,7 @@
                   <IncludeLibraryModules></IncludeLibraryModules>
                   <ComprImg>1</ComprImg>
                 </CommonProperty>
-                <FileArmAds/>
+                <FileArmAds></FileArmAds>
               </FileOption>
             </File>
             <File>
@@ -3561,9 +3561,9 @@
   </Targets>
 
   <RTE>
-    <apis/>
-    <components/>
-    <files/>
+    <apis></apis>
+    <components></components>
+    <files></files>
   </RTE>
 
 </Project>

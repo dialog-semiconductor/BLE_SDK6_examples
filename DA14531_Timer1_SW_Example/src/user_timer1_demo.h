@@ -12,8 +12,8 @@
  ****************************************************************************************
  */
 
-#ifndef _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
-#define _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#ifndef _USER_TIMER1_DEMO_H_
+#define _USER_TIMER1_DEMO_H_
 
 /**
  ****************************************************************************************
@@ -232,4 +232,4 @@ void stop_frequency_counting(void);
 
 /// @} APP
 
-#endif // _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#endif // _USER_TIMER1_DEMO_H_

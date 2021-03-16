@@ -1,7 +1,7 @@
 /**
  ****************************************************************************************
  *
- * @file user_empty_peripheral_template.c
+ * @file user_timer1_demo.c
  *
  * @brief Empty peripheral template project source code.
  *
@@ -28,7 +28,7 @@
 
 #include "app_api.h"
 #include "arch_system.h"
-#include "user_empty_peripheral_template.h"
+#include "user_timer1_demo.h"
 #include "user_periph_setup.h"
 #include "gpio.h"
 #include "timer1.h"
@@ -309,6 +309,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                 frequency = (timer1_event_config_ch1.period_count * rcx_freq) / meas->captrure_val;
             
             // Print out the results
+            arch_printf("Counting edges %d\n\r", timer1_event_config_ch1.period_count);
             arch_printf("Pulses during measurement period %d\n\r", meas->captrure_val) ;
             arch_printf("Frequency measured is %d Hz\n\r", frequency) ;
             
@@ -338,6 +339,8 @@ static void perform_freq_measurement(void)
 
 static void frequency_measurement_end_cb(void)
 {    
+    TOGGLE_CURSOR(GPIO_PIN_6)
+    
     if(!first_measurement)
     {
         // Send the aquired measurement to the application
@@ -429,8 +432,8 @@ static void report_measurement_result(void)
         time = ((uint64_t)event_in_cycles * 1000000)/rcx_freq;
     
 #ifdef CFG_PRINTF
-    arch_printf("Pulse low %d cycles \n\r", event_in_cycles);
-    arch_printf("Time low %d us \n\r", (uint32_t)time);
+    arch_printf("Pin asserted for %d cycles \n\r", event_in_cycles);
+    arch_printf("Time in asserted state %d us \n\r", (uint32_t)time);
 #endif //CFG_PRINTF
     
     // Set the message to be send when the measurement ends

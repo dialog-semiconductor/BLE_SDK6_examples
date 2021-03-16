@@ -23,7 +23,7 @@
 #include "arch.h"
 #include "gpio.h"
 #include "uart.h"
-#include "user_empty_peripheral_template.h"
+#include "user_timer1_demo.h"
 #include "demo_config.h"
 
 /*

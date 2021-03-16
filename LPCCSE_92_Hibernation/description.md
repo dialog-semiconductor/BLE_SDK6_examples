@@ -1,6 +1,3 @@
-﻿
-# Configuring DA14531 hibernation and state-aware hibernation mode
-
 ## Example description
 
 - This project starts with undirected connectable advertising
@@ -16,6 +13,9 @@ Note:
 
 The expected result of the example can be verified by:
 - Connecting the motherboard to the desktop/laptop and observing the power profile in SmartSnippets Studio.
+
+The example can be downloaded from [Here](http://lpccs-docs.dialog-semiconductor.com/SW_Example/SDK6/DA14531_Configuring_Hibernation_and_State-aware_hibernation_mode.zip)
+
 
 ## HW and SW configuration
 
@@ -202,7 +202,7 @@ The process is the same as using SPI as we have seen in the previous section, ex
 	#undef HIBERNATION_SYSRAM
 ```
 
-This would define the configuration of Hibernation mode to remap the address 0 to OTP while booting. 
+This would define the configuration of Hibernation mode to remap the address 0 to ROM while booting. 
 
 ![HIBERNATION_OTP](assets/cfg_hibernation_otp.png)
 
@@ -339,7 +339,7 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 **************************************************************************************
 
- Copyright (c) 2020 Dialog Semiconductor. All rights reserved.
+ Copyright (c) 2021 Dialog Semiconductor. All rights reserved.
 
  This software ("Software") is owned by Dialog Semiconductor. By using this Software
  you agree that Dialog Semiconductor retains all intellectual property and proprietary

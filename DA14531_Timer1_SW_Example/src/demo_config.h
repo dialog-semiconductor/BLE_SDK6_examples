@@ -83,7 +83,7 @@
 
 /* Timer and Event Settings when frequency counting is enabled */
 #if ENABLE_FREQ_COUNTING
-    #define INPUT_CLK                   TIMER1_ON_SYSCLK
+    #define INPUT_CLK                   TIMER1_ON_LPCLK
     #define TIMER1_CLK_USED_HZ          (INPUT_CLK) ? 16000000UL : 15000UL
     #define PERIOD_COUNT                ((((RELOAD_VALUE * MAX_APPLIED_FREQUENCY_HZ) / (TIMER1_CLK_USED_HZ)) > TIM1_PERIOD_MAX) ? \
                                         TIM1_PERIOD_MAX : ((RELOAD_VALUE * MAX_APPLIED_FREQUENCY_HZ) / (TIMER1_CLK_USED_HZ)))
@@ -94,10 +94,10 @@
     #define FREQ_CNT_INTERVAL           500
     /* Timer 0 PWM Settings */
     #if PWM_TIMER0_ENABLE
-        #define TIMER0_CLOCK_DIV        TIMER0_DIV_BY_2    
+        #define TIMER0_CLOCK_DIV        TIMER0_DIV_BY_8    
         #define TIMER_ON        	    1000
-        #define PWM_HIGH            	5
-        #define PWM_LOW         	    5
+        #define PWM_HIGH            	5000
+        #define PWM_LOW         	    5000
     #endif
     
 #if (PERIOD_COUNT < 2)  // You need at least 2 edges to count before timer1 overflows 

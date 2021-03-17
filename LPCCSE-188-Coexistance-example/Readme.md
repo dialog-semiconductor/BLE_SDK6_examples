@@ -1,13 +1,13 @@
 ## Example Description
 
-Purpose of the current example is to demonstrate the WiFi coexistence feature available in the SDK 6.0.14.1114. The example provides guidelines on how the feature can be enabled on the SDK as well as the signal behaviour that should be expected on the configured pins under the various states and priority configuration rules set from application level. 
+Purpose of the current example is to demonstrate the WiFi coexistence feature available in the SDK 6.0.14.1114. The example provides guidelines on how the feature can be enabled on the SDK as well as the signal behavior that should be expected on the configured pins under the various states and priority configuration rules set from application level.
 
 The WLAN coexistence feature on DA14585/586/531 is designed to allow multiple 2.4 GHz devices to operate without signals from one radio interfering with adjacent radios. This is done by a handshaking protocol between the BLE device and the other 2.4 GHz device using the following signals:
 
  - **WLAN_COEX_BLE_EIP**: Output signal of the device. The DA14585/586/531 can communicate its radio status in advance using this signal. **WLAN_COEX_BLE_EIP** is an envelop of the scheduled TX and RX radio activity of the BLE Radio and it starts before the actual radio activity so it can upfront inform the coexisting system of scheduled RF activity. The signal is de-asserted synchronously directly after radio activity is finished.
  - **WLAN_COEX_BLE_PRIO**: Output signal of the device. The DA14585/586/531 can enable a priority line to indicate that it can not be interrupted for a defined activity. The activity for which BLE needs priority can be defined through the SDK API. The API which controls the signal enables the application to assign a priority to certain packet types on specific connections. The user should define the type of the packet, the connection handle (if the specific packet type is associated with a connection) and the conditions via the ```wlan_coex_prio_criteria_add(prioritized packet type, connection handle, missed number of packets)``` API.
- - **WLAN_COEX_24G_EIP**: Input signal of the device. External 2.4GHz device event in progress indication. Asserting the pin will force the BLE device to supress its radio activity if no higher priority for the upcomming BLE packet is defined.
- - **DEBUG A**: Debugging output signal of the device. Asserted when the BLE radio is overrulled from 24G external request.
+ - **WLAN_COEX_24G_EIP**: Input signal of the device. External 2.4GHz device event in progress indication. Asserting the pin will force the BLE device to suppress its radio activity if no higher priority for the upcoming BLE packet is defined.
+ - **DEBUG A**: Debugging output signal of the device. Asserted when the BLE radio is overruled from 24G external request.
  - **DEBUG B**: Debugging output signal of the device. Asserted when a 24G request arrives.
 
 ## HW and SW Configuration
@@ -45,7 +45,11 @@ Example requirements:
 
 ## Enable the COEX feature in a project
 
+***Usefull Note*** : 
+		All the following changes described are already applied to the accompanied software example. The below instructions refer in a case where the user would like to apply the coexistence scheme on a custom project.
+
 The following guidelines enable the COEX feature on the template example located in the default SDK.
+
 1. Open the template example located under the following directory **C:\sdk_dir\DA145xx_SDK\6.0.14.1114\projects\target_apps\template\empty_peripheral_template\Keil_5\empty_peripheral_template.uvprojx**.
 2. The wlan_coex.c file contains the APIs of the COEX feature, thus it should be added in the project. For adding the source file right click on the sdk_driver in Keil's project tree and select the "Add existing files to Group 'sdk_driver'. In the explorer window navigate into the following directory **sdk_root\sdk\platform\driver\wifi** select the **wlan_coex.c** file and click add in the explorer to include the file into the project.
 
@@ -61,7 +65,7 @@ The following guidelines enable the COEX feature on the template example located
 	<figcaption>Fig. 4: Add wlan_coex.h in Keil project</figcaption>
 </figure>
 
-4. In da1458x_config_advanced.h, at the corresponding sections either for DA14531 or DA14585/586, use the following preprocessor definitions in order to enable WLAN coexistence mode with or without debugging signals and set the prefered polarity of the BLE event in progress signal. The CFG_WLAN_COEX_BLE_EVENT_INV should only be used in case the application requires the signal **WLAN_COEX_BLE_EIP** inverted (de-asserted high, asserted low).
+4. In da1458x_config_advanced.h, at the corresponding sections either for DA14531 or DA14585/586, use the following preprocessor definitions in order to enable WLAN coexistence mode with or without debugging signals and set the preferred polarity of the BLE event in progress signal. The CFG_WLAN_COEX_BLE_EVENT_INV should only be used in case the application requires the signal **WLAN_COEX_BLE_EIP** inverted (de-asserted high, asserted low).
 ```c
 /****************************************************************************************************************/
 /* WLAN coexistence mode: Enable/disable the mode.                                                              */
@@ -234,7 +238,7 @@ The following guidelines enable the COEX feature on the template example located
  
 ## WLAN COEX API
 
-As allready mentioned the COEX API allows the application to set certain rules regarding what type of packets will have priority over 24G packets. If there are no rules defined from application level the 24G device will always take priority over the BLE device.
+As already mentioned the COEX API allows the application to set certain rules regarding what type of packets will have priority over 24G packets. If there are no rules defined from application level the 24G device will always take priority over the BLE device.
 The function that sets the rules for the BLE priorities is the ``` void wlan_coex_prio_criteria_add(wlan_coex_ble_prio_t priority, uint16_t conhdl, uint16_t missed)``` function. Its parameters specify:
 - **priority**: type of packet that has priority over the 24G device. Available values for the specific parameter are indicated at the Table 1.
 - **conhdl**: the connection handle that is associated with the packet that will have priority over the 24G packet (only control packets, and data packets are related with a connection handle).
@@ -261,7 +265,7 @@ If the application requires to prioritize more than one data type packet it is p
 
 ## Monitor the signals through the Logic Analyzer
 
-At this point you should have the executable running on the DA14531 and the Logic Analyzer connected to the proper pins while the analyzer software runs. Depending on the packet rules applied the below traces indicate the behaviour of the signals.
+At this point you should have the executable running on the DA14531 and the Logic Analyzer connected to the proper pins while the analyzer software runs. Depending on the packet rules applied the below traces indicate the behavior of the signals.
 
 1. ### Priority on BLE advertising packets.
 The current trace demonstrates the state of the signals when BLE advertising packets are prioritized over 24G requests.
@@ -272,11 +276,11 @@ In the ```.app_on_init callback``` the ```wlan_coex_prio_criteria_add(WLAN_COEX_
 	<figcaption>Fig. 6: Priority on BLE advertising events along 24G activity</figcaption>
 </figure>
 
-Since we have applied the rule for prioritizing BLE advertising events and asserted the **24G EIP** (emulating a request from the 24G device) the **BLE PRIO** pin is asserted to indicate to the 24G device not to transmit since an advertsing BLE event is ongoing (the **BLE PRIO** signal will be asserted regardless if the **24G_EIP** is asserted or not). The **BLE PRIO** signal remaines asserted as long as the Radio events are ongoing and de-asserts as soon as the BLE device is done with the radio. The **BLE EIP** signal always asserts during a radio event regardless the rules appied and envelopes the entire BLE radio activity.
-As far as the debugging signals, **DEBUG A** is asserted when there is a request from the 24G device and de-asserted if the BLE radio is **NOT** overrulled. The **Events** trace is an indication of the current consumed from the device while advertising (the 3 bumps on the trace depict the TX/RX activity of the device while advertising). **DEBUG B** signal indicates that there is a request from an external 24G device in order to send data. 
+Since we have applied the rule for prioritizing BLE advertising events and asserted the **24G EIP** (emulating a request from the 24G device) the **BLE PRIO** pin is asserted to indicate to the 24G device not to transmit since an advertising BLE event is ongoing (the **BLE PRIO** signal will be asserted regardless if the **24G_EIP** is asserted or not). The **BLE PRIO** signal remains asserted as long as the Radio events are ongoing and de-asserts as soon as the BLE device is done with the radio. The **BLE EIP** signal always asserts during a radio event regardless the rules applied and envelopes the entire BLE radio activity.
+As far as the debugging signals, **DEBUG A** is asserted when there is a request from the 24G device and de-asserted if the BLE radio is **NOT** overruled. The **Events** trace is an indication of the current consumed from the device while advertising (the 3 bumps on the trace depict the TX/RX activity of the device while advertising). **DEBUG B** signal indicates that there is a request from an external 24G device in order to send data. 
 
 2. ### Priority on 24G packets while advertising
-The current trace demonstrates the state of signals when there is no rule for prioritizing BLE advertising events. This means that either data packets are pioritized or no valid rule is applied for prioritizing BLE events.
+The current trace demonstrates the state of signals when there is no rule for prioritizing BLE advertising events. This means that either data packets are prioritised or no valid rule is applied for prioritizing BLE events.
 
 <figure>
 <img src="media/no_adv_priority_with24G_request.png" alt="No advertising priority along with 24G request">
@@ -287,7 +291,7 @@ Since there is no priority on the advertising events the **BLE PRIO** signal rem
 
 3. #### Priority on BLE data packets
 To apply the rule for prioritizing the data packets on a specific connection the ```wlan_coex_prio_criteria_add(WLAN_COEX_BLE_PRIO_DATA, app_env[0].conhdl, 0);``` function should be invoked through the ```.app_on_init callback``` to set the rule.
-The current trace pictures the case where the data packets are prioritized over 24G activity. It cleary noticable that the **BLE PRIO** signal always asserts for every upcomming BLE event. The connection interval of the specific trace is 45ms.
+The current trace pictures the case where the data packets are prioritized over 24G activity. It is clearly noticeable that the **BLE PRIO** signal always asserts for every upcoming BLE event. The connection interval of the specific trace is 45ms.
 
 <figure>
 <img src="media/data_packets_prio_with24G_activity.png" alt="BLE data packets priority along with 24G request">
@@ -296,27 +300,27 @@ The current trace pictures the case where the data packets are prioritized over 
 
 4. #### Priority on BLE missed events
 The COEX API also provides a missed events rule, available only for data packets, where the application is able to specify the amount of missed events which can be tolerated before asserting the priority signal. If for example during a connection the device doesn't get an ACK for a specific amount of connection events the **BLE PRIO** signal will be asserted in order to indicate to the 24G that there should be BLE communication on the next event.
-To apply the rule for prioritizing events based on the missed data packets on a specific connection the ```wlan_coex_prio_criteria_add(WLAN_COEX_BLE_PRIO_MISSED, app_env[0].conhdl, 5);``` function should be invoked through the ```.app_on_init callback``` to set the rule. The above function specifies that up to 5 connection events missed can be tolerated, on the 6th event the **BLE PRIO** signal will be asserted for the BLE to aquire the antenna.
+To apply the rule for prioritizing events based on the missed data packets on a specific connection the ```wlan_coex_prio_criteria_add(WLAN_COEX_BLE_PRIO_MISSED, app_env[0].conhdl, 5);``` function should be invoked through the ```.app_on_init callback``` to set the rule. The above function specifies that up to 5 connection events missed can be tolerated, on the 6th event the **BLE PRIO** signal will be asserted for the BLE to acquire the antenna.
 
 <figure>
 <img src="media/data_packets_missed_packets_prio_with24G_activity.png" alt="5 BLE missed data packets priority along with 24G request">
 	<figcaption>Fig. 9: 5 BLE missed data packets priority along with 24G request</figcaption>
 </figure>
 
-Zooming in on Fig. 9 is clear that there is Tx/Rx activity on the 1st depicted connection event while the following events up to connection event 6 there is no radio activity. On connection event 7 the **BLE PRIO** signal is asserted indicating to the 24G device that BLE should aquire the antenna. 
+Zooming in on Fig. 9 is clear that there is Tx/Rx activity on the 1st depicted connection event while the following events up to connection event 6 there is no radio activity. On connection event 7 the **BLE PRIO** signal is asserted indicating to the 24G device that BLE should acquire the antenna. 
 
 <figure>
 <img src="media/data_packets_missed_packets_prio_with24G_activity_zoomin.png" alt="5 BLE missed data packets priority along with 24G request zoomed in">
 	<figcaption>Fig. 10: 5 BLE missed data packets priority along with 24G request zoomed in</figcaption>
 </figure>
 
-**Note: The advertisng or connection events depicted on the above traces (at the "Events" channel) are indications and dont represent the actual current consumed from the events.**
+**Note: The advertising or connection events depicted on the above traces (at the "Events" channel) are indications and do not represent the actual current consumed from the events.**
 
 ## Known Limitations
 
 - No known hardware limitations for this example, but it is recommended to see the following:
   - Application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-  - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum)
+  - Dialog Software [Forum link](https://www.dialog-semiconductor.com/support)
   - [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started)
 
 

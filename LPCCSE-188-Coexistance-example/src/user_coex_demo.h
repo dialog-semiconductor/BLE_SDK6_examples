@@ -63,12 +63,35 @@ i.e.
  ****************************************************************************************
  */
 
+/**
+ ****************************************************************************************
+ * @brief Connection function.
+ * @param[in] conidx        Connection Id index
+ * @param[in] param         Pointer to GAPC_CONNECTION_REQ_IND message
+ ****************************************************************************************
+*/
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param);
 
+/**
+ ****************************************************************************************
+ * @brief Disconnection function.
+ * @param[in] param         Pointer to GAPC_DISCONNECT_IND message
+ ****************************************************************************************
+*/
 void user_on_disconnect( struct gapc_disconnect_ind const *param );
 
+/**
+ ****************************************************************************************
+ * @brief Application initialization function.
+ ****************************************************************************************
+*/
 void user_app_on_init(void);
 
+/**
+ ****************************************************************************************
+ * @brief User validate going to sleep hook function.
+ ****************************************************************************************
+*/
 sleep_mode_t user_app_on_validate_sleep(sleep_mode_t sleep_mode);
 /// @} APP
 

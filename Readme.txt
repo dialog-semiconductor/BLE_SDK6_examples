@@ -1,83 +1,23 @@
-# Example name
+# Smartbond SDK6 Application Examples
 
-Button functionalities and advertising
+This is the repository storing example for the DA145xx family.
 
+For information about the DA145xx platform and how to bring up your development kit, please refer to the [Getting started User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
 
-## Example description
+## Example usage
 
-Code snippet displaying GPIO functionalities (button, timer, LED) as well as changing advertising modes (connecable / non-connectable) and advertising intervals
-	
-## HW and SW configuration
+This assume you went through the getting started and you have successfully built, loaded and ran a first application on the DA145xx.
 
+For additional examples:
 
-* **Hardware configuration**
-	- This example runs on the DA14585 Pro Dev kit connected to host computer via USB
+- Clone this repository
+- From the workspace you have setup go to **File->Import**
+- Select **General->Existing Projects into Workspace** and click Next
+- In the `Select root directory` input the path where you cloned this repository
+- Select the example(s) you want to import and click finish.
 
-* **Software configuration**
+You can now navigate and build the imported examples.
 
-	- This example requires:
-    	* Smartsnippets Toolbox v4.8.3.1804
-    	* SDK 6.0.10.511
+## Example compatibility
 
-
-## How to run the example
-
-Use the python script (in the project folder) to link the SDK path to the example.
-
-step 1 locate your untouched SDK6, available from the customer support website
-
-step 2 Run the script from the command line with the extension -sdkpath "<untouched SDK location>"
-
-step 3 when finished, you should be able to run the example
-
-
-### Initial Setup
-
-1. 	BLE application starts advertising with 100ms connectable advertising interval
-2. 	Press SW3
-3. 	BLE application updates the advertising interval to 1000ms and keeps advertising 
-	but now this time non-connectable advertising
-4. 	Press the same button go back to step 1
-5. 	If the same button is pressed for 3 seconds the device goes to sleep
-6. 	If the same button is pressed for 3 seconds the device wakes up and starts advertising 
-	with the last advertising interval was used and the last known mode it was advertising with.
-7. 	You can check the state using serial port messages
-8.	Using the power profiler from the smartsnippet toolbox you can check the state by measuring 
-	the power consumption
-
-
-## Known Limitations
-
-
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum link").
-- You can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
-
-
-## License
-
-
-**************************************************************************************
-
- Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
-
- This software ("Software") is owned by Dialog Semiconductor. By using this Software
- you agree that Dialog Semiconductor retains all intellectual property and proprietary
- rights in and to this Software and any use, reproduction, disclosure or distribution
- of the Software without express written permission or a license agreement from Dialog
- Semiconductor is strictly prohibited. This Software is solely for use on or in
- conjunction with Dialog Semiconductor products.
-
- EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
- REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
- IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
- SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
- CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
- PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
- ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
-
-**************************************************************************************
-
+Not all the examples will run on the latest version of the SDK10, the tested version is indicated in the Readme. If you find and example that needs porting to the latest version please report it in the issues.

@@ -84,7 +84,10 @@ The following guidelines enable the COEX feature on the template example located
 /****************************************************************************************************************/
 #undef CFG_WLAN_COEX_BLE_EVENT_INV
 ```
-5. In the **user_periph_setup.h** file the following snippet of definitions should be added for the WLAN coexistence pin mapping. All COEX signals but the **WLAN_COEX_BLE_EIP** can be assigned to any pins (if not used for any other functionality other than the coexistence). The **WLAN_COEX_BLE_EIP** signal is an internal HW signal and it can be only mapped to specific pins. For both DA14531 and DA14585/586 the **WLAN_COEX_BLE_EIP** can be mapped to pins **from P00 to P07**. In case the application requires a different pin for this specific signal the change should be done from the **WLAN_COEX_BLE_EIP_PIN** definition. Since as mentioned this is an internal signal the API will take care of configuring the HW for assigning the specific functionality on the user defined pin.
+5. In the **user_periph_setup.h** file the following snippet of definitions should be added for the WLAN coexistence pin mapping. All COEX signals can be assigned to any pins (if not used for any other functionality other than the coexistence).
+
+	All signals but the **WLAN_COEX_BLE_EIP** are used as common GPIO pins. The **WLAN_COEX_BLE_EIP** signal is an internal HW signal and can be mapped only to pins **from P00 to P07** (on both DA14531 and DA14585) with the default SDK coex driver (check the **Note** at the bottom of the paragraph for using alternative pins for the BLE_EIP signal). The change of the pin should be applied from the **WLAN_COEX_BLE_EIP_PIN** definition.
+	
 ```c
 /****************************************************************************************/
 /* WLAN COEX pin configuration                                                          */
@@ -226,6 +229,89 @@ The following guidelines enable the COEX feature on the template example located
 <img src="media/user_empty_peripheral_template.png" alt="user_empty_peripheral_template.c_modifications">
 	<figcaption>Fig. 5: Modifications in user_empty_peripheral template</figcaption>
 </figure>
+
+>**_Note_**:
+	The HW supports assigning the BLE_EIP signal to pins **P00 up to P011** for the DA14531 and to pins **P00 up to P07** and **P10 up to P13** for the DA14585. As allready mentioned this is not supported from the current SDK coex driver. This is only possible by applying the following modification in the **wlan_coex_BLE_set()** and in the **wlan_coex_gpio_cfg** functions, as indicated in the below snippet.
+	
+The following modifications should be applied in the default SDK driver in order to assign the BLE_EIP signal on the additional available pins.
+
+- Change the restriction of the SDK driver that limits the Diagnostic pins to P00 up to P07 in the wlan_coex_gpio_cfg() function and apply the new extended pin restriction.
+	```C
+	void wlan_coex_gpio_cfg(void)
+	{
+		// WLAN_COEX_BLE_EVENT can be applied on any pin for DA14531 and only on pins P0[0-7] and P1[1-3] for DA14585.
+		#if!(__DA14531__)
+			ASSERT_WARNING((wlan_coex_cfg.ble_eip_pin <= GPIO_PIN_7) && (wlan_coex_cfg.ble_eip_port == GPIO_PORT_0) ||
+						(wlan_coex_cfg.ble_eip_pin <= GPIO_PIN_3) && (wlan_coex_cfg.ble_eip_port == GPIO_PORT_1));
+		#endif
+
+		// Drive to inactive state the pin used for the BLE event in progress signal
+		wlan_coex_set_ble_eip_pin_inactive();
+
+		// Configure selected GPIO as output - BLE priority
+		GPIO_ConfigurePin(wlan_coex_cfg.ble_prio_port, wlan_coex_cfg.ble_prio_pin, OUTPUT, PID_GPIO, false);
+
+		// Configure selected GPIO as input with pull-down - 2.4GHz external device event in progress
+		GPIO_ConfigurePin(wlan_coex_cfg.ext_24g_eip_port, wlan_coex_cfg.ext_24g_eip_pin, INPUT_PULLDOWN, PID_GPIO, false);
+
+		// Configure 2.4GHz external device event in progress signal to act as a GPIO interrupt
+		GPIO_RegisterCallback((IRQn_Type)(GPIO0_IRQn + wlan_coex_cfg.irq), ext_24g_eip_handler);
+		GPIO_EnableIRQ(wlan_coex_cfg.ext_24g_eip_port, wlan_coex_cfg.ext_24g_eip_pin, (IRQn_Type)(GPIO0_IRQn + wlan_coex_cfg.irq),
+					/*low_input*/ false, /*release_wait*/ false, /*debounce_ms*/ 0);
+
+	#if defined (CFG_WLAN_COEX_DEBUG)
+		GPIO_ConfigurePin(wlan_coex_cfg.debug_a_port, wlan_coex_cfg.debug_a_pin, OUTPUT, PID_GPIO, false);
+		GPIO_ConfigurePin(wlan_coex_cfg.debug_b_port, wlan_coex_cfg.debug_b_pin, OUTPUT, PID_GPIO, false);
+	#endif
+	}
+	```
+
+	- Replace the existing wlan_coex_BLE_set() with the following snippet.
+
+	```c
+	void wlan_coex_BLE_set(void)
+	{
+		uint8_t shift;
+		GPIO_PIN diag_en;
+	#if (__DA14531__)
+		if ((wlan_coex_cfg.ble_eip_pin < GPIO_PIN_4) || (wlan_coex_cfg.ble_eip_pin > GPIO_PIN_7))
+	#else
+		if (wlan_coex_cfg.ble_eip_pin < GPIO_PIN_4)
+	#endif
+		{
+	#if (__DA14531__)
+			if(wlan_coex_cfg.ble_eip_pin > GPIO_PIN_7)
+			{
+				diag_en = (GPIO_PIN)(wlan_coex_cfg.ble_eip_pin - GPIO_PIN_8);
+				shift = diag_en * 8;
+			}
+			else
+	#endif
+			{
+				shift = wlan_coex_cfg.ble_eip_pin * 8;
+				diag_en = wlan_coex_cfg.ble_eip_pin;
+			}
+			// Enable BLE event in progress
+			SetBits32(BLE_DIAGCNTL_REG, DIAG0 << shift, 0x1F);
+			SetBits32(BLE_DIAGCNTL_REG, DIAG0_EN << shift, 1);
+		}
+		else
+		{
+			shift = (wlan_coex_cfg.ble_eip_pin - 4) * 8;
+			diag_en = wlan_coex_cfg.ble_eip_pin;
+			// Enable BLE event in progress
+			SetBits32(BLE_DIAGCNTL2_REG, DIAG4 << shift, 0x1F);
+			SetBits32(BLE_DIAGCNTL2_REG, DIAG4_EN << shift, 1);
+		}
+		
+		SetWord16(GPIO_BASE + 0x6 + (wlan_coex_cfg.ble_eip_port << 5) + (wlan_coex_cfg.ble_eip_pin << 1), 0x312);
+
+	#if defined (CFG_WLAN_COEX_BLE_EVENT_INV)
+		SetBits32(BLE_DIAGCNTL3_REG, (DIAG0_INV << (diag_en * 4)), 1);
+	#endif
+		SetBits32(BLE_DIAGCNTL3_REG, (DIAG0_BIT << (diag_en * 4)), 7);
+	}
+	```
 
 ## Run the Example
 

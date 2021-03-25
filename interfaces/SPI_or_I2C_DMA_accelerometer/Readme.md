@@ -1,4 +1,4 @@
-﻿
+﻿TODO: UPDATE TO THE NEW EXAMPLE
 # SPI reading and writing using DMA, monitored by SmartSnippets Toolbox
 
 ---

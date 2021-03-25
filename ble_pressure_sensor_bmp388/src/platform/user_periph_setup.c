@@ -78,8 +78,12 @@ void GPIO_reservations(void)
 void set_pad_functions(void)
 {
 #if (BMP388_INTERFACE == BMP388_SPI)
-  // Disable HW RST on P0_0 so it can be used as SPI MOSI.
+	
+#if defined (__DA14531__)
+	// Disable HW RST on P0_0 so it can be used as SPI MOSI.
   GPIO_Disable_HW_Reset();
+#endif
+	
   // Configure pins used for BMP388 SPI interface
   GPIO_ConfigurePin(BMP388_SPI_MISO_PORT, BMP388_SPI_MISO_PIN, INPUT, PID_SPI_DI, false);  
   GPIO_ConfigurePin(BMP388_SPI_MOSI_PORT, BMP388_SPI_MOSI_PIN, OUTPUT, PID_SPI_DO, false);  
@@ -90,7 +94,7 @@ void set_pad_functions(void)
   GPIO_ConfigurePin(BMP388_I2C_SDA_PORT, BMP388_I2C_SDA_PIN, INPUT, PID_I2C_SDA, false);
 #endif
 
-  GPIO_ConfigurePin(BMP388_INT_PORT, BMP388_INT_PIN, INPUT, PID_GPIO, false); 
+   GPIO_ConfigurePin(BMP388_INT_PORT, BMP388_INT_PIN, INPUT, PID_GPIO, false); 
 
 #if defined (CFG_PRINTF_UART2)
   // Configure UART2 TX Pad
@@ -147,9 +151,16 @@ static const i2c_cfg_t i2c_cfg = {
 
 void periph_init(void)
 {
+#if defined (__DA14531__)
   // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
   syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
-
+#else
+    // Power up peripherals' power domain
+    SetBits16(PMU_CTRL_REG, PERIPH_SLEEP, 0);
+    while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
+    SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
+#endif
+	
   // ROM patch
   patch_func();
 
@@ -161,6 +172,9 @@ void periph_init(void)
 
   // Set pad functionality
   set_pad_functions();
+	
+  // Enable the pads
+  GPIO_set_pad_latch_en(true);
 
 #if (BMP388_INTERFACE == BMP388_SPI)
   // Initialise SPI
@@ -170,6 +184,4 @@ void periph_init(void)
   i2c_init(&i2c_cfg);
 #endif
 
-  // Enable the pads
-  GPIO_set_pad_latch_en(true);
 }

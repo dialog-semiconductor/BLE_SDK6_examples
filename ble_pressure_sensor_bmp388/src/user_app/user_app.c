@@ -137,8 +137,11 @@ void user_app_on_db_init_complete(void)
   set_pressure_char_value(0);
   set_temperature_char_value(0);
 
-  /* Start timer that wil trigger periodic measurement of pressure and temperature */
-  measure_timer = app_easy_timer(MEASURE_PERIOD, measure_timer_cb);
+  /* Start a single first measurement */
+	bmp388_start_meas(BMP388_MODE_FORCED, 
+                        BMP388_PRESS_MEAS_ENABLE, 
+                        BMP388_TEMP_MEAS_ENABLE);
+
 
   default_app_on_db_init_complete();
 }
@@ -233,8 +236,6 @@ void user_app_catch_rest_hndl(ke_msg_id_t const msgid,
 */
 static void wakeup_callback(void)
 {
-  /* Clear interrupt source */
-  SetBits16(WKUP_CTRL_REG, WKUP_ENABLE_IRQ, 1);
   periph_init();
 
   #ifdef CFG_PRINTF
@@ -273,12 +274,14 @@ static void wakeup_callback(void)
     }
     /* Restart timer that wil trigger periodic measurement */
     measure_timer = app_easy_timer(MEASURE_PERIOD, measure_timer_cb);
+
   }
 
-  /* When callback is triggered event counter is not set to 0 on the DA14531, it
-     has to be manually cleared otherwise no further wake up interrupts will be
-     generated. */
-  SetWord16(WKUP_IRQ_STATUS_REG, WKUP_CNTR_RST);
+	wkupct_enable_irq(WKUPCT_PIN_SELECT(BMP388_INT_PORT, BMP388_INT_PIN),
+									WKUPCT_PIN_POLARITY(BMP388_INT_PORT, BMP388_INT_PIN, WKUPCT_PIN_POLARITY_LOW),
+									1,
+									0);
+	
 }
 
 /**
@@ -296,13 +299,11 @@ static void measure_timer_cb(void)
     arch_printf("\n\r%s", __FUNCTION__);
   #endif
 
-  /* Start a single (forced) measurement, will get interrupt when complete */
-  if (bmp388_start_meas(BMP388_MODE_FORCED, 
+	 /* Start a single first measurement */
+	bmp388_start_meas(BMP388_MODE_FORCED, 
                         BMP388_PRESS_MEAS_ENABLE, 
-                        BMP388_TEMP_MEAS_ENABLE) != 0) {
-    /* Failed to start measurement, try again in future */
-    measure_timer = app_easy_timer(MEASURE_PERIOD, measure_timer_cb);
-  }
+                        BMP388_TEMP_MEAS_ENABLE);
+
 }
 
 /**

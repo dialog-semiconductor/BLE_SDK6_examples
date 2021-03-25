@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_spi.c
+ * @file i2c_impl.h
  *
- * @brief Barebone project source code.
+ * @brief I2C Implementation for LIS2DH.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -30,9 +30,16 @@
  ****************************************************************************************
  */
 
+#ifndef _I2C_IMPL_H_
+#define _I2C_IMPL_H_
+
 /**
  ****************************************************************************************
  * @addtogroup APP
+ * @ingroup
+ *
+ * @brief
+ *
  * @{
  ****************************************************************************************
  */
@@ -41,60 +48,23 @@
  * INCLUDE FILES
  ****************************************************************************************
  */
-#include "user_spi.h"
-#include "spi_flash.h"
+#include <stdio.h>
+#include <stdint.h>
+#include "lis2dh_driver.h"
+#include "i2c.h"
 
-#if defined(CFG_SPI_DMA_SUPPORT)
-void wait_for_DMA(void){
-	while(dma_get_channel_state(SPI_DMA_CHANNEL_RX) || dma_get_channel_state(SPI_DMA_CHANNEL_TX)){}
-}
-#endif
+status_t i2c_accel_read_reg(uint32_t address, uint8_t *byte);
 
-void demo_spi(void){
-	 uint8_t tx_buffer[TEST_SIZE];
-	 uint8_t rx_buffer[TEST_SIZE];
-	 uint16_t actual_size = TEST_SIZE;
-	 int8_t	error_code = SPI_FLASH_ERR_OK;
-	 
-	 for(uint8_t i = 0; i <= TEST_SIZE && i<= 0xFF; i++){//0xFF = 255 = (2^8)-1 = the max value of an uint8_t
-		 tx_buffer[i] = i;
-	 }
-	 
-	 
-	 #if defined(__DA14531__)
-			arch_set_pxact_gpio(DEBUG_GPIO_PORT,DEBUG_GPIO_PIN);//Place a software cursor in the Smartsnippets toolbox power analyser 
-	 #else                                                  //
-			arch_set_pxact_gpio();															//
-	 #endif
+status_t i2c_accel_write_reg(uint32_t address, uint8_t byte);
 
-	 spi_cs_low();
-	 error_code = spi_send(tx_buffer,TEST_SIZE,SPI_OP);
-	 if(error_code != SPI_FLASH_ERR_OK){
-			//Insert error handler
-	 }
-	 wait_for_DMA();
-	 spi_cs_high();
-	 
-	 #if defined(CFG_SPI_DMA_SUPPORT)
-	 error_code = spi_flash_read_data_dma(rx_buffer,SOME_POINT_IN_FLASH,TEST_SIZE,&actual_size);	 
-	 #else
-	 error_code = spi_flash_read_data(rx_buffer,SOME_POINT_IN_FLASH,TEST_SIZE,&actual_size);
-	 #endif
-	 if(error_code != SPI_FLASH_ERR_OK){
-			//Insert error handler
-	 }
-	 
-	 memset(tx_buffer,RESET_VALUE,TEST_SIZE);
-	 tx_buffer[0] = SPI_FLASH_OP_READ;
+status_t i2c_accel_read_fifo(uint8_t Reg_start, AxesRaw_t Data[32], uint16_t burst_num);
 
-	 spi_cs_low();
-	 error_code = spi_transfer(tx_buffer,rx_buffer,TEST_SIZE,SPI_OP);
-	 if(error_code != SPI_FLASH_ERR_OK){
-			//Insert error handler
-	 }
-	 wait_for_DMA();
-	 spi_cs_high();
-	 
-}
+void i2c_accel_set_cb(i2c_complete_cb_t cb);
 
+void i2c_accel_configure_pins_for_sleep(void);
+ 
 /// @} APP
+
+#endif //_I2C_IMPL_H_
+
+

@@ -5,27 +5,9 @@
  *
  * @brief Basic compile configuration file.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2014-2019 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -50,7 +32,7 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
-#undef CFG_APP_SECURITY
+#define CFG_APP_SECURITY
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
@@ -117,6 +99,7 @@
 /*     - I2C                                                                                                    */
 /****************************************************************************************************************/
 #undef CFG_UART_DMA_SUPPORT
+#undef CFG_SPI_DMA_SUPPORT
 #undef CFG_I2C_DMA_SUPPORT
 
 
@@ -137,7 +120,7 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
-#undef CFG_APP_SECURITY
+#define CFG_APP_SECURITY
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
@@ -177,7 +160,7 @@
 /* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implented using UART2, else UART1 */
 /* will be used.                                                                                                */
 /****************************************************************************************************************/
-#undef CFG_PRINTF
+#define CFG_PRINTF
 #ifdef CFG_PRINTF
     #define CFG_PRINTF_UART2
 #endif
@@ -205,6 +188,15 @@
 /*     - ADC                                                                                                    */
 /****************************************************************************************************************/
 #undef CFG_UART_DMA_SUPPORT
+
+#if defined(__ACCEL_USE_DMA__) && defined(__ACCEL_IF_SPI__)
+	#define CFG_SPI_DMA_SUPPORT
+#endif 
+
+#if defined(__ACCEL_USE_DMA__) && defined(__ACCEL_IF_I2C__)
+	#define CFG_I2C_DMA_SUPPORT
+#endif
+
 #undef CFG_ADC_DMA_SUPPORT
 
 /****************************************************************************************************************/

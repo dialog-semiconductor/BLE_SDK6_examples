@@ -5,27 +5,9 @@
  *
  * @brief Configuration file for the profiles used in the application.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2015-2019 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -55,6 +37,7 @@
 /***************************************************************************************/
 
 #define CFG_PRF_DISS
+#define CFG_PRF_CUST1
 
 /***************************************************************************************/
 /* Profile application configuration section                                           */
@@ -73,11 +56,11 @@
                                         DIS_FIRM_REV_STR_CHAR_SUP | \
                                         DIS_PNP_ID_CHAR_SUP)
 
-/// Manufacturer Name
+/// Manufacturer Name (up to 18 chars)
 #define APP_DIS_MANUFACTURER_NAME       ("Dialog Semi")
 #define APP_DIS_MANUFACTURER_NAME_LEN   (11)
 
-/// Model Number String
+/// Model Number String (up to 18 chars)
 #if defined (__DA14586__)
     #define APP_DIS_MODEL_NB_STR            ("DA14586")
 #elif defined (__DA14531__)

@@ -5,27 +5,9 @@
  *
  * @brief Peripherals setup and initialization.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2015-2019 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -41,12 +23,74 @@
 #include "rwip_config.h"
 #include "gpio.h"
 #include "uart.h"
+#include "i2c.h"
 #include "syscntl.h"
-#include "spi_flash.h"
+#include "spi.h"
+#include "spi_531.h"
+
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
+ 
+ /****************************************************************************************/
+/* I2C LIS2DH configuration                                                             */
+/****************************************************************************************/
+
+
+#define I2C_SLAVE_ADDRESS 0x19                // Set slave device address
+#define I2C_SPEED_MODE    I2C_SPEED_STANDARD  // Speed mode: I2C_SPEED_STANDARD (100 kbits/s), I2C_SPEED_FAST (400 kbits/s)
+#define I2C_ADDRESS_MODE  I2C_ADDRESSING_7B   // Addressing mode: {I2C_ADDRESSING_7B, I2C_ADDRESSING_10B}
+#define I2C_ADDRESS_SIZE  I2C_1BYTE_ADDR      // Address width: {I2C_1BYTE_ADDR, I2C_2BYTES_ADDR, I2C_3BYTES_ADDR}
+
+
+#ifdef __ACCEL_IF_I2C__
+/// Configuration struct for I2C
+i2c_cfg_t i2c_cfg = {
+    .clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET,
+    .clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET,
+    .clock_cfg.fs_hcnt = I2C_FS_SCL_HCNT_REG_RESET,
+    .clock_cfg.fs_lcnt = I2C_FS_SCL_LCNT_REG_RESET,
+    .restart_en = I2C_RESTART_ENABLE,
+    .speed = I2C_SPEED_MODE,
+    .mode = I2C_MODE_MASTER,
+    .addr_mode = I2C_ADDRESS_MODE,
+    .address = I2C_SLAVE_ADDRESS,
+    .tx_fifo_level = 16,
+    .rx_fifo_level = 16,
+};
+
+#elif defined(__ACCEL_IF_SPI__)
+
+spi_cfg_t spi_cfg = 
+{
+    /// SPI master/slave mode
+    .spi_ms = SPI_MS_MODE_MASTER,
+    .spi_cp = SPI_CP_MODE_3,
+    .spi_speed = SPI_SPEED_MODE_8MHz,
+    .spi_wsz = SPI_MODE_8BIT,
+    .spi_cs = SPI_CS_0,
+    .cs_pad.port = SPI_PORT,
+		.cs_pad.pin = SPI_CS_PIN,
+
+#if defined (CFG_SPI_DMA_SUPPORT)
+
+    /// SPI DMA Channel Pair Configuration
+    .spi_dma_channel = SPI_DMA_CHANNEL_01,
+
+    /// SPI DMA Priority Configuration
+    .spi_dma_priority = DMA_PRIO_1,
+#endif
+
+    /// SPI Capture at current or next edge.
+    .spi_capture = SPI_MASTER_EDGE_CAPTURE
+};
+
+
+#else
+	#error "Please define i2c/spi interface
+#endif
+
 
 #if DEVELOPMENT_DEBUG
 
@@ -56,14 +100,26 @@ void GPIO_reservations(void)
     i.e. to reserve P0_1 as Generic Purpose I/O:
     RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
 */
-	RESERVE_GPIO(SPI_SS, SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, PID_SPI_EN);
-	RESERVE_GPIO(SPI_MISO, SPI_DI_GPIO_PORT, SPI_DI_GPIO_PIN, PID_SPI_DI);
-	RESERVE_GPIO(SPI_MOSI, SPI_DO_GPIO_PORT, SPI_DO_GPIO_PIN, PID_SPI_DO);
-	RESERVE_GPIO(SPI_CLK, SPI_CLK_GPIO_PORT, SPI_CLK_GPIO_PIN, PID_SPI_CLK);
-	
+
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
+	
+		RESERVE_GPIO(SPI_INT1, LIS2DH_INT1_PORT, LIS2DH_INT1_PIN, PID_GPIO);
+
+#if defined(__ACCEL_IF_I2C__)
+    RESERVE_GPIO(I2C_CLK, I2C_SCL_PORT, I2C_SCL_PIN, PID_I2C_SCL);
+    RESERVE_GPIO(I2C_SDA, I2C_SDA_PORT, I2C_SDA_PIN, PID_SDA_SCL);
+    RESERVE_GPIO(I2C_MODE, I2C_MODE_PORT, I2C_MODE_PIN, PID_GPIO);
+    RESERVE_GPIO(I2C_ADDR, I2C_ADDR_PORT, I2C_ADDR_PIN, PID_GPIO);
+#endif 
+	
+#if defined(__ACCEL_IF_SPI__)
+		RESERVE_GPIO(SPI_CS, SPI_PORT, SPI_CS_PIN, PID_SPI_EN);
+    RESERVE_GPIO(SPI_DI, SPI_PORT, SPI_DI_PIN, PID_SPI_DI);
+		RESERVE_GPIO(SPI_DO, SPI_PORT, SPI_DO_PIN, PID_SPI_DO);
+    RESERVE_GPIO(SPI_CLK, SPI_PORT, SPI_CLK_PIN, PID_SPI_CLK);
+#endif 
 }
 
 #endif
@@ -85,10 +141,22 @@ void set_pad_functions(void)
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
 
-	GPIO_ConfigurePin( SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, OUTPUT, PID_SPI_EN, true); 
-	GPIO_ConfigurePin( SPI_DI_GPIO_PORT, SPI_DI_GPIO_PIN, INPUT, PID_SPI_DI, true); 
-	GPIO_ConfigurePin( SPI_DO_GPIO_PORT, SPI_DO_GPIO_PIN, OUTPUT, PID_SPI_DO, true); 
-	GPIO_ConfigurePin( SPI_CLK_GPIO_PORT, SPI_CLK_GPIO_PIN, OUTPUT, PID_SPI_CLK, true);
+#if defined(__ACCEL_IF_I2C__)
+		GPIO_ConfigurePin(I2C_SCL_PORT, I2C_SCL_PIN, INPUT, PID_I2C_SCL, false);
+    GPIO_ConfigurePin(I2C_SDA_PORT, I2C_SDA_PIN, INPUT, PID_I2C_SDA, false);
+		GPIO_ConfigurePin(I2C_MODE_PORT, I2C_MODE_PIN, OUTPUT, PID_GPIO, true);
+    GPIO_ConfigurePin(I2C_ADDR_PORT, I2C_ADDR_PIN, OUTPUT, PID_GPIO, true);
+#endif 
+	
+#if defined(__ACCEL_IF_SPI__)
+		GPIO_ConfigurePin(SPI_PORT, SPI_CS_PIN, OUTPUT, PID_SPI_EN, false);
+    GPIO_ConfigurePin(SPI_PORT, SPI_DI_PIN, INPUT, PID_SPI_DI, false);
+		GPIO_ConfigurePin(SPI_PORT, SPI_DO_PIN, OUTPUT, PID_SPI_DO, false);
+    GPIO_ConfigurePin(SPI_PORT, SPI_CLK_PIN, OUTPUT, PID_SPI_CLK, false);
+#endif 
+    
+    GPIO_ConfigurePin(LIS2DH_INT1_PORT, LIS2DH_INT1_PIN, INPUT, PID_GPIO, true);
+
 }
 
 #if defined (CFG_PRINTF_UART2)
@@ -105,29 +173,6 @@ static const uart_cfg_t uart_cfg = {
     .intr_priority = 2,
 };
 #endif
-
-// Configuration struct for SPI
-static const spi_cfg_t spi_cfg = {
-    .spi_ms = SPI_MS_MODE,
-    .spi_cp = SPI_CP_MODE,
-    .spi_speed = SPI_SPEED_MODE,
-    .spi_wsz = SPI_WSZ,
-    .spi_cs = SPI_CS,
-    .cs_pad.port = SPI_EN_GPIO_PORT,
-    .cs_pad.pin = SPI_EN_GPIO_PIN,
-#if defined (__DA14531__)
-    .spi_capture = SPI_EDGE_CAPTURE,
-#endif
-#if defined (CFG_SPI_DMA_SUPPORT)
-    .spi_dma_channel = USER_SPI_DMA_CHANNEL,
-    .spi_dma_priority = DMA_PRIO_0,
-#endif
-};
-
-// Configuration struct for SPI FLASH
-static const spi_flash_cfg_t spi_flash_cfg = {
-    .chip_size = SPI_FLASH_DEV_SIZE,
-};
 
 void periph_init(void)
 {
@@ -150,14 +195,17 @@ void periph_init(void)
     uart_initialize(UART2, &uart_cfg);
 #endif
 
-    // Configure SPI Flash environment
-    spi_flash_configure_env(&spi_flash_cfg);
-		 
-    // Initialize SPI
-    spi_initialize(&spi_cfg);
-		
     // Set pad functionality
     set_pad_functions();
+
+#if defined(__ACCEL_IF_I2C__)
+		i2c_init(&i2c_cfg);
+#endif 
+
+#if defined(__ACCEL_IF_SPI__)
+		spi_initialize(&spi_cfg);
+#endif 
+	
 
     // Enable the pads
     GPIO_set_pad_latch_en(true);

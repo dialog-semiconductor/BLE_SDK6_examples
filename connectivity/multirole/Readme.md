@@ -71,6 +71,9 @@ Note: To configure your device with different BD addresses, follow [here](http:/
 
 **Note**: Use any android/iPhone BLE scanner to connect/disconnect to/from the DA14531.
 
+**Note: For the DA14585, using more than 4 active connections, the default value of the #define CFG_RET_DATA_SIZE 2048, needs to changed to 4096, in the user_config.h file.**
+
+
 ## Supported use-case for the example
 
 Below mentioned is the use-case that is supported with this example. In future releases, more use-cases will be added especially with regards to the disconnections.

@@ -5,25 +5,24 @@
 
 ## Example Description
 
-This software example demonstrates using **TIMER1** hardware block. The sw example exposes the basic functions that **TIMER1** offers through the following use cases:
-1. **Simple counting** which is enabled via setting the **ENABLE_TMR_COUNTING** definition to 1 in the demo_config.h file. In this case **TIMER1** is used as an ordinary counter/timer and exposes the capability of the timer to run while sleep and wake up the device.
-2. **Frequency measurement** exposes the counting capability of the hw and is enabled via setting the **ENABLE_FREQ_COUNTING** definition to 1 in the demo_config.h file. In this case **TIMER1** is used as a frequency counter and measures the frequency which is applied on a software specified pin.
-3. **Pulse measurement** exposes the capturing capability of the hw and is enabled via setting the **ENABLE_PULSE_MEASURING** definition to 1 in the demo_config.h file. In this case **TIMER1** is used to measure the length of a low or a high pulse applied on a specified pin. 
+This software example demonstrates the usage of the **TIMER1** hardware block. The SW example exposes the basic functions that **TIMER1** offers through the following use cases:
+1. **Simple counting** which is enabled via setting the **ENABLE_TMR_COUNTING** definition to **1** in the `demo_config.h` file. In this case **TIMER1** is used as an ordinary counter/timer and exposes the capability of the timer to run while sleep and wake up the device.
+2. **Frequency measurement** exposes the counting capability of the HW and is enabled via setting the **ENABLE_FREQ_COUNTING** definition to **1** in the `demo_config.h` file. In this case **TIMER1** is used as a frequency counter and measures the frequency which is applied on a software specified pin.
+3. **Pulse measurement** exposes the capturing capability of the hw and is enabled via setting the **ENABLE_PULSE_MEASURING** definition to **1** in the `demo_config.h` file. In this case **TIMER1** is used to measure the length of a low or a high pulse applied on a specified pin. 
 
 ***Useful Note*** :
 
-    The demo is capable of running only one sw configuration per build. If more than one sw configurations are enabled the compiler will assert an error and promt to build with only one configuration activated.
+    The demo is capable of running only one SW configuration per build. If more than one SW configurations are enabled the compiler will assert an error and promt to build with only one configuration activated.
+
+The example can be downloaded from Here.
 
 ## Introduction
 
-The DA14531 product family incorporates three HW timer blocks Timer0, Timer1, Timer2. From the aforementioned timers only Timer1 is capable of running while the device is in sleep mode since its physicaly located in a seperate power domain (PD_TIM). Thus timer 1 can be used as a wake up source while the device is in extended or deep sleep.  
+The DA14531 product family incorporates three (3) HW timer blocks **Timer0**, **Timer1**, **Timer2**. From the aforementioned timers only Timer1 is capable of running while the device is in sleep mode since its physicaly located in a seperate power domain (PD_TIM). Thus **TIMER1** can be used as a wake up source while the device is in extended or deep sleep.  
 
 ![timer1_block_diagram](assets/timer1_block_diagram.PNG)
 
-</center>- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-
-For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.dialog-semiconductor.com/da14531_datasheet).
+For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.dialog-semiconductor.com/sites/default/files/2021-03/DA14530_datasheet_3v2_0.pdf).
  
 ***Useful Note*** :    
 
@@ -32,10 +31,9 @@ For getting more information about the HW Timers on DA14531, please refer to the
     - Timer0 example: <sdk_root_directory>\projects\target_apps\peripheral_examples\timer0.
     - Timer2 example: <sdk_root_directory>\projects\target_apps\peripheral_examples\timer2.
 
-
 ## Timer 1
 
-Is an 11-bit timer which supports Counting and Input Capturing, as input clock source either the **System Clock (sys_clk)** or **Low Power Clock (lp_clk)** can be used. Off course when the device is in sleep mode and the timer should be kept active the LP clock source should be selected. It is powered by a seperated power domain **PD_TIM** which can be kept active even if the system enters sleep mode. It can operate either in **count up** or **count down** mode, generate an interrupt when the timer reaches the **max/min value** or the **reload** value. As mentioned in the **Example description**, three different functionalities are demonstrated in this software example:
+It is an 11-bit timer which supports Counting and Input Capturing, as input clock source either the **System Clock (sys_clk)** or **Low Power Clock (lp_clk)** can be used. Of course when the device is in sleep mode and the timer should be kept active the LP clock source should be selected. It is powered by a seperated power domain **PD_TIM** which can be kept active even if the system enters sleep mode. It can operate either in **count up** or **count down** mode, generate an interrupt when the timer reaches the **max/min value** or the **reload** value. As mentioned in the **Example description**, three different functionalities are demonstrated in this software example:
 
 1. **Timer Functionality**: In this sw configuration the DA14531 device is in sleep mode and **TIMER1** HW is running in the background. When the timer overflows it will generate an interrupt and wake up the device in order to toggle a LED and print a wake up message.
 
@@ -43,7 +41,45 @@ Is an 11-bit timer which supports Counting and Input Capturing, as input clock s
 
 3. **Counter Functionality**: In this sw configuration the sw exposes the frequency counter capability that Timer1 implements. The user can apply an external frequency on a DA14531 pin (by default pin P011 is used), the maximum frequency that can be measured from the device depends on the clock selection of the timer1 module. In the example timer 0 is used for generating a frequency for demonstration purposes.
 
-## Macro Definitions
+## HW and SW Configuration
+
+### HW Configuration
+
+- This example runs on the DA14531 Bluetooth Smart SoC device.
+- The ***DA145xx Pro Development Kit*** is needed for this example.
+- Connect the ***DA145xx Pro Development Kit***  to the host computer via the USB connector. 
+- Use a Logic Analyzer to verify the example (optional)
+- Jumpers should be placed on default setup.
+- For UART configuration (optional), extra wiring (in red) is required from J2.24 (P23) to J2.21.
+
+**DA14531 Pro Kit Daughterboard +  DA14531 Pro Kit Daughterboard**
+
+![hw_setup](assets/531_hw_setup.PNG)
+
+**DA14531 Pro Kit Daughterboard +  DA14531 Module Daughterboard**
+
+![hw_setup](assets/module_hw_config.PNG)
+
+### SW Configuration
+
+- This example requires:
+  - [SDK6.0.14.1114](https://www.dialog-semiconductor.com/system/files/2020-08/SDK_6.0.14.1114.zip)
+  - **SEGGER’s J-Link** tools should be downloaded and installed.
+
+## How to run the example
+
+### Initial Setup
+
+- For the initial setup, please refer to [this section](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+
+- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
+
+### Compile & Run
+
+- Νavigate to the `project_environment` folder and open the `Keil` project.
+- Compile and launch the example. You should download the firmware either into System-RAM or SPI Flash through the SPI Flash programmer of the SmartSnippets Toolbox. When booting from SPI Flash, jumpers should be placed on the standard SPI flash setup.
+
+### Macro Definitions
 In the table below, the user macro definitions for the various demo settings are illustrated, all the configuration macros are located in the user_config.h file:
 
 <table>
@@ -69,7 +105,7 @@ In the table below, the user macro definitions for the various demo settings are
 </tbody>
 </table>
 
-## GPIOs Definitions
+### GPIOs Definitions
 In this section, GPIOs definitions are demonstrated as defined in `user_periph_setup.h` header file per sw configuration.
 
 <table>
@@ -85,25 +121,25 @@ In this section, GPIOs definitions are demonstrated as defined in `user_periph_s
   <tr class="odd">
   <td style="text-align: left;">ENABLE_TMR_COUNTING</td>
   <td style="text-align: left;">GPIO_LED_PIN</th>
-  <td style="text-align: left;">P09</td>
+  <td style="text-align: left;">P0_9</td>
   <td style="text-align: left;">Toggling LED in Simple Counting Mode configuration.</td>
   </tr>
   <tr class="even">
   <td style="text-align: left;">ENABLE_FREQ_COUNTING</td>
   <td style="text-align: left;">GPIO_SIGNAL_PIN</th>
-  <td style="text-align: left;">P011</td>
+  <td style="text-align: left;">P0_11</td>
   <td style="text-align: left;">Frequency under measurement. Either connect an external frequency or if <b>PWM_TIMER0_ENABLE</b> is enabled it is used as the output of PWM0.</td>
   </tr>
   <tr class="even">
   <td style="text-align: left;">ENABLE_PULSE_MEASURING</td>
   <td style="text-align: left;">GPIO_SIGNAL_PIN</th>
-  <td style="text-align: left;">P011</td>
+  <td style="text-align: left;">P0_11</td>
   <td style="text-align: left;">Connected with SW2 button on pro DK.</td>
   </tr>
 </tbody>
 </table>
 
-## Timer 1 Default Settings
+### Timer 1 Default Settings
 For all the demo sw configurations timer1 uses some default settings that apply in all mentioned configurations: 
 
 <table>
@@ -138,7 +174,14 @@ For all the demo sw configurations timer1 uses some default settings that apply 
 </tbody>
 </table>
 
-### **Simple Counting Mode**
+### UART Mechanism
+
+- To enable the UART mechanism, the **CFG_PRINTF** macro should be defined in `da1458x_config_basic.h`.
+- Use any terminal emulator that you are comfortable with (PuTTY, RealTerm, Tera Term etc.).
+- Set up your preferable terminal emulator by selecting the virtual COM port and set the port configuration.
+![hw_setup](assets/tera_term.PNG)
+
+## Use-case 1 : Simple Counting Mode
 1. Set to **(1)** the **ENABLE_TMR_COUNTING** macro configuration in `demo_config.h` in order to run the example in Simple Counting mode:
 
 ```c
@@ -169,8 +212,18 @@ For all the demo sw configurations timer1 uses some default settings that apply 
     </tbody>
     </table>
 
-### **Frequency Counting**
-1. Set to **(1)** the **ENABLE_FREQ_COUNTING** macro configuration in `demo_config.h` in order to run the example in Simple Counting mode. For enabling timer 0 to provide a frequency under test set to **(1)** the **PWM_TIMER0_ENABLE** definition. If an external frequency will be applied set to **(0)** the **PWM_TIMER0_ENABLE** and set in the **EXTERNAL_FREQUENCY_HZ** the maximum expected frequency that will be applied to the pin in HZ.
+**Results**
+
+- The D5 LED will start blinking. 
+
+![hw_setup](assets/use_case_1_results_LED.PNG)
+
+- If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following results should be displayed in the serial monitor :
+
+![hw_setup](assets/use_case_1_results.PNG)
+
+## Use-case 2 : Frequency Counting
+1. Set to **(1)** the **ENABLE_FREQ_COUNTING** macro configuration in `demo_config.h` in order to run the example in Frequency Counting mode. For enabling timer 0 to provide a frequency under test set to **(1)** the **PWM_TIMER0_ENABLE** definition. If an external frequency will be applied set to **(0)** the **PWM_TIMER0_ENABLE** and set in the **EXTERNAL_FREQUENCY_HZ** the maximum expected frequency that will be applied to the pin in HZ.
 
 ```c
 #define ENABLE_FREQ_COUNTING            (1)
@@ -190,78 +243,50 @@ For all the demo sw configurations timer1 uses some default settings that apply 
 
 4. Based on the **PERIOD_COUNT** the preprocessor will check if with the existing timer1 clock there will be no wrap around of the TIMER1_CAPCNT1_VALUE before completing the measurements of 2 full periods. If the **PERIOD_COUNT** is less than 2 then an assertion will occur.
 
-### **Pulse Measurement**
+**Results**
+
+If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following results should be displayed in the serial monitor :
+
+![hw_setup](assets/use_case_2_results.PNG)
+
+## Use-case 3 : Pulse Measurement
 1. Set to **(1)** the **ENABLE_PULSE_MEASURING** macro configuration in `demo_config.h` in order to run the example in Pulse measurement mode.
 
 ```c
 #define ENABLE_PULSE_MEASURING          (1)  
 ```
 
-2. In this sw configuration both of the event channels of timer 1 are set in rising and falling edge. During start up the initialize_pulse_length_sm() will check the state of the signal pin in order to determine the idle state of the pin. If the pin is found **HIGH** then **LOW** periods are going to be reported from the demo. The opposite stands if the pin is found low during start up.
+2. In this SW configuration both of the event channels of timer 1 are set in rising and falling edge. During start up the initialize_pulse_length_sm() will check the state of the signal pin in order to determine the idle state of the pin. If the pin is found **HIGH** then **LOW** periods are going to be reported from the demo. The opposite stands if the pin is found low during start up.
 
-3. When the sw starts running the device will wake up in order to advertise and when the rising or the falling events occur. When a rising or a falling event occurs the pulse_measure_sm() function will execute in order to read the timer captured values. As soon as the state of the pin returns to its idle state the device will report via UART the amount of time the pin was out of idle state in microseconds.
+3. When the SW starts running the device will wake up in order to advertise and when the rising or the falling events occur. When a rising or a falling event occurs the pulse_measure_sm() function will execute in order to read the timer captured values. As soon as the state of the pin returns to its idle state the device will report via UART the amount of time the pin was out of idle state in microseconds.
 
     ***Usefull Note***:
 
     The demo is using the SW2 button for toggling the line high or low, due to the bouncing of the switch miscounts may occur, especially if the system clock is used as a clock source for timer1. In cases where bouncing is expected a more sofisticated scheme should be applied based on the bouncing profile of the signal.
 
-## Software Configuration
+    ![hw_setup](assets/SW2_button.PNG)
 
-- This example requires:
-  - SDK6.0.14 or later
-  - **SEGGER’s J-Link** tools should be downloaded and installed.
+**Results**
 
-## Hardware Configuration
+If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following results should be displayed in the serial monitor :
 
-- This example runs on the DA14531 Bluetooth Smart SoC device.
-- The ***DA145xx Pro Development Kit*** is needed for this example.
-- Connect the ***DA145xx Pro Development Kit***  to the host computer via the USB connector. 
-- Use a Logic Analyzer to verify the example (optional)
-- In case of **Counting Mode**, jumpers should be placed on default setup.
-- In case of **Capturing Mode**, jumpers should be placed on default setup, plus extra wiring from J2.27 to J2.21.  
+![hw_setup](assets/use_case_3_results.PNG)
 
-
-![hw_setup](assets/hw_setup.PNG)
-
-## How to run the example
-
-### Initial Setup
-
-- For the initial setup, please refer to [this section](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
-
-- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
-
-### Compile & Run
-
-- Νavigate to the `project_environment` folder and open the `Keil` project.
-- Compile and launch the example. You should download the firmware either into System-RAM or SPI Flash through the SPI Flash programmer of the SmartSnippets Toolbox. When booting from SPI Flash, jumpers should be placed on the standard SPI flash setup.
+Of course the results depend on how much timer the SW2 button is pressed. 
 
 ## Known Limitations
 
 - Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/support).
 
 ## License
 
 ------
 
- Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
+Copyright (c) 2021 Dialog Semiconductor. All rights reserved.
 
- This software ("Software") is owned by Dialog Semiconductor. By using this Software
- you agree that Dialog Semiconductor retains all intellectual property and proprietary
- rights in and to this Software and any use, reproduction, disclosure or distribution
- of the Software without express written permission or a license agreement from Dialog
- Semiconductor is strictly prohibited. This Software is solely for use on or in
- conjunction with Dialog Semiconductor products.
+This software (“Software”) is owned by Dialog Semiconductor. By using this Software you agree that Dialog Semiconductor retains all intellectual property and proprietary rights in and to this Software and any use, reproduction, disclosure or distribution of the Software without express written permission or a license agreement from Dialog Semiconductor is strictly prohibited. This Software is solely for use on or in conjunction with Dialog Semiconductor products.
 
- EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
- REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
- IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
- SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
- CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
- PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
- ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
+EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS REQUIRED BY LAW, THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
 
 ------

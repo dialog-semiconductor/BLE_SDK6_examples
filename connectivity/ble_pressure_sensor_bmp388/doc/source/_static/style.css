@@ -1,0 +1,280 @@
+
+
+
+/* Notes div */
+
+p.title1{
+    border-top: 20px solid white;
+    margin: 0px;
+    font-size: 400%;
+    background-color: white;
+    color: #00ACCD;
+    text-align: center;
+}
+
+p.title2{
+    border-top: 0px solid white;
+    margin: 0px;
+    font-size: 310%;
+    background-color: white;
+    color: #00ACCD;
+    text-align: center;
+}
+
+p.title3{
+    border-top: 0px solid white;
+    margin: 0px;
+    font-size: 180%;
+    background-color: white;
+    color: #00ACCD;
+    text-align: center;
+}
+
+p.title4{
+    border-top: 0px solid white;
+    margin: 0px;
+    font-size: 180%;
+    background-color: white;
+    color: #00ACCD;
+    text-align: left;
+}
+
+div.related {
+    background-color: #00ACCD;
+   
+    text-shadow: 0px 1px 0 #444;
+    
+}
+
+div.related a {
+    color: #FFFFFF;
+}
+
+
+
+
+div.footer {
+    color: #FFF;
+ 
+}
+
+div.sphinxsidebar ul ul, div.sphinxsidebar ul.want-points {
+    list-style: none;
+
+}
+
+div.body h1, div.body h2, div.body h3, div.body h4{
+
+    background-color: #FFFFFF;
+    
+    color: #00ACCD;
+
+}
+
+div.body {
+    color: #3E4349;
+    text-align: justify;
+	max-width: none;
+}
+
+a {
+    color: #00ACCD;
+   
+}
+
+a.reference.internal {
+    color: #3E4349;
+   
+}
+
+a:hover { 
+    color: #00accd;
+}
+
+
+
+li.toctree-l1{
+   
+    list-style-type: none;
+
+}
+
+li.toctree-l2{
+   
+    list-style-type: none;
+
+}
+
+div.figure p.caption span.caption-number {
+    color: #00accd;
+    font-style: normal;
+}
+
+.std.std-numref{
+    color: #00accd;
+}
+
+
+caption {
+    text-align: -webkit-left
+    padding-bottom: 1em;
+    padding-top: 1em;
+    caption-side: bottom;
+}
+
+
+table caption span.caption-number {
+    font-style: normal;
+    color: #00accd;
+    padding-bottom: 1em;
+}
+
+table {
+    width: 100%;
+    font-family: arial, sans-serif;
+    boarder-collapse: collapse;
+    
+}
+
+
+
+table.docutils th {
+    tetx-align: center;
+    background-color: #8DD6D9; 
+    border: 1px solid #dddddd;
+    padding: 8px;
+    color: white;
+}
+
+table.docutils td {
+    text-align: left;
+    border: 1px solid #dddddd;
+    padding: 8px;
+	
+}
+
+table.docutils tr:nth-child(odd) {
+    background-color: #dddddddd;
+}
+
+
+
+div.code-block-caption {
+    background-color: white; 
+    color: #3E4349;
+    border: none; 
+    font-size: inherit;
+}
+
+div.highlight-c{
+	highlight-x: auto;
+
+}
+
+div.code-block-caption span.caption-number {
+    font-style: normal; 
+    color: #00ACCD;
+}
+
+
+thead {
+    background-color: #f2f2f2;
+}
+
+
+div.hint{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px 8px 8px 10px;
+    background-color: #E7ECF1;
+    border-left: 6px solid #2196F3;
+}
+
+div.note{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px 8px 8px 10px;
+    background-color: #E7ECF1;
+    border-left: 6px solid #2196F3;
+}
+
+
+
+/*
+div.note{
+  margin-left: auto;
+  background-color: #fff;
+  border-color: #000;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: table;
+  margin-right: auto;
+}
+*/
+
+row-even.pre{
+	background-color: white;
+	
+}
+
+div.body h3{
+	display: inline-block;
+}
+
+/*div.dk_popup_description {
+    display:none;
+    position:absolute;
+    border:1px solid #000;
+    width:400px;
+    height:400px;
+}*/
+
+/* Tooltip */
+span.has_popup_explanation{
+	color: #00A3E9;
+}
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid white;
+  }
+  .ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font: bold 14px "Helvetica Neue", Sans-Serif;
+    text-transform: uppercase;
+    box-shadow: 0 0 7px black;
+  }
+  .arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .arrow.top:after {
+    bottom: -20px;
+    top: auto;
+  }
+  

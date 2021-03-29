@@ -5,9 +5,7 @@ This is the repository storing example for the [DA145xx family](https://www.dial
 For information about the DA145xx platform and how to bring up your development kit, please refer to the [Getting started User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
 
 ## Example usage
-
 <br/>
-
 To run any of these SW examples, the user needs:
 
 - DA14531/DA14585/DA14586 hardware.
@@ -16,7 +14,6 @@ To run any of these SW examples, the user needs:
 - Python script
 
 <br/>
-
 Begin by cloing this repository to your local and then link the SW example to the SDK. Below is the description on how to use the python script to link the SDK and the SW example, and to clean the SW example project environment (remove absolute paths).
 
 

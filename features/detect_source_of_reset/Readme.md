@@ -170,7 +170,7 @@ void user_power_on_reset(void)
 
 ### Initial Setup
 
-For the initial setup, please refer to [this section](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
 
 ### How it works
 

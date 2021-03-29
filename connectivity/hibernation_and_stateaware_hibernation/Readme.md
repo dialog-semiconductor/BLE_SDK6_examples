@@ -45,7 +45,7 @@ To run the program from flash or OTP, please visit chapter 11 of the [SmartSnipp
 ## How to run the example
 
 ### Setup
-Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
 
 1. Start Keil using the `hibernation_example.uvprojx` Keil project file.
  

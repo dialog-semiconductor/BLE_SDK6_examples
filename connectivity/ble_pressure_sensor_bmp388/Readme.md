@@ -22,8 +22,7 @@ The user manuals for the development kits can be found:
 
 ## How to run the example
 
-Please refer to [this section of the dialog support portal](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html) for details of how to install 
-the example application before proceeding with the following instructions to setup and run the demo:
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
 
 ### Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard
 

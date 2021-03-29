@@ -90,7 +90,7 @@ The user manual for the development kits can be found:
 
 For iOS devices, search for global define **CFG_USE_DIGITIZER**, change its value from "0" to "1". Doing this will configure the device as an HID digitizer that able to work with iOS devces. Otherwise the device will work as standard gamepad.
 
-Nothing needs to be changed or configured for other test platform, just run the SDK path configuration python script or manually put the project folder under 6.0.14.1114\projects\target_apps\ble_examples, build and run as any other example project.
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
 
 ### Function Test
 

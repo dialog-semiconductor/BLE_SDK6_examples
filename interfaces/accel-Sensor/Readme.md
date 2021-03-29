@@ -44,7 +44,7 @@ Follow the hardware configuration according to your daughterboard, DA14531 or DA
 
 ## How to run the example
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
 
 ### Compile and run
 

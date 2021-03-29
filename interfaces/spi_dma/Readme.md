@@ -55,8 +55,11 @@ This example requires:
 - [SmartSnippets Toolbox v5.0.10](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html)
 
 ## How to run the example
+
 ### Setup
-Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html).
+
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+
 1. Start Keil using the `SPI_DMA_example.uvprojx` Keil project file.
 
 2. Expand the dialog shown in the red box in the image below.

@@ -39,7 +39,7 @@ The example doesn't require any change in the SDK 6.0.12 code as in previous SDK
 
 ## How to run the example
 
-For initial setup of the example please refer to [this section of the dialog support portal](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
 
 ### Initial Setup
 

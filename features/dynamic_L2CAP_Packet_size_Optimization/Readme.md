@@ -51,10 +51,11 @@ The user manuals for the development kits can be found:
 
 
 ## How to run the example
+
 ### Setup
 
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
 
-Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
 -Start Keil using the `tput_optimization.uvprojx` Keil project file.
 
 2. Expand the dialog shown in the red box in the image below.

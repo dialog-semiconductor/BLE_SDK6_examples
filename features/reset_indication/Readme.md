@@ -213,7 +213,7 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 
 ### Initial Setup
 
-- For the initial setup of the example please refer to [this section](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html) of the dialog support portal.
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
 
 - For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
 

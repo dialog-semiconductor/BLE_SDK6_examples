@@ -55,7 +55,14 @@ An exception is the situation that the slave device somehow removed stored info 
 The project was originally created on SDK6.10.511, some codes in SDK files should be modified for full feature.
 The source file should work with other SDK file without any modification.
 
-Following codes should be modified in SDK file to handle the missing key error during the encrypt process, otherwise connecting to a previously paired peripheral with missing key will result in ASSERT_ERROR:
+
+## How to run the example
+
+### Initial Setup
+
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+
+1. Following codes should be modified in SDK file to handle the missing key error during the encrypt process, otherwise connecting to a previously paired peripheral with missing key will result in ASSERT_ERROR:
 - Added handling for SMP_ERROR_ENC_KEY_MISSING error in *gapc_cmp_evt_handler* in *app_task.c*
 ```
 static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
@@ -103,6 +110,9 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
 }
 ```
 
+2.  Build and download the example using the Keil IDE. 
+3.  Run the example using the Keil debugger.
+
 ## Known Limitations
 
 
@@ -110,28 +120,3 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
 - For ease of the key input, only 10 peripherals will be scanned and printed at one scanning activity
 - The demo will take no action after successfully pairing/encryption, manually reset on either side is required to run the demo again
 
-## License
-
-
-**************************************************************************************
-
- Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
-
- This software ("Software") is owned by Dialog Semiconductor. By using this Software
- you agree that Dialog Semiconductor retains all intellectual property and proprietary
- rights in and to this Software and any use, reproduction, disclosure or distribution
- of the Software without express written permission or a license agreement from Dialog
- Semiconductor is strictly prohibited. This Software is solely for use on or in
- conjunction with Dialog Semiconductor products.
-
- EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
- REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
- IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
- SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
- CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
- PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
- ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
-
-**************************************************************************************

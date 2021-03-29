@@ -110,10 +110,13 @@ int i2cm_read(uint8_t dev_addr, uint8_t * const data, uint8_t len, bool add_stop
   i2c_abort_t abrt_code;
 
   uint32_t flags = I2C_F_NONE;
+	
+#if defined (__DA14531__)
   if (add_stop) {
     flags = I2C_F_ADD_STOP;
   }
-
+#endif
+	
   /* Each I2C device on the bus has a unique address, set this before we communicate */
   set_dev_addr(dev_addr);
 
@@ -142,10 +145,11 @@ int i2cm_write(uint8_t dev_addr, uint8_t const * const buffer, uint8_t len, bool
   i2c_abort_t abrt_code;
 
   uint32_t flags = I2C_F_NONE;
+#if defined (__DA14531__)
   if (add_stop) {
     flags = I2C_F_WAIT_FOR_STOP | I2C_F_ADD_STOP;
   }
-
+#endif
   /* Each I2C device on the bus has a unique address, set this before we communicate */
   set_dev_addr(dev_addr);
 

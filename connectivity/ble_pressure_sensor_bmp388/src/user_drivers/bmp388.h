@@ -68,8 +68,8 @@ typedef int (*bmp388_dbg_printf)(const char *fmt, ...);
  ****************************************************************************************
  */
 /* Select which interface (SPI or I2C) to use when communicating with the BMP388 */
-#define BMP388_SPI                (0)
-#define BMP388_I2C                (1)
+#define BMP388_SPI                (1)
+//#define BMP388_I2C                (0)
 #define BMP388_INTERFACE          BMP388_SPI
 
 /* BMP388 operating modes */

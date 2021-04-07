@@ -4,7 +4,14 @@
 
 ## Example description
 
-The main purpose of this SW example is to demonstrate how to detect the source of a reset event and explain how to store data into or/and read data from **retention RAM**.  This demonstration example **requires some SDK modifications** and is based on top of **SDK6.0.10**. The user can update the Bluetooth advertising data with the source of the reset or print the reason of the reset on a serial console.
+This SW example will demonstrate:
+
+- How to detect the source of a reset event, such as SW RESET, POR etc.
+- How to store, retrive these data from the **retention RAM**  
+- How to update the Bluetooth advertising data with the source of the reset 
+- Optionally, how to print the reason of the reset on a serial console
+
+**NOTE**: This applicaiton is developed on top of SDK6.0.10.511. Modification is done in the SDK6 to execute this example.
 
 ## Features
 
@@ -17,7 +24,80 @@ The main purpose of this SW example is to demonstrate how to detect the source o
 - Interacting with the UART serial port terminal
 - Interacting with advertising data
 
-## Custom profile
+## HW and SW configuration
+
+- **Hardware configuration**
+  - This example runs on DA14585/DA14586 Bluetooth Smart SoC devices.
+  - The Basic or Pro Development kit is required for this example.
+  - Connect the Development kit to the host computer.
+  - Jumpers are placed on standard SPI flash setup, plus extra jumpers for UTX on **P04 - JL_RxD**,and jumping wiring for **JL_TxD on P02**. See illustration below:
+
+ ![Pro-DK Jumper Placement](assets\Board_setup.png)
+
+- **Software configuration**
+  - This example requires:
+    - Smartsnippets Studio 2.0.16.
+    - SDK6.0.10
+    - A smartphone with a BLE scanning app (for example BLE scanner on Android or Lightblue on IOS)
+  - **SEGGER’s J-Link** tools should be downloaded and installed.
+  - Python 3.5 or greater
+
+## How to run the example
+
+### Initial Setup
+
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+
+### How it works
+
+### Compile and run
+
+- Open the project via Keil µVision 5
+- Compile and run the project
+- Open a `BLE scanner` App and search for **DETECT-RESET**
+- Connect to the device
+- You should see the **Control Point** Bluetooth characteristic
+
+
+
+### Hardfault example
+
+1. Open the project via Keil µVision 5
+
+2. Build the project 
+
+3. Run it in **debug mode**. To learn basic debugging techniques, please refer to training material](https://www.dialog-semiconductor.com/sites/default/files/training_08_debugging_v1.1.pdf).&nbsp;
+   ![Debug mode](assets\Debug_mode.PNG)
+
+4. Connect to  **DETECT-RESET** &nbsp;
+   ![ble_scanner_1](assets\ble_scanner_1.png)
+
+5. A custom service with the **Control Point** characteristic should be appeared.&nbsp;
+   ![ble_scanner_2](assets\ble_scanner_2.png)
+
+6. &nbsp;Write **0x00** to trigger a hardfault&nbsp;
+   ![ble_scanner_3](assets\ble_scanner_3.png)
+
+7. &nbsp;A hardfault is occured&nbsp;
+   ![hardfault](assets\hardfault.PNG)
+
+8. Stop the debug procedure and reset the Pro-DK. detect_rst_flag** is stored into Retention-RAM, and so its value is retained.
+
+9. Add a break point into ``user_app_adv_start()`` function and run it again in debug mode.
+
+10. Step over (press F10) and the "Hardfault" is appended into the  advertising data.&nbsp;
+    ![hardfault_1](assets\hardfault_1.PNG)
+
+11. Stop the debug procedure
+
+12. &nbsp;Open the Serial terminal (TerTerm) with the following COM port configurations&nbsp;
+    ![comport](assets\comport.PNG)
+    
+13. &nbsp;Download the firmware into System-RAM again and  the reason of the reset should be appeared on the monitor.&nbsp;
+    ![teraterm](assets\teraterm.PNG)
+
+
+### Custom profile
 A 128-bit UUID custom profile us included with 1 custom service. 
 
 <table>
@@ -48,7 +128,7 @@ A 128-bit UUID custom profile us included with 1 custom service.
 
 The implementation code of the Custom service is included in  ``user_custs1_impl.c``. The **user_svc1_ctrl_wr_ind_handler** is implemented,  which is the **Control Point** characteristic write indication handler.
 
-## APIs brief description 
+### APIs brief description 
 
 - **user_app_connection**: Connection function
 - **user_app_adv_undirect_complete**: Undirect advertising completion function
@@ -58,8 +138,6 @@ The implementation code of the Custom service is included in  ``user_custs1_impl
 - **user_app_init**: Application initialization function
 - **user_power_on_reset**: Explicitly cause power on reset upon system initialization
 - **ret_ram_data_init**: Store USER_RETRAM_DATA into the RetRAM upon system initialization
-
-## How it works
 
 ### SDK modifications
 -  Modifications in **Hardfault handler** (`sdk_root/hardfault_handler.c`)
@@ -147,79 +225,6 @@ void user_power_on_reset(void)
 
 - `user_app_adv_start()` is modified for this scope. According to **detect_rst_flag**, after the reset, the advertising data will be updated with the reason of the reset `append_data()` is used for appending the appropriate data. 
 - The user has the option to print out the reason of the reset on a serial terminal. To do so, **CFG_PRINTF** should be defined in `da1458x_config_basic.h`.
-
-## HW and SW configuration
-
-- **Hardware configuration**
-  - This example runs on DA14585/DA14586 Bluetooth Smart SoC devices.
-  - The Basic or Pro Development kit is required for this example.
-  - Connect the Development kit to the host computer.
-  - Jumpers are placed on standard SPI flash setup, plus extra jumpers for UTX on **P04 - JL_RxD**,and jumping wiring for **JL_TxD on P02**. See illustration below:
-
- ![Pro-DK Jumper Placement](assets\Board_setup.png)
-
-- **Software configuration**
-  - This example requires:
-    - Smartsnippets Studio 2.0.8.
-    - SDK6.0.10
-    - A smartphone with a BLE scanning app (for example BLE scanner on Android or Lightblue on IOS)
-  - **SEGGER’s J-Link** tools should be downloaded and installed.
-  - Python 3.5 or greater
-
-## How to run the example
-
-### Initial Setup
-
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
-
-### How it works
-
-### Compile and run
-
-- Open the project via Keil µVision 5
-- Compile and run the project
-- Open a `BLE scanner` App and search for **DETECT-RESET**
-- Connect to the device
-- You should see the **Control Point** Bluetooth characteristic
-
-
-
-### Hardfault example
-
-1. Open the project via Keil µVision 5
-
-2. Build the project 
-
-3. Run it in **debug mode**. To learn basic debugging techniques, please refer to training material](https://www.dialog-semiconductor.com/sites/default/files/training_08_debugging_v1.1.pdf).&nbsp;
-   ![Debug mode](assets\Debug_mode.PNG)
-
-4. Connect to  **DETECT-RESET** &nbsp;
-   ![ble_scanner_1](assets\ble_scanner_1.png)
-
-5. A custom service with the **Control Point** characteristic should be appeared.&nbsp;
-   ![ble_scanner_2](assets\ble_scanner_2.png)
-
-6. &nbsp;Write **0x00** to trigger a hardfault&nbsp;
-   ![ble_scanner_3](assets\ble_scanner_3.png)
-
-7. &nbsp;A hardfault is occured&nbsp;
-   ![hardfault](assets\hardfault.PNG)
-
-8. Stop the debug procedure and reset the Pro-DK. detect_rst_flag** is stored into Retention-RAM, and so its value is retained.
-
-9. Add a break point into ``user_app_adv_start()`` function and run it again in debug mode.
-
-10. Step over (press F10) and the "Hardfault" is appended into the  advertising data.&nbsp;
-    ![hardfault_1](assets\hardfault_1.PNG)
-
-11. Stop the debug procedure
-
-12. &nbsp;Open the Serial terminal (TerTerm) with the following COM port configurations&nbsp;
-    ![comport](assets\comport.PNG)
-    
-13. &nbsp;Download the firmware into System-RAM again and  the reason of the reset should be appeared on the monitor.&nbsp;
-    ![teraterm](assets\teraterm.PNG)
-
 
 
 ## Known Limitations

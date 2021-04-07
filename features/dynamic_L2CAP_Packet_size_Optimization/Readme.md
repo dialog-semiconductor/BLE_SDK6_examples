@@ -46,7 +46,7 @@ The user manuals for the development kits can be found:
 * **Software configuration**
 
 	- This example requires:
-    * SDK6.0.12 or Newer (Older versions of SDK6 require minimal changes)
+    * SDK6.0.12 or later (Older versions of SDK6 require minimal changes)
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 

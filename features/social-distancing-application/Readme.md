@@ -18,7 +18,7 @@ Example requirements:
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D2 on TINY module
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin
 
-	![motherboard_with_module_conf](media/DevKit531_TINY.png)
+	![motherboard_with_module_conf](assets/DevKit531_TINY.png)
 
 ### Hardware Configuration for the DA14531 Smartbond Daughterboard
 
@@ -28,7 +28,7 @@ Example requirements:
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D5 on DA14xxx Pro Development Kit for the case of the DA14531 daughtercard
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
 	
-	![motherboard_with_daughter_conf](media/DevKit531.png)
+	![motherboard_with_daughter_conf](assets/DevKit531.png)
 
 ### Hardware Configuration for the DA14531 USB Kit
 
@@ -39,7 +39,7 @@ Example requirements:
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D7 on DA14531 USB Development Kit.
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
 	
-	![da14531_USB_kit](media/da14531_usbkit.png)
+	![da14531_USB_kit](assets/da14531_usbkit.png)
 
 ### Software Configuration
 
@@ -65,22 +65,22 @@ The example is delivered with the latest SDK6 release. The project is located un
 5. After the devices are connected the PC, open **Device Manager** (for Windows OS) and see four COM ports enumerated as shown in the following figure.
    In this example, two motherboards are connected to the PC and each motherboard exposes one pair of serial ports each. Always choose the lowest port number of each pair for printing out UART messages generated from the fw.
 
-	![com-ports](media/four_com_ports.png)
+	![com-ports](assets/four_com_ports.png)
 
 
 6. Open your serial port terminal and choose the lowest port for each connected motherboard.
 7. Configure the connection with baud rate 115200, 8 data bits and 1 stop bit, no parity and no flow control, and then press **Open**.
    - For PuTTY, configure your Session as follows:
 
-	![putty-session](media/putty_session.png)
+	![putty-session](assets/putty_session.png)
 
    - For Connection -> Serial as follows:
 
-	![putty-serial](media/putty_serial.png)
+	![putty-serial](assets/putty_serial.png)
 
 8. In Keil, start a debugging session, and then press **Run** or F5 (for downloading to RAM using Keil option).
 	
-	![keil-start-debug](media/keil-start-debug-session.png)
+	![keil-start-debug](assets/keil-start-debug-session.png)
 	
  ### Program Using the Dialog SmartBond Flash Programmer Standalone Tool
  The SDT example is also available for downloading/flashing via the Flash programmer Standalone tool. To select the Social Distancing project .hex and directly burn the file into the flash, press the **Online Resources** button.
@@ -107,7 +107,7 @@ You can monitor the device state on the UART output. The associated messages are
 
 The next figure shows the case when no device is detected and SDT switches from being a Scanner to Advertiser.
 
-![putty_no_node](media/putty_no_node.png) 
+![putty_no_node](assets/putty_no_node.png) 
 
 When a scanning operation completes, all the entries of the dynamic list are printed out:
 
@@ -118,7 +118,7 @@ When the device completes the scanning, it goes through the advertising list and
 
 This procedure is shown in the next screenshot:
 
-![putty_danger_sone_as_initiator](media/putty_danger_zone_as_initiator.png)
+![putty_danger_sone_as_initiator](assets/putty_danger_zone_as_initiator.png)
 
 
 1. CA:1B:32:07:AB:C3: SCAN COMPLETED : Completed the scanning period.
@@ -141,7 +141,7 @@ This procedure is shown in the next screenshot:
 
 The corresponding procedure from the slave side is shown in the next screenshot (it is taken from the same device in another instance when the devices is connected as slave):
 
-![putty_danger_sone](media/putty_danger_zone_as_slave.png)
+![putty_danger_sone](assets/putty_danger_zone_as_slave.png)
 
 ### Implementation Details
 The threshold levels that determine the proximity zone are defined in ``user_social_distancing.c`` in the array named ``user_prox_zones_rssi``. Four proximity zones are defined, namely **Danger Zone**, **Warning Zone**, **Coarse Zone**, and **BLE Limit Zone**. In this file, you can change the RSSI thresholds to the values suitable for your application.

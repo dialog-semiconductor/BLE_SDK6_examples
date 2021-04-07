@@ -37,7 +37,7 @@ This SW example aims to demonstrate how to handle different ways of reset mechan
 
 	This example requires:
     * SmartSnippets Toolbox 5.0.14.
-    * SDK6.0.14
+    * SDK6.0.14.1114
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- **A simple serial terminal** should be installed on the PC (e.g. Putty or Teraterm)
 

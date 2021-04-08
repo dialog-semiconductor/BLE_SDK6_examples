@@ -31,7 +31,7 @@ This example shows how to configure a DA14531 or DA14585/586 device to send noti
 
 ## How to run the example
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 ### Initial Setup
 

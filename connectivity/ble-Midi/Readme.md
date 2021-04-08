@@ -51,7 +51,7 @@ The example is running from SRAM. To run the program from flash please visit cha
 
 ### Initial Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 ### Compile & Run
 

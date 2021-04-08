@@ -13,20 +13,20 @@ the time between bursts.
 ## HW and SW configuration
 
 
-* **Hardware configuration**
+### **Hardware configuration**
 
-	- This example runs on the DA14585/DA14586 Bluetooth Smart SoC devices.
-	- A Basic or PRO Development kits is needed for this example.
+- This example runs on the DA14585/DA14586 Bluetooth Smart SoC devices.
+- A Basic or PRO Development kits is needed for this example.
 	
-* **Software configuration**
+### **Software configuration**
 
-	- This example requires:
-        * Smartsnippets Studio 2.0.8 (or later)
-        * SDK6.0.10 (or later)
+- This example requires:
+    * Smartsnippets Studio 2.0.8 (or later)
+    * SDK6.0.10 (or later)
 
 ## How to run the example
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 ### Initial Setup
 

@@ -27,7 +27,7 @@
  */
 
 #include "app_api.h"
-#include "user_empty_peripheral_template.h"
+#include "user_lis2dh_app.h"
 #include "accel_lis2dh_impl.h"
 #include "lis2dh_driver.h"
 #include "arch_console.h"
@@ -65,7 +65,6 @@ __STATIC_INLINE void app_goto_state(app_accel_state_t new_state)
 {
 	app_accel_env.state = new_state;
 }
-
 
 #if defined(__ACCEL_IF_I2C__)
 static void i2c_async_complete(void *cb_data, uint16_t len, bool success)
@@ -133,9 +132,9 @@ static void handle_accel_data(void)
 {
     uint8_t i;
     for(i = 0; i < app_accel_env.samples_in_fifo; i++){ // convert the samples to right justified
-      app_accel_env.buff_data[i].AXIS_X = /*(((app_accel_env.buff_data[i].AXIS_X >> 8) & 0xff) | ((app_accel_env.buff_data[i].AXIS_X << 8) & 0xff00))*/app_accel_env.buff_data[i].AXIS_X >> 6;
-			app_accel_env.buff_data[i].AXIS_Y = /*(((app_accel_env.buff_data[i].AXIS_Y >> 8) & 0xff) | ((app_accel_env.buff_data[i].AXIS_Y << 8) & 0xff00))*/app_accel_env.buff_data[i].AXIS_Y >> 6;
-			app_accel_env.buff_data[i].AXIS_Z = /*(((app_accel_env.buff_data[i].AXIS_Z >> 8) & 0xff) | ((app_accel_env.buff_data[i].AXIS_Z << 8) & 0xff00))*/app_accel_env.buff_data[i].AXIS_Z >> 6;
+      app_accel_env.buff_data[i].AXIS_X = app_accel_env.buff_data[i].AXIS_X >> 6;
+			app_accel_env.buff_data[i].AXIS_Y = app_accel_env.buff_data[i].AXIS_Y >> 6;
+			app_accel_env.buff_data[i].AXIS_Z = app_accel_env.buff_data[i].AXIS_Z >> 6;
     }
 #ifdef CFG_PRINTF
 
@@ -177,14 +176,13 @@ arch_main_loop_callback_ret_t user_main_hook(void){
             
 				
 			if(app_accel_env.samples_in_fifo){
+		    app_goto_state(ACC_DATA_FETCH);
 				
 #if defined(__ACCEL_IF_I2C__)
 				accel_lis2dh_start_acquisition(app_accel_env.samples_in_fifo, app_accel_env.buff_data, i2c_async_complete);
 #elif defined(__ACCEL_IF_SPI__)
 				accel_lis2dh_start_acquisition(app_accel_env.samples_in_fifo, app_accel_env.buff_data, spi_receive_complete);
 #endif 
-            
-				app_goto_state(ACC_DATA_FETCH);
 			}
     		
 		}break;

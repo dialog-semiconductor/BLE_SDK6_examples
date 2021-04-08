@@ -23,9 +23,11 @@ The user manuals for the DA145xxDEVKT-P PRO-Motherboard can be found [here](http
 - Connect P23 to CS.
 - Connect P24 to SCL.
 - Connect P25 to SDO.
-- Connect P27 to INT1.
+- Connect P29 to INT1.
 
 - Connect P26 to pin 17 of J1 (The middle pin next to UTX)
+
+- VDDIO and VDD should be connected to v3 on the motherboard
 
  **Software configuration**
 
@@ -34,14 +36,16 @@ This example requires:
 - Keil5.
 - __SEGGER’s J-Link__ tools should be downloaded and installed.
 
-The UART connection uses a baudrate of 115200. 8 bits data, 1 stop bit and no parity.
+The UART connection uses a baudrate of 1000000(1M). 8 bits data, 1 stop bit and no parity.
 
 ## How to run the example
 ### Setup
 Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html).
 1. Start Keil using the `lis2dh.uvprojx` Keil project file.
 
-2. Compile (F7) and launch (ctrl + F5) the example.
+2. Choose wether to use I2C or SPI via the dropdown menu. (Connections are the same for both)
+
+3. Compile (F7) and launch (ctrl + F5) the example.
 
 ## Expected Results
 

@@ -6,6 +6,7 @@
  #include "accel_lis2dh_impl.h"
  #include "user_periph_setup.h"
  
+ spi_cb_t callback = NULL; // Transfer callback
 
  status_t spi_accel_read_reg(uint8_t address, uint8_t *byte)
  {
@@ -55,7 +56,7 @@
  {
 	 
 		uint16_t *temp_data = (uint16_t *)&Data[0];
-		burst_num = burst_num/2; //Divide by 2 because we will read 16bits at a time
+		burst_num = burst_num; //Divide by 2 because we will read 16bits at a time
 	 
 		//Set the register increment bit for read sequentially
 		uint8_t write_val = (0x3<<6 )| (Reg_start &0x3F);
@@ -74,9 +75,12 @@
 		spi_enable();
 	 
 #if defined(__ACCEL_USE_DMA__)
-		status = spi_receive(temp_data, burst_num*2, SPI_OP_DMA);
+		status = spi_receive(temp_data, burst_num, SPI_OP_DMA);
 #else
 		status = spi_receive(temp_data, burst_num, SPI_OP_BLOCKING);
+		if(callback != NULL){
+			callback(burst_num);
+		}
 #endif 
 	
 
@@ -86,6 +90,7 @@
  void spi_accel_set_cb(spi_cb_t cb)
 {
     spi_register_receive_cb(cb);
+	  callback = cb;
 }
  
 

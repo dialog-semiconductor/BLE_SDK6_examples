@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Mar 25 10:03:21 2021
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Apr 07 16:38:07 2021
 ;VERSION 0.2
 ;FILE accel_lis2dh_impl.o
 ;FILE adc_531.o
@@ -322,7 +322,7 @@ uart_read_byte <= USED 0
 uart_receive <= USED 0
 uart_register_err_cb <= USED 0
 uart_register_rx_cb <= USED 0
-;FILE user_empty_peripheral_template.o
+;FILE user_lis2dh_app.o
 user_going_to_sleep <= USED 0
 ;FILE user_periph_setup.o
 ;FILE wkupct_quadec.o

@@ -71,7 +71,7 @@
 #endif
 
 // Define UART2 Settings
-#define UART2_BAUDRATE              UART_BAUDRATE_115200
+#define UART2_BAUDRATE              UART_BAUDRATE_1000000
 #define UART2_DATABITS              UART_DATABITS_8
 #define UART2_PARITY                UART_PARITY_NONE
 #define UART2_STOPBITS              UART_STOPBITS_1

@@ -26,7 +26,7 @@ the time between bursts.
 
 ## How to run the example
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
 
 ### Initial Setup
 

@@ -51,7 +51,7 @@ The example is running from SRAM. To run the program from flash please visit cha
 
 ### Initial Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
 
 ### Compile & Run
 

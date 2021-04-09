@@ -1,4 +1,4 @@
-# DA14585/DA14586/DA14531 - Changing advertising methods using GPIO button interrupt or timer callbacks
+				# DA14585/DA14586/DA14531 - Changing advertising methods using GPIO button interrupt or timer callbacks
 
 ---
 

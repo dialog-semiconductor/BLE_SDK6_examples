@@ -54,7 +54,7 @@ The user manuals for the development kits can be found:
 
 ### Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
 
 -Start Keil using the `tput_optimization.uvprojx` Keil project file.
 

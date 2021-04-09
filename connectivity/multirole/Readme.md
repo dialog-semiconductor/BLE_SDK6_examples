@@ -37,7 +37,7 @@ The project works as a Central connecting to 2 peripherals, and once connected, 
  
 ## How to run the example
 
-1. For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+1. For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
 
 2. Download Prox_reporter binaries with **different BD addresses and default device name "DLG-PROXR"** to 2 DA14531 devices (as explained [here](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/getting_started/getting_started.html)). 
 You can refer to this [document](http://lpccs-docs.dialog-semiconductor.com/um-b-138/introduction.html) to program the flash with the prox_reporter binaries. Press reset (SW1) on the motherboard and verify with an Android device that they have all started advertising
@@ -104,13 +104,13 @@ This can be verified in the UART logs.
 Once it disconnects, you will see P0 advertising again while being connected to P1 and P2. 
 For Android, you can use any BLE scanner app to connect and disconnect.
 
-**Note**: UART terminal: 921600, no flow control
+**Note**: UART terminal: 921600, 8N1, no flow control
 
 ![logs.jpg](assets/logs.jpg)
 
 ## Limitations
 
-- The current example doesn't handle the disconnecion of P1, P2 from their cenral C0. This will be handled in future release.
+- The current example doesn't handle the disconnection of P1 or P2 from their central C0. This will be handled in future release.
 
 ## Troubleshooting
 
@@ -122,28 +122,3 @@ For Android, you can use any BLE scanner app to connect and disconnect.
 
 - If none of the above helps, please check with the customer support team who would be glad to provide you the solution.
 
-## License
-
-
-**************************************************************************************
-
- Copyright (c) 2020 Dialog Semiconductor. All rights reserved.
-
- This software ("Software") is owned by Dialog Semiconductor. By using this Software
- you agree that Dialog Semiconductor retains all intellectual property and proprietary
- rights in and to this Software and any use, reproduction, disclosure or distribution
- of the Software without express written permission or a license agreement from Dialog
- Semiconductor is strictly prohibited. This Software is solely for use on or in
- conjunction with Dialog Semiconductor products.
-
- EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
- REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
- IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
- SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
- CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
- PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
- ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
-
-**************************************************************************************

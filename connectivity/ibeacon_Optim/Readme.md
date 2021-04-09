@@ -1,4 +1,4 @@
-## Example description
+## Optimised Ibeacon example
 
 The example demonstrates an optimized software implementation for ibeacon on the DA14531, it can be downloaded from [A14531 Power optimized Dynamic advertising](http://lpccs-docs.dialog-semiconductor.com/SW_Example/SDK6/DA14531_Power_optimized_Dynamic_advertising.zip)
 
@@ -198,7 +198,7 @@ Battery Lifetime Estimator tool can be used and it can be loaded (from the Smart
 
 ## How to run the example
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 ### Initial Setup
 

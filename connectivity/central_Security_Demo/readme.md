@@ -60,11 +60,11 @@ The source file should work with other SDK file without any modification.
 
 ### Initial Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 1. Following codes should be modified in SDK file to handle the missing key error during the encrypt process, otherwise connecting to a previously paired peripheral with missing key will result in ASSERT_ERROR:
 - Added handling for SMP_ERROR_ENC_KEY_MISSING error in *gapc_cmp_evt_handler* in *app_task.c*
-```
+``` C
 static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
                                 struct gapc_cmp_evt const *param,
                                 ke_task_id_t const dest_id,

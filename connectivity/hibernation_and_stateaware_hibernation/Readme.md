@@ -1,4 +1,4 @@
-## Example description
+## State aware hibernation
 
 - This project starts with undirected connectable advertising
 - In between 2 advertising events extended sleep is applied
@@ -9,7 +9,7 @@
 - With respect to the state-aware hibernation, after the device enters the hibernation mode as explained above, external event via GPIO P0_5 (P2_5 on the motherboard) wakes up the device and DA14531 continues exection of application code from where it left before entering hibernation.
 
 Note:
-- On wake-up from the hibernation mode the memory address 0x00 can be remapped either to OTP or ROM when using Flash memory or SysRAM depending on how the device is configured and programmed to handle hibernation wake-up mechanism. 
+- On wake-up from the hibernation mode, the memory address 0x00 can be remapped either to OTP or ROM when using Flash memory or SysRAM depending on how the device is configured and programmed to handle hibernation wake-up mechanism. 
 
 The expected result of the example can be verified by:
 - Connecting the motherboard to the desktop/laptop and observing the power profile in SmartSnippets Studio.
@@ -45,7 +45,7 @@ To run the program from flash or OTP, please visit chapter 11 of the [SmartSnipp
 ## How to run the example
 
 ### Setup
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 1. Start Keil using the `hibernation_example.uvprojx` Keil project file.
  
@@ -60,14 +60,14 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 5. Open the system_DA14531.c, comment out the following, 
 
-	```
+	``` C
 		//    if ((GetBits16(HIBERN_CTRL_REG, HIBERNATION_ENABLE) == 1) &&
 		//        (GetBits16(SYS_CTRL_REG, REMAP_ADR0) > 1))
 	```
 
 	and add the follwing, 
 
-	```
+	``` C
 		if ((GetBits16(HIBERN_CTRL_REG, HIBERNATION_ENABLE) == 1) &&
 			GetWord16(RESET_STAT_REG) == 0)
 	```
@@ -78,13 +78,13 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 6. Open the user_hibernation.h and declare the following function,
 
-	```
+	``` C
 		void user_app_on_init(void);
 	```
 	
 7. Open the user_hibernation.c and add the function, like so, 
 
-	```
+	``` C
 		void user_app_on_init(void)
 		{
 			spi_flash_power_down();
@@ -96,7 +96,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 8. Open the user_callback_config.h, and replace the default_app_on_init with user_app_on_init, like so, 
 
-	```
+	``` C
 		.app_on_init            = user_app_on_init,
 	```
 	![callback function](assets/callback.png)
@@ -120,7 +120,7 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 2. In the defines, define CFG_APP_GOTO_HIBERNATION to select the hibernation sleep mode and also define HIBERNATION_SPI and undefine the others,
 
-	```
+	``` C
 	#if defined (__DA14531__)
 		#define CFG_APP_GOTO_HIBERNATION
 		
@@ -136,7 +136,7 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 4. In *user_periph_setup.h* file configure the GPIO that would be used to wake-up the device from hibernation mode. In our case we have chosen P0_5 as the wake-up GPIO. 
 
-	```
+	``` C
 	/****************************************************************************************/
 	/* Wake-up from hibernation configuration                                               */
 	/****************************************************************************************/
@@ -149,7 +149,7 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 5. Specify the advertisement period in the *user_config* file,  
 
-	```
+	``` C
 	/*
 	 ****************************************************************************************
 	 *
@@ -191,7 +191,7 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 The process is the same as using SPI as we have seen in the previous section, except we define the HIBERNATION_OTP and undefine the rest, 
 
-```
+``` C
 #if defined (__DA14531__)
 	#define CFG_APP_GOTO_HIBERNATION
 	
@@ -211,7 +211,7 @@ After doing this, repeat the steps from 4 - 7. In order to program the OTP and b
 
 The process is the same as mentioned in previous section, again, except we define the HIBERNATION_SYSRAM and undefine the rest, 
 
-```
+``` C
 #if defined (__DA14531__)
 	#define CFG_APP_GOTO_HIBERNATION
 	
@@ -235,7 +235,7 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 2. In the defines, define CFG_APP_GOTO_STATEFUL_HIBERNATION to select the state aware hibernation mode and undefine CFG_APP_GOTO_HIBERNATION,
 
-	```
+	``` C
 	#if defined (__DA14531__)	
 		#undef CFG_APP_GOTO_HIBERNATION
 		#define CFG_APP_GOTO_STATEFUL_HIBERNATION
@@ -252,7 +252,7 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 5. In *user_periph_setup.h* file configure the GPIO that would be used to wake-up the device from hibernation mode. In our case we have chosen P0_5 as the wake-up GPIO. 
 
-	```
+	``` C
 	/****************************************************************************************/
 	/* Wake-up from hibernation configuration                                               */
 	/****************************************************************************************/
@@ -265,7 +265,7 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 6. Specify the advertisement period in the *user_config* file,  
 
-	```
+	``` C
 	/*
 	 ****************************************************************************************
 	 *
@@ -322,7 +322,7 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 ## Troubleshooting
 
-- Try a different USB1 cable.
+- Try a different USB cable.
 
 - Try different jumper wires, if used.
 

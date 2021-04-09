@@ -52,7 +52,7 @@ Refer to the DA14531 getting started guide of [DA14531 Development Kit](http://l
 
 ### Initial Setup
 
-- For the initial setup, please refer to [Software example Setup using Python Link Script ](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html).
+- For the initial setup, please refer [here] https://github.com/dialog-semiconductor/BLE_SDK6_examples
 
 
 ### Compile & Run

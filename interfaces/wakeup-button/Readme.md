@@ -68,7 +68,7 @@ The example is running from SRAM. To run the program from flash please visit cha
 
 ### Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
 
 1. Start Keil using the `ble_button_wakeup.uvprojx` Keil project file.
  

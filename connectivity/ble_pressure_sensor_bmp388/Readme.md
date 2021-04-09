@@ -22,7 +22,7 @@ The user manuals for the development kits can be found:
 
 ## How to run the example
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
 
 ### Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard
 

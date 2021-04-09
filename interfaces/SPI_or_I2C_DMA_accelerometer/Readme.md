@@ -19,15 +19,17 @@ The user manuals for the DA145xxDEVKT-P PRO-Motherboard can be found [here](http
 
 
 * __Hardware configuration DA1453x using DA145xxDEVKT-P PRO-Motherboard__
-- Connect P21 to SDA.
-- Connect P23 to CS.
-- Connect P24 to SCL.
-- Connect P25 to SDO.
+- Connect P21 to SDA. (SPI data in / I2C data)
+- Connect P23 to CS. (SPI enable / tie high for I2C)
+- Connect P24 to SCL. (SPI clock / I2C clock)
+- Connect P25 to SDO. (SPI data out / I2C address LSB)
 - Connect P29 to INT1.
 
 - Connect P26 to pin 17 of J1 (The middle pin next to UTX)
 
 - VDDIO and VDD should be connected to v3 on the motherboard
+
+There is no need to change any connections when switching between SPI or I2C mode. The application will use GPIOs to tie P23 and P25 high to easily run all configurations.
 
  **Software configuration**
 

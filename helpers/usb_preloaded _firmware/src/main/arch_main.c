@@ -5,27 +5,9 @@
  *
  * @brief Main loop of the application.
  *
- * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2012-2020 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -93,7 +75,9 @@
 #include "range_ext_api.h"
 #endif
 
-
+#if (WLAN_COEX_ENABLED)
+#include "wlan_coex.h"
+#endif
 
 /**
  * @addtogroup DRIVERS
@@ -122,6 +106,12 @@ extern struct arch_sleep_env_tag sleep_env;
 
 extern last_ble_evt arch_rwble_last_event;
 
+#if defined (__DA14531__)
+/// Structure containing info about debugger configuration and OTP CS registers
+/// normally handled by the Booter - defined in otp_cs.c
+extern otp_cs_booter_val_t booter_val;
+#endif
+
 static uint32_t code_size                      __SECTION_ZERO("retention_mem_area0");
 static uint8_t ret_mode_for_non_ret_heap       __SECTION_ZERO("retention_mem_area0");
 static uint8_t ret_mode                        __SECTION_ZERO("retention_mem_area0");
@@ -132,29 +122,29 @@ static uint8_t reinit_non_ret_heap             __SECTION_ZERO("retention_mem_are
  * LOCAL FUNCTION DECLARATIONS
  ****************************************************************************************
  */
-static inline void otp_prepare(uint32_t code_size);
-static inline bool ble_is_powered(void);
-static inline void ble_turn_radio_off(void);
-static inline void schedule_while_ble_on(void);
-static inline void arch_turn_peripherals_off(sleep_mode_t current_sleep_mode);
-static inline void arch_goto_sleep(sleep_mode_t current_sleep_mode);
-static inline void arch_switch_clock_goto_sleep(sleep_mode_t current_sleep_mode);
-static inline void arch_resume_from_sleep(void);
-static inline sleep_mode_t rwip_power_down(void);
-static inline arch_main_loop_callback_ret_t app_asynch_trm(void);
-static inline arch_main_loop_callback_ret_t app_asynch_proc(void);
-static inline void app_asynch_sleep_proc(void);
-static inline void app_sleep_prepare_proc(sleep_mode_t *sleep_mode);
-static inline void app_sleep_exit_proc(void);
-static inline void app_sleep_entry_proc(sleep_mode_t sleep_mode);
+__STATIC_INLINE void otp_prepare(uint32_t code_size);
+__STATIC_INLINE bool ble_is_powered(void);
+__STATIC_INLINE void ble_turn_radio_off(void);
+__STATIC_INLINE void schedule_while_ble_on(void);
+__STATIC_INLINE void arch_turn_peripherals_off(sleep_mode_t current_sleep_mode);
+__STATIC_INLINE void arch_goto_sleep(sleep_mode_t current_sleep_mode);
+__STATIC_INLINE void arch_switch_clock_goto_sleep(sleep_mode_t current_sleep_mode);
+__STATIC_INLINE void arch_resume_from_sleep(void);
+__STATIC_INLINE sleep_mode_t rwip_power_down(void);
+__STATIC_INLINE arch_main_loop_callback_ret_t app_asynch_trm(void);
+__STATIC_INLINE arch_main_loop_callback_ret_t app_asynch_proc(void);
+__STATIC_INLINE void app_asynch_sleep_proc(void);
+__STATIC_INLINE void app_sleep_prepare_proc(sleep_mode_t *sleep_mode);
+__STATIC_INLINE void app_sleep_exit_proc(void);
+__STATIC_INLINE void app_sleep_entry_proc(sleep_mode_t sleep_mode);
 
-static inline void init_retention_mode(void);
+__STATIC_INLINE void init_retention_mode(void);
 #if !defined (__DA14531__)
-static inline void set_ldo_ret_trim(uint8_t retained_ram_blocks);
+__STATIC_INLINE void set_ldo_ret_trim(uint8_t retained_ram_blocks);
 #endif
 #if !defined (CFG_CUSTOM_SCATTER_FILE)
-static inline uint8_t get_retention_mode(void);
-static inline uint8_t get_retention_mode_data(void);
+__STATIC_INLINE uint8_t get_retention_mode(void);
+__STATIC_INLINE uint8_t get_retention_mode_data(void);
 #endif
 static inline uint8_t get_retention_mode_non_ret_heap(void);
 extern void timer0_general_test(uint32_t times_seconds);
@@ -286,25 +276,26 @@ void systick_test(void)
  * @brief Power down the BLE Radio and whatever is allowed according to the sleep mode and
  *        the state of the system and application
  * @param[in] current_sleep_mode The current sleep mode proposed by the application.
- * @return void
  ****************************************************************************************
  */
-static inline void arch_goto_sleep(sleep_mode_t current_sleep_mode)
+__STATIC_INLINE void arch_goto_sleep(sleep_mode_t current_sleep_mode)
 {
     sleep_mode_t sleep_mode = current_sleep_mode;
 #if (USE_RANGE_EXT)
     // Disable range extender
     range_ext.disable(NULL);
 #endif
+
+#if (WLAN_COEX_ENABLED)
+    // Drive to inactive state the pin used for the BLE event in progress signal
+    wlan_coex_set_ble_eip_pin_inactive();
+#endif
+
     // Turn the radio off
     ble_turn_radio_off();
 
     // Grant access to the application to check if we can go to sleep
     app_sleep_prepare_proc(&sleep_mode); // SDK Improvements for uniformity this one should be changed?
-
-#if ((EXTERNAL_WAKEUP) && (!BLE_APP_PRESENT)) // External wake up, only in external processor designs
-    ext_wakeup_enable(EXTERNAL_WAKEUP_GPIO_PORT, EXTERNAL_WAKEUP_GPIO_PIN, EXTERNAL_WAKEUP_GPIO_POLARITY);
-#endif
 
     // Turn the peripherals off according to the current sleep mode
     arch_turn_peripherals_off(sleep_mode);
@@ -335,10 +326,9 @@ static inline void arch_goto_sleep(sleep_mode_t current_sleep_mode)
  ****************************************************************************************
  * @brief Manage the clocks and go to sleep.
  * @param[in] current_sleep_mode The current sleep mode proposed by the system so far
- * @return void
  ****************************************************************************************
  */
-static inline void arch_switch_clock_goto_sleep(sleep_mode_t current_sleep_mode)
+__STATIC_INLINE void arch_switch_clock_goto_sleep(sleep_mode_t current_sleep_mode)
 {
     if ( (current_sleep_mode == mode_ext_sleep) || (current_sleep_mode == mode_ext_sleep_otp_copy) )
     {
@@ -372,12 +362,21 @@ static inline void arch_switch_clock_goto_sleep(sleep_mode_t current_sleep_mode)
 /**
  ****************************************************************************************
  * @brief  An interrupt came, resume from sleep.
- * @return void
  ****************************************************************************************
  */
-static inline void arch_resume_from_sleep(void)
+__STATIC_INLINE void arch_resume_from_sleep(void)
 {
 #if defined (__DA14531__)
+    if (arch_get_sleep_mode() == ARCH_EXT_SLEEP_OTP_COPY_ON)
+    {
+        // When waking up from extended sleep with OTP copy, structure content
+        // shall be restored.
+        booter_val.dbg_cfg = GetBits16(SYS_CTRL_REG, DEBUGGER_ENABLE);
+        booter_val.bandgap_reg = GetWord16(BANDGAP_REG);
+        booter_val.clk_rc32m_reg = GetWord16(CLK_RC32M_REG);
+        booter_val.clk_rc32k_reg = GetWord16(CLK_RC32K_REG);
+    }
+
     if (!GetBits16(ANA_STATUS_REG, BOOST_SELECTED) && GetBits16(DCDC_CTRL_REG, DCDC_ENABLE))
     {
         /* In buck mode turn off LDO_LOW if DC/DC converter is enabled to allow the
@@ -416,10 +415,9 @@ static inline void arch_resume_from_sleep(void)
 /**
  ****************************************************************************************
  * @brief Check if the BLE module is powered on.
- * @return void
  ****************************************************************************************
  */
-static inline bool ble_is_powered()
+__STATIC_INLINE bool ble_is_powered()
 {
     return ((GetBits16(CLK_RADIO_REG, BLE_ENABLE) == 1) &&
             (GetBits32(BLE_DEEPSLCNTL_REG, DEEP_SLEEP_STAT) == 0) &&
@@ -429,10 +427,9 @@ static inline bool ble_is_powered()
 /**
  ****************************************************************************************
  * @brief Call the scheduler if the BLE module is powered on.
- * @return void
  ****************************************************************************************
  */
-static inline void schedule_while_ble_on(void)
+__STATIC_INLINE void schedule_while_ble_on(void)
 {
     // BLE clock is enabled
     while (ble_is_powered())
@@ -482,31 +479,47 @@ static inline void schedule_while_ble_on(void)
  * @return sleep_mode_t return the current sleep mode
  ****************************************************************************************
  */
-static inline sleep_mode_t rwip_power_down(void)
+__STATIC_INLINE sleep_mode_t rwip_power_down(void)
 {
     sleep_mode_t sleep_mode;
+
+#if ((EXTERNAL_WAKEUP) && (!BLE_APP_PRESENT)) // External wake up, only in external processor designs
+    ext_wakeup_enable(EXTERNAL_WAKEUP_GPIO_PORT, EXTERNAL_WAKEUP_GPIO_PIN, EXTERNAL_WAKEUP_GPIO_POLARITY);
+#endif
+
     // if app has turned sleep off, rwip_sleep() will act accordingly
     // time from rwip_sleep() to __WFI() must be kept as short as possible!
     sleep_mode = rwip_sleep();
 
     // BLE is sleeping ==> app defines the mode
-    if (sleep_mode == mode_sleeping) {
-        if (sleep_env.slp_state == ARCH_EXT_SLEEP_ON) {
+    if (sleep_mode == mode_sleeping)
+    {
+        if (sleep_env.slp_state == ARCH_EXT_SLEEP_ON)
+        {
             sleep_mode = mode_ext_sleep;
-        } else {
+        }
+        else
+        {
             sleep_mode = mode_ext_sleep_otp_copy;
         }
     }
+#if ((EXTERNAL_WAKEUP) && (!BLE_APP_PRESENT))
+    else
+    {
+        // Disable external wake up
+        ext_wakeup_disable();
+    }
+#endif
+
     return (sleep_mode);
 }
 
 /**
  ****************************************************************************************
  * @brief Turn the radio off.
- * @return void
  ****************************************************************************************
  */
-static inline void ble_turn_radio_off(void)
+__STATIC_INLINE void ble_turn_radio_off(void)
 {
     SetBits16(PMU_CTRL_REG, RADIO_SLEEP, 1); // turn off radio
 }
@@ -514,10 +527,9 @@ static inline void ble_turn_radio_off(void)
 /**
  ****************************************************************************************
  * @brief Initialize retention mode.
- * @return void
  ****************************************************************************************
  */
-static inline void init_retention_mode(void)
+__STATIC_INLINE void init_retention_mode(void)
 {
 #if defined (CFG_CUSTOM_SCATTER_FILE)
     // User selects which RAM blocks to retain (code and retention data or only retention data)
@@ -549,7 +561,7 @@ static inline void init_retention_mode(void)
  ****************************************************************************************
  */
 #if !defined (CFG_CUSTOM_SCATTER_FILE)
-static inline uint8_t get_retention_mode_data(void)
+__STATIC_INLINE uint8_t get_retention_mode_data(void)
 {
     uint32_t ret_mem_base_addr = RET_MEM_BASE;
 
@@ -596,7 +608,7 @@ static inline uint8_t get_retention_mode_data(void)
  * @note This function is strongly related to the default SDK scatter file.
  ****************************************************************************************
  */
-static inline uint8_t get_retention_mode(void)
+__STATIC_INLINE uint8_t get_retention_mode(void)
 {
     // The following equation calculates the code size and is strongly related to the
     // default SDK scatter file structure. Count vector table and rom patches as well.
@@ -634,7 +646,7 @@ static inline uint8_t get_retention_mode(void)
  * @return the retention mode (the RAM blocks to be retained)
  ****************************************************************************************
  */
-static inline uint8_t get_retention_mode_non_ret_heap()
+__STATIC_INLINE uint8_t get_retention_mode_non_ret_heap()
 {
     uint32_t non_ret_heap_base = NON_RET_HEAP_BASE;
     uint32_t non_ret_heap_length = NON_RET_HEAP_LENGTH;
@@ -729,12 +741,11 @@ static inline uint8_t get_retention_mode_non_ret_heap()
  * @brief Set required LDO_RET_TRIM value in BANDGAP_REG. This value depends on the
  *        size of retained RAM and the temperature range device operation.
  * @param[in] retained_ram_blocks RAM blocks to be retained.
- * @return void
  * @note By default the [BANDGAP_REG.LDO_RET_TRIM] is loaded with the respective OTP
  *       header value (done by ROM booter).
  ****************************************************************************************
  */
-static inline void set_ldo_ret_trim(uint8_t retained_ram_blocks)
+__STATIC_INLINE void set_ldo_ret_trim(uint8_t retained_ram_blocks)
 {
 #if (USE_MID_TEMPERATURE)
     SetBits16(BANDGAP_REG, LDO_RET_TRIM, DEFAULT_LDO_SET);
@@ -755,10 +766,9 @@ static inline void set_ldo_ret_trim(uint8_t retained_ram_blocks)
  ****************************************************************************************
  * @brief  Turn the peripherals off according to the current sleep mode.
  * @param[in] current_sleep_mode The current sleep mode proposed by the system so far
- * @return void
  ****************************************************************************************
  */
-static inline void arch_turn_peripherals_off(sleep_mode_t current_sleep_mode)
+__STATIC_INLINE void arch_turn_peripherals_off(sleep_mode_t current_sleep_mode)
 {
     if (current_sleep_mode == mode_ext_sleep || current_sleep_mode == mode_ext_sleep_otp_copy)
     {
@@ -837,7 +847,7 @@ static inline void arch_turn_peripherals_off(sleep_mode_t current_sleep_mode)
  * @brief Prepare OTP Controller in order to be able to reload SysRAM at the next power-up.
  ****************************************************************************************
  */
-static inline void otp_prepare(uint32_t code_size)
+__STATIC_INLINE void otp_prepare(uint32_t code_size)
 {
     // Initialize OTP controller
     hw_otpc_init();
@@ -855,6 +865,9 @@ static inline void otp_prepare(uint32_t code_size)
     // wake up.
     if (GetBits16(ANA_STATUS_REG, BOOST_SELECTED))
     {
+        // Clear reservation status of DCDC converter
+        hw_otpc_clear_dcdc_reserved();
+
         // Set DCDC converter voltage level for OTP read (required for OTP copy to RAM at wake up)
         syscntl_dcdc_set_level(SYSCNTL_DCDC_LEVEL_1V8);
 
@@ -871,7 +884,7 @@ static inline void otp_prepare(uint32_t code_size)
  * @return KEEP_POWERED to force calling of schedule_while_ble_on(), else GOTO_SLEEP
  ****************************************************************************************
  */
-static inline arch_main_loop_callback_ret_t app_asynch_trm(void)
+__STATIC_INLINE arch_main_loop_callback_ret_t app_asynch_trm(void)
 {
     if (user_app_main_loop_callbacks.app_on_ble_powered != NULL)
     {
@@ -891,7 +904,7 @@ static inline arch_main_loop_callback_ret_t app_asynch_trm(void)
  * @return KEEP_POWERED to force calling of schedule_while_ble_on(), else GOTO_SLEEP
  ****************************************************************************************
  */
-static inline arch_main_loop_callback_ret_t app_asynch_proc(void)
+__STATIC_INLINE arch_main_loop_callback_ret_t app_asynch_proc(void)
 {
     if (user_app_main_loop_callbacks.app_on_system_powered != NULL)
     {
@@ -906,10 +919,9 @@ static inline arch_main_loop_callback_ret_t app_asynch_proc(void)
 /**
  ****************************************************************************************
  * @brief Used for updating the state of the application just before sleep checking starts.
- * @return void
  ****************************************************************************************
  */
-static inline void app_asynch_sleep_proc(void)
+__STATIC_INLINE void app_asynch_sleep_proc(void)
 {
     if (user_app_main_loop_callbacks.app_before_sleep != NULL)
         user_app_main_loop_callbacks.app_before_sleep();
@@ -921,10 +933,9 @@ static inline void app_asynch_sleep_proc(void)
  *        application state.
  *        BLE and Radio are still powered off.
  * @param[in] sleep_mode     Sleep Mode
- * @return void
  ****************************************************************************************
  */
-static inline void app_sleep_prepare_proc(sleep_mode_t *sleep_mode)
+__STATIC_INLINE void app_sleep_prepare_proc(sleep_mode_t *sleep_mode)
 {
     if (user_app_main_loop_callbacks.app_validate_sleep != NULL)
         (*sleep_mode) = user_app_main_loop_callbacks.app_validate_sleep(*sleep_mode);
@@ -934,10 +945,9 @@ static inline void app_sleep_prepare_proc(sleep_mode_t *sleep_mode)
  ****************************************************************************************
  * @brief Used for application specific tasks just before entering the low power mode.
  * @param[in] sleep_mode     Sleep Mode
- * @return void
  ****************************************************************************************
  */
-static inline void app_sleep_entry_proc(sleep_mode_t sleep_mode)
+__STATIC_INLINE void app_sleep_entry_proc(sleep_mode_t sleep_mode)
 {
     if (user_app_main_loop_callbacks.app_going_to_sleep != NULL)
         user_app_main_loop_callbacks.app_going_to_sleep(sleep_mode);
@@ -947,10 +957,9 @@ static inline void app_sleep_entry_proc(sleep_mode_t sleep_mode)
  ****************************************************************************************
  * @brief Used for application specific tasks immediately after exiting the low power mode.
  * @param[in] sleep_mode     Sleep Mode
- * @return void
  ****************************************************************************************
  */
-static inline void app_sleep_exit_proc(void)
+__STATIC_INLINE void app_sleep_exit_proc(void)
 {
     if (user_app_main_loop_callbacks.app_resume_from_sleep != NULL)
         user_app_main_loop_callbacks.app_resume_from_sleep();

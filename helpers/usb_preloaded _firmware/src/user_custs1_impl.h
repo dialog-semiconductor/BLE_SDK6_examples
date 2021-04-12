@@ -5,27 +5,9 @@
  *
  * @brief Peripheral project Custom1 Server implementation header file.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2015-2019 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -82,7 +64,6 @@ enum
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
 */
 void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
@@ -97,7 +78,6 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
 */
 void user_svc1_led_wr_ind_handler(ke_msg_id_t const msgid,
@@ -112,7 +92,6 @@ void user_svc1_led_wr_ind_handler(ke_msg_id_t const msgid,
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
 */
 void user_svc1_long_val_cfg_ind_handler(ke_msg_id_t const msgid,
@@ -127,7 +106,6 @@ void user_svc1_long_val_cfg_ind_handler(ke_msg_id_t const msgid,
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
 */
 void user_svc1_long_val_wr_ind_handler(ke_msg_id_t const msgid,
@@ -142,7 +120,6 @@ void user_svc1_long_val_wr_ind_handler(ke_msg_id_t const msgid,
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
 */
 void user_svc1_adc_val_1_cfg_ind_handler(ke_msg_id_t const msgid,
@@ -157,7 +134,6 @@ void user_svc1_adc_val_1_cfg_ind_handler(ke_msg_id_t const msgid,
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
 */
 void user_svc1_button_cfg_ind_handler(ke_msg_id_t const msgid,
@@ -172,7 +148,6 @@ void user_svc1_button_cfg_ind_handler(ke_msg_id_t const msgid,
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
 */
 void user_svc1_long_val_att_info_req_handler(ke_msg_id_t const msgid,
@@ -187,7 +162,6 @@ void user_svc1_long_val_att_info_req_handler(ke_msg_id_t const msgid,
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
 */
 void user_svc1_rest_att_info_req_handler(ke_msg_id_t const msgid,
@@ -198,7 +172,6 @@ void user_svc1_rest_att_info_req_handler(ke_msg_id_t const msgid,
 /**
  ****************************************************************************************
  * @brief ADC sampling timer callback handler.
- * @return void
  ****************************************************************************************
  */
 void app_adcval1_timer_cb_handler(void);
@@ -210,7 +183,6 @@ void app_adcval1_timer_cb_handler(void);
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
- * @return void
  ****************************************************************************************
  */
 void user_svc3_read_non_db_val_handler(ke_msg_id_t const msgid,

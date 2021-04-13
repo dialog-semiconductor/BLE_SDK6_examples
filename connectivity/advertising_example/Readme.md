@@ -18,15 +18,15 @@ The expected result of the example can be verified by:
 ## HW and SW configuration
 
 
-* **Hardware configuration**
+### **Hardware configuration**
 
 This example runs on the BLE Smart SoC (System on Chip) devices:
 - DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
 - DA14585/DA14586 basic development kit.
 
 The user manuals for the development kits can be found:
-- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
-- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
+- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [Here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
 * __Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard__
 
@@ -61,42 +61,44 @@ The user manuals for the development kits can be found:
 	![simple_button_basic](assets/simple_button_basic.png)
 
 
-* __Software configuration__
+### __Software configuration__
+
 This example requires:
-	- [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest).
-	- Keil5.
-	- __SEGGER’s J-Link__ tools should be downloaded and installed.
-	- Serial Terminal software. For example Tera Term or PuTTY.
+	
+- [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+- Keil5.
+- __SEGGER’s J-Link__ tools should be downloaded and installed.
+- Serial Terminal software. For example Tera Term or PuTTY.
 
 ## How to run the example
 
 ### Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 1. Start Keil using the `changing_advertising.uvprojx` Keil project file.
 
 2. Expand the dialog shown in the red box in the image below.
 
-![Expand_Select_Device](assets/Expand_Select_Device.png)
+   ![Expand_Select_Device](assets/Expand_Select_Device.png)
 
 3. Select your device: DA14531, DA14586 or DA14585.
 		
-![Select_Device](assets/Select_Device.png)
+   ![Select_Device](assets/Select_Device.png)
 
 4. Open a serial terminal on the work station using for example Tera Term/PuTTY with the following parameters:
-```
-- baud rate: 115200
-- data: 8 bits
-- stop: 1 bit
-- parity: None
-- flow  control: none
-```
+	```
+	- baud rate: 115200
+	- data: 8 bits
+	- stop: 1 bit
+	- parity: None
+	- flow  control: none
+	```
 
 5. Compile (F7) and launch (ctrl + F5) the example.\
-If the warning shown below pops up press OK.
+   If the warning shown below pops up press OK.
  
-![warning](assets/warning.png)
+   ![warning](assets/warning.png)
 
 ## GPIO identification 
 Make sure to read the correct identification according to your mother board and daughter board.
@@ -163,6 +165,6 @@ Starting point for this example is the BLE barebone project from SDK6. This prov
 - Try different jumper wire, if used.
 
 - If none of the steps described above help, please check the user manual according to your development kit. 
-	- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
-	- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
+	- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+	- [Here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 

@@ -53,7 +53,7 @@ The user manuals for the development kits can be found:
 
 ### Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 -Start Keil using the `central` Keil project file.
 

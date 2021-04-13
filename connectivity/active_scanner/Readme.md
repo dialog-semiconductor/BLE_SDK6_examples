@@ -22,15 +22,15 @@ advertising data in a friendly way on its serial terminal.
 * **Software configuration**
 
 	- This example requires:
-    * Smartsnippets Studio 1.6.3.
-    * SDK6.0.10
+       * Smartsnippets Studio 1.6.3.
+       * SDK6.0.10
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- Python 3.5 or greater
 
 
 ## How to run the example
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 ### Initial Setup
 

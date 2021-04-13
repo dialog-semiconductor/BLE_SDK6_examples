@@ -14,28 +14,28 @@ As a proof of concept it can be confirmed by analyzing SMP in BLE sniffer log.
 ## HW and SW configuration
 
 
-* **Hardware configuration**
+### **Hardware configuration**
 
-	- This example runs on The DA14585/DA14586 Bluetooth Smart SoC devices.
-	- The Basic or pro Development kit is needed for this example.
-	- Connect the USB Development kit to the host computer.
-	- SPI jumper on P00/P03/P05/P06/BATT_SEL
+- This example runs on The DA14585/DA14586 Bluetooth Smart SoC devices.
+- The Basic or pro Development kit is needed for this example.
+- Connect the USB Development kit to the host computer.
+- SPI jumper on P00/P03/P05/P06/BATT_SEL
 		
-		![jumper_config](assets/jumper_setup.png)
+	![jumper_config](assets/jumper_setup.png)
 
 
-* **Software configuration**
+### **Software configuration**
 
-	- This example requires:
-    * Smartsnippets Studio 1.6.3.
-    * SDK6.0.10
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
-	- Python 3.5 or greater
+- This example requires:
+  * Smartsnippets Studio 1.6.3.
+  * SDK6.0.10
+- **SEGGER’s J-Link** tools should be downloaded and installed.
+- Python 3.5 or greater
 
 
 ## How to run the example
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 ### Initial Setup
 

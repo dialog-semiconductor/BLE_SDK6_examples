@@ -14,7 +14,7 @@ To run any of these SW examples, the user needs:
 - Python script
 
 <br/>
-Begin by cloing this repository to your local and then link the SW example to the SDK. Below is the description on how to use the python script to link the SDK and the SW example, and to clean the SW example project environment (remove absolute paths).
+Begin by cloning this repository locally and then link the SW example to the SDK. Below is the description on how to use the python script to link the SDK and the SW example, and to clean the SW example project environment (remove absolute paths).
 
 
 **Note**: _It is highly recommended the user creates files that are added in the *src* folder of the SW example. By default, the Python script does not process user files located outside the *src* folder. You are free to create any folder under the *src* user space. You need to make sure the new folder path under *src* is added in the Keil project as a relative path._
@@ -33,7 +33,7 @@ Begin by cloing this repository to your local and then link the SW example to th
 Below are the steps to link the SW example project environment to the 6.0.14 SDK.
 
 1. Python 2.7 or higher is required to run the small example environment generation script.
-Python can be downloaded from Python.org.
+Python can be downloaded from [Python.org](http://python.org).
 
 2. Download the SW example from the Dialog support portal:
 DA14585 & DA14586 software examples can be found here: https://www.dialog-semiconductor.com/product/da14585 and DA14531 software examples can be found here: https://www.dialog-semiconductor.com/product/da14531
@@ -71,7 +71,7 @@ Below are the steps to clean the SW example project environment.
 <br/>
 
 1. Python 2.7 or higher is required to run the small example environment generation script.
-Python can be downloaded from Python.org.
+Python can be downloaded from [Python.org](http://python.org).
 
 2. Download the SW example from the Dialog support portal:
 

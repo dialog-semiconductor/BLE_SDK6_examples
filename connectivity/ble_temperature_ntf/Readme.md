@@ -82,7 +82,7 @@ This example requires:
 ## How to run the example
 
 ### Setup
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 1. Start Keil using the `ble_temperature_ntf.uvprojx` Keil project file.
 

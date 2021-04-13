@@ -1,11 +1,8 @@
-
 # Reading an I2C accelerometer and sending BLE notifications
-
----
 
 ## Example description
 
-This example shows how to acquire data from an I2C accelerometer and send the measurements with BLE notifications using a DA14531 or DA14585/586 device. This example project also interfaces with an [Evothings](https://evothings.com) app which displays the orientation of the sensor, or you could use a BLE Scanner app to read out the measurements.
+This example shows how to acquire data from an I2C accelerometer and send the measurements with BLE notifications using a DA14531 or DA14585/586 device. You could use a BLE Scanner app to read out the measurements.
 
 An I2C sensor is not necessary to run this example.
 Defining NO_SENSOR in ``ADXL345.h`` disables reading of the sensor. 
@@ -37,10 +34,10 @@ Follow the hardware configuration according to your daughterboard, DA14531 or DA
   
 ### Software configuration
 
-- This example requires:
-    - SDK v6.0.12 or later
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
-     - An application like LightBlue Explorer should be used to act as a BLE Scanner and view the received measurement values. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.punchthrough.lightblueexplorer) or on the [App Store](https://apps.apple.com/gb/app/lightblue-explorer/id557428110).
+This example requires:
+- SDK v6.0.14 or later
+- **SEGGER’s J-Link** tools should be downloaded and installed.
+- An application like LightBlue Explorer should be used to act as a BLE Scanner and view the received measurement values. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.punchthrough.lightblueexplorer) or on the [App Store](https://apps.apple.com/gb/app/lightblue-explorer/id557428110).
 
 ## How to run the example
 
@@ -73,34 +70,12 @@ For the initial setup of the project that involves linking the SDK to this SW ex
     
     ![subscribe](assets/subscribe.jpg)
 
-## Evothings
-
-This example also comes with an Evothings demo application. The application can connect to the DA14531 or DA14585/DA14586 device and read out the acceleration data. There is also a 3D visualization of pitch and roll. Follow the instructions below to connect.
-
-- Download the Evothings Viewer. At the time of writing, the Evothings Viewer is temporarily unavailable on IOS. The Android version of the app is available in the [Google Play store](https://play.google.com/store/apps/details?id=com.evothings.evothingsviewer).
-
-- When the Evothings Viewer is started, you are able to connect to the demo project. Input the URL <span style="color:blue; display: inline;">http://lpccs-docs.dialog-semiconductor.com/Evothing/index.html</span> and push the "Connect" button. 
-
-    ![evothings_connect](assets/evothings_connect.jpg)
-
-- When the app is loaded you can start scanning for the DA14531 or DA14585/DA14586 device.
-
-    ![evothings_dlg_index](assets/evothings-dlg-index.jpg)
-
--  If the device is found, the accelerometer data is shown without the device being connected.
-This is possible because the accelerometer measurements are included in the manufacturer specific data of the advertising packets. 
-
-    ![evothings_dlg_scan](assets/evothings-dlg-scan.jpg)
-
-- After a connection is established, the smartphone subscribes to the G-acceleration service. After this, the device will start sending data to the smartphone. You will be able to see the 3D visual change when you move around the sensor.
-
-    ![evothings_dlg_3d](assets/evothings-dlg-3d.jpg)
-
 ## Known Limitations
 
 
 - There are no known limitations for this example. But you can check and refer to the following application note for
 [known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-- You can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
 
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+
+- You can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).

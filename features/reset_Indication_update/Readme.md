@@ -27,31 +27,6 @@ The DA14531 includes a special register that indicates the reset source previous
     - For reading the current reset reason.
     - For issuing a reset.
 
-## SDK modifications
-The current example uses the un-initialized data section in order to store identification flags for the application code to be aware if an NMI or a Hardfault has occured. The identification flag is preceded and followed by 32bit magic values that act as memory integrity check. 
-
-When the fw is build with the **CFG_DEVELOPMENT_DEBUG** flag defined, and an NMI or a Hardfault occurs, will halt the processor either in a while(1) loop or in a breakpoint in order for the developer to check the issue via the debugger. For reseting the device as soon as one of those interrupts occur the **CFG_DEVELOPMENT_DEBUG** flag should be undefined. In that case the fw will issue a SW reset and start execution of the bootrom. By default the example has the flag undefined for demonstrating the fault recognition functionality.
-
-For setting the fault flags minor changes has to be applied in the SDK in order to set the corresponding flag if the NMI or the Hardfault handler executes. The user will have to add: 
-- For the Hardfault:
-  - Include the user_reser_mechanism.h file in the hardfaut_handler.c:
-    ```c
-    #include "user_reset_mechanism.h"
-    ```
-  - In the top of the HardFault_HandlerC() function, invoke the function:
-    ```c 
-    user_set_hardfault_flag(); 
-    ```
-- For the NMI:
-  - Include the user_reser_mechanism.h file in the nmi_handler.c:
-    ```c
-    #include "user_reset_mechanism.h"
-    ``` 
-  - At the top of the NMI_HandlerC() function, invoke the function:
-    ```c 
-    user_set_watchdog_flag(); 
-    ```
-
 ## HW and SW configuration
 
 * **Hardware configuration**
@@ -84,6 +59,91 @@ This example requires:
 * The example provides also the below options:
   * define **CFG_PRINTF** (in da1458x_config_basic.h) for printing the reset reason and faults when start up (by default enabled in the SW example).
   * define **CFG_SPI_FLASH_ENABLE** (in da1458x_config_basic.h) for powering off the flash in case the device boots from the external SPI memory (by default enabled in the SW example).
+
+
+## How to run
+
+### Initial Setup
+
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
+
+- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
+
+- For the DA14585/586 Getting started guide you can refer to this [link](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+
+### Compile & Run
+
+1. Open the project via Keil µVision 5.
+
+2. Select the proper build for the corresponding device (DA14531, DA14585, DA14586).
+
+    ![first_boot_msg](assets/device_selection.PNG)
+
+3. Build the project and load it to target. The project can be run either from ``System-RAM`` or ``SPI Flash``. 
+    > __Note:__ 
+    In case of SPI Flash, the [Flash Programmer](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) from SmartSnippets Toolbox should be used. Refer to the [user manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/index.html) to get familiar with the SmartSnippets Toolbox.
+
+
+4. Set up a serial terminal session by selecting the proper virtual COM port and set the port configuration as shown below:
+      - Baudrate: 115200
+      - Data: 8 bits
+      - Stop: 1 bit
+      - Parity: None
+      - Flow  control: none
+
+    > __Note:__ 
+    Refer to **Section 10** in [Get Started tutorial](http://lpccs-docs.dialog-semiconductor.com/Tutorial_SDK6/serial_port.html) for more information on enabling the UART for debugging purposes.
+
+5. In the initial boot (the device is has just powered up), the following message should be displayed in the Serial Terminal:
+
+    ![first_boot_msg](assets/first_boot_msg.PNG)
+
+6. Open a generic BLE mobile application and the ``Reset Detection`` device name should be detected, as shown below.
+
+    ![reset_detection_adv](assets/reset_detection_adv.PNG)
+
+7. Connect to the ``Reset Detection``
+
+8. Once the device is connected to the cell phone, a custom service with two characteristics should be detected. Feel free to read the second characteristic **Reset Detection** which indicates the reset reason. 
+
+    ![reset_detection_por](assets/reset_detection_por.PNG)
+
+9. Write **0x02** for triggering a Hardfault on the first characteristic **Control Point**. The device will indicate that a Hardfault will occur and will reset.
+    ![hardfault_trigger](assets/Hardfault_trigger.PNG)
+
+10. After the code has reached the hardfault the watchdog will be reloaded and the device will halt in a while(1) loop until the watchdog elapses (provided that the CFG_DEVELOPMENT_DEBUG is undefined). As soon as the watchdog elapses the NMI Handler will occur and the device will SW reset and start executing the ROM booter. If there is no image in the SPI or the memory is not connected to the device the image will have to be downloaded again via Keil, eitherwise the booter will boot using image from the SPI flash. The following message will be printed on the terminal on start up.
+
+    ![reboot_from_hardfault](assets/reboot_from_hardfault.PNG)
+
+    > __Note:__ 
+    In case the fw is re-downloaded via Keil the debugger will issue a HW reset on the device, this will be identified by the code and a HW reset will be presented as the reason of reset. On the other hand if the image is downloaded from the SPI flash the reset will be identified as a SW reset. 
+
+11. If it is re-connected to the mobile application, the value  of the **Reset detection** characteristic should be **0x0306**. 
+
+## SDK modifications
+The current example uses the un-initialized data section in order to store identification flags for the application code to be aware if an NMI or a Hardfault has occured. The identification flag is preceded and followed by 32bit magic values that act as memory integrity check. 
+
+When the fw is build with the **CFG_DEVELOPMENT_DEBUG** flag defined, and an NMI or a Hardfault occurs, will halt the processor either in a while(1) loop or in a breakpoint in order for the developer to check the issue via the debugger. For reseting the device as soon as one of those interrupts occur the **CFG_DEVELOPMENT_DEBUG** flag should be undefined. In that case the fw will issue a SW reset and start execution of the bootrom. By default the example has the flag undefined for demonstrating the fault recognition functionality.
+
+For setting the fault flags minor changes has to be applied in the SDK in order to set the corresponding flag if the NMI or the Hardfault handler executes. The user will have to add: 
+- For the Hardfault:
+  - Include the user_reser_mechanism.h file in the hardfaut_handler.c:
+    ```c
+    #include "user_reset_mechanism.h"
+    ```
+  - In the top of the HardFault_HandlerC() function, invoke the function:
+    ```c 
+    user_set_hardfault_flag(); 
+    ```
+- For the NMI:
+  - Include the user_reser_mechanism.h file in the nmi_handler.c:
+    ```c
+    #include "user_reset_mechanism.h"
+    ``` 
+  - At the top of the NMI_HandlerC() function, invoke the function:
+    ```c 
+    user_set_watchdog_flag(); 
+    ```
 
 ## Custom profile
 An 128-bit UUID custom profile is included with 1 custom service. 
@@ -276,64 +336,6 @@ As mentioned the DA14531 includes a special register for identifying the
 
 For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datasheet](https://www.dialog-semiconductor.com/da14531_datasheet).
 
-## How to run
-
-### Initial Setup
-
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
-
-- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
-
-- For the DA14585/586 Getting started guide you can refer to this [link](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
-
-### Compile & Run
-
-1. Open the project via Keil µVision 5.
-
-2. Select the proper build for the corresponding device (DA14531, DA14585, DA14586).
-
-    ![first_boot_msg](assets/device_selection.PNG)
-
-3. Build the project and load it to target. The project can be run either from ``System-RAM`` or ``SPI Flash``. 
-    > __Note:__ 
-    In case of SPI Flash, the [Flash Programmer](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) from SmartSnippets Toolbox should be used. Refer to the [user manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/index.html) to get familiar with the SmartSnippets Toolbox.
-
-
-4. Set up a serial terminal session by selecting the proper virtual COM port and set the port configuration as shown below:
-      - Baudrate: 115200
-      - Data: 8 bits
-      - Stop: 1 bit
-      - Parity: None
-      - Flow  control: none
-
-    > __Note:__ 
-    Refer to **Section 10** in [Get Started tutorial](http://lpccs-docs.dialog-semiconductor.com/Tutorial_SDK6/serial_port.html) for more information on enabling the UART for debugging purposes.
-
-5. In the initial boot (the device is has just powered up), the following message should be displayed in the Serial Terminal:
-
-    ![first_boot_msg](assets/first_boot_msg.PNG)
-
-6. Open a generic BLE mobile application and the ``Reset Detection`` device name should be detected, as shown below.
-
-    ![reset_detection_adv](assets/reset_detection_adv.PNG)
-
-7. Connect to the ``Reset Detection``
-
-8. Once the device is connected to the cell phone, a custom service with two characteristics should be detected. Feel free to read the second characteristic **Reset Detection** which indicates the reset reason. 
-
-    ![reset_detection_por](assets/reset_detection_por.PNG)
-
-9. Write **0x02** for triggering a Hardfault on the first characteristic **Control Point**. The device will indicate that a Hardfault will occur and will reset.
-    ![hardfault_trigger](assets/Hardfault_trigger.PNG)
-
-10. After the code has reached the hardfault the watchdog will be reloaded and the device will halt in a while(1) loop until the watchdog elapses (provided that the CFG_DEVELOPMENT_DEBUG is undefined). As soon as the watchdog elapses the NMI Handler will occur and the device will SW reset and start executing the ROM booter. If there is no image in the SPI or the memory is not connected to the device the image will have to be downloaded again via Keil, eitherwise the booter will boot using image from the SPI flash. The following message will be printed on the terminal on start up.
-
-    ![reboot_from_hardfault](assets/reboot_from_hardfault.PNG)
-
-    > __Note:__ 
-    In case the fw is re-downloaded via Keil the debugger will issue a HW reset on the device, this will be identified by the code and a HW reset will be presented as the reason of reset. On the other hand if the image is downloaded from the SPI flash the reset will be identified as a SW reset. 
-
-11. If it is re-connected to the mobile application, the value  of the **Reset detection** characteristic should be **0x0306**. 
 
 ## Known Limitations
 

@@ -5,9 +5,41 @@
 
 ------
 
-## Example Δescription
+## Example Description
 
 This software example demonstrates using the ***TIMER1*** hardware block. In this demonstration, ***TIMER1*** is configured to ***Counting Mode*** and ***Capturing Mode***.
+
+## Hardware Configuration
+
+- This example runs on the DA14531 Bluetooth Smart SoC device.
+- The ***DA145xx Pro Development Kit*** is needed for this example.
+- Connect the ***DA145xx Pro Development Kit***  to the host computer via the USB connector. 
+- Use a Logic Analyzer to verify the example (optional)
+- In case of **Counting Mode**, jumpers should be placed on default setup.
+- In case of **Capturing Mode**, jumpers should be placed on default setup, plus extra wiring from J2.27 to J2.21.  
+
+
+![hw_setup](assets/hw_setup.PNG)
+
+## Software Configuration
+
+- This example requires:
+  - SDK6.0.12 or later
+  - **SEGGER’s J-Link** tools should be downloaded and installed.
+
+
+## How to run the example
+
+### Initial Setup
+
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
+
+- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
+
+### Compile & Run
+
+- Νavigate to the `project_environment` folder and open the `Keil` project.
+- Compile and launch the example. You should download the firmware either into System-RAM or SPI Flash through the SPI Flash programmer of the SmartSnippets Toolbox. When booting from SPI Flash, jumpers should be placed on the standard SPI flash setup.
 
 ## Introduction
 
@@ -49,36 +81,6 @@ specific GPIO, has been detected.
 
 2. **Capturing Mode**: Timer1 captures a snapshot of either its own counter (11 bits) or the RTC port (22bits) after an edge on a GPIO has been detected.
 
-## Software Configuration
-
-- This example requires:
-  - SDK6.0.12 or later
-  - **SEGGER’s J-Link** tools should be downloaded and installed.
-
-## Hardware Configuration
-
-- This example runs on the DA14531 Bluetooth Smart SoC device.
-- The ***DA145xx Pro Development Kit*** is needed for this example.
-- Connect the ***DA145xx Pro Development Kit***  to the host computer via the USB connector. 
-- Use a Logic Analyzer to verify the example (optional)
-- In case of **Counting Mode**, jumpers should be placed on default setup.
-- In case of **Capturing Mode**, jumpers should be placed on default setup, plus extra wiring from J2.27 to J2.21.  
-
-
-![hw_setup](assets/hw_setup.PNG)
-
-## How to run the example
-
-### Initial Setup
-
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
-
-- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
-
-### Compile & Run
-
-- Νavigate to the `project_environment` folder and open the `Keil` project.
-- Compile and launch the example. You should download the firmware either into System-RAM or SPI Flash through the SPI Flash programmer of the SmartSnippets Toolbox. When booting from SPI Flash, jumpers should be placed on the standard SPI flash setup.
 
 ### Macro Definitions
 

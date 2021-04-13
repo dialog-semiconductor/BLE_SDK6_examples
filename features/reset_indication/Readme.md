@@ -37,7 +37,7 @@ This SW example aims to demonstrate how to handle different ways of reset mechan
 
 	This example requires:
     * SmartSnippets Toolbox 5.0.14.
-    * SDK6.0.14
+    * SDK6.0.14.1114
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- **A simple serial terminal** should be installed on the PC (e.g. Putty or Teraterm)
 
@@ -213,7 +213,7 @@ For more information on **RESET_STAT_REG**, see **Table 270** in [DA14531 datash
 
 ### Initial Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
 
 - For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
 

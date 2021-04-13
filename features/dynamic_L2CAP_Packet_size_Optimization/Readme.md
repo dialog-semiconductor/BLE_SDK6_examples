@@ -46,7 +46,7 @@ The user manuals for the development kits can be found:
 * **Software configuration**
 
 	- This example requires:
-    * SDK6.0.12 or Newer (Older versions of SDK6 require minimal changes)
+    * SDK6.0.12 or later (Older versions of SDK6 require minimal changes)
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 
@@ -54,7 +54,7 @@ The user manuals for the development kits can be found:
 
 ### Setup
 
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](__Github sdk6 readme link__).
+For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](https://github.com/dialog-semiconductor/BLE_SDK6_examples).
 
 -Start Keil using the `tput_optimization.uvprojx` Keil project file.
 

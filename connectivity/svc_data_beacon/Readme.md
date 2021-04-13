@@ -68,7 +68,7 @@ To verify please take a look at the BLE sniffer log data, like so,
 ## How it works
 - This example illustrates the basics behind using standard Bluetooth SIG practices for placing advertising ``elements`` into advertising payload.
 - The standard practice for adding a single advertising element consists of the following:  
-  {1byte - length_byte} , {1-byte gap flag}, {payload}.
+  {1-byte length_byte} , {1-byte gap flag}, {payload}.
 - The length byte includes the gap flag and the total lenght of the payload.  The helper function in this example requires the user to specify the .len as the length of the payload.  In the serialization, the value of 1 is added to the length to adhere to standard BLE practices. 
 - In this specific case, the GAP flags shows a reference to the Core Supplement, Section A part 1.11.  [link](https://www.bluetooth.org/docman/handlers/DownloadDoc.ashx?doc_id=480305).
 - We are using 16-bit service Data, since we are exposing the serial number from the Device Information Service.  

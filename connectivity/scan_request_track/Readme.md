@@ -51,10 +51,10 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 		- stop: 1 bit
 		- parity: None
 		- flow  control: none
- - If the device is activelly scanned then the fw will print the bd addresses that are scanning the device.
+ - If the device is actively scanned the fw will print the bd address that scanned the device.
  
 	![scan_requests_print](assets/scan_requests_print.png)
- - Also in the case of a scan request a cursor will also appear in the power profiler of Smart Snippets.
+ - In the case of a scan request, a cursor will also appear in the power profiler of Smart Snippets.
 
 	![scan_request_cursor](assets/scan_request_cursor.png)
 

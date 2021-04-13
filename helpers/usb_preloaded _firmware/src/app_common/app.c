@@ -6,7 +6,7 @@
  * @brief Application entry point
  *
  * Copyright (C) RivieraWaves 2009-2013
- * Copyright (c) 2017-2018 Modified by Dialog Semiconductor
+ * Copyright (C) 2017-2020 Modified by Dialog Semiconductor
  *
  ****************************************************************************************
  */
@@ -294,7 +294,6 @@ bool app_db_init(void)
  * @brief Calls all the enable function of the profile registered in prf_func,
  *        custs_prf_func and user_prf_func.
  * @param[in] conidx The connection handle
- * @return void
  ****************************************************************************************
  */
 void app_prf_enable(uint8_t conidx)
@@ -346,7 +345,6 @@ void app_prf_enable(uint8_t conidx)
  * @param[in] name_length    The device name length.
  * @param[in|out] data       Pointer to the buffer which will carry the device name.
  * @param[in] name_data     The device name.
- * @return void
  ****************************************************************************************
  */
 static void append_device_name(uint8_t *len,
@@ -452,6 +450,14 @@ static struct gapm_start_advertise_cmd* app_easy_gap_undirected_advertise_start_
         cmd->channel_map = user_adv_conf.channel_map;
         cmd->info.host.mode = user_adv_conf.mode;
         cmd->info.host.adv_filt_policy = user_adv_conf.adv_filt_policy;
+        if (user_adv_conf.adv_filt_policy == ADV_ALLOW_SCAN_ANY_CON_WLST)
+        {
+            cmd->info.host.mode = GAP_NON_DISCOVERABLE;
+        }
+        else
+        {
+            cmd->info.host.mode = user_adv_conf.mode;
+        }
         adv_cmd->info.host.adv_data_len = USER_ADVERTISE_DATA_LEN;
         memcpy(&(cmd->info.host.adv_data[0]), USER_ADVERTISE_DATA, USER_ADVERTISE_DATA_LEN);
         adv_cmd->info.host.scan_rsp_data_len = USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN;
@@ -762,7 +768,6 @@ static struct gapm_set_dev_config_cmd* app_easy_gap_dev_config_create_msg(void)
 /**
  ****************************************************************************************
  * @brief Advertising stop handler.
- * @return void
  ****************************************************************************************
  */
 static void app_easy_gap_advertise_stop_handler(void)
@@ -917,6 +922,7 @@ void app_easy_gap_advertise_stop(void)
 }
 #endif
 
+#if (!EXCLUDE_DLG_TIMER)
 void app_easy_gap_undirected_advertise_with_timeout_start(uint32_t delay, void (*timeout_callback)(void))
 {
     //stop the current running timer
@@ -938,6 +944,7 @@ void app_easy_gap_advertise_with_timeout_stop(void)
     adv_timer_id = EASY_TIMER_INVALID_TIMER;
     adv_timeout_callback = NULL;
 }
+#endif
 
 struct gapc_param_update_cmd* app_easy_gap_param_update_get_active(uint8_t conidx)
 {

@@ -5,27 +5,9 @@
  *
  * @brief Peripheral project source code.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2015-2019 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -90,7 +72,6 @@ uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __SECTION_ZERO("retention_mem_ar
 /**
  ****************************************************************************************
  * @brief Initialize Manufacturer Specific Data
- * @return void
  ****************************************************************************************
  */
 static void mnf_data_init()
@@ -106,7 +87,6 @@ static void mnf_data_init()
 /**
  ****************************************************************************************
  * @brief Update Manufacturer Specific Data
- * @return void
  ****************************************************************************************
  */
 static void mnf_data_update()
@@ -127,14 +107,14 @@ static void mnf_data_update()
 /**
  ****************************************************************************************
  * @brief Add an AD structure in the Advertising or Scan Response Data of the
-  *       GAPM_START_ADVERTISE_CMD parameter struct.
+ *        GAPM_START_ADVERTISE_CMD parameter struct.
  * @param[in] cmd               GAPM_START_ADVERTISE_CMD parameter struct
  * @param[in] ad_struct_data    AD structure buffer
  * @param[in] ad_struct_len     AD structure length
  * @param[in] adv_connectable   Connectable advertising event or not. It controls whether
  *                              the advertising data use the full 31 bytes length or only
  *                              28 bytes (Document CCSv6 - Part 1.3 Flags).
- * @return void
+ ****************************************************************************************
  */
 static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_struct_data, uint8_t ad_struct_len, uint8_t adv_connectable)
 {
@@ -182,7 +162,6 @@ static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_str
 /**
  ****************************************************************************************
  * @brief Advertisement data update timer callback function.
- * @return void
  ****************************************************************************************
 */
 static void adv_data_update_timer_cb()
@@ -206,7 +185,6 @@ static void adv_data_update_timer_cb()
 /**
  ****************************************************************************************
  * @brief Parameter update request timer callback function.
- * @return void
  ****************************************************************************************
 */
 static void param_update_request_timer_cb()

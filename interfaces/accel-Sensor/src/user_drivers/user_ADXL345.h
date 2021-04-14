@@ -39,16 +39,30 @@
  * DEFINES
  ****************************************************************************************
  */
+ 
+#undef BLE_TINY_CLICK					//Define this if you are using the BLE Tiny Click
 
 #define ADXL345_I2C_ADDRESS   0x1D      //This is the sensor address without R/W bit (0x1D or 0x53 for ADXL)
 
 #if defined (__DA14531__)
 
+#ifdef BLE_TINY_CLICK
+
+#define ADXL345_SCL_PORT    GPIO_PORT_0
+#define ADXL345_SCL_PIN     GPIO_PIN_11
+
+#define ADXL345_SDA_PORT    GPIO_PORT_0
+#define ADXL345_SDA_PIN     GPIO_PIN_9
+
+#else
+	
 #define ADXL345_SCL_PORT    GPIO_PORT_0
 #define ADXL345_SCL_PIN     GPIO_PIN_3
 
 #define ADXL345_SDA_PORT    GPIO_PORT_0
 #define ADXL345_SDA_PIN     GPIO_PIN_1
+
+#endif
 
 #else
 

@@ -35,8 +35,7 @@ Below are the steps to link the SW example project environment to the 6.0.14 SDK
 1. Python 2.7 or higher is required to run the small example environment generation script.
 Python can be downloaded from [Python.org](http://python.org).
 
-2. Download the SW example from the Dialog support portal:
-DA14585 & DA14586 software examples can be found here: https://www.dialog-semiconductor.com/product/da14585 and DA14531 software examples can be found here: https://www.dialog-semiconductor.com/product/da14531
+2. Navigate to the main page of the github SDK6 examples repository and download the SW example. You can do so by clicking on "Code" and selecting "Download Zip", or use the HTTPS or SSH to clone the repository to your local.
 
 3. Extract the zip file.
 
@@ -73,11 +72,7 @@ Below are the steps to clean the SW example project environment.
 1. Python 2.7 or higher is required to run the small example environment generation script.
 Python can be downloaded from [Python.org](http://python.org).
 
-2. Download the SW example from the Dialog support portal:
-
-    DA14585 & DA14586 software examples can be found here: https://www.dialog-semiconductor.com/product/da14585
-
-    DA14531 software examples can be found here: https://www.dialog-semiconductor.com/product/da14531
+2. Navigate to the main page of the github SDK6 examples repository and download the SW example. You can do so by clicking on "Code" and selecting "Download Zip", or use the HTTPS or SSH to clone the repository to your local.
 
 3. Extract the zip file.
 

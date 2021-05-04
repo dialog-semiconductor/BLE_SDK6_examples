@@ -25,7 +25,7 @@ This example shows how to configure a DA14531 or DA14585/586 device to send noti
 ### Software configuration
 
  This example requires:
- - SDK v6.0.12 or later
+ - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
  - **SEGGER’s J-Link** tools should be downloaded and installed.
  - Additionaly, an application like LightBlue Explorer must be used to act as a BLE central. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.punchthrough.lightblueexplorer) or on the [App Store](https://apps.apple.com/gb/app/lightblue-explorer/id557428110).
 

@@ -30,25 +30,20 @@
  ****************************************************************************************
  */
 
+/*
+ * INCLUDE FILES
+ ****************************************************************************************
+ */
+ 
+#include "user_ble_burst_adv.h"
+
+
 /**
  ****************************************************************************************
  * @addtogroup APP
  * @{
  ****************************************************************************************
  */
-#include "rwip_config.h"             // SW configuration
-
-/*
- * INCLUDE FILES
- ****************************************************************************************
- */
-
-#include "app_api.h"
-#include "user_ble_burst_adv.h"
-
-#ifdef CFG_PRINTF
-    #include "arch_console.h"
-#endif
 
 /* Number of adveritsing events per burst - the time between events is the advertising
    interval define in user_config.h (user_adv_conf.intv_min) */
@@ -82,8 +77,8 @@ static void start_advertising(void)
     adv_period_ticks = MS_TO_TIMERUNITS((user_adv_conf.intv_min * 0.625) * ADV_EVENTS_PER_BURST);
 
   	#ifdef CFG_PRINTF
-	      (void)arch_printf("\n\r%s", __FUNCTION__);
-	      (void)arch_printf("\n\radv_period_ticks: %d", adv_period_ticks);
+	      arch_printf("\n\r%s", __FUNCTION__);
+	      arch_printf("\n\radv_period_ticks: %d", adv_period_ticks);
 	  #endif
   	
   	app_easy_gap_undirected_advertise_with_timeout_start(adv_period_ticks, NULL);
@@ -101,7 +96,7 @@ static void start_advertising(void)
 void user_on_set_dev_config_complete(void)
 {
     #ifdef CFG_PRINTF
-	      (void)arch_printf("\n\r%s", __FUNCTION__);
+	      arch_printf("\n\r%s", __FUNCTION__);
 	  #endif
 	
     default_app_on_set_dev_config_complete();
@@ -121,7 +116,7 @@ void user_on_set_dev_config_complete(void)
 void user_on_adv_undirect_complete(uint8_t status)
 {
     #ifdef CFG_PRINTF
-	      (void)arch_printf("\n\r%s - status: %d", __FUNCTION__, status);
+	      arch_printf("\n\r%s - status: %d", __FUNCTION__, status);
 	  #endif
 	
 	  /* This callback is triggered when the application stops advertising and a burst 
@@ -137,9 +132,9 @@ void user_on_adv_undirect_complete(uint8_t status)
 	                                          start_advertising);
 	
         #ifdef CFG_PRINTF
-	          (void)arch_printf("\n\radv_burst_timer_delay: %d", 
+	          arch_printf("\n\radv_burst_timer_delay: %d", 
 					                    BURST_REPEAT_PERIOD_TICKS - adv_period_ticks);
-            (void)arch_printf("\n\radv_burst_timer_id: %d", adv_burst_timer_id);
+            arch_printf("\n\radv_burst_timer_id: %d", adv_burst_timer_id);
 	      #endif
     }
 }
@@ -156,7 +151,7 @@ void user_on_adv_undirect_complete(uint8_t status)
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
     #ifdef CFG_PRINTF
-	      (void)arch_printf("\n\r%s - connection_idx: %d", __FUNCTION__, connection_idx);
+	      arch_printf("\n\r%s - connection_idx: %d", __FUNCTION__, connection_idx);
 	  #endif
 
 	  if (connection_idx != GAP_INVALID_CONIDX)
@@ -186,7 +181,7 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 void user_on_disconnect(struct gapc_disconnect_ind const *param)
 {
     #ifdef CFG_PRINTF
-	      (void)arch_printf("\n\r%s", __FUNCTION__);
+	      arch_printf("\n\r%s", __FUNCTION__);
 	  #endif
 
   	/* Restart burst advertising */

@@ -55,7 +55,10 @@
 #include "gapm_task.h"                 // gap functions and messages
 #include "app.h"                       // application definitions
 #include "co_error.h"                  // error code definitions
- 
+
+#ifdef CFG_PRINTF
+    #include "arch_console.h"
+#endif
 
 /****************************************************************************
 Add here supported profiles' application header files.

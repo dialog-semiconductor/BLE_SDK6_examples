@@ -54,7 +54,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 7. In the map file, use CTRL+F and search for _SEGGER_RTT and copy this address. 
 
-	![Segger_CB_addr](assets/Segger_CB_addr.png)
+	![Segger_CB_Addr](assets/Segger_CB_Addr.png)
 
 8. Open Segger J-Link RTT Viewer and a prompt screen will open. Be sure the following settings match - USB, Target (DA14531 - M0+, DA14585/86 - M0), and SWD.  For the RTT Control Block, use the address found in steps 5-7. Once this is completed, Press OK.
 

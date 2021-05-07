@@ -54,7 +54,7 @@ The example is running from SRAM. To run the program from flash please visit cha
 	- An active-low switch should be connected to P1_1, located on J4, (this switch will be SW3) as displayed in the following schematic
 	- An active-low switch should be connected to P0_6, located on J4, (this switch will be SW2) as displayed in the following schematic
 	
-	![connections](assets/connections.PNG)
+	![connections](assets/connections.png)
 
 * **Software configuration**
 
@@ -108,7 +108,7 @@ If the warning (shown below) pops up press OK.
 	- __Note if SmartSnippets toolbox is used remove the jumper connected to P1_3 on J8__ 
 		  
 	Image below shows a capture of SmartSnippets
-	![DA14531_SmartSnippets_Capture_wakeup](assets/DA14531_SmartSnippets_Capture_wakeup.PNG)
+	![DA14531_SmartSnippets_Capture_wakeup](assets/DA14531_SmartSnippets_Capture_wakeup.png)
 
 4. After launching the example, the system will start advertising. 
 	- Note that at start up __no__ message is send via UART.

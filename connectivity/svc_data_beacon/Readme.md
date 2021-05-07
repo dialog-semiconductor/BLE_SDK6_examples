@@ -55,14 +55,14 @@ To verify please take a look at the BLE sniffer log data, like so,
 
 - The data can be seen in any basic sniffer. Notice the two advertising element structures are readily recognized by the sniffer since they comply to the BLE standard.
 
-![beacon_sniffer_data](assets/beacon_sniffer_data.PNG)
+![beacon_sniffer_data](assets/beacon_sniffer_data.png)
 
 - Using an app such as BLE scanner, the raw bytes can be readily seen as well.  Look for DLG-SVC_DATA and select raw data, like so,
 
-![ble_scanner](assets/ble_scanner.PNG)
+![ble_scanner](assets/ble_scanner.png)
 
 	
-![ble_scaner_data](assets/ble_scanner_bytes.PNG)
+![ble_scaner_data](assets/ble_scanner_bytes.png)
 
 
 ## How it works

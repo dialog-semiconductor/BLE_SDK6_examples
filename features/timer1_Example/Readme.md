@@ -19,7 +19,7 @@ This software example demonstrates using the ***TIMER1*** hardware block. In thi
 - In case of **Capturing Mode**, jumpers should be placed on default setup, plus extra wiring from J2.27 to J2.21.  
 
 
-![hw_setup](assets/hw_setup.PNG)
+![hw_setup](assets/hw_setup.png)
 
 ## Software Configuration
 
@@ -47,16 +47,16 @@ The DA14531 product family incorporates three identical HW timer blocks:
 
 1. **Timer 0** is a 16-bit general purpose software programmable timer, which has the ability to generate Pulse Width Modulated (PWM) signals, namely PWM0 and PWM1.
 
-![timer0_block_diagram](assets/timer0_block_diagram.PNG)
+![timer0_block_diagram](assets/timer0_block_diagram.png)
 
 
 2. **Timer 1** is an 11-bit timer being able to count up or down. It supports Counting and Input Capturing mode and it can be kept active in sleep as the clock source is selectable between **System Clock (sys_clk)** and **Low Power Clock (lp_clk)**.
 
-![timer1_block_diagram](assets/timer1_block_diagram.PNG)
+![timer1_block_diagram](assets/timer1_block_diagram.png)
 
 3. **Timer 2** is basically a PWM generator. It supports six (6) Pulse Width Modulated (PWM) outputs.
 
-![timer2_block_diagram](assets/timer2_block_diagram.PNG)
+![timer2_block_diagram](assets/timer2_block_diagram.png)
 
 
 </center>- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
@@ -202,7 +202,7 @@ In this section, GPIOs definitions are demonstrated as defined in `user_periph_s
 
 4. An interrupt is generated on every rising edge of the Timer0 PWM signal and the `timer1_event1_user_callback_function()` callback function is used for handling timer's interrupt The on board LED is toggling following the **positive edge** of the input pulse.
 
-![timer1_capturing_cb](assets/timer1_capturing_cb.PNG)
+![timer1_capturing_cb](assets/timer1_capturing_cb.png)
 
 
 ### Capturing Mode with External PWM Input Source

@@ -31,7 +31,7 @@ This SW example aims to demonstrate how to handle different ways of reset mechan
       - Connect the DA145xx Pro Development Kit to the host computer.
       - UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionality.
 	
-	![DA14531_connection_wires](assets/DA14531_connection_wires.PNG)
+	![DA14531_connection_wires](assets/DA14531_connection_wires.png)
 
 * **Software configuration**
 
@@ -238,23 +238,23 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 4. In the initial boot, the following message should be displayed in the Serial Terminal:
 
-    ![first_boot_msg](assets/first_boot_msg.PNG)
+    ![first_boot_msg](assets/first_boot_msg.png)
 
 5. Open a generic BLE mobile application and the ``Reset Detection`` device name should be detected, as shown below.
 
-    ![reset_detection_adv](assets/reset_detection_adv.PNG)
+    ![reset_detection_adv](assets/reset_detection_adv.png)
 
 6. Connect to the ``Reset Detection``
 
 7. Once the device is connected to the cell phone, a custom service with two(2) should be detected.
 
-    ![reset_detection_con](assets/reset_detection_conn.PNG)
+    ![reset_detection_con](assets/reset_detection_conn.png)
 
 8. Write **0x01** for triggering a WDOG. 
 
 9. After the device reboots, in the serial terminal the following message should be displayed indicating that the source of the RESET was the WDOG expiration.
 
-    ![wdog](assets/wdog.PNG)
+    ![wdog](assets/wdog.png)
 
 10. If it is re-connected to the mobile application, the value  of the **Reset detection** characteristic should be **0x01**. 
 

@@ -77,7 +77,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 2. Select the proper build for the corresponding device (DA14531, DA14585, DA14586).
 
-    ![first_boot_msg](assets/device_selection.PNG)
+    ![first_boot_msg](assets/device_selection.png)
 
 3. Build the project and load it to target. The project can be run either from ``System-RAM`` or ``SPI Flash``. 
     > __Note:__ 
@@ -96,24 +96,24 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 5. In the initial boot (the device is has just powered up), the following message should be displayed in the Serial Terminal:
 
-    ![first_boot_msg](assets/first_boot_msg.PNG)
+    ![first_boot_msg](assets/first_boot_msg.png)
 
 6. Open a generic BLE mobile application and the ``Reset Detection`` device name should be detected, as shown below.
 
-    ![reset_detection_adv](assets/reset_detection_adv.PNG)
+    ![reset_detection_adv](assets/reset_detection_adv.png)
 
 7. Connect to the ``Reset Detection``
 
 8. Once the device is connected to the cell phone, a custom service with two characteristics should be detected. Feel free to read the second characteristic **Reset Detection** which indicates the reset reason. 
 
-    ![reset_detection_por](assets/reset_detection_por.PNG)
+    ![reset_detection_por](assets/reset_detection_por.png)
 
 9. Write **0x02** for triggering a Hardfault on the first characteristic **Control Point**. The device will indicate that a Hardfault will occur and will reset.
-    ![hardfault_trigger](assets/Hardfault_trigger.PNG)
+    ![hardfault_trigger](assets/Hardfault_trigger.png)
 
 10. After the code has reached the hardfault the watchdog will be reloaded and the device will halt in a while(1) loop until the watchdog elapses (provided that the CFG_DEVELOPMENT_DEBUG is undefined). As soon as the watchdog elapses the NMI Handler will occur and the device will SW reset and start executing the ROM booter. If there is no image in the SPI or the memory is not connected to the device the image will have to be downloaded again via Keil, eitherwise the booter will boot using image from the SPI flash. The following message will be printed on the terminal on start up.
 
-    ![reboot_from_hardfault](assets/reboot_from_hardfault.PNG)
+    ![reboot_from_hardfault](assets/reboot_from_hardfault.png)
 
     > __Note:__ 
     In case the fw is re-downloaded via Keil the debugger will issue a HW reset on the device, this will be identified by the code and a HW reset will be presented as the reason of reset. On the other hand if the image is downloaded from the SPI flash the reset will be identified as a SW reset. 

@@ -72,9 +72,9 @@ The user manual for the development kits can be found:
 		- SW3 - P0_11 (set for button "Start", active LOW)
 		
 - If the joystick module is not available, make sure to set **CFG_USE_JOYSTICKS** to 0 in order to disable related codes and prevent the device sending funny HID reports
-- One of the four ADC channels is shared with the SWD debugging. Therefore there is a flag added in user_periph_setup.h undefining this flag will enable the fourth channel, but debugging will be impossible. 
+- One of the four ADC channels is shared with the SWD debugging. Therefore there is a flag added in user_periph_setup.h un-defining this flag will enable the fourth channel, but debugging will be impossible. 
 
-![Hardware Setup](assets/HW_setup.jpg)
+![Hardware Setup](assets/HW_Setup.jpg)
 
 * **Software configuration**
 

@@ -13,7 +13,7 @@ The main purpose of this Software Εxample is to demonstrate creating a ***Non-C
 
 **Beacons** are battery-powered devices that advertise a particular ***Bluetooth Low Energy*** payload with identifying information. 
 
-![what_is_beacon](assets\what_is_beacon.png)
+![what_is_beacon](assets/what_is_beacon.png)
 
 This Software Example is just to demonstrate creating a **Simple Beacon** project with ***Non-Connectable Advertising***. However, it can be customized for more advanced use cases, such as:
 
@@ -29,15 +29,15 @@ This Software Example is just to demonstrate creating a **Simple Beacon** projec
 
 Non-connectable advertising allows users to advertise data with the lowest power consumption.
 
-![non_conn_adv](assets\non_conn_adv.png)
+![non_conn_adv](assets/non_conn_adv.png)
 
 The SDK includes a non-connectable advertising application example. The project is in the SDK directory:
 
-​    <sdk_root_directory>\projects\target_apps\misc
+​    <sdk_root_directory>/projects/target_apps/misc
 
 The Keil v5 project file is:
 
-​    <sdk_root_directory>\projects\target_apps\misc\ble_app_noncon\Keil_5\ble_app_noncon.uvprojx
+​    <sdk_root_directory>/projects/target_apps/misc/ble_app_noncon/Keil_5/ble_app_noncon.uvprojx
 
 The ***main difference*** between Simple Beacon SW Example and Non-Connectable example of the SDK is that in current implementation, user can define the data which will be appended within the Advertising or Scan Response packet. In the SDK Example, this possibility does not exist, as data stored in the adverting or Scan response packet is fixed (***default value : 0xA5***). To do so, Beacons will advertise a particular Bluetooth Low Energy payload with identifying information selected by the user. 
 
@@ -61,13 +61,13 @@ This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices.
 
 In case of DA14585/586,  DA145xx Pro Development Kit is required with default jumper configuration. Please see illustration below:
 
-![58x_pro_dk.](assets\58x_pro_dk.png)
+![58x_pro_dk.](assets/58x_pro_dk.png)
 
 The Example can also run on ***DA14585 Basic Development Kit*** with default jumper configuration, as demonstrated below:
 
-![585_basic_DK](assets\585_basic_DK.png)
+![585_basic_DK](assets/585_basic_DK.png)
 
-Refer to the getting started guide of [DA14585 Basic Development Kit](https://s3.eu-west-2.amazonaws.com/lpccs-docs.dialog-semiconductor.com/DA14585_Getting_Started_basic/index.html).
+Refer to the getting started guide of [DA14585 Basic Development Kit](http://lpccs-docs.dialog-semiconductor.com/DA14585_Getting_Started_basic/index.html).
 
 ### DA14531 Hardware Configuration
 
@@ -75,7 +75,7 @@ In case of DA14531, the ***DA145xx Pro Development Kit*** is also required for t
 
 Jumpers are placed in default configurations. Refer to the getting started guide of [DA145xx Pro Development Kit](https://www.dialog-semiconductor.com/da14531-getting-started).
 
-![531_pro_dk](assets\531_pro_dk.png)
+![531_pro_dk](assets/531_pro_dk.png)
 
 ### Software configuration
 
@@ -143,23 +143,23 @@ To verify please take a look at the BLE sniffer log data
 
 1. Initially only the the Device Name is placed into Adverising Data.
 
-![device_name](assets\device_name.png)
+![device_name](assets/device_name.png)
 
 2. Advertising Data are now full.
 
-![non_conn](assets\non_conn.png)
+![non_conn](assets/non_conn.png)
 
 3. Switching from ADV_NONCONN_IND to ADV_SCAN_IND.
 
-![adv_ind](assets\adv_ind.png)
+![adv_ind](assets/adv_ind.png)
 
 4. Central sends a scan request (SCAN_REQ) in order to receive a scan response (SCAN_RESP) from the advertiser.
 
-![scan_req](assets\scan_req.png)
+![scan_req](assets/scan_req.png)
 
 5. Full Scan Response Data.
 
-![scan_resp](assets\scan_resp.png)
+![scan_resp](assets/scan_resp.png)
 
 ## Known Limitations
 

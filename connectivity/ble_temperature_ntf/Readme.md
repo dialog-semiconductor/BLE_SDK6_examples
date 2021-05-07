@@ -28,7 +28,7 @@ __Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard__
 - Using thermo 8 click board.
 	
 Plug the thermo 8 click board on the mikrobus 2 interface (J17-J18). **Note that the JTAG/Debug interface will be no longer available** because the **P0_2** is shared between the **SWCLK** and the **I2C clock**.
-This why we have opted to programme the onboard SPI flash with the generated binary and remove after that the JTAG debug Jumpers (J1:21-22 and J1:23-24). You can refer to the [section 16:SPI Flash Programmer](https://s3.eu-west-2.amazonaws.com/lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) to see how to program the SPI flash with the Smarsnippets Toolbox.
+This why we have opted to programme the onboard SPI flash with the generated binary and remove after that the JTAG debug Jumpers (J1:21-22 and J1:23-24). You can refer to the [section 16:SPI Flash Programmer](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) to see how to program the SPI flash with the Smarsnippets Toolbox.
 
 Apply the jumper configuration of the image shown below.
 

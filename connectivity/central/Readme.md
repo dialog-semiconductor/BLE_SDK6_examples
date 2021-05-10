@@ -28,9 +28,9 @@ The user manuals for the development kits can be found:
 - [DA14585 Development Kit Basic](https://www.dialog-semiconductor.com/products/da14585-development-kit-basic) for the Basic Development Kit.
 - [DA14531 USB Development Kit Product page](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) for the DA14531 USB Development Kit.
 
-* **Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard**
+* **Hardware configuration using the DA145xxDEVKT-P PRO-Motherboard**
 
-	- When using DA14585/DA14586, witht the proper project configuration, the UTX jumper needs to be placed.
+	- When using DA14585/DA14586, with the proper project configuration, the UTX jumper needs to be placed.
 	
 	- When using DA14531, Jumper P2_6 from J2 to UTX (Pin 17 on J1) for serial UART communication.
 	
@@ -44,9 +44,9 @@ The user manuals for the development kits can be found:
 	
 * **Software configuration**
 
-	- This example requires:
-    * SDK6.0.12 or Newer (Older versions of SDK6 require minimal changes)
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
+    - This example requires:
+        * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest), Older versions of SDK6 require minimal changes.
+        * SEGGER’s J-Link tools should be downloaded and installed.
 
 
 ## How to run the example
@@ -73,7 +73,7 @@ If the warning (shown below) pops up press OK.
 1. Verify that your central started via the Terminal.  The default settings of the central will start scanning for devices that use a GAP_LOCAL_NAME (0x09) GAP flag type. If there are no devices in the area, there will be no output. 
 	![terminal_local_name_output](assets/terminal_local_name_output.png)
 
-2. The project is configured to filter for proximity reporters and to connect to the first advertismenet seen. On a seperate board, run proximity reporter.  Go within the SDK to target_apps/ble_examples/prox_reporter, open the project and compile and run as you did for this example.
+2. The project is configured to filter for proximity reporters and to connect to the first advertisement seen. On a separate board, run proximity reporter.  Go within the SDK to target_apps/ble_examples/prox_reporter, open the project and compile and run as you did for this example.
 
 3. If running from JTAG and the original example is deployed via JTAG, be sure to assign the proper JTAG serial number to each target.  In Keil, this can be done by right clicking on the project and going to Options for Target ....  Go to Debug then settings and select the serial number that matches the sticker on the board.
 
@@ -102,7 +102,7 @@ If the warning (shown below) pops up press OK.
 
 ### General Project Notes
  - This example illustrates the basic building blocks for implementing a central device.  The 5xx devices are limited on memory and this should be taken into consideration
-when implementing a central on the 5xx devices, is the limitaiton on memory.  The central devices should be geared more toward specific applications, opposed to a more generic central.  
+when implementing a central on the 5xx devices, is the limitation on memory.  The central devices should be geared more toward specific applications, opposed to a more generic central.  
 This example was written generically enough that it can be exanded on for a central application.
 
 

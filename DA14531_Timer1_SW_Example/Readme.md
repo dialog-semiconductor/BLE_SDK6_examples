@@ -12,13 +12,13 @@ This software example demonstrates the usage of the **TIMER1** hardware block. T
 
 ***Useful Note*** :
 
-    The demo is capable of running only one SW configuration per build. If more than one SW configurations are enabled the compiler will assert an error and promt to build with only one configuration activated.
+    The demo is capable of running only one SW configuration per build. If more than one SW configurations are enabled the compiler will assert an error and prompt to build with only one configuration activated.
 
 The example can be downloaded from Here.
 
 ## Introduction
 
-The DA14531 product family incorporates three (3) HW timer blocks **Timer0**, **Timer1**, **Timer2**. From the aforementioned timers only Timer1 is capable of running while the device is in sleep mode since its physicaly located in a seperate power domain (PD_TIM). Thus **TIMER1** can be used as a wake up source while the device is in extended or deep sleep.  
+The DA14531 product family incorporates three (3) HW timer blocks **Timer0**, **Timer1**, **Timer2**. From the aforementioned timers only Timer1 is capable of running while the device is in sleep mode since its physically located in a separate power domain (PD_TIM). Thus **Timer1** can be used as a wake up source while the device is in extended or deep sleep.  
 
 ![timer1_block_diagram](assets/timer1_block_diagram.PNG)
 
@@ -33,7 +33,7 @@ For getting more information about the HW Timers on DA14531, please refer to the
 
 ## Timer 1
 
-It is an 11-bit timer which supports Counting and Input Capturing, as input clock source either the **System Clock (sys_clk)** or **Low Power Clock (lp_clk)** can be used. Of course when the device is in sleep mode and the timer should be kept active the LP clock source should be selected. It is powered by a seperated power domain **PD_TIM** which can be kept active even if the system enters sleep mode. It can operate either in **count up** or **count down** mode, generate an interrupt when the timer reaches the **max/min value** or the **reload** value. As mentioned in the **Example description**, three different functionalities are demonstrated in this software example:
+It is an 11-bit timer which supports Counting and Input Capturing, as input clock source either the **System Clock (sys_clk)** or **Low Power Clock (lp_clk)** can be used. Of course when the device is in sleep mode and the timer should be kept active the LP clock source should be selected. It is powered by a separated power domain **PD_TIM** which can be kept active even if the system enters sleep mode. It can operate either in **count up** or **count down** mode, generate an interrupt when the timer reaches the **max/min value** or the **reload** value. As mentioned in the **Example description**, three different functionalities are demonstrated in this software example:
 
 1. **Timer Functionality**: In this sw configuration the DA14531 device is in sleep mode and **TIMER1** HW is running in the background. When the timer overflows it will generate an interrupt and wake up the device in order to toggle a LED and print a wake up message.
 
@@ -260,9 +260,9 @@ If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following resu
 
 3. When the SW starts running the device will wake up in order to advertise and when the rising or the falling events occur. When a rising or a falling event occurs the pulse_measure_sm() function will execute in order to read the timer captured values. As soon as the state of the pin returns to its idle state the device will report via UART the amount of time the pin was out of idle state in microseconds.
 
-    ***Usefull Note***:
+    ***Useful Note***:
 
-    The demo is using the SW2 button for toggling the line high or low, due to the bouncing of the switch miscounts may occur, especially if the system clock is used as a clock source for timer1. In cases where bouncing is expected a more sofisticated scheme should be applied based on the bouncing profile of the signal.
+    The demo is using the SW2 button for toggling the line high or low, due to the bouncing of the switch miscounts may occur, especially if the system clock is used as a clock source for timer1. In cases where bouncing is expected a more sophisticated scheme should be applied based on the bouncing profile of the signal.
 
     ![hw_setup](assets/SW2_button.PNG)
 

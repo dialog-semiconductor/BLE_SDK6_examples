@@ -3,34 +3,26 @@
 
 # DA14531 Timer1 Software Example
 
-------
+## Example Description
 
-## Example Δescription
+This software example demonstrates the usage of the **TIMER1** hardware block. The SW example exposes the basic functions that **TIMER1** offers through the following use cases:
+1. **Simple counting** which is enabled via setting the **ENABLE_TMR_COUNTING** definition to **1** in the `demo_config.h` file. In this case **TIMER1** is used as an ordinary counter/timer and exposes the capability of the timer to run while sleep and wake up the device.
+2. **Frequency measurement** exposes the counting capability of the HW and is enabled via setting the **ENABLE_FREQ_COUNTING** definition to **1** in the `demo_config.h` file. In this case **TIMER1** is used as a frequency counter and measures the frequency which is applied on a software specified pin.
+3. **Pulse measurement** exposes the capturing capability of the hw and is enabled via setting the **ENABLE_PULSE_MEASURING** definition to **1** in the `demo_config.h` file. In this case **TIMER1** is used to measure the length of a low or a high pulse applied on a specified pin. 
 
-This software example demonstrates using the ***TIMER1*** hardware block. In this demonstration, ***TIMER1*** is configured to ***Counting Mode*** and ***Capturing Mode***.
+***Useful Note*** :
+
+    The demo is capable of running only one SW configuration per build. If more than one SW configurations are enabled the compiler will assert an error and prompt to build with only one configuration activated.
+
+The example can be downloaded from Here.
 
 ## Introduction
 
-The DA14531 product family incorporates three identical HW timer blocks: 
-
-1. **Timer 0** is a 16-bit general purpose software programmable timer, which has the ability to generate Pulse Width Modulated (PWM) signals, namely PWM0 and PWM1.
-
-![timer0_block_diagram](assets/timer0_block_diagram.PNG)
-
-
-2. **Timer 1** is an 11-bit timer being able to count up or down. It supports Counting and Input Capturing mode and it can be kept active in sleep as the clock source is selectable between **System Clock (sys_clk)** and **Low Power Clock (lp_clk)**.
+The DA14531 product family incorporates three (3) HW timer blocks **Timer0**, **Timer1**, **Timer2**. From the aforementioned timers only Timer1 is capable of running while the device is in sleep mode since its physically located in a separate power domain (PD_TIM). Thus **Timer1** can be used as a wake up source while the device is in extended or deep sleep.  
 
 ![timer1_block_diagram](assets/timer1_block_diagram.PNG)
 
-3. **Timer 2** is basically a PWM generator. It supports six (6) Pulse Width Modulated (PWM) outputs.
-
-![timer2_block_diagram](assets/timer2_block_diagram.PNG)
-
-
-</center>- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-
-For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.dialog-semiconductor.com/da14531_datasheet).
+For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.dialog-semiconductor.com/sites/default/files/2021-03/DA14530_datasheet_3v2_0.pdf).
  
 ***Useful Note*** :    
 
@@ -39,33 +31,40 @@ For getting more information about the HW Timers on DA14531, please refer to the
     - Timer0 example: <sdk_root_directory>\projects\target_apps\peripheral_examples\timer0.
     - Timer2 example: <sdk_root_directory>\projects\target_apps\peripheral_examples\timer2.
 
-
 ## Timer 1
 
-Accoridng to the datasheet, Timer1 is powerd by the **PD_TIM power domain** which can be kept powered even if the system enters sleep mode. It can operate either in **count up** or **count down** mode, generate an interrupt when the timer reaches the **max/min value** or the **threshold**. As described in the **Example description**, two (2) modes are demonstrated in this software example:
+It is an 11-bit timer which supports Counting and Input Capturing, as input clock source either the **System Clock (sys_clk)** or **Low Power Clock (lp_clk)** can be used. Of course when the device is in sleep mode and the timer should be kept active the LP clock source should be selected. It is powered by a separated power domain **PD_TIM** which can be kept active even if the system enters sleep mode. It can operate either in **count up** or **count down** mode, generate an interrupt when the timer reaches the **max/min value** or the **reload** value. As mentioned in the **Example description**, three different functionalities are demonstrated in this software example:
 
-1. **Counting Mode**: Timer1 generates an interrupt upon a configurable amount of edges, on a
-specific GPIO, has been detected.
+1. **Timer Functionality**: In this sw configuration the DA14531 device is in sleep mode and **TIMER1** HW is running in the background. When the timer overflows it will generate an interrupt and wake up the device in order to toggle a LED and print a wake up message.
 
-2. **Capturing Mode**: Timer1 captures a snapshot of either its own counter (11 bits) or the RTC port (22bits) after an edge on a GPIO has been detected.
+2. **Capturing Functionality**: In this sw configuration the sw exposes the capture capabilities of the timer by measuring in cycles and converting in microseconds the amount of time a GPIO is forced low or high. During start up the sw will check the status of the assigned GPIO (by default P11). The current status of the line will be assigned as the idle state of the pin. Then the sw will monitor the GPIO via timer1. Upon a rising or a falling edge on the specified GPIO, timer1 will capture the current value of the timer and issue an interrupt that corresponds to a rising or a falling event. The interrupt will trigger a simple state machine that will decide about the state of the line. During an active pulse the overflow interrupt is also enabled in order to count for timer overflows during the active pulse. As soon as the GPIO is released and returns to its idle state the corresponding falling or rising edge will also be captured and the sw will report the diff between the two events on the next timer1 overflow interrupt.
 
-## Software Configuration
+3. **Counter Functionality**: In this sw configuration the sw exposes the frequency counter capability that Timer1 implements. The user can apply an external frequency on a DA14531 pin (by default pin P011 is used), the maximum frequency that can be measured from the device depends on the clock selection of the timer1 module. In the example timer 0 is used for generating a frequency for demonstration purposes.
 
-- This example requires:
-  - SDK6.0.12 or later
-  - **SEGGER’s J-Link** tools should be downloaded and installed.
+## HW and SW Configuration
 
-## Hardware Configuration
+### HW Configuration
 
 - This example runs on the DA14531 Bluetooth Smart SoC device.
 - The ***DA145xx Pro Development Kit*** is needed for this example.
 - Connect the ***DA145xx Pro Development Kit***  to the host computer via the USB connector. 
 - Use a Logic Analyzer to verify the example (optional)
-- In case of **Counting Mode**, jumpers should be placed on default setup.
-- In case of **Capturing Mode**, jumpers should be placed on default setup, plus extra wiring from J2.27 to J2.21.  
+- Jumpers should be placed on default setup.
+- For UART configuration (optional), extra wiring (in red) is required from J2.24 (P23) to J2.21.
 
+**DA14531 Pro Kit Daughterboard +  DA14531 Pro Kit Daughterboard**
 
-![hw_setup](assets/hw_setup.PNG)
+![hw_setup](assets/531_hw_setup.PNG)
+
+**DA14531 Pro Kit Daughterboard +  DA14531 Module Daughterboard**
+
+![hw_setup](assets/module_hw_config.PNG)
+
+### SW Configuration
+
+- This example requires:
+  - [SDK6.0.14.1114](https://www.dialog-semiconductor.com/system/files/2020-08/SDK_6.0.14.1114.zip)
+  - **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ## How to run the example
 
@@ -81,107 +80,155 @@ specific GPIO, has been detected.
 - Compile and launch the example. You should download the firmware either into System-RAM or SPI Flash through the SPI Flash programmer of the SmartSnippets Toolbox. When booting from SPI Flash, jumpers should be placed on the standard SPI flash setup.
 
 ### Macro Definitions
-
-In the table below, the user macro definitions are illustrated:
+In the table below, the user macro definitions for the various demo settings are illustrated, all the configuration macros are located in the user_config.h file:
 
 <table>
 <thead>
   <tr class="header">
   <th style="text-align: left;">Macro</th>
-  <th style="text-align: left;">Description</th>
+  <th style="text-align: left;">Demo function description</th>
   </tr>
 </thead>
 <tbody>
   <tr class="odd">
-  <td style="text-align: left;">COUNTING_MODE</td>
-  <td style="text-align: left;">Counting Mode of Timer1. Toggling <i><b>LED GPIO (Default Configuration)</b></i></td>
+  <td style="text-align: left;">ENABLE_TMR_COUNTING</td>
+  <td style="text-align: left;">Enable simple counting. The device goes in extended sleep and wakes up either to perfrom an advertising event or on every timer1 overflow (timer1 selected clock is the LP clock). </td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">CAPTURING_MODE</td>
-  <td style="text-align: left;">Capturing Mode of Timer1. Supply PWM input source to <i><b>CAPTURE GPIO</b></i></td>
+  <td style="text-align: left;">ENABLE_FREQ_COUNTING</td>
+  <td style="text-align: left;">Enable frequency counting. The user can either apply an external frequency on the default pin (P011) or use timer0 for generating the frequency under measurement. The device will start a frequency count on periodic basis defined by the <b>FREQ_CNT_INTERVAL</b> definition. Upon completing the measurement the device will report the measurement and setup a kernel timer for the next one to occur</td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">TIMER0_SOURCE</td>
-  <td style="text-align: left;">In case of Capturing Mode, if TIMER0_SOURCE is defined, PWM from SW Timer0 should be applied on CAPTURE GPIO.	Otherwise, PWM from an external source should be applied on CAPTURE GPIO. </td>
-  </tr>
-  <tr class="odd">
-  <td style="text-align: left;">TIMER_ON</td>
-  <td style="text-align: left;">Congigure TIMER0_ON_REG register</td>
-  </tr>
-  <tr class="even">
-  <td style="text-align: left;">PWM_HIGH</td>
-  <td style="text-align: left;">Congigure TIMER0_RELOAD_M_REG register</td>
-  </tr>
-  <tr class="even">
-  <td style="text-align: left;">PWM_LOW</td>
-  <td style="text-align: left;">Congigure TIMER0_RELOAD_N_REG register   </td>
-  </tr>
-    <tr class="even">
-  <td style="text-align: left;">COUNTER_RELOAD_VALUE</td>
-  <td style="text-align: left;">Define Timer0 reload value</td>
+  <td style="text-align: left;">ENABLE_PULSE_MEASURING</td>
+  <td style="text-align: left;">Enable the pulse measuring functionality. The capture input channel is connected to the SW2 button. On start up the the sw will check the state of the P011 pin and assume the idle state of the pin. By default the sw sets P011 in <b>INPUT PULLUP</b>. After booting the sw will monitor the line and report the length of the low pulses occured (how long the button is pressed).</td>
   </tr>
 </tbody>
 </table>
 
 ### GPIOs Definitions
-In this section, GPIOs definitions are demonstrated as defined in `user_periph_setup.h` header file.
+In this section, GPIOs definitions are demonstrated as defined in `user_periph_setup.h` header file per sw configuration.
 
 <table>
 <thead>
   <tr class="header">
-  <th style="text-align: left;">Name</th>
-  <th style="text-align: left;">DA14531</th>
-  <th style="text-align: left;">DA145xx DK</th>
+  <th style="text-align: left;">SW Configuration</th>
+  <th style="text-align: left;">Macro definition</th>
+  <th style="text-align: left;">Pins Used</th>
   <th style="text-align: left;">Description</th>
   </tr>
 </thead>
 <tbody>
   <tr class="odd">
-  <td style="text-align: left;">LED</td>
+  <td style="text-align: left;">ENABLE_TMR_COUNTING</td>
+  <td style="text-align: left;">GPIO_LED_PIN</th>
   <td style="text-align: left;">P0_9</td>
-  <td style="text-align: left;">J2.29</td>
-  <td style="text-align: left;">Toggling LED in Counting Mode configuration</td>
+  <td style="text-align: left;">Toggling LED in Simple Counting Mode configuration.</td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">CAPTURE</td>
-  <td style="text-align: left;">P0_1</td>
-  <td style="text-align: left;">J2.21</td>
-  <td style="text-align: left;">Supply a PWM in Capturing Mode configuration</td>
+  <td style="text-align: left;">ENABLE_FREQ_COUNTING</td>
+  <td style="text-align: left;">GPIO_SIGNAL_PIN</th>
+  <td style="text-align: left;">P0_11</td>
+  <td style="text-align: left;">Frequency under measurement. Either connect an external frequency or if <b>PWM_TIMER0_ENABLE</b> is enabled it is used as the output of PWM0.</td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">PWM0</td>
-  <td style="text-align: left;">P0_7</td>
-  <td style="text-align: left;">J2.27</td>
-  <td style="text-align: left;">PWM0 output from Timer0</td>
-  </tr>
-  <tr class="odd">
-  <td style="text-align: left;">PWM1</td>
-  <td style="text-align: left;">P0_8</td>
-  <td style="text-align: left;">J2.28</td>
-  <td style="text-align: left;">PWM1 output from Timer0</td>
+  <td style="text-align: left;">ENABLE_PULSE_MEASURING</td>
+  <td style="text-align: left;">GPIO_SIGNAL_PIN</th>
+  <td style="text-align: left;">P0_11</td>
+  <td style="text-align: left;">Connected with SW2 button on pro DK.</td>
   </tr>
 </tbody>
 </table>
 
-### Counting Mode
+### Timer 1 Default Settings
+For all the demo sw configurations timer1 uses some default settings that apply in all mentioned configurations: 
 
-1. Use the following macro configuration in `user_timer1.h` in order to run the example in Counting mode:
+<table>
+<thead>
+  <tr class="header">
+  <th style="text-align: left;">Define</th>
+  <th style="text-align: left;">Setting</th>
+  <th style="text-align: left;">Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr class="odd">
+  <td style="text-align: left;">FREE_RUN</td>
+  <td style="text-align: left;">TIM1_FREE_RUN_ON</td>
+  <td style="text-align: left;">Timer 1 operates in free run mode, after reaching the max value the timer will go to zero and start counting again. Applicable only when timer counts up.</td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;">COUNT_DIRECTION</td>
+  <td style="text-align: left;">TIM1_CNT_DIR_UP</td>
+  <td style="text-align: left;">Timer counts up.</td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;">RELOAD_VALUE</td>
+  <td style="text-align: left;">TIM1_RELOAD_MAX</td>
+  <td style="text-align: left;">Reload value is set to the maximum value.</td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;">INPUT_CLK</td>
+  <td style="text-align: left;">TIMER1_ON_LPCLK</td>
+  <td style="text-align: left;">Set the timer 1 input clock as the LP clock.</td>
+  </tr>
+</tbody>
+</table>
+
+### UART Mechanism
+
+- To enable the UART mechanism, the **CFG_PRINTF** macro should be defined in `da1458x_config_basic.h`.
+- Use any terminal emulator that you are comfortable with (PuTTY, RealTerm, Tera Term etc.).
+- Set up your preferable terminal emulator by selecting the virtual COM port and set the port configuration.
+![hw_setup](assets/tera_term.PNG)
+
+## Use-case 1 : Simple Counting Mode
+1. Set to **(1)** the **ENABLE_TMR_COUNTING** macro configuration in `demo_config.h` in order to run the example in Simple Counting mode:
 
 ```c
-#define   COUNTING_MODE
-#undef    CAPTURING_MODE
+#define   ENABLE_TMR_COUNTING     (1)
 ```
 
-2. The `timer1_general_user_callback_function()` callback function is executed upon Timer1 interrupt. The on board LED is toggling.
+2. The demo uses the following #defines for the timer configuration.
 
-### Capturing Mode with Timer0 PWM Input Source
+    <table>
+    <thead>
+      <tr class="header">
+      <th style="text-align: left;">#define</th>
+      <th style="text-align: left;">Setting</th>
+      <th style="text-align: left;">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="odd">
+      <td style="text-align: left;">INTERRUPT_MASK_TMR</td>
+      <td style="text-align: left;">TIM1_IRQ_MASK_OFF</td>
+      <td style="text-align: left;">Enable the timer1 overflow interrupt.</td>
+      </tr>
+      <tr class="even">
+      <td style="text-align: left;">TIMER1_OVF_COUNTER</td>
+      <td style="text-align: left;">7</td>
+      <td style="text-align: left;">While using the LP clock a timer1 wrap around will occur in around 140ms (LP typical frequency 15KHz). The sw will count <b>TIMER1_OVF_COUNTER</b> wraps before toggling the LED and printing a wake up message.</td>
+      </tr>
+    </tbody>
+    </table>
 
-1. Use the following macro configuration in `user_timer1.h` for Capturing a PWM input source from Timer1 applied on **CAPTURE GPIO**.
+**Results**
+
+- The D5 LED will start blinking. 
+
+![hw_setup](assets/use_case_1_results_LED.PNG)
+
+- If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following results should be displayed in the serial monitor :
+
+![hw_setup](assets/use_case_1_results.PNG)
+
+## Use-case 2 : Frequency Counting
+1. Set to **(1)** the **ENABLE_FREQ_COUNTING** macro configuration in `demo_config.h` in order to run the example in Frequency Counting mode. For enabling timer 0 to provide a frequency under test set to **(1)** the **PWM_TIMER0_ENABLE** definition. If an external frequency will be applied set to **(0)** the **PWM_TIMER0_ENABLE** and set in the **EXTERNAL_FREQUENCY_HZ** the maximum expected frequency that will be applied to the pin in HZ.
 
 ```c
-#undef        COUNTING_MODE
-#define       CAPTURING_MODE
-#define       TIMER0_SOURCE
+#define ENABLE_FREQ_COUNTING            (1)
+#define PWM_TIMER0_ENABLE               (1)
+#define EXTERNAL_FREQUENCY_HZ           (0)
 ```
 
 2. Timer0 default PWM configurations are shown below. Configuration can be changed according to application requirements.
@@ -192,55 +239,54 @@ In this section, GPIOs definitions are demonstrated as defined in `user_periph_s
 #define     PWM_LOW         500
 ```
 
-3. Define the Timer0 reload value. Default value is 200.
+3. The preprocessor will compute the **PERIOD COUNT** (edges) that timer 1 should count before issuing the interrupt based on the maximum frequency applied. The maximum frequency applied should be defined at the **EXTERNAL_FREQUENCY_HZ** definition or if timer0 is used for generating the frequency the frequency is calculated from the preprocessor. 
+
+4. Based on the **PERIOD_COUNT** the preprocessor will check if with the existing timer1 clock there will be no wrap around of the TIMER1_CAPCNT1_VALUE before completing the measurements of 2 full periods. If the **PERIOD_COUNT** is less than 2 then an assertion will occur.
+
+**Results**
+
+If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following results should be displayed in the serial monitor :
+
+![hw_setup](assets/use_case_2_results.PNG)
+
+## Use-case 3 : Pulse Measurement
+1. Set to **(1)** the **ENABLE_PULSE_MEASURING** macro configuration in `demo_config.h` in order to run the example in Pulse measurement mode.
 
 ```c
-#define TIMER0_EXPIRATION_COUNTER_RELOAD_VALUE     200
+#define ENABLE_PULSE_MEASURING          (1)  
 ```
 
-4. An interrupt is generated on every rising edge of the Timer0 PWM signal and the `timer1_event1_user_callback_function()` callback function is used for handling timer's interrupt The on board LED is toggling following the **positive edge** of the input pulse.
+2. In this SW configuration both of the event channels of timer 1 are set in rising and falling edge. During start up the initialize_pulse_length_sm() will check the state of the signal pin in order to determine the idle state of the pin. If the pin is found **HIGH** then **LOW** periods are going to be reported from the demo. The opposite stands if the pin is found low during start up.
 
-![timer1_capturing_cb](assets/timer1_capturing_cb.PNG)
+3. When the SW starts running the device will wake up in order to advertise and when the rising or the falling events occur. When a rising or a falling event occurs the pulse_measure_sm() function will execute in order to read the timer captured values. As soon as the state of the pin returns to its idle state the device will report via UART the amount of time the pin was out of idle state in microseconds.
 
+    ***Useful Note***:
 
-### Capturing Mode with External PWM Input Source
+    The demo is using the SW2 button for toggling the line high or low, due to the bouncing of the switch miscounts may occur, especially if the system clock is used as a clock source for timer1. In cases where bouncing is expected a more sophisticated scheme should be applied based on the bouncing profile of the signal.
 
-1. **An external PWM source** can be used to generate a PWM pulse, applied on **CAPTURE GPIO**, instead of using Timer0. Timer1 captures the input PWM pulse following the rising edge of the pulse.
+    ![hw_setup](assets/SW2_button.PNG)
 
-2. Following macro configuration in `user_timer1.h` should be used:
+**Results**
 
-```c
-#undef        COUNTING_MODE
-#define       CAPTURING_MODE
-#undef        TIMER0_SOURCE
-```
+If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following results should be displayed in the serial monitor :
+
+![hw_setup](assets/use_case_3_results.PNG)
+
+Of course the results depend on how much timer the SW2 button is pressed. 
 
 ## Known Limitations
 
 - Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/support).
 
 ## License
 
 ------
 
- Copyright (c) 2019 Dialog Semiconductor. All rights reserved.
+Copyright (c) 2021 Dialog Semiconductor. All rights reserved.
 
- This software ("Software") is owned by Dialog Semiconductor. By using this Software
- you agree that Dialog Semiconductor retains all intellectual property and proprietary
- rights in and to this Software and any use, reproduction, disclosure or distribution
- of the Software without express written permission or a license agreement from Dialog
- Semiconductor is strictly prohibited. This Software is solely for use on or in
- conjunction with Dialog Semiconductor products.
+This software (“Software”) is owned by Dialog Semiconductor. By using this Software you agree that Dialog Semiconductor retains all intellectual property and proprietary rights in and to this Software and any use, reproduction, disclosure or distribution of the Software without express written permission or a license agreement from Dialog Semiconductor is strictly prohibited. This Software is solely for use on or in conjunction with Dialog Semiconductor products.
 
- EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
- REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
- IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
- SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
- CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
- PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
- ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
+EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS REQUIRED BY LAW, THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
 
 ------

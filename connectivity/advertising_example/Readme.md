@@ -65,7 +65,7 @@ The user manuals for the development kits can be found:
 
 This example requires:
 	
-- [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+- [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
 - Keil5.
 - __SEGGER’s J-Link__ tools should be downloaded and installed.
 - Serial Terminal software. For example Tera Term or PuTTY.

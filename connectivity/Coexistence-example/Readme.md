@@ -26,7 +26,7 @@ Example requirements:
 	- WLAN_COEX_BLE_PRIO exposed on P07 (for DA14531) or P02 (for DA14585/586)
 	- DEBUG A exposed on P09 (for DA14531) or P01 (for DA14585/586)
 	- DEBUG B exposed on P08 (for DA14531) or P13 (for DA14585/586)
-- In order to emulate an external device requesting radio transmition a simple button can be used and connected on pin J2:1 (V3) of the motherboard and on WLAN_COEX_24G_EIP pin (default at P05 for DA14531 or P00 for DA14585/586).
+- In order to emulate an external device requesting radio transmission a simple button can be used and connected on pin J2:1 (V3) of the motherboard and on WLAN_COEX_24G_EIP pin (default at P05 for DA14531 or P00 for DA14585/586).
 
 <figure>
 <img src="media/DevKit531.png" alt="motherboard_with_DA14531_DB_eval_kit">
@@ -45,7 +45,7 @@ Example requirements:
 
 ## Enable the COEX feature in a project
 
-***Usefull Note*** : 
+***Useful Note*** : 
 		All the following changes described are already applied to the accompanied software example. The below instructions refer in a case where the user would like to apply the coexistence scheme on a custom project.
 
 The following guidelines enable the COEX feature on the template example located in the default SDK.
@@ -231,7 +231,7 @@ The following guidelines enable the COEX feature on the template example located
 </figure>
 
 >**_Note_**:
-	The HW supports assigning the BLE_EIP signal to pins **P00 up to P011** for the DA14531 and to pins **P00 up to P07** and **P10 up to P13** for the DA14585. As allready mentioned this is not supported from the current SDK coex driver. This is only possible by applying the following modification in the **wlan_coex_BLE_set()** and in the **wlan_coex_gpio_cfg** functions, as indicated in the below snippet.
+	The HW supports assigning the BLE_EIP signal to pins **P00 up to P011** for the DA14531 and to pins **P00 up to P07** and **P10 up to P13** for the DA14585. As already mentioned this is not supported from the current SDK coex driver. This is only possible by applying the following modification in the **wlan_coex_BLE_set()** and in the **wlan_coex_gpio_cfg** functions, as indicated in the below snippet.
 	
 The following modifications should be applied in the default SDK driver in order to assign the BLE_EIP signal on the additional available pins.
 
@@ -373,7 +373,7 @@ The current trace demonstrates the state of signals when there is no rule for pr
 	<figcaption>Fig. 7: No advertising priority along with 24G request</figcaption>
 </figure>
 
-Since there is no priority on the advertising events the **BLE PRIO** signal remains de-asserted while the **BLE EIP** signal asserts regardless of the rules applied. **DEBUG A** pin asserts when waking up (since there is a 24G request) and remains asserted since the BLE radio is overruled from the 24G device. **DEBUG B** signal indicates the request from the 24G device. From the **Events** indication signal is clear that the BLE device supresses its radio activity in order for the 24G to access the antenna.
+Since there is no priority on the advertising events the **BLE PRIO** signal remains de-asserted while the **BLE EIP** signal asserts regardless of the rules applied. **DEBUG A** pin asserts when waking up (since there is a 24G request) and remains asserted since the BLE radio is overruled from the 24G device. **DEBUG B** signal indicates the request from the 24G device. From the **Events** indication signal is clear that the BLE device suppresses its radio activity in order for the 24G to access the antenna.
 
 3. #### Priority on BLE data packets
 To apply the rule for prioritizing the data packets on a specific connection the ```wlan_coex_prio_criteria_add(WLAN_COEX_BLE_PRIO_DATA, app_env[0].conhdl, 0);``` function should be invoked through the ```.app_on_init callback``` to set the rule.

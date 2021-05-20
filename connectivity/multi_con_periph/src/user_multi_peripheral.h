@@ -100,7 +100,7 @@ void user_app_on_set_dev_config_complete(void);
  ****************************************************************************************
  * @brief Start placing services in the database.
  * @return true if succeeded, else false
- * @details Overriden SDK function.  
+ * @details Overridden SDK function.  
  ****************************************************************************************
  */
 bool app_db_init_start(void);
@@ -146,7 +146,7 @@ uint8_t appconidx_to_sdkconidx(uint8_t app_conidx);
 
 /**
  ****************************************************************************************
- * @brief Register the new connection to the user space application enviroment
+ * @brief Register the new connection to the user space application environment
  * @param[in] connection index
  * @return return the application index 
  ****************************************************************************************

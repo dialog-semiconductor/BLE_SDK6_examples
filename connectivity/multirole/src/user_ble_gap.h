@@ -87,7 +87,7 @@ ble_gap_error_t user_ble_gap_start_scan(bool scan_active, uint16_t interval_ms, 
 /**
  ****************************************************************************************
  * @brief Get number of advertisement elements
- * @param[in] data - pointer to advertisment data
+ * @param[in] data - pointer to advertisement data
  * @param[in] len - data length
  * @return number of elements
  ****************************************************************************************
@@ -97,7 +97,7 @@ uint8_t user_ble_gap_get_adv_num_elements(const uint8_t *data, uint8_t len);
 
 /**
  ****************************************************************************************
- * @brief parse advertisment data into ad_elements structure
+ * @brief parse advertisement data into ad_elements structure
  * @param[in] in_len - advertisement data length to parse
  * @param[in] in_data - data to parse
  * @param[out] ad_elements - parsed data

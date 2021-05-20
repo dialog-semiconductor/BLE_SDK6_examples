@@ -209,7 +209,7 @@ void timer1_initialize(void);
 
 /**
  ****************************************************************************************
- * @brief Initializes the pulse measure functionallity
+ * @brief Initializes the pulse measure functionality
  * @details It starts the timer 1 and sets the rising and falling events to the
  *          corresponding channel.
  ****************************************************************************************
@@ -220,7 +220,7 @@ void initialize_pulse_length_measure(void);
 
 /**
  ****************************************************************************************
- * @brief Initializes the frequency counting functionallity
+ * @brief Initializes the frequency counting functionality
  * @details It starts the timer 1 and sets event for the frequency measurement.
  ****************************************************************************************
 */

@@ -90,8 +90,8 @@ static void button_press_timer_handler_cb(void)
 */
 static void app_wakeup_cb(void)
 {
-    // Start the timer to perfrom the 3 sec button check
-    // Check if there is a timer allready running in that case cancel the running timer and set up a new one
+    // Start the timer to perform the 3 sec button check
+    // Check if there is a timer already running in that case cancel the running timer and set up a new one
     if(button_press_timer_handler != EASY_TIMER_INVALID_TIMER)     
         app_easy_timer_cancel(button_press_timer_handler);
     button_press_timer_handler = app_easy_timer(GOTO_SLEEP_TIME, button_press_timer_handler_cb);
@@ -131,7 +131,7 @@ static void user_button_press_cb(void)
 
 /**
  ****************************************************************************************
- * @brief Setting the interrupt (wakeup) button to change advertising state aswell as 
+ * @brief Setting the interrupt (wakeup) button to change advertising state as well as 
 					the negative edge interrupt for the same button (P1_1). 
  * @return void
  ****************************************************************************************

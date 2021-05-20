@@ -92,7 +92,7 @@ In the table below, the user macro definitions for the various demo settings are
 <tbody>
   <tr class="odd">
   <td style="text-align: left;">ENABLE_TMR_COUNTING</td>
-  <td style="text-align: left;">Enable simple counting. The device goes in extended sleep and wakes up either to perfrom an advertising event or on every timer1 overflow (timer1 selected clock is the LP clock). </td>
+  <td style="text-align: left;">Enable simple counting. The device goes in extended sleep and wakes up either to perform an advertising event or on every timer1 overflow (timer1 selected clock is the LP clock). </td>
   </tr>
   <tr class="even">
   <td style="text-align: left;">ENABLE_FREQ_COUNTING</td>
@@ -100,7 +100,7 @@ In the table below, the user macro definitions for the various demo settings are
   </tr>
   <tr class="even">
   <td style="text-align: left;">ENABLE_PULSE_MEASURING</td>
-  <td style="text-align: left;">Enable the pulse measuring functionality. The capture input channel is connected to the SW2 button. On start up the the sw will check the state of the P011 pin and assume the idle state of the pin. By default the sw sets P011 in <b>INPUT PULLUP</b>. After booting the sw will monitor the line and report the length of the low pulses occured (how long the button is pressed).</td>
+  <td style="text-align: left;">Enable the pulse measuring functionality. The capture input channel is connected to the SW2 button. On start up the the sw will check the state of the P011 pin and assume the idle state of the pin. By default the sw sets P011 in <b>INPUT PULLUP</b>. After booting the sw will monitor the line and report the length of the low pulses occurred (how long the button is pressed).</td>
   </tr>
 </tbody>
 </table>

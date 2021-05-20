@@ -3,7 +3,7 @@
  *
  * @file user_coex_demo.h
  *
- * @brief Coexistance demo project header file.
+ * @brief Coexistence demo project header file.
  *
  * Copyright (C) 2012-2019 Dialog Semiconductor.
  * This computer program includes Confidential, Proprietary Information

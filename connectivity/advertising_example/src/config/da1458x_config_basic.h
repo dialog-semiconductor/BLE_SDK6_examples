@@ -86,7 +86,7 @@
 #define CFG_DEVELOPMENT_DEBUG
 
 /****************************************************************************************************************/
-/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overriden and UART SDK    */
+/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overridden and UART SDK    */
 /* driver will be used, else ROM driver will be used for UART1 module.                                          */
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK
@@ -172,7 +172,7 @@
 #define CFG_DEVELOPMENT_DEBUG
 
 /****************************************************************************************************************/
-/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overriden and UART SDK    */
+/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overridden and UART SDK    */
 /* driver will be used, else ROM driver will be used for UART1 module.                                          */
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK

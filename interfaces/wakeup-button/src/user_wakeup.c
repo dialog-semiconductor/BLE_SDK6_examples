@@ -139,7 +139,7 @@ void user_wakeup_example_init(void)
 {
     app_easy_wakeup_set(app_wakeup_cb);
     wkupct_enable_irq((WKUPCT_PIN_SELECT(GPIO_SW2_PORT, GPIO_SW2_PIN) | WKUPCT_PIN_SELECT(GPIO_SW3_PORT, GPIO_SW3_PIN)), 						// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_SELECT will make sure the appropriate bit in the register is set. 
-                        (WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW)),	// When enabling more than one interruptsource use OR bitoperation. WKUPCT_PIN_POLARITY will make sure the appriopriate bit in the register is set.
+                        (WKUPCT_PIN_POLARITY(GPIO_SW2_PORT, GPIO_SW2_PIN, WKUPCT_PIN_POLARITY_LOW) | WKUPCT_PIN_POLARITY(GPIO_SW3_PORT, GPIO_SW3_PIN, WKUPCT_PIN_POLARITY_LOW)),	// When enabling more than one interrupt source use OR bitoperation. WKUPCT_PIN_POLARITY will make sure the appropriate bit in the register is set.
                         EVENTS_BEFORE_INTERRUPT,																																																													
                         DEBOUNCE_TIME);																																																												
 

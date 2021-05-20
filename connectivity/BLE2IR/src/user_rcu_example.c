@@ -302,7 +302,7 @@ void user_app_init(void)
 {
 	  app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
 	
-		// Initialize user modules. Set mudule initialization functions in user_module_config structure 
+		// Initialize user modules. Set module initialization functions in user_module_config structure 
     user_modules_init();
     
     // Initialize Manufacturer Specific Data
@@ -316,7 +316,7 @@ void user_app_init(void)
     
     default_app_on_init();
 	
-		// register keys in buffer untill connection is established
+		// register keys in buffer until connection is established
 		app_kbd_start_reporting(); 
 	
 #ifdef CFG_PRINTF
@@ -439,7 +439,7 @@ void user_kbd_notification_cb(enum kbd_notification notification)
 		if (user_are_notifications_enabled())
 				user_sent_keycodes();
 		
-		// If a conenction is active, restart the value of the connection timeout
+		// If a connection is active, restart the value of the connection timeout
 		if (user_is_ble_connected())
 				user_con_timeout_reset();
 		
@@ -456,7 +456,7 @@ arch_main_loop_callback_ret_t user_on_system_powered(void)
     uint8_t power_status;
 
     // Perform actions needed by modules while BLE is powered.
-    // Set mudule functions in user_module_config structure
+    // Set module functions in user_module_config structure
     // Modules can block sleep by returning APP_GOTO_SLEEP or 
     // force BLE to wake up by returning APP_BLE_WAKEUP
     power_status = user_modules_on_system_powered();
@@ -490,7 +490,7 @@ arch_main_loop_callback_ret_t user_on_ble_powered(void)
 		arch_main_loop_callback_ret_t ret;
     
     // Perform actions needed by modules while BLE is powered.
-    // Set mudule functions in user_module_config structure.
+    // Set module functions in user_module_config structure.
     // Modules can block sleep by returning true
     ret = user_modules_on_ble_powered() ? KEEP_POWERED : GOTO_SLEEP;
                    

@@ -79,7 +79,8 @@ Jumpers are placed in default configurations. Refer to the getting started guide
 
 ### Software configuration
 
-  - SDK6.0.12 or later
+
+  - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest) or later
 
   - ***SEGGER’s J-Link*** tools should be downloaded and installed.
 

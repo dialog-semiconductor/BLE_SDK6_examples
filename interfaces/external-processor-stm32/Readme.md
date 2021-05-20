@@ -50,7 +50,7 @@ Open the SmartSnippets Toolbox. The first step is to setup a device, by clicking
 
 ![toolbox_settings](assets/toolbox_settings.png)
 
-Next click on _Open_ and the Toolbox should open on the programming screen. First select the _secondary\_bootloader.bin_ by clicking on _Load hex/bin file_ and following the options in the scree that opens. Next click on _Connect_ and after the connection has been made click _Burn & Verify_ and the secondary bootloader should be programmd. The end result should look like this:
+Next click on _Open_ and the Toolbox should open on the programming screen. First select the _secondary\_bootloader.bin_ by clicking on _Load hex/bin file_ and following the options in the scree that opens. Next click on _Connect_ and after the connection has been made click _Burn & Verify_ and the secondary bootloader should be programmed. The end result should look like this:
 
 ![toolbox_programming](assets/toolbox_program.png)
 

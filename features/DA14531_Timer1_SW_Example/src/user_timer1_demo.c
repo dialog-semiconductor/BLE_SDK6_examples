@@ -343,7 +343,7 @@ static void frequency_measurement_end_cb(void)
     
     if(!first_measurement)
     {
-        // Send the aquired measurement to the application
+        // Send the acquired measurement to the application
         struct freq_meas_ready *ind = KE_MSG_ALLOC(FREQ_MEAS_READY_MSG, TASK_APP, TASK_APP, freq_meas_ready);
         ind->captrure_val = GetBits16(TIMER1_CAPCNT1_VALUE_REG, TIMER1_CAPCNT1_VALUE) + 1;
         ke_msg_send(ind);
@@ -358,7 +358,7 @@ void start_frequency_counting(void)
 {
     // enable SWTIM_IRQn irq
 	timer1_enable_irq();
-    // start the timer for the frequncy counting
+    // start the timer for the frequency counting
     timer1_start();
     // enable the frequency counting event
     timer1_event1_config(&timer1_event_config_ch1, frequency_measurement_end_cb);
@@ -391,7 +391,7 @@ static void timer1_overflow(void)
 {
     TOGGLE_CURSOR(TIMER_OVFL)
     /* 
-     * The ovf int is checked first in the ISR, check if an event has occured before that
+     * The ovf int is checked first in the ISR, check if an event has occurred before that
      * if it did, dont increase the overflow counting
     */
     if(!GetBits32(TIMER1_STATUS_REG, TIMER1_IN2_EVENT) || !GetBits32(TIMER1_STATUS_REG, TIMER1_IN1_EVENT))

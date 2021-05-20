@@ -23,7 +23,7 @@ A DA14585/6 HID gamepad demo project. Used to demonstrate the usage of HID featu
 
 * **Hardware configuration**
 
-Required componets:
+Required components:
 - DA145xxDEVKT-P PRO-Motherboard, with DA1458x daughter board QFN40/48. Or a DA14531 daughterboard, the module board does not have enough pins for this example.
 
 The user manual for the development kits can be found:
@@ -133,7 +133,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 		- Radius is the reach distance of the **LS**, only used by **LS**. Should not larger than closest distance from center point to a screen side (out of 100)
 		- Velocity is the movement speed multiplyer of controlling **RS**. Should not larger than 100
 		- LS and RS works in a different manner, where LS moves the touch point within a circle(or square in this case), RS moves the touch point all over screen range
-	- sending anthing else (not 16 bytes long) will reset the configurations to the default stage
+	- sending anything else (not 16 bytes long) will reset the configurations to the default stage
 	- When the joystick not pushed to any direction (both X and Y axis ADC samples close to a middle point), the HID reports will not be sending, this is called the **Deadzone** of a joystick, and the range of deadzone is configurable with 
 
 ## Software Info
@@ -150,7 +150,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	- All important joystick configurations
 		- HID device mode
 		- Joystick position update rate
-		- Defaut key mapping
+		- Default key mapping
 		- ADC adjustment
 		- Joystick deadzone adjustment
 	

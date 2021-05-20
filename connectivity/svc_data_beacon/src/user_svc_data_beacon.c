@@ -71,7 +71,7 @@ typedef struct
 /*Include 2 extra bytes required in the payload for the 16-bit UUID*/
 #define SERIAL_NUM_PAYLOAD_LEN	(APP_DIS_SERIAL_NB_STR_LEN + 2)
 
-//Total advertising elemetns - Service data, local name
+//Total advertising elements - Service data, local name
 #define TOTAL_ADV_STRUCTS			(2)
 
 /**
@@ -79,7 +79,7 @@ typedef struct
  * @brief Serializes advertising data.
  * @param[in] dst_len - destination len
  * @param[in] src_len - source length 
- * @param[in] src - pointer to original advertising structer
+ * @param[in] src - pointer to original advertising structure
  * @param[out] Total advertising data length
  * @return true if successful and false otherwise
  ****************************************************************************************

@@ -4,7 +4,7 @@
 
 The example demonstrates the capabilities of the DA14531/585/586 as a Central and a peripheral i.e. scan and advertise role. 
 
-**Note**: This example applies for DA14585/586 as well. The DA14531 is capabable of handling upto 3 connections and the DA14585/586 can handle upto 8 connections.
+**Note**: This example applies for DA14585/586 as well. The DA14531 is capable of handling up to 3 connections and the DA14585/586 can handle up to 8 connections.
 
 The project works as a Central connecting to 2 peripherals, and once connected, it advertises so another central can connect to it.
 
@@ -46,7 +46,7 @@ Note: To configure your device with different BD addresses, follow [here](http:/
 
 3. Using Keil IDE, open the multirole project and compile the project to build the indexes. You will see errors but ignore it for this step, error will go away after the compilation in step 7.
 
-4. To be able to overide the default functions of the SDK the __ EXCLUDE_ROM_APP_TASK __ should be defined in the C/C++ tab in the "options for target" in keil, like so,
+4. To be able to override the default functions of the SDK the __ EXCLUDE_ROM_APP_TASK __ should be defined in the C/C++ tab in the "options for target" in keil, like so,
 
 	![exclude_rom_tasks.jpg](assets/exclude_rom_tasks.jpg)
 	

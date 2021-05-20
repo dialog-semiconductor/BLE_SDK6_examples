@@ -929,7 +929,7 @@ __STATIC_INLINE void app_asynch_sleep_proc(void)
 
 /**
  ****************************************************************************************
- * @brief Used to override the slected extended sleep mode , based on the current
+ * @brief Used to override the selected extended sleep mode , based on the current
  *        application state.
  *        BLE and Radio are still powered off.
  * @param[in] sleep_mode     Sleep Mode

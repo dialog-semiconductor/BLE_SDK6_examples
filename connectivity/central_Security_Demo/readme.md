@@ -2,7 +2,7 @@
 
 ## Example description
 A DA14585/6 Central side project with basic scan/connect and security feature. The main purpose is to demonstrate the basic pairing, encryption and bonding process on central side.
-It will actively pair up with peripheral devices and store bonding informations on connection or passively respond to security request from peripheral. None SDK related functions on both central and peripheral sides can be printed to track the process of pairing/bonding process.
+It will actively pair up with peripheral devices and store bonding information on connection or passively respond to security request from peripheral. None SDK related functions on both central and peripheral sides can be printed to track the process of pairing/bonding process.
 
 # Features
 1. Interactive scanner through the UART serial port terminal
@@ -13,7 +13,7 @@ It will actively pair up with peripheral devices and store bonding informations 
 # How security binding works
 To learn basic security feature of BLE, please refer to the [training material](https://support.dialog-semiconductor.com/resource/tutorial-5-ble-security-examplev12 "BLE Security Tutorial") from the support website.
 
-The pairing and bonding process is a series of command and credential info exchange happening between master and slave devices, after which both device stores the information for encrypt the connection. The info will be stored in a dedicated bonding database(short for bdb) for later use, and the database can be configured to retain on SPI flash or I2C EEPROM. The SDK provides neccessary APIs to manipulate the database.
+The pairing and bonding process is a series of command and credential info exchange happening between master and slave devices, after which both device stores the information for encrypt the connection. The info will be stored in a dedicated bonding database(short for bdb) for later use, and the database can be configured to retain on SPI flash or I2C EEPROM. The SDK provides necessary APIs to manipulate the database.
 
 To make the bonding process clear, it can be explained as the flow chart below:
 ![Bonding flow chart](assets/flow_chart.png)
@@ -51,7 +51,7 @@ An exception is the situation that the slave device somehow removed stored info 
             - 1 stop bits
 		- Define/undefine **CFG_SECURITY_ACTIVE** in *da1458x_config_basic.h* to change security behavior. When defined, central device will send bonding request on connection, ignoring the security request. When undefined, central device will wait for security_request from peripheral to start the pairing process.
 
-	* Compatiblity:
+	* Compatibility:
 The project was originally created on SDK6.10.511, some codes in SDK files should be modified for full feature.
 The source file should work with other SDK file without any modification.
 
@@ -116,7 +116,7 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
 ## Known Limitations
 
 
-- The central app should work with any BLE peripheral theoratically, but only garanteed to work with ble_app_security example in the SDK
+- The central app should work with any BLE peripheral theoratically, but only guaranteed to work with ble_app_security example in the SDK
 - For ease of the key input, only 10 peripherals will be scanned and printed at one scanning activity
 - The demo will take no action after successfully pairing/encryption, manually reset on either side is required to run the demo again
 

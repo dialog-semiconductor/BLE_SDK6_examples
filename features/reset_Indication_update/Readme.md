@@ -13,7 +13,7 @@ Both DA14531 and DA14585/586 devices comprise three main reset signals that can 
 
 The current SW example demonstrates how to issue and identify the different kinds of reset on the DA14531 and DA14585/586 devices as well as identifying if the device run into a Hardfault or an NMI interrupt.
 
-The DA14531 includes a special register that indicates the reset source previously occured (RESET_STAT_REG) while in order to identify the reset source on the DA14585/586 devices registers that retain their values, through the different kinds of reset signals, are used. The SDK 6.0.14.1114 includes a weak function in the system_init() which can be implemented on user space in order for the application to be aware of the current reset.
+The DA14531 includes a special register that indicates the reset source previously occurred (RESET_STAT_REG) while in order to identify the reset source on the DA14585/586 devices registers that retain their values, through the different kinds of reset signals, are used. The SDK 6.0.14.1114 includes a weak function in the system_init() which can be implemented on user space in order for the application to be aware of the current reset.
 
 ## Key Features
 - Store data in the uninitialized section of the Retention-RAM for tracking an NMI or a Hardfault.
@@ -121,9 +121,9 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 11. If it is re-connected to the mobile application, the value  of the **Reset detection** characteristic should be **0x0306**. 
 
 ## SDK modifications
-The current example uses the un-initialized data section in order to store identification flags for the application code to be aware if an NMI or a Hardfault has occured. The identification flag is preceded and followed by 32bit magic values that act as memory integrity check. 
+The current example uses the un-initialized data section in order to store identification flags for the application code to be aware if an NMI or a Hardfault has occurred. The identification flag is preceded and followed by 32bit magic values that act as memory integrity check. 
 
-When the fw is build with the **CFG_DEVELOPMENT_DEBUG** flag defined, and an NMI or a Hardfault occurs, will halt the processor either in a while(1) loop or in a breakpoint in order for the developer to check the issue via the debugger. For reseting the device as soon as one of those interrupts occur the **CFG_DEVELOPMENT_DEBUG** flag should be undefined. In that case the fw will issue a SW reset and start execution of the bootrom. By default the example has the flag undefined for demonstrating the fault recognition functionality.
+When the fw is build with the **CFG_DEVELOPMENT_DEBUG** flag defined, and an NMI or a Hardfault occurs, will halt the processor either in a while(1) loop or in a breakpoint in order for the developer to check the issue via the debugger. For resetting the device as soon as one of those interrupts occur the **CFG_DEVELOPMENT_DEBUG** flag should be undefined. In that case the fw will issue a SW reset and start execution of the bootrom. By default the example has the flag undefined for demonstrating the fault recognition functionality.
 
 For setting the fault flags minor changes has to be applied in the SDK in order to set the corresponding flag if the NMI or the Hardfault handler executes. The user will have to add: 
 - For the Hardfault:
@@ -240,11 +240,11 @@ Table below demonstrates the different values of the "Reset Detection" character
   <td style="text-align: center;" colspan="2"> 0x0000 </td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">SW reset NMI has occured</td>
+  <td style="text-align: left;">SW reset NMI has occurred</td>
   <td style="text-align: center;" colspan="2"> 0x0204 </td>
   </tr>
   <tr class="odd">
-  <td style="text-align: left;">SW reset Hardfault has occured</td>
+  <td style="text-align: left;">SW reset Hardfault has occurred</td>
   <td style="text-align: center;" colspan="2"> 0x0304 </td>
   </tr>
   <tr class="even">
@@ -270,7 +270,7 @@ Table below demonstrates the different values of the "Reset Detection" character
 </table>
 
 >__Note:__
-The DA14585/586 is not able to identify the difference between a HW reset that occured from the watchdog or a common HW reset occured from the RST pad or RESET_ON_WAKEUP.
+The DA14585/586 is not able to identify the difference between a HW reset that occurred from the watchdog or a common HW reset occurred from the RST pad or RESET_ON_WAKEUP.
 
 >__Note:__
 Since the DA14585/586 doesn't include a HW for reset identification the determination of the reset type is done via reading register values that either retain their state depending on the reset. The values assigned for the reset types in the DA14585 by the fw are identical to the ones that the DA14531 HW uses.

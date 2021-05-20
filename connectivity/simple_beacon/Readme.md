@@ -55,7 +55,7 @@ This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices.
 
   - Connect the ***DA145xx Pro Development Kit***  to the host computer via the USB connector. 
 
-  - Please find bellow the appropriate hardware configurations.
+  - Please find below the appropriate hardware configurations.
 
 ### DA14585/586 Hardware Configuration
 

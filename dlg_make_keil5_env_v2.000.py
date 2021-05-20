@@ -28,7 +28,7 @@
 #			   	python dlg_make_keil5_env_v2.000.py -sdkpath "<user_specific_SDK6_location>"
 #			   
 #			   After successful execution of the above command the Keil5 environment (example *.uvprojx) 
-#			   files will be ready to run the KEIL5 IDE as an ouput.
+#			   files will be ready to run the KEIL5 IDE as an output.
 #
 #              OR,
 #			   python dlg_make_keil5_env_v2.000.py -sdkpath "clean" 

@@ -102,7 +102,7 @@ void user_app_on_init(void)
 
 /**
  ****************************************************************************************
- * @brief Called upon device cofiguration complete message
+ * @brief Called upon device configuration complete message
  * @return void
  ****************************************************************************************
  */

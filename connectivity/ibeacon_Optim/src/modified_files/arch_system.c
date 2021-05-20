@@ -270,7 +270,7 @@ void init_pwr_and_clk_ble(void)
 
     SetBits16(CLK_RADIO_REG, BLE_LP_RESET, 1);
     SetBits16(PMU_CTRL_REG, RADIO_SLEEP, 0);
-    while (!(GetWord16(SYS_STAT_REG) & RAD_IS_UP)); // Just wait for radio to truely wake up
+    while (!(GetWord16(SYS_STAT_REG) & RAD_IS_UP)); // Just wait for radio to truly wake up
 
     select_lp_clk();
 

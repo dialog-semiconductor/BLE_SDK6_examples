@@ -94,7 +94,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	
 	![Include_Path](assets/Include_Path.png)
 	
-7.  In user_config Project folder, navigate to da1458x_config_advanced.h.  The CFG_RET_DATA_SIZE will need updated, add the following lines of code and replace the current defintition of CFG_RET_DATA_SIZE. Be sure to include this definition in both DA14531 and DA14585/6 settings.
+7.  In user_config Project folder, navigate to da1458x_config_advanced.h.  The CFG_RET_DATA_SIZE will need updated, add the following lines of code and replace the current definition of CFG_RET_DATA_SIZE. Be sure to include this definition in both DA14531 and DA14585/6 settings.
 
 	/****************************************************************************************************************/
 	/* Enables SEGGER RTT Debugging                                                            */

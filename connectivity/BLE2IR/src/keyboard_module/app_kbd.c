@@ -458,7 +458,7 @@ static inline uint8_t kbd_hut_to_ascii(const uint8_t hut)
  *
  * \param[in] keycode_idx The keycode index
  *
- * \return    16 LSBs contain the keycode. 16 MSBs contain the follwing flags:
+ * \return    16 LSBs contain the keycode. 16 MSBs contain the following flags:
  *            KBD_KEY_FULL_RELEASE, KBD_CUNSUME_KEY, KBD_KEY_PRESSED_FLAG 
  ****************************************************************************************
  */
@@ -530,7 +530,7 @@ static uint32_t kbd_process_keycode(struct keycode_buffer_tag *keycode_idx)
  * \brief Processes the keycodes that have been written in the keycode_buffer
  *        and prepares the necessary HID reports. 
  *
- * \return    16 LSBs contain the keycode. 16 MSBs contain the follwing flags:
+ * \return    16 LSBs contain the keycode. 16 MSBs contain the following flags:
  *            KBD_KEY_FULL_RELEASE, KBD_CUNSUME_KEY, KBD_KEY_PRESSED_FLAG 
  ****************************************************************************************
  */
@@ -555,7 +555,7 @@ void app_kbd_init(void)
 
         kbd_reports_en = REPORTS_PAUSED;            // reporting mode is 'Disconnected' => Keys are buffered but no HID reports are generated
 
-        KBD_CALL_CALBACK_VOID(init);        // Initilize keyboard scan engine
+        KBD_CALL_CALBACK_VOID(init);        // Initialize keyboard scan engine
 }
 
 void app_kbd_start_reporting(void)

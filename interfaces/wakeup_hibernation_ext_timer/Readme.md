@@ -32,7 +32,7 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
  This example requires:
  - SDK v6.0.14 or later
  - **SEGGER’s J-Link** tools should be downloaded and installed.
- - Additionaly, an application like BLE Scanner from Bluepixel Technologies should be used to check advertising of our beacon. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner) or on the [App Store](https://apps.apple.com/us/app/ble-scanner-4-0/id1221763603).
+ - Additionally, an application like BLE Scanner from Bluepixel Technologies should be used to check advertising of our beacon. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner) or on the [App Store](https://apps.apple.com/us/app/ble-scanner-4-0/id1221763603).
 
 ## How to run the example
 

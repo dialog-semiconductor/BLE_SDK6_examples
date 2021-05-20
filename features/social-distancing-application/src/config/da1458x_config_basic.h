@@ -96,7 +96,7 @@
 #endif
 
 /****************************************************************************************************************/
-/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overriden and UART SDK    */
+/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overridden and UART SDK    */
 /* driver will be used, else ROM driver will be used for UART1 module.                                          */
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK
@@ -175,7 +175,7 @@
 
 /****************************************************************************************************************/
 /* UART Console Print. If CFG_PRINTF is defined, serial interface logging mechanism will be enabled.            */
-/* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implented using UART2, else UART1 */
+/* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implemented using UART2, else UART1 */
 /* will be used.                                                                                                */
 /****************************************************************************************************************/
 #define CFG_PRINTF
@@ -184,7 +184,7 @@
 #endif
 
 /****************************************************************************************************************/
-/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overriden and UART SDK    */
+/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overridden and UART SDK    */
 /* driver will be used, else ROM driver will be used for UART1 module.                                          */
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK

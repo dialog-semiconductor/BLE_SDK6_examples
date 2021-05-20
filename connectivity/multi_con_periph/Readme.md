@@ -5,13 +5,13 @@
 
 ## Example description
 
-This example demostrates how a single peripheral can be connected to more than one central. DA14531 is able to support up to 3 connections and the DA14585 up to 8 simultaneous connections. Additionally it also demonstrates how one could keep different characteristic values depending on different connections. 
+This example demonstrates how a single peripheral can be connected to more than one central. DA14531 is able to support up to 3 connections and the DA14585 up to 8 simultaneous connections. Additionally it also demonstrates how one could keep different characteristic values depending on different connections. 
 
 The demo will start advertising and will store the 3 first connections from different centrals in a user space variable. In case an extra central tries to connect, the demo will overwrite an inactive connection entry if available, else if there is no available connection slot no connection will be established. Application will also retain the values of the connection orientated characteristics and make sure to report the proper value only to the requesting central.  
 
 The demo exposes a custom profile including 3 services.
 
- - Service 1: Includes some of the standard characteristics and functionallity of the default custom profile. This database is common to all connected peripherals, hence data values are common to any device is connected. 
+ - Service 1: Includes some of the standard characteristics and functionality of the default custom profile. This database is common to all connected peripherals, hence data values are common to any device is connected. 
  - Service 2: Includes one characteristic with read and write properties. This is a connection oriented characteristic, hence the device will only report the values that correspond to the requesting central.
  - Service 3: Include one characteristic with read properties. This is a connection oriented characteristic, hence the device will only report the values that correspond to the requesting central. 
 	
@@ -23,12 +23,12 @@ The demo exposes a custom profile including 3 services.
 		- DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard
 	- For running the example on a DA14585/DA14586 Daughter board + DA145xxDEVKT-P PRO Motherboard the following configuration is required.
 		- Connect the DA145xx Pro Development Kit to the host computer.
-		- UART TX on P0_4 for DA14585/DA14586 (place jumper between J1:17 and J1:18) for printing functionallity.
+		- UART TX on P0_4 for DA14585/DA14586 (place jumper between J1:17 and J1:18) for printing functionality.
 
 		![DA14585_connection_wires](assets/DA14585_connection_wires.png)
 	- For running the example on a DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard the following configuration is required.
 		- Connect the DA145xx Pro Development Kit to the host computer.
-		- UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionallity.
+		- UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionality.
 	
 		![DA14531_connection_wires](assets/DA14531_connection_wires.png)
 
@@ -45,13 +45,13 @@ The demo exposes a custom profile including 3 services.
 The default settings of the SDK supports only one connection, hence to properly run this example the user should apply changes to the files of the SDK6 in order to be able to connect to multiple centrals. In the files provided in the example all the SDK code related changes are moved to application level via bypassing the SDK code. 
 
 Minor changes in the SDK files, that should be applied in order to change SDK configuration or override SDK functions, should be guarded via the CFG_ENABLE_MULTIMPLE_CONN, which is defined in da1458x_config_basic.h file. The changes are mentioned below:
-- To be able to overide the default functions of the SDK the __ __EXCLUDE_ROM_APP_TASK__ __ should be defined in the C/C++ tab in the "options for target" in keil. 
+- To be able to override the default functions of the SDK the __ __EXCLUDE_ROM_APP_TASK__ __ should be defined in the C/C++ tab in the "options for target" in keil. 
 
 	![options_for_target](assets/options_for_target.png)
 
 	__Note:__ The ROM functions that correspond to __ __EXCLUDE_ROM_APP_TASK__ __ guard should also be removed from the da14531_symbols.txt. If not removed the linker will output an error for multiple defined functions. From the error of the linker it is visible to the end user which function should be removed from the .txt file (the da14531_symbols.txt file is located in \sdk\common_project_files\misc\).
 
-	When all ROM functions are commented from the da14531_symbols.txt file the linking should also fail due to the multiple definition of the app_db_init_start() function declared in the user_multi_peripheral.c file. This is an SDK function that it will be overriden via application level code.
+	When all ROM functions are commented from the da14531_symbols.txt file the linking should also fail due to the multiple definition of the app_db_init_start() function declared in the user_multi_peripheral.c file. This is an SDK function that it will be overridden via application level code.
 
 	![linker_error](assets/linker_error.png)
 
@@ -68,14 +68,14 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 - Changes in app_task.h : apply to the APP_IDX_MAX the maximum number or task instances that the application should support. This should agree with the max active connections that the device is supporting.
 	
 	![app_task_h](assets/app_task_h_changes.png)
-- Changes in app.c : In this file specific functions need to be used in application level or being overiden by application code. The functions with the additional implementation for supporting multiple connections is located in the user_multi_peripheral.c file.
+- Changes in app.c : In this file specific functions need to be used in application level or being overridden by application code. The functions with the additional implementation for supporting multiple connections is located in the user_multi_peripheral.c file.
 	- In order to be able to use the app_db_init_next() function in application level for initializing the device's database the "static" identifier should be removed.
 	
 		![app_c_changes_db_init_next](assets/app_c_changes_db_init_next.png)
 	- The app_db_init_start() function needs to be modified to support multiple connections. To apply the changes in application level, the SDK function needs to be excluded from the build using the CFG_ENABLE_MULTIPLE_CONN guard. 
 	
 		![app_c_changes_db_init_start](assets/app_c_changes_db_init_start.png)  
-- Changes in app_task.c : In app_task.c file the connection and disconnection handlers of the device should be modified in order to support the multiple connection feature. The complete functions supporting multiple connections are located in the user_multi_peripheral.c file of the example. In order to overide the SDK functions a __WEAK identifier is added in the in each function:
+- Changes in app_task.c : In app_task.c file the connection and disconnection handlers of the device should be modified in order to support the multiple connection feature. The complete functions supporting multiple connections are located in the user_multi_peripheral.c file of the example. In order to override the SDK functions a __WEAK identifier is added in the in each function:
 	- gapc_connection_ind_handler
 
 		![gapc_connection_req_ind_handler_change](assets/gapc_connection_req_ind_handler_change.png)
@@ -107,7 +107,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	
 	![two_connected_device](assets/two_connected_device.png)
 	
-- The example includes 2 services where the read and write data are connection dependant. The values of each characteristic are not stored in the peripheral's database but in application variables. Each time a read or a write is performed the values of each connection and characteristic is printed out on the terminal.
+- The example includes 2 services where the read and write data are connection dependent. The values of each characteristic are not stored in the peripheral's database but in application variables. Each time a read or a write is performed the values of each connection and characteristic is printed out on the terminal.
 	
 	![reporting_con_db_val](assets/reporting_con_db_val.png)
 

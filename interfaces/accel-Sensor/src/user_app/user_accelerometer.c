@@ -398,14 +398,14 @@ static void user_svc1_accel_data_send_ntf(int16_t axis_data, uint16_t handle)
 {
     uint8_t axis_val[8];
     //Construct the string to send as a notification
-    uint8_t string_length = user_int_to_string(axis_data * 3.9, axis_val);    //Read data and multipy by 3.9 to get acceleration in mg
+    uint8_t string_length = user_int_to_string(axis_data * 3.9, axis_val);    //Read data and multiply by 3.9 to get acceleration in mg
     
     struct custs1_val_ntf_ind_req* req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
                                                       prf_get_task_from_id(TASK_ID_CUSTS1),
                                                       TASK_APP,
                                                       custs1_val_ntf_ind_req,
                                                       string_length);
-    // Intialize message fields
+    // Initialize message fields
     req->conidx = 0;
     req->notification = true;
     req->handle = handle;

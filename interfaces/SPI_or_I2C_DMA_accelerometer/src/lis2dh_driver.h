@@ -494,7 +494,7 @@ status_t LIS2DH_Int1LatchEnable(State_t latch);
 status_t LIS2DH_ResetInt1Latch(void);
 status_t LIS2DH_Reset(void);
 status_t LIS2DH_SetIntConfiguration(LIS2DH_Int1Conf_t ic);
-status_t LIS2DH_SetInt1Threshold(u8_t ths);
+status_t LIS2DH_SetInt1Threshold(u8_t threshold);
 status_t LIS2DH_SetInt1Duration(LIS2DH_Int1Conf_t id);
 status_t LIS2DH_SetIntMode(LIS2DH_Int1Mode_t ic);
 status_t LIS2DH_SetClickCFG(u8_t status);

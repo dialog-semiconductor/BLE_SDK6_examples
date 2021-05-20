@@ -6,7 +6,7 @@
 - After the maximum advertising period is over, the device enters hibernation/state-aware hibernation mode
 - P0_5 (P2_5 on the DK Pro motherboard) is used to wake up the device from hibernation 
 
-- With respect to the state-aware hibernation, after the device enters the hibernation mode as explained above, external event via GPIO P0_5 (P2_5 on the motherboard) wakes up the device and DA14531 continues exection of application code from where it left before entering hibernation.
+- With respect to the state-aware hibernation, after the device enters the hibernation mode as explained above, external event via GPIO P0_5 (P2_5 on the motherboard) wakes up the device and DA14531 continues execution of application code from where it left before entering hibernation.
 
 Note:
 - On wake-up from the hibernation mode, the memory address 0x00 can be remapped either to OTP or ROM when using Flash memory or SysRAM depending on how the device is configured and programmed to handle hibernation wake-up mechanism. 
@@ -65,7 +65,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 		//        (GetBits16(SYS_CTRL_REG, REMAP_ADR0) > 1))
 	```
 
-	and add the follwing, 
+	and add the following, 
 
 	``` C
 		if ((GetBits16(HIBERN_CTRL_REG, HIBERNATION_ENABLE) == 1) &&

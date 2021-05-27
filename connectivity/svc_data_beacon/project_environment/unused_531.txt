@@ -1,8 +1,9 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Mar 23 10:40:01 2020
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu May 27 15:52:23 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
 adc_disable <= USED 0
+adc_get_sample <= USED 0
 adc_get_temp_async <= USED 0
 adc_input_shift_config <= USED 0
 adc_input_shift_disable <= USED 0
@@ -25,7 +26,6 @@ app_easy_gap_start_connection_to <= USED 0
 app_easy_gap_start_connection_to_get_active <= USED 0
 app_easy_gap_start_connection_to_set <= USED 0
 app_easy_gap_undirected_advertise_get_active <= USED 0
-app_easy_gap_undirected_advertise_start <= USED 0
 app_easy_gap_undirected_advertise_with_timeout_start <= USED 0
 ;FILE app_bond_db.o
 default_app_bdb_add_entry <= USED 0
@@ -96,17 +96,18 @@ app_msg_send_wakeup_ble <= USED 0
 app_sec_gen_csrk <= USED 0
 app_sec_gen_tk <= USED 0
 ;FILE app_security_task.o
+;FILE app_task.o
+;FILE app_utils.o
+app_get_address_type <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
 arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
 arch_force_active_mode <= USED 0
-arch_get_sleep_mode <= USED 0
 arch_last_rwble_evt_get <= USED 0
 arch_restore_sleep_mode <= USED 0
 arch_set_deep_sleep <= USED 0
-arch_set_hibernation <= USED 0
 ;FILE arch_system.o
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
@@ -116,7 +117,6 @@ battery_get_lvl <= USED 0
 battery_get_voltage <= USED 0
 ;FILE ble_arp.o
 ;FILE gpio.o
-GPIO_ConfigurePin <= USED 0
 GPIO_ConfigurePinPower <= USED 0
 GPIO_DisablePorPin <= USED 0
 GPIO_EnableIRQ <= USED 0
@@ -126,10 +126,7 @@ GPIO_GetPinFunction <= USED 0
 GPIO_GetPinStatus <= USED 0
 GPIO_GetPorTime <= USED 0
 GPIO_RegisterCallback <= USED 0
-GPIO_SetActive <= USED 0
 GPIO_SetIRQInputLevel <= USED 0
-GPIO_SetInactive <= USED 0
-GPIO_SetPinFunction <= USED 0
 GPIO_SetPorTime <= USED 0
 GPIO_is_valid <= USED 0
 ;FILE hardfault_handler.o
@@ -214,7 +211,7 @@ spi_send <= USED 0
 spi_set_bitmode <= USED 0
 spi_set_cp_mode <= USED 0
 spi_set_cs_mode <= USED 0
-spi_set_irq_mode <= USED 0
+spi_set_speed <= USED 0
 spi_transaction <= USED 0
 spi_transfer <= USED 0
 ;FILE spi_flash.o
@@ -291,8 +288,8 @@ uart_wait_tx_finish <= USED 0
 uart_write_buffer <= USED 0
 uart_write_byte <= USED 0
 ;FILE user_periph_setup.o
-set_pad_functions <= USED 0
 ;FILE user_svc_data_beacon.o
+user_advertise_operation <= USED 0
 ;FILE wkupct_quadec.o
 quad_decoder_clear_irq <= USED 0
 quad_decoder_disable_irq <= USED 0

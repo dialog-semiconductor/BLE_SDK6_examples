@@ -5,7 +5,7 @@
  *
  * @brief Empty peripheral template project source code.
  *
- * Copyright (c) 2012-2019 Dialog Semiconductor. All rights reserved.
+ * Copyright (c) 2012-2021 Dialog Semiconductor. All rights reserved.
  *
  * This software ("Software") is owned by Dialog Semiconductor.
  *
@@ -36,19 +36,13 @@
  * @{
  ****************************************************************************************
  */
-#include "rwip_config.h"             // SW configuration
-#include "rf_531.h"
-
-
+ 
 /*
  * INCLUDE FILES
  ****************************************************************************************
  */
 
-#include "app_api.h"
 #include "user_svc_data_beacon.h"
-#include "user_profiles_config.h"
-
 
 typedef struct
 {

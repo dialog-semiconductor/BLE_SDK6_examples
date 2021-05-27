@@ -21,7 +21,7 @@ For getting more information about the Non-Connectable Advertising, please refer
   - The DA1458x / DA145xx Pro Development kit is needed for this example with default jumper configuration..
   - Connect the USB Development kit to the host computer.
 - **Software configuration**
-  - SDK6.0.12 or later
+  - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - A smartphone with a BLE scanning app (for example **BLE scanner** on Android or **Lightblue** on IOS).
   - A BLE Sniffing tool is also useful; though not mandatory .

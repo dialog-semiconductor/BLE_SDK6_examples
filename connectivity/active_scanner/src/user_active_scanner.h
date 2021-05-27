@@ -55,7 +55,10 @@
 #include "gapm_task.h"                 // gap functions and messages
 #include "app.h"                       // application definitions
 #include "co_error.h"                  // error code definitions
- 
+#include "app_api.h"
+#include "arch_console.h"
+#include "user_custs1_def.h"
+#include "user_custs_config.h"
 
 /****************************************************************************
 Add here supported profiles' application header files.
@@ -80,7 +83,6 @@ i.e.
  * FUNCTION DECLARATIONS
  ****************************************************************************************
  */
-
 
 void user_on_set_dev_config_complete( void );
 void user_adv_report_ind (struct gapm_adv_report_ind const * param );

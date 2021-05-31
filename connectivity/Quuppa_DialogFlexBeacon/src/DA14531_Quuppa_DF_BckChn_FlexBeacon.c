@@ -31,7 +31,6 @@
 #include "DA14531_Quuppa_DF_BckChn_FlexBeacon.h"
 //#include "user_custs1_impl.h"
 //#include "user_custs1_def.h"
-//#include "flex_screen_lut.h"
 #include "co_bt.h"
 #include "rf_531.h"
 
@@ -157,8 +156,9 @@ uint8_t stored_adv_data_len                               __SECTION_ZERO("retent
 uint8_t stored_scan_rsp_data_len                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint8_t stored_adv_data[ADV_DATA_LEN]                     __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN]           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-
-uint8_t user_led_state                                    __SECTION_ZERO("retention_mem_area0");
+uint8_t user_led_on_display                               __SECTION_ZERO("retention_mem_area0");
+extern bool led_state;
+uint32_t actual_size;
 
 /*
  * FUNCTION DEFINITIONS
@@ -223,6 +223,10 @@ static void get_device_info(void)
 		ui8status = (ui8status & ~(1UL << 0)) | (1 << 0); // Battery voltage <2500 mV => Status bit 0 (Battery Alarm) = 1
 	}
 
+	if(!GPIO_GetPinStatus(PUSH_BUTTON_1_PORT, PUSH_BUTTON_1_PIN))  // Read the current status of Button (if pressed = Low)
+	{
+		ui8status = (ui8status & ~(1UL << 1)) | (1 << 1); // Button is pressed => Status bit 1 (Btn1) = 1
+	}
 
 	#if (defined CFG_PRINTF && SHOW_ALL_MESSAGES == 1) 
 	 uint32_t current_sys_tick = SYSTICK_PERIOD_US - systick_value();
@@ -365,11 +369,12 @@ static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_str
 
 void toggle_led(void){
 
-	if (user_led_state){
-			user_led_state = 0;
-		}else{
-		  user_led_state = 1;
-		}
+	if (led_state){
+		user_set_led_state(false);		
+	}else{
+		user_set_led_state(true);
+	}
+
 }
 
 /**
@@ -481,7 +486,7 @@ static void periodic_rx_on_timer_cb()
 static void user_enable_extended_sleep_timer_cb()
 {	
 	  user_enable_extended_sleep_timer = EASY_TIMER_INVALID_TIMER;
-				#ifdef CFG_PRINTF
+			#ifdef CFG_PRINTF
 			 arch_printf("\n\n\r SLEEP timer elapsed...");
 			#endif
 //			  user_change_adv_state(SLEEP);
@@ -626,7 +631,7 @@ void user_app_init(void)
     //Set the flag to update periodic timers once
   	user_periodic_timer_init_once = 1;
 
-		user_led_state = 1; // Init Virtual LED status variable								
+		user_set_led_state(false);
 	
     // Initialize Advertising and Scan Response Data
     memcpy(stored_adv_data, USER_ADVERTISE_DATA, USER_ADVERTISE_DATA_LEN);
@@ -675,7 +680,7 @@ void user_motion_undirect_adv_start(void)
 				app_easy_timer_cancel(user_enable_extended_sleep_timer);
 				user_enable_extended_sleep_timer = EASY_TIMER_INVALID_TIMER;		
 		}
-
+		user_enable_extended_sleep_timer =	app_easy_timer(TIMEOUT_FOR_SLEEP, user_enable_extended_sleep_timer_cb);
 	
     app_easy_gap_undirected_advertise_start();
 		#if (defined CFG_PRINTF && SHOW_ALL_MESSAGES == 1)
@@ -714,12 +719,12 @@ void user_static_undirect_adv_start(void)
     // Add manufacturer data to initial advertising or scan response data, if there is enough space
     app_add_ad_struct(cmd, &mnf_data, sizeof(struct mnf_specific_data_ad_structure), 1);
 
-		if(user_enable_extended_sleep_timer != EASY_TIMER_INVALID_TIMER)
-		{
-				app_easy_timer_cancel(user_enable_extended_sleep_timer);
-				user_enable_extended_sleep_timer = EASY_TIMER_INVALID_TIMER;		
-		}
-		user_enable_extended_sleep_timer =	app_easy_timer(TIMEOUT_FOR_SLEEP, user_enable_extended_sleep_timer_cb);
+//		if(user_enable_extended_sleep_timer != EASY_TIMER_INVALID_TIMER)
+//		{
+//				app_easy_timer_cancel(user_enable_extended_sleep_timer);
+//				user_enable_extended_sleep_timer = EASY_TIMER_INVALID_TIMER;		
+//		}
+//		user_enable_extended_sleep_timer =	app_easy_timer(TIMEOUT_FOR_SLEEP, user_enable_extended_sleep_timer_cb);
 
 	
     app_easy_gap_undirected_advertise_start();
@@ -1154,7 +1159,10 @@ void user_change_adv_state(advertising_state state)
 
 static void _user_app_sensor_init()
 {
-    #if 0
+    /* Variable to report error */
+    int8_t rslt;
+
+	#if 0
     struct bmi2_sens_config config[2] = {0};
     
      /* Array to select sensors */
@@ -1224,13 +1232,17 @@ static void _user_app_sensor_init()
     
     // No motion feature configuration
     bmi2_get_regs(BMI2_FEATURES_REG_ADDR, (uint8_t*)feat_cfg, 4, port_bmi270_dev_ptr());
-//    feat_cfg[0] = 0xFE;      // Setting the no motion threshold to 5 seconds
-    feat_cfg[0] = 0xE8;      // Setting the no motion threshold to 20 seconds LSB => 2000ms/20ms=1000 => 0x03E8
-    feat_cfg[1] |= 0x03;      // Setting the no motion threshold to 20 seconds MSB (duration is 12 bit, higher bits are x,y,z enable bits)		
+//    feat_cfg[0] = 0xFE;      // Setting the no motion threshold to 5 seconds @ 50Hz
+    feat_cfg[0] = 0xB0;      // Setting the no motion threshold to 20 seconds LSB => 20000ms/20ms=1000 => 0x03E8 @ 50Hz
+    feat_cfg[1] |= 0x04;      // Setting the no motion threshold to 20 seconds MSB (duration is 12 bit, higher bits are x,y,z enable bits) @ 50Hz		
     feat_cfg[3] |= 0x80; // Enabling the no motion feature
     bmi2_set_regs(BMI2_FEATURES_REG_ADDR, (uint8_t*)feat_cfg, 4, port_bmi270_dev_ptr());
     
-    bmi2_set_adv_power_save(BMI2_ENABLE,  port_bmi270_dev_ptr());
+    rslt = bmi2_set_adv_power_save(BMI2_ENABLE,  port_bmi270_dev_ptr());
+		
+		#ifdef CFG_PRINTF
+		arch_printf("\n\n\r bmi2_set_adv_power_save = %s", rslt==0? "OK":"NOT OK");
+		#endif
     
     var = 0x00; // latched
     bmi2_set_regs(BMI2_INT_LATCH_ADDR, &var, 1, port_bmi270_dev_ptr());
@@ -1238,11 +1250,12 @@ static void _user_app_sensor_init()
     var = 0x20 | 0x40; // no_motion | any_motion
     bmi2_set_regs(BMI2_INT1_MAP_FEAT_ADDR, &var, 1, port_bmi270_dev_ptr());
     
-    var = 0x02 | 0x08; // active_high | push_pull | output_enabled
+//    var = 0x02 | 0x08; // active_high | push_pull | output_enabled
+    var = 0x00 | 0x08; // active_low | push_pull | output_enabled		
     bmi2_set_regs(BMI2_INT1_IO_CTRL_ADDR, &var, 1, port_bmi270_dev_ptr());
 
-    var = 0x07; // acc_conf at 50Hz and low power mode
-    bmi2_set_regs(BMI2_ACC_CONF_ADDR, &var, 1, port_bmi270_dev_ptr());
+//    var = 0x07; // acc_conf at 50Hz and low power mode
+		bmi2_set_regs(BMI2_ACC_CONF_ADDR, &var, 1, port_bmi270_dev_ptr());
     
     var = 0x04; // acc_enable
     bmi2_set_regs(BMI2_PWR_CTRL_ADDR, &var, 1, port_bmi270_dev_ptr());
@@ -1274,12 +1287,12 @@ static const spi_cfg_t flash_spi_cfg = {
 #endif
 };
 
-// SPI Flash device parameters environment(MX25R2035F)
+// SPI Flash device parameters environment(P25Q11U)
 static const spi_flash_cfg_t flash_cfg_env = {
 
-    .dev_index = 0x06,
-    .jedec_id = 0xC22812, 
-    .chip_size = 0x40000,
+    .dev_index = 0x10,
+    .jedec_id = 0x854011, 
+	  .chip_size = 0x20000,
 };
 
 
@@ -1316,9 +1329,10 @@ void user_app_on_db_init_complete(void)
 #endif // HAS_WKUP_KEYS
     
     _user_app_sensor_init();
-    
-    //_user_app_screen_init();
+	
 
+		flash_itf_init();
+	  spi_flash_power_down();
     user_app_adv_start();
 }
 
@@ -1328,26 +1342,20 @@ static void _user_pb1_long_press_handler()
 	app_push_button_timer = EASY_TIMER_INVALID_TIMER;
 
 	#ifdef CFG_PRINTF
-		arch_printf("\n\n\r Button released after long (>4sec) press...\n");
-		arch_printf("\n\n\r Set the EN_PW pin low and wait for power off...\n");
+			arch_printf("\n\n\r Button pressed > %d sec...\n",APP_BUTTON_LONG_PRESS_TO/100);
 	#endif
-
-	// if the PB1 button is pressed for a long time
-	// make the EN_PW pin low and wait for power off
-//	en_pw_set_state(false);
 }
 
 static void _user_pb1_key_handler(bool pressed)
 {
-//	uint8_t int_feat_enable = 0;
+	uint8_t int_feat_enable = 0;
 
 	if(pressed) 
 		{ // Do something when button is firstly pressed
 			// Start timer to check about long press
 			app_push_button_timer = app_easy_timer(APP_BUTTON_LONG_PRESS_TO, _user_pb1_long_press_handler);
 
-// Due to the fact that PB1 is shared with Display D/C# pin, below feature cannot be used
-#if 0			
+#if (WKUP_KEYS_NUM > 1)			
 
 			// Cancel Motion_Sleep_timeout timer	
 			if(user_enable_extended_sleep_timer != EASY_TIMER_INVALID_TIMER)
@@ -1357,7 +1365,7 @@ static void _user_pb1_key_handler(bool pressed)
 			}
 
 			#ifdef CFG_PRINTF
-		arch_printf("\n\n\r Button pressed: Start long press and cancel Sleep timer...\n");
+			arch_printf("\n\n\r Button pressed: Started long press timer and cancelled Sleep timer...\n");
 			#endif
 
 #endif
@@ -1372,8 +1380,7 @@ static void _user_pb1_key_handler(bool pressed)
 					app_easy_timer_cancel(app_push_button_timer);
 					app_push_button_timer = EASY_TIMER_INVALID_TIMER;
 
-// Due to the fact that PB1 is shared with Display D/C# pin, below feature cannot be used
-#if 0
+#if (WKUP_KEYS_NUM > 1)
 			
 					#ifdef CFG_PRINTF
 						arch_printf("\n\n\r Button released after a short press...\n");
@@ -1382,34 +1389,32 @@ static void _user_pb1_key_handler(bool pressed)
 						if (adv_state_before == MOTION_ADVERTISING && !arch_ble_ext_wakeup_get())				
 						{// If already in MOTION ADVERTISING do nothing (accelerometer is taking care)
 							#ifdef CFG_PRINTF
-								arch_printf("\n\n\r Motion adv still on, do nothing as accelerometer is in NO_MOTION detect mode\n");
+							arch_printf("\n\n\r Motion adv still on, do nothing as accelerometer is in NO_MOTION detect mode\n");
 							#endif
 						}
 						else
 							{
 							int_feat_enable = 0x20; // enable the NO_MOTION interrupt and disable the ANY_MOTION
-							image_addr = 0x10000; // Set an image address different from zero to update the screen 
 							arch_set_sleep_mode(app_default_sleep_mode);
 							arch_ble_force_wakeup();
 							adv_state = MOTION_ADVERTISING;
 							user_periodic_timer_init_once = 1;
-							cancel_motion_adv = 1;
+							//cancel_motion_adv = 1;
 
 							if (adv_state == SLEEP || arch_ble_ext_wakeup_get())
 								{// If we are in sleep => Wake up from sleep
 									 #ifdef CFG_PRINTF
-													arch_printf("\n\n\rWake up from SLEEP due to Button press");
-											arch_printf("\n\n\rRestart Motion adv\n");
+									 arch_printf("\n\n\rWake up from SLEEP due to Button press");
+									 arch_printf("\n\n\rRestart Motion adv\n");
 									 #endif
 									 arch_ble_ext_wakeup_off();
 									 user_app_adv_start();			
 								}	
 							else
-										{// Switch to motion advertising
+								{// Switch to motion advertising
 									 #ifdef CFG_PRINTF
-											arch_printf("\n\n\rSwitch to Motion adv due to Button press");
+									 arch_printf("\n\n\rSwitch to Motion adv due to Button press");
 									 #endif
-
 									 app_easy_gap_advertise_stop();
 								}
 
@@ -1419,15 +1424,13 @@ static void _user_pb1_key_handler(bool pressed)
 			else 
 				{//Released after a Long press
 
-// Due to the fact that PB1 is shared with Display D/C# pin, below feature cannot be used
-#if 0				
+#if (WKUP_KEYS_NUM > 1)				
 					if (adv_state != SLEEP)
 						{
 							// Go to sleep
 							int_feat_enable = 0x40; // enable the ANY_MOTION interrupt and disable the NO_MOTION
-							image_addr = 0x10000; // Set an image address different from zero to update the screen   
 							#ifdef CFG_PRINTF
-									arch_puts("\n\n\rSet Sensor to ANY_MOTION detection, Stop adv and going to sleep...\n");
+							arch_puts("\n\n\rSet Sensor to ANY_MOTION detection, Stop adv and going to sleep...\n");
 							#endif
 							adv_state = SLEEP;
 //							app_easy_gap_advertise_stop();
@@ -1442,8 +1445,8 @@ static void _user_pb1_key_handler(bool pressed)
 
 			  } // End of Released after a Long press
 
-// Due to the fact that PB1 is shared with Display D/C# pin, below feature cannot be used
-#if 0
+// Due to the fact that PB1 is shared with SDA pin, below feature needs to implement I2C release feature and right now cannot be used
+#if (WKUP_KEYS_NUM > 1)
 				if(int_feat_enable) {
 						// Do the interrupt updating if needed
 						port_bmi270_itf_begin();
@@ -1477,8 +1480,8 @@ static void _user_inertial_handle_interrupt()
 				if (adv_state == SLEEP || arch_ble_ext_wakeup_get())
 					{// Wake up from sleep
 					 #ifdef CFG_PRINTF
-							arch_printf("\n\n\rWake up from SLEEP due to interrupt received");
-									arch_printf("\n\n\rRestart Motion adv\n");
+						arch_printf("\n\n\rWake up from SLEEP due to interrupt received");
+						arch_printf("\n\n\rRestart Motion adv\n");
 					 #endif
 						arch_ble_ext_wakeup_off();
 				    adv_state = MOTION_ADVERTISING;
@@ -1489,19 +1492,18 @@ static void _user_inertial_handle_interrupt()
         else
 					{// Switch to MOTION ADV
 					 #ifdef CFG_PRINTF
-									arch_printf("\n\n\rSwitch to Motion adv\n");
+						arch_printf("\n\n\rSwitch to Motion adv\n");
 					 #endif
 				    adv_state = MOTION_ADVERTISING;
+		        // This flag will recharge user_sleep_timout_timer with TIMEOUT_FOR_SLEEP and RX_ON timer with RX_ON value
+		        user_periodic_timer_init_once = 1;
 						app_easy_gap_advertise_stop(); // Stop Static ADV
 					}
         
     } else if(int0_status & BMI270_NO_MOT_STATUS_MASK) {
         // Timeout for NO_MOTION elapsed got to Static Adv!
         int_feat_enable = 0x40; // enable the ANY_MOTION interrupt and disable the NO_MOTION
-
 				cancel_motion_adv = 1;
-			
-
     }
     
     if(int_feat_enable) {
@@ -1682,7 +1684,7 @@ void user_on_adv_report_ind(struct gapm_adv_report_ind const * param)
 			          #endif
                 // Prepare the rest of the payload
 								mnf_data.proprietary_data[11] = 0x01;      // Command type: 0x01 = Toggle LED
-								mnf_data.proprietary_data[12] = user_led_state; // Report the current status of LED								
+								mnf_data.proprietary_data[12] = led_state; // Report the current status of LED
 								mnf_data.proprietary_data[13] = 0x00; // Developer Data 2
 								mnf_data.proprietary_data[14] = 0x00; // Developer Data 3
 								mnf_data.proprietary_data[15] = 0x00; // Developer Data 4		

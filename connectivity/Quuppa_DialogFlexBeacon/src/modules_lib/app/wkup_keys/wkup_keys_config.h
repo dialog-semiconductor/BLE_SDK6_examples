@@ -22,8 +22,8 @@
 // Push button key configuration
 #define WKUP_KEY_0_PORT         INERTIAL_INT_PORT
 #define WKUP_KEY_0_PIN          INERTIAL_INT_PIN
-#define WKUP_KEY_0_POLARITY     WKUP_KEY_ACTIVE_HIGH
-#define WKUP_KEY_0_MODE         INPUT
+#define WKUP_KEY_0_POLARITY     WKUP_KEY_ACTIVE_LOW
+#define WKUP_KEY_0_MODE         INPUT_PULLUP
 #define WKUP_KEY_0_CHANNEL      WKUP_KEYS_CHANNEL_1
 #endif
 
@@ -31,8 +31,8 @@
 // Push button key configuration
 #define WKUP_KEY_1_PORT         PUSH_BUTTON_1_PORT
 #define WKUP_KEY_1_PIN          PUSH_BUTTON_1_PIN
-#define WKUP_KEY_1_POLARITY     WKUP_KEY_ACTIVE_HIGH
-#define WKUP_KEY_1_MODE         INPUT
+#define WKUP_KEY_1_POLARITY     WKUP_KEY_ACTIVE_LOW
+#define WKUP_KEY_1_MODE         INPUT_PULLUP
 #define WKUP_KEY_1_CHANNEL      WKUP_KEYS_CHANNEL_2
 #endif
 
@@ -45,7 +45,7 @@
 #define WKUP_KEY_2_CHANNEL      WKUP_KEYS_CHANNEL_1
 #endif
 
-#define WKUP_KEYS_CFG_DEBOUNCE_TIME_MS  (5)
+#define WKUP_KEYS_CFG_DEBOUNCE_TIME_MS  (10)
 
 #define WKUP_KEYS_USE_BOTH_CHANNELS     (1)
 

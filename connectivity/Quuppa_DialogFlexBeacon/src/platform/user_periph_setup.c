@@ -27,8 +27,8 @@
 #ifdef HAS_WKUP_KEYS
 #include "wkup_keys.h"
 #endif
-
-//bool en_pw_state                      __SECTION_ZERO("retention_mem_area0");
+#include "da1458x_config_basic.h"
+bool led_state                      __SECTION_ZERO("retention_mem_area0");
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
@@ -60,10 +60,10 @@ void GPIO_reservations(void)
 
 #endif
 
-//void en_pw_set_state(bool enable)
-//{
-//    en_pw_state = enable;
-//}
+void user_set_led_state(bool enable)
+{
+    led_state = enable;
+}
 void set_pad_functions(void)
 {
 /*
@@ -74,13 +74,14 @@ void set_pad_functions(void)
     // Disallow spontaneous SPI Flash wake-up
     GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_GPIO, true);
     GPIO_ConfigurePin(SPI_EN_1_PORT, SPI_EN_1_PIN, OUTPUT, PID_GPIO, true);
-    GPIO_ConfigurePin(SPI_EN_2_PORT, SPI_EN_2_PIN, OUTPUT, PID_GPIO, true);
+    
+    GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, led_state);
 
 #if defined (CFG_PRINTF_UART2)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif    
-    
+ 
 #ifdef HAS_WKUP_KEYS
     wkup_keys_init(true);
 #endif // HAS_WKUP_KEYS
@@ -130,6 +131,4 @@ void periph_init(void)
 
     // Enable the pads
     GPIO_set_pad_latch_en(true);
-		
-//		en_pw_set_state(true);
 }

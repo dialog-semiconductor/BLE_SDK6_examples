@@ -48,7 +48,7 @@
  ****************************************************************************************
  */
 
-#define SHOW_ALL_MESSAGES		(0) // 0 = print only Timers messages, 1 = print all debug messages
+#define SHOW_ALL_MESSAGES		(1) // 0 = print only Timers messages, 1 = print all debug messages
 
 #define MAN_QUUPPA_COMP_F1_ID             {0xff, 0xc7, 0x00, 0xf1}  // 0xFF = Manufacturing data, 0x00C7 = Quuppa, 0xF1 = REQ packet 
 
@@ -76,7 +76,7 @@
 
 #define MOTION_ADV_HEADER                0x69 // Quuppa Header 0x69 = [7] RX ON [0], [6] Bck Chn [1], [5-4] TagID=BDAdd [10],[3-2] 0dBm Tx power [10], [1-0] DF TX Rate(1-6Hz)[01]
 
-#define RX_ON_MOTION_ADV_HEADER          0xE9 //0xE8 // Quuppa Header 0xE8 = [7] RX ON [1], [6] Bck Chn [1], [5-4] TagID=BDAdd [10],[3-2] 0dBm Tx power [10], [1-0] DF TX Rate(<1Hz)[00]
+#define RX_ON_MOTION_ADV_HEADER          0xE8 // Quuppa Header 0xE8 = [7] RX ON [1], [6] Bck Chn [1], [5-4] TagID=BDAdd [10],[3-2] 0dBm Tx power [10], [1-0] DF TX Rate(<1Hz)[00]
 
 // TX Rate Default state advertising interval
 #define STATIC_ADV_INTERVAL	             10000	 //( 10000 * 1msec =  10000msec => 0.1Hz)
@@ -148,7 +148,7 @@
 #define APP_AD_MSD_COMPANY_ID       (0x00C7)
 #define APP_AD_MSD_COMPANY_ID_LEN   (2)
 #define APP_AD_MSD_DATA_LEN         (24)
-#define DEVELOPER_ID                        (0x0008)  // Dialog Developer ID assigned by Quuppa
+#define DEVELOPER_ID                        (0x0080)  // Dialog Developer ID assigned by Quuppa
 
 /* Advertising data update timer */
 #define APP_ADV_DATA_UPDATE_TO              (3000)   // 3000*10ms = 30sec, The maximum allowed value is 41943sec (4194300 * 10ms)

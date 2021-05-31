@@ -225,7 +225,7 @@ int8_t port_bmi270_init(void)
 #if(PORT_BMI270_INTERFACE==PORT_BMI270_INTERFACE_I2C)
     port_bmi270_dev.intf = BMI2_I2C_INTERFACE;
     port_bmi270_dev.dev_id = BMI2_I2C_PRIM_ADDR;
-    port_bmi270_dev.read_write_len = 128;
+    port_bmi270_dev.read_write_len = 256;
 #else
   #if(PORT_BMI270_INTERFACE==PORT_BMI270_INTERFACE_I2C)
     port_bmi270_dev.intf = BMI2_SPI_INTERFACE;

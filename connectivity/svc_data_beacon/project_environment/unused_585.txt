@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Fri Mar 20 10:57:47 2020
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu May 27 15:47:54 2021
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -104,15 +104,14 @@ app_sec_gen_tk <= USED 0
 ;FILE app_task.o
 ;FILE app_utils.o
 app_get_address_type <= USED 0
+;FILE arch_console.o
+arch_puts <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
 arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
-arch_force_active_mode <= USED 0
-arch_get_sleep_mode <= USED 0
 arch_last_rwble_evt_get <= USED 0
-arch_restore_sleep_mode <= USED 0
 arch_set_deep_sleep <= USED 0
 ;FILE arch_system.o
 __ARM_common_ll_muluu <= USED 0
@@ -130,7 +129,6 @@ battery_get_lvl <= USED 0
 ;FILE custs1_task.o
 ;FILE diss.o
 ;FILE gpio.o
-GPIO_ConfigurePin <= USED 0
 GPIO_ConfigurePinPower <= USED 0
 GPIO_DisablePorPin <= USED 0
 GPIO_EnableIRQ <= USED 0
@@ -140,10 +138,7 @@ GPIO_GetPinFunction <= USED 0
 GPIO_GetPinStatus <= USED 0
 GPIO_GetPorTime <= USED 0
 GPIO_RegisterCallback <= USED 0
-GPIO_SetActive <= USED 0
 GPIO_SetIRQInputLevel <= USED 0
-GPIO_SetInactive <= USED 0
-GPIO_SetPinFunction <= USED 0
 GPIO_SetPorTime <= USED 0
 GPIO_is_valid <= USED 0
 ;FILE hardfault_handler.o
@@ -305,25 +300,17 @@ systick_value <= USED 0
 systick_wait <= USED 0
 ;FILE trng.o
 ;FILE uart.o
-uart_baudrate_setf <= USED 0
 uart_disable <= USED 0
 uart_disable_flow_control <= USED 0
-uart_enable <= USED 0
 uart_enable_flow_control <= USED 0
-uart_initialize <= USED 0
 uart_read_buffer <= USED 0
 uart_read_byte <= USED 0
 uart_receive <= USED 0
 uart_register_err_cb <= USED 0
 uart_register_rx_cb <= USED 0
-uart_register_tx_cb <= USED 0
-uart_send <= USED 0
-uart_wait_tx_finish <= USED 0
-uart_write_buffer <= USED 0
-uart_write_byte <= USED 0
-;FILE user_empty_peripheral_template.o
 ;FILE user_periph_setup.o
-set_pad_functions <= USED 0
+;FILE user_svc_data_beacon.o
+user_advertise_operation <= USED 0
 ;FILE wkupct_quadec.o
 quad_decoder_disable_irq <= USED 0
 quad_decoder_enable_irq <= USED 0

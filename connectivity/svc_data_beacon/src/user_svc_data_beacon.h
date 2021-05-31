@@ -55,7 +55,9 @@
 #include "gapm_task.h"                 // gap functions and messages
 #include "app.h"                       // application definitions
 #include "co_error.h"                  // error code definitions
- 
+#include "app_api.h"
+#include "user_profiles_config.h"
+#include "rwip_config.h"             // SW configuration
 
 /****************************************************************************
 Add here supported profiles' application header files.

@@ -156,14 +156,11 @@ void app_advertise_complete(const uint8_t status)
 		// Close PD_TIM
 		SetBits16(PMU_CTRL_REG, TIM_SLEEP, 1);
 		// Wait until PD_TIM is closed
-		while ((GetWord16(SYS_STAT_REG) & TIM_IS_DOWN) != TIM_IS_DOWN)
+		while ((GetWord16(SYS_STAT_REG) & TIM_IS_DOWN) != TIM_IS_DOWN);
 #endif
 
 #if defined (__DA14531__) && defined (CFG_APP_GOTO_HIBERNATION)
-			
-				//powering down flash before entering hibernation 
-				spi_flash_power_down(); 			
-				
+					
         // Put system into hibernation
         arch_set_hibernation(HIB_WAKE_UP_PIN_MASK,
                              CFG_HIBERNATION_RAM1,
@@ -173,10 +170,7 @@ void app_advertise_complete(const uint8_t status)
                              CFG_HIBERNATION_PAD_LATCH_EN);
 #elif defined (__DA14531__) && defined (CFG_APP_GOTO_STATEFUL_HIBERNATION)
        
-				
-				//powering down flash before entering state-aware hibernation
-				spi_flash_power_down(); 	
-				
+							
 				 // Put system into stateful hibernation
         arch_set_stateful_hibernation(HIB_WAKE_UP_PIN_MASK,
                                       CFG_STATEFUL_HIBERNATION_RAM1,

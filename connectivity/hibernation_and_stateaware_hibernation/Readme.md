@@ -1,4 +1,4 @@
-## State aware hibernation
+## Hibernation and State aware hibernation
 
 - This project starts with undirected connectable advertising
 - In between 2 advertising events extended sleep is applied

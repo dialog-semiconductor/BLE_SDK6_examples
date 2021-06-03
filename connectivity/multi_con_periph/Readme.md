@@ -59,29 +59,149 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 
 	- apply to the #define APP_EASY_MAX_ACTIVE_CONNECTION the maximum connections that should be supported (DA14531 - 3 maximum connections and DA14585/6 - 8 maximum connections). The maximum supported connections are defined in the BLE_CONNECTION_MAX definition.
 	
-		![app_h](assets/app_h_changes.png)
-
+	``` C
+		/// Max connections supported by application task
+		#ifdef CFG_ENABLE_MULTIPLE_CONN
+		#define APP_EASY_MAX_ACTIVE_CONNECTION      (BLE_CONNECTION_MAX)
+		#else		
+		#define APP_EASY_MAX_ACTIVE_CONNECTION      (1)
+		#endif
+	```
+	
 	- apply the following changes according to the below snippet in order for the app_db_init_next() function to be invoked from application level.
 
-		![app_h_changes_init_next](assets/app_h_changes_init_next.png)
+	``` C
+		#if (defined (__DA14531__) && !defined (__EXCLUDE_ROM_APP_TASK__)) || defined (CFG_ENABLE_MULTIPLE_CONN)
+		/**
+		****************************************************************************************
+		* @brief Initialize the database for all the included profiles.
+		* @return true if succeeded, else false
+		****************************************************************************************
+		*/
+		bool app_db_init_next(void);
+		#endif
+	```
+		
 
 - Changes in app_task.h : apply to the APP_IDX_MAX the maximum number or task instances that the application should support. This should agree with the max active connections that the device is supporting.
+	``` C
+		/// Number of APP Task Instances
+		#ifdef CFG_ENABLE_MULTIPLE_CONN
+		#define APP_IDX_MAX      (1)
+		#else
+		#define APP_IDX_MAX      (APP_EASY_MAX_ACTIVE_CONNECTION)
+		#endif
+	```
 	
-	![app_task_h](assets/app_task_h_changes.png)
 - Changes in app.c : In this file specific functions need to be used in application level or being overiden by application code. The functions with the additional implementation for supporting multiple connections is located in the user_multi_peripheral.c file.
 	- In order to be able to use the app_db_init_next() function in application level for initializing the device's database the "static" identifier should be removed.
 	
-		![app_c_changes_db_init_next](assets/app_c_changes_db_init_next.png)
+		``` C
+		/**
+		****************************************************************************************
+		* @brief Initialize the database for all the included profiles.
+		* @return true if succeeded, else false
+		****************************************************************************************
+		*/
+		#if (!defined (__DA14531__) || defined (__EXCLUDE_ROM_APP_TASK__)) && !defined (CFG_ENABLE_MULTIPLE_CONN)
+		static bool app_db_init_next(void)
+		#else
+		bool app_db_init_next(void)
+		#endif
+		{
+			static uint8_t i __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY;
+			static uint8_t k __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY;
+
+		```
 	- The app_db_init_start() function needs to be modified to support multiple connections. To apply the changes in application level, the SDK function needs to be excluded from the build using the CFG_ENABLE_MULTIPLE_CONN guard. 
 	
-		![app_c_changes_db_init_start](assets/app_c_changes_db_init_start.png)  
+		``` C
+		#if !defined (__DA14531__) || defined (__EXCLUDE_ROM_APP_TASK__)
+		#if !defined (CFG_ENABLE_MULTIPLE_CONN)
+		bool app_db_init_start(void)
+		{
+			// Indicate if more services need to be added in the database
+			bool end_db_create;
+
+			// We are now in Initialization State
+			ke_state_set(TASK_APP, APP_DB_INIT);
+
+			end_db_create = app_db_init_next();
+
+			return end_db_create;
+		}
+		#endif
+		```  
 - Changes in app_task.c : In app_task.c file the connection and disconnection handlers of the device should be modified in order to support the multiple connection feature. The complete functions supporting multiple connections are located in the user_multi_peripheral.c file of the example. In order to overide the SDK functions a __WEAK identifier is added in the in each function:
 	- gapc_connection_ind_handler
 
-		![gapc_connection_req_ind_handler_change](assets/gapc_connection_req_ind_handler_change.png)
+		``` C
+		/**
+		****************************************************************************************
+		* @brief Handles connection complete event from the GAP. Will enable profile.
+		* @param[in] msgid     Id of the message received.
+		* @param[in] param     Pointer to the parameters of the message.
+		* @param[in] dest_id   ID of the receiving task instance (TASK_GAP).
+		* @param[in] src_id    ID of the sending task instance.
+		* @return If the message was consumed or not.
+		****************************************************************************************
+		*/
+		#ifdef CFG_ENABLE_MULTIPLE_CONN
+		__WEAK int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
+												struct gapc_connection_req_ind const *param,
+												ke_task_id_t const dest_id,
+												ke_task_id_t const src_id)
+
+
+
+		#else
+		static int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
+												struct gapc_connection_req_ind const *param,
+												ke_task_id_t const dest_id,
+												ke_task_id_t const src_id)
+		#endif
+																							{
+			// Connection Index
+			if (ke_state_get(dest_id) == APP_CONNECTABLE)
+			{
+				uint8_t conidx = KE_IDX_GET(src_id);
+
+		```
+
 	- gapc_disconnect_ind_handler
 
-		![gapc_disconnection_req_ind_handler_change](assets/gapc_disconnection_req_ind_handler_change.png)
+		``` C
+		/**
+		****************************************************************************************
+		* @brief Handles disconnection complete event from the GAP.
+		* @param[in] msgid     Id of the message received.
+		* @param[in] param     Pointer to the parameters of the message.
+		* @param[in] dest_id   ID of the receiving task instance (TASK_GAP).
+		* @param[in] src_id    ID of the sending task instance.
+		* @return If the message was consumed or not.
+		****************************************************************************************
+		*/
+
+		#ifdef CFG_ENABLE_MULTIPLE_CONN
+		__WEAK int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
+												struct gapc_disconnect_ind const *param,
+												ke_task_id_t const dest_id,
+												ke_task_id_t const src_id)
+
+
+
+		#else
+		static int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
+											struct gapc_disconnect_ind const *param,
+											ke_task_id_t const dest_id,
+											ke_task_id_t const src_id)
+		#endif
+																							
+
+		{
+			uint8_t state = ke_state_get(dest_id);
+			uint8_t conidx = KE_IDX_GET(src_id);
+		```		
 
 
 ## How to run the example

@@ -96,7 +96,7 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 - Changes in app.c : In this file specific functions need to be used in application level or being overiden by application code. The functions with the additional implementation for supporting multiple connections is located in the user_multi_peripheral.c file.
 	- In order to be able to use the app_db_init_next() function in application level for initializing the device's database the "static" identifier should be removed.
 	
-		``` C
+	``` C
 		/**
 		****************************************************************************************
 		* @brief Initialize the database for all the included profiles.
@@ -112,10 +112,10 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 			static uint8_t i __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY;
 			static uint8_t k __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY;
 
-		```
+	```
 	- The app_db_init_start() function needs to be modified to support multiple connections. To apply the changes in application level, the SDK function needs to be excluded from the build using the CFG_ENABLE_MULTIPLE_CONN guard. 
 	
-		``` C
+	``` C
 		#if !defined (__DA14531__) || defined (__EXCLUDE_ROM_APP_TASK__)
 		#if !defined (CFG_ENABLE_MULTIPLE_CONN)
 		bool app_db_init_start(void)
@@ -131,11 +131,11 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 			return end_db_create;
 		}
 		#endif
-		```  
+	```  
 - Changes in app_task.c : In app_task.c file the connection and disconnection handlers of the device should be modified in order to support the multiple connection feature. The complete functions supporting multiple connections are located in the user_multi_peripheral.c file of the example. In order to overide the SDK functions a __WEAK identifier is added in the in each function:
 	- gapc_connection_ind_handler
 
-		``` C
+	``` C
 		/**
 		****************************************************************************************
 		* @brief Handles connection complete event from the GAP. Will enable profile.
@@ -166,11 +166,11 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 			{
 				uint8_t conidx = KE_IDX_GET(src_id);
 
-		```
+	```
 
 	- gapc_disconnect_ind_handler
 
-		``` C
+	``` C
 		/**
 		****************************************************************************************
 		* @brief Handles disconnection complete event from the GAP.
@@ -201,7 +201,7 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 		{
 			uint8_t state = ke_state_get(dest_id);
 			uint8_t conidx = KE_IDX_GET(src_id);
-		```		
+	```		
 
 
 ## How to run the example

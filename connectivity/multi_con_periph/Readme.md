@@ -27,7 +27,7 @@ For running the example on a DA14585/DA14586 Daughter board + DA145xxDEVKT-P PRO
 
 - Connect the DA145xx Pro Development Kit to the host computer.
 - UART TX on P0_4 for DA14585/DA14586 (place jumper between J1:17 and J1:18) for printing functionality.
-![DA14585_connection_wires](assets/DA14585_pro.svg)
+![DA14585_connection_wires](assets/da14585_pro.svg)
 
 For running the example on a DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard the following configuration is required.
 

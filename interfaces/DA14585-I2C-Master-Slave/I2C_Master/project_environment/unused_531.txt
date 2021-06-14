@@ -1,0 +1,96 @@
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Mon Jun 14 15:56:05 2021
+;VERSION 0.2
+;FILE arch_system.o
+__asm___13_arch_system_c_f9d1779f____REV16 <= USED 0
+__asm___13_arch_system_c_f9d1779f____REVSH <= USED 0
+arch_set_pxact_gpio <= USED 0
+;FILE exceptions.o
+;FILE gpio.o
+GPIO_ConfigurePinPower <= USED 0
+GPIO_DisablePorPin <= USED 0
+GPIO_EnableIRQ <= USED 0
+GPIO_EnablePorPin <= USED 0
+GPIO_GetIRQInputLevel <= USED 0
+GPIO_GetPinFunction <= USED 0
+GPIO_GetPorTime <= USED 0
+GPIO_RegisterCallback <= USED 0
+GPIO_SetIRQInputLevel <= USED 0
+GPIO_SetPorTime <= USED 0
+GPIO_is_valid <= USED 0
+__asm___6_gpio_c_7b3262c7____REV16 <= USED 0
+__asm___6_gpio_c_7b3262c7____REVSH <= USED 0
+;FILE hw_otpc_531.o
+__asm___13_hw_otpc_531_c_5e36599e____REV16 <= USED 0
+__asm___13_hw_otpc_531_c_5e36599e____REVSH <= USED 0
+hw_otpc_clear_dcdc_reserved <= USED 0
+hw_otpc_prog <= USED 0
+hw_otpc_prog_and_verify <= USED 0
+hw_otpc_read <= USED 0
+hw_otpc_word_prog_and_verify <= USED 0
+hw_otpc_word_read <= USED 0
+;FILE i2c.o
+__asm___5_i2c_c_i2c_init____REV16 <= USED 0
+__asm___5_i2c_c_i2c_init____REVSH <= USED 0
+i2c_master_receive_buffer_sync <= USED 0
+i2c_master_transmit_buffer_sync <= USED 0
+i2c_release <= USED 0
+i2c_slave_receive_buffer_async <= USED 0
+i2c_slave_receive_buffer_sync <= USED 0
+i2c_slave_transmit_buffer_async <= USED 0
+i2c_slave_transmit_buffer_sync <= USED 0
+;FILE main.o
+__asm___6_main_c_94c0deb0____REV16 <= USED 0
+__asm___6_main_c_94c0deb0____REVSH <= USED 0
+;FILE otp_cs.o
+__asm___8_otp_cs_c_8475e5a4____REV16 <= USED 0
+__asm___8_otp_cs_c_8475e5a4____REVSH <= USED 0
+otp_cs_get_adc_25_cal <= USED 0
+otp_cs_get_adc_diff_ge <= USED 0
+otp_cs_get_adc_diff_offset <= USED 0
+otp_cs_get_adc_offsh_ge <= USED 0
+otp_cs_get_adc_offsh_offset <= USED 0
+otp_cs_get_adc_single_ge <= USED 0
+otp_cs_get_adc_single_offset <= USED 0
+otp_cs_get_adc_trim_val <= USED 0
+otp_cs_get_low_power_clock <= USED 0
+otp_cs_get_xtal_wait_trim <= USED 0
+otp_cs_load_pd_adpll <= USED 0
+otp_cs_load_pd_rad <= USED 0
+;FILE startup_da14531.o
+;FILE syscntl.o
+__asm___9_syscntl_c_bee48145____REV16 <= USED 0
+__asm___9_syscntl_c_bee48145____REVSH <= USED 0
+syscntl_cfg_xtal32m_amp_reg <= USED 0
+syscntl_dcdc_turn_off <= USED 0
+syscntl_dcdc_turn_on_in_buck <= USED 0
+syscntl_por_vbat_high_cfg <= USED 0
+syscntl_por_vbat_low_cfg <= USED 0
+syscntl_use_highest_amba_clocks <= USED 0
+syscntl_use_lowest_amba_clocks <= USED 0
+;FILE system_da14531.o
+SystemCoreClockUpdate <= USED 0
+__asm___16_system_DA14531_c_5d646a67____REV16 <= USED 0
+__asm___16_system_DA14531_c_5d646a67____REVSH <= USED 0
+;FILE uart.o
+__asm___6_uart_c_17d47916____REV16 <= USED 0
+__asm___6_uart_c_17d47916____REVSH <= USED 0
+uart_disable <= USED 0
+uart_disable_flow_control <= USED 0
+uart_enable_flow_control <= USED 0
+uart_read_buffer <= USED 0
+uart_read_byte <= USED 0
+uart_receive <= USED 0
+uart_register_err_cb <= USED 0
+uart_register_rx_cb <= USED 0
+uart_register_tx_cb <= USED 0
+uart_wait_tx_finish <= USED 0
+;FILE uart_utils.o
+__asm___12_uart_utils_c_itoa____REV16 <= USED 0
+__asm___12_uart_utils_c_itoa____REVSH <= USED 0
+itoa <= USED 0
+print_hword <= USED 0
+print_word <= USED 0
+printf_byte_dec <= USED 0
+;FILE user_periph_setup.o
+__asm___19_user_periph_setup_c_e6264286____REV16 <= USED 0
+__asm___19_user_periph_setup_c_e6264286____REVSH <= USED 0

@@ -69,7 +69,7 @@ Below are the steps to clean the SW example project environment.
 
 <br/>
 
-1. Python 2.7 or higher is required to run the small example environment generation script.
+1. Python 3.6 or higher is required to run the small example environment generation script.
 Python can be downloaded from [Python.org](http://python.org).
 
 2. Navigate to the main page of the github SDK6 examples repository and download the SW example. You can do so by clicking on "Code" and selecting "Download Zip", or use the HTTPS or SSH to clone the repository to your local.

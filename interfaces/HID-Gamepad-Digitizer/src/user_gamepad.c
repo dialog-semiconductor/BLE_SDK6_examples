@@ -521,7 +521,7 @@ void user_gamepad_axis_polling_cb(void){
 
 /**
  ****************************************************************************************
- * Toggle the ADC reading cycle, enbale the joysticks control
+ * Toggle the ADC reading cycle, enable the joysticks control
  ****************************************************************************************
  */
 void user_gamepad_toggle_axis_polling(bool on){

@@ -104,7 +104,7 @@ If you want to use the I2C interface, no jumpers wires are required, you can ref
 
 - You'll now be able to see a custom service with characteristics that allow reading of the current pressure and temperature levels read by the sensor.
 
-![Characteristic](assets/characteristics.PNG)
+![Characteristic](assets/characteristics.png)
 
 ## Known Limitations
 

@@ -165,7 +165,7 @@ The results are given in the below screenshots:
 
 - Average power consumption  with no software optimization : **2,77 uA**
 
-![Average power consumption  : No SW optmisation](assets/results_no_optim.jpg)
+![Average power consumption  : No SW optimisation](assets/results_no_optim.jpg)
 
 
 - Average power consumption  with software optimization : **2,27 uA**

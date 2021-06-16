@@ -439,7 +439,7 @@ void user_process_catch_rest(ke_msg_id_t const msgid, void const *param,
 			struct gapc_param_updated_ind const *msg_param = (struct gapc_param_updated_ind const *)(param);
 			arch_printf("PARAM_UPDATE: %d %d %d \r\n", msg_param->con_interval, msg_param->con_latency, msg_param->sup_to);
 			tput_env.user_connection_params.con_interval = msg_param->con_interval;
-			//We want faster but iOS device might only allow 30 so we don't want to continously call param update
+			//We want faster but iOS device might only allow 30 so we don't want to continuously call param update
 			if(msg_param->con_interval > MIN_CON_INTERVAL ){
 					user_update_params();
 			}

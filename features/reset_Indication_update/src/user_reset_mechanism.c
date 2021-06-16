@@ -74,7 +74,7 @@ timer_hnd app_param_update_request_timer_used   	__SECTION_ZERO("retention_mem_a
  */
 uint16_t latest_reset_fault_status 					__SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 /* 
- * Holds the flags that indicate that either the NMI or the Hardfault handler has occured
+ * Holds the flags that indicate that either the NMI or the Hardfault handler has occurred
  * the flags should be kept in an un-initialized area in order not to be wiped out by the
  * scatterload procedure when rebooting and downloading fresh fw
  */
@@ -136,8 +136,8 @@ void reset_indication(uint16_t reset_stat)
         latest_reset_fault_status = PORESET_VAL;
     }
 #if (USE_POWER_OPTIMIZATIONS)
-    // The default value of the TRIM_CTRL_REG is 0xA2 and swicthed to 0x00 when POWER_OPTIMIZATIONS are used 
-    // if TRIM_CTRL_REG has switched back to default a HW reset has occured.
+    // The default value of the TRIM_CTRL_REG is 0xA2 and switched to 0x00 when POWER_OPTIMIZATIONS are used 
+    // if TRIM_CTRL_REG has switched back to default a HW reset has occurred.
     // TODO: Assert warning if power optimizations are not used
     else if(GetWord8(TRIM_CTRL_REG) == XTAL16M_TRIM_DELAY_SETTING)
         latest_reset_fault_status = HWRESET_VAL;
@@ -162,7 +162,7 @@ void user_set_watchdog_flag(void)
 
 /**
  ****************************************************************************************
- * @brief Prints out the source of reset and fault that had just occured
+ * @brief Prints out the source of reset and fault that had just occurred
  * @return void
  ****************************************************************************************
 */
@@ -200,10 +200,10 @@ static void print_reset_fault_reason(void)
             arch_printf( "****** NO FAULT DETECTED ******\n\r" );
             break;
         case (HARDFAULT_OCCURED | NMI_OCCURED):
-            arch_printf("****** HARDFAULT HAS OCCURED ******\n\r");
+            arch_printf("****** HARDFAULT HAS OCCURRED ******\n\r");
             break;
         case NMI_OCCURED:
-            arch_printf("****** NMI WATCHDOG HAS OCCURED ******\n\r");
+            arch_printf("****** NMI WATCHDOG HAS OCCURRED ******\n\r");
             break;
         default:
             arch_printf( "****** FAULT DATA CORRUPTED ******\n\r" );

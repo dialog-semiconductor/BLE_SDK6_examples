@@ -5,11 +5,11 @@
 
 ## Example description
 
-This SDK6 DA14585 / DA14531 example demostrates how a peripheral device can track if it is scanned and which central device 
+This SDK6 DA14585 / DA14531 example demonstrates how a peripheral device can track if it is scanned and which central device 
 performs the scanning procedure.
 The central device needs to scan in active mode since the peripheral device will track if it is scanned via
 the scan request from central.
-The example doesn't require any change in the SDK 6.0.12 code as in previous SDK releases, the scan request is tracked in every BLE END event.
+The example doesn't require any change in the SDK 6.0.14 code as in previous SDK releases, the scan request is tracked in every BLE END event.
 	
 ## HW and SW configuration
 
@@ -31,8 +31,8 @@ The example doesn't require any change in the SDK 6.0.12 code as in previous SDK
 * **Software configuration**
 
 	- This example requires:
-    * Smartsnippets Toolbox 2.0.10.
-    * SDK6.0.12
+    * Smartsnippets Toolbox 5.0.16.
+    * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- **A simple serial terminal** should be installed on the PC
 
@@ -51,7 +51,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 		- stop: 1 bit
 		- parity: None
 		- flow  control: none
- - If the device is actively scanned the fw will print the bd address that scanned the device.
+ - If the device is actively scanned the FW will print the BD address that scanned the device.
  
 	![scan_requests_print](assets/scan_requests_print.png)
  - In the case of a scan request, a cursor will also appear in the power profiler of Smart Snippets.

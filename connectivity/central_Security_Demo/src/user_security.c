@@ -77,7 +77,7 @@ void user_security_send_bond_req(uint8_t conidx, struct security_configuration s
 
 /**
  ****************************************************************************************
- * @brief Inital secruity encryption to the connection
+ * @brief Initial security encryption to the connection
  * if the connected device is not paired, go to the pairing process.
  ****************************************************************************************
  */
@@ -117,7 +117,7 @@ void user_on_enc_key_missing(void){
 
 /**
  ****************************************************************************************
- * @brief Indication of a successful encrytion on the connection
+ * @brief Indication of a successful encryption on the connection
  *
  ****************************************************************************************
  */

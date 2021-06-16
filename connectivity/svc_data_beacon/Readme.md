@@ -21,7 +21,7 @@ For getting more information about the Non-Connectable Advertising, please refer
   - The DA1458x / DA145xx Pro Development kit is needed for this example with default jumper configuration..
   - Connect the USB Development kit to the host computer.
 - **Software configuration**
-  - SDK6.0.12 or later
+  - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - A smartphone with a BLE scanning app (for example **BLE scanner** on Android or **Lightblue** on IOS).
   - A BLE Sniffing tool is also useful; though not mandatory .
@@ -55,21 +55,21 @@ To verify please take a look at the BLE sniffer log data, like so,
 
 - The data can be seen in any basic sniffer. Notice the two advertising element structures are readily recognized by the sniffer since they comply to the BLE standard.
 
-![beacon_sniffer_data](assets/beacon_sniffer_data.PNG)
+![beacon_sniffer_data](assets/beacon_sniffer_data.png)
 
 - Using an app such as BLE scanner, the raw bytes can be readily seen as well.  Look for DLG-SVC_DATA and select raw data, like so,
 
-![ble_scanner](assets/ble_scanner.PNG)
+![ble_scanner](assets/ble_scanner.png)
 
 	
-![ble_scaner_data](assets/ble_scanner_bytes.PNG)
+![ble_scaner_data](assets/ble_scanner_bytes.png)
 
 
 ## How it works
 - This example illustrates the basics behind using standard Bluetooth SIG practices for placing advertising ``elements`` into advertising payload.
 - The standard practice for adding a single advertising element consists of the following:  
   {1-byte length_byte} , {1-byte gap flag}, {payload}.
-- The length byte includes the gap flag and the total lenght of the payload.  The helper function in this example requires the user to specify the .len as the length of the payload.  In the serialization, the value of 1 is added to the length to adhere to standard BLE practices. 
+- The length byte includes the gap flag and the total length of the payload.  The helper function in this example requires the user to specify the .len as the length of the payload.  In the serialization, the value of 1 is added to the length to adhere to standard BLE practices. 
 - In this specific case, the GAP flags shows a reference to the Core Supplement, Section A part 1.11.  [link](https://www.bluetooth.org/docman/handlers/DownloadDoc.ashx?doc_id=480305).
 - We are using 16-bit service Data, since we are exposing the serial number from the Device Information Service.  
 - Referencing the core supplement, the payload requires the first two bytes to be the UUID, followed by the service data. 

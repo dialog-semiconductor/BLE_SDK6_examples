@@ -63,7 +63,7 @@
 #define UNDIRECT_ADV_INTERVAL	            150		//(150 	* 1msec 	=  150msec)
 #define NONCONN_ADV_INTERVAL	            1050	//(1050 * 1msec		= 1050msec)
 
-// Configurable state lenght (for timer based example)
+// Configurable state length (for timer based example)
 #define	UNDIRECT_ADV_DURATION	            200		//(200 	* 10msec 	= 	2sec)
 #define	NONCONN_ADV_DURATION	            300		//(300 	* 10msec 	= 	3sec)
 #define SLEEP_DURATION		                250		//(250 	* 10msec 	= 	2.5sec) 

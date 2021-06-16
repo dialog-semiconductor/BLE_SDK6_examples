@@ -93,7 +93,7 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
         {
 #if defined (CFG_PRINTF)
             const char wdg_rst_msg[] = "The device will reset by a SW reset, NMI will occur\n\r";
-            /*Reload the value of the watchdog so we have time to print a mesage*/
+            /*Reload the value of the watchdog so we have time to print a message*/
             wdg_reload(WATCHDOG_DEFAULT_PERIOD);
             uart_send(UART2, (uint8_t*)wdg_rst_msg, sizeof(wdg_rst_msg), UART_OP_BLOCKING);
 #endif
@@ -136,7 +136,7 @@ void user_svc1_ctrl_wr_ind_handler(ke_msg_id_t const msgid,
             GPIO_EnablePorPin( GPIO_POR_PORT, GPIO_POR_PIN, GPIO_POR_PIN_POLARITY_HIGH , POR_TIME_VAL );
             /* Activate the pull up on the pin to force the POR reset */
             GPIO_ConfigurePin( GPIO_POR_PORT, GPIO_POR_PIN, INPUT_PULLUP, PID_GPIO, false );
-            /* Make sure that sleep is enabled so that set_pad_function() wont run again reseting the pin's state */
+            /* Make sure that sleep is enabled so that set_pad_function() won't run again resetting the pin's state */
             arch_disable_sleep();
             break;
         }

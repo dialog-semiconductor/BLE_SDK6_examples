@@ -32,7 +32,7 @@ Begin by cloning this repository locally and then link the SW example to the SDK
 
 Below are the steps to link the SW example project environment to the 6.0.14 SDK.
 
-1. Python 2.7 or higher is required to run the small example environment generation script.
+1. Python 3.6 or higher is required to run the small example environment generation script.
 Python can be downloaded from [Python.org](http://python.org).
 
 2. Navigate to the main page of the github SDK6 examples repository and download the SW example. You can do so by clicking on "Code" and selecting "Download Zip", or use the HTTPS or SSH to clone the repository to your local.

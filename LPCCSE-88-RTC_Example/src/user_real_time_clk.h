@@ -79,7 +79,6 @@ i.e.
  
  /* Duration of timer for connection parameter update request */
 #define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
-#define APP_NTF_RTC_UPDATE                  (200)    // 200*10ms = 2 sec
 
 /*
  * FUNCTION DECLARATIONS
@@ -129,10 +128,6 @@ uint8_t user_on_cur_time_write_req(const struct cts_curr_time *ct);
 
 #endif // BLE_CTS_SERVER
 
-/***************************************************************************************/
-/****************************Custom Profile Handlers************************************/
-/***************************************************************************************/
-
 /**
  ****************************************************************************************
  * @brief Handles the messages that are not handled by the SDK internal mechanisms.
@@ -147,70 +142,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,
                           ke_task_id_t const src_id);
-                
-#if BLE_CUSTOM1_SERVER                          
-
-/**
- ****************************************************************************************
- * @brief Current Time value write indication handler.
- * @param[in] msgid   Id of the message received.
- * @param[in] param   Pointer to the parameters of the message.
- * @param[in] dest_id ID of the receiving task instance.
- * @param[in] src_id  ID of the sending task instance.
- * @return void
- ****************************************************************************************
-*/
-void user_svc1_current_time_wr_ind_handler(ke_msg_id_t const msgid,
-                                            struct custs1_val_write_ind const *param,
-                                            ke_task_id_t const dest_id,
-                                            ke_task_id_t const src_id);
-
-                                            /**
- ****************************************************************************************
- * @brief Current Time configuration indication handler.
- * @param[in] msgid   Id of the message received.
- * @param[in] param   Pointer to the parameters of the message.
- * @param[in] dest_id ID of the receiving task instance.
- * @param[in] src_id  ID of the sending task instance.
- * @return void
- ****************************************************************************************
-*/
-void user_svc1_current_time_cfg_ind_handler(ke_msg_id_t const msgid,
-                                            struct custs1_val_write_ind const *param,
-                                            ke_task_id_t const dest_id,
-                                            ke_task_id_t const src_id);
-
-                                            /**
- ****************************************************************************************
- * @brief Alarm value write indication handler.
- * @param[in] msgid   Id of the message received.
- * @param[in] param   Pointer to the parameters of the message.
- * @param[in] dest_id ID of the receiving task instance.
- * @param[in] src_id  ID of the sending task instance.
- * @return void
- ****************************************************************************************
-*/
-void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
-                                    struct custs1_val_write_ind const *param,
-                                    ke_task_id_t const dest_id,
-                                    ke_task_id_t const src_id);                         
-
-/**
- ****************************************************************************************
- * @brief Current time attribute read request handler.
- * @param[in] msgid   Id of the message received.
- * @param[in] param   Pointer to the parameters of the message.
- * @param[in] dest_id ID of the receiving task instance.
- * @param[in] src_id  ID of the sending task instance.
- * @return void
- ****************************************************************************************
-*/                                         
-void user_svc1_current_time_read_ind_handler(ke_msg_id_t const msgid,
-                                                struct custs1_value_req_ind const *param,
-                                                ke_task_id_t const dest_id,
-                                                ke_task_id_t const src_id);
-                                                
-#endif
 /// @} APP
 
 #endif // _USER_EMPTY_PERIPHERAL_TEMPLATE_H_

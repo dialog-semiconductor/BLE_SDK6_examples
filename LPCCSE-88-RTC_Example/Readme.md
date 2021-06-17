@@ -33,21 +33,21 @@ A 128-bit UUID custom profile is included with 1 custom service.
   <td style="text-align: left;">Current Time</td>
   <td style="text-align: left;">Notify/Read</td>
   <td style="text-align: left;">11</td>
-  <td style="text-align: left;">yyyy | mm | dd | wd | hh | mm | ss | hs | hm | pm</td>
+  <td style="text-align: left;">yyyy | mm | dd | wd | hr | min | sec | hos | hm | pm</td>
   <td style="text-align: left;">Returns the current value of the RTC</td>
   </tr>
   <tr class="even">
   <td style="text-align: left;">Set Current Time</td>
   <td style="text-align: left;">Notify/Write</td>
   <td style="text-align: left;">11</td>
-  <td style="text-align: left;">yyyy | mm | dd | wd | hh | mm | ss | hs | hm | pm</td>
+  <td style="text-align: left;">yyyy | mm | dd | wd | hr | min | sec | hos | hm | pm</td>
   <td style="text-align: left;">Updates the current value of the RTC</td>
   </tr>
   <tr class="even">
   <td style="text-align: left;">Alarm</td>
   <td style="text-align: left;">Notify/Read/Write</td>
   <td style="text-align: left;">7</td>
-  <td style="text-align: left;">mm | md  hh | mm | ss | hs | pm</td>
+  <td style="text-align: left;">mm | md | hr | min | sec | hos | pm</td>
   <td style="text-align: left;">Sets an alarm</td>
   </tr>
 </tbody>
@@ -97,7 +97,7 @@ A 128-bit UUID custom profile is included with 1 custom service.
   <td style="text-align: left;">Ranges from 0 to 23 (for 24H format) 1 to 12 for AM/PM format</td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">mm</td>
+  <td style="text-align: left;">min</td>
   <td style="text-align: left;">Minutes</td>
   <td style="text-align: left;">1</td>
   <td style="text-align: left;">Ranges from 0 to 59</td>

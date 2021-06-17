@@ -38,6 +38,7 @@
 #include "attm_db.h"
 #include "custom_common.h"
 #include "user_rtc_util.h"
+#include "user_custs1_impl.h"
 
 // Manufacturer Specific Data ADV structure type
 struct __PACKED date_specific_data_ad_structure
@@ -51,33 +52,6 @@ struct __PACKED date_specific_data_ad_structure
     uint8_t     minute;
     uint8_t     second;
 };
-
-#if BLE_CUSTOM1_SERVER
-struct __PACKED current_time_char_structure
-{
-    uint16_t            year;
-    uint8_t             month;
-    uint8_t             mday;
-    uint8_t             wday;
-    uint8_t             hour;
-    uint8_t             minute;
-    uint8_t             second;
-    uint8_t             hsecond;
-    rtc_hour_mode_t     hour_mode;
-    uint8_t             pm_flag;
-};
-
-struct __PACKED alarm_char_structure
-{
-    uint8_t             month;
-    uint8_t             mday;
-    uint8_t             hour;
-    uint8_t             minute;
-    uint8_t             second;
-    uint8_t             hsecond;
-    uint8_t             pm_flag;
-};
-#endif // BLE_CUSTOM1_SERVER
 
 #if BLE_CTS_SERVER
 struct cts_curr_time cts_current_time                   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
@@ -93,7 +67,6 @@ uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN]         __SECTION_ZERO("retentio
 
 uint8_t app_connection_idx                              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY  
 timer_hnd app_param_update_request_timer_used           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY 
-timer_hnd ntf_update_tmr_hnd                            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS
@@ -438,230 +411,15 @@ uint8_t user_on_cur_time_write_req(const struct cts_curr_time *ct)
 /****************************Custom Profile Handlers************************************/
 /***************************************************************************************/
 
-#if BLE_CUSTOM1_SERVER
+//#if BLE_CUSTOM1_SERVER
 
-static void rtc_error_ntf_send(uint16_t handle, uint8_t err_code)
-{
-    uint8_t error_code[5] = "ERR ";
-    struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-                                                      prf_get_task_from_id(TASK_ID_CUSTS1),
-                                                      TASK_APP,
-                                                      custs1_val_ntf_ind_req,
-                                                      sizeof(error_code));
-    
-    error_code[4] = err_code;
-    req->handle = handle;
-    req->length = sizeof(error_code);
-    req->notification = true;
-    memcpy(req->value, error_code, sizeof(error_code));
+//static void rtc_alarm_handler(uint8_t event)
+//{
+//    if ((event & RTC_EVENT_ALRM) == RTC_EVENT_ALRM)
+//        arch_printf("Alarm triggered \n\r");
+//}
 
-    ke_msg_send(req);
-}
-
-static void rtc_alarm_handler(uint8_t event)
-{
-    if ((event & RTC_EVENT_ALRM) == RTC_EVENT_ALRM)
-        arch_printf("Alarm triggered \n\r");
-}
-
-void user_svc1_current_time_wr_ind_handler(ke_msg_id_t const msgid,
-                                            struct custs1_val_write_ind const *param,
-                                            ke_task_id_t const dest_id,
-                                            ke_task_id_t const src_id)
-{    
-    rtc_time_t rtc_current_time;
-    rtc_calendar_t rtc_current_date;
-    
-    struct current_time_char_structure current_timestamp;
-    memset(&current_timestamp, 0, sizeof(struct current_time_char_structure));
-    memcpy(&current_timestamp, &param->value[0], param->length);
-    
-    rtc_current_date.wday       = current_timestamp.wday;
-    rtc_current_date.year       = current_timestamp.year;
-    rtc_current_date.month      = current_timestamp.month;
-    rtc_current_date.mday       = current_timestamp.mday;
-    
-    rtc_current_time.hour       = current_timestamp.hour;
-    rtc_current_time.minute     = current_timestamp.minute;
-    rtc_current_time.sec        = current_timestamp.second;
-    rtc_current_time.hsec       = current_timestamp.hsecond;
-    rtc_current_time.hour_mode  = current_timestamp.hour_mode;
-    
-    if (current_timestamp.hour_mode == RTC_HOUR_MODE_12H)
-        rtc_current_time.pm_flag    = current_timestamp.pm_flag;
-
-    // First have the RTC driver to check if the date/time entry is valid
-    rtc_status_code_t status = rtc_set_time_clndr(&rtc_current_time, &rtc_current_date);
-    
-    if(status != RTC_STATUS_CODE_VALID_ENTRY)
-    {
-        rtc_error_ntf_send(param->handle, status);
-    }
-}
-
-static void app_ntf_rtc_update_handler(void)
-{
-    struct current_time_char_structure updated_timestamp;
-    rtc_time_t rtc_current_time;
-    rtc_calendar_t rtc_current_date;    
-    rtc_get_time_clndr(&rtc_current_time, &rtc_current_date);
-    
-    updated_timestamp.wday      = rtc_current_date.wday;
-    updated_timestamp.year      = rtc_current_date.year;
-    updated_timestamp.month     = rtc_current_date.month;
-    updated_timestamp.mday      = rtc_current_date.mday;
-    updated_timestamp.hour      = rtc_current_time.hour;
-    updated_timestamp.minute    = rtc_current_time.minute;
-    updated_timestamp.second    = rtc_current_time.sec;
-    updated_timestamp.hsecond   = rtc_current_time.hsec;
-    updated_timestamp.hour_mode = rtc_current_time.hour_mode;
-    updated_timestamp.pm_flag   = rtc_current_time.pm_flag;
-    
-    struct custs1_val_ntf_ind_req *req = KE_MSG_ALLOC_DYN(CUSTS1_VAL_NTF_REQ,
-                                                      prf_get_task_from_id(TASK_ID_CUSTS1),
-                                                      TASK_APP,
-                                                      custs1_val_ntf_ind_req,
-                                                      DEF_SVC1_CURRENT_TIME_CHAR_LEN);
-    
-    req->handle = SVC1_IDX_CURRENT_TIME_VAL;
-    req->length = DEF_SVC1_CURRENT_TIME_CHAR_LEN;
-    req->notification = true;
-    memcpy(req->value, &updated_timestamp, DEF_SVC1_CURRENT_TIME_CHAR_LEN);
-
-    ke_msg_send(req);
-    
-    if (ke_state_get(TASK_APP) == APP_CONNECTED)
-    {
-        // Set it once again until Stop command is received in Control Characteristic
-        ntf_update_tmr_hnd = app_easy_timer(APP_NTF_RTC_UPDATE, app_ntf_rtc_update_handler);
-    }
-}
-
-void user_svc1_current_time_cfg_ind_handler(ke_msg_id_t const msgid,
-                                            struct custs1_val_write_ind const *param,
-                                            ke_task_id_t const dest_id,
-                                            ke_task_id_t const src_id)
-{
-    uint16_t ntf_en = 0;
-    memcpy (&ntf_en, param->value, param->length);
-    if (ntf_en == PRF_CLI_START_NTF)
-    {
-        ntf_update_tmr_hnd = app_easy_timer(APP_NTF_RTC_UPDATE, app_ntf_rtc_update_handler);
-    }
-    else
-    {
-        if (ntf_update_tmr_hnd != EASY_TIMER_INVALID_TIMER)
-        {
-            app_easy_timer_cancel(ntf_update_tmr_hnd);
-            ntf_update_tmr_hnd = EASY_TIMER_INVALID_TIMER;
-        }
-    }
-}
-
-void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
-                                    struct custs1_val_write_ind const *param,
-                                    ke_task_id_t const dest_id,
-                                    ke_task_id_t const src_id)
-{
-    uint8_t temp = 0x00;
-    rtc_status_code_t status;
-    rtc_time_t time;
-    rtc_alarm_calendar_t calendar;
-    rtc_alarm_calendar_t *p_calendar = &calendar;
-    struct alarm_char_structure alarm_time;
-    
-    memset(&alarm_time, 0, sizeof(struct current_time_char_structure));
-    memcpy(&alarm_time, &param->value[0], sizeof(struct current_time_char_structure));
-    
-    if (!alarm_time.month || !alarm_time.mday)
-        p_calendar = NULL;
-    else
-    {
-        calendar.month  = alarm_time.month;
-        (alarm_time.month != 0) ? (temp |= RTC_ALARM_EN_MONTH) : (temp |= 0x00);
-        calendar.mday   = alarm_time.mday;
-        (alarm_time.mday != 0) ? (temp |= RTC_ALARM_EN_MDAY) : (temp |= 0x00);
-    }
-    
-    time.hour       = alarm_time.hour;
-    (alarm_time.hour != 0) ? (temp |= RTC_ALARM_EN_HOUR) : (temp |= 0x00);
-    time.minute     = alarm_time.minute;
-    (alarm_time.minute != 0) ? (temp |= RTC_ALARM_EN_MIN) : (temp |= 0x00);
-    time.sec        = alarm_time.second;
-    (alarm_time.second != 0) ? (temp |= RTC_ALARM_EN_SEC) : (temp |= 0x00);
-    time.hsec       = alarm_time.hsecond;
-    (alarm_time.hsecond != 0) ? (temp |= RTC_ALARM_EN_HSEC) : (temp |= 0x00);
-    
-    time.hour_mode  = rtc_get_hour_clk_mode();
-    
-    if (time.hour_mode == RTC_HOUR_MODE_12H)
-        time.pm_flag    = alarm_time.pm_flag;
-    
-    rtc_register_intr(rtc_alarm_handler, RTC_INTR_ALRM | ADVERTISE_UPDATE);
-    status = rtc_set_alarm(&time, p_calendar, temp);
-    
-    if (status != RTC_STATUS_CODE_VALID_ENTRY)
-    {
-        rtc_error_ntf_send(param->handle, status);
-#ifdef PRINT_DATE_TIME_DATA
-        arch_printf("Invalid Alarm time, RTC return status %02x \n\r", status);
-    }
-    else
-    {
-        arch_printf("Alarm was set for %02d/%02d %02d:%02d:%02d:%02d \n\r", 
-                                                                    p_calendar->mday,
-                                                                    p_calendar->month,
-                                                                    time.hour,
-                                                                    time.minute,
-                                                                    time.sec,
-                                                                    time.hsec);
-#endif
-    }
-}
-
-void user_svc1_current_time_read_ind_handler(ke_msg_id_t const msgid,
-                                                struct custs1_value_req_ind const *param,
-                                                ke_task_id_t const dest_id,
-                                                ke_task_id_t const src_id)
-{
-    struct current_time_char_structure updated_timestamp;
-    rtc_time_t rtc_current_time;
-    rtc_calendar_t rtc_current_date;    
-    rtc_get_time_clndr(&rtc_current_time, &rtc_current_date);
-    
-    updated_timestamp.wday      = rtc_current_date.wday;
-    updated_timestamp.year      = rtc_current_date.year;
-    updated_timestamp.month     = rtc_current_date.month;
-    updated_timestamp.mday      = rtc_current_date.mday;
-    updated_timestamp.hour      = rtc_current_time.hour;
-    updated_timestamp.minute    = rtc_current_time.minute;
-    updated_timestamp.second    = rtc_current_time.sec;
-    updated_timestamp.hsecond   = rtc_current_time.hsec;
-    updated_timestamp.hour_mode = rtc_current_time.hour_mode;
-    updated_timestamp.pm_flag   = rtc_current_time.pm_flag;
-   
-    
-    struct custs1_value_req_rsp *rsp = KE_MSG_ALLOC_DYN(CUSTS1_VALUE_REQ_RSP,
-                                               prf_get_task_from_id(TASK_ID_CUSTS1),
-                                               TASK_APP,
-                                               custs1_value_req_rsp,
-                                               DEF_SVC1_CURRENT_TIME_CHAR_LEN);
-    
-    // Provide the connection index.
-    rsp->conidx  = app_env[param->conidx].conidx;
-    // Provide the attribute index.
-    rsp->att_idx = param->att_idx;
-    // Force current length to zero.
-    rsp->length  = sizeof(struct current_time_char_structure);
-    // Provide the ATT error code.
-    rsp->status  = ATT_ERR_NO_ERROR;
-    // Copy value
-    memcpy(&rsp->value, &updated_timestamp, rsp->length);
-    // Send message
-    ke_msg_send(rsp);
-}
-
-#endif // BLE_CUSTOM1_SERVER
+//#endif // BLE_CUSTOM1_SERVER
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,

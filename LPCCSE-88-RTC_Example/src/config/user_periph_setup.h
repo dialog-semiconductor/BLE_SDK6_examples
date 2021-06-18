@@ -35,8 +35,8 @@
 /* UART2 configuration to use with arch_console print messages                          */
 /****************************************************************************************/
 // Define UART2 Tx Pad
-#define UART2_TX_PORT           GPIO_PORT_0
-#define UART2_TX_PIN            GPIO_PIN_6
+#define UART2_TX_PORT               GPIO_PORT_0
+#define UART2_TX_PIN                GPIO_PIN_6
 
 // Define UART2 Settings
 #define UART2_BAUDRATE              UART_BAUDRATE_115200
@@ -47,6 +47,10 @@
 #define UART2_FIFO                  UART_FIFO_EN
 #define UART2_TX_FIFO_LEVEL         UART_TX_FIFO_LEVEL_0
 #define UART2_RX_FIFO_LEVEL         UART_RX_FIFO_LEVEL_0
+
+// Define LED
+#define GPIO_ALERT_LED_PORT         GPIO_PORT_0
+#define GPIO_ALERT_LED_PIN          GPIO_PIN_9
 
 
 /***************************************************************************************/

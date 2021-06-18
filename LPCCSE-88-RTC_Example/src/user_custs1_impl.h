@@ -81,6 +81,7 @@ struct __PACKED alarm_char_structure
     uint8_t             second;
     uint8_t             hsecond;
     uint8_t             pm_flag;
+    uint8_t             recursive_alarm;
 };
 
 /*
@@ -94,6 +95,15 @@ struct __PACKED alarm_char_structure
  * FUNCTION DECLARATIONS
  ****************************************************************************************
  */
+
+/**
+ ****************************************************************************************
+ * @brief Get if the alarm occured is recursive or not
+ * @param[in] void
+ * @return bool true if recursive false otherwise
+ ****************************************************************************************
+*/
+bool is_alarm_recursive(void);
 
 /**
  ****************************************************************************************
@@ -159,4 +169,3 @@ void user_svc1_current_time_read_ind_handler(ke_msg_id_t const msgid,
 #endif // BLE_CUSTOM1_SERVER
                                                 
 #endif // _USER_CUSTS1_IMPL_H_
-                                                

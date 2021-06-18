@@ -29,6 +29,7 @@
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
+extern bool led_state;
 
 #if DEVELOPMENT_DEBUG
 
@@ -42,6 +43,7 @@ void GPIO_reservations(void)
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
+    RESERVE_GPIO(ALERT_LD, GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN, PID_GPIO);
 }
 
 #endif
@@ -62,7 +64,8 @@ void set_pad_functions(void)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
-
+    
+    GPIO_ConfigurePin(GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN, OUTPUT, PID_GPIO, led_state);
 }
 
 #if defined (CFG_PRINTF_UART2)

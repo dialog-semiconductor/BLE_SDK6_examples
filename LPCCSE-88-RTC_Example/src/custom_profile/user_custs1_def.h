@@ -46,7 +46,7 @@
 
 #define DEF_SVC1_CURRENT_TIME_CHAR_LEN          11
 #define DEF_SVC1_SET_CURRENT_TIME_CHAR_LEN      11
-#define DEF_SVC1_ALARM_CHAR_LEN                 7
+#define DEF_SVC1_ALARM_CHAR_LEN                 8
 
 #define DEF_SVC1_CURRENT_TIME_USER_DESC         "Current Time"
 #define DEF_SVC1_SET_CURRENT_TIME_USER_DESC     "Set Current Time"

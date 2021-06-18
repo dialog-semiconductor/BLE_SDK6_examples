@@ -47,7 +47,7 @@
  */
  #define nNON_CONNECTABLE_ADVERTISING
  #define PRINT_DATE_TIME_DATA 
- #define ADVERTISE_UPDATE                   RTC_SEC_INT_EN
+ #define ADVERTISE_UPDATE                   RTC_EVENT_SEC
 
  /*
  ****************************************************************************************

@@ -78,7 +78,9 @@ i.e.
  */
  
  /* Duration of timer for connection parameter update request */
-#define APP_PARAM_UPDATE_REQUEST_TO         (1000)   // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define APP_PARAM_UPDATE_REQUEST_TO         (1000)  // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+#define ALERT_INTERVAL                      (10)    // 250 ms interval 
+#define ALERT_TIMEOUT                       (1000)  // 5 seconds for alert timeout
 
 /*
  * FUNCTION DECLARATIONS
@@ -93,11 +95,25 @@ void user_app_adv_start(void);
 
 void user_app_on_init(void);
 
-void user_ctss_init(void);
-
-void rtc_wakeup_handler(void);
+/**
+ ****************************************************************************************
+ * @brief Wake up rtc handler.
+ * @param[in] event which trigger the interrupt
+ * @return void
+ ****************************************************************************************
+*/
+void rtc_wakeup_event(uint8_t event);
 
 #if BLE_CTS_SERVER
+
+/**
+ ****************************************************************************************
+ * @brief Initialization of the Current Time Service profile.
+   @pararm[out] void
+ * @return void
+ ****************************************************************************************
+*/
+void user_ctss_init(void);
 
 /**
  ****************************************************************************************

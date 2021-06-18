@@ -95,4 +95,33 @@ rtc_status_code_t rtc_configure(rtc_time_t *time, rtc_calendar_t *cal, rtc_confi
  */
 uint32_t rtc_convert_time_to_msec(rtc_time_t *time);
 
+/**
+ ****************************************************************************************
+ * @brief Get the enabled interrupts of the RTC
+ * @return uint8_t enabled interrupts
+ ****************************************************************************************
+ */
+uint8_t user_get_rtc_interrupt_enabled(void);
+
+/**
+ ****************************************************************************************
+ * @brief Configures the interrupt for an RTC event and registers an interrupt handler.
+ * @param[in] rtc_interrupt_cb_t handler to triggered upon interrupt
+ * @param[in] uint8_t event that will trigger the interrupt
+ * @return void
+ ****************************************************************************************
+ */
+void user_rtc_register_intr(rtc_interrupt_cb_t handler, uint8_t mask);
+
+/**
+ ****************************************************************************************
+ * @brief Unregisters a specific event from triggering an interrupt if no events are to 
+ * trigger and interrupt the RTC interrupt is disabled the the interrupt handler is set
+ * to NULL 
+ * @param[in] uint8_t interrupt to be disabled
+ * @return interrupts enabled
+ ****************************************************************************************
+ */
+uint8_t user_rtc_unregister_intr(uint8_t mask);
+
 #endif // _USER_RTC_UTIL_H_

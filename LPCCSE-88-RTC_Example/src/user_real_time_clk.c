@@ -39,6 +39,7 @@
 #include "custom_common.h"
 #include "user_rtc_util.h"
 #include "user_custs1_impl.h"
+#include "user_periph_setup.h"
 
 // Manufacturer Specific Data ADV structure type
 struct __PACKED date_specific_data_ad_structure
@@ -66,12 +67,44 @@ uint8_t stored_adv_data[ADV_DATA_LEN]                   __SECTION_ZERO("retentio
 uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN]         __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 uint8_t app_connection_idx                              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY  
-timer_hnd app_param_update_request_timer_used           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY 
+timer_hnd app_param_update_request_timer_used           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+
+/* Alert timer variables */
+timer_hnd app_alert_timer_used                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+uint16_t app_alert_timeout                              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+bool led_state                                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS
  ****************************************************************************************
 */
+
+static void alarm_stop(void)
+{
+    app_alert_timeout = 0;
+    app_alert_timer_used = EASY_TIMER_INVALID_TIMER;
+    led_state = false;
+    GPIO_ConfigurePin(GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN, OUTPUT, PID_GPIO, led_state);
+}
+
+static void toggle_led(void)
+{
+    led_state = !led_state;
+    GPIO_ConfigurePin(GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN, OUTPUT, PID_GPIO, led_state);
+    app_alert_timeout++;
+    
+    if(app_alert_timeout == ALERT_TIMEOUT/ALERT_INTERVAL)
+        alarm_stop();
+    else
+        app_alert_timer_used = app_easy_timer(ALERT_INTERVAL, toggle_led);
+}
+
+static void alarm_start(void)
+{
+    app_alert_timer_used = app_easy_timer(ALERT_INTERVAL, toggle_led);
+    GPIO_SetActive(GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN);
+    led_state = true;
+}
 
 /**
  ****************************************************************************************
@@ -89,10 +122,7 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 {
     if (app_env[connection_idx].conidx != GAP_INVALID_CONIDX)
     {
-        app_connection_idx = connection_idx;
-
-//        // Stop the interrupts occuring from RTC for updating the advertising string
-//        rtc_unregister_intr();    
+        app_connection_idx = connection_idx;    
 
         // Check if the parameters of the established connection are the preferred ones.
         // If not then schedule a connection parameter update request.
@@ -215,7 +245,7 @@ static void print_date_time(rtc_time_t *time, rtc_calendar_t *clndr)
     arch_printf("%04d.%03d ms \n\r", (uint32_t)msec/1000, (uint32_t)msec%1000);
 }
 
-void rtc_wakeup_handler(void)
+void rtc_event_wakeup_handler(void)
 {
     rtc_time_t current_time;
     rtc_calendar_t current_date;
@@ -239,6 +269,22 @@ void rtc_wakeup_handler(void)
 #endif  //PRINT_TIME_DATA
 }
 
+void rtc_alarm_wakeup_handler(void)
+{
+    if(!is_alarm_recursive())
+    {
+        rtc_alarm_enable(0x0);
+        user_rtc_unregister_intr(RTC_INTR_ALRM);
+    }
+    
+    alarm_start();
+    
+    // Add a blinking led for an amount of time
+#ifdef PRINT_DATE_TIME_DATA
+    arch_printf("Alarm Triggered \n\r");
+#endif
+}
+
 /**
  ****************************************************************************************
  * @brief Wake up rtc handler.
@@ -246,39 +292,28 @@ void rtc_wakeup_handler(void)
  * @return void
  ****************************************************************************************
 */
-static void rtc_wakeup_event(uint8_t event)
-{
-    if ((event & RTC_EVENT_ALRM) != RTC_EVENT_ALRM)
-    {
-        arch_ble_force_wakeup();        // Force the BLE to wake up to process the if not the device will stay awake until the next event.
-        app_easy_wakeup_set(rtc_wakeup_handler);
-        app_easy_wakeup();
-    }
-    else
-        arch_printf("Alarm triggered \n\r");
+void rtc_wakeup_event(uint8_t event)
+{   
+    arch_ble_force_wakeup();
+    
+    if (event & ADVERTISE_UPDATE)
+        rtc_event_wakeup_handler();
+    
+    if (event & RTC_EVENT_ALRM)
+        rtc_alarm_wakeup_handler();
 }
 
 void user_app_adv_start(void)
 {
     struct gapm_start_advertise_cmd* cmd;
     
-#ifdef NON_CONNECTABLE_ADVERTISING
-    cmd = app_easy_gap_non_connectable_advertise_get_active();
-#else
     cmd = app_easy_gap_undirected_advertise_get_active();
-#endif
     
     app_add_ad_date(cmd, &adv_date, sizeof(struct date_specific_data_ad_structure));
 
-#ifdef NON_CONNECTABLE_ADVERTISING
-    app_easy_gap_non_connectable_advertise_start();
-#else
     app_easy_gap_undirected_advertise_start();
-#endif
-    
-    app_easy_wakeup_set(rtc_wakeup_handler);
     // Start the update timer using the RTC events mechanism
-    rtc_register_intr(rtc_wakeup_event, ADVERTISE_UPDATE);
+    user_rtc_register_intr(rtc_wakeup_event, ADVERTISE_UPDATE);
 }
 
 void user_app_on_init(void)
@@ -406,20 +441,6 @@ uint8_t user_on_cur_time_write_req(const struct cts_curr_time *ct)
 }
 
 #endif // BLE_CTS_SERVER
-
-/***************************************************************************************/
-/****************************Custom Profile Handlers************************************/
-/***************************************************************************************/
-
-//#if BLE_CUSTOM1_SERVER
-
-//static void rtc_alarm_handler(uint8_t event)
-//{
-//    if ((event & RTC_EVENT_ALRM) == RTC_EVENT_ALRM)
-//        arch_printf("Alarm triggered \n\r");
-//}
-
-//#endif // BLE_CUSTOM1_SERVER
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,

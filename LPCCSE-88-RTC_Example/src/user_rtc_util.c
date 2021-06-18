@@ -25,6 +25,7 @@
  */
 #include "arch_system.h"
  
+static uint8_t rtc_interrupt_enable_reg_r               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 extern uint32_t rcx_freq;
  
 void rtc_clock_set(void)
@@ -57,5 +58,25 @@ uint32_t rtc_convert_time_to_msec(rtc_time_t *time)
 {
     return ((((time->hour * 60 + time->minute) * 60) + time->sec) * 1000 + time->hsec *10);
 }
- 
- 
+
+uint8_t user_get_rtc_interrupt_enabled(void)
+{
+    return rtc_interrupt_enable_reg_r;
+}
+
+void user_rtc_register_intr(rtc_interrupt_cb_t handler, uint8_t mask)
+{
+    rtc_interrupt_enable_reg_r |= mask;
+    rtc_register_intr(handler, rtc_interrupt_enable_reg_r);
+}
+
+uint8_t user_rtc_unregister_intr(uint8_t mask)
+{
+    rtc_interrupt_enable_reg_r ^= mask;
+    rtc_interrupt_disable(~rtc_interrupt_enable_reg_r);
+    
+    if ( !rtc_interrupt_enable_reg_r )
+        rtc_unregister_intr();
+    
+    return rtc_interrupt_enable_reg_r;
+}

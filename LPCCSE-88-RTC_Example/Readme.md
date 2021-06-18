@@ -47,7 +47,7 @@ A 128-bit UUID custom profile is included with 1 custom service.
   <td style="text-align: left;">Alarm</td>
   <td style="text-align: left;">Notify/Read/Write</td>
   <td style="text-align: left;">7</td>
-  <td style="text-align: left;">mm | md | hr | min | sec | hos | pm</td>
+  <td style="text-align: left;">mm | md | hr | min | sec | hos | pm | rec</td>
   <td style="text-align: left;">Sets an alarm</td>
   </tr>
 </tbody>
@@ -91,7 +91,7 @@ A 128-bit UUID custom profile is included with 1 custom service.
   <td style="text-align: left;">Ranges from 1 to 7</td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">hh</td>
+  <td style="text-align: left;">hr</td>
   <td style="text-align: left;">Hour</td>
   <td style="text-align: left;">1</td>
   <td style="text-align: left;">Ranges from 0 to 23 (for 24H format) 1 to 12 for AM/PM format</td>
@@ -103,13 +103,13 @@ A 128-bit UUID custom profile is included with 1 custom service.
   <td style="text-align: left;">Ranges from 0 to 59</td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">ss</td>
+  <td style="text-align: left;">sec</td>
   <td style="text-align: left;">Seconds</td>
   <td style="text-align: left;">1</td>
   <td style="text-align: left;">Ranges from 0 to 59</td>
   </tr>
   <tr class="even">
-  <td style="text-align: left;">hs</td>
+  <td style="text-align: left;">hos</td>
   <td style="text-align: left;">Hundredths of a second</td>
   <td style="text-align: left;">1</td>
   <td style="text-align: left;">Ranges from 0 to 99</td>
@@ -125,6 +125,12 @@ A 128-bit UUID custom profile is included with 1 custom service.
   <td style="text-align: left;">PM</td>
   <td style="text-align: left;">1</td>
   <td style="text-align: left;">Bit set indicates PM in AM/PM mode</td>
+  </tr>
+  <tr class="even">
+  <td style="text-align: left;">rec</td>
+  <td style="text-align: left;">Recursive Alarm</td>
+  <td style="text-align: left;">1</td>
+  <td style="text-align: left;">Bit set indicates that the alarm is recursive</td>
   </tr>
 </tbody>
 </table>

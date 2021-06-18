@@ -29,8 +29,11 @@
 #include "custs1_task.h"
 #include "rtc.h"
 #include "app_task.h"
+#include "user_real_time_clk.h"
+#include "user_rtc_util.h"
 
 timer_hnd ntf_update_tmr_hnd                            __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+bool rec_alarm_flag                                     __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
  /*
  * FUNCTION DEFINITIONS
@@ -38,6 +41,11 @@ timer_hnd ntf_update_tmr_hnd                            __SECTION_ZERO("retentio
 */
 
 #if BLE_CUSTOM1_SERVER
+
+bool is_alarm_recursive(void)
+{
+    return rec_alarm_flag;
+}
 
 static void rtc_error_ntf_send(uint16_t handle, uint8_t err_code)
 {
@@ -151,7 +159,14 @@ void user_svc1_current_time_cfg_ind_handler(ke_msg_id_t const msgid,
     }
 }
 
-rtc_status_code_t check_alarm_set(struct alarm_char_structure *alarm_time)
+/**
+ ****************************************************************************************
+ * @brief Performs validity checks for the alarm set from the peer 
+ * @param[in] alarm_char_structure holds the peer alarm set data
+ * @return rtc_status_code_t invalid or valid settings
+ ****************************************************************************************
+ */
+static rtc_status_code_t user_check_alarm_set(struct alarm_char_structure *alarm_time)
 {
     if(alarm_time->month != 0 && alarm_time->month > 12)
         return RTC_STATUS_CODE_INVALID_CLNDR_ALM;
@@ -188,10 +203,10 @@ void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
     rtc_alarm_calendar_t *p_calendar = &calendar;
     struct alarm_char_structure alarm_time;
     
-    memset(&alarm_time, 0, sizeof(struct current_time_char_structure));
-    memcpy(&alarm_time, &param->value[0], sizeof(struct current_time_char_structure));
+    memset(&alarm_time, 0, sizeof(struct alarm_char_structure));
+    memcpy(&alarm_time, &param->value[0], sizeof(struct alarm_char_structure));
     /* Validate the alert value passed from the application */
-    status = check_alarm_set(&alarm_time);
+    status = user_check_alarm_set(&alarm_time);
     
     if (status == RTC_STATUS_CODE_VALID_ENTRY)
     {
@@ -206,20 +221,19 @@ void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
         }
         
         time.hour       = alarm_time.hour;
-        (alarm_time.hour != 0) ? (temp |= RTC_ALARM_EN_HOUR) : (temp |= 0x00);
+        (alarm_time.hour != 0) ? (temp |= RTC_ALARM_EN_HOUR) : temp;
         time.minute     = alarm_time.minute;
-        (alarm_time.minute != 0) ? (temp |= RTC_ALARM_EN_MIN) : (temp |= 0x00);
+        (alarm_time.minute != 0) ? (temp |= RTC_ALARM_EN_MIN) : temp;
         time.sec        = alarm_time.second;
-        (alarm_time.second != 0) ? (temp |= RTC_ALARM_EN_SEC) : (temp |= 0x00);
+        (alarm_time.second != 0) ? (temp |= RTC_ALARM_EN_SEC) : temp;
         time.hsec       = alarm_time.hsecond;
-        (alarm_time.hsecond != 0) ? (temp |= RTC_ALARM_EN_HSEC) : (temp |= 0x00);
+        (alarm_time.hsecond != 0) ? (temp |= RTC_ALARM_EN_HSEC) : temp;
         
         time.hour_mode  = rtc_get_hour_clk_mode();
         
         if (time.hour_mode == RTC_HOUR_MODE_12H)
             time.pm_flag    = alarm_time.pm_flag;
         
-        //rtc_register_intr(rtc_alarm_handler, RTC_INTR_ALRM | ADVERTISE_UPDATE);
         status = rtc_set_alarm(&time, p_calendar, temp);
     }
     
@@ -228,16 +242,15 @@ void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
         rtc_error_ntf_send(param->handle, status);
 #ifdef PRINT_DATE_TIME_DATA
         arch_printf("Invalid Alarm time, RTC return status %02x \n\r", status);
+#endif
     }
     else
     {
-        arch_printf("Alarm was set for %02d/%02d %02d:%02d:%02d:%02d \n\r", 
-                                                                    alarm_time.mday,
-                                                                    alarm_time.month,
-                                                                    time.hour,
-                                                                    time.minute,
-                                                                    time.sec,
-                                                                    time.hsec);
+        user_rtc_register_intr(rtc_wakeup_event, RTC_INTR_ALRM);        // Enable the alarm interrupt after we verify that the alarm is properly configured
+        rec_alarm_flag = (alarm_time.recursive_alarm) ? true : false ;
+#ifdef PRINT_DATE_TIME_DATA
+        arch_printf("%s alarm was set for %02d/%02d %02d:%02d:%02d:%02d \n\r", ((rec_alarm_flag) ? "Recursive" : "One Time") ,alarm_time.mday, 
+                                                                                alarm_time.month, time.hour, time.minute, time.sec, time.hsec);
 #endif
     }
 }

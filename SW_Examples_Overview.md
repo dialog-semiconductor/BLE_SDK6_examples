@@ -8,7 +8,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <meta name=Generator content="Microsoft Excel 15">
 <link rel=File-List
 href="Imed_SW_Example_Update_GitHub_Publish_files/filelist.xml">
-<style id="SW_Example_Update_GitHub_Publish_30718_Styles">
+
 <!--table
 	{mso-displayed-decimal-separator:"\.";
 	mso-displayed-thousand-separator:"\,";}

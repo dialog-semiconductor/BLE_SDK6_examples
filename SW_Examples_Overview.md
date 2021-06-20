@@ -876,7 +876,7 @@ href="Imed_SW_Example_Update_GitHub_Publish_files/filelist.xml">
 	mso-pattern:black none;
 	white-space:normal;}
 -->
-</style>
+
 </head>
 
 <body>

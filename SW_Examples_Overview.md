@@ -901,7 +901,7 @@ x:publishsource="Excel">
  <col width=94 style='mso-width-source:userset;mso-width-alt:3281;width:71pt'>
  <col class=xl9630718 width=259 style='mso-width-source:userset;mso-width-alt:
  9029;width:194pt'>
- <col class=xl8830718 width=139 style='mso-width-source:userset;mso-width-alt:
+ <col class=xl8830718 width=125 style='mso-width-source:userset;mso-width-alt:
  4864;width:105pt'>
  <col class=xl8830718 width=638 style='mso-width-source:userset;mso-width-alt:
  22272;width:479pt'>
@@ -917,7 +917,7 @@ x:publishsource="Excel">
   Kit</td>
   <td class=xl10130718 width=259 style='border-left:none;width:194pt'>Example
   name</td>
-  <td class=xl10130718 width=139 style='border-left:none;width:105pt'>Key Words</td>
+  <td class=xl10130718 width=125 style='border-left:none;width:105pt'>Key Words</td>
   <td class=xl10130718 width=638 style='border-left:none;width:479pt'>Example
   Description</td>
  </tr>
@@ -930,7 +930,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/active_scanner">active_scanner</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>scanning mode - dvertising data - UART</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example shows how to setup the DA145xx device in active
@@ -945,7 +945,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/advertising_example">advertising_example</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>button - advertising - Sleep- Wakeup up</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example shows how to Use a button to switch between
@@ -959,7 +959,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_burst_adv">ble_burst_adv</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Burst advertising - UART</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This is a simple example showing how to implement 'burst'
@@ -973,7 +973,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_Notify_button_Wakeup">ble_Notify_button_Wakeup</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>notification - BLE = Button presses</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example shows how to configure a DA14531 or DA14585/586
@@ -987,7 +987,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_pressure_sensor_bmp388">ble_pressure_sensor_bmp388</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>BLE- PRESSURE 5 CLICK Board™<span
   style='mso-spacerun:yes'> </span></td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
@@ -1003,7 +1003,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_temperature_ntf">ble_temperature_ntf</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>MCP9808-<span style='mso-spacerun:yes'>  </span>Thermo 8 click
   board -I2C</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
@@ -1019,7 +1019,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/BLE2IR">BLE2IR</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Remote Control Unit<span style='mso-spacerun:yes'> </span></td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example provides an implementation of a Simple RCU using a
@@ -1033,7 +1033,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble-Midi">ble-Midi</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'><span style='mso-spacerun:yes'> </span>MIDI - BLE</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example shows how to<span style='mso-spacerun:yes'> 
@@ -1048,7 +1048,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>x</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/central">central</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>BLE-Central</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This project is intended to illustrate to the user How to scan
@@ -1063,7 +1063,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/central_Security_Demo">central_Security_Demo</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>pairing - encryption -bonding</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>The main example purpose is to demonstrate the basic pairing,
@@ -1077,7 +1077,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/hibernation_and_stateaware_hibernation">hibernation_and_stateaware_hibernation</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Hibernation- State aware hibernation</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example demonstrates the<span style='mso-spacerun:yes'> 
@@ -1091,7 +1091,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>x</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ibeacon">ibeacon</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>iBeacon- payload parameters -advertising interval, UUID<span
   style='mso-spacerun:yes'> </span></td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
@@ -1106,7 +1106,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ibeacon_Optim">ibeacon_Optim</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>ibeacon - power optimization</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>The example demonstrates an optimized software implementation
@@ -1120,7 +1120,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/multi_con_periph">multi_con_periph</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Cdntral - peripheral- connection</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example demonstrates how a single peripheral can be
@@ -1134,7 +1134,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/multirole">multirole</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Centra- peripheral - scan-advettise roles</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>The example demonstrates the capabilities of the DA14531/585/586
@@ -1148,7 +1148,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/scan_request_track">scan_request_track</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>scan- central -track</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example demonstrates how a peripheral device can track if
@@ -1162,7 +1162,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/simple_beacon">simple_beacon</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Beacon- Non-Connectable Advertising</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>The main purpose of this Software &#917;xample is to demonstrate
@@ -1176,7 +1176,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/svc_data_beacon">svc_data_beacon</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Beacon- Non-Connectable Advertising - UUID</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>The main purpose of this software example is to demonstrate
@@ -1193,7 +1193,7 @@ x:publishsource="Excel">
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/Quuppa_DialogTag">Quuppa
   Tag Emu example on DA14531<span style='mso-spacerun:yes'> </span></a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Quuppa Intelligent Locating System™- real-time location-BLE-Tag</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>this is the<span style='mso-spacerun:yes'>  </span>QUUPPA Tag
@@ -1207,7 +1207,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/Coexistence-example">Coexistence-example</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>WiFi coexistence -BLE</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>The example provides guidelines on how the WiFi coexistence
@@ -1222,7 +1222,7 @@ x:publishsource="Excel">
   <td class=xl7030718 style='border-left:none'>&nbsp;</td>
   <td class=xl9130718 style='border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/features/dynamic_L2CAP_Packet_size_Optimization">dynamic_L2CAP_Packet_size_Optimization</a></td>
-  <td class=xl8030718 width=139 style='border-left:none;width:105pt'>L2CAP-
+  <td class=xl8030718 width=125 style='border-left:none;width:105pt'>L2CAP-
   DLE-throughput</td>
   <td class=xl7730718 width=638 style='border-left:none;width:479pt'>This
   project is intended to illustrate to the user how to do a peer feature
@@ -1237,7 +1237,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>x</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/features/reset_Indication_update">reset_Indication_update</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Reset - source</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>The current SW example demonstrates how to issue and identify
@@ -1252,7 +1252,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>x</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/features/social-distancing-application">social-distancing-application</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>DA14531 - social distancing (SDT)</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example configures a DA14531 device to be used for social
@@ -1266,7 +1266,7 @@ x:publishsource="Excel">
   <td class=xl7130718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9230718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/features/DA14531_Timer1_SW_Example">DA14531_Timer1_SW_Example</a></td>
-  <td class=xl8130718 width=139 style='border-top:none;border-left:none;
+  <td class=xl8130718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Timer 1 -DA14531</td>
   <td class=xl8630718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This software example demonstrates the usage of the TIMER1
@@ -1281,7 +1281,7 @@ x:publishsource="Excel">
   <td class=xl9330718 style='border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/helpers/usb_preloaded%20_firmware">usb_preloaded
   _firmware</a></td>
-  <td class=xl8230718 width=139 style='border-left:none;width:105pt'>USB-
+  <td class=xl8230718 width=125 style='border-left:none;width:105pt'>USB-
   DA14531-<span style='mso-spacerun:yes'>  </span>OTP unique random address -
   BD address - UART print</td>
   <td class=xl7830718 width=638 style='border-left:none;width:479pt'>The main
@@ -1297,7 +1297,7 @@ x:publishsource="Excel">
   <td class=xl7330718 style='border-left:none'>&nbsp;</td>
   <td class=xl9430718 style='border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/accel-Sensor">accel-Sensor</a></td>
-  <td class=xl8330718 width=139 style='border-left:none;width:105pt'><span
+  <td class=xl8330718 width=125 style='border-left:none;width:105pt'><span
   style='mso-spacerun:yes'> </span>I2C accelerometer -BLE notifications</td>
   <td class=xl8730718 width=638 style='border-left:none;width:479pt'>This
   example shows how to acquire data from an I2C accelerometer and send the
@@ -1311,7 +1311,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/external-processor-stm32">external-processor-stm32</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>STM32- DA14531 RAM - External MCU</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>The goal of this example is to show how to load a program into
@@ -1325,7 +1325,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/HID-Gamepad-Digitizer">HID-Gamepad-Digitizer</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'><span style='mso-spacerun:yes'> </span>HID gamepad - BLE HOGPD
   profile.</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
@@ -1340,7 +1340,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/MCube-Accel-MC36xx">MCube-Accel-MC36xx</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>I2C- MC36xx (MC3672/35) accelerometers.</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>Sample software application to interface Dialog DA14585/586 BLE
@@ -1354,7 +1354,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>x</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/segger_rtt">segger_rtt</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Segger RTT<span style='mso-spacerun:yes'> </span></td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example illustrates to the user, how to use SEGGER RTT in
@@ -1368,7 +1368,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/simple_button">simple_button</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>&nbsp;</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example shows How to configure a button for short press and
@@ -1382,7 +1382,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/SPI_or_I2C_DMA_accelerometer">SPI_or_I2C_DMA_accelerometer</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'><span style='mso-spacerun:yes'> </span>SPI - I2C to interface
   with the LIS2DH acceleromete</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
@@ -1397,7 +1397,7 @@ x:publishsource="Excel">
   <td class=xl6830718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl8930718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/wakeup_hibernation_ext_timer">wakeup_hibernation_ext_timer</a></td>
-  <td class=xl7630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>Eddystone beacon- TPL5010EVM - Wakeup</td>
   <td class=xl7530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example configures a DA14531 device to be used as an
@@ -1411,7 +1411,7 @@ x:publishsource="Excel">
   <td class=xl6930718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9030718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/wakeup-button">wakeup-button</a></td>
-  <td class=xl7930718 width=139 style='border-top:none;border-left:none;
+  <td class=xl7930718 width=125 style='border-top:none;border-left:none;
   width:105pt'>SW2-SW3 button -wakeup up</td>
   <td class=xl8530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>This example shows how to wake up using two possible sources,
@@ -1427,7 +1427,7 @@ x:publishsource="Excel">
   <td class=xl7430718 style='border-top:none;border-left:none'>&nbsp;</td>
   <td class=xl9530718 style='border-top:none;border-left:none'><a
   href="https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/I2C-Master-Slave">I2C-Master-Slave</a></td>
-  <td class=xl10630718 width=139 style='border-top:none;border-left:none;
+  <td class=xl10630718 width=125 style='border-top:none;border-left:none;
   width:105pt'>I2C - Master-slave</td>
   <td class=xl10530718 width=638 style='border-top:none;border-left:none;
   width:479pt'>his example describes how to perform I2C data buffer
@@ -1443,7 +1443,7 @@ x:publishsource="Excel">
   <td width=100 style='width:75pt'></td>
   <td width=94 style='width:71pt'></td>
   <td width=259 style='width:194pt'></td>
-  <td width=139 style='width:105pt'></td>
+  <td width=125 style='width:105pt'></td>
   <td width=638 style='width:479pt'></td>
  </tr>
  <![endif]>

@@ -1466,19 +1466,7 @@ x:publishsource="Excel">
   transmission/reception between two boards in asynchronous mode (non-blocking
   communication). The project is split in two parts: the Master Board and the
   Slave Board.</td>
- </tr>
- <![if supportMisalignedColumns]>
- <tr height=0 style='display:none'>
-  <td width=187 style='width:141pt'></td>
-  <td width=124 style='width:93pt'></td>
-  <td width=95 style='width:72pt'></td>
-  <td width=100 style='width:75pt'></td>
-  <td width=94 style='width:71pt'></td>
-  <td width=141 style='width:106pt'></td>
-  <td width=139 style='width:105pt'></td>
-  <td width=401 style='width:301pt'></td>
- </tr>
- <![endif]>
+
 </table>
 
 </div>

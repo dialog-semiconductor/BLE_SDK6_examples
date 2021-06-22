@@ -41,6 +41,12 @@
 #include "user_custs1_impl.h"
 #include "user_periph_setup.h"
 
+#if BLE_CTS_SERVER
+#include "ctss.h"
+#include "user_ctss.h"
+#include "user_profiles_config.h"
+#endif
+
 // Manufacturer Specific Data ADV structure type
 struct __PACKED date_specific_data_ad_structure
 {
@@ -53,11 +59,6 @@ struct __PACKED date_specific_data_ad_structure
     uint8_t     minute;
     uint8_t     second;
 };
-
-#if BLE_CTS_SERVER
-struct cts_curr_time cts_current_time                   __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-struct cts_ref_time_info ref_time                       __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-#endif
 
 struct date_specific_data_ad_structure adv_date         __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint8_t date_data_index                                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
@@ -73,6 +74,8 @@ timer_hnd app_param_update_request_timer_used           __SECTION_ZERO("retentio
 timer_hnd app_alert_timer_used                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint16_t app_alert_timeout                              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 bool led_state                                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+
+void (*ctss_last_update_callback)(void)                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS
@@ -301,6 +304,10 @@ void rtc_wakeup_event(uint8_t event)
     
     if (event & RTC_EVENT_ALRM)
         rtc_alarm_wakeup_handler();
+    
+    if (event & RTC_EVENT_HOUR)
+        if (ctss_last_update_callback != NULL)
+            ctss_last_update_callback();
 }
 
 void user_app_adv_start(void)
@@ -351,6 +358,16 @@ void user_app_on_init(void)
     rtc_status_code_t status = rtc_configure(&time, &calendar, &config);
     ASSERT_ERROR(status == RTC_STATUS_CODE_VALID_ENTRY);
 
+#if BLE_CTS_SERVER
+    if(APP_CTS_FEATURES & CTSS_REF_TIME_INFO_SUP)
+    {
+        user_ctss_init(ctss_last_update_callback);
+        user_rtc_register_intr(rtc_wakeup_event, RTC_INTR_HOUR);
+    }
+    else   
+        user_ctss_init(NULL);
+#endif
+
     adv_data_date_init();
     
     // Start RTC
@@ -362,85 +379,6 @@ void user_app_on_init(void)
     // Set sleep mode
     arch_set_sleep_mode(app_default_sleep_mode);
 }
-
-#if BLE_CTS_SERVER
-
-void user_ctss_init(void)
-{
-    struct prf_date_time date_time = {
-        user_calendar_conf.year, 
-        user_calendar_conf.month, 
-        user_calendar_conf.mday, 
-        user_time_conf.hour, 
-        user_time_conf.minute, 
-        user_time_conf.sec
-    };
-    
-    cts_current_time.adjust_reason = CTSS_REASON_FLAG_MAN_TIME_UPDATE;
-    cts_current_time.exact_time_256.day_date_time.date_time = date_time;
-    cts_current_time.exact_time_256.day_date_time.day_of_week = user_calendar_conf.wday;
-    cts_current_time.exact_time_256.fraction_256 = 0;
-
-    ref_time.time_source = 4;
-    ref_time.time_accuracy = 0;
-    ref_time.days_update = 0;
-    ref_time.hours_update = 0;
-}
-
-
-void user_on_current_time_read(struct cts_curr_time *ct)
-{
-    rtc_time_t rtc_current_time;
-    rtc_calendar_t rtc_current_date;    
-    rtc_get_time_clndr(&rtc_current_time, &rtc_current_date);
-    
-    // Update the struct for the CTS profile with the data from the RTC
-    cts_current_time.exact_time_256.day_date_time.day_of_week       = rtc_current_date.wday;
-    cts_current_time.exact_time_256.day_date_time.date_time.year    = rtc_current_date.year;
-    cts_current_time.exact_time_256.day_date_time.date_time.month   = rtc_current_date.month;
-    cts_current_time.exact_time_256.day_date_time.date_time.day     = rtc_current_date.mday;
-    cts_current_time.exact_time_256.day_date_time.date_time.hour    = rtc_current_time.hour;
-    cts_current_time.exact_time_256.day_date_time.date_time.min     = rtc_current_time.minute;
-    cts_current_time.exact_time_256.day_date_time.date_time.sec     = rtc_current_time.sec;
-    cts_current_time.exact_time_256.fraction_256 = (rtc_current_time.hsec << 8) / 100;
-    
-    *ct = cts_current_time;
-}
-
-void user_on_ref_time_read(struct cts_ref_time_info *rt)
-{
-    *rt = ref_time;
-}
-
-uint8_t user_on_cur_time_write_req(const struct cts_curr_time *ct)
-{
-    // Check the alarms when the time is updated by the accumulation value
-     
-    rtc_time_t rtc_current_time;
-    rtc_calendar_t rtc_current_date;
-    
-    rtc_current_date.wday   = ct->exact_time_256.day_date_time.day_of_week;
-    rtc_current_date.year   = ct->exact_time_256.day_date_time.date_time.year;
-    rtc_current_date.month  = ct->exact_time_256.day_date_time.date_time.month;
-    rtc_current_date.mday   = ct->exact_time_256.day_date_time.date_time.day;
-    rtc_current_time.hour   = ct->exact_time_256.day_date_time.date_time.hour;
-    rtc_current_time.minute = ct->exact_time_256.day_date_time.date_time.min;
-    rtc_current_time.sec    = ct->exact_time_256.day_date_time.date_time.sec;
-    // First have the RTC driver to check if the date/time entry is valid
-    rtc_status_code_t status = rtc_set_time_clndr(&rtc_current_time, &rtc_current_date);
-    
-    if(status != RTC_STATUS_CODE_VALID_ENTRY)
-    {
-        return ATT_ERR_APP_ERROR;
-    }
-    else
-    {
-        cts_current_time = *ct;     // Update the current time of the profile
-        return ATT_ERR_NO_ERROR;
-    }
-}
-
-#endif // BLE_CTS_SERVER
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,

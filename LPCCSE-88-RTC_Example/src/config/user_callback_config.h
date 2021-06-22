@@ -31,6 +31,9 @@
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
 #include "user_real_time_clk.h"
+#if (BLE_CTS_SERVER)
+#include "user_ctss.h"
+#endif
 
 /*
  * FUNCTION DECLARATIONS
@@ -91,8 +94,9 @@ static const struct app_ctss_cb user_app_ctss_cb = {
     .on_cur_time_read_req       = user_on_current_time_read,
     .on_cur_time_write_req      = user_on_cur_time_write_req,
     .on_cur_time_notified       = NULL,
-    .on_loc_time_info_write_req = NULL,
-    .on_ref_time_info_read_req  = NULL,
+    .on_loc_time_info_read_req  = user_on_loc_time_info_read_req,
+    .on_loc_time_info_write_req = user_on_loc_time_info_write_req,
+    .on_ref_time_info_read_req  = user_on_ref_time_info_read,
 };
 #endif // BLE_CTS_SERVER
 

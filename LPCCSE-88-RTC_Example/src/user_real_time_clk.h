@@ -104,46 +104,6 @@ void user_app_on_init(void);
 */
 void rtc_wakeup_event(uint8_t event);
 
-#if BLE_CTS_SERVER
-
-/**
- ****************************************************************************************
- * @brief Initialization of the Current Time Service profile.
-   @pararm[out] void
- * @return void
- ****************************************************************************************
-*/
-void user_ctss_init(void);
-
-/**
- ****************************************************************************************
- * @brief Current time read callback function.
-   @pararm[out] ct Pionter to output structure.
- * @return void
- ****************************************************************************************
-*/
-void user_on_current_time_read(struct cts_curr_time *ct);
-
-/**
- ****************************************************************************************
- * @brief Reference time read callback function.
-   @pararm[out] rt Pionter to output structure.
- * @return void
- ****************************************************************************************
-*/
-void user_on_ref_time_read(struct cts_ref_time_info *rt);
-
-/**
- ****************************************************************************************
- * @brief Write current time callback fucntion.
-   @pararm[in] ct Pionter to new current time value.
- * @return status
- ****************************************************************************************
-*/
-uint8_t user_on_cur_time_write_req(const struct cts_curr_time *ct);
-
-#endif // BLE_CTS_SERVER
-
 /**
  ****************************************************************************************
  * @brief Handles the messages that are not handled by the SDK internal mechanisms.

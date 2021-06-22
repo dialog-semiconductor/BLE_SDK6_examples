@@ -37,7 +37,7 @@
 /***************************************************************************************/
 
 #define CFG_PRF_DISS
-#undef CFG_PRF_CTSS
+#define CFG_PRF_CTSS
 #define CFG_PRF_CUST1
 
 /***************************************************************************************/
@@ -109,6 +109,10 @@
  * CTSS application profile configuration
  ****************************************************************************************
  */
+ 
+#define CTS_DEFAULT_TIME_ZONE           0x00
+#define CTS_DEFAULT_DST_OFFSET          0x00
+ 
 #define APP_CTS_FEATURES (CTSS_LOC_TIME_INFO_SUP |\
                           CTSS_REF_TIME_INFO_SUP |\
                           CTSS_CURRENT_TIME_WRITE_SUP |\

@@ -60,6 +60,8 @@ struct __PACKED date_specific_data_ad_structure
     uint8_t     second;
 };
 
+const char *days_of_week[7] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
 struct date_specific_data_ad_structure adv_date         __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint8_t date_data_index                                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint8_t stored_adv_data_len                             __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
@@ -75,13 +77,11 @@ timer_hnd app_alert_timer_used                          __SECTION_ZERO("retentio
 uint16_t app_alert_timeout                              __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 bool led_state                                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
-void (*ctss_last_update_callback)(void)                 __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-
 /*
  * FUNCTION DEFINITIONS
  ****************************************************************************************
 */
-
+#if (BLE_CUSTOM1_SERVER)
 static void alarm_stop(void)
 {
     app_alert_timeout = 0;
@@ -108,6 +108,7 @@ static void alarm_start(void)
     GPIO_SetActive(GPIO_ALERT_LED_PORT, GPIO_ALERT_LED_PIN);
     led_state = true;
 }
+#endif // BLE_CUSTOM1_SERVER
 
 /**
  ****************************************************************************************
@@ -240,11 +241,11 @@ static void print_date_time(rtc_time_t *time, rtc_calendar_t *clndr)
 {
     uint32_t msec = rtc_convert_time_to_msec(time);
     /* Print the current date */
-    arch_printf("%02d, %02d/%02d/%04d ", clndr->wday, clndr->mday, clndr->month, clndr->year );
+    arch_printf("%s, %02d/%02d/%04d ", days_of_week[clndr->wday - 1], clndr->mday, clndr->month, clndr->year );
     /* Print the current time */
     arch_printf("%02d:%02d:%02d:%02d %s ", time->hour, time->minute, time->sec, time->hsec,
                                            (time->hour_mode) ? ((time->pm_flag) ? "PM" : "AM") : "24H");
-    /* Prin the current time in ms */
+    /* Print the current time in ms */
     arch_printf("%04d.%03d ms \n\r", (uint32_t)msec/1000, (uint32_t)msec%1000);
 }
 
@@ -272,6 +273,7 @@ void rtc_event_wakeup_handler(void)
 #endif  //PRINT_TIME_DATA
 }
 
+#if (BLE_CUSTOM1_SERVER) 
 void rtc_alarm_wakeup_handler(void)
 {
     if(!is_alarm_recursive())
@@ -287,6 +289,7 @@ void rtc_alarm_wakeup_handler(void)
     arch_printf("Alarm Triggered \n\r");
 #endif
 }
+#endif // BLE_CUSTOM1_SERVER
 
 /**
  ****************************************************************************************
@@ -301,13 +304,14 @@ void rtc_wakeup_event(uint8_t event)
     
     if (event & ADVERTISE_UPDATE)
         rtc_event_wakeup_handler();
-    
+#if (BLE_CUSTOM1_SERVER)    
     if (event & RTC_EVENT_ALRM)
         rtc_alarm_wakeup_handler();
-    
+#endif  // BLE_CUSTOM1_SERVER
+#if (BLE_CTS_SERVER)    
     if (event & RTC_EVENT_HOUR)
-        if (ctss_last_update_callback != NULL)
-            ctss_last_update_callback();
+        update_ref_time_info();
+#endif
 }
 
 void user_app_adv_start(void)
@@ -357,15 +361,12 @@ void user_app_on_init(void)
     // Configure RTC time, calendar
     rtc_status_code_t status = rtc_configure(&time, &calendar, &config);
     ASSERT_ERROR(status == RTC_STATUS_CODE_VALID_ENTRY);
-
+    
 #if BLE_CTS_SERVER
+    user_ctss_init();
+/// If the Reference Time Feature is enabled activate the RTC interrupt on hour event
     if(APP_CTS_FEATURES & CTSS_REF_TIME_INFO_SUP)
-    {
-        user_ctss_init(ctss_last_update_callback);
-        user_rtc_register_intr(rtc_wakeup_event, RTC_INTR_HOUR);
-    }
-    else   
-        user_ctss_init(NULL);
+        user_rtc_register_intr(rtc_wakeup_event, RTC_HOUR_INT_EN);
 #endif
 
     adv_data_date_init();

@@ -76,13 +76,14 @@
  * @return void
  ****************************************************************************************
 */
-void user_ctss_init(void (*last_upd_cb)(void));
+void user_ctss_init(void);
 
 /**
  ****************************************************************************************
  * @brief Apply an external change to the Server's current time and date.
  * @param[in]   rtc_time_t time that the RTC should change to
  * @param[in]   rtc_calendar_t date that the RTC should change to
+ * @param[in]   struct cts_loc_time_info update the time zone or the destination offset
  * @param[out]  cts_loc_time_info external/manual change of Time zone or destination offset 
  * @return void
  ****************************************************************************************
@@ -133,7 +134,15 @@ void user_on_current_time_read(struct cts_curr_time *ct);
  ****************************************************************************************
 */
 void user_on_ref_time_info_read(struct cts_ref_time_info *rt);
- 
+
+/**
+ ****************************************************************************************
+ * @brief Callback triggered to update the reference Time Information fields for last hour
+ * and day update.
+ ****************************************************************************************
+*/
+void update_ref_time_info(void);
+
 #endif /* #if (BLE_CTS_SERVER) */
 
 /// @} CTSS

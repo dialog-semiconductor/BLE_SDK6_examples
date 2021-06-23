@@ -33,19 +33,6 @@
  ****************************************************************************************
  */
  
- /***************************************************************************************
- * Configuration Demo Flags
- *
- * - ADVERTISE_UPDATE                       Set the update of the advertising string using the RTC events
- *  - RTC_SEC_INT_EN                        advertise update per second
- *  - RTC_MIN_INT_EN                        advertise update per minute
- *  - RTC_HOUR_INT_EN                       advertise update per hour
- *  - RTC_DATE_INT_EN                       advertise update per day
- *  - RTC_MNTH_INT_EN                       advertise update per month
- * - ENABLE EVENTS                          Enable the events demo
- ****************************************************************************************
- */
- #define nNON_CONNECTABLE_ADVERTISING
  #define PRINT_DATE_TIME_DATA 
  #define ADVERTISE_UPDATE                   RTC_EVENT_SEC
 

@@ -80,7 +80,7 @@ i.e.
  /* Duration of timer for connection parameter update request */
 #define APP_PARAM_UPDATE_REQUEST_TO         (1000)  // 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
 #define ALERT_INTERVAL                      (10)    // 250 ms interval 
-#define ALERT_TIMEOUT                       (1000)  // 5 seconds for alert timeout
+#define ALERT_TIMEOUT                       (1000)  // 10 seconds for alert timeout
 
 /*
  * FUNCTION DECLARATIONS

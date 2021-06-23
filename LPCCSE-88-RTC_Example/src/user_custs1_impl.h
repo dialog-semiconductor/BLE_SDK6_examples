@@ -91,6 +91,9 @@ struct __PACKED alarm_char_structure
 
 #define APP_NTF_RTC_UPDATE                  (200)    // 200*10ms = 2 sec
 
+#define ALARM_IGNORE_TIME_VALUE             (0xFF)
+#define ALARM_IGNORE_DATE_VALUE             (0x00)
+
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************

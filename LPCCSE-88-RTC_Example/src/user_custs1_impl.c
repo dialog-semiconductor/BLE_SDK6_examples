@@ -170,22 +170,22 @@ void user_svc1_current_time_cfg_ind_handler(ke_msg_id_t const msgid,
  */
 static rtc_status_code_t user_check_alarm_set(struct alarm_char_structure *alarm_time)
 {
-    if(alarm_time->month != 0 && alarm_time->month > 12)
+    if(alarm_time->month != ALARM_IGNORE_DATE_VALUE && alarm_time->month > 12)
         return RTC_STATUS_CODE_INVALID_CLNDR_ALM;
-    if(alarm_time->mday !=0 && alarm_time->mday > 31)
+    if(alarm_time->mday != ALARM_IGNORE_DATE_VALUE && alarm_time->mday > 31)
         return RTC_STATUS_CODE_INVALID_CLNDR_ALM;
-    if(alarm_time->hour != 0)
+    if(alarm_time->hour != ALARM_IGNORE_TIME_VALUE)
     {
         if (rtc_get_hour_clk_mode() == RTC_HOUR_MODE_12H && alarm_time->hour > 11)
             return RTC_STATUS_CODE_INVALID_TIME_ALM;
         if (alarm_time->hour > 23)
             return RTC_STATUS_CODE_INVALID_TIME_ALM;
     }
-    if(alarm_time->minute > 59)
+    if(alarm_time->minute != ALARM_IGNORE_TIME_VALUE && alarm_time->minute > 59)
         return RTC_STATUS_CODE_INVALID_TIME_ALM;
-    if(alarm_time->second > 59)
+    if(alarm_time->second != ALARM_IGNORE_TIME_VALUE && alarm_time->second > 59)
         return RTC_STATUS_CODE_INVALID_TIME_ALM;
-    if(alarm_time->hsecond > 99)
+    if(alarm_time->hsecond != ALARM_IGNORE_TIME_VALUE && alarm_time->hsecond > 99)
         return RTC_STATUS_CODE_INVALID_TIME_ALM;
     if(alarm_time->pm_flag != 0 && rtc_get_hour_clk_mode() != RTC_HOUR_MODE_12H)
         return RTC_STATUS_CODE_INVALID_TIME_HOUR_MODE_ALM;
@@ -200,8 +200,11 @@ void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
 {
     uint8_t temp = 0x00;
     rtc_status_code_t status;
+    
     rtc_time_t time;
     rtc_alarm_calendar_t calendar;
+    memset(&time, 0x00, sizeof(rtc_time_t));
+    memset(&calendar, 0x01, sizeof(rtc_alarm_calendar_t));
     rtc_alarm_calendar_t *p_calendar = &calendar;
     struct alarm_char_structure alarm_time;
     
@@ -212,24 +215,45 @@ void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
     
     if (status == RTC_STATUS_CODE_VALID_ENTRY)
     {
-        if (!alarm_time.month || !alarm_time.mday)
-            p_calendar = NULL;
-        else
+        if(alarm_time.month != ALARM_IGNORE_DATE_VALUE)
         {
-            calendar.month  = alarm_time.month;
-            (alarm_time.month != 0) ? (temp |= RTC_ALARM_EN_MONTH) : (temp |= 0x00);
-            calendar.mday   = alarm_time.mday;
-            (alarm_time.mday != 0) ? (temp |= RTC_ALARM_EN_MDAY) : (temp |= 0x00);
+            calendar.month = alarm_time.month;
+            temp |= RTC_ALARM_EN_MONTH;
         }
         
-        time.hour       = alarm_time.hour;
-        (alarm_time.hour != 0) ? (temp |= RTC_ALARM_EN_HOUR) : temp;
-        time.minute     = alarm_time.minute;
-        (alarm_time.minute != 0) ? (temp |= RTC_ALARM_EN_MIN) : temp;
-        time.sec        = alarm_time.second;
-        (alarm_time.second != 0) ? (temp |= RTC_ALARM_EN_SEC) : temp;
-        time.hsec       = alarm_time.hsecond;
-        (alarm_time.hsecond != 0) ? (temp |= RTC_ALARM_EN_HSEC) : temp;
+        if(alarm_time.mday != ALARM_IGNORE_DATE_VALUE)
+        {
+            calendar.mday = alarm_time.mday;
+            temp |= RTC_ALARM_EN_MDAY;
+        }
+        
+        if(!(temp & (RTC_ALARM_EN_MDAY|RTC_ALARM_EN_MONTH)))
+            p_calendar = NULL;
+            
+        
+        if(alarm_time.hour != ALARM_IGNORE_TIME_VALUE)
+        {
+            time.hour = alarm_time.hour;
+            temp |= RTC_ALARM_EN_HOUR;
+        }
+        
+        if(alarm_time.minute != ALARM_IGNORE_TIME_VALUE)
+        {
+            time.minute = alarm_time.minute;
+            temp |= RTC_ALARM_EN_MIN;
+        }
+        
+        if(alarm_time.second != ALARM_IGNORE_TIME_VALUE)
+        {
+            time.sec = alarm_time.second;
+            temp |= RTC_ALARM_EN_SEC;
+        }
+        
+        if(alarm_time.hsecond != ALARM_IGNORE_TIME_VALUE)
+        {
+            time.hsec = alarm_time.hsecond;
+            temp |= RTC_ALARM_EN_HSEC;
+        }
         
         time.hour_mode  = rtc_get_hour_clk_mode();
         

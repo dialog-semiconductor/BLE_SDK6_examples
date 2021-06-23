@@ -58,13 +58,7 @@ static void rtc_to_cts_date_time_struct(rtc_time_t *rtc_time, rtc_calendar_t *rt
     cts_time->exact_time_256.day_date_time.date_time.sec = rtc_time->sec;
 }
 
-/**
- ****************************************************************************************
- * @brief Callback triggered to update the reference Time Information fields for last hour
- * and day update.
- ****************************************************************************************
-*/
-static void last_update_callback(void)
+void update_ref_time_info(void)
 {
     ref_time.hours_update++;
     
@@ -81,7 +75,7 @@ static void last_update_callback(void)
     }
 }
 
-void user_ctss_init(void (*last_upd_cb)(void))
+void user_ctss_init(void)
 {
     struct prf_date_time date_time = {
         user_calendar_conf.year, 
@@ -99,9 +93,6 @@ void user_ctss_init(void (*last_upd_cb)(void))
 
     cts_current_dst_tz.time_zone = CTS_DEFAULT_TIME_ZONE;
     cts_current_dst_tz.dst_offset = CTS_DEFAULT_DST_OFFSET;
-    
-    if(last_upd_cb != NULL)
-        last_upd_cb = last_update_callback;
     
     ref_time.time_source = TIME_SOURCE_MANUAL;
     ref_time.time_accuracy = ACCURACY_UNKNOWN;

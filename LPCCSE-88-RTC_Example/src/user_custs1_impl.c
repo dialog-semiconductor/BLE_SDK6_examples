@@ -161,45 +161,13 @@ void user_svc1_current_time_cfg_ind_handler(ke_msg_id_t const msgid,
     }
 }
 
-/**
- ****************************************************************************************
- * @brief Performs validity checks for the alarm set from the peer 
- * @param[in] alarm_char_structure holds the peer alarm set data
- * @return rtc_status_code_t invalid or valid settings
- ****************************************************************************************
- */
-static rtc_status_code_t user_check_alarm_set(struct alarm_char_structure *alarm_time)
-{
-    if(alarm_time->month != ALARM_IGNORE_DATE_VALUE && alarm_time->month > 12)
-        return RTC_STATUS_CODE_INVALID_CLNDR_ALM;
-    if(alarm_time->mday != ALARM_IGNORE_DATE_VALUE && alarm_time->mday > 31)
-        return RTC_STATUS_CODE_INVALID_CLNDR_ALM;
-    if(alarm_time->hour != ALARM_IGNORE_TIME_VALUE)
-    {
-        if (rtc_get_hour_clk_mode() == RTC_HOUR_MODE_12H && alarm_time->hour > 11)
-            return RTC_STATUS_CODE_INVALID_TIME_ALM;
-        if (alarm_time->hour > 23)
-            return RTC_STATUS_CODE_INVALID_TIME_ALM;
-    }
-    if(alarm_time->minute != ALARM_IGNORE_TIME_VALUE && alarm_time->minute > 59)
-        return RTC_STATUS_CODE_INVALID_TIME_ALM;
-    if(alarm_time->second != ALARM_IGNORE_TIME_VALUE && alarm_time->second > 59)
-        return RTC_STATUS_CODE_INVALID_TIME_ALM;
-    if(alarm_time->hsecond != ALARM_IGNORE_TIME_VALUE && alarm_time->hsecond > 99)
-        return RTC_STATUS_CODE_INVALID_TIME_ALM;
-    if(alarm_time->pm_flag != 0 && rtc_get_hour_clk_mode() != RTC_HOUR_MODE_12H)
-        return RTC_STATUS_CODE_INVALID_TIME_HOUR_MODE_ALM;
-    
-    return RTC_STATUS_CODE_VALID_ENTRY;
-}
-
 void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
                                     struct custs1_val_write_ind const *param,
                                     ke_task_id_t const dest_id,
                                     ke_task_id_t const src_id)
 {
     uint8_t temp = 0x00;
-    rtc_status_code_t status;
+    rtc_status_code_t status = RTC_STATUS_CODE_VALID_ENTRY;
     
     rtc_time_t time;
     rtc_alarm_calendar_t calendar;
@@ -210,58 +178,92 @@ void user_svc1_alarm_wr_ind_handler(ke_msg_id_t const msgid,
     
     memset(&alarm_time, 0, sizeof(struct alarm_char_structure));
     memcpy(&alarm_time, &param->value[0], sizeof(struct alarm_char_structure));
-    /* Validate the alert value passed from the application */
-    status = user_check_alarm_set(&alarm_time);
     
-    if (status == RTC_STATUS_CODE_VALID_ENTRY)
+    if (alarm_time.month != ALARM_IGNORE_DATE_VALUE)
     {
-        if(alarm_time.month != ALARM_IGNORE_DATE_VALUE)
+        if(alarm_time.month > 12)
+            status = RTC_STATUS_CODE_INVALID_CLNDR_ALM;
+        else
         {
             calendar.month = alarm_time.month;
             temp |= RTC_ALARM_EN_MONTH;
         }
-        
-        if(alarm_time.mday != ALARM_IGNORE_DATE_VALUE)
+    }
+    
+    if (alarm_time.mday != ALARM_IGNORE_DATE_VALUE)
+    {
+        if(alarm_time.mday > 31)
+            status = RTC_STATUS_CODE_INVALID_CLNDR_ALM;
+        else
         {
             calendar.mday = alarm_time.mday;
             temp |= RTC_ALARM_EN_MDAY;
         }
+    }
+    
+    if (!(temp & (RTC_ALARM_EN_MDAY|RTC_ALARM_EN_MONTH)))
+        p_calendar = NULL;
         
-        if(!(temp & (RTC_ALARM_EN_MDAY|RTC_ALARM_EN_MONTH)))
-            p_calendar = NULL;
-            
-        
-        if(alarm_time.hour != ALARM_IGNORE_TIME_VALUE)
+    
+    if (alarm_time.hour != ALARM_IGNORE_TIME_VALUE)
+    {
+        if(rtc_get_hour_clk_mode() == RTC_HOUR_MODE_12H && alarm_time.hour > 11)
+            status = RTC_STATUS_CODE_INVALID_TIME_ALM;
+        else if (alarm_time.hour > 23)
+            status = RTC_STATUS_CODE_INVALID_TIME_ALM;
+        else
         {
             time.hour = alarm_time.hour;
             temp |= RTC_ALARM_EN_HOUR;
         }
-        
-        if(alarm_time.minute != ALARM_IGNORE_TIME_VALUE)
+    }
+    
+    if (alarm_time.minute != ALARM_IGNORE_TIME_VALUE)
+    {
+        if (alarm_time.minute > 59)
+            status = RTC_STATUS_CODE_INVALID_TIME_ALM;
+        else
         {
             time.minute = alarm_time.minute;
             temp |= RTC_ALARM_EN_MIN;
         }
-        
-        if(alarm_time.second != ALARM_IGNORE_TIME_VALUE)
+    }
+    
+    if (alarm_time.second != ALARM_IGNORE_TIME_VALUE)
+    {
+        if (alarm_time.second > 59)
+            status = RTC_STATUS_CODE_INVALID_TIME_ALM;
+        else
         {
             time.sec = alarm_time.second;
             temp |= RTC_ALARM_EN_SEC;
         }
-        
-        if(alarm_time.hsecond != ALARM_IGNORE_TIME_VALUE)
+    }
+    
+    if (alarm_time.hsecond != ALARM_IGNORE_TIME_VALUE)
+    {        
+        if (alarm_time.hsecond > 99)
+            status = RTC_STATUS_CODE_INVALID_TIME_ALM;
+        else
         {
             time.hsec = alarm_time.hsecond;
             temp |= RTC_ALARM_EN_HSEC;
         }
-        
-        time.hour_mode  = rtc_get_hour_clk_mode();
-        
+    }
+    
+    time.hour_mode  = rtc_get_hour_clk_mode();
+    
+    if (alarm_time.pm_flag == 1)
+    {
         if (time.hour_mode == RTC_HOUR_MODE_12H)
             time.pm_flag    = alarm_time.pm_flag;
-        
-        status = rtc_set_alarm(&time, p_calendar, temp);
+        else
+            status = RTC_STATUS_CODE_INVALID_TIME_HOUR_MODE_ALM;
     }
+    
+    /// If no error occured try to set the time in the HW
+    if (status == RTC_STATUS_CODE_VALID_ENTRY)
+        status = rtc_set_alarm(&time, p_calendar, temp);
     
     if (status != RTC_STATUS_CODE_VALID_ENTRY)
     {

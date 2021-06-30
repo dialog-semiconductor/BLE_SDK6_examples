@@ -12,8 +12,8 @@ The main purpose of this SW example is to demonstrate how to configure the RTC i
 - Print out the current time and date on RTC **EVENT**.
 - Use the RTC **EVENT** function for updating the advertising string.
 - Expose the SIG CTS profile (Current Time Service) with all optional features enabled.
-- Expose a Custom (128-bit) profile for Time Read/Notify/Update and alarm setting. 
-- Use the RTC **ALARM** function for setting alarms via custom profile.
+- Expose a Custom (128-bit) profile for Time Read/Notify/Update and Alarm setting. 
+- Expose the RTC **ALARM** function for setting alarms via custom profile.
 
 ## How it works
 
@@ -57,7 +57,7 @@ struct app_ctss_cb
         break;
 ...
 ```
-3. The assignement of the new callback is done in the user_callback_config.h file  
+3. The assignement of the new callback is done in the user_callback_config.h file included in the source files of the example. 
 
 ### Demo Features Configuration 
 - Printing current time and additional messages (an alarm, error codes) in UART is enabled via the definition PRINT_DATE_TIME_DATA in the user_config.h file. The date/time printing along with the advertising update its driven via an RTC event. Changing the definition ADVERTISE_UPDATE will affect the printing interval as well as the advertising update. The available options for the ADVERTISE_UPDATE definition are:
@@ -65,16 +65,20 @@ struct app_ctss_cb
   - **RTC_EVENT_MIN** - Update the advertising string once every minute.
   - **RTC_EVENT_HOUR** - Update the advertising string once every hour.
   - **RTC_EVENT_DATE** - Update the advertising string once every day.
-  - **RTC_EVENT_MNTH** - Update the advertising string once every sec.
+  - **RTC_EVENT_MNTH** - Update the advertising string once every month.
 
 - The profiles that are included in the demo can be configured via the **user_profiles_config.h** file via defining or un-defining the corresponding profile. The available profiles are:
   - **CFG_PRF_DISS** - Enable the Device Information Service SIG Profile.
   - **CFG_PRF_CTSS** - Enable the Current Time Service SIG Profile.
   - **CFG_PRF_CUSTS1** - Enable the custom time Profile.
 
+### Device Information Service
+
+This is a SIG adopted profile for exposing the Device's data over the Generic Attribute Profile. For more information regarding the profile itself refer to the Specification List on [SIG Website](https://www.bluetooth.com/specifications/specs/).
+
 ### Current Time Service Profile
 
-This is a SIG adopted profile for exposing the current time of a peripheral over the Generic Attribute Profile. On top of the profile RTC functionalities are added. For more information regarding the profile itself refer to the Specification List on [SIG Website](https://www.bluetooth.com/specifications/specs/).
+This is a SIG adopted profile for exposing the current time of a peripheral over the Generic Attribute Profile. On top of the profile RTC functionalities are added in application layer. For more information regarding the profile itself refer to the Specification List on [SIG Website](https://www.bluetooth.com/specifications/specs/).
 
 ### Custom Time Profile
 A 128-bit UUID custom service is also exposed with 3 custom characteristics for Reading, Updating, Notifying the time kept from the DA14531 RTC as well as setting the alarm functionality. 
@@ -108,9 +112,9 @@ A 128-bit UUID custom service is also exposed with 3 custom characteristics for 
   <tr class="even">
   <td style="text-align: left;">Alarm</td>
   <td style="text-align: left;">Notify/Read/Write</td>
-  <td style="text-align: left;">7</td>
+  <td style="text-align: left;">8</td>
   <td style="text-align: left;">mm | md | hr | min | sec | hos | pm | rec</td>
-  <td style="text-align: left;">Sets an alarm. Enabling the notifications will force the peripheral to return error codes in case any of the provided values is out of range</td>
+  <td style="text-align: left;">Sets an alarm. Enabling the notifications will force the peripheral to return error codes in case any of the provided values is out of range. Else the current alarm returns.</td>
   </tr>
 </tbody>
 </table>
@@ -233,6 +237,10 @@ For the initial setup, please refer to [this section](https://support.dialog-sem
 - Connect to the device
 - After the discovery is finished then you should be able to see the exposed services and characteristics.
 
+**_NOTE:_**
+The Starting date and time are set in the "user_config.h" file.
+
+
 ### Advertising
 As soon as the fw is running the device should expose the current time on the terminal.
 ![UART_printing_date_time.png](assets\UART_printing_date_time.png) 
@@ -240,7 +248,7 @@ As soon as the fw is running the device should expose the current time on the te
 Scanning with BLE scanner exposes the current date and time over the advertising string.
 ![Time_Date_Advertising.png](assets\Time_Date_Advertising.png)
 
-The date and time data are preceded from the manufacturer data flag (0xFF). In the image above the Date/Time is:
+The date and time data follow the manufacturer data flag (0xFF). In the image above the Date/Time is:
 - Year - 0x07E5 - 2021
 - Month - 0x06 - June
 - Day - 0x11 - 17
@@ -259,13 +267,20 @@ Using the CTS or the Custom profile the user can either read or update the RTC t
 
 ### Set an alert
 
-Using the Custom characteristic with UUID: 6EB675AB-8BD1-1B9A-74444-621E52EC6823 an alarm can be set. When the alarm is triggered the D5 LED will toggle for 10 seconds (the timeout of the alert is configured by the ALERT_TIMEOUT definition in the user_real_time_clk.h file). The user can also set if the alarm will be one time or recursive. For not triggering the alarm on exact date or time instead of a value place the corresponding ignore flag **0x00** for Date and **0xFF** for time. 
+Using the Custom characteristic with UUID: 6EB675AB-8BD1-1B9A-74444-621E52EC6823 an alarm can be set. When the alarm is triggered the D5 LED will toggle for 10 seconds (the timeout of the alert is configured by the ALERT_TIMEOUT definition in the user_real_time_clk.h file). The user also set if the alarm will be one time or recursive and also set the alarm to either match an entire date/time or to occur every day/hour/min. For not triggering the alarm on exact date/time instead of an actual value place the corresponding ignore flag **0x00** for the Date field and **0xFF** for the time field. By placing to the date fields **0x00** an alert interrupt will be triggered every time the alarm setting time will match the current RTC time. The same can be applied to the time fields by placing the **0xFF** flag.
 
 Examples:
 
-- Setting a one shot alarm on 17/06/2021 00:19:57:00 the command is 0x06 11 00 13 39 00 00 00
-- Setting a recursive alarm every day on 00:08:00:00 the command is 0x00 00 00 08 00 00 00 01 
-- Setting a recursive alarm on the 7th minute of every hour the command is 0x00 00 FF 07 FF FF FF 01  
+- Setting a one shot alarm on 17/06/2021 00:19:57:00, the command is 0x06 11 00 13 39 00 00 00
+  - The alarm will occur only once on the specified date and time.
+- Setting a recursive alarm every day on 00:08:00:00, the command is 0x00 00 00 08 00 00 00 01
+  - The alarm will occur every day on 00:08:00:00.
+- Setting a recusrcive alarm every hour on xx:08:00:00, the command is 0x00 00 FF 08 00 00 00 01 
+  - The alarm will occur every hour on the 8th minute.
+- Setting a recursive alarm every minute on xx:xx:01:00, the command is 0x00 00 FF FF 01 00 00 01
+  - The alarm will occur on the 1st second of every minute.
+- Setting a one shot alarm on the next minute change, the command is 0x00 00 FF FF 00 00 00 00
+  - The alarm will occur on next minute change where the sec and hos will switch to 0.
 
 ## Known Limitations
 

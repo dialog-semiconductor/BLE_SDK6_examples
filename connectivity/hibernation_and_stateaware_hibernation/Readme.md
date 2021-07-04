@@ -344,6 +344,23 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 3. End of example.		
 
+**NOTE**
+
+In the previous figure, approximatively extra **1 second** is observed when wakeup from hibernation. During the first 1 second the system is not going to the extended sleep after the first and the second triplet this is because the **`CFG_ENABLE_SMP_SECURE `** definition is enabled.
+If this definition is enabled it will keep the device active for 1 second in order to generate the LE keys. If you undefine this (as long as LE Secure Connections are not used) then the device should go immediately to sleep after the first advertising triplet. 
+``` C
+/****************************************************************************************************************/
+/* Creation of private and public keys using Elliptic Curve Diffie Hellman algorithms.                          */
+/* - defined:   Creation of ECDH keys and secure connection feature is enabled.                                 */
+/* - undefined: Creation of ECDH keys and secure connection feature is disabled. If application does not        */
+/*              support secure connections, it is recommended to undefine CFG_ENABLE_SMP_SECURE in order to     */
+/*              enable faster start-up time and reduce code size.                                               */
+/****************************************************************************************************************/
+#define CFG_ENABLE_SMP_SECURE
+
+```
+	
+![LE_SECURE_CONENCTION_NOT_ENABLED](assets/keyremoved.jpg) 
 
 ## Troubleshooting
 

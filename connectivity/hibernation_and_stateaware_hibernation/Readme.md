@@ -1,10 +1,18 @@
 ## Hibernation and State aware hibernation
 
 - This project starts with undirected connectable advertising
+
 - In between 2 advertising events extended sleep is applied
+
 - There is a maximum advertising period set
+
 - After the maximum advertising period is over, the device enters hibernation/state-aware hibernation mode
-- P0_5 (P2_5 on the DK Pro motherboard) is used to wake up the device from hibernation 
+
+- P0_5 (J1 rail in DK Pro motherboard) is connected with P2_5 on J2 rail by using a GPIO breakout of the DK Pro motherboard. It is used to wake up the device from hibernation. 
+
+  Either use a fly-wire from P0_5 to a ground GPIO to create a button press event; or;
+
+  Set a jumper in P0_5 in J1 rail and connect an end of a button at P2_5 and the other end to the ground (GND) to use a button to generate the button press event.
 
 - With respect to the state-aware hibernation, after the device enters the hibernation mode as explained above, external event via GPIO P0_5 (P2_5 on the motherboard) wakes up the device and DA14531 continues execution of application code from where it left before entering hibernation.
 
@@ -19,7 +27,7 @@ The expected result of the example can be verified by:
 
 This example runs on the BLE Smart SoC (System on Chip) devices:
 - DA14531 daughter board or DA14531 Tiny Module + DA145xxDEVKT-P PRO-Motherboard.
-	
+
 The user manuals for the development kits can be found:
 - [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
 
@@ -48,7 +56,7 @@ To run the program from flash or OTP, please visit chapter 11 of the [SmartSnipp
 For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
 1. Start Keil using the `hibernation_example.uvprojx` Keil project file.
- 
+
 2. Expand the dialog shown in the red box in the image below.
 
 	![Expand_Select_Device](assets/keil_531.png)
@@ -102,7 +110,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	![callback function](assets/callback.png)
 	
 9. Save and compile 
-	
+
 Now we can start implementing the use-cases. 
 
 ## Use-case 1 - Hibernation Mode
@@ -133,7 +141,6 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 	![HIBERNATION_SPI](assets/cfg_hibernation_spi.png)
 	
-
 4. In *user_periph_setup.h* file configure the GPIO that would be used to wake-up the device from hibernation mode. In our case we have chosen P0_5 as the wake-up GPIO. 
 
 	``` C
@@ -149,41 +156,51 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 5. Specify the advertisement period in the *user_config* file,  
 
-	``` C
-	/*
-	 ****************************************************************************************
-	 *
-	 * Default handlers configuration (applies only for @app_default_handlers.c)
-	 *
-	 ****************************************************************************************
-	 */
-	static const struct default_handlers_configuration  user_default_hnd_conf = {
-		// Configure the advertise operation used by the default handlers
-		// Possible values:
-		//  - DEF_ADV_FOREVER
-		//  - DEF_ADV_WITH_TIMEOUT
-		.adv_scenario = DEF_ADV_WITH_TIMEOUT,
+  ``` C
+  /*
+   ****************************************************************************************
+   *
+   * Default handlers configuration (applies only for @app_default_handlers.c)
+   *
+   ****************************************************************************************
+   */
+  static const struct default_handlers_configuration  user_default_hnd_conf = {
+  	// Configure the advertise operation used by the default handlers
+  	// Possible values:
+  	//  - DEF_ADV_FOREVER
+  	//  - DEF_ADV_WITH_TIMEOUT
+  	.adv_scenario = DEF_ADV_WITH_TIMEOUT,
+  
+  	// Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
+  	// It is measured in timer units. Use MS_TO_TIMERUNITS macro to convert
+  	// from milliseconds (ms) to timer units.
+  	.advertise_period = MS_TO_TIMERUNITS(18000), //this is for 30s
+  
+  	// Configure the security start operation of the default handlers
+  	// if the security is enabled (CFG_APP_SECURITY)
+  	// Possible values:
+  	//  - DEF_SEC_REQ_NEVER
+  	//  - DEF_SEC_REQ_ON_CONNECT
+  	.security_request_scenario = DEF_SEC_REQ_NEVER
+  };
+  
+  ```
 
-		// Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
-		// It is measured in timer units. Use MS_TO_TIMERUNITS macro to convert
-		// from milliseconds (ms) to timer units.
-		.advertise_period = MS_TO_TIMERUNITS(18000), //this is for 30s
+  This will configure the advertising period as 18s after which the device will enter the hibernation mode. To wake-up from hibernation use the P0_5 which was configured before as wake-up GPIO.
 
-		// Configure the security start operation of the default handlers
-		// if the security is enabled (CFG_APP_SECURITY)
-		// Possible values:
-		//  - DEF_SEC_REQ_NEVER
-		//  - DEF_SEC_REQ_ON_CONNECT
-		.security_request_scenario = DEF_SEC_REQ_NEVER
-	};
+  **Note:**
 
-	```
+  P0_5 (J1 rail in DK Pro motherboard) is connected with P2_5 on J2 rail by using a GPIO breakout of the DK Pro motherboard. It is used to wake up the device from hibernation. 
 
-	This will configure the advertising period as 18s after which the device will enter the hibernation mode. To wake-up from hibernation use the P0_5 which was configured before as wake-up GPIO.
+  Either use a fly-wire from P0_5 to a ground GPIO to create a button press event; or;
+
+  Set a jumper in P0_5 in J1 rail and connect an end of a button at P2_5 and the other end to the ground (GND) to use a button to generate the button press event.
+
+  
 
 6. Save all the changes done in the project and Compile (F7).
 
-7. Program the DA14531 using the compiled hex file and boot from flash. To do this, please refer to chatper 13 SPI Flash Programmer in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
+7. Program the DA14531 using the compiled hex file and boot from flash. To do this, please refer to chapter 13 SPI Flash Programmer in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
 	
 	![SPI Jtag jumper settings](assets/spi.png)
 
@@ -265,37 +282,45 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 6. Specify the advertisement period in the *user_config* file,  
 
-	``` C
-	/*
-	 ****************************************************************************************
-	 *
-	 * Default handlers configuration (applies only for @app_default_handlers.c)
-	 *
-	 ****************************************************************************************
-	 */
-	static const struct default_handlers_configuration  user_default_hnd_conf = {
-		// Configure the advertise operation used by the default handlers
-		// Possible values:
-		//  - DEF_ADV_FOREVER
-		//  - DEF_ADV_WITH_TIMEOUT
-		.adv_scenario = DEF_ADV_WITH_TIMEOUT,
+  ``` C
+  /*
+   ****************************************************************************************
+   *
+   * Default handlers configuration (applies only for @app_default_handlers.c)
+   *
+   ****************************************************************************************
+   */
+  static const struct default_handlers_configuration  user_default_hnd_conf = {
+  	// Configure the advertise operation used by the default handlers
+  	// Possible values:
+  	//  - DEF_ADV_FOREVER
+  	//  - DEF_ADV_WITH_TIMEOUT
+  	.adv_scenario = DEF_ADV_WITH_TIMEOUT,
+  
+  	// Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
+  	// It is measured in timer units. Use MS_TO_TIMERUNITS macro to convert
+  	// from milliseconds (ms) to timer units.
+  	.advertise_period = MS_TO_TIMERUNITS(18000), //this is for 30s
+  
+  	// Configure the security start operation of the default handlers
+  	// if the security is enabled (CFG_APP_SECURITY)
+  	// Possible values:
+  	//  - DEF_SEC_REQ_NEVER
+  	//  - DEF_SEC_REQ_ON_CONNECT
+  	.security_request_scenario = DEF_SEC_REQ_NEVER
+  };
+  
+  ```
 
-		// Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
-		// It is measured in timer units. Use MS_TO_TIMERUNITS macro to convert
-		// from milliseconds (ms) to timer units.
-		.advertise_period = MS_TO_TIMERUNITS(18000), //this is for 30s
+  This will configure the advertising period as 18s after which the device will enter the hibernation mode. To wake-up from hibernation use the P0_5 which was configured before as wake-up GPIO.
 
-		// Configure the security start operation of the default handlers
-		// if the security is enabled (CFG_APP_SECURITY)
-		// Possible values:
-		//  - DEF_SEC_REQ_NEVER
-		//  - DEF_SEC_REQ_ON_CONNECT
-		.security_request_scenario = DEF_SEC_REQ_NEVER
-	};
+  **Note:**
 
-	```
+  P0_5 (J1 rail in DK Pro motherboard) is connected with P2_5 on J2 rail by using a GPIO breakout of the DK Pro motherboard. It is used to wake up the device from hibernation. 
 
-	This will configure the advertising period as 18s after which the device will enter the hibernation mode. To wake-up from hibernation use the P0_5 which was configured before as wake-up GPIO.
+  Either use a fly-wire from P0_5 to a ground GPIO to create a button press event; or;
+
+  Set a jumper in P0_5 in J1 rail and connect an end of a button at P2_5 and the other end to the ground (GND) to use a button to generate the button press event.
 
 7. Save all the changes done in the project and Compile (F7).
 

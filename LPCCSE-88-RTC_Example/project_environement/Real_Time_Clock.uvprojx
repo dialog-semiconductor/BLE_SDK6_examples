@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>4</Optim>
+            <Optim>2</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>0</OneElfS>
@@ -822,6 +822,11 @@
               <FileName>user_custs1_impl.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\user_custs1_impl.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_ctss.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\user_ctss.c</FilePath>
             </File>
           </Files>
         </Group>

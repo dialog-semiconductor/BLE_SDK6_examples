@@ -224,7 +224,7 @@ A 128-bit UUID custom service is also exposed with 3 custom characteristics for 
 
 ### Initial Setup
 
-For the initial setup, please refer to [this section](https://support.dialog-semiconductor.com/resource/da1458x-example-setup).
+For the initial setup section: refer to this : https://github.com/dialog-semiconductor/BLE_SDK6_examples/blob/main/Readme.md
 
 ## How it works
 
@@ -275,7 +275,7 @@ Examples:
   - The alarm will occur only once on the specified date and time.
 - Setting a recursive alarm every day on 00:08:00:00, the command is 0x00 00 00 08 00 00 00 01
   - The alarm will occur every day on 00:08:00:00.
-- Setting a recusrcive alarm every hour on xx:08:00:00, the command is 0x00 00 FF 08 00 00 00 01 
+- Setting a recursive alarm every hour on xx:08:00:00, the command is 0x00 00 FF 08 00 00 00 01 
   - The alarm will occur every hour on the 8th minute.
 - Setting a recursive alarm every minute on xx:xx:01:00, the command is 0x00 00 FF FF 01 00 00 01
   - The alarm will occur on the 1st second of every minute.

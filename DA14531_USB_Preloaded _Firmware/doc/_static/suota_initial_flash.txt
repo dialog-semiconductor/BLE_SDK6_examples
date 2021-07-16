@@ -1,0 +1,201 @@
+........................................................................................................................
+..
+.. INITIAL FLASH
+..
+........................................................................................................................
+.
+. Using device with id 480063671
+. Using SDK from C:\Users\blauret\dev\SDK680\secure_boot\DA1468x_DA15xxx_SDK_1.0.12.1078
+. cli_programmer from "C:\Users\blauret\dev\SDK680\secure_boot\DA1468x_DA15xxx_SDK_1.0.12.1078\binaries\cli_programmer.exe"
+. image file C:\Users\blauret\dev\SDK680\secure_boot\DA1468x_DA15xxx_SDK_1.0.12.1078\projects\dk_apps\demos\pxp_reporter/DA14683-00-Release_QSPI_SUOTA/pxp_reporter.bin
+. boot loader C:\Users\blauret\dev\SDK680\secure_boot\DA1468x_DA15xxx_SDK_1.0.12.1078\sdk/bsp/system/loaders/ble_suota_loader\DA14683-00-Release_OTP_Secure\ble_suota_loader.bin
+........................................................................................................................
+..
+.. Preparing image file application_image.img
+..
+........................................................................................................................
+. Using SDK from C:\Users\blauret\dev\SDK680\secure_boot\DA1468x_DA15xxx_SDK_1.0.12.1078
+........................................................................................................................
+..
+.. Erasing bootloader area
+..
+........................................................................................................................
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+done.
+........................................................................................................................
+..
+.. Erasing partition table
+..
+........................................................................................................................
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+done.
+........................................................................................................................
+..
+.. Writing application image C:\Users\blauret\dev\SDK680\secure_boot\DA1468x_DA15xxx_SDK_1.0.12.1078\projects\dk_apps\demos\pxp_reporter/DA14683-00-Release_QSPI_SUOTA/pxp_reporter.bin
+..
+........................................................................................................................
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Writing to address: 0x00020000 offset: 0x00000000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x00002000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x00004000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x00006000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x00008000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x0000a000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x0000c000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x0000e000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x00010000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x00012000 chunk size: 0x00002000
+Writing to address: 0x00020000 offset: 0x00014000 chunk size: 0x00001c70
+done.
+........................................................................................................................
+..
+.. Writing image header application_image.img
+..
+........................................................................................................................
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Writing to address: 0x0001f000 offset: 0x00000000 chunk size: 0x00000400
+done.
+........................................................................................................................
+..
+.. Writing bootloader
+..
+........................................................................................................................
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Reading from address: 0x50003200 offset: 0x00000000 chunk size: 0x00000001
+Reading from address: 0x50003201 offset: 0x00000000 chunk size: 0x00000001
+Reading from address: 0x50003202 offset: 0x00000000 chunk size: 0x00000001
+Reading from address: 0x50003204 offset: 0x00000000 chunk size: 0x00000001
+Reading from address: 0x5000320a offset: 0x00000000 chunk size: 0x00000001
+done.
+........................................................................................................................
+..
+.. Writing symmetric keys
+..
+........................................................................................................................
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Symmetric key #0 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Symmetric key #1 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Symmetric key #2 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Symmetric key #3 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Symmetric key #4 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Symmetric key #5 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Symmetric key #6 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Symmetric key #7 and its bit inversion written properly.
+done.
+........................................................................................................................
+..
+.. Writing asymmetric keys
+..
+........................................................................................................................
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Asymmetric key #0 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Asymmetric key #1 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Asymmetric key #2 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+Asymmetric key #3 and its bit inversion written properly.
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+done.
+cli_programmer 1.25
+Copyright (c) 2015-2017 Dialog Semiconductor
+
+bootloader file not specified, using internal uartboot.bin
+
+done.
+.
+........................................................................................................................
+..
+.. FINISHED
+..
+........................................................................................................................

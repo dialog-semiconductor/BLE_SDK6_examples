@@ -1,0 +1,11 @@
+{# layout.html #}
+{# Import the theme's layout. #}
+{% extends "!layout.html" %}
+
+{% set script_files = script_files + ["https://s3.amazonaws.com/lpccsdocs/includes/iframeResizer.contentWindow.min.js"] %}
+{% set script_files = script_files + ["_static/jquery-ui.min.js"] %}
+{% set script_files = script_files + ["_static/myscript.js"] %}
+
+{% set css_files = css_files + ['_static/jquery-ui.min.css'] %}
+{% set css_files = css_files + ['_static/style.css'] %}
+

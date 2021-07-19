@@ -210,7 +210,7 @@ A 128-bit UUID custom service is also exposed with 3 custom characteristics for 
   - A flywire should be placed between the P06 and the FTDI's UTX pin if printing is enabled (PRINT_DATE_TIME_DATA defined) as well as J8[3:4] jumper for the alert LED.
   - If flash is not used, there is no need for the flash jumpers.  
 
- ![Pro-DK Jumper Placement](assets\hardware_setup_531.jpg)
+ ![Pro-DK Jumper Placement](assets/hardware_setup_531.jpg)
 
 - **Software configuration**
   - This example requires:
@@ -243,10 +243,10 @@ The Starting date and time are set in the "user_config.h" file.
 
 ### Advertising
 As soon as the fw is running the device should expose the current time on the terminal.
-![UART_printing_date_time.png](assets\UART_printing_date_time.png) 
+![UART_printing_date_time.png](assets/UART_printing_date_time.png) 
 
 Scanning with BLE scanner exposes the current date and time over the advertising string.
-![Time_Date_Advertising.png](assets\Time_Date_Advertising.png)
+![Time_Date_Advertising.png](assets/Time_Date_Advertising.png)
 
 The date and time data follow the manufacturer data flag (0xFF). In the image above the Date/Time is:
 - Year - 0x07E5 - 2021
@@ -257,13 +257,13 @@ The date and time data follow the manufacturer data flag (0xFF). In the image ab
 - Sec - 0x0B - 11
 ### Connected
 As soon as the device gets connected central's discovery will find the below services as depicted below:
-![Time_Date_Connected.png](assets\Time_Date_Connected.png)
+![Time_Date_Connected.png](assets/Time_Date_Connected.png)
 
 Using the CTS or the Custom profile the user can either read or update the RTC time.
 
-![CTS_Connected.png](assets\CTS_Connected.png)
+![CTS_Connected.png](assets/CTS_Connected.png)
 
-![Custom_Connected.png](assets\Custom_Connected.png)
+![Custom_Connected.png](assets/Custom_Connected.png)
 
 ### Set an alert
 
@@ -290,28 +290,3 @@ For DA14531 devices:
   [DA14531 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf)
 - Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
 - You can also refer to the troubleshooting section in the [Getting Started with the DA14531 PRO Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
-
-## License
-
-------
-
- Copyright (c) 2018 Dialog Semiconductor. All rights reserved.
-
- This software ("Software") is owned by Dialog Semiconductor. By using this Software
- you agree that Dialog Semiconductor retains all intellectual property and proprietary
- rights in and to this Software and any use, reproduction, disclosure or distribution
- of the Software without express written permission or a license agreement from Dialog
- Semiconductor is strictly prohibited. This Software is solely for use on or in
- conjunction with Dialog Semiconductor products.
-
- EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS
- REQUIRED BY LAW, THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED
- IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG
- SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR
- CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
- PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
- ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
-
-------

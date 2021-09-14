@@ -94,7 +94,7 @@ void periph_init(void)
     set_pad_functions();
 	
 		// Perform gpio initialization for the modules. Set the corresponding 
-		// mudule functions in user_module_config structure.
+		// module functions in user_module_config structure.
     user_modules_init_gpios();
 
     // (Re)Initialize peripherals

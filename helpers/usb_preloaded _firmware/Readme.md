@@ -17,7 +17,7 @@ This firmware example runs on DA14531 Bluetooth Smart SoC devices.
 
   - Connect the ***DA14531 USB Kit***  to the host computer via the USB connector. 
  
-  - Please find bellow the appropriate hardware configurations.
+  - Please find below the appropriate hardware configurations.
 
 ### Hardware Configuration
 

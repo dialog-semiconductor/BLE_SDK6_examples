@@ -69,7 +69,7 @@
 /* Debug define                                                                         */
 /****************************************************************************************/
 // The DA14531 doesn't have a lot of pins. As one of the four ADC inputs is shared with SWD
-// It's inpossible to use SWD together with four analog inputs.
+// It's impossible to use SWD together with four analog inputs.
 // If this is defined, both joysticks will share the same x axis input. And SWD is not disabled  
 #define DEBUGGING
 

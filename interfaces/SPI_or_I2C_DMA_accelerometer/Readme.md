@@ -45,7 +45,7 @@ The UART connection uses a baudrate of 1000000(1M). 8 bits data, 1 stop bit and 
 Before launching the Keil project, make sure to link the SDK and project environment using the Python linker script `dlg_make_keil_vx.xxx`. More information [here](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html).
 1. Start Keil using the `lis2dh.uvprojx` Keil project file.
 
-2. Choose wether to use I2C or SPI via the dropdown menu. (Connections are the same for both)
+2. Choose whether to use I2C or SPI via the dropdown menu. (Connections are the same for both)
 
 3. Compile (F7) and launch (ctrl + F5) the example.
 
@@ -55,7 +55,7 @@ When the app starts up it will send the following message:
 
     user_app_on_set_dev_config_complete
 
-Afterwards, the following will be printed everytime the FIFO is read out.
+Afterwards, the following will be printed every time the FIFO is read out.
 
     Samples Read from FIFO: 31
      x:78, y:160, z:-50

@@ -91,7 +91,7 @@
 /* Creation of private and public keys using Elliptic Curve Diffie Hellman algorithms.                          */
 /* - defined:   Creation of ECDH keys and secure connection feature is enabled.                                 */
 /* - undefined: Creation of ECDH keys and secure connection feature is disabled. If application does not        */
-/*              support secure connections, it is reccomended to undefine CFG_ENABLE_SMP_SECURE in order to     */
+/*              support secure connections, it is recommended to undefine CFG_ENABLE_SMP_SECURE in order to     */
 /*              enable faster start-up time and reduce code size.                                               */
 /****************************************************************************************************************/
 #undef CFG_ENABLE_SMP_SECURE
@@ -323,7 +323,7 @@
 /* Creation of private and public keys using Elliptic Curve Diffie Hellman algorithms.                          */
 /* - defined:   Creation of ECDH keys and secure connection feature is enabled.                                 */
 /* - undefined: Creation of ECDH keys and secure connection feature is disabled. If application does not        */
-/*              support secure connections, it is reccomended to undefine CFG_ENABLE_SMP_SECURE in order to     */
+/*              support secure connections, it is recommended to undefine CFG_ENABLE_SMP_SECURE in order to     */
 /*              enable faster start-up time and reduce code size.                                               */
 /****************************************************************************************************************/
 #define CFG_ENABLE_SMP_SECURE

@@ -151,12 +151,12 @@ When the device is initialized, the function ``user_app_adv_start()`` is called 
 Scanning starts with the function ``user_scan_start()`` and is configured with the parameters of ``user_scan_conf`` struct. Every time a new advertising report is received, the function ``user_app_on_adv_report_ind()`` is called, this adds a peer device's advertising report to a dynamic list. 
 
 When scanning for advertising devices, the scanner populates a list with the found devices along with the RSSI value obtained while advertising and some additional data. Based on this advertising RSSI value, the scanner decides if the device is located in close proximity, and if yes, a connection attempt starts. The close proximity threshold is defined by the ``user_prox_zones_rssi[USER_PROX_ZONE_COARSE]``. The values of the advertising RSSI are populated in two ways. The first method: the stack filters all advertising messages that come from the same device so the advertising RSSI is obtained by a single message. The second method: the stack does not filter the messages and reports to the application all the advertising messages tracked. In the second case, the scanner uses a running average filter over the RSSI's received from the same device. To enable or disable the above functionality, the user should assign one of the following in the ``user_scan_config.filter_duplic`` structure:
-- ``SCAN_FILT_DUPLIC_EN`` to enable stack filtering and get a signle RSSI value per device
+- ``SCAN_FILT_DUPLIC_EN`` to enable stack filtering and get a single RSSI value per device
 - ``SCAN_FILT_DUPLIC_DIS`` to accept all advertising messages and perform the running average
 
 When scanning completes, the ``user_app_on_scanning_completed()`` function is called. The list is searched to check the maximum RSSI node (if there is one) and if it exceeds the advertising RSSI threshold, a connection is initiated. If not, the device enters another Advertising/Scanning cycle.
 
-The reason the device executes connections instead of estimating proximity based on the RSSI from the advertising messages is because during the connection the device operates over a larger range of channels than during advertising, and can more accuratly measure RSSI.
+The reason the device executes connections instead of estimating proximity based on the RSSI from the advertising messages is because during the connection the device operates over a larger range of channels than during advertising, and can more accurately measure RSSI.
 
 Connections are initiated with the ``user_app_on_scanning_completed()`` via the ``initiate_connection_attempt()`` either when the previous connection is over or if the ``USER_INITIATE_CONN_TO`` time elapses. After the connection, the function ``user_poll_conn_rssi_timer_cb`` checks the connection RSSI every ``USER_UPD_CONN_RSSI_TO`` interval and also evaluates the measurements. This also triggers an RSSI exchange with the peer device. If the strongest RSSI, peer or own, exceeds the thresholds defined in ``user_prox_zones_rssi`` array, an alert starts, which blinks with a frequency related to the proximity zone that was estimated. After ``USER_CON_RSSI_MAX_NB`` measurements and as soon as the alert is done, the link is disconnected. The list is traversed to find the next connection candidate, and when the list is exhausted, a new Advertising/Scanning cycle begins.
 
@@ -165,13 +165,13 @@ The indication of the proximity is done via blinking of the LED on the device. T
 - ``#define WARNING_ZONE``: default 100 ms period
 - ``#define COARSE_ZONE`` : default 150 ms period
 
-Along with the timers that control the alert interval, a seperate timer also starts and counts down until the disconnection event is issued from the initiator of the connection. This timer is also configurable via the ``ALERT_TIME`` which defaults to 1 second. 
+Along with the timers that control the alert interval, a separate timer also starts and counts down until the disconnection event is issued from the initiator of the connection. This timer is also configurable via the ``ALERT_TIME`` which defaults to 1 second. 
 
 As already mentioned, the devices running the SDT SW go through periods of Advertising, Scanning, and connection initiation periods. The amount of time spend on the above three actions can be configurede through the ``ADVERTISING_TIMEOUT_msec`` definition which determines time amount for the advertising period. The scanning and connection initiation periods are defined as percentages of the advertising period via the ``SCANNING_PERCENTAGE`` and the ``CONNECT_INIT_PERCENTAGE`` definitions. Additionally, to avoid identical Advertising and Scanning periods for each device, a random offset is also added in each Advertising/Scanning period.
 
 ## Known Limitations
 
-- When programing DA14531 SMARTBOND TINY™ MODULE using Keil, an error stating "No Cortex-M SW Device found" may occur when the user tries to open the debugger session. User must lower the JTAG clock speed to 2 MHz. For more information, see the section [KEIL Installation](http://lpccs-docs.dialog-semiconductor.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/05_Software_Development_Tools/Software_Development_Tools.html#keil-installation) in the UM-B-139 Getting Started with DA14531 TINY Module document
+- When programming DA14531 SMARTBOND TINY™ MODULE using Keil, an error stating "No Cortex-M SW Device found" may occur when the user tries to open the debugger session. User must lower the JTAG clock speed to 2 MHz. For more information, see the section [KEIL Installation](http://lpccs-docs.dialog-semiconductor.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/05_Software_Development_Tools/Software_Development_Tools.html#keil-installation) in the UM-B-139 Getting Started with DA14531 TINY Module document
 - No known hardware limitations for this example, but it is recommended to see the following:
   - Application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
   - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum)

@@ -39,7 +39,7 @@
 
 /*******************************************************************************
 * Function Name		: LIS2DH_ReadReg
-* Description		: Generic Reading function. It must be fullfilled with either
+* Description		: Generic Reading function. It must be fulfilled with either
 *			: I2C or SPI reading functions					
 * Input			: Register Address
 * Output		: Data REad
@@ -62,7 +62,7 @@ u8_t LIS2DH_ReadRegN(u8_t Reg_start, AxesRaw_t Data[33], u16_t burst_num)
 
 /*******************************************************************************
 * Function Name		: LIS2DH_ReadReg
-* Description		: Generic Reading function. It must be fullfilled with either
+* Description		: Generic Reading function. It must be fulfilled with either
 *			: I2C or SPI reading functions					
 * Input			: Register Address
 * Output		: Data REad
@@ -86,7 +86,7 @@ u8_t LIS2DH_ReadReg(u8_t Reg, u8_t* Data) {
 
 /*******************************************************************************
 * Function Name		: LIS2DH_WriteReg
-* Description		: Generic Writing function. It must be fullfilled with either
+* Description		: Generic Writing function. It must be fulfilled with either
 *			: I2C or SPI writing function
 * Input			: Register Address, Data to be written
 * Output		: None
@@ -507,7 +507,7 @@ status_t LIS2DH_SetBDU(State_t bdu) {
 
 /*******************************************************************************
 * Function Name  : LIS2DH_SetBLE
-* Description    : Set Endianess (MSB/LSB)
+* Description    : Set Endianness (MSB/LSB)
 * Input          : BLE_LSB / BLE_MSB
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
@@ -788,12 +788,12 @@ status_t LIS2DH_SetClickCFG(u8_t status) {
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LIS2DH_SetClickTHS(u8_t ths) {
+status_t LIS2DH_SetClickTHS(u8_t threshold) {
   
-  if(ths>127)     
+  if(threshold>127)     
     return MEMS_ERROR;
   
-  if( !LIS2DH_WriteReg(LIS2DH_CLICK_THS, ths) )
+  if( !LIS2DH_WriteReg(LIS2DH_CLICK_THS, threshold) )
     return MEMS_ERROR;
   
   return MEMS_SUCCESS;
@@ -1146,11 +1146,11 @@ status_t LIS2DH_Get6DPosition(u8_t* val){
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LIS2DH_SetInt1Threshold(u8_t ths) {
-  if (ths > 127)
+status_t LIS2DH_SetInt1Threshold(u8_t threshold) {
+  if (threshold > 127)
     return MEMS_ERROR;
   
-  if( !LIS2DH_WriteReg(LIS2DH_INT1_THS, ths) )
+  if( !LIS2DH_WriteReg(LIS2DH_INT1_THS, threshold) )
     return MEMS_ERROR;    
   
   return MEMS_SUCCESS;

@@ -638,7 +638,7 @@ void user_app_connection(uint8_t connection_idx, struct gapc_connection_req_ind 
         if (init_con_pending)           // Check if the device has started a connection request
         {
             is_initiator = true;        // If a connection request has started it means that the device is the initiator
-            init_con_pending = false;   // No pending connection request is submited
+            init_con_pending = false;   // No pending connection request is submitted
         }
         
         if(is_initiator)
@@ -692,7 +692,7 @@ void user_app_adv_undirect_complete(uint8_t status)
     
     /* 
     * If the callback occurs with status GAP_ERR_CANCELED it means that the adv timer has elapsed
-    * thus there is no need checking and cancelling. If a connection occures the adv timer will
+    * thus there is no need checking and cancelling. If a connection occurs the adv timer will
     * be cancelled from the connection handler
     */
     if (status == GAP_ERR_CANCELED)
@@ -706,7 +706,7 @@ void user_app_disconnect(struct gapc_disconnect_ind const *param)
     arch_printf(YELLOW(BOLD)"\r\n%s: DISCONNECTED WITH REASON %02x\r\n" RESET_COLOUR, bd_addr, param->reason);
     
     /* 
-    * If the current device was the initiator and a disconnection occured regardless the reason
+    * If the current device was the initiator and a disconnection occurred regardless the reason
     * move to next node to attempt a new connection for the next available node.
     */
     if(is_initiator)

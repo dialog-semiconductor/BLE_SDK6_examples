@@ -103,7 +103,7 @@ our payload then to utilize the the rest of the space.  For non-DLE devices that
 a good enhancement on throughput if otherwised not considered. 
 
 ### Note
-This example does not consider a more complex connection parameter scheme for throughput optimization.  This would be an excercise to the user.
+This example does not consider a more complex connection parameter scheme for throughput optimization.  This would be an exercise to the user.
 Note that DSPS does include this functionality for reference and provides optimal connection parameters for DLE and non-DLE devices.
 
 

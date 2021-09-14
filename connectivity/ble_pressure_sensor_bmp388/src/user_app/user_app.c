@@ -133,7 +133,7 @@ void user_app_on_db_init_complete(void)
     arch_printf("\n\r%s", __FUNCTION__);
   #endif
 
-  /* Set inital values of pressure and temperature characteristics */
+  /* Set initial values of pressure and temperature characteristics */
   set_pressure_char_value(0);
   set_temperature_char_value(0);
 
@@ -272,7 +272,7 @@ static void wakeup_callback(void)
         arch_printf("\n\rpress: %d.%dinHg", press/3386, press%3386);
       }
     }
-    /* Restart timer that wil trigger periodic measurement */
+    /* Restart timer that will trigger periodic measurement */
     measure_timer = app_easy_timer(MEASURE_PERIOD, measure_timer_cb);
 
   }

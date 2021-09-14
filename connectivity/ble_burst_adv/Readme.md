@@ -4,7 +4,7 @@ Burst Advertising with Bluetooth LE
 
 ## Example description
 
-Simple example showing how to implement 'burst' advertising on the DA14585/6. Burst 
+Simple example showing how to implement 'burst' advertising on the DA14531 and DA14585/6 devices. Burst 
 advertising is the process of sending a number of advertising events and then having 
 a delay before sending another group of advertising events. This example allows the 
 user to configure the number of advertising events to be transmitted per burst and 
@@ -12,17 +12,31 @@ the time between bursts.
 	
 ## HW and SW configuration
 
+- This example runs on the DA14585, DA14586 and DA14531 Bluetooth Smart SoC devices.
+- DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard are required.
 
-### **Hardware configuration**
+For the UART to see the communication logs, check the setup shown below for DA14531 and DA14585/586
 
-- This example runs on the DA14585/DA14586 Bluetooth Smart SoC devices.
-- A Basic or PRO Development kits is needed for this example.
+### Hardware configuration for the DA14531
+
+![DA14531 Jumper setting](assets/da14531.jpg)
+
+### Hardware configuration for the DA14585/586
+
+ 
+![DA14585 Jumper setting](assets/da14585.jpg)
+
+
+The user manuals for the development kits can be found:
+
+- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+
 	
-### **Software configuration**
+### Software configuration
 
 - This example requires:
-    * Smartsnippets Studio 2.0.8 (or later)
-    * SDK6.0.10 (or later)
+    * Smartsnippets Studio 2.0.16 (or later)
+    * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
 
 ## How to run the example
 
@@ -32,27 +46,25 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 1.  Build and download the example using the Keil IDE. 
 2.  Run the example using the Keil debugger.
-3.  Set jumpers on the basic or PRO development kits to use P0_4 and P0_5 for UART communication.
-4.  Observe bursts of advertising events using of the following:
-        * Monitor UART debug output using a terminal such as Teraterm etc.
-		    - baudrate: 115200
+3.  Observe bursts of advertising events using Power Profiler found within the SmartSnippets Toolbox, monitor UART debug output using a terminal such as Teraterm etc as following:
+		   
+  		    - baudrate: 115200
 		    - data: 8 bits
 		    - stop: 1 bit
 		    - parity: None
 		    - flow control: none
-        * Monitor current consumption using the Power Profiler found within the SmartSnippets Toolbox.
-        * Monitor transmitted advertising events using a Smart Phone App such as LightBlue.
-5. Undirected connecatable advertising is used for this demonstration.
+				
+4. Undirected connecatable advertising is used for this demonstration. Monitor transmitted advertising events using a Smart Phone App such as LightBlue.
 
 The device should display the advertising data as shown in the picture below:
 
-![Output](assets/output.png)
+![Output](assets/output.jpg)
 
 ## Known Limitations
 
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf "known hardware limitations").
-- Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
-- You can also refer to the troubleshooting section in the [Getting Started Link](https://www.dialog-semiconductor.com/sites/default/files/um-b-049_da14585da14586_getting_started_guide_v2.1_0.pdf "DA1585x Getting Started with the Development Kit UM-B-049").
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
 

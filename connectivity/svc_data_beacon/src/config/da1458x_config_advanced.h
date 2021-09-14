@@ -5,27 +5,9 @@
  *
  * @brief Advanced compile configuration file.
  *
- * Copyright (c) 2014-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2014-2020 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -35,13 +17,16 @@
 
 #include "da1458x_stack_config.h"
 
-#if !defined (__DA14531__) && !defined (__ES2_DA14531__)
+#if !defined (__DA14531__)
 
 /****************************************************************************************************************/
 /* Low Power clock selection.                                                                                   */
-/*      -LP_CLK_XTAL32      External XTAL32 oscillator                                                          */
-/*      -LP_CLK_RCX20       Internal RCX20 clock                                                                */
+/*      -LP_CLK_XTAL32      External XTAL32K oscillator                                                         */
+/*      -LP_CLK_RCX20       Internal RCX clock                                                                  */
 /*      -LP_CLK_FROM_OTP    Use the selection in the corresponding field of OTP Header                          */
+/*                                                                                                              */
+/* NOTE: Disable CFG_XTAL16M_ADAPTIVE_SETTLING flag when RCX is chosen as the LP clock either from the OTP      */
+/*       header or from the SDK.                                                                                */
 /****************************************************************************************************************/
 #define CFG_LP_CLK              LP_CLK_XTAL32
 
@@ -75,8 +60,8 @@
 
 /****************************************************************************************************************/
 /* Enables True Random Number Generator. A true random number, generated at system initialization, is used to   */
-/* seed the C standard library random number generator. The following supported options provide a trade-off     */
-/* between code size and start-up latency.                                                                      */
+/* seed any random number generator (C standard library, ChaCha20, etc.). The following supported options       */
+/* provide a trade-off between code size and start-up latency.                                                  */
 /* - undefined (or 0): TRNG is disabled.                                                                        */
 /* -   32:  Enables TRNG with   32 Bytes Buffer.                                                                */
 /* -   64:  Enables TRNG with   64 Bytes Buffer.                                                                */
@@ -141,7 +126,7 @@
 /* Enables the logging of heap memories usage. The feature can be used in development/debug mode.               */
 /* Application must be executed in Keil debugger environment and "da14585_586.lib" must be replaced with        */
 /* "da14585_586_with_heap_logging.lib" in project structure under sdk_arch. Developer must stop execution       */
-/* and type disp_heaplog in debugger's command window. Heap memory statistics will be displayed on window       */
+/* and type disp_heaplog() in debugger's command window. Heap memory statistics will be displayed on window     */
 /****************************************************************************************************************/
 #undef CFG_LOG_HEAP_USAGE
 
@@ -262,7 +247,7 @@
 
 /****************************************************************************************************************/
 /* Enable power optimizations using the XTAL16M adaptive settling algorithm.                                    */
-/* NOTE: The XTAL16M adaptive settling algorithm works only with XTAL23K and not with RCX, as the LP clock.     */
+/* NOTE: The XTAL16M adaptive settling algorithm works only with XTAL32K and not with RCX, as the LP clock.     */
 /****************************************************************************************************************/
 #define CFG_XTAL16M_ADAPTIVE_SETTLING
 
@@ -274,8 +259,8 @@
 
 /****************************************************************************************************************/
 /* Low Power clock selection.                                                                                   */
-/*      -LP_CLK_XTAL32      External XTAL32 oscillator                                                          */
-/*      -LP_CLK_RCX20       Internal RCX20 clock                                                                */
+/*      -LP_CLK_XTAL32      External XTAL32K oscillator                                                         */
+/*      -LP_CLK_RCX20       Internal RCX clock                                                                  */
 /*      -LP_CLK_FROM_OTP    Use the selection in the corresponding field of OTP Header                          */
 /****************************************************************************************************************/
 #define CFG_LP_CLK              LP_CLK_RCX20
@@ -302,17 +287,9 @@
 
 /****************************************************************************************************************/
 /* Enables True Random Number Generator. A true random number, generated at system initialization, is used to   */
-/* seed the C standard library random number generator. The following supported options provide a trade-off     */
-/* between code size and start-up latency.                                                                      */
-/* - undefined (or 0): TRNG is disabled.                                                                        */
-/* -   32:  Enables TRNG with   32 Bytes Buffer.                                                                */
-/* -   64:  Enables TRNG with   64 Bytes Buffer.                                                                */
-/* -  128:  Enables TRNG with  128 Bytes Buffer.                                                                */
-/* -  256:  Enables TRNG with  256 Bytes Buffer.                                                                */
-/* -  512:  Enables TRNG with  512 Bytes Buffer.                                                                */
-/* - 1024:  Enables TRNG with 1024 Bytes Buffer.                                                                */
+/* seed any random number generator (C standard library, ChaCha20, etc.).                                       */
 /****************************************************************************************************************/
-#define CFG_TRNG (1024)
+#define CFG_TRNG
 
 /****************************************************************************************************************/
 /* Creation of private and public keys using Elliptic Curve Diffie Hellman algorithms.                          */
@@ -368,7 +345,7 @@
 /* Enables the logging of heap memories usage. The feature can be used in development/debug mode.               */
 /* Application must be executed in Keil debugger environment and "da14531.lib" must be replaced with            */
 /* "da14531_with_heap_logging.lib" in project structure under sdk_arch. Developer must stop execution           */
-/* and type disp_heaplog in debugger's command window. Heap memory statistics will be displayed on window       */
+/* and type disp_heaplog() in debugger's command window. Heap memory statistics will be displayed on window     */
 /****************************************************************************************************************/
 #undef CFG_LOG_HEAP_USAGE
 
@@ -451,11 +428,10 @@
 
 /****************************************************************************************************************/
 /* The Keil scatter file may be provided by the user. If the user provides his own scatter file, the system has */
-/* to be aware which RAM blocks has to retain. The 4th RAM block is always retained, since it contains the ROM  */
+/* to be aware which RAM blocks has to retain. The 3rd RAM block is always retained, since it contains the ROM  */
 /* data.                                                                                                        */
 /*     - CFG_RETAIN_RAM_1_BLOCK: if defined, the 1st RAM block must be retained.                                */
 /*     - CFG_RETAIN_RAM_2_BLOCK: if defined, the 2nd RAM block must be retained.                                */
-/*     - CFG_RETAIN_RAM_3_BLOCK: if defined, the 3rd RAM block must be retained.                                */
 /*                                                                                                              */
 /* If the CFG_CUSTOM_SCATTER_FILE flag is undefined, the system knows which blocks to retain based on the       */
 /* default SDK scatter file.                                                                                    */
@@ -464,7 +440,6 @@
 #ifdef CFG_CUSTOM_SCATTER_FILE
     #define CFG_RETAIN_RAM_1_BLOCK
     #define CFG_RETAIN_RAM_2_BLOCK
-    #define CFG_RETAIN_RAM_3_BLOCK
 #endif
 
 /****************************************************************************************************************/
@@ -482,8 +457,6 @@
 /* - CFG_AMB_TEMPERATURE:          Device is configured to operate at ambient temperature range (-40C to +40C). */
 /* - CFG_MID_TEMPERATURE:          Device is configured to operate at mid temperature range (-40C to +60C).     */
 /* - CFG_EXT_TEMPERATURE:          Device is configured to operate at ext temperature range (-40C to +85C).     */
-/* NOTE 1: High temperature support is not compatible with power optimizations. User shall undefine the         */
-/*         CFG_POWER_OPTIMIZATIONS flag, if device is to support the high temperature range feature.            */
 /****************************************************************************************************************/
 #define CFG_AMB_TEMPERATURE
 
@@ -494,4 +467,5 @@
 #define CFG_DISABLE_QUADEC_ON_START_UP
 
 #endif
+
 #endif // _DA1458X_CONFIG_ADVANCED_H_

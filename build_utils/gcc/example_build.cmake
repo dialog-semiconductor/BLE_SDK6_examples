@@ -2,7 +2,7 @@
 include(${DIALOG_EXAMPLE_PATH}/build_utils/gcc/dialog-sdk.cmake)
 # Include Dialog SDK
 include(${DIALOG_EXAMPLE_PATH}/build_utils/gcc/dialog-sdk.cmake)
-include_directories(src/config src)
+include_directories(src/config src src/custom_profile)
 FILE(GLOB_RECURSE userSourceFiles src/*.c)
 # FILE(GLOB_RECURSE userSourceFiles ${CMAKE_SOURCE_DIR}/src/*.c)
 # Print include directories

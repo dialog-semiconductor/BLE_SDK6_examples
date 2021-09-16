@@ -11,3 +11,5 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 include (${DIALOG_EXAMPLE_PATH}/build_utils/gcc/example_build.cmake)
 
+include_directories(src/user_app src/user_drivers)
+

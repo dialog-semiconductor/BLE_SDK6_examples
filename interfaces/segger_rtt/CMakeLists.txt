@@ -9,5 +9,10 @@ message("GCC_TOOLCHAIN_PATH = ${GCC_TOOLCHAIN_PATH}")
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
+FILE(GLOB_RECURSE rtt segger_rtt/RTT/*.c)
+
+LIST(APPEND userSourceFiles ${rtt} )
+include_directories(segger_rtt/RTT)
+
 include (${DIALOG_EXAMPLE_PATH}/build_utils/gcc/example_build.cmake)
 

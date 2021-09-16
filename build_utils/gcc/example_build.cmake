@@ -3,16 +3,8 @@ include(${DIALOG_EXAMPLE_PATH}/build_utils/gcc/dialog-sdk.cmake)
 # Include Dialog SDK
 include(${DIALOG_EXAMPLE_PATH}/build_utils/gcc/dialog-sdk.cmake)
 include_directories(src/config src src/custom_profile)
-FILE(GLOB_RECURSE userSourceFiles src/*.c)
-# FILE(GLOB_RECURSE userSourceFiles ${CMAKE_SOURCE_DIR}/src/*.c)
-# Print include directories
-#function(print_include_directories)
-#    message(STATUS "Include directories: ")
-#    get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-#    foreach(dir ${dirs})
-#        message(STATUS "${dir}")
-#    endforeach()
-#endfunction(print_include_directories)
+FILE(GLOB_RECURSE sourcesFiles src/*.c)
+LIST(APPEND userSourceFiles ${sourcesFiles})
 
 add_executable(${PROJECT_NAME}
     ${DIALOG_SDK_SOURCES}

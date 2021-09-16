@@ -214,11 +214,15 @@ set(DIALOG_SDK_SOURCES
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/prox/proxr/src/proxr_task.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/hogp/hogpd/src/hogpd.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/hogp/hogpd/src/hogpd_task.c
+    ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/cts/ctss/src/ctss.c
+    ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/cts/ctss/src/ctss_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_bond_db/app_bond_db.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app_msg_utils.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app_utils.c
+    ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_ctss/app_ctss.c
+    ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_ctss/app_ctss_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_custs/app_customs.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_custs/app_customs_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_custs/app_customs_common.c

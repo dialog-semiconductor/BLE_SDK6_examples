@@ -4,15 +4,30 @@ BUILD_DIR="build"
 
 
 GCC_PATH=`which arm-none-eabi-gcc`
-GCC_TOOLCHAIN_PATH=`readlink $GCC_PATH | xargs dirname`
+if [ -L $GCC_PATH ]; then
+    GCC_TOOLCHAIN_PATH=`readlink $GCC_PATH | xargs dirname`
+else
+    GCC_TOOLCHAIN_PATH=$GCC_PATH
+fi
 
 EXAMPLE_ROOT=$PWD
 SDKROOT="/Users/blauret/Downloads/DA145xx_SDK/6.0.14.1114"
 
-for d in `find . -name "CMakeLists.txt"`; do
-    
-    
+if [ "$#" -ne 1 ]; then
+    BUILD_LIST=`find . -name "CMakeLists.txt"`
+else
+    echo "parameter 1 is: $1"
+    BUILD_LIST="$1/project_evioronment"
+fi
+
+
+for d in $BUILD_LIST; do
+
+
+    echo "d is: $d, $PWD"
     pushd `dirname $d`
+
+    # echo "push to folder: $PWD"
     APP_NAME=`basename $PWD`
 
     echo "Building $APP_NAME"

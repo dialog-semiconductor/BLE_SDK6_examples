@@ -167,7 +167,7 @@ set(DIALOG_SDK_INCLUDES
     ${DIALOG_SDK_PATH}/sdk/platform/utilities/otp_hdr
 )
 
-set(DIALOG_SDK_SOURCES
+set(DIALOG_SDK_SOURCES_SHARED
     ${DIALOG_SDK_PATH}/sdk/platform/arch/main/hardfault_handler.c
     ${DIALOG_SDK_PATH}/sdk/platform/arch/main/nmi_handler.c
     ${DIALOG_SDK_PATH}/sdk/platform/core_modules/arch_console/arch_console.c
@@ -186,15 +186,12 @@ set(DIALOG_SDK_SOURCES
     ${DIALOG_SDK_PATH}/sdk/platform/driver/gpio/gpio.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/wkupct_quadec/wkupct_quadec.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/battery/battery.c
-    ${DIALOG_SDK_PATH}/sdk/platform/driver/adc/adc_531.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/trng/trng.c
-    ${DIALOG_SDK_PATH}/sdk/platform/driver/spi/spi_531.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/spi_flash/spi_flash.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/i2c_eeprom/i2c_eeprom.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/systick/systick.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/uart/uart.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/uart/uart_utils.c
-    ${DIALOG_SDK_PATH}/sdk/platform/driver/hw_otpc/hw_otpc_531.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/dma/dma.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/i2c/i2c.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/rtc/rtc.c
@@ -204,7 +201,6 @@ set(DIALOG_SDK_SOURCES
     ${DIALOG_SDK_PATH}/sdk/ble_stack/rwble/rwble.c
     ${DIALOG_SDK_PATH}/sdk/platform/core_modules/rwip/src/rwip.c
     ${DIALOG_SDK_PATH}/sdk/platform/core_modules/rf/src/ble_arp.c
-    ${DIALOG_SDK_PATH}/sdk/platform/core_modules/rf/src/rf_531.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/host/att/attm/attm_db_128.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/custom/custom_common.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/custom/custs/src/custs1.c
@@ -217,6 +213,8 @@ set(DIALOG_SDK_SOURCES
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/hogp/hogpd/src/hogpd_task.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/cts/ctss/src/ctss.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/cts/ctss/src/ctss_task.c
+    ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/dis/diss/src/diss.c
+    ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/dis/diss/src/diss_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_bond_db/app_bond_db.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app_task.c
@@ -243,7 +241,24 @@ set(DIALOG_SDK_SOURCES
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_sec/app_security_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_suotar/app_suotar.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_suotar/app_suotar_task.c
+)
+
+set(DIALOG_SDK_SOURCES_531
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/adc/adc_531.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/spi/spi_531.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/hw_otpc/hw_otpc_531.c
+    ${DIALOG_SDK_PATH}/sdk/platform/core_modules/rf/src/rf_531.c
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/system_DA14531.c
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/ivtable_DA14531.S
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/startup_DA14531.S
+)
+
+set(DIALOG_SDK_SOURCES_58x
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/adc/adc_58x.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/spi/spi_58x.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/hw_otpc/hw_otpc_58x.c
+    ${DIALOG_SDK_PATH}/sdk/platform/core_modules/rf/src/rf_585.c
+    ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/system_DA14585_586.c
+    ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/ivtable_DA14585_586.S
+    ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/startup_DA14585_586.S
 )

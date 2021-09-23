@@ -1345,8 +1345,6 @@ static void _user_pb1_long_press_handler()
 
 static void _user_pb1_key_handler(bool pressed)
 {
-	//uint8_t int_feat_enable = 0;
-
 	if(pressed) 
 		{ // Do something when button is firstly pressed
 			// Start timer to check about long press

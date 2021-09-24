@@ -39,6 +39,13 @@ for d in "${FAILED_531[@]}" ;do
     echo " - $d"
 done
 
+echo -e "\n"
+echo -e "---------------"
+echo -e "| PASSED | ${#PASSED_531[@]} |"
+echo -e "|-------------|"
+echo -e "| FAILED | ${#FAILED_531[@]} |"
+echo -e "---------------"
+
 echo -e "\nSuccess build 585:\n"
 for d in "${PASSED_585[@]}" ;do
     echo " - $d"
@@ -49,6 +56,13 @@ for d in "${FAILED_585[@]}" ;do
     echo " - $d"
 done
 
+echo -e "\n"
+echo -e "---------------"
+echo -e "| PASSED | ${#PASSED_585[@]} |"
+echo -e "|-------------|"
+echo -e "| FAILED | ${#FAILED_585[@]} |"
+echo -e "---------------"
+
 echo -e "\nSuccess build 586:\n"
 for d in "${PASSED_586[@]}" ;do
     echo " - $d"
@@ -58,3 +72,10 @@ echo -e "\nFailed build 586:\n"
 for d in "${FAILED_586[@]}" ;do
     echo " - $d"
 done
+
+echo -e "\n"
+echo -e "---------------"
+echo -e "| PASSED | ${#PASSED_586[@]} |"
+echo -e "|-------------|"
+echo -e "| FAILED | ${#FAILED_586[@]} |"
+echo -e "---------------"

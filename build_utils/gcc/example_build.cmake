@@ -21,58 +21,59 @@ if(BUILD_FOR_585)
 endif()
 
 if(BUILD_FOR_586)
-    add_executable(${PROJECT_NAME}_586
-        # Source
-        ${userSourceFiles}
-        ${DIALOG_SDK_SOURCES_SHARED}
-        ${DIALOG_SDK_SOURCES_58x_BLE}
-        ${DIALOG_SDK_SOURCES_58x}
-    )
+add_executable(${PROJECT_NAME}_586
+# Source
+${userSourceFiles}
+${DIALOG_SDK_SOURCES_SHARED}
+${DIALOG_SDK_SOURCES_58x_BLE}
+${DIALOG_SDK_SOURCES_58x}
+)
 endif()
 
 if(BUILD_FOR_531)
-    add_executable(${PROJECT_NAME}_531
-        # Source
-        ${userSourceFiles}
-        ${DIALOG_SDK_SOURCES_SHARED}
-        ${DIALOG_SDK_SOURCES_531}
-    )
+add_executable(${PROJECT_NAME}_531
+# Source
+${userSourceFiles}
+${DIALOG_SDK_SOURCES_SHARED}
+${DIALOG_SDK_SOURCES_531}
+)
 endif()
 
 if(BUILD_FOR_585_PERIPHERAL_EXAMPLE)
-    add_executable(${PROJECT_NAME}_585
-        # Source
-        ${userSourceFiles}
-        ${DIALOG_SDK_SOURCES_PERIPH_EXAMPLE}
-        ${DIALOG_SDK_SOURCES_58x}
-    )
+add_executable(${PROJECT_NAME}_585
+# Source
+${userSourceFiles}
+${DIALOG_SDK_SOURCES_PERIPH_EXAMPLE}
+${DIALOG_SDK_SOURCES_58x}
+)
 endif()
 
 if(BUILD_FOR_586_PERIPHERAL_EXAMPLE)
-    add_executable(${PROJECT_NAME}_586
-        # Source
-        ${userSourceFiles}
-        ${DIALOG_SDK_SOURCES_PERIPH_EXAMPLE}
-        ${DIALOG_SDK_SOURCES_58x}
-    )
+add_executable(${PROJECT_NAME}_586
+# Source
+${userSourceFiles}
+${DIALOG_SDK_SOURCES_PERIPH_EXAMPLE}
+${DIALOG_SDK_SOURCES_58x}
+)
 endif()
 
 if(BUILD_FOR_531_PERIPHERAL_EXAMPLE)
-    add_executable(${PROJECT_NAME}_531
-        # Source
-        ${userSourceFiles}
-        ${DIALOG_SDK_SOURCES_PERIPH_EXAMPLE}
-        ${DIALOG_SDK_SOURCES_531}
-    )
+add_executable(${PROJECT_NAME}_531
+# Source
+${userSourceFiles}
+${DIALOG_SDK_SOURCES_PERIPH_EXAMPLE}
+${DIALOG_SDK_SOURCES_531}
+)
 endif()
 
-set(GLOBAL_DEBUG_OPTIONS_531 -mthumb -mcpu=cortex-m0plus -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall)
-set(GLOBAL_DEBUG_OPTIONS_58x -mthumb -mcpu=cortex-m0 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall)
+set(GLOBAL_DEBUG_OPTIONS_531 -mthumb -mcpu=cortex-m0plus -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall  --specs=nano.specs )
+set(GLOBAL_DEBUG_OPTIONS_58x -mthumb -mcpu=cortex-m0 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall  --specs=nano.specs )
+
 
 if(BUILD_FOR_531)
-    target_compile_definitions(${PROJECT_NAME}_531 PRIVATE
-        $<$<COMPILE_LANGUAGE:C,CXX,ASM>:__DA14531__>
-    )
+target_compile_definitions(${PROJECT_NAME}_531 PRIVATE
+$<$<COMPILE_LANGUAGE:C,CXX,ASM>:__DA14531__>
+)
 endif()
 
 if(BUILD_FOR_585)
@@ -353,9 +354,7 @@ endif()
 set(TARGET_LINK_OPTIONS_COMMON
     "-Xlinker"
     "--gc-sections"
-    "--specs=nano.specs"
     "--specs=nosys.specs"
-#    "-v"
     "-Wl,--no-wchar-size-warning" # Suppress the warning from linking Dialog's system library
 )
 

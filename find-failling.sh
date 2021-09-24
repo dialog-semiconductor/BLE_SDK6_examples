@@ -24,3 +24,10 @@ echo -e "\nFailed build:\n"
 for d in "${FAILED[@]}" ;do
     echo " - $d"
 done
+
+echo -e "\n\n"
+echo -e "---------------"
+echo -e "| PASSED | ${#PASSED[@]} |"
+echo -e "|-------------|"
+echo -e "| FAILED | ${#FAILED[@]} |"
+echo -e "---------------"

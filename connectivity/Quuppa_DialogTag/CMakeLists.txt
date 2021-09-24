@@ -9,5 +9,10 @@ message("GCC_TOOLCHAIN_PATH = ${GCC_TOOLCHAIN_PATH}")
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
+include_directories(src/modules_lib/port
+                    src/modules_lib/app/wkup_keys
+                    src/user_drivers/bmi270
+)
+
 include (${DIALOG_EXAMPLE_PATH}/build_utils/gcc/example_build.cmake)
 

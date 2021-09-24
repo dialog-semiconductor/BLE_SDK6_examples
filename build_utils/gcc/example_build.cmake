@@ -12,7 +12,7 @@ add_executable(${PROJECT_NAME}
     ${userSourceFiles}
 )
 
-set(GLOBAL_DEBUG_OPTIONS -mthumb -mcpu=cortex-m0plus -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall)
+set(GLOBAL_DEBUG_OPTIONS -mthumb -mcpu=cortex-m0plus -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall --specs=nano.specs )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
     $<$<COMPILE_LANGUAGE:C,CXX,ASM>:__DA14531__>
@@ -126,9 +126,7 @@ target_link_options(${PROJECT_NAME} PRIVATE
     "-T${LINKER_SCRIPT_OUT}"
     "-Xlinker"
     "--gc-sections"
-    "--specs=nano.specs"
     "--specs=nosys.specs"
-#    "-v"
     "-Wl,--no-wchar-size-warning" # Suppress the warning from linking Dialog's system library
     "-Wl,-Map,${PROJECT_NAME}.map" # Produce map file
 )

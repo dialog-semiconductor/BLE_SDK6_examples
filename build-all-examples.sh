@@ -16,7 +16,6 @@ SDKROOT="/Users/blauret/Downloads/DA145xx_SDK/6.0.14.1114"
 if [ "$#" -ne 1 ]; then
     BUILD_LIST=`find . -name "CMakeLists.txt"`
 else
-    echo "parameter 1 is: $1"
     BUILD_LIST="$1/project_evioronment"
 fi
 

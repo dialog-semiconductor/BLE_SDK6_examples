@@ -110,7 +110,7 @@ void i2c_master_transmit_receive(void) {
 	while (1) {
 				
     while(GPIO_GetPinStatus(KEY_PORT, KEY_PIN)) {
-            __nop();
+            __NOP();
         }
 		
 	// this is for the key debouncing,

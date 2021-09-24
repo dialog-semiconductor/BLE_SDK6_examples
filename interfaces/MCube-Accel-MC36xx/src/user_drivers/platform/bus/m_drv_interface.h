@@ -33,8 +33,6 @@ extern "C" {
 #include <stdint.h>
 #include <stdbool.h>
 
-/** mCube functions include */
-#include "m_drv_console.h"
 
 /******************************************************************************
  *** CONSTANT / DEFINE
@@ -87,7 +85,7 @@ typedef enum
 extern int m_drv_i2c_init(void);
 extern int m_drv_spi_init(e_m_drv_interface_spimode_t spi_hs_mode);
 
-extern void mcube_delay_ms(uint32_t ms);
+extern void mcube_delay_ms(unsigned int ms);
 extern uint8_t mcube_write_regs(bool bSpi, uint8_t chip_select, uint8_t reg,\
                                 uint8_t *value, uint8_t size);
 extern uint8_t mcube_read_regs( bool bSpi, uint8_t chip_select, uint8_t reg,\

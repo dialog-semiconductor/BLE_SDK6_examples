@@ -27,7 +27,6 @@
 
 /** mCube functions include */
 #include "m_drv_interface.h"
-#include "m_drv_console.h"
 
 /******************************************************************************
  *** CONFIGURATION

@@ -31,6 +31,7 @@ SECTIONS
         /* patch section - not used by peripheral examples */
         KEEP(*(.patch_table))
         . = 0x0c0 + 0x050;
+        KEEP(*(.isr_impl))
 
         *(.text*)
 
@@ -110,6 +111,8 @@ SECTIONS
 
     .bss :
     {
+        __zero_table_start__ = .;
+        __zero_table_end__ = .;
         . = ALIGN(4);
         __bss_start__ = .;
         *(.bss*)

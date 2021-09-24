@@ -243,6 +243,29 @@ set(DIALOG_SDK_SOURCES_SHARED
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_suotar/app_suotar_task.c
 )
 
+set(DIALOG_SDK_SOURCES_PERIPH_EXAMPLE
+${DIALOG_SDK_PATH}/sdk/platform/arch/main/arch_system.c
+    ${DIALOG_SDK_PATH}/sdk/platform/arch/main/hardfault_handler.c
+    ${DIALOG_SDK_PATH}/sdk/platform/arch/main/nmi_handler.c
+    ${DIALOG_SDK_PATH}/sdk/platform/core_modules/arch_console/arch_console.c
+    ${DIALOG_SDK_PATH}/sdk/platform/utilities/otp_cs/otp_cs.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/syscntl/syscntl.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/gpio/gpio.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/wkupct_quadec/wkupct_quadec.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/battery/battery.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/trng/trng.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/spi_flash/spi_flash.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/i2c_eeprom/i2c_eeprom.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/systick/systick.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/uart/uart.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/uart/uart_utils.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/dma/dma.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/i2c/i2c.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/rtc/rtc.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/timer/timer0.c
+    ${DIALOG_SDK_PATH}/sdk/platform/driver/timer/timer1.c
+)
+
 set(DIALOG_SDK_SOURCES_531
     ${DIALOG_SDK_PATH}/sdk/platform/driver/adc/adc_531.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/spi/spi_531.c
@@ -253,11 +276,14 @@ set(DIALOG_SDK_SOURCES_531
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/startup_DA14531.S
 )
 
+set(DIALOG_SDK_SOURCES_58x_BLE
+    ${DIALOG_SDK_PATH}/sdk/platform/core_modules/rf/src/rf_585.c
+)
+
 set(DIALOG_SDK_SOURCES_58x
     ${DIALOG_SDK_PATH}/sdk/platform/driver/adc/adc_58x.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/spi/spi_58x.c
     ${DIALOG_SDK_PATH}/sdk/platform/driver/hw_otpc/hw_otpc_58x.c
-    ${DIALOG_SDK_PATH}/sdk/platform/core_modules/rf/src/rf_585.c
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/system_DA14585_586.c
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/ivtable_DA14585_586.S
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/startup_DA14585_586.S

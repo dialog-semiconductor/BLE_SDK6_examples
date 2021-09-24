@@ -118,7 +118,7 @@ void user_on_set_dev_config_complete( void )
  * @return void
  ****************************************************************************************
  */
-static void user_scan_start(void)
+void user_scan_start(void)
 {
     struct gapm_start_scan_cmd* cmd = KE_MSG_ALLOC(GAPM_START_SCAN_CMD,
                             TASK_GAPM, TASK_APP,

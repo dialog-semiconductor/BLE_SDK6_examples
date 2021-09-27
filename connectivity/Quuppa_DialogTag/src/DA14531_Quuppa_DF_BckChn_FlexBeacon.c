@@ -1159,9 +1159,6 @@ void user_change_adv_state(advertising_state state)
 
 static void _user_app_sensor_init()
 {
-    /* Variable to report error */
-    int8_t rslt;
-
 	#if 0
     struct bmi2_sens_config config[2] = {0};
     
@@ -1238,7 +1235,7 @@ static void _user_app_sensor_init()
     feat_cfg[3] |= 0x80; // Enabling the no motion feature
     bmi2_set_regs(BMI2_FEATURES_REG_ADDR, (uint8_t*)feat_cfg, 4, port_bmi270_dev_ptr());
     
-    rslt = bmi2_set_adv_power_save(BMI2_ENABLE,  port_bmi270_dev_ptr());
+    bmi2_set_adv_power_save(BMI2_ENABLE,  port_bmi270_dev_ptr());
 		
 		#ifdef CFG_PRINTF
 		arch_printf("\n\n\r bmi2_set_adv_power_save = %s", rslt==0? "OK":"NOT OK");
@@ -1348,8 +1345,6 @@ static void _user_pb1_long_press_handler()
 
 static void _user_pb1_key_handler(bool pressed)
 {
-	uint8_t int_feat_enable = 0;
-
 	if(pressed) 
 		{ // Do something when button is firstly pressed
 			// Start timer to check about long press

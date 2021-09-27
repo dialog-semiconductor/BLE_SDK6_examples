@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(${DEVICE_NAME} LANGUAGES C CXX ASM)
 #Full SDK builds
-set(BUILD_FOR_531 FALSE)
+set(BUILD_FOR_531 TRUE)
 set(BUILD_FOR_585 TRUE)
 set(BUILD_FOR_586 TRUE)
 

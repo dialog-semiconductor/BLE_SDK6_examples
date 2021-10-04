@@ -49,14 +49,16 @@ extern "C" {
 
 // Select I2C settings
 #if defined (__DA14531__)
+		
 #define I2C_GPIO_PORT    GPIO_PORT_0
-#define I2C_SCL_PIN      GPIO_PIN_2
+#define I2C_SCL_PIN      GPIO_PIN_7
 #define I2C_SDA_PIN      GPIO_PIN_8
+		
 #else
 
-#define I2C_GPIO_PORT     GPIO_PORT_1//GPIO_PORT_0
-#define I2C_SCL_PIN       GPIO_PIN_0//GPIO_PIN_2
-#define I2C_SDA_PIN       GPIO_PIN_2//GPIO_PIN_3
+#define I2C_GPIO_PORT     GPIO_PORT_2//GPIO_PORT_0
+#define I2C_SCL_PIN       GPIO_PIN_7//GPIO_PIN_2
+#define I2C_SDA_PIN       GPIO_PIN_8//GPIO_PIN_3
 
 #endif
 

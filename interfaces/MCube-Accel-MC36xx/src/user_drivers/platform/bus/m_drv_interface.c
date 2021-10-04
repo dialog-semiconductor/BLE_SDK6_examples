@@ -50,12 +50,6 @@ enum I2C_ADDRESS_MODES
 #endif
 #define I2C_SLAVE_ADDRESS 0x4C            // Set slave device address
 
-#define SEND_I2C_COMMAND(X)                SetWord16(I2C_DATA_CMD_REG, (X))
-#define WAIT_WHILE_I2C_FIFO_IS_FULL()      while((GetWord16(I2C_STATUS_REG) & TFNF) == 0)
-#define WAIT_UNTIL_I2C_FIFO_IS_EMPTY()     while((GetWord16(I2C_STATUS_REG) & TFE) == 0)
-#define WAIT_UNTIL_NO_MASTER_ACTIVITY()    while((GetWord16(I2C_STATUS_REG) & MST_ACTIVITY) !=0)
-#define WAIT_FOR_RECEIVED_BYTE()           while(GetWord16(I2C_RXFLR_REG) == 0)
-
 /******************************************************************************
  *** STATIC VARIABLE
  *****************************************************************************/
@@ -73,14 +67,21 @@ void mcube_delay_ms(unsigned int ms)
 int m_drv_i2c_init(void)
 {
     /** Function hook by customer. */
-    SetBits16(CLK_PER_REG, I2C_ENABLE, 1);                                        // enable  clock for I2C
-    SetWord16(I2C_ENABLE_REG, 0x0);                                               // Disable the I2C controller
-    SetWord16(I2C_CON_REG, I2C_MASTER_MODE | I2C_SLAVE_DISABLE | I2C_RESTART_EN); // Slave is disabled
-    SetBits16(I2C_CON_REG, I2C_SPEED, 2);                                         // Set I2C to 400k Hz speed
-    SetBits16(I2C_CON_REG, I2C_10BITADDR_MASTER, 0);                              // Set 7bit addressing mode
-    SetWord16(I2C_TAR_REG, I2C_SLAVE_ADDRESS & 0x3FF);                            // Set Slave device address
-    SetWord16(I2C_ENABLE_REG, 0x1);                                               // Enable the I2C controller
-    WAIT_UNTIL_NO_MASTER_ACTIVITY();                                              // Wait for I2C master FSM to become IDLE
+	  i2c_cfg_t i2c_configuration;
+    memset(&i2c_configuration, 0, sizeof(i2c_configuration));
+    i2c_configuration.speed = I2C_SPEED_FAST;
+    i2c_configuration.mode = I2C_MODE_MASTER;
+    i2c_configuration.addr_mode = I2C_ADDRESSING_7B;
+    i2c_configuration.address = I2C_SLAVE_ADDRESS;
+    i2c_configuration.clock_cfg.fs_hcnt = I2C_FS_SCL_HCNT_REG_RESET;
+    i2c_configuration.clock_cfg.fs_lcnt = I2C_FS_SCL_LCNT_REG_RESET;
+    i2c_configuration.clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET;
+    i2c_configuration.clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET;
+		i2c_configuration.tx_fifo_level     = 4;
+		i2c_configuration.rx_fifo_level     = 4;
+			
+    //Initialisation	
+	  i2c_init(&i2c_configuration);
 
     return 0;
 }
@@ -107,19 +108,12 @@ uint8_t mcube_write_regs(bool bSpi, uint8_t chip_select, uint8_t reg,       \
         /** SPI write function */
     } else {
         /** I2C write function */
-        
+        i2c_abort_t abrt_code;
         // Critical section
-        GLOBAL_INT_DISABLE();
-
-        SEND_I2C_COMMAND(reg & 0xFF);                    // Set address LSB, write access
-
-        SEND_I2C_COMMAND(value[0] & 0xFF);                  // Send write byte
-
-        // End of critical section
-        GLOBAL_INT_RESTORE();
-
-        WAIT_UNTIL_I2C_FIFO_IS_EMPTY();                 // Wait until Tx FIFO is empty
-        WAIT_UNTIL_NO_MASTER_ACTIVITY();                // Wait until no master activity
+        //GLOBAL_INT_DISABLE();
+			  i2c_master_transmit_buffer_sync(&reg, 1, &abrt_code, I2C_F_NONE);
+			  i2c_master_transmit_buffer_sync(value, size, &abrt_code, I2C_F_WAIT_FOR_STOP);
+        //GLOBAL_INT_RESTORE();
     } 
 
     return 0;
@@ -141,34 +135,38 @@ unsigned char mcube_read_regs(bool bSpi, uint8_t chip_select, uint8_t reg,  \
         /** SPI read function */
     } else {
         /** I2C read function */
-        int j;
+        while (!i2c_is_tx_fifo_not_full());
+        // Write byte to tx fifo
 
-        // Critical section
-        GLOBAL_INT_DISABLE();
+        i2c_write_byte(reg);
+				i2c_write_byte(I2C_CMD);
+			  uint16_t bytes_read = 0;
+				uint16_t read_req = 1;
+				// Get received byte from rx fifo
+				value[bytes_read] = i2c_read_byte();
+				bytes_read++;
 
-        SEND_I2C_COMMAND(reg & 0xFF);                    // Set address LSB, write access
+				while (bytes_read < size)
+				{
+						while ((read_req < size) && (i2c_is_tx_fifo_not_full()))
+						{
+								read_req++;
+								// Write read command to tx fifo
+		#if defined (__DA14531__)
+								i2c_write_byte(I2C_CMD | ((read_req == len && (flags & I2C_F_ADD_STOP)) ? I2C_STOP : 0));
+		#else
+								i2c_write_byte(I2C_CMD);
+		#endif
+						}
 
-        for (j = 0; j < size; j++)
-        {
-            WAIT_WHILE_I2C_FIFO_IS_FULL();              // Wait if Tx FIFO is full
-            SEND_I2C_COMMAND(0x0100);                   // Set read access for <size> times
-        }
+						while ((bytes_read < size) && (i2c_get_rx_fifo_level()))
+						{
+								// Get received byte from rx fifo
+								value[bytes_read] = i2c_read_byte();
 
-        // End of critical section
-        GLOBAL_INT_RESTORE();
-        
-        // Get the received data
-        for (j = 0; j < size; j++)
-        {
-            WAIT_FOR_RECEIVED_BYTE();                   // Wait for received data
-            *value =(0xFF & GetWord16(I2C_DATA_CMD_REG));  // Get the received byte
-            (value)++;
-        }
-
-        WAIT_UNTIL_I2C_FIFO_IS_EMPTY();                 // Wait until Tx FIFO is empty
-        WAIT_UNTIL_NO_MASTER_ACTIVITY();                // wait until no master activity
-    } 
-
+						}
+				} 
+			}
     return 0;
 }
 

@@ -11,7 +11,10 @@ else
 fi
 
 EXAMPLE_ROOT=$PWD
-SDKROOT="/Users/blauret/Downloads/DA145xx_SDK/6.0.14.1114"
+
+if [ -z $SDKROOT ]; then
+    SDKROOT="${HOME}/dev/repo/SDK6_release"
+fi
 
 if [ "$#" -ne 1 ]; then
     BUILD_LIST=`find . -name "CMakeLists.txt"`
@@ -23,7 +26,6 @@ fi
 for d in $BUILD_LIST; do
 
 
-    echo "d is: $d, $PWD"
     pushd `dirname $d`
 
     # echo "push to folder: $PWD"

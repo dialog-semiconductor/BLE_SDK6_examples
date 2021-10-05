@@ -1,254 +1,204 @@
-/*******************************************************************************************************/
-/*INCLUDES *********************************************************************************************/
-/*******************************************************************************************************/
-#include "boot_da14531.h"
-#include "boot_config.h"
+/***********************************************************************************************************************
+ * File Name    : boot_da14531.c
+ * Description  : Contains UART functions definition.
+ **********************************************************************************************************************/
+/***********************************************************************************************************************
+ * DISCLAIMER
+ * This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
+ * other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
+ * applicable laws, including copyright laws.
+ * THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
+ * THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
+ * EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
+ * SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
+ * SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ * Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
+ * this software. By using this software, you agree to the additional terms and conditions found by accessing the
+ * following link:
+ * http://www.renesas.com/disclaimer
+ *
+ * Copyright (C) 2021 Renesas Electronics Corporation. All rights reserved.
+ ***********************************************************************************************************************/
+
 #include "common_utils.h"
+#include "boot_da14531.h"
+#include "r_sci_uart.h"
+#include "r_uart_api.h"
+#include "codeless_image.h" //This image is just used as an example, any other image for the DA14531 can be used
 
-/*******************************************************************************************************/
-/*DEFINES **********************************************************************************************/
-/*******************************************************************************************************/
+#define ACK 		(uint8_t)(0x06)
+#define NACK		(uint8_t)(0x15)
+#define STX			(uint8_t)(0x02)
+#define SOH			(uint8_t)(0x01)
 
+enum uart_boot
+{
+    DA14531_BOOT_SEND_LENGTH ,  
+    DA14531_BOOT_SEND_DATA,
+    DA14531_BOOT_CHECK_CRC       
+};
+	
+enum uart_boot uart_state;
 
-extern volatile uint8_t g_uart_event;
+/*******************************************************************************************************************//**
+ * @addtogroup boot_da14531
+ * @{
+ **********************************************************************************************************************/
 
-/*******************************************************************************************************/
-/*FUNCTION PROTOTYPES **********************************************************************************/
-/*******************************************************************************************************/
-//static codeless_boot_error_t wait_for_start_of_boot(sci_uart_instance_ctrl_t *);
-//static codeless_boot_error_t send_header(sci_uart_instance_ctrl_t * , uart_wire_t, uint16_t);
-//static codeless_boot_error_t send_data(sci_uart_instance_ctrl_t * , uart_wire_t, const uint8_t*, const uint16_t);
-//static codeless_boot_error_t check_crc(sci_uart_instance_ctrl_t * , uart_wire_t, const uint8_t);
+/*
+ * Private function declarations
+ */
+/*
+ * Private global variables
+ */
+ /* Flag for user callback */
+volatile uint8_t g_uart_event = RESET_VALUE;
 
-/*******************************************************************************************************/
-/*FUNCTION DEFINITIONS *********************************************************************************/
-///*******************************************************************************************************/
+bsp_io_level_t BSP_IO_PORT_02_PIN_07_status ;
 
-///**
-//*	@brief The main function used for booting the DA14531
-//*	@param[in] uarth - a pointer to the UART handle that is used for the UART communication with the DA14531
-//*	@param[in] mode - sets the data mode for the UART communication, either ONE_WIRE or TWO_WIRE
-//*	@param[in] crc - the CRC for the given data
-//*	@param[in] pData - a pointer to the data that needs to be send to the DA14531
-//*	@parma[in] dataSize - the size of the data to be send
-//*	@return returns a ok if everything went succesful, else it returns an error
-//*/
+/* Flag to check whether data is received or not */
+static volatile uint8_t g_data_received_flag = false;
+#define HEADER_SIZE		(size_t)(3)
 
-//codeless_boot_error_t boot_da14531(sci_uart_instance_ctrl_t * p_api_ctrl , uart_wire_t mode, uint8_t crc, const uint8_t * pData, const uint16_t dataSize){
+extern const unsigned char CODELESS_CRC ;
 
+/*****************************************************************************************************************
+ *  @brief       UART Example project to demonstrate the functionality
+ *  @param[in]   None
+ *  @retval      FSP_SUCCESS     Upon success
+ *  @retval      Any Other Error code apart from FSP_SUCCESS
+ ****************************************************************************************************************/
+fsp_err_t boot_da14531_demo(void)
+{
+	
+    while (true)
+    {
 
-//	if(wait_for_start_of_boot(p_api_ctrl) == BOOT_ERROR) 						return NO_BOOT_RESPONSE;
-//	if(send_header(p_api_ctrl, mode, dataSize) == BOOT_ERROR) 				return HEADER_NACK;
-//  if(send_data(p_api_ctrl, mode, pData, dataSize) == BOOT_ERROR) 	return DATA_TRANSMIT_ERROR;
-//  if(check_crc(p_api_ctrl, mode, crc) == BOOT_ERROR) 							return CRC_INCORRECT;
+//			R_BSP_PinAccessEnable();
+//			
+//			BSP_IO_PORT_02_PIN_07_status = R_BSP_PinRead(BSP_IO_PORT_02_PIN_07);
+//			
+//			if (BSP_IO_PORT_02_PIN_07_status == BSP_IO_LEVEL_HIGH)
+//			{
+//			  R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_02_PIN_07 , 0U); R_BSP_PinAccessDisable();	
+//			}
+//			R_BSP_PinAccessDisable();
+			
+        if(g_data_received_flag)
+        {
+           g_data_received_flag  = false;					
+				}
+			}
+}
 
-//	return BOOT_OK;
-//}
+/*******************************************************************************************************************//**
+ * @brief       Initialize  UART.
+ * @param[in]   None
+ * @retval      FSP_SUCCESS         Upon successful open and start of timer
+ * @retval      Any Other Error code apart from FSP_SUCCESS  Unsuccessful open
+ ***********************************************************************************************************************/
+fsp_err_t uart_initialize(void)
+{
+    fsp_err_t err = FSP_SUCCESS;
 
-///**
-//*	@brief A function used to calculate the CRC of the given data
-//*	@param[in] pData - a pointer to the data for which the CRC needs to be calculated
-//*	@param[in] dataSize - the size of the data
-//*	@return returns the calculated CRC
-//*/
-//uint8_t crc_calculate(const uint8_t * pData, const uint16_t dataSize){
-//	uint8_t crc = 0x00;
+    /* Initialize UART channel with baud rate 115200 */
+    err = R_SCI_UART_Open (&g_uart0_ctrl, &g_uart0_cfg);
+    if (FSP_SUCCESS != err)
+    {
+        APP_ERR_PRINT ("\r\n**  R_SCI_UART_Open API failed  **\r\n");
+    }
+    return err;
+}
 
-//	size_t i;
+/*******************************************************************************************************************//**
+ *  @brief       Deinitialize SCI UART module
+ *  @param[in]   None
+ *  @retval      None
+ **********************************************************************************************************************/
+void deinit_uart(void)
+{
+    fsp_err_t err = FSP_SUCCESS;
 
-//	for (i = 0; i < dataSize; ++i) {
-//		crc ^= pData[i];
-//	}
+    /* Close module */
+    err =  R_SCI_UART_Close (&g_uart0_ctrl);
+    if (FSP_SUCCESS != err)
+    {
+        APP_ERR_PRINT ("\r\n**  R_SCI_UART_Close API failed  ** \r\n");
+    }
+}
 
-//	return crc;
-//}
-
-///**
-//*	@brief This function waits for the start of transmission byte from the DA14531
-//*	@param[in] uarth - a pointer to the UART handle that is used for the UART communication with the DA14531
-//*	@return returns a ok if everything went succesful, else it returns an error
-//*/
-//static codeless_boot_error_t wait_for_start_of_boot(sci_uart_instance_ctrl_t * p_api_ctrl ){
-
-//	sci_uart_instance_ctrl_t * p_ctrl = (sci_uart_instance_ctrl_t *) p_api_ctrl;
-//		
-//	#define TRANSFER_LENGTH_1            (1U)
-//	uint8_t  g_dest_0;
-//	
-
-//	fsp_err_t uartStatus  = FSP_SUCCESS;
-
-//	uartStatus = R_SCI_UART_Read(p_ctrl, &g_dest_0, TRANSFER_LENGTH_1); //Get the start of boot code
-//	assert(FSP_SUCCESS == uartStatus);
-
-//	while(UART_EVENT_RX_COMPLETE != g_uart_event);
-//	assert(g_dest_0 == STX );
-//	
-
-//	return BOOT_OK;
-//	
-//}
-
-///**
-//*	@brief This function sends the header for the data to the DA14531 and waits for the ACK
-//*	@param[in] uarth - a pointer to the UART handle that is used for the UART communication with the DA14531
-//*	@param[in] mode - sets the data mode for the UART communication, either ONE_WIRE or TWO_WIRE
-//*	@param[in] dataSize - the size of the data that is the be send
-//*	@return returns a ok if everything went succesful, else it returns an error
-//*/
-//static codeless_boot_error_t send_header(sci_uart_instance_ctrl_t * p_api_ctrl, uart_wire_t mode, uint16_t dataSize){
-
-//sci_uart_instance_ctrl_t * p_ctrl = (sci_uart_instance_ctrl_t *) p_api_ctrl;
-//	
-//#define TRANSFER_LENGTH_2            (1U)
-//uint8_t  g_src_h;
-
-//	/* Reset callback capture variable */
-//  g_uart_event = RESET_VALUE;
-//	#define HEADER_SIZE		(size_t)(3)
-//	fsp_err_t uartStatus  = FSP_SUCCESS;
-//	uint8_t header[HEADER_SIZE];
-
-//	//Prepare header
-//	header[0] = SOH;
-//	header[1] = (uint8_t)(dataSize & 0xFF); //Get lower byte of the size
-//	header[2] = (uint8_t)((dataSize >> 8) & 0xFF); //Get upper byte of the size
-
-//	uartStatus = R_SCI_UART_Write(p_ctrl, &header[0],HEADER_SIZE);
-//	
-//	
-//	    /* Check for event transfer complete */
-//    while ((UART_EVENT_TX_COMPLETE != g_uart_event))
-//    {
-//        /* Check if any error event occurred */
-//        if (UART_ERROR_EVENTS == g_uart_event)
-//        {
-//            APP_ERR_PRINT ("\r\n**  FUCK  **\r\n");
-//            
-//        }
-//    }
-//		
-////		if(mode == ONE_WIRE){
-////	R_SCI_UART_Read(p_ctrl, &g_src_h, sizeof(g_src_h));//Because of 1 wire UART the buffer needs to be cleared after a transmit
-////		
-////	}
-//	
-
-////	/* Check for event transfer complete */
-////	while ((UART_EVENT_RX_COMPLETE != g_uart_event))
-////	{
-////			/* Check if any error event occurred */
-////			if (UART_ERROR_EVENTS == g_uart_event)
-////			{
-////					APP_ERR_PRINT ("\r\n**  FUCK  **\r\n");
-////					
-////			}
-////	}
-//		
-//		R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_09_PIN_15 , 1U); R_BSP_PinAccessDisable();
-//		R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_09_PIN_15 , 0U); R_BSP_PinAccessDisable();
-//		
-
-//		//Wait for ACK or NACK
-//	uartStatus = R_SCI_UART_Read(p_ctrl, &g_src_h, sizeof(g_src_h));
-
-//	R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_09_PIN_15 , 1U); R_BSP_PinAccessDisable();
-//	R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_09_PIN_15 , 0U); R_BSP_PinAccessDisable();
-
-//	if(uartStatus != FSP_SUCCESS || g_src_h != ACK){
-//		SEGGER_RTT_printf(0,"header %d %d \n\n",(const char *)uartStatus,g_src_h);
-//		return BOOT_ERROR;
-//	}
-
-//	return BOOT_OK;
+/*****************************************************************************************************************
+ *  @brief      UART user callback
+ *  @param[in]  p_args
+ *  @retval     None
+ ****************************************************************************************************************/
 
 
-//}
+void user_uart_callback(uart_callback_args_t * p_args)
+{
+		fsp_err_t uartStatus  = FSP_SUCCESS;
+		uint8_t header[HEADER_SIZE];
+  
+		if( UART_EVENT_RX_CHAR == p_args->event) {
+			
+			g_data_received_flag  = true;
+			
+			if(STX == p_args->data && 0 == DA14531_BOOT_SEND_LENGTH ){
 
-///**
-//*	@brief This function sends the data to the DA14531
-//*	@param[in] uarth - a pointer to the UART handle that is used for the UART communication with the DA14531
-//*	@param[in] mode - sets the data mode for the UART communication, either ONE_WIRE or TWO_WIRE
-//*	@param[in] pData - a pointer to the data that needs to be send to the DA14531
-//*	@param[in] dataSize - the size of the data that is the be send
-//*	@return returns a ok if everything went succesful, else it returns an error
-//*/
-//static codeless_boot_error_t send_data(sci_uart_instance_ctrl_t * p_api_ctrl, uart_wire_t mode, const uint8_t* pData, const uint16_t dataSize){
+					//Prepare header
+					header[0] = SOH;
+					header[1] = (uint8_t)(sizeof(CODELESS) & 0xFF); //Get lower byte of the size
+					header[2] = (uint8_t)((sizeof(CODELESS) >> 8) & 0xFF); //Get upper byte of the size
 
-//	sci_uart_instance_ctrl_t * p_ctrl = (sci_uart_instance_ctrl_t *) p_api_ctrl;
-//		uint8_t clearBuffer;
-//   /* Reset callback capture variable */
-//    g_uart_event = RESET_VALUE;
-//	
-//fsp_err_t uartStatus  = FSP_SUCCESS;
-//size_t j;
-//j = 0;
-//	while(j < dataSize){
-//		       uartStatus = R_SCI_UART_Write(p_ctrl, (unsigned char *)&pData[j], dataSize);
+					uartStatus = R_SCI_UART_Write(&g_uart0_ctrl, &header[0],HEADER_SIZE);
+										
+				  APP_PRINT ("\r\n**  Done: sends the header for the data to the DA14531 and waits for the ACK  ** \r\n");
+				
+				  uart_state = DA14531_BOOT_SEND_DATA;
 
-//		if(mode == ONE_WIRE){
-//			R_SCI_UART_Read(p_ctrl, &clearBuffer, sizeof(clearBuffer));//Because of 1 wire UART the buffer needs to be cleared after a transmit
-//		}
+			} 
+			
+			else  if (DA14531_BOOT_SEND_DATA == uart_state && ACK == p_args->data) 
+			{
+					uartStatus = R_SCI_UART_Write(&g_uart0_ctrl, CODELESS,sizeof(CODELESS));
+			    APP_PRINT ("\r\n**  Done: sends the data to the DA14531  ** \r\n");
+				  uart_state = DA14531_BOOT_CHECK_CRC;
+			} 
+			
+			else if (DA14531_BOOT_CHECK_CRC == uart_state && CODELESS_CRC == p_args->data ) 
 
-//		j++;
-//	}
-//	
-//		    /* Check for event transfer complete */
-//    while ((UART_EVENT_TX_COMPLETE != g_uart_event))
-//    {
-//        /* Check if any error event occurred */
-//        if (UART_ERROR_EVENTS == g_uart_event)
-//        {
-//            APP_ERR_PRINT ("\r\n**  FUCK  **\r\n");
+			{
+				
+     uint8_t crc_buffer = 0;
+		 crc_buffer = ACK;
+		 uartStatus = R_SCI_UART_Write(&g_uart0_ctrl, &crc_buffer, sizeof(crc_buffer));
+		 APP_PRINT ("\r\n**  Done: gets the CRC from the DA14531 and checks if it matches the given CRC  ** \r\n");	
+		}
+			
+		}
+		
+    if(UART_EVENT_RX_COMPLETE == p_args->event)
+    {
+			g_uart_event = UART_EVENT_RX_COMPLETE;
+			
+    }
+		
+		
+		if(UART_EVENT_TX_COMPLETE == p_args->event)
+    {
+      
+			R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_09_PIN_14 , 1U); R_BSP_PinAccessDisable();
+			R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_09_PIN_14 , 0U); R_BSP_PinAccessDisable();
+      
+			g_uart_event = UART_EVENT_TX_COMPLETE;
 
-//        }
-//    }
-//	
-////	if(uartStatus != FSP_SUCCESS){
-////		return BOOT_ERROR;
-////	}
+    }
+		
+		
+	
+}
 
-//	return BOOT_OK;
-//	
-//	
-//}
-
-///**
-//*	@brief This function gets the CRC from the DA14531 and checks if it matches the given CRC
-//*	@param[in] uarth - a pointer to the UART handle that is used for the UART communication with the DA14531
-//*	@param[in] mode - sets the data mode for the UART communication, either ONE_WIRE or TWO_WIRE
-//*	@param[in] crc - the calculated crc for the data
-//*	@return returns a ok if everything went succesful, else it returns an error
-//*/
-//static codeless_boot_error_t check_crc(sci_uart_instance_ctrl_t * p_api_ctrl, uart_wire_t mode, const uint8_t crc){
-
-//	sci_uart_instance_ctrl_t * p_ctrl = (sci_uart_instance_ctrl_t *) p_api_ctrl;
-//	
-//#define TRANSFER_LENGTH_3            (1U)
-
-//fsp_err_t uartStatus  = FSP_SUCCESS; 
-
-//uint8_t crc_buffer = 0;
-
-//  uartStatus = R_SCI_UART_Read(p_ctrl, &crc_buffer, TRANSFER_LENGTH_3); //Get the crc byte
-
-//	if(uartStatus != FSP_SUCCESS || crc_buffer != crc){
-//		return BOOT_ERROR;
-//	}else{
-//		crc_buffer = ACK;
-//		uartStatus = R_SCI_UART_Write(p_ctrl, &crc_buffer, TRANSFER_LENGTH_3);
-
-//		if(mode == ONE_WIRE){
-//			R_SCI_UART_Read(p_ctrl, &crc_buffer, sizeof(crc_buffer));//Because of 1 wire UART the buffer needs to be cleared after a transmit
-//		}
-//	}
-
-//	if(uartStatus != FSP_SUCCESS){
-//		return BOOT_ERROR;
-//	}
-
-
-//	return BOOT_OK;
-
-//}
-
+/*******************************************************************************************************************//**
+ * @} (end addtogroup boot_da14531)
+ **********************************************************************************************************************/

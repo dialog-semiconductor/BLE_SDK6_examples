@@ -18,21 +18,18 @@
  * following link:
  * http://www.renesas.com/disclaimer
  *
- * Copyright (C) 2020 Renesas Electronics Corporation. All rights reserved.
+ * Copyright (C) 2021 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
 
 #include "common_utils.h"
-#include "uart_ep.h"
+#include "boot_da14531.h"
 
 /*******************************************************************************************************************//**
- * @addtogroup r_sci_uart_ep
+ * @addtogroup boot_da14531
  * @{
  **********************************************************************************************************************/
 
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
-
-
-
 
 /*******************************************************************************************************************//**
  * The RA Configuration tool generates main() and uses it to generate threads if an RTOS is used.  This function is
@@ -57,10 +54,6 @@ void hal_entry(void)
     {
         APP_PRINT ("\r\n ** UART INIT FAILED ** \r\n");
     }
-		
-		
-		    /* User defined function to demonstrate UART functionality */
-    err = uart_ep_demo();
 		
     if (FSP_SUCCESS != err)
     {
@@ -103,5 +96,5 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event)
 
 
 /*******************************************************************************************************************//**
- * @} (end addtogroup r_sci_uart_ep)
+ * @} (end addtogroup boot_da14531)
  **********************************************************************************************************************/

@@ -1,0 +1,197 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.33.0.0
+Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Imed iamor DLG Flex license: MDK Essential 5.33 (Flex): 8 user(s) (mdk_essential) Support: Mar 2022
+ 
+Tool Versions:
+Toolchain:       MDK Essential 5.33 (Flex): 8 user(s)  Version: 5.33.0.0
+Toolchain Path:  E:\My_Programm_Files\KEIL_533\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.15
+Assembler:       Armasm.exe V6.15
+Linker/Locator:  ArmLink.exe V6.15
+Library Manager: ArmAr.exe V6.15
+Hex Converter:   FromElf.exe V6.15
+CPU DLL:         SARMCM3.DLL V5.33.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      Segger\JL2CM3.dll V2.99.38.0
+Dialog DLL:      TCM.DLL V1.48.0.0
+ 
+<h2>Project:</h2>
+E:\GITHUB_19-07\BLE_SDK6_examples\interfaces\external-processor-Renesas\project_environment\MDK-ARM\sci_uart_ek_ra2e1_ep.uvprojx
+Project File Date:  10/05/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.15', folder: 'E:\My_Programm_Files\KEIL_533\ARM\ARMCLANG\Bin'
+Rebuild target 'Target 1'
+compiling SEGGER_RTT_printf.c...
+compiling hal_entry.c...
+compiling SEGGER_RTT.c...
+compiling boot_da14531.c...
+compiling uart_ep.c...
+compiling board_init.c...
+compiling board_leds.c...
+compiling startup.c...
+compiling system.c...
+compiling bsp_clocks.c...
+compiling bsp_common.c...
+compiling bsp_delay.c...
+compiling bsp_guard.c...
+compiling bsp_group_irq.c...
+compiling bsp_io.c...
+compiling bsp_irq.c...
+compiling bsp_register_protection.c...
+compiling bsp_rom_registers.c...
+compiling bsp_sbrk.c...
+compiling bsp_security.c...
+compiling r_ioport.c...
+compiling r_sci_uart.c...
+compiling common_data.c...
+compiling hal_data.c...
+compiling pin_data.c...
+compiling vector_data.c...
+compiling main.c...
+linking...
+Program Size: Code=6148 RO-data=35356 RW-data=4 ZI-data=4592  
+FromELF: creating hex file...
+".\Objects\sci_uart_ek_ra2e1_ep.axf" - 0 Error(s), 0 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Renesas
+                
+                Renesas.Project Content.1.0.0
+                Project content managed by the Renesas Smart Configurator
+   * Component: Build Configuration Version: 
+   * Component: ra Version: 
+   * Component: Generated Data Version: 
+   * Component: Linker Script Version: 
+
+Package Vendor: Renesas
+                https://www2.renesas.eu/Keil_MDK_Packs/Renesas.RA_DFP.3.2.0.pack
+                Renesas.RA_DFP.3.2.0
+                Renesas RA series device family pack
+   * Component: RA Configuration Version: 1.0.0
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  .\ra\arm\CMSIS_5\CMSIS\Core\Include
+  .\ra\fsp\inc
+  .\ra\fsp\inc\api
+  .\ra\fsp\inc\instances
+  .\ra_cfg\fsp_cfg
+  .\ra_cfg\fsp_cfg\bsp
+  .\ra_gen
+  E:\GITHUB_19-07\BLE_SDK6_examples\interfaces\external-processor-Renesas\project_environment\MDK-ARM
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: Renesas::Flex Software:Build Configuration
+      Include file:  ra_cfg\fsp_cfg\bsp\bsp_mcu_device_cfg.h
+      Include file:  ra_cfg\fsp_cfg\bsp\bsp_mcu_family_cfg.h
+      Include file:  ra_cfg\fsp_cfg\r_ioport_cfg.h
+      Include file:  ra_cfg\fsp_cfg\bsp\bsp_cfg.h
+      Include file:  ra_cfg\fsp_cfg\r_sci_uart_cfg.h
+      Include file:  ra_cfg\fsp_cfg\bsp\bsp_mcu_device_pn_cfg.h
+      Include file:  ra_cfg\fsp_cfg\bsp\bsp_pin_cfg.h
+      Include file:  ra_cfg\fsp_cfg\bsp\board_cfg.h
+
+   * Component: Renesas::Flex Software:Components:ra
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\cmsis_armclang.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\cmsis_armclang_ltm.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\cmsis_armcc.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\cmsis_compiler.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\cachel1_armv7.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\cmsis_gcc.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\cmsis_iccarm.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\cmsis_version.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_armv8mbl.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm35p.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm0plus.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\tz_context.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm55.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm3.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm7.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm1.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm0.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm23.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_sc000.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_armv8mml.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_sc300.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\mpu_armv7.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\mpu_armv8.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm33.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\pmu_armv8.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_cm4.h
+      Include file:  ra\arm\CMSIS_5\CMSIS\Core\Include\core_armv81mml.h
+      Include file:  ra\fsp\inc\api\r_transfer_api.h
+      Include file:  ra\fsp\inc\api\r_ioport_api.h
+      Include file:  ra\fsp\inc\fsp_version.h
+      Include file:  ra\fsp\inc\instances\r_ioport.h
+      Include file:  ra\fsp\inc\instances\r_sci_uart.h
+      Include file:  ra\fsp\src\bsp\cmsis\Device\RENESAS\Include\system.h
+      Source file:   ra\fsp\src\bsp\cmsis\Device\RENESAS\Source\startup.c
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_clocks.c
+      Include file:  ra\fsp\inc\fsp_common_api.h
+      Source file:   ra\fsp\src\bsp\cmsis\Device\RENESAS\Source\system.c
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_common.h
+      Include file:  ra\fsp\src\bsp\cmsis\Device\RENESAS\Include\renesas.h
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_delay.h
+      Include file:  ra\fsp\inc\api\bsp_api.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_common.c
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_compiler_support.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_delay.c
+      Include file:  ra\fsp\inc\api\r_uart_api.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_group_irq.c
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_guard.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_io.c
+      Include file:  ra\fsp\src\bsp\cmsis\Device\RENESAS\Include\base_addresses.h
+      Include file:  ra\fsp\inc\fsp_features.h
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_arm_exceptions.h
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_clocks.h
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_group_irq.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_guard.c
+      Include file:  ra\board\ra2e1_ek\board.h
+      Source file:   ra\board\ra2e1_ek\board_init.c
+      Include file:  ra\board\ra2e1_ek\board_init.h
+      Source file:   ra\board\ra2e1_ek\board_leds.c
+      Include file:  ra\board\ra2e1_ek\board_leds.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_sbrk.c
+      Include file:  ra\fsp\src\bsp\mcu\ra2e1\bsp_feature.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_rom_registers.c
+      Include file:  ra\fsp\src\bsp\mcu\ra2e1\bsp_elc.h
+      Source file:   ra\fsp\src\r_sci_uart\r_sci_uart.c
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_register_protection.c
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_mcu_api.h
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_module_stop.h
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_register_protection.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_irq.c
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_security.h
+      Source file:   ra\fsp\src\bsp\mcu\all\bsp_security.c
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_irq.h
+      Include file:  ra\fsp\src\bsp\mcu\ra2e1\bsp_icu.h
+      Include file:  ra\fsp\src\bsp\mcu\ra2e1\bsp_mcu_info.h
+      Include file:  ra\fsp\src\bsp\mcu\all\bsp_io.h
+      Source file:   ra\fsp\src\r_ioport\r_ioport.c
+
+   * Component: Renesas::Flex Software:Generated Data
+      Include file:  ra_gen\bsp_clock_cfg.h
+      Source file:   ra_gen\vector_data.c
+      Include file:  ra_gen\hal_data.h
+      Source file:   ra_gen\common_data.c
+      Include file:  ra_gen\vector_data.h
+      Source file:   ra_gen\hal_data.c
+      Source file:   ra_gen\main.c
+      Source file:   ra_gen\pin_data.c
+      Include file:  ra_gen\common_data.h
+
+   * Component: Renesas::Flex Software:Linker Script
+
+   * Component: Renesas::Flex Software:RA Configuration:1.0.0
+Build Time Elapsed:  00:00:17
+</pre>
+</body>
+</html>

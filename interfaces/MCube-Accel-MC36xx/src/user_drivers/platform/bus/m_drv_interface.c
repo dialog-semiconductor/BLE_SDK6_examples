@@ -68,23 +68,25 @@ int m_drv_i2c_init(void)
 {
     /** Function hook by customer. */
 	  i2c_cfg_t i2c_configuration;
-    memset(&i2c_configuration, 0, sizeof(i2c_configuration));
+    memset(&i2c_configuration, 0, sizeof(i2c_cfg_t));
     i2c_configuration.speed = I2C_SPEED_FAST;
     i2c_configuration.mode = I2C_MODE_MASTER;
     i2c_configuration.addr_mode = I2C_ADDRESSING_7B;
     i2c_configuration.address = I2C_SLAVE_ADDRESS;
+	  i2c_configuration.restart_en = I2C_RESTART_ENABLE;
     i2c_configuration.clock_cfg.fs_hcnt = I2C_FS_SCL_HCNT_REG_RESET;
     i2c_configuration.clock_cfg.fs_lcnt = I2C_FS_SCL_LCNT_REG_RESET;
     i2c_configuration.clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET;
     i2c_configuration.clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET;
-		i2c_configuration.tx_fifo_level     = 4;
-		i2c_configuration.rx_fifo_level     = 4;
+		i2c_configuration.tx_fifo_level     = 32;
+		i2c_configuration.rx_fifo_level     = 32;
 			
     //Initialisation	
 	  i2c_init(&i2c_configuration);
 
     return 0;
 }
+
 
 /** SPI init function */
 int m_drv_spi_init(e_m_drv_interface_spimode_t spi_hs_mode)
@@ -134,39 +136,14 @@ unsigned char mcube_read_regs(bool bSpi, uint8_t chip_select, uint8_t reg,  \
     if(!bSpi) {
         /** SPI read function */
     } else {
-        /** I2C read function */
-        while (!i2c_is_tx_fifo_not_full());
-        // Write byte to tx fifo
-
-        i2c_write_byte(reg);
-				i2c_write_byte(I2C_CMD);
-			  uint16_t bytes_read = 0;
-				uint16_t read_req = 1;
-				// Get received byte from rx fifo
-				value[bytes_read] = i2c_read_byte();
-				bytes_read++;
-
-				while (bytes_read < size)
-				{
-						while ((read_req < size) && (i2c_is_tx_fifo_not_full()))
-						{
-								read_req++;
-								// Write read command to tx fifo
-		#if defined (__DA14531__)
-								i2c_write_byte(I2C_CMD | ((read_req == len && (flags & I2C_F_ADD_STOP)) ? I2C_STOP : 0));
-		#else
-								i2c_write_byte(I2C_CMD);
-		#endif
-						}
-
-						while ((bytes_read < size) && (i2c_get_rx_fifo_level()))
-						{
-								// Get received byte from rx fifo
-								value[bytes_read] = i2c_read_byte();
-
-						}
-				} 
-			}
+        i2c_abort_t abrt_code;
+			  i2c_master_transmit_buffer_sync(&reg, 1, &abrt_code, I2C_F_NONE);
+#if defined (__DA14531__)
+			  i2c_master_receive_buffer_sync(value, size, &abrt_code, I2C_F_ADD_STOP);
+#else
+			  i2c_master_receive_buffer_sync(value, size, &abrt_code, I2C_F_NONE);
+#endif
+		}
     return 0;
 }
 

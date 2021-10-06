@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'sci_uart_ek_ra2e1_ep' 
+ * Project: 'DA14531_Boot_RA2E1' 
  * Target:  'Target 1' 
  */
 

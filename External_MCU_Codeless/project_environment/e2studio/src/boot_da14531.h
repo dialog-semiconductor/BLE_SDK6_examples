@@ -1,7 +1,7 @@
 /***********************************************************************************************************************
- * File Name    : common_utils.h
- * Description  : Contains macros, data structures and functions used  common to the EP
- ***********************************************************************************************************************/
+ * File Name    : boot_da14531.h
+ * Description  : Contains function declaration of boot_da14531.c and Macros.
+ **********************************************************************************************************************/
 /***********************************************************************************************************************
  * DISCLAIMER
  * This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
@@ -21,26 +21,14 @@
  * Copyright (C) 2021 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
 
-#ifndef COMMON_UTILS_H_
-#define COMMON_UTILS_H_
+#ifndef BOOR_DA14531_H_
+#define BOOR_DA14531_H_
 
-/* generic headers */
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include "hal_data.h"
-/* SEGGER RTT and error related headers */
-#include "SEGGER_RTT/SEGGER_RTT.h"
+#include "bsp_api.h"
 
-#define LVL_ERR      (1u)       /* error conditions   */
+/* Function declaration */
+fsp_err_t boot_da14531_demo(void);
+fsp_err_t uart_initialize(void);
+void deinit_uart(void);
 
-#define RESET_VALUE             (0x00)
-
-#define SEGGER_INDEX            (0)
-
-#define APP_PRINT(fn_, ...)      SEGGER_RTT_printf (SEGGER_INDEX,(fn_), ##__VA_ARGS__);
-
-#define APP_ERR_PRINT(fn_, ...)  if(LVL_ERR)\
-        SEGGER_RTT_printf (SEGGER_INDEX, "[ERR] In Function: %s(), %s",__FUNCTION__,(fn_),##__VA_ARGS__);
-
-#endif /* COMMON_UTILS_H_ */
+#endif /* BOOR_DA14531_H_ */

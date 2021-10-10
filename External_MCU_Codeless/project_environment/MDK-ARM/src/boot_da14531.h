@@ -26,6 +26,9 @@
 
 #include "bsp_api.h"
 
+/* Enable/Disable one wire UART*/
+#undef ONE_WIRE
+
 /* Function declaration */
 fsp_err_t boot_da14531_demo(void);
 fsp_err_t uart_initialize(void);

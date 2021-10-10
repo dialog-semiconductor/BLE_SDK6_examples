@@ -38,7 +38,7 @@ enum uart_boot
     DA14531_BOOT_SEND_DATA,
     DA14531_BOOT_CHECK_CRC       
 };
-	
+
 enum uart_boot uart_state;
 
 /*******************************************************************************************************************//**
@@ -52,7 +52,7 @@ enum uart_boot uart_state;
 /*
  * Private global variables
  */
- /* Flag for user callback */
+/* Flag for user callback */
 volatile uint8_t g_uart_event = RESET_VALUE;
 
 bsp_io_level_t BSP_IO_PORT_02_PIN_07_status ;
@@ -71,7 +71,7 @@ extern const unsigned char CODELESS_CRC ;
  ****************************************************************************************************************/
 fsp_err_t boot_da14531_demo(void)
 {
-	
+
     while (true)
     {
         if (g_data_received_flag)
@@ -124,15 +124,21 @@ void deinit_uart(void)
  *  @retval     None
  ****************************************************************************************************************/
 
-
 void user_uart_callback(uart_callback_args_t * p_args)
 {
     fsp_err_t uartStatus = FSP_SUCCESS;
     uint8_t header[HEADER_SIZE ];
 
+
+#if defined (ONE_WIRE)
+    uint8_t buffer;
+    uint8_t clearBuffer;
+#endif	
+
+    uint8_t crc_buffer;
+
     if (UART_EVENT_RX_CHAR == p_args->event)
     {
-
         g_data_received_flag = true;
 
         if (STX == p_args->data && 0 == DA14531_BOOT_SEND_LENGTH)
@@ -145,8 +151,17 @@ void user_uart_callback(uart_callback_args_t * p_args)
 
             uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, &header[0], HEADER_SIZE);
             assert(FSP_SUCCESS == uartStatus);
-            APP_PRINT("\r\n**  Done: sends the header for the data to the DA14531 and waits for the ACK  ** \r\n");
 
+#if defined (ONE_WIRE)
+
+            {
+                //Because of 1 wire UART the buffer needs to be cleared after a transmit
+                uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &buffer, sizeof(buffer));
+                assert(FSP_SUCCESS == uartStatus);
+            }
+#endif
+
+            APP_PRINT("\r\n**  Done: sends the header for the data to the DA14531 and waits for the ACK  ** \r\n");
             uart_state = DA14531_BOOT_SEND_DATA;
 
         }
@@ -155,6 +170,16 @@ void user_uart_callback(uart_callback_args_t * p_args)
         {
             uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, CODELESS, sizeof(CODELESS));
             assert(FSP_SUCCESS == uartStatus);
+
+#if defined (ONE_WIRE)
+
+            {
+                //Because of 1 wire UART the buffer needs to be cleared after a transmit
+                uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &clearBuffer, sizeof(clearBuffer));
+                assert(FSP_SUCCESS == uartStatus);
+            }
+#endif
+
             APP_PRINT("\r\n**  Done: sends the data to the DA14531  ** \r\n");
             uart_state = DA14531_BOOT_CHECK_CRC;
         }
@@ -162,10 +187,19 @@ void user_uart_callback(uart_callback_args_t * p_args)
         else if (DA14531_BOOT_CHECK_CRC == uart_state && CODELESS_CRC == p_args->data)
 
         {
-            uint8_t crc_buffer = 0;
             crc_buffer = ACK;
             uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, &crc_buffer, sizeof(crc_buffer));
             assert(FSP_SUCCESS == uartStatus);
+
+#if defined (ONE_WIRE)
+
+            {
+                //Because of 1 wire UART the buffer needs to be cleared after a transmit
+                uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &crc_buffer, sizeof(crc_buffer));
+                assert(FSP_SUCCESS == uartStatus);
+            }
+#endif
+
             APP_PRINT("\r\n**  Done: gets the CRC from the DA14531 and checks if it matches the given CRC  ** \r\n");
         }
 
@@ -174,14 +208,13 @@ void user_uart_callback(uart_callback_args_t * p_args)
     if (UART_EVENT_RX_COMPLETE == p_args->event)
     {
         g_uart_event = UART_EVENT_RX_COMPLETE;
-
     }
 
     if (UART_EVENT_TX_COMPLETE == p_args->event)
     {
-       /* Toggle GPIO when the Tramsmission is done */
-       
-			  R_BSP_PinAccessEnable ();
+        /* Toggle GPIO when the Tramsmission is done */
+
+        R_BSP_PinAccessEnable ();
         R_BSP_PinWrite (BSP_IO_PORT_09_PIN_14, 1U);
         R_BSP_PinAccessDisable ();
         R_BSP_PinAccessEnable ();
@@ -191,7 +224,7 @@ void user_uart_callback(uart_callback_args_t * p_args)
         g_uart_event = UART_EVENT_TX_COMPLETE;
 
     }
-		
+
 }
 
 /*******************************************************************************************************************//**

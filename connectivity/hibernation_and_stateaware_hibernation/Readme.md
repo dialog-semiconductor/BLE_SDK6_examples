@@ -344,7 +344,6 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 3. End of example.		
 
-
 ## Troubleshooting
 
 - Try a different USB cable.

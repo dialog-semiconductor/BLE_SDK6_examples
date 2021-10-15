@@ -537,6 +537,8 @@ void user_app_on_set_dev_config_complete(void)
 		default_app_on_set_dev_config_complete();
 	
 		ble_scan_for_devices();
+	
+		spi_flash_power_down(); //power down flash before entering sleep
 }
 
 

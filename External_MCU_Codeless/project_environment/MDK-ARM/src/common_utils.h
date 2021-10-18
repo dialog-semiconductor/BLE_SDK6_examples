@@ -41,6 +41,6 @@
 #define APP_PRINT(fn_, ...)      SEGGER_RTT_printf (SEGGER_INDEX,(fn_), ##__VA_ARGS__);
 
 #define APP_ERR_PRINT(fn_, ...)  if(LVL_ERR)\
-        SEGGER_RTT_printf (SEGGER_INDEX, "[ERR] In Function: %s(), %s",__FUNCTION__,(fn_),##__VA_ARGS__);
+		SEGGER_RTT_printf (SEGGER_INDEX, "[ERR] In Function: %s(), %s",__FUNCTION__,(fn_),##__VA_ARGS__);
 
 #endif /* COMMON_UTILS_H_ */

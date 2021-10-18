@@ -212,17 +212,14 @@ void user_uart_callback(uart_callback_args_t * p_args)
 
     if (UART_EVENT_TX_COMPLETE == p_args->event)
     {
-        /* Toggle GPIO when the Tramsmission is done */
-
+        /* Toggle GPIO when the Transmission is done */
         R_BSP_PinAccessEnable ();
         R_BSP_PinWrite (BSP_IO_PORT_09_PIN_14, 1U);
         R_BSP_PinAccessDisable ();
         R_BSP_PinAccessEnable ();
         R_BSP_PinWrite (BSP_IO_PORT_09_PIN_14, 0U);
         R_BSP_PinAccessDisable ();
-
         g_uart_event = UART_EVENT_TX_COMPLETE;
-
     }
 
 }

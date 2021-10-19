@@ -55,6 +55,7 @@
 #include "ke_task.h"
 #include "wkupct_quadec.h"
 #include "user_periph_setup.h"
+#include "spi_flash.h"
 
 
 #define SCAN_INTVL_MS		(50)

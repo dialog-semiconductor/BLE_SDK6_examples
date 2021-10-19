@@ -61,7 +61,7 @@ bsp_io_level_t BSP_IO_PORT_02_PIN_07_status ;
 static volatile uint8_t g_data_received_flag = false;
 #define HEADER_SIZE		(size_t)(3)
 
-extern const unsigned char PROX_CRC ;
+extern const unsigned char CODELESS_CRC ;
 
 /*****************************************************************************************************************
  *  @brief       DA14531 Boot project to demonstrate the functionality
@@ -124,11 +124,18 @@ void deinit_uart(void)
  *  @retval     None
  ****************************************************************************************************************/
 
-
 void user_uart_callback(uart_callback_args_t * p_args)
 {
     fsp_err_t uartStatus = FSP_SUCCESS;
     uint8_t header[HEADER_SIZE ];
+
+
+#if defined (ONE_WIRE)
+    uint8_t buffer;
+    uint8_t clearBuffer;
+#endif	
+
+    uint8_t crc_buffer;
 
     if (UART_EVENT_RX_CHAR == p_args->event)
     {
@@ -136,6 +143,7 @@ void user_uart_callback(uart_callback_args_t * p_args)
 
         if (STX == p_args->data && 0 == DA14531_BOOT_SEND_LENGTH)
         {
+
             //Prepare header
             header[0] = SOH;
             header[1] = (uint8_t) (sizeof(PROXREPORTER) & 0xFF); //Get lower byte of the size
@@ -143,15 +151,35 @@ void user_uart_callback(uart_callback_args_t * p_args)
 
             uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, &header[0], HEADER_SIZE);
             assert(FSP_SUCCESS == uartStatus);
-            APP_PRINT("\r\n**  Done: sends the header for the data to the DA14531 and waits for the ACK  ** \r\n");
 
+#if defined (ONE_WIRE)
+
+            {
+                //Because of 1 wire UART the buffer needs to be cleared after a transmit
+                uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &buffer, sizeof(buffer));
+                assert(FSP_SUCCESS == uartStatus);
+            }
+#endif
+
+            APP_PRINT("\r\n**  Done: sends the header for the data to the DA14531 and waits for the ACK  ** \r\n");
             uart_state = DA14531_BOOT_SEND_DATA;
+
         }
 
         else if (DA14531_BOOT_SEND_DATA == uart_state && ACK == p_args->data)
         {
             uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, PROXREPORTER, sizeof(PROXREPORTER));
             assert(FSP_SUCCESS == uartStatus);
+
+#if defined (ONE_WIRE)
+
+            {
+                //Because of 1 wire UART the buffer needs to be cleared after a transmit
+                uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &clearBuffer, sizeof(clearBuffer));
+                assert(FSP_SUCCESS == uartStatus);
+            }
+#endif
+
             APP_PRINT("\r\n**  Done: sends the data to the DA14531  ** \r\n");
             uart_state = DA14531_BOOT_CHECK_CRC;
         }
@@ -159,10 +187,19 @@ void user_uart_callback(uart_callback_args_t * p_args)
         else if (DA14531_BOOT_CHECK_CRC == uart_state && PROX_CRC == p_args->data)
 
         {
-            uint8_t crc_buffer = 0;
             crc_buffer = ACK;
             uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, &crc_buffer, sizeof(crc_buffer));
             assert(FSP_SUCCESS == uartStatus);
+
+#if defined (ONE_WIRE)
+
+            {
+                //Because of 1 wire UART the buffer needs to be cleared after a transmit
+                uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &crc_buffer, sizeof(crc_buffer));
+                assert(FSP_SUCCESS == uartStatus);
+            }
+#endif
+
             APP_PRINT("\r\n**  Done: gets the CRC from the DA14531 and checks if it matches the given CRC  ** \r\n");
         }
 
@@ -184,6 +221,7 @@ void user_uart_callback(uart_callback_args_t * p_args)
         R_BSP_PinAccessDisable ();
         g_uart_event = UART_EVENT_TX_COMPLETE;
     }
+
 }
 
 /*******************************************************************************************************************//**

@@ -41,6 +41,7 @@
 #include "rwip_config.h"
 #include "gpio.h"
 #include "uart.h"
+#include "spi_flash.h"
 #include "syscntl.h"
 
 /*

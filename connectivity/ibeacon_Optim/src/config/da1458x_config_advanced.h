@@ -94,7 +94,7 @@
 /*              support secure connections, it is recommended to undefine CFG_ENABLE_SMP_SECURE in order to     */
 /*              enable faster start-up time and reduce code size.                                               */
 /****************************************************************************************************************/
-#define CFG_ENABLE_SMP_SECURE
+#undef CFG_ENABLE_SMP_SECURE
 
 /****************************************************************************************************************/
 /* Uses ChaCha20 random number generator instead of the C standard library random number generator.             */

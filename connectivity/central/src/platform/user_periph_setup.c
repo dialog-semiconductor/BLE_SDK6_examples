@@ -42,6 +42,8 @@
 #include "gpio.h"
 #include "uart.h"
 #include "syscntl.h"
+#include "spi_531.h"
+#include "spi_flash.h"
 
 /*
  * GLOBAL VARIABLE DEFINITIONS

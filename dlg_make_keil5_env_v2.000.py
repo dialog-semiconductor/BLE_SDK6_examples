@@ -1,16 +1,17 @@
 #! /usr/bin/python
 '''
 ###########################################################################################
-# @file		:: dlg_make_keil5_env_v2.000.py
+# @file		:: dlg_make_keil5_env_v2.001.py
 #
-# @brief	:: Last modified: May 7th 2020.
+# @brief	:: Last modified: Oct 19 2021.
 #			   
-# 			   This script sets up the software development environment links with Dialog's SDK6.
+# 			   This script sets up the software development environment links with Dialog Semiconductor's SDK6 and copies the project
+#			   folders to SDK location under projects_github.
 #              This script is applied only on DA14585/86/31 published small examples in KEIL5.          
 #			   The user needs DA14531/DA14585/DA14586 hardware to run any of these examples on.
 #              
 #              The user is requested to download the latest SDK6 from https://www.dialog-semiconductor.com/.
-#			   Application development on the aforementioned Dailog Semiconductor SoCs are easy to maintain.
+#			   Application development on the aforementioned Dialog Semiconductor SoCs are easy to maintain.
 #              The recommendation is to create a project in the user application space.
 #			   This way, the user hardly needs to touch any software code in the SDK6.
 # 			   As a proof to this concept, small example application snippets are created to help users get started.
@@ -28,7 +29,8 @@
 #			   	python dlg_make_keil5_env_v2.000.py -sdkpath "<user_specific_SDK6_location>"
 #			   
 #			   After successful execution of the above command the Keil5 environment (example *.uvprojx) 
-#			   files will be ready to run the KEIL5 IDE as an output.
+#			   files will be ready to run the KEIL5 IDE as an output. This command will also copy project files to SDK6
+#			   folder projects_github.
 #
 #              OR,
 #			   python dlg_make_keil5_env_v2.000.py -sdkpath "clean" 
@@ -63,6 +65,7 @@
 '''
 
 import sys
+import os, shutil
 import os.path
 import glob
 import re
@@ -92,7 +95,7 @@ UVOPTX_FILE_EXTENSION = ".uvoptx"
 UVPROJX_FILE_EXTENSION = ".uvprojx"
 DLG_UVOPTX_NAME = "test" + UVOPTX_FILE_EXTENSION
 DLG_UVPROJX_NAME = "test" + UVPROJX_FILE_EXTENSION
-SOC_ID_LIST = ['585','586','531']
+SOC_ID_LIST = ['585','586','531', "codeless_boot"]
 
 SCATTER_FILE_NAME = ["DA14585_586.sct", "DA14531.sct"]
 SCATTER_FILE_PATH = [('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[0]), ('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[1])]
@@ -112,7 +115,7 @@ SUB_STR_PATTERN_STACK_CONFIG = '.\\..\\..\\..\\..\\..\\sdk\\common_project_files
 DA1458X_STACK_CONFIG = '\\sdk\\common_project_files\\'
 SDK_PERIPH_EX_SCATTER_FILE_PATH = ""
 
-XML_TAG = ['IncludePath', 'Misc', 'ScatterFile', 'FilePath', 'tIfile']
+XML_TAG = ['IncludePath', 'Misc', 'ScatterFile', 'FilePath', 'tIfile', 'PathWithFileName']
 DLG_FIND_STR_PATTERN = ['\\sdk\\' , '\\third_party\\', '\\shared\\']
 DLG_SPLIT_STR_PATTERN = [';' , ' ', '', '=']
 DLG_FIND_OTHER_PATTERN = ['--symdefs']	# Currently unused.
@@ -128,6 +131,7 @@ XML_PATTERN_TARGET_FILENAME = XML_PATTERN_TARGET + '/TargetName'
 XML_PATTERN_OUTPUT_FILENAME = XML_PATTERN_TARGET + '/TargetOption/TargetCommonOption/OutputName'
 
 XML_PATTERN_TIFILE = 'Target/TargetOption/DebugOpt/tIfile'
+XML_PATTERN_PATHWITHFILENAME = 'Group/File/PathWithFileName'
 XML_PATTERN_OVOPTX_TARGET_FILENAME = 'Target/TargetName'
 
 
@@ -204,49 +208,54 @@ def build_uvoptx_element_targetname(xml_sub_element):
 		file_data = file_pointer.read()
 		file_pointer.seek(0, 0)
 		file_pointer.write(x.rstrip('\r\n') + '\n' + file_data)
-	file_pointer.close()	
-	
+	file_pointer.close()
 
-def build_uvoptx_element_debugopt(xml_sub_element, xml_tag):
+
+def build_uvoptx_change_element_adresses(xml_sub_element, xml_tag):
 	'''
-	Update the ini file path in .uvoptx file.
+	Update file paths in .uvoptx file.
 	'''
-	#print(DLG_UVOPTX_NAME)
+	# print(DLG_UVOPTX_NAME)
 	tree = ET.parse(DLG_UVOPTX_NAME)
 	root = tree.getroot()
-	
-	for t_sub_element in root.findall(xml_sub_element):
-		#print(t_sub_element.text)
+
+	for t_sub_element in root.findall(xml_sub_element): #find all elements of a specific tag
 		temp_text = t_sub_element.text
 		if t_sub_element.tag == xml_tag and t_sub_element.text != None:
-			(found_sdk,my_t_list_sdk) = split_path(temp_text,DLG_FIND_STR_PATTERN[0])
-			(found_shared,my_t_list_shared) = split_path(temp_text,DLG_FIND_STR_PATTERN[2])
+			(found_sdk, my_t_list_sdk) = split_path(temp_text, DLG_FIND_STR_PATTERN[0])
+			(found_shared, my_t_list_shared) = split_path(temp_text, DLG_FIND_STR_PATTERN[2])
+			(found_third_party, my_t_list_third_party) = split_path(temp_text, DLG_FIND_STR_PATTERN[1])
 
-			if found_sdk and found_shared: #If user named a folder in path sdk or shared 
+			if found_sdk and found_shared:  # If user named a folder in path sdk or shared
 				if len(my_t_list_sdk) < len(my_t_list_shared):
 					found_shared = False
-				else:			
+				else:
 					found_sdk = False
 
-			if(found_sdk):
+			if (found_sdk):
 				single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + my_t_list_sdk
-				#print(single_text)
-				t_sub_element.text = single_text	
-			elif(found_shared):
-				single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + SHARED_FOLDER_PATH + my_t_list_shared.replace(DLG_FIND_STR_PATTERN[2],"")
-				#print(single_text)
+				# print(single_text)
+				t_sub_element.text = single_text
+			elif (found_shared):
+				single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + SHARED_FOLDER_PATH + my_t_list_shared.replace(
+					DLG_FIND_STR_PATTERN[2], "")
+				# print(single_text)
+				t_sub_element.text = single_text
+			elif (found_third_party):
+				single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + my_t_list_third_party
 				t_sub_element.text = single_text
 	# tree.write(DLG_UVOPTX_NAME)
-	
+
 	# x = '''<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\r\n'''
 	# with open(dlg_uvoptx_file, 'r+') as file_pointer:
-		# file_data = file_pointer.read()
-		# file_pointer.seek(0, 0)
-		# file_pointer.write(x.rstrip('\r\n') + '\n' + file_data)
+	# file_data = file_pointer.read()
+	# file_pointer.seek(0, 0)
+	# file_pointer.write(x.rstrip('\r\n') + '\n' + file_data)
 	# file_pointer.close()
 	write_xml_file(tree, DLG_UVOPTX_NAME)
-	
-	#print("INI FILE PATH IS UPDATED ...")
+
+
+# print("INI FILE PATH IS UPDATED ...")
 	
 
 def build_uvprojx_element_output_name(xml_sub_element):
@@ -282,7 +291,7 @@ def build_uvprojx_element_target_name(xml_sub_element):
 	'''
 	Update the target name in uvprojx file
 	'''
-	temp_text = DLG_UVPROJX_NAME
+	temp_text = +DLG_UVPROJX_NAME
 	temp_list = temp_text.split('.')
 	
 	target_name = temp_list[0] + '_'
@@ -670,7 +679,9 @@ def setup_keil5_project_environment():
 	build_uvprojx_element_file(XML_PATTERN_FILE, XML_TAG[3])
 	#build_uvprojx_element_target_name(XML_PATTERN_TARGET_FILENAME)
 	#build_uvprojx_element_output_name(XML_PATTERN_OUTPUT_FILENAME)
-	build_uvoptx_element_debugopt(XML_PATTERN_TIFILE, XML_TAG[4])
+	#build_uvoptx_element_debugopt(XML_PATTERN_TIFILE, XML_TAG[4])
+	build_uvoptx_change_element_adresses(XML_PATTERN_PATHWITHFILENAME, XML_TAG[5])
+	build_uvoptx_change_element_adresses(XML_PATTERN_TIFILE, XML_TAG[4])
 	#build_uvoptx_element_targetname(XML_PATTERN_OVOPTX_TARGET_FILENAME)
 	
 	if(CLEAN_PROJ_ENV):
@@ -802,16 +813,19 @@ def handle_space_in_path(path):
 		return path
 
 
-def run_application(sdk_path):
+
+def run_individual_project_file(working_dir_path ,sdk_path):
 	"""
 	Verify if the sdkpath is valid
 	Verify if the KEIL5 uvprojx file is valid
 	If both are verified then setup KEIL5 project environment
 	"""
-	global DLG_SDK_ROOT_DIRECTORY, DLG_WORKING_PROJECT_DIRECTORY, CLEAN_PROJ_ENV
+	global  DLG_SDK_ROOT_DIRECTORY,DLG_WORKING_PROJECT_DIRECTORY, CLEAN_PROJ_ENV
 	#os.system('cls') #works only in windows for linux it is 'clear'
 
-	DLG_WORKING_PROJECT_DIRECTORY = str(os.getcwd())
+	os.chdir(working_dir_path)
+
+	DLG_WORKING_PROJECT_DIRECTORY = working_dir_path
 
 	if (verify_dlg_sdk_proj_env_directory(DLG_WORKING_PROJECT_DIRECTORY) == False):
 		print("SCRIPT DOES NOT SUPPORT PROJECT ENVIRONMENT TO BE DRIVE LETTER. \r\nPlease move the project environment into a subfolder of the drive.")
@@ -820,6 +834,8 @@ def run_application(sdk_path):
 	if (verify_dlg_keil_app_project(DLG_WORKING_PROJECT_DIRECTORY) == False):
 		print("ABORTING.")
 		exit()
+
+	setup_keil5_project_environment()
 
 	if(sdk_path == "clean"):
 		CLEAN_PROJ_ENV = True
@@ -836,8 +852,66 @@ def run_application(sdk_path):
 		if(IS_PROJ_ENV_IN_SDK == False):
 			DLG_SDK_ROOT_DIRECTORY = str(handle_space_in_path(sdk_path))
 
-	setup_keil5_project_environment()
-	
+
+
+def copytree(src, dst, symlinks=False, ignore=None):
+	for item in os.listdir(src):
+		s = os.path.join(src, item)
+		d = os.path.join(dst, item)
+		if os.path.isdir(s):
+			shutil.copytree(s, d, symlinks, ignore)
+		else:
+			shutil.copy2(s, d)
+
+def copy_projects_to_sdk(sdkpath, proj_dir_names):
+	if (verify_dlg_sdk_root_directory(sdkpath) == False):
+		print("SDK LOCATION NOT CORRECT")
+		exit()
+
+	dst_path = sdkpath + "\\projects_github\\"
+
+	if os.path.isdir(dst_path) == False:
+		os.mkdir(dst_path)
+
+	for proj_dir_name in proj_dir_names:
+		try:
+			run_individual_project_file(proj_dir_name, sdkpath)
+		except Exception as e:
+			print(e)
+
+	dir_names = list(set(dir_names))
+
+	for dir_name in dir_names:
+		dst_path_copy = dst_path + dir_name.split("\\")[-1]
+		os.mkdir(dst_path_copy)
+		copytree(dir_name, dst_path_copy)  # """
+
+
+# print(dir_names)
+
+
+
+def run_application(sdkpath):
+
+	path = os.getcwd()
+	uvoptx_pathnames = glob.glob(path + "/**/**/*.uvoptx", recursive=True)
+
+	proj_dir_names = []
+	for uvoptx_pathname in uvoptx_pathnames:
+		proj_dir_names.append(os.path.dirname(uvoptx_pathname))
+
+	dir_names = []
+	for proj_dir_name in proj_dir_names:
+		dir_names.append(os.path.split(os.path.split(proj_dir_name)[0])[0])
+
+	if sdkpath != "clean":
+		copy_projects_to_sdk(sdkpath, proj_dir_names)
+
+
+
+
+
+
 
 # start application
 if __name__ == "__main__":
@@ -846,6 +920,6 @@ if __name__ == "__main__":
 	ap.add_argument("-sdkpath", "--sdkpath", required=True ,help="FULL SDK PATH INSIDE DOUBLE QUOTATION OR \"CLEAN\" TO CLEAN PROJECT ENVIRONMENT")
 	args = vars(ap.parse_args())
 
-	# display a friendly message to the user
-	#print("SDK location {},is the sdk path".format(args["sdkpath"]))	
+	#print("SDK location {},is the sdk path".format(args["sdkpath"]))
 	run_application(args["sdkpath"])
+	#run_individual_project_file(dirnames,args["sdkpath"])

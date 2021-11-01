@@ -1,4 +1,4 @@
-# Smartbond SDK6 Application Examples
+﻿# Smartbond SDK6 Application Examples
 
 This is the repository storing example for the [DA145xx family](https://www.dialog-semiconductor.com/products/bluetooth-low-energy/da14530-and-da14531).
 
@@ -104,7 +104,7 @@ Begin by cloning this repository locally and then link the SW example to the SDK
 
 <br/>
 
-Below are the steps to link the SW example project environment to the 6.0.14 SDK.
+Below are the steps to link all the SW example project environments to the 6.0.14 SDK. This script will also copy project folders into SDK location at projects_github.
 
 1. Python 3.6 or higher is required to run the small example environment generation script.
 Python can be downloaded from [Python.org](http://python.org).
@@ -116,7 +116,6 @@ Python can be downloaded from [Python.org](http://python.org).
 4. Open a terminal and run:
 
     ```console
-    > cd <example folder>/project_environment
     > python dlg_make_keil5_env_v2.000.py -sdkpath “<path to your sdk repository>”
     ```
 
@@ -135,7 +134,7 @@ Python can be downloaded from [Python.org](http://python.org).
 
 <br/>
 
-Linking the project adds absolute paths to the project files, pointing them to the 6.0.14 SDK. The clean functionality removes these absolute paths.
+Linking the project adds absolute paths to the project files, pointing them to the 6.0.14 SDK and adding projects in SDK location under folder projects_github. The clean functionality removes these absolute paths.
 Since absolute paths contain intermediate directory names, the clean command makes sure these intermediate directories are not shared with internal and external application users.
 
 Example: After linking, `C:\Users\Your_name\Upcoming_project\Keil_5` reveals the user’s name and the name of the project the user is working on.
@@ -153,7 +152,6 @@ Python can be downloaded from [Python.org](http://python.org).
 4. Open a terminal and run:
 
     ```console
-    > cd <example folder>/project_environment
     > python dlg_make_keil5_env_v2.000.py -sdkpath “clean”
     ```
 

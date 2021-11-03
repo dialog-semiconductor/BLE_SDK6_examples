@@ -864,28 +864,40 @@ def copytree(src, dst, symlinks=False, ignore=None):
 			shutil.copy2(s, d)
 
 def copy_projects_to_sdk(sdkpath, proj_dir_names):
-	if (verify_dlg_sdk_root_directory(sdkpath) == False):
-		print("SDK LOCATION NOT CORRECT")
-		exit()
+
+	dir_names = []
+
+	for proj_dir_name in proj_dir_names:
+		split_address = proj_dir_name.split("\\")
+		dir_name = ''
+		for item in split_address[:-2]:
+			dir_name = dir_name + "\\" + item
+		dir_name = dir_name[1:]
+		dir_names.append(dir_name)
+
+	dir_names = list(set(dir_names))
 
 	dst_path = sdkpath + "\\projects_github\\"
 
-	if os.path.isdir(dst_path) == False:
+	if not os.path.isdir(dst_path):
 		os.mkdir(dst_path)
+
+	for dir_name in dir_names:
+		dst_path_copy = dst_path + dir_name.split("\\")[-1]
+		if not os.path.isdir(dst_path_copy):
+			os.mkdir(dst_path_copy)
+		copytree(dir_name, dst_path_copy)
+
+def link_projects_to_sdk(sdkpath, proj_dir_names):
+	if (verify_dlg_sdk_root_directory(sdkpath) == False):
+		print("SDK LOCATION NOT CORRECT")
+		exit()
 
 	for proj_dir_name in proj_dir_names:
 		try:
 			run_individual_project_file(proj_dir_name, sdkpath)
 		except Exception as e:
 			print(e)
-
-	dir_names = list(set(dir_names))
-
-	for dir_name in dir_names:
-		dst_path_copy = dst_path + dir_name.split("\\")[-1]
-		os.mkdir(dst_path_copy)
-		copytree(dir_name, dst_path_copy)  # """
-
 
 # print(dir_names)
 
@@ -904,8 +916,12 @@ def run_application(sdkpath):
 	for proj_dir_name in proj_dir_names:
 		dir_names.append(os.path.split(os.path.split(proj_dir_name)[0])[0])
 
+	link_projects_to_sdk(sdkpath, proj_dir_names)
+
 	if sdkpath != "clean":
 		copy_projects_to_sdk(sdkpath, proj_dir_names)
+
+
 
 
 

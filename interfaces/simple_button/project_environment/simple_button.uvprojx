@@ -339,7 +339,7 @@
               <MiscControls>--thumb -c</MiscControls>
               <Define>__DA14585__ __NON_BLE_EXAMPLE__</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\DLG_SDK_UNLINKED;</IncludePath>
+              <IncludePath>.\..\..\..\..\;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -370,7 +370,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
+            <ScatterFile>.\..\..\..\..\\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -386,17 +386,17 @@
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
             </File>
             <File>
               <FileName>startup_DA14585_586.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
             </File>
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -452,7 +452,7 @@
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -495,7 +495,7 @@
             <File>
               <FileName>exceptions.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
+              <FilePath>.\..\..\..\..\\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -505,37 +505,37 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>uart_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\uart\uart_utils.c</FilePath>
             </File>
             <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\systick\systick.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\systick\systick.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -591,7 +591,7 @@
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -647,7 +647,7 @@
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -703,7 +703,7 @@
             <File>
               <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi\spi_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -774,7 +774,7 @@
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1113,7 +1113,7 @@
               <MiscControls>--thumb -c</MiscControls>
               <Define>__DA14586__ __NON_BLE_EXAMPLE__</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\DLG_SDK_UNLINKED;</IncludePath>
+              <IncludePath>.\..\..\..\..\;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1144,7 +1144,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
+            <ScatterFile>.\..\..\..\..\\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -1160,17 +1160,17 @@
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
             </File>
             <File>
               <FileName>startup_DA14585_586.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
             </File>
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1226,7 +1226,7 @@
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1269,7 +1269,7 @@
             <File>
               <FileName>exceptions.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
+              <FilePath>.\..\..\..\..\\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1279,37 +1279,37 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>uart_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\uart\uart_utils.c</FilePath>
             </File>
             <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\systick\systick.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\systick\systick.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1365,17 +1365,17 @@
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
             </File>
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
             </File>
             <File>
               <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi\spi_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1395,7 +1395,7 @@
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1734,7 +1734,7 @@
               <MiscControls>--thumb -c</MiscControls>
               <Define>__DA14531__ __NON_BLE_EXAMPLE__</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\DLG_SDK_UNLINKED;</IncludePath>
+              <IncludePath>.\..\..\..\..\;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1765,7 +1765,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
+            <ScatterFile>.\..\..\..\..\\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -1781,7 +1781,7 @@
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1837,7 +1837,7 @@
             <File>
               <FileName>startup_DA14585_586.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1880,17 +1880,17 @@
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</FilePath>
             </File>
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
             </File>
             <File>
               <FileName>exceptions.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
+              <FilePath>.\..\..\..\..\\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1900,32 +1900,32 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>uart_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\uart\uart_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\uart\uart_utils.c</FilePath>
             </File>
             <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\systick\systick.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\systick\systick.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1981,17 +1981,17 @@
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
             </File>
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
             </File>
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2047,7 +2047,7 @@
             <File>
               <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\driver\spi\spi_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2118,7 +2118,7 @@
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DLG_SDK_UNLINKED\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>.\..\..\..\..\\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -3,7 +3,7 @@
 ###########################################################################################
 # @file		:: dlg_make_keil5_env_v2.001.py
 #
-# @brief	:: Last modified: Nov 08 2021.
+# @brief	:: Last modified: Nov 11 2021.
 #			   
 # 			   This script sets up the software development environment links with Dialog Semiconductor's SDK6 and copies the project
 #			   folders to SDK location under projects_github.
@@ -89,8 +89,8 @@ class Soc_data(NamedTuple):
 '''
 Globals and constants
 '''
-DLG_SDK_ROOT_DIRECTORY = ".\\..\\..\\..\\..\\"  # default just for example it will be filled up by sys.argv[1] input
-DLG_SDK_ROOT_DIRECTORY_TO_WRITE = ".\\..\\..\\..\\..\\"
+DLG_SDK_ROOT_DIRECTORY = ".\\..\\..\\..\\..\\..\\"  # default just for example it will be filled up by sys.argv[1] input
+DLG_SDK_ROOT_DIRECTORY_TO_WRITE = ".\\..\\..\\..\\..\\..\\"
 DLG_WORKING_PROJECT_DIRECTORY = '.'
 CLEAN_PROJ_ENV = False
 IS_PROJ_ENV_IN_SDK = False
@@ -99,6 +99,118 @@ UVPROJX_FILE_EXTENSION = ".uvprojx"
 DLG_UVOPTX_NAME = "test" + UVOPTX_FILE_EXTENSION
 DLG_UVPROJX_NAME = "test" + UVPROJX_FILE_EXTENSION
 SOC_ID_LIST = ['585', '586', '531', "codeless_boot"]
+
+DLG_DEFAULT_INCLUDE_PATHS =  ".\\..\\..\\..\\..\\..\\sdk\\app_modules\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack" \
+                                  "\\controller\\em;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\controller\\llc" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\controller\\lld;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\controller\\llm;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\ea\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\em\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\hci" \
+                                  "\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\hci\\src;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\host\\att;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\att\\attc" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\att\\attm;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\host\\att\\atts;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\gap" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\gap\\gapc;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\host\\gap\\gapm;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\gatt" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\gatt\\gattc;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\host\\gatt\\gattm;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\l2c\\l2cc" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\l2c\\l2cm;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\host\\smp;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\smp\\smpc" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\host\\smp\\smpm;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\anc" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\anc\\ancc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\anp;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\anp\\anpc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles" \
+                                  "\\anp\\anps\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\bas\\basc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\bas\\bass\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\bcs;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\bcs\\bcsc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles" \
+                                  "\\bcs\\bcss\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\blp" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\blp\\blpc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\blp\\blps\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\bms;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\bms\\bmsc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles" \
+                                  "\\bms\\bmss\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\cpp" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\cpp\\cppc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\cpp\\cpps\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\cscp;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\cscp\\cscpc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack" \
+                                  "\\profiles\\cscp\\cscps\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\cts" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\cts\\ctsc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\cts\\ctss\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\custom;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\custom\\custs\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack" \
+                                  "\\profiles\\dis\\disc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\dis\\diss" \
+                                  "\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\find;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\find\\findl\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack" \
+                                  "\\profiles\\find\\findt\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\gatt" \
+                                  "\\gatt_client\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\glp" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\glp\\glpc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\glp\\glps\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\hogp;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\hogp\\hogpbh\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack" \
+                                  "\\profiles\\hogp\\hogpd\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\hogp" \
+                                  "\\hogprh\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\hrp" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\hrp\\hrpc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\hrp\\hrps\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\htp;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\htp\\htpc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles" \
+                                  "\\htp\\htpt\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\lan" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\lan\\lanc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\lan\\lans\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\pasp;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\pasp\\paspc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack" \
+                                  "\\profiles\\pasp\\pasps\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\prox" \
+                                  "\\proxm\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\prox\\proxr\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\rscp;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\rscp\\rscpc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack" \
+                                  "\\profiles\\rscp\\rscps\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\scpp" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\scpp\\scppc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\scpp\\scpps\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\suota\\suotar\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\tip;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\tip\\tipc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles" \
+                                  "\\tip\\tips\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\uds" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\uds\\udsc\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\uds\\udss\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles\\wss;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\profiles\\wss\\wssc\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\profiles" \
+                                  "\\wss\\wsss\\api;.\\..\\..\\..\\..\\..\\sdk\\ble_stack\\rwble;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\ble_stack\\rwble_hl;.\\..\\..\\..\\..\\..\\sdk\\common_project_files" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\arch;.\\..\\..\\..\\..\\..\\sdk\\platform\\arch" \
+                                  "\\boot;.\\..\\..\\..\\..\\..\\sdk\\platform\\arch\\boot\\ARM;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\arch\\boot\\GCC;.\\..\\..\\..\\..\\..\\sdk\\platform\\arch\\compiler" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\arch\\compiler\\ARM;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\arch\\compiler\\GCC;.\\..\\..\\..\\..\\..\\sdk\\platform\\arch\\ll" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\arch\\main;.\\..\\..\\..\\..\\..\\sdk\\platform" \
+                                  "\\core_modules\\arch_console;.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules" \
+                                  "\\common\\api;.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules\\crypto" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules\\dbg\\api;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\core_modules\\gtl\\api;.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules" \
+                                  "\\gtl\\src;.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules\\h4tl\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules\\ke\\api;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\core_modules\\ke\\src;.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules" \
+                                  "\\nvds\\api;.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules\\rf\\api" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\core_modules\\rwip\\api;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\driver\\adc;.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\battery" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\ble;.\\..\\..\\..\\..\\..\\sdk\\platform" \
+                                  "\\driver\\dma;.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\gpio" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\hw_otpc;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\driver\\i2c;.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\i2c_eeprom" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\pdm;.\\..\\..\\..\\..\\..\\sdk\\platform" \
+                                  "\\driver\\reg;.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\rtc;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\driver\\spi;.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\spi_flash" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\spi_hci;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\driver\\syscntl;.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\systick" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\timer;.\\..\\..\\..\\..\\..\\sdk\\platform" \
+                                  "\\driver\\trng;.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\uart" \
+                                  ";.\\..\\..\\..\\..\\..\\sdk\\platform\\driver\\wkupct_quadec;.\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\include;.\\..\\..\\..\\..\\..\\sdk\\platform\\system_library\\include" \
+                                  ";.\\..\\..\\..\\..\\..\\third_party\\hash;.\\..\\..\\..\\..\\..\\third_party\\rand;.\\..\\..\\.." \
+                                  "\\..\\..\\third_party\irng;.\\..\\src;.\\..\\src\\config;.\\..\\src\\custom_profile;" \
+                                  ".\\..\\..\\..\\..\\..\\sdk" \
+                                  "\\platform\\utilities\\otp_hdr;.\\..\\..\\..\\..\\..\\sdk\\platform\\utilities\\otp_cs;" \
+                                  ".\\..\\..\\..\\..\\..\\sdk\\platform\\include\\CMSIS\\5.6.0\\Include; .\\..\\..\\..\\..\\.." \
+                                  "\\sdk\\common_project_files\\scatterfiles\\;"
 
 SCATTER_FILE_NAME = ["DA14585_586.sct", "DA14531.sct"]
 SCATTER_FILE_PATH = [('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[0]),
@@ -397,11 +509,12 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element):
 
     for t_sub_element in root.findall(xml_sub_element):
         if (CLEAN_PROJ_ENV == True):
-            if (t_sub_element.text.endswith("peripheral_examples.sct")):  # .sct file in SDK used.
-                t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + SHARED_FOLDER_PATH + "peripheral_examples.sct"
-            else:  # .sct file copied from SDk.
-                t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + soc_id_to_soc_data(
-                    TARGET_SOCS[loop_idx]).copied_sct_file_name
+            t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14531.sct"
+            #if (t_sub_element.text.endswith("peripheral_examples.sct")):  # .sct file in SDK used.
+            #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + SHARED_FOLDER_PATH + "peripheral_examples.sct"
+            #else:  # .sct file copied from SDk.
+            #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + soc_id_to_soc_data(
+            #        TARGET_SOCS[loop_idx]).copied_sct_file_name
         elif (os.path.exists(str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))):
             t_sub_element.text = (str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))
         elif (os.path.exists(str(SDK_PERIPH_EX_SCATTER_FILE_PATH)) == True):
@@ -499,7 +612,7 @@ def build_uvprojx_element_various_controls(xml_sub_element, xml_tag):
     updated_data = ""
 
     if (CLEAN_PROJ_ENV == True):
-        updated_data = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + ";"
+        updated_data = DLG_DEFAULT_INCLUDE_PATHS
     else:
         DLG_WORKING_PROJECT_PARENT_DIRECTORY = "..\\"
         DLG_SDK_SUBFOLDER_DIRECTORY = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + DLG_FIND_STR_PATTERN[0][:-1]
@@ -677,6 +790,7 @@ def setup_keil5_project_environment(sdk_path):
     and the user application
     """
     global DLG_SDK_ROOT_DIRECTORY_TO_WRITE, DLG_SDK_ROOT_DIRECTORY
+
 
     if (CLEAN_PROJ_ENV == False):
         if (IS_PROJ_ENV_IN_SDK == True):
@@ -918,7 +1032,6 @@ def link_projects_to_sdk(sdkpath, proj_dir_names):
 # print(dir_names)
 
 def run_all_project_files(pathname, sdkpath):
-
     uvoptx_pathnames = glob.glob(pathname + "/**/**/*.uvoptx", recursive=True)
     proj_dir_names = []
     for uvoptx_pathname in uvoptx_pathnames:

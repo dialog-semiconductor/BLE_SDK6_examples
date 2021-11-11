@@ -102,7 +102,7 @@ Begin by cloning this repository locally and then link the SW example to the SDK
 
 **Note**: _Linking the SW example project environment and Dialog 6.0.14 SDK adds absolute file paths to files in your SW example project environment path containing information about your system’s folder structure._ 
 
-_If the repository is cloned inside the SDK folder then by default all the projects are linked to that SDK given that the folder structure looks like "..\6.0.14.1114\BLE_SDK6_examples"._
+_If the repository is cloned inside the SDK's project folder then by default all the projects are linked to that SDK given that the folder structure looks like "..\6.0.14.1114\projects\BLE_SDK6_examples"._
 
 _The Python script also supports cleaning these absolute file paths.See “Cleaning the project environment”._
 

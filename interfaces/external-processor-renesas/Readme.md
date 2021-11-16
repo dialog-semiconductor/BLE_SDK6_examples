@@ -1,5 +1,5 @@
 
-# Booting the DA14531 with Proximity Reporter through a R7FA2E1 from RENESAS (EK-RA2E1)
+# Booting the DA14531 through a R7FA2E1 from RENESAS (EK-RA2E1)
 
 ---
 ## Example description
@@ -11,8 +11,11 @@ Fortunately, the DA14531 can execute code from RAM that can be loaded in during 
 This way a microcontroller can load a program onto the DA14531.
 
 The goal of this example is to show how to load a program into the RAM of the DA14531 via a R7FA2E1 (EK-RA2E1) microcontroller. 
-This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is the proximity reporter. 
-The interface that is used for booting is two UART. 
+This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is the Codless or proximity reporter depending on the user selection in `boot_config.h`. 
+This example does not need the SDK6, a precompiled version of theses binaries are included in the project: `codeless_image.h` and `prox_reporter_image.h`.
+The interface that is used for booting is two UART. Codeless is a solution by Dialog to interface with the DA14531 with AT commands. 
+More info on Codeless and its use can be found on [Codeless](https://www.dialog-semiconductor.com/products/smartbond-codeless-commands).
+
 
 ## HW and SW configuration
 
@@ -37,8 +40,8 @@ The interface that is used for booting is two UART.
 
 **Supported Toolchains:**
 
-- Keil MDK (v5.29 or higher) and ARM compiler 6 (version 6.13 or higher) 
-- Renesas e² studio IDE V21.7 or greater
+- Keil MDK (v5.36 or higher) and ARM compiler 6 (version 6.13 or higher) 
+- Renesas e² studio IDE V21.10 or greater
 
 **Supported Emulator Devices:**
 
@@ -49,7 +52,6 @@ The interface that is used for booting is two UART.
 - BLE scanner for your smartphone (in this example we are using LightBlue® Explorer (iOS))
 
 **Renesas Flexible Software Package (FSP) Installation**
-
 
 *Installing the FSP with KEIL MDK ARM*
 
@@ -111,7 +113,7 @@ Down below a screenshot can be seen from the LightBlue® after the boot was succ
 
 The booting process has two options one wire UART and two wire UART, in this example the booting process is **done through two wire UART**. 
 
-This can be configured by enabling the `ONE_WIRE` flag in `boot_da14531.h` file.
+This can be configured by enabling the `ONE_WIRE` flag in `boot_config.h` file.
 
 ```c
 /* Enable/Disable one wire UART*/

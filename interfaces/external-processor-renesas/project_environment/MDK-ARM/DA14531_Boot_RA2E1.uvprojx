@@ -433,6 +433,11 @@
               <FileType>5</FileType>
               <FilePath>.\src\prox_reporter_image.h</FilePath>
             </File>
+            <File>
+              <FileName>codeless_image.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\codeless_image.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

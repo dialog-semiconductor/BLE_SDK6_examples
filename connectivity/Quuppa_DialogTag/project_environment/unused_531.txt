@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Mon May 31 11:14:55 2021
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Nov 17 10:50:22 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_get_temp_async <= USED 0
@@ -44,6 +44,7 @@ app_fill_random_byte_array <= USED 0
 app_get_address_type <= USED 0
 ;FILE arch_hibernation.o
 arch_hibernation_restore <= USED 0
+arch_set_hibernation <= USED 0
 arch_set_stateful_hibernation <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
@@ -201,11 +202,14 @@ spi_flash_block_erase_no_wait <= USED 0
 spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
 spi_flash_is_sector_empty <= USED 0
@@ -225,6 +229,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0

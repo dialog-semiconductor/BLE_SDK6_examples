@@ -141,11 +141,10 @@ static const spi_flash_cfg_t spi_flash_cfg = {
 
 void periph_init(void)
 {
-	
-    GPIO_Disable_HW_Reset(); //disable the HW reset
 #if defined (__DA14531__)
     // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
     syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
+		GPIO_Disable_HW_Reset(); //disable the HW reset
 #else
     // Power up peripherals' power domain
     SetBits16(PMU_CTRL_REG, PERIPH_SLEEP, 0);

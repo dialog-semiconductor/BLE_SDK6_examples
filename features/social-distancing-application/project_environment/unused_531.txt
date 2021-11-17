@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Sep 08 18:03:20 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Nov 16 11:16:05 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -32,7 +32,7 @@ app_custs1_val_wr_validate <= USED 0
 ;FILE app_customs_task.o
 ;FILE app_default_handlers.o
 default_advertise_operation <= USED 0
-default_app_generate_unique_static_random_addr <= USED 0
+default_app_generate_static_random_addr <= USED 0
 default_app_on_disconnect <= USED 0
 ;FILE app_diss.o
 ;FILE app_diss_task.o
@@ -83,7 +83,6 @@ GPIO_SetPorTime <= USED 0
 GPIO_is_valid <= USED 0
 ;FILE hardfault_handler.o
 ;FILE hash.o
-hash <= USED 0
 ;FILE hw_otpc_531.o
 hw_otpc_prog <= USED 0
 hw_otpc_prog_and_verify <= USED 0
@@ -121,12 +120,8 @@ i2c_wait_until_eeprom_ready <= USED 0
 dummyf <= USED 0
 ;FILE nmi_handler.o
 ;FILE otp_cs.o
-otp_cs_get_adc_diff_ge <= USED 0
-otp_cs_get_adc_diff_offset <= USED 0
 otp_cs_get_adc_offsh_ge <= USED 0
 otp_cs_get_adc_offsh_offset <= USED 0
-otp_cs_get_adc_single_ge <= USED 0
-otp_cs_get_adc_single_offset <= USED 0
 otp_cs_get_low_power_clock <= USED 0
 ;FILE otp_hdr.o
 ;FILE patch.o
@@ -174,11 +169,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -201,6 +199,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0

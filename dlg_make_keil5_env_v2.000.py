@@ -207,10 +207,13 @@ DLG_DEFAULT_INCLUDE_PATHS =  ".\\..\\..\\..\\..\\..\\sdk\\app_modules\\api;.\\..
                                   "\\platform\\include;.\\..\\..\\..\\..\\..\\sdk\\platform\\system_library\\include" \
                                   ";.\\..\\..\\..\\..\\..\\third_party\\hash;.\\..\\..\\..\\..\\..\\third_party\\rand;.\\..\\..\\.." \
                                   "\\..\\..\\third_party\irng;.\\..\\src;.\\..\\src\\config;.\\..\\src\\custom_profile;" \
-                                  ".\\..\\..\\..\\..\\..\\sdk" \
+                                  ".\\..\\..\\..\\..\\..\\sdk"  \
                                   "\\platform\\utilities\\otp_hdr;.\\..\\..\\..\\..\\..\\sdk\\platform\\utilities\\otp_cs;" \
                                   ".\\..\\..\\..\\..\\..\\sdk\\platform\\include\\CMSIS\\5.6.0\\Include; .\\..\\..\\..\\..\\.." \
-                                  "\\sdk\\common_project_files\\scatterfiles\\;"
+                                  "\\sdk\\common_project_files\\scatterfiles\\; .\\..\\src\\user_app; .\\..\\src\\user_config;" \
+                                  ".\\..\\src\\user_drivers; .\\..\\src\\platform; .\\..\\..\\..\\..\\..\\sdk\\platform\\" \
+                                  "driver\\wifi; .\\..\\src\\user_platform; .\\..\\src\\user_drivers\\bmi270; .\\..\\src" \
+                                  "\\modules_lib\\app\\wkup_keys; .\\..\\src\\modules_lib\\port;"
 
 SCATTER_FILE_NAME = ["DA14585_586.sct", "DA14531.sct"]
 SCATTER_FILE_PATH = [('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[0]),
@@ -507,10 +510,18 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element):
     tree = ET.parse(DLG_UVPROJX_NAME)
     root = tree.getroot()
 
-    for t_sub_element in root.findall(xml_sub_element):
+    target_names_dict = root.findall('Targets/Target/TargetName')
+    target_names = []
+    for target_name in target_names_dict:
+        target_names.append(target_name.text)
+
+    for index, t_sub_element in enumerate(root.findall(xml_sub_element)):
         if (CLEAN_PROJ_ENV == True):
-            t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14531.sct"
-            #if (t_sub_element.text.endswith("peripheral_examples.sct")):  # .sct file in SDK used.
+            if 'DA14531' in target_names[index].upper():
+                t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14531.sct"
+            else:
+                t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14585_586.sct"
+            # if (t_sub_element.text.endswith("peripheral_examples.sct")):  # .sct file in SDK used.
             #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + SHARED_FOLDER_PATH + "peripheral_examples.sct"
             #else:  # .sct file copied from SDk.
             #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + soc_id_to_soc_data(

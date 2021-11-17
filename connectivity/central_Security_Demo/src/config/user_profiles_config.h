@@ -5,27 +5,9 @@
  *
  * @brief Configuration file for the profiles used in the application.
  *
- * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2015-2019 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -57,9 +39,12 @@
 #define CFG_PRF_DISS
 #undef CFG_PRF_CUST1
 
-/***************************************************************************************/
-/* Profile application configuration section                                           */
-/***************************************************************************************/
+/*
+ * PROFILE CONFIGURATION
+ ****************************************************************************************
+ */
+
+/// Add profile specific configurations
 
 /*
  ****************************************************************************************
@@ -79,10 +64,12 @@
 #define APP_DIS_MANUFACTURER_NAME_LEN   (11)
 
 /// Model Number String (up to 18 chars)
-#ifdef __DA14586__
-#define APP_DIS_MODEL_NB_STR            ("DA14586")
+#if defined (__DA14586__)
+    #define APP_DIS_MODEL_NB_STR            ("DA14586")
+#elif defined (__DA14531__)
+    #define APP_DIS_MODEL_NB_STR            ("DA14531")
 #else
-#define APP_DIS_MODEL_NB_STR            ("DA14585")
+     #define APP_DIS_MODEL_NB_STR           ("DA14585")
 #endif
 #define APP_DIS_MODEL_NB_STR_LEN        (7)
 
@@ -98,7 +85,13 @@
 #define APP_DIS_SERIAL_NB_STR_LEN       (10)
 
 /// Hardware Revision String
-#define APP_DIS_HARD_REV_STR            ("DA14585")
+#if defined (__DA14586__)
+    #define APP_DIS_HARD_REV_STR            ("DA14586")
+#elif defined (__DA14531__)
+    #define APP_DIS_HARD_REV_STR            ("DA14531")
+#else
+    #define APP_DIS_HARD_REV_STR            ("DA14585")
+#endif
 #define APP_DIS_HARD_REV_STR_LEN        (7)
 
 /// Firmware Revision
@@ -123,6 +116,26 @@
  */
 #define APP_DIS_PNP_ID                  ("\x01\xD2\x00\x80\x05\x00\x01")
 #define APP_DIS_PNP_ID_LEN              (7)
+
+/*
+ ****************************************************************************************
+ * CUSTS1 application profile configuration
+ ****************************************************************************************
+ */
+ 
+/************************************************************
+ * CUSTS1 security requirements (@see app_prf_srv_perm)
+ *
+ * - SRV_PERM_DISABLE       Disable access
+ * - SRV_PERM_ENABLE        Enable access
+ * - SRV_PERM_UNAUTH        Access Requires Unauthenticated link
+ * - SRV_PERM_AUTH          Access Requires Authenticated link
+ * - SRV_PERM_SECURE        Access Requires Authenticated Secure Connection Pairing
+ *
+ * Select only one option.
+ ************************************************************
+ */
+#define APP_CUSTS1_SEC_REQ  SRV_PERM_UNAUTH
 
 /// @} APP_CONFIG
 

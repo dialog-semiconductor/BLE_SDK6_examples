@@ -100,7 +100,11 @@ Begin by cloning this repository locally and then link the SW example to the SDK
 
 <br/>
 
-**Note**: _Linking the SW example project environment and Dialog 6.0.14 SDK adds absolute file paths to files in your SW example project environment path containing information about your system’s folder structure. The Python script also supports cleaning these absolute file paths. See “Cleaning the project environment”._
+**Note**: _Linking the SW example project environment and Dialog 6.0.14 SDK adds absolute file paths to files in your SW example project environment path containing information about your system’s folder structure._ 
+
+_If the repository is cloned inside the SDK's project folder then by default all the projects are linked to that SDK given that the folder structure looks like "..\6.0.14.1114\projects\BLE_SDK6_examples"._
+
+_The Python script also supports cleaning these absolute file paths.See “Cleaning the project environment”._
 
 <br/>
 
@@ -113,15 +117,22 @@ Python can be downloaded from [Python.org](http://python.org).
 
 3. Extract the zip file.
 
+5. To link all projects to the SDK run the script from the current location. To link a particular project copy the python script in that project's project_environment folder and run the script there.
+
 4. Open a terminal and run:
 
     ```console
     > python dlg_make_keil5_env_v2.000.py -sdkpath “<path to your sdk repository>”
     ```
 
-    For instance:
+    For instance to link all projects:
     ```console
-    > python dlg_make_keil5_env_v2.000.py -sdkpath “C:\dev\6.0.14”
+    > ..\BLE_SDK6_examples> python dlg_make_keil5_env_v2.000.py -sdkpath “C:\dev\6.0.14”
+    ```
+	
+	For instance to link a single projects:
+    ```console
+    > ..\connectivity\active_scanner\project_environment> python dlg_make_keil5_env_v2.000.py -sdkpath “C:\dev\6.0.14”
     ```
 
 5. The script should indicate successful execution, as shown below, 

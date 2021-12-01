@@ -1,8 +1,9 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Sep 26 15:25:15 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Nov 17 14:57:41 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
 adc_disable <= USED 0
+adc_get_sample <= USED 0
 adc_get_temp_async <= USED 0
 adc_input_shift_config <= USED 0
 adc_input_shift_disable <= USED 0
@@ -35,11 +36,6 @@ default_app_bdb_get_stored_irks <= USED 0
 default_app_bdb_init <= USED 0
 default_app_bdb_remove_entry <= USED 0
 default_app_bdb_search_entry <= USED 0
-;FILE app_customs.o
-app_custs1_init <= USED 0
-;FILE app_customs_common.o
-app_custs1_val_wr_validate <= USED 0
-;FILE app_customs_task.o
 ;FILE app_default_handlers.o
 default_advertise_operation <= USED 0
 default_app_generate_unique_static_random_addr <= USED 0
@@ -49,8 +45,6 @@ default_app_on_csrk_exch <= USED 0
 default_app_on_encrypt_req_ind <= USED 0
 default_app_on_pairing_succeeded <= USED 0
 default_app_on_ral_cmp_evt <= USED 0
-;FILE app_diss.o
-;FILE app_diss_task.o
 ;FILE app_easy_msg_utils.o
 app_easy_msg_free_callback <= USED 0
 app_easy_msg_modify <= USED 0
@@ -84,6 +78,11 @@ app_easy_security_set_encrypt_req_invalid <= USED 0
 app_easy_security_set_encrypt_req_valid <= USED 0
 app_easy_security_set_ltk_exch <= USED 0
 app_easy_security_tk_get_active <= USED 0
+;FILE app_easy_timer.o
+app_easy_timer <= USED 0
+app_easy_timer_cancel <= USED 0
+app_easy_timer_cancel_all <= USED 0
+app_easy_timer_modify <= USED 0
 ;FILE app_msg_utils.o
 app_msg_send_wakeup_ble <= USED 0
 ;FILE app_security.o
@@ -91,6 +90,8 @@ app_sec_gen_csrk <= USED 0
 app_sec_gen_tk <= USED 0
 ;FILE app_security_task.o
 ;FILE app_task.o
+;FILE app_utils.o
+app_get_address_type <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
 ;FILE arch_sleep.o
@@ -98,7 +99,6 @@ arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
 arch_last_rwble_evt_get <= USED 0
 arch_set_deep_sleep <= USED 0
-arch_set_hibernation <= USED 0
 ;FILE arch_system.o
 arch_wkupct_tweak_deb_time <= USED 0
 check_sys_startup_period <= USED 0
@@ -158,7 +158,6 @@ i2c_wait_until_eeprom_ready <= USED 0
 ;FILE jump_table.o
 dummyf <= USED 0
 ;FILE nmi_handler.o
-;FILE nvds.o
 ;FILE otp_cs.o
 otp_cs_get_adc_diff_ge <= USED 0
 otp_cs_get_adc_diff_offset <= USED 0
@@ -169,6 +168,7 @@ otp_cs_get_adc_single_offset <= USED 0
 otp_cs_get_low_power_clock <= USED 0
 ;FILE otp_hdr.o
 ;FILE patch.o
+;FILE prf.o
 ;FILE rf_531.o
 dcoff_calibration <= USED 0
 dis_kdco_cal <= USED 0
@@ -202,7 +202,7 @@ spi_send <= USED 0
 spi_set_bitmode <= USED 0
 spi_set_cp_mode <= USED 0
 spi_set_cs_mode <= USED 0
-spi_set_irq_mode <= USED 0
+spi_set_speed <= USED 0
 spi_transaction <= USED 0
 spi_transfer <= USED 0
 ;FILE spi_flash.o
@@ -213,11 +213,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -240,6 +243,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0

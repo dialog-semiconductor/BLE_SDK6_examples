@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Jun 16 19:03:51 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Nov 16 19:03:45 2021
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -25,7 +25,6 @@ app_easy_gap_start_connection_to <= USED 0
 app_easy_gap_start_connection_to_get_active <= USED 0
 app_easy_gap_start_connection_to_set <= USED 0
 app_easy_gap_undirected_advertise_get_active <= USED 0
-app_easy_gap_undirected_advertise_start <= USED 0
 app_easy_gap_undirected_advertise_with_timeout_start <= USED 0
 app_easy_gap_update_adv_data <= USED 0
 app_gattc_svc_changed_cmd_send <= USED 0
@@ -243,11 +242,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -270,6 +272,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0
@@ -298,8 +301,11 @@ uart_receive <= USED 0
 uart_register_err_cb <= USED 0
 uart_register_rx_cb <= USED 0
 ;FILE user_ble_gap.o
+user_ble_cancel_connect <= USED 0
+user_ble_gap_stop_adv <= USED 0
 ;FILE user_ble_gatt.o
-;FILE user_central_app.o
+user_gatt_read_simple <= USED 0
+;FILE user_multirole.o
 ;FILE user_periph_setup.o
 ;FILE wkupct_quadec.o
 quad_decoder_disable_irq <= USED 0
@@ -307,3 +313,6 @@ quad_decoder_enable_irq <= USED 0
 quad_decoder_init <= USED 0
 quad_decoder_register_callback <= USED 0
 quad_decoder_release <= USED 0
+wkupct_disable_irq <= USED 0
+wkupct_enable_irq <= USED 0
+wkupct_register_callback <= USED 0

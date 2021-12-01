@@ -1,6 +1,7 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Oct 14 15:36:30 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Nov 16 09:18:48 2021
 ;VERSION 0.2
 ;FILE adc_58x.o
+adc_disable <= USED 0
 adc_enable <= USED 0
 adc_offset_calibrate <= USED 0
 adc_register_interrupt <= USED 0
@@ -10,6 +11,7 @@ adc_unregister_interrupt <= USED 0
 active_conhdl_to_conidx <= USED 0
 active_conidx_to_conhdl <= USED 0
 app_easy_gap_advertise_stop <= USED 0
+app_easy_gap_advertise_with_timeout_stop <= USED 0
 app_easy_gap_dev_config_get_active <= USED 0
 app_easy_gap_directed_advertise_get_active <= USED 0
 app_easy_gap_directed_advertise_start <= USED 0
@@ -28,18 +30,14 @@ app_set_prf_srv_perm <= USED 0
 app_timer_set <= USED 0
 ;FILE app_default_handlers.o
 default_advertise_operation <= USED 0
+default_app_generate_static_random_addr <= USED 0
 default_app_generate_unique_static_random_addr <= USED 0
 default_app_on_disconnect <= USED 0
 ;FILE app_diss.o
 ;FILE app_diss_task.o
 ;FILE app_easy_msg_utils.o
 app_easy_msg_free_callback <= USED 0
-app_easy_msg_modify <= USED 0
-app_easy_msg_set <= USED 0
-app_easy_wakeup <= USED 0
 app_easy_wakeup_free <= USED 0
-app_easy_wakeup_set <= USED 0
-app_msg_utils_api_process_handler <= USED 0
 ;FILE app_easy_timer.o
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
@@ -59,8 +57,13 @@ arch_last_rwble_evt_get <= USED 0
 arch_restore_sleep_mode <= USED 0
 arch_set_deep_sleep <= USED 0
 ;FILE arch_system.o
+__ARM_common_ll_muluu <= USED 0
 arch_set_pxact_gpio <= USED 0
 arch_wkupct_tweak_deb_time <= USED 0
+calibrate_rcx20 <= USED 0
+lld_sleep_lpcycles_2_us_rcx_func <= USED 0
+lld_sleep_us_2_lpcycles_rcx_func <= USED 0
+read_rcx_freq <= USED 0
 ;FILE battery.o
 battery_get_lvl <= USED 0
 ;FILE diss.o
@@ -155,6 +158,7 @@ prf_unpack_date_time <= USED 0
 ;FILE rf_585.o
 rf_nfm_disable <= USED 0
 rf_nfm_enable <= USED 0
+rf_nfm_is_enabled <= USED 0
 ;FILE rf_calibration.o
 DCoffsetCalibration_580 <= USED 0
 IffCalibration_580 <= USED 0
@@ -189,11 +193,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -216,6 +223,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0

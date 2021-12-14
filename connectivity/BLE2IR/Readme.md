@@ -34,8 +34,8 @@ This SDK6 DA14585 example provides an implementation of a Simple RCU using a cus
 * **Software configuration**
 
 	- This example requires:
-    * Smartsnippets Studio 1.6.3.
-    * SDK6.0.10
+    * SmartSnippets Studio V2.0.16.
+    * SDK6.0.16.1144
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 

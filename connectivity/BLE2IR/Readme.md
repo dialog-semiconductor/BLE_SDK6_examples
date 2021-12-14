@@ -29,7 +29,7 @@ This SDK6 DA14585 example provides an implementation of a Simple RCU using a cus
 	
 	**Columns and Rows of 4x4 button matrix**
 	
-	![breadboard](assets/4x4-keypad-matrix.png)
+	![breadboard](assets/4x4-keypad-matrix.jpg)
 
 * **Software configuration**
 

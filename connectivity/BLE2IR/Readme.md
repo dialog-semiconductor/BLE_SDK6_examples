@@ -26,6 +26,10 @@ This SDK6 DA14585 example provides an implementation of a Simple RCU using a cus
 	**Lay-out sketch**
 
 	![breadboard](assets/rcu_lay_out.png)
+	
+	**Columns and Rows of 4x4 button matrix**
+	
+	![breadboard](assets/4x4-keypad-matrix.png)
 
 * **Software configuration**
 

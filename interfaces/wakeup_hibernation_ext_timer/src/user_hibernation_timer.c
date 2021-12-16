@@ -302,7 +302,7 @@ void user_app_on_adv_nonconn_complete(uint8_t status)
         //Put the system into hibernation mode 
         arch_set_hibernation(HIB_WAKE_UP_PIN_MASK,
                              PD_SYS_DOWN_RAM_ON,
-                             PD_SYS_DOWN_RAM_OFF,
+                             PD_SYS_DOWN_RAM_ON,
                              PD_SYS_DOWN_RAM_ON,
                              REMAP_ADDR0_TO_RAM1,
                              false);

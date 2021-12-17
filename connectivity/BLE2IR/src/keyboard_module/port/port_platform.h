@@ -346,15 +346,15 @@ bool port_send_notification(uint16_t handle, uint8_t *data, uint16_t length, boo
  * \return    The 16-bit integer read
  ****************************************************************************************
  */  
-__INLINE uint16_t port_read16(const uint8_t *addr)
-{
-    ASSERT_ERROR(addr != NULL);
-    
-    uint16_t data;
-    data = *addr++;
-    data |= *addr << 8;
-    return data;
-}
+//uint16_t port_read16(const uint8_t *addr)
+//{
+//    ASSERT_ERROR(addr != NULL);
+//    
+//    uint16_t data;
+//    data = *addr++;
+//    data |= *addr << 8;
+//    return data;
+//}
 
 /**
  ****************************************************************************************
@@ -364,13 +364,13 @@ __INLINE uint16_t port_read16(const uint8_t *addr)
  * \param[in] data The 16-bit  integer to write
  ****************************************************************************************
  */  
-__INLINE void port_write16(uint8_t *addr, uint16_t data)
-{
-    ASSERT_ERROR(addr != NULL);
-    
-    *addr++ = data & 0x00FF;
-    *addr = data >> 8;
-}
+//void port_write16(uint8_t *addr, uint16_t data)
+//{
+//    ASSERT_ERROR(addr != NULL);
+//    
+//    *addr++ = data & 0x00FF;
+//    *addr = data >> 8;
+//}
 
 #endif // PORT_PLATFORM_H_
 

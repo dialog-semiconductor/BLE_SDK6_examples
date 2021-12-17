@@ -104,38 +104,31 @@
 #endif
 
 /****************************************************************************************/
-/* UART2 pin configuration (debug print console)                                        */
+/* UART pin configuration (debug print console)                                        */
 /****************************************************************************************/
 
-#ifdef CFG_PRINTF_UART2
-    #if HW_CONFIG_BASIC_DK
-        #define UART2_TX_GPIO_PORT  GPIO_PORT_2
-        #define UART2_TX_GPIO_PIN   GPIO_PIN_6
+// Define UART1, UART2 Pads
+#if defined (__DA14531__)
+    #define UART1_TX_PORT           GPIO_PORT_0
+    #define UART1_TX_PIN            GPIO_PIN_6
+    #define UART1_RX_PORT           GPIO_PORT_0
+    #define UART1_RX_PIN            GPIO_PIN_7
 
-        #define UART2_RX_GPIO_PORT  GPIO_PORT_2
-        #define UART2_RX_GPIO_PIN   GPIO_PIN_7
+    #define UART2_TX_PORT           GPIO_PORT_0
+    #define UART2_TX_PIN            GPIO_PIN_6
+    #define UART2_RX_PORT           GPIO_PORT_0
+    #define UART2_RX_PIN            GPIO_PIN_7
 
-    #elif HW_CONFIG_PRO_DK
-        #define UART2_TX_GPIO_PORT  GPIO_PORT_0
-        #define UART2_TX_GPIO_PIN   GPIO_PIN_4
+#else // DA14585, DA14586
+    #define UART1_TX_PORT           GPIO_PORT_0
+    #define UART1_TX_PIN            GPIO_PIN_4
+    #define UART1_RX_PORT           GPIO_PORT_0
+    #define UART1_RX_PIN            GPIO_PIN_5
 
-        #define UART2_RX_GPIO_PORT  GPIO_PORT_0
-        #define UART2_RX_GPIO_PIN   GPIO_PIN_5
-
-    #elif HW_CONFIG_EXPERT_DK
-        #define UART2_TX_GPIO_PORT  GPIO_PORT_0
-        #define UART2_TX_GPIO_PIN   GPIO_PIN_4
-
-        #define UART2_RX_GPIO_PORT  GPIO_PORT_0
-        #define UART2_RX_GPIO_PIN   GPIO_PIN_5
-
-    #else // (e.g. HW_CONFIG_USB_DONGLE)
-        #define UART2_TX_GPIO_PORT  GPIO_PORT_0
-        #define UART2_TX_GPIO_PIN   GPIO_PIN_4
-
-        #define UART2_RX_GPIO_PORT  GPIO_PORT_0
-        #define UART2_RX_GPIO_PIN   GPIO_PIN_5
-    #endif
+    #define UART2_TX_PORT           GPIO_PORT_0
+    #define UART2_TX_PIN            GPIO_PIN_4
+    #define UART2_RX_PORT           GPIO_PORT_0
+    #define UART2_RX_PIN            GPIO_PIN_5
 #endif
 
 /****************************************************************************************/

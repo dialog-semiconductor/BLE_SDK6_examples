@@ -8,11 +8,11 @@ The DA14531 has an integrated ARM Cortex M0+ and can be used for programming and
 Due to the small form factor the ARM Cortex has its limitations. A solution for the limitations of the integrated microprocessor can be to use an external microprocessor. 
 To control the DA14531 with this microprocessor some code is still needed on the DA14531. 
 Fortunately, the DA14531 can execute code from RAM that can be loaded in during its boot sequence. 
-This way a microcontroller can load a program onto the DA14531.
+This way a microcontroller can load a program into the DA14531.
 
 The goal of this example is to show how to load a program into the RAM of the DA14531 via a R7FA2E1 (EK-RA2E1) microcontroller. 
-This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is the Codless or proximity reporter depending on the user selection in `boot_config.h`. 
-This example does not need the SDK6, a precompiled version of theses binaries are included in the project: `codeless_image.h` and `prox_reporter_image.h`.
+This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is the Codeless or proximity reporter depending on the user selection in `da14531_boot_config.h`. 
+This example does not need the SDK6, a precompiled version of theses binaries is included in the project: `da14531_codeless_image.h` and `da14531_prox_reporter_image.h`.
 The interface that is used for booting is two UART. Codeless is a solution by Dialog to interface with the DA14531 with AT commands. 
 More info on Codeless and its use can be found on [Codeless](https://www.dialog-semiconductor.com/products/smartbond-codeless-commands).
 
@@ -21,13 +21,24 @@ More info on Codeless and its use can be found on [Codeless](https://www.dialog-
 
 ### Required hardware
 
-- A pc workstation
-- [RA2E1 Evaluation Kit](https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra2e1-evaluation-kit-ra2e1-mcu-group) from Renesas.
-- A DA14531 Clickboard [BLE TINY click](https://www.mikroe.com/ble-tiny-click).
-- SEGGER J-Link
-- (optional) DA14531 Development Kit Pro Motherboard
+- A PC workstation
+- [EK-RA2E1 Evaluation Kit](https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra2e1-evaluation-kit-ra2e1-mcu-group) from Renesas.
+- A DA14531 Pro Development Kit DA14531 or Clickboard [BLE TINY click](https://www.mikroe.com/ble-tiny-click).
+- SEGGER J-Link® USB Serial Drivers
+- [Optional] SEGGER J-Link Real-Time Transfer (RTT) Viewer, virtual terminal emulation application
 
-### Hardware configuration using the RA2E1 and the MikroE BLE TINY click
+### Hardware configuration using DA14531 PRO-Motherboard
+- Connect the each of the two boards to the host computer, you can also power the DA14531 PRO-Motherboard through the RA2E1 by connecting the VDDs and GNDs, the RA2E1 should be connected to the HOST PC.
+- Connect the two boards to each other through **2 wire UART interface** as shown on the image below: 
++ On the EK-RA2E1 Mikrobus **RX** pin connected to **P20 (P0_0)** on the DA14531 PRO-Motherboard
++ On the EK-RA2E1 Mikrobus **TX** pin connected to **P21 (P0_1)** on the DA14531 PRO-Motherboard
+
+![RA2E1 connect to the DA14531 through 2 Wire UART ](assets/DA14531-RA2E1.jpg)
+
+- For booting using **1-wire UART** will require to short circuit the EK-RA2E1 Mikrobus RX and TX pins using **1Khom resistor** and connect one of the extremity (TX or RX) to **P25 (P0_5)** on the DA14531 PRO-Motherboard.  
+![RA2E1 connect to the DA14531 through 1 Wire UART ](assets/DA14531-RA2E1-1W.jpg)
+
+### Hardware configuration using Clickboard BLE TINY click
 - Connect the micro USB end of the micro USB device cable to micro-AB USB Debug port (J10, DEBUG1) of the EK-RA2E1 board.
 - Put the DA14531 Clickboard in the MikroElektronika™ mikroBUS connector slot of the RA2E1 Dev kit: J21-J22.
 
@@ -35,6 +46,10 @@ More info on Codeless and its use can be found on [Codeless](https://www.dialog-
 - There is some HW rework on the RA2E1 in the reset line of the MikroElektronika™ mikroBUS. The 10K pull up resistor R12 should be removed, this is because the DA14531 reset is active high.
 
 ![Pull up R10 resistor ](assets/r10resitor.jpg)
+
+To enable to 1 Wire on the Tiny click board, Put the switch to the ON position. By default it is OFF.
+
+![switch](assets/switch.jpg)
 
 ### Software configuration
 
@@ -99,17 +114,21 @@ The FSP with e² studio Installer includes the e² studio tool. To download and 
 
 **Flow of the code**
 
+The protocol required to establish successful communication and to download the SW image into the RAM is shown in the Table 7 **Boot Protocol** in the [AN-B-072](https://www.dialog-semiconductor.com/an-072-booting-from-serial-interface).
+The protocol starts with the DA14531 UART TX pin that transmits 0x02 (Start TX - STX). 
+The R7FA2E1 MCU is expected to answer with a 0x01 (Start of Header - SOH) byte followed by 2 more bytes (LEN_LSB, LEN_MSB), which define the length of the code to be downloaded (first byte is the least significant, second the most significant). 
+The DA14531 answers with 0x06 (ACK) if the 3 bytes have been received and SOH has been identified, or answers with 0x15 (NACK) if anything went wrong. 
+At this point the connection has been successfully established and the SW code will start to be downloaded.
+ 
 ![code_flow_of_boot](assets/boot_flow.png)
 
+**NOTE**
 
-## Expected Result
+Regarding the timing the boot from 2 wire UART takes around *15.19 ms* and boot from 1 wire UART takes around *14.67* ms and then depending on the code size of the image it takes few extra seconds, for instance when the image size is about 36Kbytes (Codeless case) it takes approximatively in total 3.22 second @baudrate 115200 Kbps.
 
-After about 5 seconds when the run button is pressed the DA14531 should start advertising itself as **DLG-PROXR** (this is the standard advertising name for Proximity reporter project). 
-Down below a screenshot can be seen from the LightBlue® after the boot was successful.
+![Boot Time](assets/Boot_Time.jpg)
 
-![BLE_result](assets/result.jpg)
-
-## 1 Wire UART settings
+**1 Wire UART settings**
 
 The booting process has two options one wire UART and two wire UART, in this example the booting process is **done through two wire UART**. 
 
@@ -119,12 +138,28 @@ This can be configured by enabling the `ONE_WIRE` flag in `boot_config.h` file.
 /* Enable/Disable one wire UART*/
 #undef ONE_WIRE to the booting function.
 ```
-on the Tiny click board enable the 1 wire UART by Put the switch to the ON position.
+**NOTE**
 
-![switch](assets/switch.jpg)
+For booting from 2-wire UART when using the [DA14531] module would require the **secondary booter** in order to divert the TX/RX functionality to other pins since **P01** is not exposed in the module
+
+**Program Custom image:**
+
+If you want to program your own image you have to convert the hex file to a comma separated format in an array similar `da14531_codeless_image.h`, for this you can run the **hex2array**
+available under assets/ folder as below:
+
+![Hextoarray](assets/hextoarray.jpg)
+
+
+## Expected Result
+
+After about 5 seconds when the run button is pressed the DA14531 should start advertising itself as **Codeless** (this is the standard advertising name for Codeless project). 
+Down below a screenshot can be seen from the LightBlue® after the boot was successful.
+
+![BLE_result](assets/result.jpg)
 
 
 ## Known Limitations
 
 - Refer to the following application note for DA14531 known [hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-- Also refer to Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forum)
+- Refer to the SW Known limitation list for the DA14531 [SW limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html)
+- Also refer to Dialog Software [Forum Link](https://www.dialog-semiconductor.com/products/bluetooth-low-energy#tab-support_tab_content)

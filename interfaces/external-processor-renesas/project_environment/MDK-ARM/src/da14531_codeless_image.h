@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * File Name    : codeless_image.h
+ * File Name    : da14531_codeless_image.h
  * Description  : Contains the image Hex
  **********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -18,7 +18,7 @@
  * following link:
  * http://www.renesas.com/disclaimer
  *
- * Copyright (C) 2021 Renesas Electronics Corporation. All rights reserved.
+ * Copyright (C) 2022 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
 #ifndef CODELESS_IMAGE_H_
 #define CODELESS_IMAGE_H_

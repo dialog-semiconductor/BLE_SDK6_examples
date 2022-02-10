@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * File Name    : boot_config.h
+ * File Name    : da14531_boot_config.h
  * Description  : Contains definition for used  for UART boot.
  ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -18,7 +18,7 @@
  * following link:
  * http://www.renesas.com/disclaimer
  *
- * Copyright (C) 2021 Renesas Electronics Corporation. All rights reserved.
+ * Copyright (C) 2022 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
 
 #ifndef BOOT_CONFIG_H_

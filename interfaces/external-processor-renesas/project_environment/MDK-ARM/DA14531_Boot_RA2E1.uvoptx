@@ -272,24 +272,24 @@
     <File>
       <GroupNumber>1</GroupNumber>
       <FileNumber>7</FileNumber>
-      <FileType>5</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\boot_config.h</PathWithFileName>
-      <FilenameWithoutPath>boot_config.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\da14531_boot.c</PathWithFileName>
+      <FilenameWithoutPath>da14531_boot.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
       <FileNumber>8</FileNumber>
-      <FileType>1</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\boot_da14531.c</PathWithFileName>
-      <FilenameWithoutPath>boot_da14531.c</FilenameWithoutPath>
+      <PathWithFileName>.\src\da14531_boot.h</PathWithFileName>
+      <FilenameWithoutPath>da14531_boot.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -300,8 +300,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\boot_da14531.h</PathWithFileName>
-      <FilenameWithoutPath>boot_da14531.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\da14531_boot_config.h</PathWithFileName>
+      <FilenameWithoutPath>da14531_boot_config.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -312,8 +312,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\prox_reporter_image.h</PathWithFileName>
-      <FilenameWithoutPath>prox_reporter_image.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\da14531_codeless_image.h</PathWithFileName>
+      <FilenameWithoutPath>da14531_codeless_image.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -324,8 +324,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\codeless_image.h</PathWithFileName>
-      <FilenameWithoutPath>codeless_image.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\da14531_prox_reporter_image.h</PathWithFileName>
+      <FilenameWithoutPath>da14531_prox_reporter_image.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

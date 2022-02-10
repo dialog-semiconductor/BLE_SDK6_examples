@@ -1,0 +1,11 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+arg1 = $(1)
+export PATH=C:\Renesas\RA\e2studio_v2021-10_fsp_v3.5.0\toolchains\gcc_arm\gcc-arm-none-eabi-10.3-2021.10\bin\;C:\Users\iamor\.eclipse\com.renesas.platform_1366354242\Utilities;C:/Renesas/RA/e2studio_v2021-10_fsp_v3.5.0/eclipse//plugins/com.renesas.runtime.jdk.hotspot.win32.x86_64_11.0.8.202009102051/jdk-11.0.8+10/bin/client;C:/Renesas/RA/e2studio_v2021-10_fsp_v3.5.0/eclipse//plugins/com.renesas.runtime.jdk.hotspot.win32.x86_64_11.0.8.202009102051/jdk-11.0.8+10/bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Common Files\Microsoft Shared\Microsoft Online Services;C:\Program Files (x86)\Common Files\Microsoft Shared\Microsoft Online Services;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Enterprise Vault\EVClient\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Python\Scripts\;C:\Python\;C:\Users\iamor\AppData\Local\Microsoft\WindowsApps;;D:\My_Programmers_Files\VS_Code\Microsoft VS Code\bin;C:\Renesas\RA\e2studio_v2021-10_fsp_v3.5.0\eclipse
+export TCINSTALL=C:\Renesas\RA\e2studio_v2021-10_fsp_v3.5.0\toolchains\gcc_arm\gcc-arm-none-eabi-10.3-2021.10$(call arg1,\)
+export CWD=$(CURDIR)
+export TC_VERSION=10.3.1.20210824
+export PWD=$(CURDIR)
+export GCC_VERSION=10.3.1

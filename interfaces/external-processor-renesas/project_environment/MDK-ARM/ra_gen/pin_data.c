@@ -46,7 +46,11 @@ void R_BSP_PinCfgSecurityInit(void);
 /* Initialize SAR registers for secure pins. */
 void R_BSP_PinCfgSecurityInit(void)
 {
+ #if (2U == BSP_FEATURE_IOPORT_VERSION)
+    uint32_t pmsar[BSP_FEATURE_BSP_NUM_PMSAR];
+ #else
     uint16_t pmsar[BSP_FEATURE_BSP_NUM_PMSAR];
+ #endif
     memset(pmsar, 0xFF, BSP_FEATURE_BSP_NUM_PMSAR * sizeof(R_PMISC->PMSAR[0]));
 
 
@@ -60,7 +64,11 @@ void R_BSP_PinCfgSecurityInit(void)
 
     for(uint32_t i = 0; i < BSP_FEATURE_BSP_NUM_PMSAR; i++)
     {
+ #if (2U == BSP_FEATURE_IOPORT_VERSION)
+        R_PMISC->PMSAR[i].PMSAR = (uint16_t) pmsar[i];
+ #else
         R_PMISC->PMSAR[i].PMSAR = pmsar[i];
+ #endif
     }
 
 }

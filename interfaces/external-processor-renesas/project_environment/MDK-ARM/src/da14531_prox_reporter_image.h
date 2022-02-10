@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * File Name    : prox_reporter_image
+ * File Name    : da14531_prox_reporter_image
  * Description  : Contains the image Hex
  ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -18,7 +18,7 @@
  * following link:
  * http://www.renesas.com/disclaimer
  *
- * Copyright (C) 2021 Renesas Electronics Corporation. All rights reserved.
+ * Copyright (C) 2022 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
 #ifndef PROXREPO_IMAGE_H_
 #define PROXREPO_IMAGE_H_

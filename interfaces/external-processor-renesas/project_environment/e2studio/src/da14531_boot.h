@@ -25,7 +25,7 @@
 #define BOOT_DA14531_H_
 
 #include "bsp_api.h"
-#include "boot_config.h"
+#include "da14531_boot_config.h"
 
 /* Function declaration */
 fsp_err_t boot_da14531_demo(void);

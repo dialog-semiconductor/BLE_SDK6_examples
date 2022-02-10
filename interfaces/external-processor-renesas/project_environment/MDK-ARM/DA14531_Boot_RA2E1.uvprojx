@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>3</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -414,29 +414,29 @@
               <FilePath>.\src\SEGGER_RTT\SEGGER_RTT_printf.c</FilePath>
             </File>
             <File>
-              <FileName>boot_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\boot_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>boot_da14531.c</FileName>
+              <FileName>da14531_boot.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\boot_da14531.c</FilePath>
+              <FilePath>.\src\da14531_boot.c</FilePath>
             </File>
             <File>
-              <FileName>boot_da14531.h</FileName>
+              <FileName>da14531_boot.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\boot_da14531.h</FilePath>
+              <FilePath>.\src\da14531_boot.h</FilePath>
             </File>
             <File>
-              <FileName>prox_reporter_image.h</FileName>
+              <FileName>da14531_boot_config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\prox_reporter_image.h</FilePath>
+              <FilePath>.\src\da14531_boot_config.h</FilePath>
             </File>
             <File>
-              <FileName>codeless_image.h</FileName>
+              <FileName>da14531_codeless_image.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\codeless_image.h</FilePath>
+              <FilePath>.\src\da14531_codeless_image.h</FilePath>
+            </File>
+            <File>
+              <FileName>da14531_prox_reporter_image.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\da14531_prox_reporter_image.h</FilePath>
             </File>
           </Files>
         </Group>

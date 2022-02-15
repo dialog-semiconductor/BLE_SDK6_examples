@@ -1,7 +1,6 @@
-
 ------
-
 # DA14531 Timer1 Software Example
+------
 
 ## Example Description
 
@@ -22,7 +21,7 @@ The DA14531 product family incorporates three (3) HW timer blocks **Timer0**, **
 
 ![timer1_block_diagram](assets/timer1_block_diagram.PNG)
 
-For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.dialog-semiconductor.com/sites/default/files/2021-03/DA14530_datasheet_3v2_0.pdf).
+For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.dialog-semiconductor.com/da14531_datasheet).
  
 ***Useful Note*** :    
 
@@ -63,14 +62,14 @@ It is an 11-bit timer which supports Counting and Input Capturing, as input cloc
 ### SW Configuration
 
 - This example requires:
-  - [SDK6.0.14.1114](https://www.dialog-semiconductor.com/system/files/2020-08/SDK_6.0.14.1114.zip)
+  - [SDK6.0.14.1114](https://www.dialog-semiconductor.com/da14531_sdk_latest)
   - **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ## How to run the example
 
 ### Initial Setup
 
-- For the initial setup, please refer to [this section](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
+- For the initial setup, please refer to [this readme](https://github.com/ibenamor/BLE_SDK6_examples/blob/main/Readme.md).
 
 - For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
 
@@ -276,17 +275,9 @@ Of course the results depend on how much timer the SW2 button is pressed.
 
 ## Known Limitations
 
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/support).
+- There are No known limitations for this example. But you can check and refer to: 
 
-## License
-
-------
-
-Copyright (c) 2021 Dialog Semiconductor. All rights reserved.
-
-This software (“Software”) is owned by Dialog Semiconductor. By using this Software you agree that Dialog Semiconductor retains all intellectual property and proprietary rights in and to this Software and any use, reproduction, disclosure or distribution of the Software without express written permission or a license agreement from Dialog Semiconductor is strictly prohibited. This Software is solely for use on or in conjunction with Dialog Semiconductor products.
-
-EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR AS REQUIRED BY LAW, THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES OR BY LAW, IN NO EVENT SHALL DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
-
-------
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

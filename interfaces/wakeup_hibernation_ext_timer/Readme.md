@@ -1,4 +1,6 @@
+--------
 # BLE Eddystone beacon with hibernation or deep sleep mode
+---------
 
 ## Example description
 
@@ -72,9 +74,11 @@ The configuration options are local to the ``user_hibernation_timer.c`` file and
 
 ## Known Limitations
 
+- There are No known limitations for this example. But you can check and refer to: 
 
-- There are no known limitations for this example. But you can check and refer to the following application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-- You can also refer to the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 
 

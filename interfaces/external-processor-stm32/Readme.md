@@ -1,7 +1,6 @@
-
+-----------
 # Booting the DA14531 with Codeless through a STM32
-
----
+----------
 
 ## Example description
 
@@ -21,7 +20,7 @@ The goal of this example is to show how to load a program into the RAM of the DA
 
 ### Programming the BLE TINY click with the secondary bootloader
 
-The Dialog Flash Programmer can be used to program the flash of the BLE TINY click, the flash programmer can be found [here](https://www.dialog-semiconductor.com/sites/default/files/smartbondflashprogrammer_v1.0.4.2972_windows.zip). Another option for programming the flash of the BLE TINY click using the SmartSnippets Toolbox which can be found [here](https://www.dialog-semiconductor.com/sites/default/files/smartsnippets_toolbox_v5.0.14.3080_windows.msi.zip).
+The Dialog Flash Programmer can be used to program the flash of the BLE TINY click, the flash programmer can be found [here](https://www.dialog-semiconductor.com/products/bluetooth-low-energy/da14530-and-da14531). Another option for programming the flash of the BLE TINY click using the SmartSnippets Toolbox.which can be found also in the same location.
 
 The first step to programming the flash is connecting the BLE TINY click to the programming interface. For this either a DA14531 Development Kit Pro Motherboard or a SEGGER J-LINK can be used. In the images below the connections for both options can be viewed.
 
@@ -118,6 +117,9 @@ As an example, the UART pins can be changed to pins **PD5** and **PD6** to use t
 
 ## Known Limitations
 
-- Refer to the following application note for DA14531 known [hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-- Also refer to Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forum)
+- There are No known limitations for this example. But you can check and refer to: 
 
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

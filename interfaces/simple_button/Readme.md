@@ -1,6 +1,6 @@
-﻿# DA14585/DA14586/DA14531 Peripheral - GPIO button interrupt with edge detection
-
----
+﻿------
+# DA14585/DA14586/DA14531 Peripheral - GPIO button interrupt with edge detection
+-------
 
 
 ## Example description
@@ -57,7 +57,7 @@ The user manuals for the development kits can be found:
 
 * __Software configuration__
 This example requires:
-	- [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+	- [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
 	- Keil5.
 	- __SEGGER’s J-Link__ tools should be downloaded and installed.
 	- Serial Terminal software. For example Tera Term or PuTTY.
@@ -137,10 +137,17 @@ The button interrupt with edge detection example is now running. Follow the step
 
 ## Troubleshooting
 - Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
-
 - Try a different USB1 cable.
-
 - Try different jumper wire, if used.
+- If none of the steps described above help, please check the user manual according to your daughter board and mother board. User manual can be found [here](https://www.dialog-semiconductor.com/um-114-da14531-development-kit-pro).
 
-- If none of the steps described above help, please check the user manual according to your daughter board and mother board. User manual can be found ["here"](##HW-and-SW-configuration)
+## Known Limitations
 
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

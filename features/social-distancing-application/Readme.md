@@ -1,3 +1,7 @@
+------
+# Social distancing application
+------
+
 ## Example Description
 
 This example configures a DA14531 device to be used for social distancing purposes. The Social Distancing Tag (SDT) is a reference software example that targets mainly, but not exclusively, wearable devices allowing its users to be warned if they do not comply with social distancing recommendations. In the COVID-19 pandemic context, the SDT users should not gather with a physical distance lower than 1.5m. The users in a professional environment should be warned that they are not complying with the recommended physical distanciation.
@@ -171,10 +175,11 @@ As already mentioned, the devices running the SDT SW go through periods of Adver
 
 ## Known Limitations
 
-- When programming DA14531 SMARTBOND TINY™ MODULE using Keil, an error stating "No Cortex-M SW Device found" may occur when the user tries to open the debugger session. User must lower the JTAG clock speed to 2 MHz. For more information, see the section [KEIL Installation](http://lpccs-docs.dialog-semiconductor.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/05_Software_Development_Tools/Software_Development_Tools.html#keil-installation) in the UM-B-139 Getting Started with DA14531 TINY Module document
-- No known hardware limitations for this example, but it is recommended to see the following:
-  - Application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-  - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum)
-  - [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started)
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 
 

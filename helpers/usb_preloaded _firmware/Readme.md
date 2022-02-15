@@ -1,8 +1,5 @@
-
 ------
-
 # DA14531 USB Preloaded Firmware
-
 ------
 
 ## Example description
@@ -52,7 +49,7 @@ Refer to the DA14531 getting started guide of [DA14531 Development Kit](http://l
 
 ### Initial Setup
 
-- For the initial setup, please refer [here] https://github.com/dialog-semiconductor/BLE_SDK6_examples
+- For the initial setup, please refer [here](https://github.com/ibenamor/BLE_SDK6_examples/blob/main/Readme.md)
 
 
 ### Compile & Run
@@ -65,6 +62,9 @@ For programming the DA14531 using the compiled hex file and boot from flash, ple
 
 ## Known Limitations
 
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
+- There are No known limitations for this example. But you can check and refer to: 
 
-- If you have any question, please contact us in our [public Bluetooth forums](https://www.dialog-semiconductor.com/forum) 
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

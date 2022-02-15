@@ -1,8 +1,6 @@
-
-
+------
 # DA14531-DA14585/586 Service Data Beacon
-
----
+------
 
 ## Example description
 
@@ -12,7 +10,7 @@ This example uses the Device Information Service, Serial Number characteristic.
 
 ## Non-Connectable Advertising
 
-For getting more information about the Non-Connectable Advertising, please refer to [Advertising Tutorial](https://www.dialog-semiconductor.com/sites/default/files/advertising_concept.pdf) from our [support website](https://www.dialog-semiconductor.com/bluetooth-low-energy).
+For getting more information about the Non-Connectable Advertising, please refer to [Advertising Tutorial](http://lpccs-docs.dialog-semiconductor.com/DA145xx_Advertising_Tutorial/index.html) from our [website](https://www.dialog-semiconductor.com/products/bluetooth-low-energy/da14530-and-da14531).
 
 ## HW and SW configuration
 
@@ -76,7 +74,12 @@ To verify please take a look at the BLE sniffer log data, like so,
 
 ## Known Limitations
 
-- Refer to the following application note for [DA1458x known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf  "known hardware limitations").
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 

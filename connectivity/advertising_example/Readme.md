@@ -1,7 +1,6 @@
-				# DA14585/DA14586/DA14531 - Changing advertising methods using GPIO button interrupt or timer callbacks
-
----
-
+------
+# DA14585/DA14586/DA14531 - Changing advertising methods using GPIO button interrupt or timer callbacks
+------
 
 ## Example description
 
@@ -159,12 +158,19 @@ Starting point for this example is the BLE barebone project from SDK6. This prov
 
 ## Troubleshooting
 - Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
-
 - Try a different USB1 cable.
-
 - Try different jumper wire, if used.
-
 - If none of the steps described above help, please check the user manual according to your development kit. 
 	- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
 	- [Here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
+## Known Limitations
+
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

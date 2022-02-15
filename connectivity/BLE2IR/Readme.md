@@ -1,7 +1,6 @@
+------
 # DA14585 Simple Remote Control Unit peripheral example
-
----
-
+------
 
 ## Example description
 This SDK6 DA14585 example provides an implementation of a Simple RCU using a custom BLE profile. The example uses a 4x4 button matrix, which state is read and buffered with the keyboard module from the [Voice RCU reference design](https://support.dialog-semiconductor.com/connectivity/product/da14585?qt-product_restricted_=5&qt-view__reference_designs__block_1=4#qt-view__reference_designs__block_1). The example makes use of the update parameter request and slave latency functionality.
@@ -83,7 +82,7 @@ The example is running from SRAM. For programming to Flash, see chapter 11 in th
 This section will highlight the most important aspects of the RCU example in order to get a better idea of it's internal workings.
 
 - The keyboard module from the Voice RCU Reference Design is used for reading the keyboard matrix input.
-	- More information on this can be found in the [UM-B-086 DA14585 Voice RCU Software Manual](https://support.dialog-semiconductor.com/resource/um-b-086-da14585-voice-rcu-software-manual)
+	- More information on this can be found in the [UM-B-086 DA14585 Voice RCU Software Manual](https://www.dialog-semiconductor.com/sites/default/files/um-b-086_da14585_voice_rcu_software_manual_1v0.pdf)
 	- The files belonging to the keyboard module are grouped together as kbd_module in the Keil project.
 	- The keyboard module has some dependencies on the port module. The port_module group in the Keil project contains all of these files.
 	- Upon each button event the keyboard module will send a notification to the application layer by means of the registered keyboard notification callback.
@@ -103,13 +102,13 @@ This section will highlight the most important aspects of the RCU example in ord
 	- user_con_timeout_init(uint32_t delay, uint8_t connection_id): Will start a timer to terminate the connection after the specified time. It will override an existing timer.
 	- user_con_timeout_cancel(): Cancel the timer (if one is currently running).
 	- user_con_timeout_reset(): Resets the timer (if one is currently running). This is used by the application to reset the timer after each button event.
-- The example uses a Custom BLE profile. More information on creating a custom profile can be found [here](https://support.dialog-semiconductor.com/resource/tutorial-3-custom-profile-gatt-cmd-examplev11)
+- The example uses a Custom BLE profile. More information on creating a custom profile can be found [here](http://lpccs-docs.dialog-semiconductor.com/tutorial-custom-profile-DA145xx/index.html)
 
 ## Known Limitations
 
-
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+- There are No known limitations for this example. But you can check and refer to: 
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
 

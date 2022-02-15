@@ -1,4 +1,6 @@
+------
 # BLE Central Security Demo Project
+------
 
 ## Example description
 A DA14585/6 or DA14531 Central side project with basic scan/connect and security feature. The main purpose is to demonstrate the basic pairing, encryption and bonding process on central side.
@@ -11,7 +13,7 @@ It will actively pair up with peripheral devices and store bonding information o
 4. Attempt to relaunch pairing process if peripheral side is missing previousely bonded key **(SDK code modification required for this feature)**
 
 # How security binding works
-To learn basic security feature of BLE, please refer to the [training material](https://support.dialog-semiconductor.com/resource/tutorial-5-ble-security-examplev12 "BLE Security Tutorial") from the support website.
+To learn basic security feature of BLE, please refer to the [BLE Security Tutorial](http://lpccs-docs.dialog-semiconductor.com/Tutorial-DA145x-BLE-Security/index.html) from the support website.
 
 The pairing and bonding process is a series of command and credential info exchange happening between master and slave devices, after which both device stores the information for encrypt the connection. The info will be stored in a dedicated bonding database(short for bdb) for later use, and the database can be configured to retain on SPI flash or I2C EEPROM. The SDK provides necessary APIs to manipulate the database.
 
@@ -115,8 +117,12 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
 
 ## Known Limitations
 
+- There are No known limitations for this example. But you can check and refer to: 
 
-- The central app should work with any BLE peripheral theoratically, but only guaranteed to work with ble_app_security example in the SDK
-- For ease of the key input, only 10 peripherals will be scanned and printed at one scanning activity
-- The demo will take no action after successfully pairing/encryption, manually reset on either side is required to run the demo again
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 

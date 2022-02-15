@@ -1,8 +1,12 @@
-## Optimised Ibeacon example
+------
+#Optimised Ibeacon example
+------
 
-The example demonstrates an optimized software implementation for ibeacon on the DA14531, it can be downloaded from [A14531 Power optimized Dynamic advertising](http://lpccs-docs.dialog-semiconductor.com/SW_Example/SDK6/DA14531_Power_optimized_Dynamic_advertising.zip)
+## Example description
 
-The example is an update of the [ibeacon SW](https://www.dialog-semiconductor.com/sites/default/files/da14531_ibeacon.zip), below the main modifications, basically we demonstrate how to:
+The example demonstrates an optimized software implementation for ibeacon on the DA14531.
+
+The example is an update of the [ibeacon SW](https://github.com/ibenamor/BLE_SDK6_examples/tree/main/connectivity/ibeacon), below the main modifications, basically we demonstrate how to:
 
 - Alternate Static random address: change the device address in every advertising event
 - Alternate Tx output power level: change the Tx output power level in every advertising event
@@ -208,10 +212,11 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 ## Known Limitations
 
-- There are no known limitations for this example. But you can check and refer to the following 
-  application note for known hardware limitations for DA14531 devices:
-  [DA14531 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf)
-- Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
-- You can also refer to the troubleshooting section in the [Getting Started with the DA14531 PRO Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 
 

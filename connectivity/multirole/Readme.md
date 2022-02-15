@@ -1,4 +1,6 @@
+------
 # DA14531/585/586 Multirole Example
+------
 
 ## Example Description
 
@@ -108,17 +110,21 @@ For Android, you can use any BLE scanner app to connect and disconnect.
 
 ![logs.jpg](assets/logs.jpg)
 
-## Limitations
-
-- The current example doesn't handle the disconnection of P1 or P2 from their central C0. This will be handled in future release.
-
 ## Troubleshooting
 
 - Try a different USB1 cable.
-
 - Try different jumper wires, if used.
-
 - Verify using any BLE scanner that the 2 peripherals are advertising before attempting connection. 
-
 - If none of the above helps, please check with the customer support team who would be glad to provide you the solution.
 
+## Known Limitations
+
+- The current example doesn't handle the disconnection of P1 or P2 from their central C0. This will be handled in future release.
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

@@ -1,3 +1,7 @@
+------
+# BLE Midi
+------
+
 ## Example description
 
 This example shows:
@@ -78,9 +82,12 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 ## Known Limitations
 
+- There are No known limitations for this example. But you can check and refer to: 
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[DA14585 known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
-- Refer to the following application note for DA14531 known [hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-- Also refer to Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forum)
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 

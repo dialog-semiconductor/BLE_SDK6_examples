@@ -1,4 +1,6 @@
+------
 ## Hibernation and State aware hibernation
+------
 
 - This project starts with undirected connectable advertising
 
@@ -33,7 +35,7 @@ The user manuals for the development kits can be found:
 
 - [here](http://lpccs-docs.dialog-semiconductor.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/index.html) for the DA14531 Tiny Module getting started
 
-To run the program from flash or OTP, please visit chapter 11 of the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html )
+To run the program from flash or OTP, please visit chapter 11 of the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/index.html)
 
 * **General Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard**
 
@@ -347,10 +349,16 @@ To demonstrate the state-aware hibernation example, the following software modif
 ## Troubleshooting
 
 - Try a different USB cable.
-
 - Try different jumper wires, if used.
-
 - Verify using any BLE scanner that the device is advertising. 
-
 - If none of the above helps, please check with the customer support team who would be glad to provide you the solution.
+
+## Known Limitations
+
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 

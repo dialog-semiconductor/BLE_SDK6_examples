@@ -1,5 +1,6 @@
-
+------
 # DA14531 Quuppa Tag Emu example
+------
 
 ## Overview
 
@@ -131,8 +132,6 @@ List of available profiles (as of v0.91)
 
 ### Initial Setup
 
-- For the initial setup, please refer to [this section](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
-
 - For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 The BME270 should be connected as described in the block diagram:
@@ -239,6 +238,10 @@ Toggle LED command received and processed
 
 ## Known limitations
 
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 

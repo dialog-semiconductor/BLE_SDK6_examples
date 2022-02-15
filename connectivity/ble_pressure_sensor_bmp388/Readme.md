@@ -1,3 +1,7 @@
+------
+# BLE pressure measurement with PRESSURE 5 CLICK Board™
+------
+
 ## Example description
 
 Simple example showing how to interface the DA14585/586 and DA14531 with the [PRESSURE 5 CLICK Board™](https://www.mikroe.com/pressure-5-click) which features the Bosch BMP388 Digital Pressure Sensor via I2C or SPI. 
@@ -42,7 +46,7 @@ The BMP388 has both SPI and I2C interfaces. By default, the MikroBUS™ board, a
 
 When using the I2C interface, **the JTAG/Debug interface will be no longer available** because the **P0_2** is shared between the **SWCLK** and the **I2C clock**.
 This is why you can programme the onboard SPI flash with the generated binary and remove after that the JTAG debug Jumpers (J1:21-22 and J1:23-24). 
-You can refer to the [section 16:SPI Flash Programmer](https://s3.eu-west-2.amazonaws.com/lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) to see how to program the SPI flash with the Smarsnippets Toolbox.
+You can refer to the [section 16:SPI Flash Programmer](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/tools/SPIFlashProgrammer.html) to see how to program the SPI flash with the Smarsnippets Toolbox.
 
 If you would like to use the JTAG interface for debug purpose you have to choose different i2C GPIOs configurations. Be sure to update the `user_periph_setup.h` with the following configuration as an example:
 
@@ -108,8 +112,12 @@ If you want to use the I2C interface, no jumpers wires are required, you can ref
 
 ## Known Limitations
 
-- There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 

@@ -1,3 +1,7 @@
+------
+# Coexistence Example
+------
+
 ## Example Description
 
 Purpose of the current example is to demonstrate the WiFi coexistence feature available in the SDK 6.0.14.1114. The example provides guidelines on how the feature can be enabled on the SDK as well as the signal behavior that should be expected on the configured pins under the various states and priority configuration rules set from application level.
@@ -404,7 +408,11 @@ Zooming in on Fig. 9 is clear that there is Tx/Rx activity on the 1st depicted c
 
 ## Known Limitations
 
-- No known hardware limitations for this example, but it is recommended to see the following:
-  - Application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-  - Dialog Software [Forum link](https://www.dialog-semiconductor.com/support)
-  - [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started)
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

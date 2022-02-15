@@ -1,3 +1,7 @@
+------
+# BLE Temperature measurement
+------
+
 ## Example description
 
 This example shows:
@@ -116,7 +120,7 @@ __Note that the DA14531 internal temperature sensor uses int8_t instead of the d
 
 ## How it works
 
-Tutorial 3 on the [Dialog Semiconductor support](https://www.dialog-semiconductor.com/sites/default/files/training_03_custom_profile_gatt_cmd_example_v1.2.pdf) website shows how to make your own custom profile. The **user_catch_rest_hndl** function in `user_peripheral.c` will handle the messages for our custom profile. This application only has one possible 
+This [tutorial](http://lpccs-docs.dialog-semiconductor.com/tutorial-custom-profile-DA145xx/index.html) website shows how to make your own custom profile. The **user_catch_rest_hndl** function in `user_peripheral.c` will handle the messages for our custom profile. This application only has one possible 
 custom action: a write to the notification. When this occurs the **user_temperature_message_handler** function is called. This function will check the contents of the write. If the content of the write equals zero, the temperature timer is canceled. If the value is 
 anything else, a timer is generated that calls **user_send_temperature_ntf** after NOTIFICATION_DELAY ms. **user_send_temperature_ntf** will read out the sensor data and convert it to a string(for demo purposes). The string will be placed in a message, along with some other parameters, like the connection ID
 and the characteristic handle. After the message is sent, the app_easy_timer function is used to schedule the next call to the **user_send_temperature_ntf** function. This will ensure the temperature is transmitted regularly. The `app_easy_timer`function
@@ -124,12 +128,18 @@ has a resolution of 10ms hence we divide the desired delay in ms by 10.
 
 ## Troubleshooting
 - Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic development kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
-
 - Try a different USB1 cable.
-
 - Try different jumper wires, if used.
-
 - Note that the internal temperature sensor only works for the DA14531
-
 - If none of the above helps, please check the user manual according to your daughter board and mother board. User manual can be found [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard and [Here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit
 
+## Known Limitations
+
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

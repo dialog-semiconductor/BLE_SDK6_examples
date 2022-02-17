@@ -117,7 +117,10 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
 
 ## Known Limitations
 
-- There are No known limitations for this example. But you can check and refer to: 
+- The central app should work with any BLE peripheral theoratically, but only guaranteed to work with ble_app_security example in the SDK.
+- For ease of the key input, only 10 peripherals will be scanned and printed at one scanning activity.
+- The demo will take no action after successfully pairing/encryption, manually reset on either side is required to run the demo again.
+- There are No other known limitations for this example. But you can check and refer to: 
 
 	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
 	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).

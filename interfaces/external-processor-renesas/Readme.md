@@ -11,8 +11,8 @@ Fortunately, the DA14531 can execute code from RAM that can be loaded in during 
 This way a microcontroller can load a program into the DA14531.
 
 The goal of this example is to show how to load a program into the RAM of the DA14531 via a R7FA2E1 (EK-RA2E1) microcontroller. 
-This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is the Codeless or proximity reporter depending on the user selection in `da14531_boot_config.h`. 
-This example does not need the SDK6, a precompiled version of theses binaries is included in the project: `da14531_codeless_image.h` and `da14531_prox_reporter_image.h`.
+This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is the Codeless or proximity reporter depending on the user selection in **`da14531_boot_config.h`**. 
+This example does not need the SDK6, a precompiled version of theses binaries is included in the project: **`da14531_codeless_image.h`** and **`da14531_prox_reporter_image.h`**.
 The interface that is used for booting is two UART. Codeless is a solution by Dialog to interface with the DA14531 with AT commands. 
 More info on Codeless and its use can be found on [Codeless](https://www.dialog-semiconductor.com/products/smartbond-codeless-commands).
 
@@ -29,13 +29,16 @@ More info on Codeless and its use can be found on [Codeless](https://www.dialog-
 
 ### Hardware configuration using DA14531 PRO-Motherboard
 - Connect the each of the two boards to the host computer, you can also power the DA14531 PRO-Motherboard through the RA2E1 by connecting the VDDs and GNDs, the RA2E1 should be connected to the HOST PC.
-- Connect the two boards to each other through **2 wire UART interface** as shown on the image below: 
-+ On the EK-RA2E1 Mikrobus **RX** pin connected to **P20 (P0_0)** on the DA14531 PRO-Motherboard
-+ On the EK-RA2E1 Mikrobus **TX** pin connected to **P21 (P0_1)** on the DA14531 PRO-Motherboard
+Connect the two boards to each other through **2 wire UART interface** as shown on the image below: 
++ On the EK-RA2E1 Mikrobus **RX** pin connected to **P20 (P0_0)** on the DA14531 PRO-Motherboard.
++ On the EK-RA2E1 Mikrobus **TX** pin connected to **P21 (P0_1)** on the DA14531 PRO-Motherboard.
 
 ![RA2E1 connect to the DA14531 through 2 Wire UART ](assets/DA14531-RA2E1.jpg)
 
-- For booting using **1-wire UART** will require to short circuit the EK-RA2E1 Mikrobus RX and TX pins using **1Khom resistor** and connect one of the extremity (TX or RX) to **P25 (P0_5)** on the DA14531 PRO-Motherboard.  
+For booting using **1-wire UART** it will requires to generate RxTx single wire UART by using the internal **1Khom resistor**.
++ On the EK-RA2E1 Mikrobus **RX** pin connected to **J10-2** on the DA14531 PRO-Motherboard.
++ On the EK-RA2E1 Mikrobus **TX** pin connected to **J10-1** on the DA14531 PRO-Motherboard.
+- Jumper must be applied on RxTx **J1:19-20**. 
 ![RA2E1 connect to the DA14531 through 1 Wire UART ](assets/DA14531-RA2E1-1W.jpg)
 
 ### Hardware configuration using Clickboard BLE TINY click
@@ -73,7 +76,7 @@ To enable to 1 Wire on the Tiny click board, Put the switch to the ON position. 
 When using a KEIL MDK ARM IDE, you can use the Renesas RA Smart Configurator to configure the software system for a Renesas RA microcontroller. 
 The RA Smart Configurator (RA SC) is a desktop application designed to configure device hardware, such as clock setup and pin assignment, as well as initialization of FSP software components for a Renesas RA
 To download and install the RA SC Installer, visit the [GitHub](https://github.com/renesas/fsp/releases) page of Flexible Software Package (FSP) for Renesas RA MCU Family.
-Search for the RA SC installer and download it (for example, `setup_fsp<version>_rasc_<version >.exe`).
+Search for the RA SC installer and download it (for example, **`setup_fsp<version>_rasc_<version >.exe`**).
 
 - Open the Keil project
 - Now click on Flex Software to Manage Run-time Environment tab.
@@ -89,6 +92,11 @@ Search for the RA SC installer and download it (for example, `setup_fsp<version>
 ![RASC will be launched](assets/KEIL_STEP3.jpg)
 
 - In the RA Configuration window, click the Generate Project Content button.
+
+**NOTE**
+If the RA Smart configurator is not installed, the below message will be displayed and then it should be installed.
+
+![RA Configuration window](assets/rasc_error.jpg)
 
 ![RA Configuration window](assets/KEIL_STEP4.jpg)
 
@@ -106,7 +114,7 @@ KEIL μVision offers a dialog box to import the changes and updates to the proje
 The FSP with e² studio Installer includes the e² studio tool. To download and install the FSP with e² studio Installer, follow the steps below:
 
 - Visit the [GitHub](https://github.com/renesas/fsp/releases) page of Flexible Software Package (FSP) for Renesas RA MCU Family.
-- Select FSP with e² studio Installer (for example, `setup_fsp<version>_e2s_<version >.exe`) and click the link to download directly.
+- Select FSP with e² studio Installer (for example, **`setup_fsp<version>_e2s_<version >.exe`**) and click the link to download directly.
 - Launch e² studio 
 - Open the FSP configuration and then click on Generate Project Content button to generate the source code content.
 
@@ -128,19 +136,9 @@ Regarding the timing the boot from 2 wire UART takes around *15.19 ms* and boot 
 
 ![Boot Time](assets/Boot_Time.jpg)
 
-**1 Wire UART settings**
-
-The booting process has two options one wire UART and two wire UART, in this example the booting process is **done through two wire UART**. 
-
-This can be configured by enabling the `ONE_WIRE` flag in `boot_config.h` file.
-
-```c
-/* Enable/Disable one wire UART*/
-#undef ONE_WIRE to the booting function.
-```
 **NOTE**
 
-For booting from 2-wire UART when using the [DA14531] module would require the **secondary booter** in order to divert the TX/RX functionality to other pins since **P01** is not exposed in the module
+For booting from 2-wire UART when using the [DA14531] module would require the **secondary booter** in order to divert the TX/RX functionality to other pins since **P01** is not exposed in the module.
 
 **Program Custom image:**
 
@@ -160,6 +158,9 @@ Down below a screenshot can be seen from the LightBlue® after the boot was succ
 
 ## Known Limitations
 
-- Refer to the following application note for DA14531 known [hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-- Refer to the SW Known limitation list for the DA14531 [SW limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html)
-- Also refer to Dialog Software [Forum Link](https://www.dialog-semiconductor.com/products/bluetooth-low-energy#tab-support_tab_content)
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

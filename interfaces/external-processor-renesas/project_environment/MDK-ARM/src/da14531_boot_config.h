@@ -24,11 +24,6 @@
 #ifndef BOOT_CONFIG_H_
 #define BOOT_CONFIG_H_
 
-/****************************************************************************************************************/
-/* Enable/Disable one wire UART                                                                                 */                                          
-/****************************************************************************************************************/
-#undef ONE_WIRE
-
 /*****************************************************************
  * FW do download to the DA14531 SystemRAM.
  * This images are just used as an example, any other image for the DA14531 can be used. Possible binaries are:

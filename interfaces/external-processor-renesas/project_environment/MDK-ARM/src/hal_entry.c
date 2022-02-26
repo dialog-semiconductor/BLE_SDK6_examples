@@ -37,24 +37,19 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event);
  **********************************************************************************************************************/
 void hal_entry(void)
 {
-    fsp_err_t err = FSP_SUCCESS;
-    fsp_pack_version_t version = {RESET_VALUE};
+	fsp_err_t err = FSP_SUCCESS;
+	fsp_pack_version_t version = {RESET_VALUE};
 
-    /* Version get API for FLEX pack information */
-    R_FSP_VersionGet(&version);
+	/* Version get API for FLEX pack information */
+	R_FSP_VersionGet(&version);
 
-
-   /*RESET_DA14531_Pin */
-	  R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_02_PIN_07 , 0U); R_BSP_PinAccessDisable();	
-		
-    /* Initializing UART */
-    err = uart_initialize();
-    if (FSP_SUCCESS != err)
-    {
-        APP_PRINT ("\r\n ** UART INIT FAILED ** \r\n");
-			  deinit_uart();
-    }
-		
+	/* Initializing UART */
+	err = uart_initialize();
+	if (FSP_SUCCESS != err)
+	{
+		APP_PRINT ("\r\n ** UART INIT FAILED ** \r\n");
+		deinit_uart();
+	}
 }
 
 /*******************************************************************************************************************//**
@@ -65,27 +60,28 @@ void hal_entry(void)
  **********************************************************************************************************************/
 void R_BSP_WarmStart(bsp_warm_start_event_t event)
 {
-    if (BSP_WARM_START_RESET == event)
-    {
+	if (BSP_WARM_START_RESET == event)
+	{
 #if BSP_FEATURE_FLASH_LP_VERSION != 0
 
-        /* Enable reading from data flash. */
-        R_FACI_LP->DFLCTL = 1U;
+		/* Enable reading from data flash. */
+		R_FACI_LP->DFLCTL = 1U;
 
-        /* Would normally have to wait tDSTOP(6us) for data flash recovery. Placing the enable here, before clock and
-         * C runtime initialization, should negate the need for a delay since the initialization will typically take more than 6us. */
+		/* Would normally have to wait tDSTOP(6us) for data flash recovery. Placing the enable here, before clock and
+		 * C runtime initialization, should negate the need for a delay since the initialization will typically take more than 6us. */
 #endif
-    }
-	
-	
-	
-	 if (BSP_WARM_START_POST_C == event)
-    {
-        /* C runtime environment and system clocks are setup. */
+	}
 
-        /* Configure pins. */
-        R_IOPORT_Open (&g_ioport_ctrl, &g_bsp_pin_cfg);
-    }
+	/*RESET_DA14531_Pin RX P2_6 (RA) <--> P0_0 (DA14531) To UART RX */
+	R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_02_PIN_06 , 1U); R_BSP_PinAccessDisable();
+	R_BSP_PinAccessEnable(); R_BSP_PinWrite(BSP_IO_PORT_02_PIN_06 , 0U); R_BSP_PinAccessDisable();
+
+	/* C runtime environment and system clocks are setup. */
+	if (BSP_WARM_START_POST_C == event)
+	{
+		/* Configure pins. */
+		R_IOPORT_Open (&g_ioport_ctrl, &g_bsp_pin_cfg);
+	}
 }
 
 

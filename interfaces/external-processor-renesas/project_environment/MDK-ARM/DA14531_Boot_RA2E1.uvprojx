@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Target 1</TargetName>
+      <TargetName>DA14531_Boot_RA2E1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>6160000::V6.16::ARMCLANG</pCCUsed>
@@ -133,7 +133,7 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
-            <Capability>1</Capability>
+            <Capability>0</Capability>
             <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>3</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -451,7 +451,7 @@
     <gpdscs>
       <gpdsc name="buildinfo.gpdsc">
         <targetInfos>
-          <targetInfo name="Target 1"/>
+          <targetInfo name="DA14531_Boot_RA2E1"/>
         </targetInfos>
       </gpdsc>
     </gpdscs>
@@ -460,7 +460,7 @@
       <component Cclass="Flex Software" Cgroup="RA Configuration" Cvendor="Renesas" Cversion="1.0.0" condition="RA Device" generator="Renesas RA Smart Configurator">
         <package name="RA_DFP" schemaVersion="1.6.0" url="https://www2.renesas.eu/Keil_MDK_Packs/" vendor="Renesas" version="3.2.0"/>
         <targetInfos>
-          <targetInfo name="Target 1"/>
+          <targetInfo name="DA14531_Boot_RA2E1"/>
         </targetInfos>
       </component>
     </components>

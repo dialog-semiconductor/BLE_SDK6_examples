@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * File Name    : boot_da14531.c
+ * File Name    : da14531_boot.c
  * Description  : Contains UART functions definition.
  **********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -18,7 +18,7 @@
  * following link:
  * http://www.renesas.com/disclaimer
  *
- * Copyright (C) 2021 Renesas Electronics Corporation. All rights reserved.
+ * Copyright (C) 2022 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
 
 #include "common_utils.h"
@@ -106,11 +106,6 @@ void user_uart_callback(uart_callback_args_t * p_args)
 	fsp_err_t uartStatus = FSP_SUCCESS;
 	uint8_t header[HEADER_SIZE ];
 
-#if defined (ONE_WIRE)
-	uint8_t buffer;
-	uint8_t clearBuffer;
-#endif	
-
 	uint8_t crc_buffer;
 
 	if (UART_EVENT_RX_CHAR == p_args->event)
@@ -127,20 +122,13 @@ void user_uart_callback(uart_callback_args_t * p_args)
 			header[1] = (uint8_t) (sizeof(PROXREPORTER) & 0xFF); //Get lower byte of the size
 			header[2] = (uint8_t) ((sizeof(PROXREPORTER) >> 8) & 0xFF); //Get upper byte of the size
 #endif
-			//uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, &header[i], HEADER_SIZE);
+
 			uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, header, HEADER_SIZE);
 			if (FSP_SUCCESS != uartStatus)
 			{
 				APP_ERR_PRINT("\r\n**  Write failed  **\r\n");
 			}
 
-#if defined (ONE_WIRE)
-
-			{
-				//Because of 1 wire UART the buffer needs to be cleared after a transmit
-				uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &buffer, sizeof(buffer));
-			}
-#endif
 			APP_PRINT("\r\n**  Done: sends the header for the data to the DA14531 and waits for the ACK  ** \r\n");
 			uart_state = DA14531_BOOT_SEND_DATA;
 		}
@@ -150,18 +138,9 @@ void user_uart_callback(uart_callback_args_t * p_args)
 #if defined(CODELESS_IMAGE)
 			uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, CODELESS, sizeof(CODELESS));
 #elif defined(PRX_REPORTER_IMAGE)
-
-			//uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, &PROXREPORTER[j], sizeof(PROXREPORTER));
 			uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, PROXREPORTER, sizeof(PROXREPORTER));
 #endif
 
-#if defined (ONE_WIRE)
-
-			{
-				//Because of 1 wire UART the buffer needs to be cleared after a transmit
-				uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &clearBuffer, sizeof(clearBuffer));
-			}
-#endif
 			APP_PRINT("\r\n**  Done: sends the data to the DA14531  ** \r\n");
 			uart_state = DA14531_BOOT_CHECK_CRC;
 		}
@@ -173,14 +152,6 @@ void user_uart_callback(uart_callback_args_t * p_args)
 			{
 				crc_buffer = ACK;
 				uartStatus = R_SCI_UART_Write (&g_uart0_ctrl, &crc_buffer, sizeof(crc_buffer));
-
-#if defined (ONE_WIRE)
-
-				{
-					//Because of 1 wire UART the buffer needs to be cleared after a transmit
-					uartStatus = R_SCI_UART_Read (&g_uart0_ctrl, &crc_buffer, sizeof(crc_buffer));
-				}
-#endif
 				APP_PRINT("\r\n**  Done: gets the CRC from the DA14531 and checks if it matches the given CRC  ** \r\n");
 			}
 	}
@@ -201,7 +172,6 @@ void user_uart_callback(uart_callback_args_t * p_args)
 		R_BSP_PinAccessDisable ();
 		g_uart_event = UART_EVENT_TX_COMPLETE;
 	}
-
 }
 
 	/*******************************************************************************************************************//**

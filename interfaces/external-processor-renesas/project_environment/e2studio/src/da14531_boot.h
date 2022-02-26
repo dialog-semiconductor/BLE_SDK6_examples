@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * File Name    : boot_da14531.h
+ * File Name    : da14531_boot.h
  * Description  : Contains function declaration of boot_da14531.c and Macros.
  **********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -18,7 +18,7 @@
  * following link:
  * http://www.renesas.com/disclaimer
  *
- * Copyright (C) 2021 Renesas Electronics Corporation. All rights reserved.
+ * Copyright (C) 2022 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
 
 #ifndef BOOT_DA14531_H_

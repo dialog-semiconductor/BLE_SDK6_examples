@@ -200,5 +200,86 @@
       <property id="config.driver.sci_uart.flow_control" value="config.driver.sci_uart.flow_control.disabled"/>
     </config>
   </raModuleConfiguration>
-  <raPinConfiguration/>
+  <raPinConfiguration>
+    <symbolicName propertyId="p000.symbolic_name" value="ARDUINO_A0_MIKROBUS_AN"/>
+    <symbolicName propertyId="p001.symbolic_name" value="ARDUINO_A1"/>
+    <symbolicName propertyId="p002.symbolic_name" value="ARDUINO_A2"/>
+    <symbolicName propertyId="p003.symbolic_name" value="ARDUINO_A3"/>
+    <symbolicName propertyId="p004.symbolic_name" value="USER_SW1"/>
+    <symbolicName propertyId="p012.symbolic_name" value="ARDUINO_A4"/>
+    <symbolicName propertyId="p013.symbolic_name" value="ARDUINO_A5"/>
+    <symbolicName propertyId="p015.symbolic_name" value="USER_SW2"/>
+    <symbolicName propertyId="p100.symbolic_name" value="ARDUINO_MISO_MIKROBUS_MISO_PMOD1_MISO"/>
+    <symbolicName propertyId="p101.symbolic_name" value="ARDUINO_MOSI_MIKROBUS_MOSI_PMOD1_MOSI"/>
+    <symbolicName propertyId="p102.symbolic_name" value="ARDUINO_CLK_MIKROBUS_CLK_PMOD1_CLK"/>
+    <symbolicName propertyId="p103.symbolic_name" value="ARDUINO_SS_MIKROBUS_SS_PMOD1_SS"/>
+    <symbolicName propertyId="p104.symbolic_name" value="ARDUINO_D3"/>
+    <symbolicName propertyId="p105.symbolic_name" value="PMOD1_IO1"/>
+    <symbolicName propertyId="p106.symbolic_name" value="PMOD1_IO2"/>
+    <symbolicName propertyId="p107.symbolic_name" value="ARDUINO_D4"/>
+    <symbolicName propertyId="p109.symbolic_name" value="ARDUINO_D8"/>
+    <symbolicName propertyId="p110.symbolic_name" value="ARDUINO_D2_MIKROBUS_INT"/>
+    <symbolicName propertyId="p111.symbolic_name" value="MIKROBUS_PWM"/>
+    <symbolicName propertyId="p112.symbolic_name" value="ARDUINO_D9"/>
+    <symbolicName propertyId="p113.symbolic_name" value="ARDUINO_D7"/>
+    <symbolicName propertyId="p205.symbolic_name" value="ARDUINO_TX_MIKROBUS_TX"/>
+    <symbolicName propertyId="p206.symbolic_name" value="ARDUINO_RX_MIKROBUS_RX"/>
+    <symbolicName propertyId="p207.symbolic_name" value="ARDUINO_RESET_MIKROBUS_RST"/>
+    <symbolicName propertyId="p208.symbolic_name" value="PMOD1_RST"/>
+    <symbolicName propertyId="p301.symbolic_name" value="GROVE1_SCL_QWIIC_SCL"/>
+    <symbolicName propertyId="p302.symbolic_name" value="GROVE1_SDA_QWIIC_SDA"/>
+    <symbolicName propertyId="p303.symbolic_name" value="PMOD2_RST"/>
+    <symbolicName propertyId="p304.symbolic_name" value="PMOD2_IO2"/>
+    <symbolicName propertyId="p400.symbolic_name" value="PMOD2_SCK"/>
+    <symbolicName propertyId="p401.symbolic_name" value="PMOD2_TXD"/>
+    <symbolicName propertyId="p402.symbolic_name" value="PMOD2_RXD"/>
+    <symbolicName propertyId="p403.symbolic_name" value="PMOD2_CTS"/>
+    <symbolicName propertyId="p407.symbolic_name" value="ARDUINO_SDA_MIKROBUS_SDA"/>
+    <symbolicName propertyId="p408.symbolic_name" value="ARDUINO_SCL_MIKROBUS_SCL"/>
+    <symbolicName propertyId="p409.symbolic_name" value="PMOD2_INT"/>
+    <symbolicName propertyId="p410.symbolic_name" value="PMOD2_CS2"/>
+    <symbolicName propertyId="p411.symbolic_name" value="PMOD1_INT"/>
+    <symbolicName propertyId="p500.symbolic_name" value="ARDUINO_D6"/>
+    <symbolicName propertyId="p501.symbolic_name" value="GROVE2_SDA"/>
+    <symbolicName propertyId="p502.symbolic_name" value="GROVE2_SCL"/>
+    <symbolicName propertyId="p913.symbolic_name" value="USER_LED3"/>
+    <symbolicName propertyId="p914.symbolic_name" value="USER_LED2"/>
+    <symbolicName propertyId="p915.symbolic_name" value="USER_LED1"/>
+    <pincfg active="true" name="RA2E1 EK" selected="true" symbol="g_bsp_pin_cfg">
+      <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
+      <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
+      <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
+      <configSetting altId="iic0.pairing.free" configurationId="iic0.pairing"/>
+      <configSetting altId="irq0.mode.enabled" configurationId="irq0.mode"/>
+      <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
+      <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
+      <configSetting altId="p205.sci0.txd" configurationId="p205"/>
+      <configSetting altId="p205.gpio_mode.gpio_mode_peripheral" configurationId="p205.gpio_mode"/>
+      <configSetting altId="p206.sci0.rxd" configurationId="p206"/>
+      <configSetting altId="p206.gpio_mode.gpio_mode_peripheral" configurationId="p206.gpio_mode"/>
+      <configSetting altId="p207.output.low" configurationId="p207"/>
+      <configSetting altId="p207.gpio_mode.gpio_mode_out.low" configurationId="p207.gpio_mode"/>
+      <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
+      <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
+      <configSetting altId="p914.output.low" configurationId="p914"/>
+      <configSetting altId="p914.gpio_mode.gpio_mode_out.low" configurationId="p914.gpio_mode"/>
+      <configSetting altId="p915.output.low" configurationId="p915"/>
+      <configSetting altId="p915.gpio_mode.gpio_mode_out.low" configurationId="p915.gpio_mode"/>
+      <configSetting altId="sci0.mode.asynchronous.free" configurationId="sci0.mode"/>
+      <configSetting altId="sci0.rxd.p206" configurationId="sci0.rxd"/>
+      <configSetting altId="sci0.txd.p205" configurationId="sci0.txd"/>
+      <configSetting altId="spi0.pairing.free" configurationId="spi0.pairing"/>
+      <lockSetting id="sci0.rxd" lock="true"/>
+      <lockSetting id="sci0.txd" lock="true"/>
+    </pincfg>
+    <pincfg active="false" name="R7FA2E1A92DFM.pincfg" selected="false" symbol="">
+      <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
+      <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
+      <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
+      <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
+      <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
+      <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
+      <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
+    </pincfg>
+  </raPinConfiguration>
 </raConfiguration>

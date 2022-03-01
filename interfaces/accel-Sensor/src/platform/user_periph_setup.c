@@ -118,7 +118,7 @@ void periph_init(void)
     i2c_init(&i2c_cfg);
 
     // Enable the pads
-    SetBits16(SYS_CTRL_REG, PAD_LATCH_EN, 1);
+    GPIO_set_pad_latch_en(true);
 		
 	ADXL345_init(); //Initialise the ADXL345
 }

@@ -56,8 +56,8 @@ Next click on _Open_ and the Toolbox should open on the programming screen. Firs
 
 ### Hardware configuration using the Clicker 2 for STM32 and the MikroE BLE TINY click
 
-- Connect the micro USB end of the micro USB device cable to micro-AB USB Debug port (J10, DEBUG1) of the EK-RA2E1 board.
-- Put the DA14531 Clickboard in the MikroBUS slot of the. This is explained further on in this document)
+- Connect the J-Link Segger to the Clicker 2 for STM32 J-TAG header using SWD configuration
+- Put the DA14531 Clickboard in the second MikroBUS slot of the Clicker 2 for STM32 (slot 1 can be used, but changes have to be made to the code configuration. This is explained further on in this document)
 
 ![clickboard_config](assets/clickboard.png)
 

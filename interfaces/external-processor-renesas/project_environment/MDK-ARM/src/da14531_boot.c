@@ -32,11 +32,11 @@
 #include "da14531_prox_reporter_image.h"
 #endif
 
-#define ACK 		(uint8_t)(0x06)
-#define NACK		(uint8_t)(0x15)
-#define STX			(uint8_t)(0x02)
-#define SOH			(uint8_t)(0x01)
-#define HEADER_SIZE		(size_t)(3)
+#define ACK            (uint8_t)(0x06)
+#define NACK           (uint8_t)(0x15)
+#define STX            (uint8_t)(0x02)
+#define SOH            (uint8_t)(0x01)
+#define HEADER_SIZE    (size_t)(3)
 
 enum uart_boot
 {

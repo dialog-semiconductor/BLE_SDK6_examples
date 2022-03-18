@@ -11,7 +11,7 @@ Fortunately, the DA14531 can execute code from RAM that can be loaded in during 
 This way a microcontroller can load a program into the DA14531.
 
 The goal of this example is to show how to load a program into the RAM of the DA14531 via a R7FA2E1 (EK-RA2E1) microcontroller. 
-This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is the Codeless or proximity reporter depending on the user selection in **`da14531_boot_config.h`**. 
+This example shows the flow of the code and how it can be configured. The program that is booted on the DA14531 in this example is Codeless or proximity reporter depending on the user selection in **`da14531_boot_config.h`**. 
 This example does not need the SDK6, a precompiled version of theses binaries is included in the project: **`da14531_codeless_image.h`** and **`da14531_prox_reporter_image.h`**.
 The interface that is used for booting is two UART. Codeless is a solution by Dialog to interface with the DA14531 with AT commands. 
 More info on Codeless and its use can be found on [Codeless](https://www.dialog-semiconductor.com/products/smartbond-codeless-commands).

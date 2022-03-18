@@ -5,7 +5,7 @@
 ## Example description
 
 The DA14531 has an integrated ARM Cortex M0+ and can be used for programming and controlling the SoC. 
-Due to the small form factor the ARM Cortex has its limitations. A solution for the limitations of the integrated microprocessor can be to use an external microprocessor. 
+Due to the small form factor, the ARM Cortex has its limitations. A solution for the limitations of the integrated microprocessor can be to use an external microprocessor. 
 To control the DA14531 with this microprocessor some code is still needed on the DA14531. 
 Fortunately, the DA14531 can execute code from RAM that can be loaded in during its boot sequence. 
 This way a microcontroller can load a program into the DA14531.

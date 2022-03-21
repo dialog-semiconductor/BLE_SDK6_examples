@@ -143,7 +143,7 @@ For booting from 2-wire UART when using the [DA14531] module would require the *
 **Program Custom image:**
 
 If you want to program your own image you have to convert the hex file to a comma separated format in an array similar `da14531_codeless_image.h`, for this you can run the **hex2array**
-available under assets/ folder as below:
+available in this [gitHub repo](https://github.com/meriororen/hex2array).
 
 ![Hextoarray](assets/hextoarray.jpg)
 

@@ -1,7 +1,6 @@
-﻿
+﻿------
 # DA14585/DA14586 and DA14531 Multiple button press wake up callback
-
----
+------
 
 
 ## Example description
@@ -60,7 +59,7 @@ The example is running from SRAM. To run the program from flash please visit cha
 
 	- This example requires:
 	* (optional) SmartSnippets Toolbox v5.0.10
-    * [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest)
+    * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest)
 	* Keil5
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
@@ -177,15 +176,20 @@ Configure the callback function:
 
 ## Troubleshooting
 - Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
-
 - Try a different USB1 cable.
-
 - Try different jumper wires, if used.
-
 - If SmartSnippets toolbox is used, is the jumper connected to P1_3 on J8 removed?
-
 - If none of the above steps help, please check the user manual according to your development kit. 
-	- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+	- [here](https://www.dialog-semiconductor.com/um-114-da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
 	- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
+## Known Limitations
 
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

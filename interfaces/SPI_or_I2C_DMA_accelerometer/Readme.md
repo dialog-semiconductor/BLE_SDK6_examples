@@ -1,6 +1,6 @@
-﻿# SPI or I2C reading with DMA
-
----
+﻿-------
+# SPI or I2C reading with DMA
+--------
 
 
 ## Example description
@@ -14,8 +14,7 @@ This example demonstrates how to use SPI or I2C to interface with the LIS2DH acc
 
 This example runs on the Dialog DA14531 and DA14530 BLE Smart SoC (System on Chip) devices and uses the [steval-mki135v1 LIS2DH accelerometer board](https://www.st.com/en/evaluation-tools/steval-mki135v1.html).
 
-
-The user manuals for the DA145xxDEVKT-P PRO-Motherboard can be found [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro).
+The user manuals for the DA145xxDEVKT-P PRO-Motherboard can be found [here](https://www.dialog-semiconductor.com/um-114-da14531-development-kit-pro).
 
 
 * __Hardware configuration DA1453x using DA145xxDEVKT-P PRO-Motherboard__
@@ -63,6 +62,16 @@ Afterwards, the following will be printed every time the FIFO is read out.
 
 ## Troubleshooting
 - Please check that the steps according to your daughter board (DA14531) and mother board (basic development kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
-- If there are problems with SmartSnippets Toolbox the user manual can be found [here](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html)
-- If none of the above points help, please check the user manual according to your daughter board and mother board. User manual can be found [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard and [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
+- If there are problems with SmartSnippets Toolbox the user manual can be found [here](http://lpccs-docs.dialog-semiconductor.com/UM-B-083/index.html)
+- If none of the above points help, please check the user manual according to your daughter board and mother board. User manual can be found [here](https://www.dialog-semiconductor.com/um-114-da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard and [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
+## Known Limitations
+
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).

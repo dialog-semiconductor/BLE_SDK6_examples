@@ -1,6 +1,6 @@
-
+--------------
 # DA14585/586 interface with mCube Accelerometer over I2C
-
+--------------
 
 ## Example description
 
@@ -73,13 +73,17 @@ To compile and run this program, user can follow the steps below.
 
 - Please refer to the document from the link below to set up this software example on your machine.
 
- [How to setup software Example](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da1458x-example-setup.pdf)
+ [How to setup software Example](https://github.com/dialog-semiconductor/BLE_SDK6_examples/blob/main/Readme.md)
 
 ## Known Limitations
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf).
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software).
-- You can also refer to the Troubleshooting section in the DA1585x Getting Started Guide with the Development Kit [UM-B-049](https://www.dialog-semiconductor.com/sites/default/files/um-b-049_da14585da14586_getting_started_guide_v2.1_0.pdf).
+- There are No known limitations for this example. But you can check and refer to: 
+
+	- [SDK6 Known Limitations](http://lpccs-docs.dialog-semiconductor.com/sdk6_kll/index.html).
+	- [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+	- [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+	- [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
+	- [DA14585/DA14586 Getting Started with the Development Kit UM-B-049](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
+	- [Dialog BLE Support Forum](https://www.dialog-semiconductor.com/BLE_Support).
 
 

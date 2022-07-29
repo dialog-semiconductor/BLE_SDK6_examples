@@ -83,7 +83,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 ## Known Limitations
 
-- Refer to the following application note for [DA1458x known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf  "known hardware limitations"). THIS LINK IS BROKEN
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum). THIS LINK IS BROKEN
+- Refer to the following application note for [DA1458x known hardware limitations](https://www.renesas.com/us/en/document/oth/da1458x-hardware-known-limitations  "known hardware limitations").
+- Refer to the following application note for [DA14531 known hardware limitations](https://www.renesas.com/us/en/document/dve/da14531-errata-datasheet  "known hardware limitations"). 
+- Renesas [Forum link](https://renesasrulz.com/wireles-connectivity/f/bluetooth-low-energy).
 

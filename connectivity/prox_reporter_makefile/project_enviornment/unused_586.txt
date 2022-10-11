@@ -1,0 +1,288 @@
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Tue Sep 14 17:08:09 2021
+;VERSION 0.2
+;FILE adc_58x.o
+adc_disable <= USED 0
+adc_register_interrupt <= USED 0
+adc_reset <= USED 0
+adc_unregister_interrupt <= USED 0
+;FILE app.o
+active_conhdl_to_conidx <= USED 0
+active_conidx_to_conhdl <= USED 0
+app_easy_gap_dev_config_get_active <= USED 0
+app_easy_gap_directed_advertise_get_active <= USED 0
+app_easy_gap_directed_advertise_start <= USED 0
+app_easy_gap_get_peer_features <= USED 0
+app_easy_gap_non_connectable_advertise_get_active <= USED 0
+app_easy_gap_non_connectable_advertise_start <= USED 0
+app_easy_gap_param_update_get_active <= USED 0
+app_easy_gap_param_update_start <= USED 0
+app_easy_gap_set_data_packet_length <= USED 0
+app_easy_gap_start_connection_to <= USED 0
+app_easy_gap_start_connection_to_get_active <= USED 0
+app_easy_gap_start_connection_to_set <= USED 0
+app_easy_gap_undirected_advertise_get_active <= USED 0
+app_easy_gap_update_adv_data <= USED 0
+app_gattc_svc_changed_cmd_send <= USED 0
+app_set_prf_srv_perm <= USED 0
+;FILE app_bass.o
+app_batt_alert_stop <= USED 0
+;FILE app_bass_task.o
+;FILE app_bond_db.o
+default_app_bdb_add_entry <= USED 0
+default_app_bdb_get_device_info_from_slot <= USED 0
+default_app_bdb_get_number_of_stored_irks <= USED 0
+default_app_bdb_get_size <= USED 0
+default_app_bdb_get_stored_irks <= USED 0
+default_app_bdb_init <= USED 0
+default_app_bdb_remove_entry <= USED 0
+default_app_bdb_search_entry <= USED 0
+;FILE app_default_handlers.o
+default_app_generate_static_random_addr <= USED 0
+default_app_generate_unique_static_random_addr <= USED 0
+default_app_on_addr_resolve_failed <= USED 0
+default_app_on_addr_solved_ind <= USED 0
+default_app_on_csrk_exch <= USED 0
+default_app_on_encrypt_req_ind <= USED 0
+default_app_on_pairing_succeeded <= USED 0
+default_app_on_ral_cmp_evt <= USED 0
+;FILE app_diss.o
+;FILE app_diss_task.o
+;FILE app_easy_msg_utils.o
+app_easy_msg_free_callback <= USED 0
+app_easy_wakeup_free <= USED 0
+;FILE app_easy_security.o
+app_easy_security_accept_encryption <= USED 0
+app_easy_security_bdb_add_entry <= USED 0
+app_easy_security_bdb_get_device_info_from_slot <= USED 0
+app_easy_security_bdb_get_number_of_stored_irks <= USED 0
+app_easy_security_bdb_get_size <= USED 0
+app_easy_security_bdb_get_stored_irks <= USED 0
+app_easy_security_bdb_init <= USED 0
+app_easy_security_bdb_remove_entry <= USED 0
+app_easy_security_bdb_search_entry <= USED 0
+app_easy_security_csrk_exch <= USED 0
+app_easy_security_csrk_get_active <= USED 0
+app_easy_security_encrypt_cfm <= USED 0
+app_easy_security_encrypt_cfm_get_active <= USED 0
+app_easy_security_ltk_exch_get_active <= USED 0
+app_easy_security_pairing_rsp_get_active <= USED 0
+app_easy_security_ral_op <= USED 0
+app_easy_security_ral_sync_with_bdb <= USED 0
+app_easy_security_reject_encryption <= USED 0
+app_easy_security_request <= USED 0
+app_easy_security_request_get_active <= USED 0
+app_easy_security_resolve_bdaddr <= USED 0
+app_easy_security_set_encrypt_req_invalid <= USED 0
+app_easy_security_set_encrypt_req_valid <= USED 0
+app_easy_security_set_ltk_exch <= USED 0
+app_easy_security_tk_get_active <= USED 0
+;FILE app_easy_timer.o
+app_easy_timer_cancel_all <= USED 0
+app_easy_timer_modify <= USED 0
+;FILE app_easy_whitelist.o
+app_easy_manage_wlist <= USED 0
+;FILE app_entry_point.o
+;FILE app_msg_utils.o
+app_msg_send_wakeup_ble <= USED 0
+;FILE app_proxr.o
+;FILE app_proxr_task.o
+;FILE app_security.o
+app_sec_gen_csrk <= USED 0
+app_sec_gen_tk <= USED 0
+;FILE app_security_task.o
+;FILE app_suotar.o
+;FILE app_suotar_task.o
+;FILE app_task.o
+;FILE app_utils.o
+app_get_address_type <= USED 0
+;FILE arch_main.o
+;FILE arch_rom.o
+;FILE arch_sleep.o
+arch_force_active_mode <= USED 0
+arch_get_sleep_mode <= USED 0
+arch_last_rwble_evt_get <= USED 0
+arch_restore_sleep_mode <= USED 0
+arch_set_deep_sleep <= USED 0
+;FILE arch_system.o
+__ARM_common_ll_muluu <= USED 0
+arch_set_pxact_gpio <= USED 0
+arch_wkupct_tweak_deb_time <= USED 0
+calibrate_rcx20 <= USED 0
+lld_sleep_lpcycles_2_us_rcx_func <= USED 0
+lld_sleep_us_2_lpcycles_rcx_func <= USED 0
+read_rcx_freq <= USED 0
+;FILE bass.o
+;FILE battery.o
+;FILE diss.o
+;FILE gpio.o
+GPIO_ConfigurePinPower <= USED 0
+GPIO_DisablePorPin <= USED 0
+GPIO_EnableIRQ <= USED 0
+GPIO_EnablePorPin <= USED 0
+GPIO_GetIRQInputLevel <= USED 0
+GPIO_GetPinFunction <= USED 0
+GPIO_GetPorTime <= USED 0
+GPIO_RegisterCallback <= USED 0
+GPIO_SetIRQInputLevel <= USED 0
+GPIO_SetPorTime <= USED 0
+GPIO_is_valid <= USED 0
+;FILE hardfault_handler.o
+;FILE hash.o
+hash <= USED 0
+;FILE hw_otpc_58x.o
+hw_otpc_blank <= USED 0
+hw_otpc_cancel_prepare <= USED 0
+hw_otpc_dma_prog <= USED 0
+hw_otpc_dma_read <= USED 0
+hw_otpc_fifo_prog <= USED 0
+hw_otpc_fifo_read <= USED 0
+hw_otpc_manual_prog <= USED 0
+hw_otpc_manual_read_off <= USED 0
+hw_otpc_manual_word_prog <= USED 0
+hw_otpc_num_of_rr <= USED 0
+hw_otpc_power_save <= USED 0
+hw_otpc_prepare <= USED 0
+hw_otpc_set_speed <= USED 0
+hw_otpc_tdec <= USED 0
+hw_otpc_twr <= USED 0
+hw_otpc_write_rr <= USED 0
+;FILE i2c.o
+i2c_init <= USED 0
+i2c_master_receive_buffer_async <= USED 0
+i2c_master_receive_buffer_sync <= USED 0
+i2c_master_transmit_buffer_async <= USED 0
+i2c_master_transmit_buffer_sync <= USED 0
+i2c_register_int <= USED 0
+i2c_release <= USED 0
+i2c_setup_master <= USED 0
+i2c_setup_slave <= USED 0
+i2c_slave_receive_buffer_async <= USED 0
+i2c_slave_receive_buffer_sync <= USED 0
+i2c_slave_transmit_buffer_async <= USED 0
+i2c_slave_transmit_buffer_sync <= USED 0
+i2c_unregister_int <= USED 0
+;FILE i2c_eeprom.o
+i2c_eeprom_configure <= USED 0
+i2c_eeprom_get_configuration <= USED 0
+i2c_eeprom_initialize <= USED 0
+i2c_eeprom_read_byte <= USED 0
+i2c_eeprom_read_data <= USED 0
+i2c_eeprom_release <= USED 0
+i2c_eeprom_update_slave_address <= USED 0
+i2c_eeprom_write_byte <= USED 0
+i2c_eeprom_write_data <= USED 0
+i2c_eeprom_write_page <= USED 0
+i2c_wait_until_eeprom_ready <= USED 0
+;FILE jump_table.o
+dummyf <= USED 0
+;FILE nmi_handler.o
+;FILE nvds.o
+;FILE otp_hdr.o
+;FILE patch.o
+;FILE pll_vcocal_lut.o
+GPADC_init <= USED 0
+MedianOfFive <= USED 0
+check_pll_lock <= USED 0
+clear_HW_LUT <= USED 0
+find_initial_calcap_ranges <= USED 0
+meas_precharge_freq <= USED 0
+min <= USED 0
+pll_vcocal_LUT_InitUpdate <= USED 0
+save_configure_restore <= USED 0
+set_rf_cal_cap <= USED 0
+update_LUT <= USED 0
+update_calcap_max_channel <= USED 0
+update_calcap_min_channel <= USED 0
+update_calcap_ranges <= USED 0
+write_HW_LUT <= USED 0
+write_one_SW_LUT_entry <= USED 0
+;FILE prf.o
+prf_reset_func <= USED 0
+;FILE prf_utils.o
+prf_pack_date_time <= USED 0
+prf_unpack_date_time <= USED 0
+;FILE proxr.o
+;FILE rf_585.o
+rf_nfm_disable <= USED 0
+rf_nfm_enable <= USED 0
+rf_nfm_is_enabled <= USED 0
+;FILE rf_calibration.o
+DCoffsetCalibration_580 <= USED 0
+IffCalibration_580 <= USED 0
+enable_rf_diag_irq <= USED 0
+rf_calibration_580 <= USED 0
+set_gauss_modgain <= USED 0
+;FILE rwble.o
+;FILE rwip.o
+;FILE smpc_util.o
+JT_llm_p256_start_func <= USED 0
+;FILE spi_58x.o
+spi_receive <= USED 0
+spi_send <= USED 0
+spi_set_cp_mode <= USED 0
+spi_set_irq_mode <= USED 0
+spi_set_speed <= USED 0
+spi_transfer <= USED 0
+;FILE spi_flash.o
+spi_flash_chip_erase <= USED 0
+spi_flash_chip_erase_forced <= USED 0
+spi_flash_disable_power_pin <= USED 0
+spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
+spi_flash_enable_with_autodetect <= USED 0
+spi_flash_erase_fail <= USED 0
+spi_flash_fill <= USED 0
+spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
+spi_flash_is_empty <= USED 0
+spi_flash_is_page_empty <= USED 0
+spi_flash_is_sector_empty <= USED 0
+spi_flash_page_erase <= USED 0
+spi_flash_page_fill <= USED 0
+spi_flash_page_program_buffer <= USED 0
+spi_flash_program_fail <= USED 0
+spi_flash_read_config_reg <= USED 0
+spi_flash_read_data_buffer <= USED 0
+spi_flash_read_rems_id <= USED 0
+spi_flash_read_security_reg <= USED 0
+spi_flash_read_unique_id <= USED 0
+spi_flash_set_power_mode <= USED 0
+spi_flash_set_write_disable <= USED 0
+spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
+spi_flash_write_data_buffer <= USED 0
+spi_flash_write_enable_volatile <= USED 0
+spi_flash_write_status_config_reg <= USED 0
+;FILE startup_da14585_586.o
+;FILE suotar.o
+;FILE syscntl.o
+syscntl_set_dcdc_vbat3v_level <= USED 0
+;FILE system_da14585_586.o
+SystemCoreClockUpdate <= USED 0
+;FILE trng.o
+;FILE uart.o
+uart_baudrate_setf <= USED 0
+uart_disable <= USED 0
+uart_disable_flow_control <= USED 0
+uart_enable <= USED 0
+uart_enable_flow_control <= USED 0
+uart_initialize <= USED 0
+uart_read_buffer <= USED 0
+uart_read_byte <= USED 0
+uart_receive <= USED 0
+uart_register_err_cb <= USED 0
+uart_register_rx_cb <= USED 0
+uart_register_tx_cb <= USED 0
+uart_send <= USED 0
+uart_wait_tx_finish <= USED 0
+uart_write_buffer <= USED 0
+uart_write_byte <= USED 0
+;FILE user_periph_setup.o
+;FILE user_proxr.o
+;FILE wkupct_quadec.o
+quad_decoder_disable_irq <= USED 0
+quad_decoder_enable_irq <= USED 0
+quad_decoder_init <= USED 0
+quad_decoder_register_callback <= USED 0
+quad_decoder_release <= USED 0
+wkupct_disable_irq <= USED 0

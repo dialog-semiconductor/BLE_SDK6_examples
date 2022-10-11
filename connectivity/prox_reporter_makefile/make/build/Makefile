@@ -270,7 +270,7 @@ VIRTUAL_SDK_APP_SRCS += $(SDK_APP_SORTED_BY_FILE_NAME)
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
 # Go through all the files and subdirectories in APP_SOURCE_DIR and pull in all c source files.
-APP_SRCS := $(call rwildcard,$(APP_SOURCE_DIR),*.c)
+APP_SRCS := $(strip $(call rwildcard,$(APP_SOURCE_DIR),*.c))
 
 SDK_SRCS := \
 $(VIRTUAL_SDK_PROFILE_SRCS) \
@@ -283,10 +283,10 @@ $(VIRTUAL_SDK_APP_SRCS)
 # Combine all source files
 ifeq (da14531, $(BUILD_CONFIG))
 # Get all the source files and remove 585/586 related files
-PROJECT_SRCS := $(filter-out %586.S %586.c %585.c %58x.c, $(strip $(APP_SRCS) $(SDK_SRCS))) 
+PROJECT_SRCS := $(filter-out %586.S %586.c %585.c %58x.c, $(strip $(SDK_SRCS))) 
 else
 # Get all the source files and remove 531 related files
-PROJECT_SRCS := $(filter-out %531.S %531.c, $(strip $(APP_SRCS) $(SDK_SRCS))) 
+PROJECT_SRCS := $(filter-out %531.S %531.c, $(strip  $(SDK_SRCS))) 
 endif
 
 ##################################################################
@@ -385,10 +385,13 @@ endef
 
 
 s_template=$(eval $(call S_UPPER_DEPENDENCY_template,$(1),$(subst $(SOURCEROOT)/,$(BUILD_OUTPUT_DIR)/,$(patsubst %.S,%.o,$(1)))))
-c_template=$(eval $(call C_DEPENDENCY_template,$(1),$(subst $(SOURCEROOT)/,$(BUILD_OUTPUT_DIR)/,$(patsubst %.c,%.o,$(1)))))
-# PROJECT_SRCS contains both .c and .S files. Having a list with both .c and .S files allows us to build and link in the same order as the Eclipse project and produce an identical binary. 
+c_sdk_template=$(eval $(call C_DEPENDENCY_template,$(1),$(subst $(SOURCEROOT)/,$(BUILD_OUTPUT_DIR)/,$(patsubst %.c,%.o,$(1))))) 
+c_user_src_template=$(eval $(call C_DEPENDENCY_template,$(1),$(subst $(APP_SOURCE_DIR),$(BUILD_OUTPUT_DIR)/user/,$(patsubst %.c,%.o,$(1))))) 
+
 # For each .c and .S file we run the appropriate dependency template above
-$(foreach src, $(PROJECT_SRCS), $(if $(strip $(filter %.S,$(src)) ),$(call s_template,$(src)),$(call c_template,$(src))))
+$(foreach src, $(APP_SRCS),$(call c_user_src_template,$(src)))
+# PROJECT_SRCS contains both .c and .S files. Having a list with both .c and .S files allows us to build and link in the same order as the Eclipse project and produce an identical binary. 
+$(foreach src, $(PROJECT_SRCS), $(if $(strip $(filter %.S,$(src)) ),$(call s_template,$(src)),$(call c_sdk_template,$(src))))
 
 
 ################################################################################

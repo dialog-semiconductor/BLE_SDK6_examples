@@ -14,8 +14,8 @@ file has been modified.
 - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
 - The [GNU Toolcahin for ARM](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain) should be downloaded. Note this requirement can be met by installing Smart Snippets Stuido, an Eclipse based IDE.
 The [DA1469x Getting Started Guide](http://lpccs-docs.renesas.com/um-b-090-da1469x_getting_started/Software_Development_Tools/Software_Development_Tools.html#smartsnippets-tm-studio-installation-and-starting)
-will walk you throuhg the Smart Snippets Studio Installation process.  
-- On Windows a Unix termial, such as [cygwin](https://www.cygwin.com/), should be downloaded.
+will walk you through the Smart Snippets Studio installation process.  
+- On Windows a Unix terminal, such as [cygwin](https://www.cygwin.com/), should be downloaded.
 
 
 ## How to run the example
@@ -80,7 +80,7 @@ Please note if your build requires redefining the SOURCEROOT and APP_SOURCE_DIR 
 make clean BUILD_CONFIG=da14531 SOURCEROOT=<path_to_sdk>/6.0.16.1144 APP_SOURCE_DIR=<path_to_examples_directory>/BLE_SDK6_examples/connectivity/prox_reporter_makefile/src
 ```
 
-If no BUILD_CONFIG is specified when calling clean, all build configurations output will be cleaned. 
+If no BUILD_CONFIG is specified when calling clean, all build configurations outputs will be cleaned. 
 
 ### Verify
 

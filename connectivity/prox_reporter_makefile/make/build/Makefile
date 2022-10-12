@@ -3,7 +3,7 @@ default: all
 
 -include makefile.init
 
-SOURCEROOT ?= ../../../../..
+SOURCEROOT ?= ../../../../../..
 SDKROOT := $(SOURCEROOT)/sdk
 APP_SOURCE_DIR ?= $(SOURCEROOT)/projects/target_apps/ble_examples/prox_reporter_makefile/src 
 CONFIG_SOURCE_DIR ?= $(addsuffix /config, $(APP_SOURCE_DIR))

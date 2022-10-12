@@ -32,9 +32,10 @@ Example Directory Structure:
 │   └───target_apps
 │        └───ble_examples
 │            └───prox_reporter_makefile
-│                └───makefile.targets
-│                └───build
-│                      └───makefile
+│                └───make
+│                    └───makefile.targets
+│                    └───build
+│                        └───makefile
 │
 ```
 

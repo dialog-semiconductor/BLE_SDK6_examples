@@ -12,7 +12,7 @@ file has been modified.
 ## Software configuration
 
 - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
-- The [GNU Toolcahin for ARM](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain) should be downloaded. Note this requirement can be met by installing Smart Snippets Stuido.
+- The [GNU Toolcahin for ARM](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain) should be downloaded. Note this requirement can be met by installing Smart Snippets Stuido, an Eclipse based IDE.
 The [DA1469x Getting Started Guide](http://lpccs-docs.renesas.com/um-b-090-da1469x_getting_started/Software_Development_Tools/Software_Development_Tools.html#smartsnippets-tm-studio-installation-and-starting)
 will walk you throuhg the Smart Snippets Studio Installation process.  
 - On Windows a Unix termial, such as [cygwin](https://www.cygwin.com/), should be downloaded.
@@ -22,7 +22,7 @@ will walk you throuhg the Smart Snippets Studio Installation process.
 
 ### Compile
 
-By default the makefile is configured run from a particular location within the SDK project structure as depecited below.  
+By default the makefile is configured run from a particular location within the SDK directory structure as depecited below.  
 
 Example Directory Structure:
 
@@ -39,9 +39,9 @@ Example Directory Structure:
 ```
 
 This project can either be moved to the appropriate position within the SDK directory structure, or the user can provide the appropriate paths to the SOURCEROOT and APP_SOURCE_DIR variables when calling make.
-The SOURCEROOT is the path to the top level directory of the SDK (e.g. 6.0.16.1144). APP_SOURCE_DIR in the path to the top level project source files (e.g. <path on your machine>/prox_reporter_makefile/src).
+SOURCEROOT is the path to the top level directory of the SDK (e.g. 6.0.16.1144). APP_SOURCE_DIR in the path to the top level project source files (e.g. <path on your machine>/prox_reporter_makefile/src).
 
-A separate build configuration is available for each of the three supported processors (DA14531, DA14585, DA14586). A user MUST specify a build configuration by setting the BUILD_CONFIG variable 
+A separate build configuration is available for each of the three supported processors (DA14531, DA14585, DA14586). A user MUST specify a build configuration by setting the BUILD_CONFIG variable when calling make. 
 in order to run the default target.
 
 Example call to build the DA14531 build configuration:
@@ -60,7 +60,7 @@ A separate output directory is created for each of the 3 build configurations:
 
 ![Build_Output_Dirs](assets/build_output_dirs.png)
 
-The top level output directory contains the primary build artifacts including the .map, .elf, .bin, and .hex files. The user may optionally change the names of these artifacts by specifying the the BUILD_ARTIFACT_NAME when building.
+For each build configuration, the top level output directory contains the primary build artifacts including the .map, .elf, .bin, and .hex files. The user may optionally change the names of these artifacts by specifying the the BUILD_ARTIFACT_NAME when building.
 The sdk, third_party, and user directories contain the .o and .d outputs for each file built.
 
 ![DA14531_Output_Top](assets/da14531_output_top.png)

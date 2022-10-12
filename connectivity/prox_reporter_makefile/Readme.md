@@ -41,7 +41,7 @@ Example Directory Structure:
 This project can either be moved to the appropriate position within the SDK directory structure, or the user can provide the appropriate paths to the SOURCEROOT and APP_SOURCE_DIR variables when calling make.
 SOURCEROOT is the path to the top level directory of the SDK (e.g. 6.0.16.1144). APP_SOURCE_DIR in the path to the top level project source files (e.g. <path on your machine>/prox_reporter_makefile/src).
 
-A separate build configuration is available for each of the three supported processors (DA14531, DA14585, DA14586). A user MUST specify a build configuration by setting the BUILD_CONFIG variable when calling make. 
+A separate build configuration is available for each of the three supported processors (DA14531, DA14585, DA14586). A user MUST specify a build configuration by setting the BUILD_CONFIG variable when calling make 
 in order to run the default target.
 
 Example call to build the DA14531 build configuration:

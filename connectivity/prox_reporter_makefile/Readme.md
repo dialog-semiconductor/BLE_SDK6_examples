@@ -56,6 +56,8 @@ Example call to build DA14531 build configuration with different SOURCEROOT and 
 make BUILD_CONFIG=da14531 SOURCEROOT=<path_to_sdk>/6.0.16.1144 APP_SOURCE_DIR=<path_to_examples_directory>/BLE_SDK6_examples/connectivity/prox_reporter_makefile/src
 ```
 
+Please note on Windows paths default to using a backslash (`\`) but the paths above should use a forward slash (`/`).
+
 A separate output directory is created for each of the 3 build configurations: 
 
 ![build_output_dirs](assets/build_output_dirs.PNG)

@@ -58,12 +58,12 @@ make BUILD_CONFIG=da14531 SOURCEROOT=<path_to_sdk>/6.0.16.1144 APP_SOURCE_DIR=<p
 
 A separate output directory is created for each of the 3 build configurations: 
 
-![Build_Output_Dirs](assets/build_output_dirs.png)
+![build_output_dirs](assets/build_output_dirs.PNG)
 
 For each build configuration, the top level output directory contains the primary build artifacts including the .map, .elf, .bin, and .hex files. The user may optionally change the names of these artifacts by specifying the the BUILD_ARTIFACT_NAME when building.
 The sdk, third_party, and user directories contain the .o and .d outputs for each file built.
 
-![DA14531_Output_Top](assets/da14531_output_top.png)
+![da14531_output_top](assets/da14531_output_top.PNG)
 
 To clean you have two options. To clean a specific build configuration output (e.g. DA14531) you must specify the BUILD_CONFIG when calling clean:
 
@@ -83,4 +83,4 @@ If no BUILD_CONFIG is specified when calling clean, all build configurations out
 
 A diff tool, such as [WinMerge](https://winmerge.org/?lang=en) on Windows, can be used to compare the makefile generated .hex to that produced by the prox_reporter Eclipse project to verifiy they are identical. 
 
-![winmerge](assets/winmerge.png)
+![winmerge](assets/winmerge.PNG)

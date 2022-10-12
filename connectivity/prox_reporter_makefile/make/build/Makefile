@@ -48,7 +48,7 @@ C_DEPS :=
 ################################################################################
 
 # Header include directories
-# This order to match eclipse 
+# This order used to match eclipse 
 C_INCLUDE_DIRS := \
 $(SDKROOT)/app_modules/api \
 $(SDKROOT)/platform/include/CMSIS/5.6.0/Include \
@@ -381,9 +381,10 @@ OBJS += $(2)
 C_DEPS += $(patsubst %.o,%.d,$(2))
 endef
 
+# Convienent mechanisms to call above dependency templates
 s_template=$(eval $(call S_UPPER_DEPENDENCY_template,$(1),$(subst $(SOURCEROOT)/,$(BUILD_OUTPUT_DIR)/,$(patsubst %.S,%.o,$(1)))))
 c_sdk_template=$(eval $(call C_DEPENDENCY_template,$(1),$(subst $(SOURCEROOT)/,$(BUILD_OUTPUT_DIR)/,$(patsubst %.c,%.o,$(1))))) 
-# This is used to specify a different output folder for artifacts from building user sources
+# This is used to specify a different output folder for artifacts produced from building user sources
 c_user_src_template=$(eval $(call C_DEPENDENCY_template,$(1),$(subst $(APP_SOURCE_DIR),$(BUILD_OUTPUT_DIR)/user/,$(patsubst %.c,%.o,$(1))))) 
 
 # Build app sources

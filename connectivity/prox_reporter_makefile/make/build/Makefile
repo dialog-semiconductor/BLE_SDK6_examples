@@ -385,7 +385,7 @@ endef
 s_template=$(eval $(call S_UPPER_DEPENDENCY_template,$(1),$(subst $(SOURCEROOT)/,$(BUILD_OUTPUT_DIR)/,$(patsubst %.S,%.o,$(1)))))
 c_sdk_template=$(eval $(call C_DEPENDENCY_template,$(1),$(subst $(SOURCEROOT)/,$(BUILD_OUTPUT_DIR)/,$(patsubst %.c,%.o,$(1))))) 
 # This is used to specify a different output folder for artifacts produced from building user sources
-c_user_src_template=$(eval $(call C_DEPENDENCY_template,$(1),$(subst $(APP_SOURCE_DIR),$(BUILD_OUTPUT_DIR)/user/,$(patsubst %.c,%.o,$(1))))) 
+c_user_src_template=$(eval $(call C_DEPENDENCY_template,$(1),$(subst $(addsuffix /, $(APP_SOURCE_DIR)),$(BUILD_OUTPUT_DIR)/user/,$(patsubst %.c,%.o,$(1))))) 
 
 # Build app sources
 $(foreach src, $(APP_SRCS),$(call c_user_src_template,$(src)))

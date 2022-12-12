@@ -15,7 +15,7 @@ The project is split in two parts: The Master Board and the Slave Board.
 - This example runs on the DA14531 Bluetooth Smart SoC devices.
 - Two DA145xx Pro Development Kit are needed for this example. One will act as Master, the other as slave.
 - You need to make the following interconnections between the two DA145xx Pro Development Kit.
-  The interconnections between the two A145xx Pro Development Kit is giving in the `user_periph_setup.h` file, On your setup, the SPI signals (CLK, MOSI, MISO, SC) need to have a 1kOhm resistor each in series and the SPI CLK must be in a twisted-pair configuration with the GND.
+  The interconnections between the two DA145xx Pro Development Kit is giving in the `user_periph_setup.h` file, On your setup, the SPI signals (CLK, MOSI, MISO, SC) need to have a 1kOhm resistor each in series and the SPI CLK must be in a twisted-pair configuration with the GND.
 - Also, on each board you must connect P05 (P25 on the J2 DA14531 Signals) to UTX pin 17 on J1 (J5.12) in order to have UART console logging.
 
 ![SPI-Master-Slave-Connections](assets/SPI-Master-Slave-Connection.jpg)

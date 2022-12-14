@@ -50,7 +50,6 @@ int main (void)
     /* System initialization */
 	  system_init();
 	  spi_demo();
-    while(1);
 }
 
 /**
@@ -101,9 +100,6 @@ static void spi_demo(void)
     printf_string(UART, "\n\r*******************\n\r");   
     
     spi_register_transfer_cb(spi_transfer_user_callback);
-    
-    memchr(spi_demo_in_buffer,'*',SPI_DEMO_MESSAGES_LENGTH);
-    
     
 	  /* Start sending Data*/
 	  spi_transfer(spi_demo_out_buffer, spi_demo_in_buffer, SPI_DEMO_MESSAGES_LENGTH, SPI_OP_DMA);

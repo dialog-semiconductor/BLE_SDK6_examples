@@ -1,8 +1,8 @@
 ﻿# Smartbond SDK6 Application Examples
 
-This is the repository storing example for the [DA145xx family](https://www.dialog-semiconductor.com/products/bluetooth-low-energy/da14530-and-da14531).
+This is the repository storing example for the [DA145xx family](https://www.renesas.com/eu/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-smartbond-ultra-low-power-bluetooth-51-system-chip).
 
-For information about the DA145xx platform and how to bring up your development kit, please refer to the [Getting started User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
+For information about the DA145xx platform and how to bring up your development kit, please refer to the [Getting started User Manual](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
 
 ## Examples Overview
 

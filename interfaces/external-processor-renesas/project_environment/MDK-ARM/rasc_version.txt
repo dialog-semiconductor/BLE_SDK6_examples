@@ -1,0 +1,3 @@
+# RASC version and installation file
+3.5.0
+D:\My_Programmers_Files\Renesas_rasc\eclipse\rasc.exe

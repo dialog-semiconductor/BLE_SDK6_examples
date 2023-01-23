@@ -213,7 +213,9 @@ DLG_DEFAULT_INCLUDE_PATHS =  ".\\..\\..\\..\\..\\..\\sdk\\app_modules\\api;.\\..
                                   "\\sdk\\common_project_files\\scatterfiles\\; .\\..\\src\\user_app; .\\..\\src\\user_config;" \
                                   ".\\..\\src\\user_drivers; .\\..\\src\\platform; .\\..\\..\\..\\..\\..\\sdk\\platform\\" \
                                   "driver\\wifi; .\\..\\src\\user_platform; .\\..\\src\\user_drivers\\bmi270; .\\..\\src" \
-                                  "\\modules_lib\\app\\wkup_keys; .\\..\\src\\modules_lib\\port;"
+                                  "\\modules_lib\\app\\wkup_keys; .\\..\\src\\modules_lib\\port; .\\..\\src\\user_drivers\\" \
+                                  "platform\\bus;..\\src\\user_drivers\\platform\\console;..\\src\\user_drivers\\sensor\\accel" \
+                                  "\\mc36xx;..\\src\\user_drivers\\sensor\\accel"
 
 SCATTER_FILE_NAME = ["DA14585_586.sct", "DA14531.sct"]
 SCATTER_FILE_PATH = [('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[0]),

@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu Jun 17 15:12:10 2021
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Jan 23 23:57:32 2023
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -34,6 +34,10 @@ default_app_bdb_get_stored_irks <= USED 0
 default_app_bdb_init <= USED 0
 default_app_bdb_remove_entry <= USED 0
 default_app_bdb_search_entry <= USED 0
+;FILE app_ctss.o
+app_ctss_notify_current_time <= USED 0
+app_ctss_set_local_time_info <= USED 0
+;FILE app_ctss_task.o
 ;FILE app_customs.o
 app_custs1_init <= USED 0
 ;FILE app_customs_common.o
@@ -53,7 +57,11 @@ default_app_on_ral_cmp_evt <= USED 0
 ;FILE app_diss_task.o
 ;FILE app_easy_msg_utils.o
 app_easy_msg_free_callback <= USED 0
+app_easy_msg_modify <= USED 0
+app_easy_msg_set <= USED 0
+app_easy_wakeup <= USED 0
 app_easy_wakeup_free <= USED 0
+app_easy_wakeup_set <= USED 0
 ;FILE app_easy_security.o
 app_easy_security_accept_encryption <= USED 0
 app_easy_security_bdb_add_entry <= USED 0
@@ -107,6 +115,7 @@ check_sys_startup_period <= USED 0
 battery_get_lvl <= USED 0
 battery_get_voltage <= USED 0
 ;FILE ble_arp.o
+;FILE ctss.o
 ;FILE gpio.o
 GPIO_ConfigurePinPower <= USED 0
 GPIO_DisablePorPin <= USED 0
@@ -175,8 +184,6 @@ otp_cs_get_low_power_clock <= USED 0
 ;FILE rf_531.o
 dcoff_calibration <= USED 0
 dis_kdco_cal <= USED 0
-en_hclk <= USED 0
-en_kdtc_cal_mod1 <= USED 0
 kdco_cal_end <= USED 0
 kdco_cal_init <= USED 0
 kdco_calibration <= USED 0
@@ -188,7 +195,6 @@ rf_nfm_enable <= USED 0
 rf_power_down <= USED 0
 ;FILE rtc.o
 rtc_get_alarm <= USED 0
-rtc_unregister_intr <= USED 0
 ;FILE rwble.o
 ;FILE rwip.o
 ;FILE spi_531.o
@@ -218,11 +224,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -245,6 +254,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0
@@ -275,9 +285,14 @@ uart_read_byte <= USED 0
 uart_receive <= USED 0
 uart_register_err_cb <= USED 0
 uart_register_rx_cb <= USED 0
+;FILE user_ctss.o
+ext_cts_adjust_time_date <= USED 0
+user_on_loc_time_info_read_req <= USED 0
+;FILE user_custs1_impl.o
 ;FILE user_periph_setup.o
 ;FILE user_real_time_clk.o
 ;FILE user_rtc_util.o
+user_get_rtc_interrupt_enabled <= USED 0
 ;FILE wkupct_quadec.o
 quad_decoder_clear_irq <= USED 0
 quad_decoder_disable_irq <= USED 0

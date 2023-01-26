@@ -518,7 +518,6 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element):
         target_names.append(target_name.text)
 
     for index, t_sub_element in enumerate(root.findall(xml_sub_element)):
-        print("I am here 0")
         if (CLEAN_PROJ_ENV == True):
             if (t_sub_element.text.endswith("peripheral_examples.sct")):  # .sct file in SDK used.
                 t_sub_element.text = ".\\..\\..\\..\\..\\..\\projects\\target_apps\peripheral_examples\shared\peripheral_examples.sct"
@@ -530,10 +529,10 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element):
             #else:  # .sct file copied from SDk.
             #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + soc_id_to_soc_data(
             #        TARGET_SOCS[loop_idx]).copied_sct_file_name
-        elif (os.path.exists(str(SDK_PERIPH_EX_SCATTER_FILE_PATH)) == True):
-            t_sub_element.text = str(SDK_PERIPH_EX_SCATTER_FILE_PATH)
         elif (os.path.exists(str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))):
             t_sub_element.text = (str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))
+        elif (os.path.exists(str(SDK_PERIPH_EX_SCATTER_FILE_PATH)) == True):
+            t_sub_element.text = str(SDK_PERIPH_EX_SCATTER_FILE_PATH)
 
         loop_idx += 1
 

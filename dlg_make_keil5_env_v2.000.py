@@ -529,10 +529,10 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element):
             #else:  # .sct file copied from SDk.
             #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + soc_id_to_soc_data(
             #        TARGET_SOCS[loop_idx]).copied_sct_file_name
-        elif (os.path.exists(str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))):
-            t_sub_element.text = (str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))
-        elif (os.path.exists(str(SDK_PERIPH_EX_SCATTER_FILE_PATH)) == True):
+        if (t_sub_element.text.endswith("peripheral_examples.sct")):
             t_sub_element.text = str(SDK_PERIPH_EX_SCATTER_FILE_PATH)
+        else:
+            t_sub_element.text = (str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))
 
         loop_idx += 1
 

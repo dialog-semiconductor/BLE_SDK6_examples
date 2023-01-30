@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Sun May 03 14:05:11 2020
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Mon Jan 30 15:07:10 2023
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_enable <= USED 0
@@ -81,6 +81,8 @@ app_easy_security_tk_get_active <= USED 0
 ;FILE app_easy_timer.o
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
+;FILE app_easy_whitelist.o
+app_easy_manage_wlist <= USED 0
 ;FILE app_entry_point.o
 ;FILE app_hogpd.o
 app_hogpd_get_protocol_mode <= USED 0
@@ -184,23 +186,6 @@ dummyf <= USED 0
 ;FILE nvds.o
 ;FILE otp_hdr.o
 ;FILE patch.o
-;FILE pll_vcocal_lut.o
-GPADC_init <= USED 0
-MedianOfFive <= USED 0
-check_pll_lock <= USED 0
-clear_HW_LUT <= USED 0
-find_initial_calcap_ranges <= USED 0
-meas_precharge_freq <= USED 0
-min <= USED 0
-pll_vcocal_LUT_InitUpdate <= USED 0
-save_configure_restore <= USED 0
-set_rf_cal_cap <= USED 0
-update_LUT <= USED 0
-update_calcap_max_channel <= USED 0
-update_calcap_min_channel <= USED 0
-update_calcap_ranges <= USED 0
-write_HW_LUT <= USED 0
-write_one_SW_LUT_entry <= USED 0
 ;FILE prf.o
 prf_reset_func <= USED 0
 ;FILE prf_utils.o
@@ -211,10 +196,7 @@ rf_nfm_disable <= USED 0
 rf_nfm_enable <= USED 0
 rf_nfm_is_enabled <= USED 0
 ;FILE rf_calibration.o
-DCoffsetCalibration_580 <= USED 0
-IffCalibration_580 <= USED 0
 enable_rf_diag_irq <= USED 0
-rf_calibration_580 <= USED 0
 set_gauss_modgain <= USED 0
 ;FILE rwble.o
 ;FILE rwip.o
@@ -236,11 +218,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
 spi_flash_is_sector_empty <= USED 0
@@ -259,6 +244,7 @@ spi_flash_read_unique_id <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0

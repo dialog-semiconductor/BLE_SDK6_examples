@@ -99,7 +99,7 @@ void set_pad_functions(void)
 #if defined (__DA14586__)
     // Disallow spontaneous DA14586 SPI Flash wake-up
     GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
-#elseif !defined(__DA14531__)
+#elif !defined(__DA14531__)
     // Disallow spontaneous SPI Flash wake-up
     GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
 #endif

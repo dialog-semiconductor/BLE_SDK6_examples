@@ -39,6 +39,7 @@
  ****************************************************************************************
  */
 uint8_t conidx																				__SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+timer_hnd timer_id																		__SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 struct wss_wt_meas* meas;
 
 /*
@@ -61,12 +62,13 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 		nau7802_init();
 		nau7802_enable_adc();
 	
-		app_easy_timer(WEIGHT_SCALE_UPDATE_INTERVAL,update_weight);
+		timer_id = app_easy_timer(WEIGHT_SCALE_UPDATE_INTERVAL,update_weight);
 		
 }
 
 void user_on_disconnect( struct gapc_disconnect_ind const *param )
 {
+		app_easy_timer_cancel(timer_id);
     default_app_on_disconnect(param);
 }
 

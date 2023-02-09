@@ -89,10 +89,10 @@
 /****************************************************************************************/
 #if defined (__DA14531__)
 		#define NAU7802_I2C_SCL_PORT     GPIO_PORT_0
-		#define NAU7802_I2C_SCL_PIN      GPIO_PIN_7
+		#define NAU7802_I2C_SCL_PIN      GPIO_PIN_2
 		
 		#define NAU7802_I2C_SDA_PORT     GPIO_PORT_0
-		#define NAU7802_I2C_SDA_PIN      GPIO_PIN_4
+		#define NAU7802_I2C_SDA_PIN      GPIO_PIN_8
 
 #else
 		#define NAU7802_I2C_SCL_PORT     GPIO_PORT_0

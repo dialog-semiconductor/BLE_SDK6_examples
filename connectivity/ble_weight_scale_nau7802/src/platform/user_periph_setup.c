@@ -110,7 +110,7 @@ static const i2c_cfg_t i2c_cfg = {
 };
 
 void periph_init(void)
-{
+{	
 #if defined (__DA14531__)
     // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
     syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);

@@ -1,8 +1,8 @@
-# Smartbond SDK6 Application Examples
+﻿# Smartbond SDK6 Application Examples
 
-This is the repository storing example for the [DA145xx family](https://www.dialog-semiconductor.com/products/bluetooth-low-energy/da14530-and-da14531).
+This is the repository storing example for the [DA145xx family](https://www.renesas.com/eu/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-smartbond-ultra-low-power-bluetooth-51-system-chip).
 
-For information about the DA145xx platform and how to bring up your development kit, please refer to the [Getting started User Manual](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
+For information about the DA145xx platform and how to bring up your development kit, please refer to the [Getting started User Manual](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
 
 ## Examples Overview
 
@@ -57,7 +57,7 @@ For information about the DA145xx platform and how to bring up your development 
 |**Helpers**    		|                       |                   | 		                				|:heavy_check_mark:                 |[usb\_preloaded](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/helpers/usb_preloaded%20_firmware)                               				        					|USB- DA14531-  OTP unique random address - BD address - UART print                                |The main purpose of this software example is to provide the source files containing the firmware for the preloaded binary in the DA14531 USB kit.                                                                                                                              		                                    |
 |**Interfaces** 		|:heavy_check_mark:     |:heavy_check_mark: |                       |                                                   |[accel-Sensor](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/accel-Sensor)                                                      									| I2C accelerometer -BLE notifications                                                             |This example shows how to acquire data from an I2C accelerometer and send the measurements with BLE notifications using a DA14531 or DA14585/586 device                                                                                                                        			                                |
 |               		|                       |                   |                 		|                                                   | 																																												                                    |                                                                                                  |                                                                                                                                                                                    																																						|
-|            			|:heavy_check_mark:     |                   |                 		|												    |[external-processor](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/external-processor-stm32)        |STM32- DA14531 RAM - External MCU                                                |The goal of this example is to show how to load a program into the RAM of the DA14531 via a STM32 microcontroller                                                                                                                                                              			                                |
+|            			|:heavy_check_mark:     |                   |                 		|												    |[STM32-external-processor](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/external-processor-stm32)        |STM32- DA14531 RAM - External MCU                                                |The goal of this example is to show how to load a program into the RAM of the DA14531 via a STM32 microcontroller                                                                                                                                                              			                                |
 |						|                       |                   |                 		|                                                   |																																												                                    |                                                                                                  |                                                                                                                                                                                    																			   																	     	|
 |            			|:heavy_check_mark:     |:heavy_check_mark: | 		                |												    |	[HID-Gamepad](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/HID-Gamepad-Digitizer)                    							            				| HID gamepad - BLE HOGPD profile.                                                                 |A DA14585/6 HID gamepad demo project. Used to demonstrate the usage of HID features over BLE with HOGPD profile.                                                                                                                                                               															    |
 |						|                       |                   |                 		|                                                   |																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                                                                            |
@@ -74,6 +74,8 @@ For information about the DA145xx platform and how to bring up your development 
 |            			|:heavy_check_mark:     |:heavy_check_mark: |  :heavy_check_mark:   |												    |		[wakeup-button](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/wakeup-button)                                    											|SW2-SW3 button -wakeup up                                                                         |This example shows how to wake up using two possible sources, button SW2 or button SW3.<br>it shows how  to detect the source, button SW2 or button SW3.                                                                                                                       			                                |
 |               		|                       |                   |                 		|                                                   |																																																				    |                                                                                                  |                                                                                                                                                                                                                                                                                                                                            |
 |           			|:heavy_check_mark:     |:heavy_check_mark: | 		                |												    |		[I2C-Master-Slave](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/I2C-Master-Slave)                              											|I2C - Master-slave                                                                                |This example describes how to perform I2C data buffer transmission/reception between two boards in asynchronous mode (non-blocking communication). The project is split in two parts: the Master Board and the Slave Board.                                                    			                                | 
+|           			|:heavy_check_mark:     |                   | 		                |												    |		[SPI-Master-Slave](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/SPI-Master-Slave)                              											|SPI - Master-slave                                                                                |This example describes how to perform SPI data buffer transmission/reception between two DA14531 devices via DMA. The project is split in two parts: the Master Board and the Slave Board.                                                    			                                | 
+|           			|:heavy_check_mark:     |                   | 		                |												    |		[External processor Renesas](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/external-processor-renesas)                              						|EK-RA2E1-DA14531 RAM - External MCU                                                                                |The goal of this example is to show how to load a program into the RAM of the DA14531 via a Renesas microcontroller EK-RA2E1.                                                    			                                | 
 			
 
 
@@ -100,11 +102,15 @@ Begin by cloning this repository locally and then link the SW example to the SDK
 
 <br/>
 
-**Note**: _Linking the SW example project environment and Dialog 6.0.14 SDK adds absolute file paths to files in your SW example project environment path containing information about your system’s folder structure. The Python script also supports cleaning these absolute file paths. See “Cleaning the project environment”._
+**Note**: _Linking the SW example project environment and Dialog 6.0.14 SDK adds absolute file paths to files in your SW example project environment path containing information about your system’s folder structure._ 
+
+_If the repository is cloned inside the SDK's project folder then by default all the projects are linked to that SDK given that the folder structure looks like "..\6.0.14.1114\projects\BLE_SDK6_examples"._
+
+_The Python script also supports cleaning these absolute file paths.See “Cleaning the project environment”._
 
 <br/>
 
-Below are the steps to link the SW example project environment to the 6.0.14 SDK.
+Below are the steps to link all the SW example project environments to the 6.0.14 SDK. This script will also copy project folders into SDK location at projects_github.
 
 1. Python 3.6 or higher is required to run the small example environment generation script.
 Python can be downloaded from [Python.org](http://python.org).
@@ -113,16 +119,22 @@ Python can be downloaded from [Python.org](http://python.org).
 
 3. Extract the zip file.
 
+5. To link all projects to the SDK run the script from the current location. To link a particular project copy the python script in that project's project_environment folder and run the script there.
+
 4. Open a terminal and run:
 
     ```console
-    > cd <example folder>/project_environment
     > python dlg_make_keil5_env_v2.000.py -sdkpath “<path to your sdk repository>”
     ```
 
-    For instance:
+    For instance to link all projects:
     ```console
-    > python dlg_make_keil5_env_v2.000.py -sdkpath “C:\dev\6.0.14”
+    > ..\BLE_SDK6_examples> python dlg_make_keil5_env_v2.000.py -sdkpath “C:\dev\6.0.14”
+    ```
+	
+	For instance to link a single projects:
+    ```console
+    > ..\connectivity\active_scanner\project_environment> python dlg_make_keil5_env_v2.000.py -sdkpath “C:\dev\6.0.14”
     ```
 
 5. The script should indicate successful execution, as shown below, 
@@ -135,7 +147,7 @@ Python can be downloaded from [Python.org](http://python.org).
 
 <br/>
 
-Linking the project adds absolute paths to the project files, pointing them to the 6.0.14 SDK. The clean functionality removes these absolute paths.
+Linking the project adds absolute paths to the project files, pointing them to the 6.0.14 SDK and adding projects in SDK location under folder projects_github. The clean functionality removes these absolute paths.
 Since absolute paths contain intermediate directory names, the clean command makes sure these intermediate directories are not shared with internal and external application users.
 
 Example: After linking, `C:\Users\Your_name\Upcoming_project\Keil_5` reveals the user’s name and the name of the project the user is working on.
@@ -153,7 +165,6 @@ Python can be downloaded from [Python.org](http://python.org).
 4. Open a terminal and run:
 
     ```console
-    > cd <example folder>/project_environment
     > python dlg_make_keil5_env_v2.000.py -sdkpath “clean”
     ```
 

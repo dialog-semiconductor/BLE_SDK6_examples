@@ -339,7 +339,7 @@
               <MiscControls>--thumb -c --preinclude da1458x_config_basic.h --preinclude da1458x_config_advanced.h --preinclude user_config.h --bss_threshold=0 --feedback=".\unused_585.txt"</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\src;..\src\config;..\src\custom_profile;..\src\platform;..\src\user_app;..\src\user_drivers;..\src\user_drivers\platform;..\src\user_drivers\platform\bus;..\src\user_drivers\sensor;..\src\user_drivers\sensor\accel;..\src\user_drivers\sensor\accel\mc36xx;C:\DiaSemi\6.0.14.1114_clean\sdk;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_ancc;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bass;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bcss;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bmss;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bond_db;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_ctsc;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_ctss;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_custs;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_default_hnd;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_diss;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_easy;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_entry;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_findme;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_gattc;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_proxr;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_sec;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_suotar;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_udss;C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_wsss;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\controller;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\controller\em;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\controller\llc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\controller\lld;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\controller\llm;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\ea;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\ea\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\em;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\em\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\hci;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\hci\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\hci\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\att;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\att\attc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\att\attm;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\att\atts;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\gap;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\gap\gapc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\gap\gapm;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\gatt;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\gatt\gattc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\gatt\gattm;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\l2c;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\l2c\l2cc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\l2c\l2cm;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\smp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\smp\smpc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\smp\smpm;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anc\ancc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anc\ancc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anc\ancc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anp\anpc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anp\anpc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anp\anpc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anp\anps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anp\anps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\anp\anps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bas;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bas\basc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bas\basc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bas\basc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bas\bass;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bas\bass\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bas\bass\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bcs;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bcs\bcsc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bcs\bcsc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bcs\bcsc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bcs\bcss;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bcs\bcss\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bcs\bcss\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\blp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\blp\blpc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\blp\blpc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\blp\blpc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\blp\blps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\blp\blps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\blp\blps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bms;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bms\bmsc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bms\bmsc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bms\bmsc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bms\bmss;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bms\bmss\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\bms\bmss\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cpp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cpp\cppc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cpp\cppc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cpp\cppc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cpp\cpps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cpp\cpps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cpp\cpps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cscp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cscp\cscpc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cscp\cscpc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cscp\cscpc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cscp\cscps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cscp\cscps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cscp\cscps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cts;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cts\ctsc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cts\ctsc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cts\ctsc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cts\ctss;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cts\ctss\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\cts\ctss\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custs;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custs\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custs\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\disc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\disc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\disc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\diss;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\diss\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\diss\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\find;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\find\findl;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\find\findl\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\find\findl\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\find\findt;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\find\findt\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\find\findt\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\gatt;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\gatt\gatt_client;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\gatt\gatt_client\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\gatt\gatt_client\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\glp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\glp\glpc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\glp\glpc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\glp\glpc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\glp\glps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\glp\glps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\glp\glps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogpbh;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogpbh\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogpbh\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogpd;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogpd\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogpd\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogprh;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogprh\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hogp\hogprh\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hrp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hrp\hrpc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hrp\hrpc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hrp\hrpc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hrp\hrps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hrp\hrps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\hrp\hrps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\htp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\htp\htpc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\htp\htpc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\htp\htpc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\htp\htpt;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\htp\htpt\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\htp\htpt\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\lan;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\lan\lanc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\lan\lanc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\lan\lanc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\lan\lans;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\lan\lans\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\lan\lans\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\pasp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\pasp\paspc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\pasp\paspc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\pasp\paspc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\pasp\pasps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\pasp\pasps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\pasp\pasps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prox;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prox\proxm;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prox\proxm\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prox\proxm\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prox\proxr;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prox\proxr\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prox\proxr\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\rscp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\rscp\rscpc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\rscp\rscpc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\rscp\rscpc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\rscp\rscps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\rscp\rscps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\rscp\rscps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\scpp;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\scpp\scppc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\scpp\scppc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\scpp\scppc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\scpp\scpps;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\scpp\scpps\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\scpp\scpps\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\suota;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\suota\suotar;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\suota\suotar\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\suota\suotar\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\tip;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\tip\tipc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\tip\tipc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\tip\tipc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\tip\tips;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\tip\tips\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\tip\tips\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\uds;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\uds\udsc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\uds\udsc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\uds\udsc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\uds\udss;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\uds\udss\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\uds\udss\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\wss;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\wss\wssc;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\wss\wssc\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\wss\wssc\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\wss\wsss;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\wss\wsss\api;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\wss\wsss\src;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\rwble;C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\rwble_hl;C:\DiaSemi\6.0.14.1114_clean\sdk\common_project_files;C:\DiaSemi\6.0.14.1114_clean\sdk\common_project_files\IAR;C:\DiaSemi\6.0.14.1114_clean\sdk\common_project_files\ldscripts;C:\DiaSemi\6.0.14.1114_clean\sdk\common_project_files\misc;C:\DiaSemi\6.0.14.1114_clean\sdk\common_project_files\scatterfiles;C:\DiaSemi\6.0.14.1114_clean\sdk\platform;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\boot;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\boot\ARM;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\boot\GCC;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\boot\IAR;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\compiler;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\compiler\ARM;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\compiler\GCC;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\compiler\IAR;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\ll;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\arch_console;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\common;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\common\api;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\crypto;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\dbg;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\dbg\api;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\gtl;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\gtl\api;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\gtl\src;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\h4tl;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\h4tl\api;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\ke;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\ke\api;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\ke\src;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\nvds;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\nvds\api;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\nvds\src;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rf;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rf\api;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rf\src;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rwip;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rwip\api;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rwip\src;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\adc;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\battery;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\ble;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\dma;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\gpio;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\hw_otpc;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\i2c;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\i2c_eeprom;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\pdm;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\reg;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\rtc;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\spi;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\spi_flash;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\syscntl;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\systick;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\timer;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\trng;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\uart;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\wifi;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\wkupct_quadec;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\include;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\include\CMSIS;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\include\CMSIS\5.6.0;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\include\CMSIS\5.6.0\Include;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\system_library;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\system_library\include;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\system_library\output;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\system_library\output\IAR;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\system_library\output\Keil_5;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\utilities;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\utilities\otp_cs;C:\DiaSemi\6.0.14.1114_clean\sdk\platform\utilities\otp_hdr;C:\DiaSemi\6.0.14.1114_clean\third_party;C:\DiaSemi\6.0.14.1114_clean\third_party\crc32;C:\DiaSemi\6.0.14.1114_clean\third_party\hash;C:\DiaSemi\6.0.14.1114_clean\third_party\irng;C:\DiaSemi\6.0.14.1114_clean\third_party\micro_ecc;C:\DiaSemi\6.0.14.1114_clean\third_party\rand</IncludePath>
+              <IncludePath>.\..\..\..\..\..\sdk\app_modules\api;.\..\..\..\..\..\sdk\ble_stack\controller\em;.\..\..\..\..\..\sdk\ble_stack\controller\llc;.\..\..\..\..\..\sdk\ble_stack\controller\lld;.\..\..\..\..\..\sdk\ble_stack\controller\llm;.\..\..\..\..\..\sdk\ble_stack\ea\api;.\..\..\..\..\..\sdk\ble_stack\em\api;.\..\..\..\..\..\sdk\ble_stack\hci\api;.\..\..\..\..\..\sdk\ble_stack\hci\src;.\..\..\..\..\..\sdk\ble_stack\host\att;.\..\..\..\..\..\sdk\ble_stack\host\att\attc;.\..\..\..\..\..\sdk\ble_stack\host\att\attm;.\..\..\..\..\..\sdk\ble_stack\host\att\atts;.\..\..\..\..\..\sdk\ble_stack\host\gap;.\..\..\..\..\..\sdk\ble_stack\host\gap\gapc;.\..\..\..\..\..\sdk\ble_stack\host\gap\gapm;.\..\..\..\..\..\sdk\ble_stack\host\gatt;.\..\..\..\..\..\sdk\ble_stack\host\gatt\gattc;.\..\..\..\..\..\sdk\ble_stack\host\gatt\gattm;.\..\..\..\..\..\sdk\ble_stack\host\l2c\l2cc;.\..\..\..\..\..\sdk\ble_stack\host\l2c\l2cm;.\..\..\..\..\..\sdk\ble_stack\host\smp;.\..\..\..\..\..\sdk\ble_stack\host\smp\smpc;.\..\..\..\..\..\sdk\ble_stack\host\smp\smpm;.\..\..\..\..\..\sdk\ble_stack\profiles;.\..\..\..\..\..\sdk\ble_stack\profiles\anc;.\..\..\..\..\..\sdk\ble_stack\profiles\anc\ancc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\anp;.\..\..\..\..\..\sdk\ble_stack\profiles\anp\anpc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\anp\anps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\bas\basc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\bas\bass\api;.\..\..\..\..\..\sdk\ble_stack\profiles\bcs;.\..\..\..\..\..\sdk\ble_stack\profiles\bcs\bcsc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\bcs\bcss\api;.\..\..\..\..\..\sdk\ble_stack\profiles\blp;.\..\..\..\..\..\sdk\ble_stack\profiles\blp\blpc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\blp\blps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\bms;.\..\..\..\..\..\sdk\ble_stack\profiles\bms\bmsc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\bms\bmss\api;.\..\..\..\..\..\sdk\ble_stack\profiles\cpp;.\..\..\..\..\..\sdk\ble_stack\profiles\cpp\cppc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\cpp\cpps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\cscp;.\..\..\..\..\..\sdk\ble_stack\profiles\cscp\cscpc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\cscp\cscps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\cts;.\..\..\..\..\..\sdk\ble_stack\profiles\cts\ctsc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\cts\ctss\api;.\..\..\..\..\..\sdk\ble_stack\profiles\custom;.\..\..\..\..\..\sdk\ble_stack\profiles\custom\custs\api;.\..\..\..\..\..\sdk\ble_stack\profiles\dis\disc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\dis\diss\api;.\..\..\..\..\..\sdk\ble_stack\profiles\find;.\..\..\..\..\..\sdk\ble_stack\profiles\find\findl\api;.\..\..\..\..\..\sdk\ble_stack\profiles\find\findt\api;.\..\..\..\..\..\sdk\ble_stack\profiles\gatt\gatt_client\api;.\..\..\..\..\..\sdk\ble_stack\profiles\glp;.\..\..\..\..\..\sdk\ble_stack\profiles\glp\glpc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\glp\glps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\hogp;.\..\..\..\..\..\sdk\ble_stack\profiles\hogp\hogpbh\api;.\..\..\..\..\..\sdk\ble_stack\profiles\hogp\hogpd\api;.\..\..\..\..\..\sdk\ble_stack\profiles\hogp\hogprh\api;.\..\..\..\..\..\sdk\ble_stack\profiles\hrp;.\..\..\..\..\..\sdk\ble_stack\profiles\hrp\hrpc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\hrp\hrps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\htp;.\..\..\..\..\..\sdk\ble_stack\profiles\htp\htpc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\htp\htpt\api;.\..\..\..\..\..\sdk\ble_stack\profiles\lan;.\..\..\..\..\..\sdk\ble_stack\profiles\lan\lanc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\lan\lans\api;.\..\..\..\..\..\sdk\ble_stack\profiles\pasp;.\..\..\..\..\..\sdk\ble_stack\profiles\pasp\paspc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\pasp\pasps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\prox\proxm\api;.\..\..\..\..\..\sdk\ble_stack\profiles\prox\proxr\api;.\..\..\..\..\..\sdk\ble_stack\profiles\rscp;.\..\..\..\..\..\sdk\ble_stack\profiles\rscp\rscpc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\rscp\rscps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\scpp;.\..\..\..\..\..\sdk\ble_stack\profiles\scpp\scppc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\scpp\scpps\api;.\..\..\..\..\..\sdk\ble_stack\profiles\suota\suotar\api;.\..\..\..\..\..\sdk\ble_stack\profiles\tip;.\..\..\..\..\..\sdk\ble_stack\profiles\tip\tipc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\tip\tips\api;.\..\..\..\..\..\sdk\ble_stack\profiles\uds;.\..\..\..\..\..\sdk\ble_stack\profiles\uds\udsc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\uds\udss\api;.\..\..\..\..\..\sdk\ble_stack\profiles\wss;.\..\..\..\..\..\sdk\ble_stack\profiles\wss\wssc\api;.\..\..\..\..\..\sdk\ble_stack\profiles\wss\wsss\api;.\..\..\..\..\..\sdk\ble_stack\rwble;.\..\..\..\..\..\sdk\ble_stack\rwble_hl;.\..\..\..\..\..\sdk\common_project_files;.\..\..\..\..\..\sdk\platform\arch;.\..\..\..\..\..\sdk\platform\arch\boot;.\..\..\..\..\..\sdk\platform\arch\boot\ARM;.\..\..\..\..\..\sdk\platform\arch\boot\GCC;.\..\..\..\..\..\sdk\platform\arch\compiler;.\..\..\..\..\..\sdk\platform\arch\compiler\ARM;.\..\..\..\..\..\sdk\platform\arch\compiler\GCC;.\..\..\..\..\..\sdk\platform\arch\ll;.\..\..\..\..\..\sdk\platform\arch\main;.\..\..\..\..\..\sdk\platform\core_modules\arch_console;.\..\..\..\..\..\sdk\platform\core_modules\common\api;.\..\..\..\..\..\sdk\platform\core_modules\crypto;.\..\..\..\..\..\sdk\platform\core_modules\dbg\api;.\..\..\..\..\..\sdk\platform\core_modules\gtl\api;.\..\..\..\..\..\sdk\platform\core_modules\gtl\src;.\..\..\..\..\..\sdk\platform\core_modules\h4tl\api;.\..\..\..\..\..\sdk\platform\core_modules\ke\api;.\..\..\..\..\..\sdk\platform\core_modules\ke\src;.\..\..\..\..\..\sdk\platform\core_modules\nvds\api;.\..\..\..\..\..\sdk\platform\core_modules\rf\api;.\..\..\..\..\..\sdk\platform\core_modules\rwip\api;.\..\..\..\..\..\sdk\platform\driver\adc;.\..\..\..\..\..\sdk\platform\driver\battery;.\..\..\..\..\..\sdk\platform\driver\ble;.\..\..\..\..\..\sdk\platform\driver\dma;.\..\..\..\..\..\sdk\platform\driver\gpio;.\..\..\..\..\..\sdk\platform\driver\hw_otpc;.\..\..\..\..\..\sdk\platform\driver\i2c;.\..\..\..\..\..\sdk\platform\driver\i2c_eeprom;.\..\..\..\..\..\sdk\platform\driver\pdm;.\..\..\..\..\..\sdk\platform\driver\reg;.\..\..\..\..\..\sdk\platform\driver\rtc;.\..\..\..\..\..\sdk\platform\driver\spi;.\..\..\..\..\..\sdk\platform\driver\spi_flash;.\..\..\..\..\..\sdk\platform\driver\spi_hci;.\..\..\..\..\..\sdk\platform\driver\syscntl;.\..\..\..\..\..\sdk\platform\driver\systick;.\..\..\..\..\..\sdk\platform\driver\timer;.\..\..\..\..\..\sdk\platform\driver\trng;.\..\..\..\..\..\sdk\platform\driver\uart;.\..\..\..\..\..\sdk\platform\driver\wkupct_quadec;.\..\..\..\..\..\sdk\platform\include;.\..\..\..\..\..\sdk\platform\system_library\include;.\..\..\..\..\..\third_party\hash;.\..\..\..\..\..\third_party\rand;.\..\..\..\..\..\third_party\irng;.\..\src;.\..\src\config;.\..\src\custom_profile;.\..\..\..\..\..\sdk\platform\utilities\otp_hdr;.\..\..\..\..\..\sdk\platform\utilities\otp_cs;.\..\..\..\..\..\sdk\platform\include\CMSIS\5.6.0\Include; .\..\..\..\..\..\sdk\common_project_files\scatterfiles\; .\..\src\user_app; .\..\src\user_config;.\..\src\user_drivers; .\..\src\platform; .\..\..\..\..\..\sdk\platform\driver\wifi; .\..\src\user_platform; .\..\src\user_drivers\bmi270; .\..\src\modules_lib\app\wkup_keys; .\..\src\modules_lib\port;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -370,10 +370,10 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>.\..\src\config\copied_scatter_585_586.sct</ScatterFile>
+            <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\DA14585_586.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--feedback=".\unused_585.txt" C:\DiaSemi\6.0.14.1114_clean\sdk\common_project_files\misc\da14585_symbols.txt   --symdefs=mc36xx_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <Misc>--feedback=".\unused_585.txt" .\..\..\..\..\..\\sdk\common_project_files\misc\da14585_symbols.txt   --symdefs=mc36xx_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -386,22 +386,22 @@
             <File>
               <FileName>system_ARMCM0.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\SW_Examples\DA14585_SDK_6.0.10.511_0\6.0.10.511\\sdk\platform\arch\boot\rvds\system_ARMCM0.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\rvds\system_ARMCM0.c</FilePath>
             </File>
             <File>
               <FileName>boot_vectors.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\SW_Examples\DA14585_SDK_6.0.10.511_0\6.0.10.511\\sdk\platform\arch\boot\rvds\boot_vectors.s</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\rvds\boot_vectors.s</FilePath>
             </File>
             <File>
               <FileName>hardfault_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\hardfault_handler.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\hardfault_handler.c</FilePath>
             </File>
             <File>
               <FileName>nmi_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\nmi_handler.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\nmi_handler.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -411,52 +411,52 @@
             <File>
               <FileName>arch_console.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\arch_console\arch_console.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\arch_console\arch_console.c</FilePath>
             </File>
             <File>
               <FileName>nvds.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\nvds\src\nvds.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\nvds\src\nvds.c</FilePath>
             </File>
             <File>
               <FileName>jump_table.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\jump_table.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\jump_table.c</FilePath>
             </File>
             <File>
               <FileName>arch_sleep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_sleep.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_sleep.c</FilePath>
             </File>
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
             <File>
               <FileName>arch_rom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_rom.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_rom.c</FilePath>
             </File>
             <File>
               <FileName>arch_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_main.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_main.c</FilePath>
             </File>
             <File>
               <FileName>system_library.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>C:\SW_Examples\DA14585_SDK_6.0.10.511_0\6.0.10.511\\sdk\platform\system_library\output\Keil_5\system_library.lib</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5\system_library.lib</FilePath>
             </File>
             <File>
               <FileName>chacha20.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\third_party\rand\chacha20.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\third_party\rand\chacha20.c</FilePath>
             </File>
             <File>
               <FileName>hash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\third_party\hash\hash.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\third_party\hash\hash.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -466,57 +466,57 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>wkupct_quadec.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
             </File>
             <File>
               <FileName>battery.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\battery\battery.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\battery\battery.c</FilePath>
             </File>
             <File>
               <FileName>adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\SW_Examples\DA14585_SDK_6.0.10.511_0\6.0.10.511\\sdk\platform\driver\adc\adc.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\adc\adc.c</FilePath>
             </File>
             <File>
               <FileName>trng.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\trng\trng.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\trng\trng.c</FilePath>
             </File>
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
             </File>
             <File>
               <FileName>spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\SW_Examples\DA14585_SDK_6.0.10.511_0\6.0.10.511\\sdk\platform\driver\spi\spi.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi\spi.c</FilePath>
             </File>
             <File>
               <FileName>i2c_eeprom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
             </File>
             <File>
               <FileName>uart2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\SW_Examples\DA14585_SDK_6.0.10.511_0\6.0.10.511\\sdk\platform\driver\uart\uart2.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\uart\uart2.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\SW_Examples\DA14585_SDK_6.0.10.511_0\6.0.10.511\\sdk\platform\driver\hw_otpc\hw_otpc.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -526,17 +526,17 @@
             <File>
               <FileName>rwble.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\rwble\rwble.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\rwble\rwble.c</FilePath>
             </File>
             <File>
               <FileName>rwip.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
             </File>
             <File>
               <FileName>rf_585.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -546,42 +546,42 @@
             <File>
               <FileName>prf_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prf_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\prf_utils.c</FilePath>
             </File>
             <File>
               <FileName>custs1.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custs\src\custs1.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs\src\custs1.c</FilePath>
             </File>
             <File>
               <FileName>custs1_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</FilePath>
             </File>
             <File>
               <FileName>custom_common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custom_common.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custom_common.c</FilePath>
             </File>
             <File>
               <FileName>diss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
             </File>
             <File>
               <FileName>diss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
             </File>
             <File>
               <FileName>prf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prf.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\prf.c</FilePath>
             </File>
             <File>
               <FileName>attm_db_128.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\att\attm\attm_db_128.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\host\att\attm\attm_db_128.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -591,127 +591,127 @@
             <File>
               <FileName>app_default_handlers.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</FilePath>
             </File>
             <File>
               <FileName>app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common\app.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app.c</FilePath>
             </File>
             <File>
               <FileName>app_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common\app_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_task.c</FilePath>
             </File>
             <File>
               <FileName>app_security.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_sec\app_security.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_sec\app_security.c</FilePath>
             </File>
             <File>
               <FileName>app_security_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
             </File>
             <File>
               <FileName>app_bass.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bass\app_bass.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_bass\app_bass.c</FilePath>
             </File>
             <File>
               <FileName>app_bass_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bass\app_bass_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_bass\app_bass_task.c</FilePath>
             </File>
             <File>
               <FileName>app_findme.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_findme\app_findme.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_findme\app_findme.c</FilePath>
             </File>
             <File>
               <FileName>app_findme_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_findme\app_findme_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_findme\app_findme_task.c</FilePath>
             </File>
             <File>
               <FileName>app_proxr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_proxr\app_proxr.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_proxr\app_proxr.c</FilePath>
             </File>
             <File>
               <FileName>app_proxr_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_proxr\app_proxr_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_proxr\app_proxr_task.c</FilePath>
             </File>
             <File>
               <FileName>app_diss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
             </File>
             <File>
               <FileName>app_diss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
             </File>
             <File>
               <FileName>app_suotar.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_suotar\app_suotar.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_suotar\app_suotar.c</FilePath>
             </File>
             <File>
               <FileName>app_suotar_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_suotar\app_suotar_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_suotar\app_suotar_task.c</FilePath>
             </File>
             <File>
               <FileName>app_entry_point.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
             </File>
             <File>
               <FileName>app_msg_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common\app_msg_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_msg_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_security.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
             </File>
             <File>
               <FileName>app_customs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_custs\app_customs.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_custs\app_customs.c</FilePath>
             </File>
             <File>
               <FileName>app_customs_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_custs\app_customs_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_custs\app_customs_task.c</FilePath>
             </File>
             <File>
               <FileName>app_customs_common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_custs\app_customs_common.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_custs\app_customs_common.c</FilePath>
             </File>
             <File>
               <FileName>app_bond_db.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
             </File>
             <File>
               <FileName>app_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common\app_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_utils.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -721,52 +721,52 @@
             <File>
               <FileName>adc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\adc\adc.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\adc\adc.h</FilePath>
             </File>
             <File>
               <FileName>battery.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\battery\battery.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\battery\battery.h</FilePath>
             </File>
             <File>
               <FileName>gpio.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\gpio\gpio.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\gpio\gpio.h</FilePath>
             </File>
             <File>
               <FileName>i2c_eeprom.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\i2c_eeprom\i2c_eeprom.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\i2c_eeprom\i2c_eeprom.h</FilePath>
             </File>
             <File>
               <FileName>spi.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\spi\spi.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi\spi.h</FilePath>
             </File>
             <File>
               <FileName>spi_flash.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\spi_flash\spi_flash.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.h</FilePath>
             </File>
             <File>
               <FileName>systick.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\systick\systick.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\systick\systick.h</FilePath>
             </File>
             <File>
               <FileName>trng.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\trng\trng.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\trng\trng.h</FilePath>
             </File>
             <File>
               <FileName>uart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\uart\uart.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\uart\uart.h</FilePath>
             </File>
             <File>
               <FileName>wkupct_quadec.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\wkupct_quadec\wkupct_quadec.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\wkupct_quadec\wkupct_quadec.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -776,72 +776,72 @@
             <File>
               <FileName>app.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app.h</FilePath>
             </File>
             <File>
               <FileName>app_api.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_api.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_api.h</FilePath>
             </File>
             <File>
               <FileName>app_callback.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_callback.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_callback.h</FilePath>
             </File>
             <File>
               <FileName>app_default_handlers.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_default_handlers.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_default_handlers.h</FilePath>
             </File>
             <File>
               <FileName>app_easy_gap.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_easy_gap.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_easy_gap.h</FilePath>
             </File>
             <File>
               <FileName>app_easy_msg_utils.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_easy_msg_utils.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_easy_msg_utils.h</FilePath>
             </File>
             <File>
               <FileName>app_easy_security.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_easy_security.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_easy_security.h</FilePath>
             </File>
             <File>
               <FileName>app_easy_timer.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_easy_timer.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_easy_timer.h</FilePath>
             </File>
             <File>
               <FileName>app_entry_point.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_entry_point.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_entry_point.h</FilePath>
             </File>
             <File>
               <FileName>app_mid.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_mid.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_mid.h</FilePath>
             </File>
             <File>
               <FileName>app_msg_utils.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_msg_utils.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_msg_utils.h</FilePath>
             </File>
             <File>
               <FileName>app_security.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_security.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_security.h</FilePath>
             </File>
             <File>
               <FileName>app_task.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_task.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_task.h</FilePath>
             </File>
             <File>
               <FileName>app_user_config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\api\app_user_config.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\api\app_user_config.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -851,17 +851,17 @@
             <File>
               <FileName>arch_api.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\arch_api.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\arch_api.h</FilePath>
             </File>
             <File>
               <FileName>arch_wdg.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_wdg.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_wdg.h</FilePath>
             </File>
             <File>
               <FileName>arch_console.h</FileName>
               <FileType>5</FileType>
-              <FilePath>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\arch_console\arch_console.h</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\arch_console\arch_console.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -970,9 +970,9 @@
   </Targets>
 
   <RTE>
-    <apis/>
-    <components/>
-    <files/>
+    <apis></apis>
+    <components></components>
+    <files></files>
   </RTE>
 
 </Project>

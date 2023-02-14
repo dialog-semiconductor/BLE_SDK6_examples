@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Wed Oct 30 16:31:01 2019
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Nov 11 17:02:55 2021
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -10,12 +10,15 @@ adc_unregister_interrupt <= USED 0
 ;FILE app.o
 active_conhdl_to_conidx <= USED 0
 active_conidx_to_conhdl <= USED 0
+app_easy_gap_advertise_stop <= USED 0
 app_easy_gap_advertise_with_timeout_stop <= USED 0
 app_easy_gap_dev_config_get_active <= USED 0
 app_easy_gap_directed_advertise_get_active <= USED 0
 app_easy_gap_directed_advertise_start <= USED 0
 app_easy_gap_disconnect <= USED 0
 app_easy_gap_get_peer_features <= USED 0
+app_easy_gap_non_connectable_advertise_get_active <= USED 0
+app_easy_gap_non_connectable_advertise_start <= USED 0
 app_easy_gap_param_update_get_active <= USED 0
 app_easy_gap_set_data_packet_length <= USED 0
 app_easy_gap_start_connection_to <= USED 0
@@ -39,8 +42,8 @@ app_easy_msg_set <= USED 0
 app_easy_wakeup <= USED 0
 app_easy_wakeup_free <= USED 0
 app_easy_wakeup_set <= USED 0
-app_msg_utils_api_process_handler <= USED 0
 ;FILE app_easy_timer.o
+app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
 ;FILE app_entry_point.o
 ;FILE app_msg_utils.o
@@ -74,9 +77,14 @@ battery_get_lvl <= USED 0
 ;FILE gpio.o
 GPIO_ConfigurePinPower <= USED 0
 GPIO_DisablePorPin <= USED 0
+GPIO_EnableIRQ <= USED 0
 GPIO_EnablePorPin <= USED 0
+GPIO_GetIRQInputLevel <= USED 0
 GPIO_GetPinFunction <= USED 0
+GPIO_GetPinStatus <= USED 0
 GPIO_GetPorTime <= USED 0
+GPIO_RegisterCallback <= USED 0
+GPIO_SetIRQInputLevel <= USED 0
 GPIO_SetPorTime <= USED 0
 GPIO_is_valid <= USED 0
 ;FILE hardfault_handler.o
@@ -193,11 +201,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -220,6 +231,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0
@@ -253,8 +265,9 @@ print_hword <= USED 0
 print_word <= USED 0
 printf_byte <= USED 0
 printf_byte_dec <= USED 0
+printf_string <= USED 0
 ;FILE user_barebone.o
-;FILE user_button.o
+toggle_led <= USED 0
 ;FILE user_periph_setup.o
 ;FILE wkupct_quadec.o
 quad_decoder_disable_irq <= USED 0
@@ -263,3 +276,5 @@ quad_decoder_init <= USED 0
 quad_decoder_register_callback <= USED 0
 quad_decoder_release <= USED 0
 wkupct_disable_irq <= USED 0
+wkupct_enable_irq <= USED 0
+wkupct_register_callback <= USED 0

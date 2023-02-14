@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Tue Apr 13 00:08:58 2021
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Nov 16 09:30:50 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -166,11 +166,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -193,6 +196,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0
@@ -208,13 +212,20 @@ syscntl_por_vbat_low_cfg <= USED 0
 ;FILE system_da14531.o
 SystemCoreClockUpdate <= USED 0
 ;FILE systick.o
+systick_register_callback <= USED 0
+systick_start <= USED 0
 systick_stop <= USED 0
 systick_value <= USED 0
 systick_wait <= USED 0
 ;FILE timer0.o
 timer0_disable_irq <= USED 0
+timer0_enable_irq <= USED 0
+timer0_init <= USED 0
+timer0_register_callback <= USED 0
 timer0_release <= USED 0
 timer0_set <= USED 0
+timer0_start <= USED 0
+timer0_stop <= USED 0
 ;FILE timer1.o
 timer1_count_config <= USED 0
 timer1_count_register_callback <= USED 0
@@ -244,7 +255,9 @@ uart_register_rx_cb <= USED 0
 itoa <= USED 0
 print_hword <= USED 0
 print_word <= USED 0
+printf_byte <= USED 0
 printf_byte_dec <= USED 0
+printf_string <= USED 0
 ;FILE user_custs1_impl.o
 user_svc1_adc_val_1_ntf_cfm_handler <= USED 0
 user_svc1_button_ntf_cfm_handler <= USED 0

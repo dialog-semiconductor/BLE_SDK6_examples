@@ -15,45 +15,9 @@ The goal of this example is to show how to load a program into the RAM of the DA
 
 - A pc workstation
 - Clicker 2 for STM32 development board by MikroE
-- A DA14531 Clickboard (BLE TINY click) programmed with the secondary bootloader (*secondary_bootloader.bin* is included with the project.)
+- A DA14531 Clickboard (BLE TINY click) which is already programmed with the secondary bootloader in the OTP.
 - SEGGER J-Link
 - (optional) DA14531 Development Kit Pro Motherboard
-
-### Programming the BLE TINY click with the secondary bootloader
-
-The Dialog Flash Programmer can be used to program the flash of the BLE TINY click, the flash programmer can be found [here](https://www.dialog-semiconductor.com/sites/default/files/smartbondflashprogrammer_v1.0.4.2972_windows.zip). Another option for programming the flash of the BLE TINY click using the SmartSnippets Toolbox which can be found [here](https://www.dialog-semiconductor.com/sites/default/files/smartsnippets_toolbox_v5.0.14.3080_windows.msi.zip).
-
-The first step to programming the flash is connecting the BLE TINY click to the programming interface. For this either a DA14531 Development Kit Pro Motherboard or a SEGGER J-LINK can be used. In the images below the connections for both options can be viewed.
-
-**DA14531 Development Kit Pro Motherboard**
-
-![DA14531_MOTHERBOARD](assets/bootloader_programming_motherboard.png)
-
-**SEGGER J-LNK**
-
-![DA14531_SEGGER](assets/bootloader_programming_segger.png)
-
-The next step is programming the BLE TINY click. The first one to be explained is the _Dialog Flash Programmer_ and after that the _SmartSnippets Toolbox_
-
-**Dialog Flash Programmer**
-
-Start the Dialog Flash Programmer. In the screen two options can be observed, the device to program with and the file to program and the file to program to the device. First click _Browse_ and select the path to the _secondary\_bootloader.bin_. Next select the device used for programming (the device is displayed by its serial number, which can be found on the SEGGER or the motherboard.)
-
-After these steps the programmer should look like this:
-![flash_programmer](assets/flash_programmer.png)
-
-Lastly click _Program_ and the BLE TINY click should be programmed with the secondary bootloader.
-
-**SmartSnippets Toolbox**
-
-Open the SmartSnippets Toolbox. The first step is to setup a device, by clicking on _New_. Give the device settings a name, for example: _BLE TINY click_ and optionally a description. Click on save and the settings should appear in the left panel, click on it. In the selection **Please select the COM Port or JTAG Serial #:** select _JTAG_. Next select the serial number of the SEGGER or the Motherboard. In the right panel select the _DA14531_ and the settings should be correct. It should look like the following:
-
-![toolbox_settings](assets/toolbox_settings.png)
-
-Next click on _Open_ and the Toolbox should open on the programming screen. First select the _secondary\_bootloader.bin_ by clicking on _Load hex/bin file_ and following the options in the scree that opens. Next click on _Connect_ and after the connection has been made click _Burn & Verify_ and the secondary bootloader should be programmed. The end result should look like this:
-
-![toolbox_programming](assets/toolbox_program.png)
-
 ### Hardware configuration using the Clicker 2 for STM32 and the MikroE BLE TINY click
 
 - Connect the J-Link Segger to the Clicker 2 for STM32 J-TAG header using SWD configuration

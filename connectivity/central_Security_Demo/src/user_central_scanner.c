@@ -200,7 +200,7 @@ void	user_connect_to_device(struct adv_device device){
  *
  ****************************************************************************************
  */
-static void uart_read_cb(uint8_t status)
+static void uart_read_cb(uint16_t status)
 {
 	//Relaunch scanning if input is letter R
 	if(uart_input == 'r' || uart_input == 'R'){
@@ -228,7 +228,10 @@ void user_choose_device(void)
 		wdg_freeze();
     // Indicate that the asynchronous read operation is in progress.
     uart2_read_in_progress = 1;
-		uart2_read(&uart_input, 1, uart_read_cb);
+		//uart2_read(&uart_input, 1, uart_read_cb);
+		//uart_read_buffer(UART2, );
+	  uart_register_rx_cb(UART2, uart_read_cb);
+		uart_receive(UART2, &uart_input, 1, UART_OP_INTR);
 }
 
 /**

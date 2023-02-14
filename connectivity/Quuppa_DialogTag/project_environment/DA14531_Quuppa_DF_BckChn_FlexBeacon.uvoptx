@@ -113,7 +113,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>C:\DiaSemi\6.0.14.1114_clean\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
+        <tIfile>.\..\..\..\..\..\\sdk\common_project_files\misc\jlink_DA14531.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -274,7 +274,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14585_586.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -286,7 +286,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14585_586.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -298,7 +298,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -310,7 +310,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -322,7 +322,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\hardfault_handler.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\hardfault_handler.c</PathWithFileName>
       <FilenameWithoutPath>hardfault_handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -334,7 +334,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\nmi_handler.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\nmi_handler.c</PathWithFileName>
       <FilenameWithoutPath>nmi_handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -354,7 +354,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\arch_console\arch_console.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\core_modules\arch_console\arch_console.c</PathWithFileName>
       <FilenameWithoutPath>arch_console.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -366,7 +366,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\nvds\src\nvds.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\core_modules\nvds\src\nvds.c</PathWithFileName>
       <FilenameWithoutPath>nvds.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -378,7 +378,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_main.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\arch_main.c</PathWithFileName>
       <FilenameWithoutPath>arch_main.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -390,7 +390,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\jump_table.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\jump_table.c</PathWithFileName>
       <FilenameWithoutPath>jump_table.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -402,7 +402,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_sleep.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\arch_sleep.c</PathWithFileName>
       <FilenameWithoutPath>arch_sleep.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -414,7 +414,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_system.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\arch_system.c</PathWithFileName>
       <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -426,7 +426,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_hibernation.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\arch_hibernation.c</PathWithFileName>
       <FilenameWithoutPath>arch_hibernation.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -438,7 +438,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\arch\main\arch_rom.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\arch_rom.c</PathWithFileName>
       <FilenameWithoutPath>arch_rom.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -450,7 +450,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\third_party\rand\chacha20.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\third_party\rand\chacha20.c</PathWithFileName>
       <FilenameWithoutPath>chacha20.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -462,7 +462,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\third_party\hash\hash.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\third_party\hash\hash.c</PathWithFileName>
       <FilenameWithoutPath>hash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -474,7 +474,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5\da14585_586.lib</PathWithFileName>
       <FilenameWithoutPath>da14585_586.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -486,7 +486,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\system_library\output\Keil_5\da14531.lib</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5\da14531.lib</PathWithFileName>
       <FilenameWithoutPath>da14531.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -498,7 +498,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
       <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -510,7 +510,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\utilities\otp_hdr\otp_hdr.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\utilities\otp_hdr\otp_hdr.c</PathWithFileName>
       <FilenameWithoutPath>otp_hdr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -530,7 +530,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
       <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -542,7 +542,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -554,7 +554,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</PathWithFileName>
       <FilenameWithoutPath>wkupct_quadec.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -566,7 +566,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\battery\battery.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\battery\battery.c</PathWithFileName>
       <FilenameWithoutPath>battery.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -578,7 +578,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\adc\adc_58x.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\adc\adc_58x.c</PathWithFileName>
       <FilenameWithoutPath>adc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -590,7 +590,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\adc\adc_531.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\adc\adc_531.c</PathWithFileName>
       <FilenameWithoutPath>adc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -602,7 +602,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
       <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -614,7 +614,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\spi\spi_531.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\spi\spi_531.c</PathWithFileName>
       <FilenameWithoutPath>spi_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -626,7 +626,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
       <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -638,7 +638,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
       <FilenameWithoutPath>i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -650,7 +650,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</PathWithFileName>
       <FilenameWithoutPath>i2c_eeprom.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -662,7 +662,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -674,7 +674,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -686,7 +686,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\uart\uart.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\uart\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -698,7 +698,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\trng\trng.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\trng\trng.c</PathWithFileName>
       <FilenameWithoutPath>trng.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -710,7 +710,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\driver\dma\dma.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\dma\dma.c</PathWithFileName>
       <FilenameWithoutPath>dma.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -730,7 +730,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\rwble\rwble.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\rwble\rwble.c</PathWithFileName>
       <FilenameWithoutPath>rwble.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -742,7 +742,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rwip\src\rwip.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\core_modules\rwip\src\rwip.c</PathWithFileName>
       <FilenameWithoutPath>rwip.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -754,7 +754,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rf\src\rf_585.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\rf_585.c</PathWithFileName>
       <FilenameWithoutPath>rf_585.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -766,7 +766,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rf\src\ble_arp.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\ble_arp.c</PathWithFileName>
       <FilenameWithoutPath>ble_arp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -778,7 +778,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\platform\core_modules\rf\src\rf_531.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\rf_531.c</PathWithFileName>
       <FilenameWithoutPath>rf_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -798,7 +798,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\host\att\attm\attm_db_128.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\host\att\attm\attm_db_128.c</PathWithFileName>
       <FilenameWithoutPath>attm_db_128.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -810,7 +810,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prf_utils.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\profiles\prf_utils.c</PathWithFileName>
       <FilenameWithoutPath>prf_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -822,7 +822,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custom_common.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custom_common.c</PathWithFileName>
       <FilenameWithoutPath>custom_common.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -834,7 +834,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\diss\src\diss.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src\diss.c</PathWithFileName>
       <FilenameWithoutPath>diss.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -846,7 +846,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</PathWithFileName>
       <FilenameWithoutPath>diss_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -858,7 +858,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custs\src\custs1.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs\src\custs1.c</PathWithFileName>
       <FilenameWithoutPath>custs1.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -870,7 +870,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</PathWithFileName>
       <FilenameWithoutPath>custs1_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -882,7 +882,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\ble_stack\profiles\prf.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\ble_stack\profiles\prf.c</PathWithFileName>
       <FilenameWithoutPath>prf.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -902,7 +902,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</PathWithFileName>
       <FilenameWithoutPath>app_default_handlers.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -914,7 +914,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common\app.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app.c</PathWithFileName>
       <FilenameWithoutPath>app.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -926,7 +926,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common\app_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_task.c</PathWithFileName>
       <FilenameWithoutPath>app_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -938,7 +938,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_sec\app_security.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_sec\app_security.c</PathWithFileName>
       <FilenameWithoutPath>app_security.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -950,7 +950,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_sec\app_security_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_sec\app_security_task.c</PathWithFileName>
       <FilenameWithoutPath>app_security_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -962,7 +962,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bass\app_bass.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_bass\app_bass.c</PathWithFileName>
       <FilenameWithoutPath>app_bass.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -974,7 +974,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bass\app_bass_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_bass\app_bass_task.c</PathWithFileName>
       <FilenameWithoutPath>app_bass_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -986,7 +986,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_findme\app_findme.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_findme\app_findme.c</PathWithFileName>
       <FilenameWithoutPath>app_findme.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -998,7 +998,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_findme\app_findme_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_findme\app_findme_task.c</PathWithFileName>
       <FilenameWithoutPath>app_findme_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1010,7 +1010,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_proxr\app_proxr.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_proxr\app_proxr.c</PathWithFileName>
       <FilenameWithoutPath>app_proxr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1022,7 +1022,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_proxr\app_proxr_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_proxr\app_proxr_task.c</PathWithFileName>
       <FilenameWithoutPath>app_proxr_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1034,7 +1034,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_diss\app_diss.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_diss\app_diss.c</PathWithFileName>
       <FilenameWithoutPath>app_diss.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1046,7 +1046,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_diss\app_diss_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_diss\app_diss_task.c</PathWithFileName>
       <FilenameWithoutPath>app_diss_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1058,7 +1058,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_suotar\app_suotar.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_suotar\app_suotar.c</PathWithFileName>
       <FilenameWithoutPath>app_suotar.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1070,7 +1070,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_suotar\app_suotar_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_suotar\app_suotar_task.c</PathWithFileName>
       <FilenameWithoutPath>app_suotar_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1082,7 +1082,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_entry\app_entry_point.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_entry\app_entry_point.c</PathWithFileName>
       <FilenameWithoutPath>app_entry_point.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1094,7 +1094,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common\app_msg_utils.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_msg_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_msg_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1106,7 +1106,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_msg_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1118,7 +1118,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_easy\app_easy_security.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_security.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_security.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1130,7 +1130,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_easy\app_easy_timer.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_timer.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_timer.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1142,7 +1142,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_custs\app_customs.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_custs\app_customs.c</PathWithFileName>
       <FilenameWithoutPath>app_customs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1154,7 +1154,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_custs\app_customs_task.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_custs\app_customs_task.c</PathWithFileName>
       <FilenameWithoutPath>app_customs_task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1166,7 +1166,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_custs\app_customs_common.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_custs\app_customs_common.c</PathWithFileName>
       <FilenameWithoutPath>app_customs_common.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1178,7 +1178,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_bond_db\app_bond_db.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_bond_db\app_bond_db.c</PathWithFileName>
       <FilenameWithoutPath>app_bond_db.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1190,7 +1190,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_common\app_utils.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_utils.c</PathWithFileName>
       <FilenameWithoutPath>app_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1202,7 +1202,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\DiaSemi\6.0.14.1114_clean\sdk\app_modules\src\app_easy\app_easy_whitelist.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_whitelist.c</PathWithFileName>
       <FilenameWithoutPath>app_easy_whitelist.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

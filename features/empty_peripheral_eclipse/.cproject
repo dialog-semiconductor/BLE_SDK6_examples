@@ -258,7 +258,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="sdk/common_project_files/ldscripts" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="sdk/arch/boot/IAR|sdk/arch/boot/ARM_clang|sdk/arch/boot/ARM|sdk/common_project_files/ldscripts" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -527,7 +527,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="sdk/common_project_files/ldscripts" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="sdk/arch/boot/IAR|sdk/arch/boot/ARM_clang|sdk/arch/boot/ARM|sdk/common_project_files/ldscripts" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -548,7 +548,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="${cross_rm} -rf" description="" errorParsers="org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GCCErrorParser" id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.269867019" name="DA14531" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=" parent="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="${cross_make} generate_ldscripts PRE_BUILD_EXTRA_DEFS=&quot;-D__DA14531__ &quot; CC=&quot;${cross_prefix}${cross_c}${cross_suffix}&quot; LDSCRIPT_INCLUDE_DIR=&quot;src/config ${workspace_loc:/.//sdk/common_project_files&quot; LDSCRIPT_PATH=&quot;../../../../../.././/sdk/common_project_files/ldscripts&quot; LDSCRIPT_FILES=&quot;ldscript_DA14531.lds}&quot;">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="${cross_rm} -rf" description="" errorParsers="org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GCCErrorParser" id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.269867019" name="DA14531" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=" parent="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="${cross_make} generate_ldscripts PRE_BUILD_EXTRA_DEFS=&quot;-D__DA14531__&quot; CC=&quot;${cross_prefix}${cross_c}${cross_suffix}&quot; LDSCRIPT_INCLUDE_DIR=&quot;${workspace_loc:/${ProjName}/src/config} ${workspace_loc}/sdk/common_project_files&quot; LDSCRIPT_PATH=&quot;${workspace_loc}/sdk/common_project_files/ldscripts&quot; LDSCRIPT_FILES=&quot;ldscript_DA14531.lds&quot;">
 					<folderInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.269867019" name="DA14531" resourcePath="">
 						<toolChain errorParsers="" id="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.debug.1217135954.269867019" name="Cross ARM GCC" superClass="ilg.gnuarmeclipse.managedbuild.cross.toolchain.elf.debug">
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.767719213" name="Optimization Level" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level" useByScannerDiscovery="true" value="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.level.size" valueType="enumerated"/>
@@ -589,6 +589,7 @@
 									<listOptionValue builtIn="false" value="__DA14531__"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.otherwarnings.1478434286" name="Other warning flags" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.otherwarnings" useByScannerDiscovery="true" value="" valueType="string"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.other.1243046597" name="Other assembler flags" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.other" value="-flto" valueType="string"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.1494693132" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
 							</tool>
 							<tool command="${cross_prefix}${cross_c}${cross_suffix}" commandLinePattern="${COMMAND} ${cross_toolchain_flags} ${FLAGS} -c ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GCCErrorParser" id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.695125892" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler">
@@ -767,8 +768,8 @@
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.paths.2089907711" name="Library search path (-L)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.paths" useByScannerDiscovery="false" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${workspace_loc}/sdk/platform/system_library/output/Keil_5"/>
-									<listOptionValue builtIn="false" value="&quot;../../../../../sdk/common_project_files/scatterfiles&quot;"/>
-									<listOptionValue builtIn="false" value="../../../../../.././/sdk/common_project_files/misc"/>
+									<listOptionValue builtIn="false" value="${workspace_loc}/sdk/common_project_files/scatterfiles"/>
+									<listOptionValue builtIn="false" value="${workspace_loc}/sdk/common_project_files/misc"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.usenewlibnano.72885312" name="Use newlib-nano (--specs=nano.specs)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.usenewlibnano" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.scriptfile.167703708" name="Script files (-T)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.scriptfile" useByScannerDiscovery="false" valueType="stringList">
@@ -809,7 +810,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="sdk/common_project_files/ldscripts" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="sdk/arch/boot/system_DA14585_586.c|sdk/arch/boot/GCC/startup_DA14585_586.S|sdk/arch/boot/GCC/ivtable_DA14585_586.S|sdk/arch/boot/IAR|sdk/arch/boot/ARM_clang|sdk/arch/boot/ARM|sdk/common_project_files/ldscripts" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -1093,7 +1094,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="sdk/common_project_files/ldscripts" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="sdk/arch/boot/system_DA14585_586.c|sdk/arch/boot/GCC/startup_DA14585_586.S|sdk/arch/boot/GCC/ivtable_DA14585_586.S|sdk/arch/boot/IAR|sdk/arch/boot/ARM_clang|sdk/arch/boot/ARM|sdk/common_project_files/ldscripts" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

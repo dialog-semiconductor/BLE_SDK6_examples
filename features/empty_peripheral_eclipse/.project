@@ -75,9 +75,19 @@
 			<locationURI>WORKSPACE_LOC/sdk/platform/arch/main</locationURI>
 		</link>
 		<link>
+			<name>sdk/arch/nvds</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/sdk/platform/core_modules/nvds</locationURI>
+		</link>
+		<link>
 			<name>sdk/arch/otp_cs</name>
 			<type>2</type>
 			<locationURI>WORKSPACE_LOC/sdk/platform/utilities/otp_cs</locationURI>
+		</link>
+		<link>
+			<name>sdk/arch/otp_hdr</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/sdk/platform/utilities/otp_hdr</locationURI>
 		</link>
 		<link>
 			<name>sdk/arch/rand</name>

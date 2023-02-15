@@ -144,7 +144,7 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
  * - Use const declaration if "user_catch_rest_hndl" is NULL
  */
 //#define app_process_catch_rest_cb       user_catch_rest_hndl
-static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
+#define app_process_catch_rest_cb   ((const catch_rest_event_func_t)NULL)
 
 static const struct default_app_operations user_default_app_operations = {
     .default_operation_adv = default_advertise_operation,

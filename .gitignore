@@ -8,3 +8,8 @@
 **/*uvguix*
 **/*scvd
 **/*.sct
+.DS_Store
+**/DA14531
+**/DA14585
+**/build
+**/.settings

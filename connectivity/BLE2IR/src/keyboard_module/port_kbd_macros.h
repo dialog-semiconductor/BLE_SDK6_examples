@@ -43,11 +43,11 @@
  */
 #if defined(CFG_PRINTF)
     #ifndef DISABLE_UART_RX    
-        #define COL(x)  ( ( ((COLUMN_INPUT_##x##_PORT == UART2_RX_GPIO_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_RX_GPIO_PIN)) || \
-                            ((COLUMN_INPUT_##x##_PORT == UART2_TX_GPIO_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_TX_GPIO_PIN)) ) ? \
+        #define COL(x)  ( ( ((COLUMN_INPUT_##x##_PORT == UART2_RX_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_RX_PIN)) || \
+                            ((COLUMN_INPUT_##x##_PORT == UART2_TX_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_TX_PIN)) ) ? \
                           (4 << 4) | (COLUMN_INPUT_##x##_PIN) : ( (COLUMN_INPUT_##x##_PORT << 4) | (COLUMN_INPUT_##x##_PIN) ) )
     #else               
-        #define COL(x)  ( ( ((COLUMN_INPUT_##x##_PORT == UART2_TX_GPIO_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_TX_GPIO_PIN)) ) ? \
+        #define COL(x)  ( ( ((COLUMN_INPUT_##x##_PORT == UART2_TX_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_TX_PIN)) ) ? \
                           (4 << 4) | (COLUMN_INPUT_##x##_PIN) : ( (COLUMN_INPUT_##x##_PORT << 4) | (COLUMN_INPUT_##x##_PIN) ) )
     #endif              
 #else                   
@@ -64,8 +64,8 @@
  ****************************************************************************************
  */
 #if defined(CFG_PRINTF) 
-    #define ROW(x)      ( ( ((ROW_OUTPUT_##x##_PORT == UART2_RX_GPIO_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_RX_GPIO_PIN)) || \
-                            ((ROW_OUTPUT_##x##_PORT == UART2_TX_GPIO_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_TX_GPIO_PIN)) ) ? \
+    #define ROW(x)      ( ( ((ROW_OUTPUT_##x##_PORT == UART2_RX_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_RX_PIN)) || \
+                            ((ROW_OUTPUT_##x##_PORT == UART2_TX_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_TX_PIN)) ) ? \
                           (4 << 4) | (ROW_OUTPUT_##x##_PIN) : ( (ROW_OUTPUT_##x##_PORT << 4) | (ROW_OUTPUT_##x##_PIN) ) )
 #else                   
     #define ROW(x)      ( (ROW_OUTPUT_##x##_PORT << 4) | (ROW_OUTPUT_##x##_PIN) )
@@ -105,11 +105,11 @@
  */
 #if defined(CFG_PRINTF)
     #ifndef DISABLE_UART_RX  
-        #define SET_BITMAP(x)   ( ( ((ROW_OUTPUT_##x##_PORT == UART2_RX_GPIO_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_RX_GPIO_PIN)) || \
-                                    ((ROW_OUTPUT_##x##_PORT == UART2_TX_GPIO_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_TX_GPIO_PIN)) || \
+        #define SET_BITMAP(x)   ( ( ((ROW_OUTPUT_##x##_PORT == UART2_RX_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_RX_PIN)) || \
+                                    ((ROW_OUTPUT_##x##_PORT == UART2_TX_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_TX_PIN)) || \
                                     (ROW_OUTPUT_##x##_PORT >= 4) ) ? (0) : ( (1 << ROW_OUTPUT_##x##_PIN) ) )
     #else
-        #define SET_BITMAP(x)   ( ( ((ROW_OUTPUT_##x##_PORT == UART2_TX_GPIO_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_TX_GPIO_PIN)) || \
+        #define SET_BITMAP(x)   ( ( ((ROW_OUTPUT_##x##_PORT == UART2_TX_PORT) && (ROW_OUTPUT_##x##_PIN == UART2_TX_PIN)) || \
                                     (ROW_OUTPUT_##x##_PORT >= 4) ) ? (0) : ( (1 << ROW_OUTPUT_##x##_PIN) ) )
     #endif
 #else
@@ -127,12 +127,12 @@
  */
 #if defined(CFG_PRINTF)
     #ifndef DISABLE_UART_RX
-        #define SET_INPUT_MODE_REG(x)   ( ( ((COLUMN_INPUT_##x##_PORT == UART2_RX_GPIO_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_RX_GPIO_PIN)) || \
-                                            ((COLUMN_INPUT_##x##_PORT == UART2_TX_GPIO_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_TX_GPIO_PIN)) || \
+        #define SET_INPUT_MODE_REG(x)   ( ( ((COLUMN_INPUT_##x##_PORT == UART2_RX_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_RX_PIN)) || \
+                                            ((COLUMN_INPUT_##x##_PORT == UART2_TX_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_TX_PIN)) || \
                                             (COLUMN_INPUT_##x##_PORT >= 4) ) ? (0) : ( ((P00_MODE_REG - P0_DATA_REG) + (COLUMN_INPUT_##x##_PORT == 3 ? \
                                           4 : COLUMN_INPUT_##x##_PORT) * 0x20) + (COLUMN_INPUT_##x##_PIN * 2) ) )
     #else
-        #define SET_INPUT_MODE_REG(x)   ( ( ((COLUMN_INPUT_##x##_PORT == UART2_TX_GPIO_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_TX_GPIO_PIN)) || \
+        #define SET_INPUT_MODE_REG(x)   ( ( ((COLUMN_INPUT_##x##_PORT == UART2_TX_PORT) && (COLUMN_INPUT_##x##_PIN == UART2_TX_PIN)) || \
                                             (COLUMN_INPUT_##x##_PORT >= 4) ) ? (0) : ( ((P00_MODE_REG - P0_DATA_REG) + (COLUMN_INPUT_##x##_PORT == 3 ? \
                                             4 : COLUMN_INPUT_##x##_PORT) * 0x20) + (COLUMN_INPUT_##x##_PIN * 2) ) )
     #endif

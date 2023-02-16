@@ -63,10 +63,10 @@ Plug the thermo 8 click board on the mikrobus 1 interface (J15-J16).
 
 __Hardware configuration DA14585 using the basic development kit__
 
-	- Connect Vdd to V3 on J4 (red line in the image below).
+	- Connect Vdd to V3 on J4 (brown line in the image below).
 	- Connect Gnd to ground on J4 (blue line in the image below).
-	- Connect SCL to P07 on J4 (orange line in the image below).
-	- Connect SDA to P12 on J4 (yellow line in the image below).		
+	- Connect SCL to P07 on J4 (yellow line in the image below).
+	- Connect SDA to P04 on J4 (red line in the image below).		
 
 ![Hardware_Configurations](assets/basic.svg)
 

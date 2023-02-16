@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Oct 01 15:11:10 2020
+;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Tue Nov 16 14:01:52 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -125,6 +125,7 @@ battery_get_lvl <= USED 0
 battery_get_voltage <= USED 0
 ;FILE ble_arp.o
 ;FILE gpio.o
+GPIO_ConfigurePin <= USED 0
 GPIO_ConfigurePinPower <= USED 0
 GPIO_DisablePorPin <= USED 0
 GPIO_EnableIRQ <= USED 0
@@ -134,7 +135,10 @@ GPIO_GetPinFunction <= USED 0
 GPIO_GetPinStatus <= USED 0
 GPIO_GetPorTime <= USED 0
 GPIO_RegisterCallback <= USED 0
+GPIO_SetActive <= USED 0
 GPIO_SetIRQInputLevel <= USED 0
+GPIO_SetInactive <= USED 0
+GPIO_SetPinFunction <= USED 0
 GPIO_SetPorTime <= USED 0
 GPIO_is_valid <= USED 0
 ;FILE hardfault_handler.o
@@ -149,7 +153,9 @@ hw_otpc_word_prog_and_verify <= USED 0
 hw_otpc_word_read <= USED 0
 ;FILE i2c.o
 i2c_master_receive_buffer_async <= USED 0
+i2c_master_receive_buffer_sync <= USED 0
 i2c_master_transmit_buffer_async <= USED 0
+i2c_master_transmit_buffer_sync <= USED 0
 i2c_register_int <= USED 0
 i2c_release <= USED 0
 i2c_slave_receive_buffer_async <= USED 0
@@ -234,11 +240,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -261,6 +270,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0
@@ -308,6 +318,7 @@ uart_write_byte <= USED 0
 ;FILE user_accelerometer.o
 ;FILE user_adxl345.o
 ;FILE user_periph_setup.o
+set_pad_functions <= USED 0
 ;FILE wkupct_quadec.o
 quad_decoder_clear_irq <= USED 0
 quad_decoder_disable_irq <= USED 0

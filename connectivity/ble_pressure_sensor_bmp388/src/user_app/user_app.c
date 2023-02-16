@@ -138,10 +138,7 @@ void user_app_on_db_init_complete(void)
   set_temperature_char_value(0);
 
   /* Start a single first measurement */
-	bmp388_start_meas(BMP388_MODE_FORCED, 
-                        BMP388_PRESS_MEAS_ENABLE, 
-                        BMP388_TEMP_MEAS_ENABLE);
-
+  measure_timer = app_easy_timer(MEASURE_PERIOD, measure_timer_cb);
 
   default_app_on_db_init_complete();
 }

@@ -29,4 +29,9 @@ jobs:
       # run script that builds all examples
       - name: build script
         run: |
-          python3 .github/scripts/build-all-examples.sh
+          .github/scripts/build-all-examples.sh
+
+      # run script that checks the result
+      - name: find failing script
+        run: |
+          .github/scripts/find-failing.sh

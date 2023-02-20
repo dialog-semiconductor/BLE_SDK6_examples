@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EX_LIST=`find ../../. -name "CMakeLists.txt"`
+EX_LIST=$(find $(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ))) -name "CMakeLists.txt")
 
 PASSED_531=()
 FAILED_531=()
@@ -79,3 +79,10 @@ echo -e "| PASSED | ${#PASSED_586[@]} |"
 echo -e "|-------------|"
 echo -e "| FAILED | ${#FAILED_586[@]} |"
 echo -e "---------------"
+
+if [ "$FAILED_531" ] || [ "$FAILED_585" ] || [ "$FAILED_586" ]; then
+    FAILCOUNT=`expr ${#FAILED_531[@]} + ${#FAILED_585[@]} + ${#FAILED_586[@]}`
+    exit $FAILCOUNT
+else
+    exit 0
+fi

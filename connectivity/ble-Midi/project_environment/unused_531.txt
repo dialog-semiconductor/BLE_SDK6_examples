@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Thu Nov 11 19:48:36 2021
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Fri Feb 17 10:57:45 2023
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -128,7 +128,6 @@ i2c_master_receive_buffer_async <= USED 0
 i2c_master_receive_buffer_sync <= USED 0
 i2c_master_transmit_buffer_async <= USED 0
 i2c_master_transmit_buffer_sync <= USED 0
-i2c_register_int <= USED 0
 i2c_release <= USED 0
 i2c_setup_master <= USED 0
 i2c_setup_slave <= USED 0
@@ -136,7 +135,6 @@ i2c_slave_receive_buffer_async <= USED 0
 i2c_slave_receive_buffer_sync <= USED 0
 i2c_slave_transmit_buffer_async <= USED 0
 i2c_slave_transmit_buffer_sync <= USED 0
-i2c_unregister_int <= USED 0
 ;FILE i2c_eeprom.o
 i2c_eeprom_configure <= USED 0
 i2c_eeprom_get_configuration <= USED 0

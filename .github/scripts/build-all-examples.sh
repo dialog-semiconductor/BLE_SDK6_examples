@@ -10,8 +10,7 @@ else
     GCC_TOOLCHAIN_PATH=$GCC_PATH
 fi
 
-PARENTDIR=`dirname $PWD`
-EXAMPLE_ROOT=`dirname $PARENTDIR`
+EXAMPLE_ROOT=$(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )))
 
 if [ -z $SDKROOT ]; then
     SDKROOT="${HOME}/dev/repo/SDK6_release"

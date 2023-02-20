@@ -10,13 +10,13 @@
       <TargetName>DA14531_MASTER</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::.\ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARM_Compiler_5.06u7</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>ARMCM0P</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.7.0</PackID>
+          <PackID>ARM.CMSIS.5.9.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -186,6 +186,7 @@
             <RvdsVP>0</RvdsVP>
             <RvdsMve>0</RvdsMve>
             <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -370,7 +371,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>..\..\..\..\..\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
+            <ScatterFile>.\..\..\..\..\..\..\projects\target_apps\peripheral_examples\shared\peripheral_examples.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -386,17 +387,17 @@
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
             </File>
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\arch\boot\system_DA14531.c</FilePath>
             </File>
             <File>
               <FileName>exceptions.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\projects\target_apps\peripheral_examples\shared\source\exceptions.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -406,52 +407,52 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\driver\dma\dma.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>uart_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\driver\uart\uart_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\driver\uart\uart_utils.c</FilePath>
             </File>
             <File>
               <FileName>spi_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\driver\spi\spi_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\driver\spi\spi_531.c</FilePath>
             </File>
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
             </File>
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
             </File>
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\..\\\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>.\..\..\..\..\..\..\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -484,11 +485,6 @@
     <Layers>
       <Layer>
         <LayName>spi_master_slave_demo</LayName>
-        <LayDesc></LayDesc>
-        <LayUrl></LayUrl>
-        <LayKeys></LayKeys>
-        <LayCat></LayCat>
-        <LayLic></LayLic>
         <LayTarg>0</LayTarg>
         <LayPrjMark>1</LayPrjMark>
       </Layer>

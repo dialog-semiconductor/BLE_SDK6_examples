@@ -10,14 +10,15 @@ else
     GCC_TOOLCHAIN_PATH=$GCC_PATH
 fi
 
-EXAMPLE_ROOT=$PWD
+PARENTDIR=`dirname $PWD`
+EXAMPLE_ROOT=`dirname $PARENTDIR`
 
 if [ -z $SDKROOT ]; then
     SDKROOT="${HOME}/dev/repo/SDK6_release"
 fi
 
 if [ "$#" -ne 1 ]; then
-    BUILD_LIST=`find . -name "CMakeLists.txt"`
+    BUILD_LIST=`find ../../. -name "CMakeLists.txt"`
 else
     BUILD_LIST="$1/project_evioronment"
 fi

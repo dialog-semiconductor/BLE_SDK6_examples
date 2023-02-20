@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EX_LIST=`find . -name "CMakeLists.txt"`
+EX_LIST=`find ../../. -name "CMakeLists.txt"`
 
 PASSED_531=()
 FAILED_531=()

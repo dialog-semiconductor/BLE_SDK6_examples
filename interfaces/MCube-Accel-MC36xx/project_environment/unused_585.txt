@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060750: Last Updated: Mon Jan 23 16:18:59 2023
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Mon Feb 20 02:02:43 2023
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -172,23 +172,7 @@ _M_DRV_MC36XX_Delay <= USED 0
 ;FILE nvds.o
 ;FILE otp_hdr.o
 ;FILE patch.o
-;FILE pll_vcocal_lut.o
-GPADC_init <= USED 0
-MedianOfFive <= USED 0
-check_pll_lock <= USED 0
-clear_HW_LUT <= USED 0
-find_initial_calcap_ranges <= USED 0
-meas_precharge_freq <= USED 0
-min <= USED 0
-pll_vcocal_LUT_InitUpdate <= USED 0
-save_configure_restore <= USED 0
-set_rf_cal_cap <= USED 0
-update_LUT <= USED 0
-update_calcap_max_channel <= USED 0
-update_calcap_min_channel <= USED 0
-update_calcap_ranges <= USED 0
-write_HW_LUT <= USED 0
-write_one_SW_LUT_entry <= USED 0
+patch_func <= USED 0
 ;FILE prf.o
 prf_reset_func <= USED 0
 ;FILE prf_utils.o
@@ -199,10 +183,7 @@ rf_nfm_disable <= USED 0
 rf_nfm_enable <= USED 0
 rf_nfm_is_enabled <= USED 0
 ;FILE rf_calibration.o
-DCoffsetCalibration_580 <= USED 0
-IffCalibration_580 <= USED 0
 enable_rf_diag_irq <= USED 0
-rf_calibration_580 <= USED 0
 set_gauss_modgain <= USED 0
 ;FILE rwble.o
 ;FILE rwip.o

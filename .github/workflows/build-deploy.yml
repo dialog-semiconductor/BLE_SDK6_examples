@@ -26,6 +26,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # get sdk from AWS S3 server
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Copy SDK files from AWS
+        run: |
+          aws s3 cp s3://dlglpcgithubci/sdk/SDK_10.0.12.146.cs_release.1.zip /root/dev/repo/SDK6_release/
+
       # run script that builds all examples
       - name: build script
         run: |

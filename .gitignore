@@ -9,3 +9,4 @@
 **/*scvd
 **/*.sct
 **/build
+*.secrets

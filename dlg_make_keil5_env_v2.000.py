@@ -3,7 +3,7 @@
 ###########################################################################################
 # @file		:: dlg_make_keil5_env_v2.001.py
 #
-# @brief	:: Last modified: Nov 11 2021.
+# @brief	:: Last modified: 21 Feb 2023.
 #			   
 # 			   This script sets up the software development environment links with Dialog Semiconductor's SDK6 and copies the project
 #			   folders to SDK location under projects_github.
@@ -100,7 +100,7 @@ DLG_UVOPTX_NAME = "test" + UVOPTX_FILE_EXTENSION
 DLG_UVPROJX_NAME = "test" + UVPROJX_FILE_EXTENSION
 SOC_ID_LIST = ['585', '586', '531', "codeless_boot"]
 
-SCATTER_FILE_NAME = ["DA14585_586.sct", "DA14531.sct"]
+SCATTER_FILE_NAME = ["DA14585_586_armclang.sct", "DA14531_armclang.sct"]
 SCATTER_FILE_PATH = [('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[0]),
                      ('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[1])]
 COPIED_SCATTER_FILE_NAME = ["copied_scatter_585_586.sct", "copied_scatter_531.sct"]
@@ -419,23 +419,23 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element, working_dir_path):
 
     for index, t_sub_element in enumerate(root.findall(xml_sub_element)):
         if (CLEAN_PROJ_ENV == True):
-            if (t_sub_element.text.endswith("peripheral_examples.sct")):  # .sct file in SDK used.
+            if (t_sub_element.text.endswith("peripheral_examples_armclang.sct")):  # .sct file in SDK used.
                 if get_project_name(working_dir_path) in folder_in_folder:
                     t_sub_element.text = ".\\..\\..\\..\\..\\..\\..\\projects\\target_apps\peripheral_examples\shared" \
-                                         "\peripheral_examples.sct"
+                                         "\peripheral_examples_armclang.sct"
                 else:
                     t_sub_element.text = ".\\..\\..\\..\\..\\..\\projects\\target_apps\peripheral_examples\shared" \
-                                         "\peripheral_examples.sct"
+                                         "\peripheral_examples_armclang.sct"
             else:
                 if 'DA14531' in target_names[index].upper():
-                    t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14531.sct"
+                    t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14531_armclang.sct"
                 else:
-                    t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14585_586.sct"
+                    t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14585_586_armclang.sct"
             # else:  # .sct file copied from SDk.
             #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + soc_id_to_soc_data(
             #        TARGET_SOCS[loop_idx]).copied_sct_file_name
         else:
-            if (t_sub_element.text.endswith("peripheral_examples.sct")):
+            if (t_sub_element.text.endswith("peripheral_examples_armclang.sct")):
                 t_sub_element.text = str(SDK_PERIPH_EX_SCATTER_FILE_PATH)
             else:
                 t_sub_element.text = (str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))
@@ -674,9 +674,9 @@ def update_scatter_file(xml_sub_element):
     root = tree.getroot()
 
     for t_sub_element in root.findall(xml_sub_element):
-        if (t_sub_element.text.endswith("peripheral_examples.sct")):
+        if (t_sub_element.text.endswith("peripheral_examples_armclang.sct")):
             SDK_PERIPH_EX_SCATTER_FILE_PATH = str(
-                DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct")
+                DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples_armclang.sct")
             return True
         break
 

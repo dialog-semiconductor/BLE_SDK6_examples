@@ -54,38 +54,6 @@ jobs:
       - name: build script
         run: |
           .github/scripts/build-all-examples.sh
-      
-      # zip workdir
-      - name: zip workdir
-        run: |
-          zip workdir.zip ./*
-
-      # upload workdir for next job
-      - uses: actions/upload-artifact@master
-        with:
-          name: workdir
-          path: workdir.zip
-
-  # This job is to check the build result
-  check:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    container: koenvdm/sdk6buildtools:latest
-    needs: build
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-
-      #download workdir from previous job
-      - uses: actions/download-artifact@master
-        with:
-          name: workdir
-          path: ./
-      
-      # unzip workdir
-      - name: unzip workdir
-        run: |
-          unzip ./workdir.zip
 
       # run script that checks the build result
       - name: find failing script

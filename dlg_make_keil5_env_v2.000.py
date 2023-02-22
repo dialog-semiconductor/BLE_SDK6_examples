@@ -3,7 +3,7 @@
 ###########################################################################################
 # @file		:: dlg_make_keil5_env_v2.001.py
 #
-# @brief	:: Last modified: Feb 21 2023.
+# @brief	:: Last modified: 21 Feb 2023.
 #			   
 # 			   This script sets up the software development environment links with Dialog Semiconductor's SDK6 and copies the project
 #			   folders to SDK location under projects_github.
@@ -148,18 +148,15 @@ Functions
 '''
 def get_project_name(working_dir_path):
     folder_list = working_dir_path.split("\\")
-    #print(folder_list[-2])
-    #if folder_list[-2] in folder_in_folder:
-        #print("True")
     return folder_list[-2]
 
 def split_path(path, compare_string):
     """
-    Returns type: (boolean,string).
+    Returns type: (boolean,string). 
     Function searches for "compare_string" in "path" with the highest index.
     if "compare_string" is found in "path" split_path will remove everything in front of it and return (True,Remaining string).
-    For example "path" = 6.0.12.1020/sdk/platform and "compare_string" = /sdk/, (True,"/sdk/platform") will be returned
-    If "compare_string" was not found in "path" split_path will return (False,path)
+    For example "path" = 6.0.12.1020/sdk/platform and "compare_string" = /sdk/, (True,"/sdk/platform") will be returned 
+    If "compare_string" was not found in "path" split_path will return (False,path) 
     """
 
     index = path.rfind(compare_string)
@@ -370,12 +367,18 @@ def build_uvprojx_element_file(xml_sub_element, xml_tag, working_dir):
                 else:
                     single_text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + end_of_path
 
-                if CLEAN_PROJ_ENV:
+                if ((os.path.exists(single_text) == True) or (CLEAN_PROJ_ENV == True)):
                     if get_project_name(working_dir) in folder_in_folder:
-                        t_sub_element.find(temp_tag).text = ".\\." + single_text
+                        if CLEAN_PROJ_ENV == True:
+                            t_sub_element.find(temp_tag).text = ".\\." + single_text
+                        else:
+                            t_sub_element.find(temp_tag).text = single_text
+                    else:
+                        t_sub_element.find(temp_tag).text = single_text
                 else:
-                    t_sub_element.find(temp_tag).text = single_text
-                print(t_sub_element.find(temp_tag).text)
+                    # print("WARNING :: IT IS AN INVALID DIRECTORY PATH, THIS PATH WILL BE AUTOMATICALLY REMOVED...")
+                    pass
+                print(single_text)
     print("")
 
     # my_file = open(DLG_UVPROJX_NAME,"w")
@@ -435,9 +438,12 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element, working_dir_path):
             #        TARGET_SOCS[loop_idx]).copied_sct_file_name
         else:
             if (t_sub_element.text.endswith("peripheral_examples.sct")):
-                t_sub_element.text = str(SDK_PERIPH_EX_SCATTER_FILE_PATH)
+                t_sub_element.text = str(DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct")
             else:
-                t_sub_element.text = (str(soc_id_to_soc_data(TARGET_SOCS[loop_idx]).copied_sct_file_path))
+                if 'DA14531' in target_names[index].upper():
+                    t_sub_element.text = ".\..\src\config\copied_scatter_531.sct"
+                else:
+                    t_sub_element.text = ".\..\src\config\copied_scatter_585_586.sct"
 
         loop_idx += 1
 
@@ -672,12 +678,18 @@ def update_scatter_file(xml_sub_element):
     tree = ET.parse(DLG_UVPROJX_NAME)
     root = tree.getroot()
 
+    #for t_sub_element in root.findall(xml_sub_element):
+    #    if (t_sub_element.text.endswith("peripheral_examples.sct")):
+    #        periph_exist = True
+    #    else:
+    #        periph_exist = False
+
     for t_sub_element in root.findall(xml_sub_element):
-        if (t_sub_element.text.endswith("peripheral_examples.sct")):
-            SDK_PERIPH_EX_SCATTER_FILE_PATH = str(
-                DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct")
-            return True
-        break
+         if (t_sub_element.text.endswith("peripheral_examples.sct")):
+             SDK_PERIPH_EX_SCATTER_FILE_PATH = str(
+                 DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct")
+             return True
+         break
 
     # Scatter file path not to .sct in SDK. Copy .sct file to project environment.
     if (os.path.isdir(".\\..\\src\\config\\") == True):

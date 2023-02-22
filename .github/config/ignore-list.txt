@@ -11,8 +11,8 @@ list of files to be ignored by CI:
 ./interfaces/HID-Gamepad-Digitizer/CMakeLists.txt
 ./interfaces/SPI_or_I2C_DMA_accelerometer/CMakeLists.txt
 ./interfaces/segger_rtt/CMakeLists.txt
-./connectivity/hibernation_and_stateaware_hibernation
-./interfaces/wakeup_hibernation_ext_timer
-./interfaces/MCube-Accel-MC36xx
+./connectivity/hibernation_and_stateaware_hibernation/CMakeLists.txt
+./interfaces/wakeup_hibernation_ext_timer/CMakeLists.txt
+./interfaces/MCube-Accel-MC36xx/CMakeLists.txt
 
 

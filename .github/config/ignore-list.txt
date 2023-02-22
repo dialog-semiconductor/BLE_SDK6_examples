@@ -1,18 +1,14 @@
 list of files to be ignored by CI:
-./connectivity/BLE2IR/CMakeLists.txt
 ./connectivity/Quuppa_DialogTag/CMakeLists.txt
 ./connectivity/RTC_Example/CMakeLists.txt
 ./connectivity/ble_pressure_sensor_bmp388/CMakeLists.txt
 ./connectivity/ibeacon_Optim/CMakeLists.txt
 ./connectivity/multi_con_periph/CMakeLists.txt
 ./connectivity/multirole/CMakeLists.txt
+./connectivity/BLE2IR/CMakeLists.txt
 ./features/DA14531_Timer1_SW_Example/CMakeLists.txt
 ./features/dynamic_L2CAP_Packet_size_Optimization/CMakeLists.txt
 ./interfaces/HID-Gamepad-Digitizer/CMakeLists.txt
 ./interfaces/SPI_or_I2C_DMA_accelerometer/CMakeLists.txt
 ./interfaces/segger_rtt/CMakeLists.txt
-./connectivity/hibernation_and_stateaware_hibernation/CMakeLists.txt
-./interfaces/wakeup_hibernation_ext_timer/CMakeLists.txt
 ./interfaces/MCube-Accel-MC36xx/CMakeLists.txt
-
-

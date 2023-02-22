@@ -16,11 +16,21 @@ if [ -z $SDKROOT ]; then
     SDKROOT="${GITHUB_WORKSPACE}"
 fi
 
+# compile a list of files that can be built
 if [ "$#" -ne 1 ]; then
     BUILD_LIST=`find ../../. -name "CMakeLists.txt"`
 else
     BUILD_LIST="$1/project_evioronment"
 fi
+
+# write build list to file
+printf "%s\n" "${BUILD_LIST[@]}" > $EXAMPLE_ROOT/config/build-list.txt
+
+# read ignore list file
+IGNORE_LIST=$(<$EXAMPLE_ROOT/.github/config/ignore-list.txt)
+
+# subtract ignore list from build list
+BUILD_LIST=$(comm -13 <(sort $EXAMPLE_ROOT/.github/config/ignore-list.txt) <(sort $EXAMPLE_ROOT/.github/config/build-list.txt))
 
 
 for d in $BUILD_LIST; do

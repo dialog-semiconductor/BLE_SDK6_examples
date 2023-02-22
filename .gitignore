@@ -10,3 +10,4 @@
 **/*.sct
 **/build
 *.secrets
+.github/config/build-list.txt

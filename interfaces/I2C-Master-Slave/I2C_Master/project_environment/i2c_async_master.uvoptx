@@ -75,7 +75,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>0</IsCurrentTarget>
+        <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>7</CpuCode>
       <DebugOpt>
@@ -113,7 +113,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>.\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
+        <tIfile>.\..\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -150,7 +150,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 ) -FN1 -FC1000 -FD20000000 -FF0NEW_DEVICE -FL040000 -FS00 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint></Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -288,7 +288,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>.\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
+        <tIfile>.\..\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -318,7 +318,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 ) -FN1 -FC1000 -FD20000000 -FF0NEW_DEVICE -FL040000 -FS00 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint></Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -418,7 +418,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>1</IsCurrentTarget>
+        <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
       <CpuCode>7</CpuCode>
       <DebugOpt>
@@ -456,14 +456,10 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>.\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14531.ini</tIfile>
+        <tIfile>.\..\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14531.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGUARM</Key>
-        </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>UL2CM3</Key>
@@ -490,7 +486,7 @@
           <Name></Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint></Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -549,7 +545,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14585_586.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -561,7 +557,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14585_586.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -573,7 +569,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -585,7 +581,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -597,7 +593,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\source\exceptions.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\source\exceptions.c</PathWithFileName>
       <FilenameWithoutPath>exceptions.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -617,7 +613,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
       <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -629,7 +625,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -641,7 +637,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\uart\uart.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\uart\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -653,7 +649,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
       <FilenameWithoutPath>uart_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -665,7 +661,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -677,7 +673,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -689,7 +685,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
       <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -701,7 +697,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
       <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -713,7 +709,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
       <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -725,7 +721,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
       <FilenameWithoutPath>i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -769,7 +765,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\..\..\..\..\..\\sdk\platform\arch\main\arch_system.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\main\arch_system.c</PathWithFileName>
       <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

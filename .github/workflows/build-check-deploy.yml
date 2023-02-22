@@ -1,0 +1,93 @@
+# This is a basic workflow to help you get started with Actions
+
+name: build-check-deploy
+
+env:
+  SDK_VERSION: SDK6.1182.1
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This job is to build the repository
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: koenvdm/sdk6buildtools:latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # get sdk from AWS S3 server
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Copy SDK files from AWS
+        run: |
+          aws s3 cp s3://dlglpcgithubci/sdk/$SDK_VERSION.zip $GITHUB_WORKSPACE
+
+      - name: Unzip SDK
+        run: |
+          unzip $GITHUB_WORKSPACE/$SDK_VERSION.zip -d $GITHUB_WORKSPACE
+
+      - name: Move SDK
+        run: |
+          mv $GITHUB_WORKSPACE/$SDK_VERSION/* $GITHUB_WORKSPACE/
+
+      # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
+      - uses: actions/checkout@v3
+        path: ./projects/git_examples/$SDK_VERSION/
+
+      # run script that builds all examples
+      - name: build script
+        run: |
+          .github/scripts/build-all-examples.sh
+      
+      # zip workdir
+      - name: zip workdir
+        run: |
+          zip workdir.zip ./*
+
+      # upload workdir for next job
+      - uses: actions/upload-artifact@master
+        with:
+          name: workdir
+          path: workdir.zip
+
+  # This job is to check the build result
+  check:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: koenvdm/sdk6buildtools:latest
+    needs: build
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      #download workdir from previous job
+      - uses: actions/download-artifact@master
+        with:
+          name: workdir
+          path: ./
+      
+      # unzip workdir
+      - name: unzip workdir
+        run: |
+          unzip ./workdir.zip
+
+      # run script that checks the build result
+      - name: find failing script
+        run: |
+          .github/scripts/find-failing.sh

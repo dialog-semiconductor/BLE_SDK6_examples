@@ -18,7 +18,7 @@ fi
 
 # compile a list of files that can be built
 if [ "$#" -ne 1 ]; then
-    BUILD_LIST=`find ../../. -name "CMakeLists.txt"`
+    BUILD_LIST=`cd $EXAMPLE_ROOT && find . -name "CMakeLists.txt"`
 else
     BUILD_LIST="$1/project_evioronment"
 fi

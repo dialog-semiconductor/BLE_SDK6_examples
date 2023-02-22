@@ -13,20 +13,26 @@ FAILED_586=()
 for d in $EX_LIST ;do
     EX_FOLDER=`dirname $d`
     EX_NAME=`basename $EX_FOLDER`
-    if [ ! -f "$EX_FOLDER/build/${EX_NAME}_531.elf" ]; then
-        FAILED_531+=( "$EX_FOLDER" )
-    else
-        PASSED_531+=( "$EX_FOLDER" )
+    if grep -q "set(BUILD_FOR_531 TRUE)" "$EX_FOLDER/CMakeLists.txt"; then
+        if [ ! -f "$EX_FOLDER/build/${EX_NAME}_531.elf" ]; then
+            FAILED_531+=( "$EX_FOLDER" )
+        else
+            PASSED_531+=( "$EX_FOLDER" )
+        fi
     fi
-    if [ ! -f "$EX_FOLDER/build/${EX_NAME}_585.elf" ]; then
-        FAILED_585+=( "$EX_FOLDER" )
-    else
-        PASSED_585+=( "$EX_FOLDER" )
+    if grep -q "set(BUILD_FOR_585 TRUE)" "$EX_FOLDER/CMakeLists.txt"; then
+        if [ ! -f "$EX_FOLDER/build/${EX_NAME}_585.elf" ]; then
+            FAILED_585+=( "$EX_FOLDER" )
+        else
+            PASSED_585+=( "$EX_FOLDER" )
+        fi
     fi
-    if [ ! -f "$EX_FOLDER/build/${EX_NAME}_586.elf" ]; then
-        FAILED_586+=( "$EX_FOLDER" )
-    else
-        PASSED_586+=( "$EX_FOLDER" )
+    if grep -q "set(BUILD_FOR_586 TRUE)" "$EX_FOLDER/CMakeLists.txt"; then
+        if [ ! -f "$EX_FOLDER/build/${EX_NAME}_586.elf" ]; then
+            FAILED_586+=( "$EX_FOLDER" )
+        else
+            PASSED_586+=( "$EX_FOLDER" )
+        fi
     fi
 done
 

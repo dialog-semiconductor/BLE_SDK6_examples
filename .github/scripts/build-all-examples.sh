@@ -13,7 +13,7 @@ fi
 EXAMPLE_ROOT=$(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )))
 
 if [ -z $SDKROOT ]; then
-    SDKROOT="${HOME}/dev/repo/SDK6_release"
+    SDKROOT="${GITHUB_WORKSPACE}"
 fi
 
 if [ "$#" -ne 1 ]; then

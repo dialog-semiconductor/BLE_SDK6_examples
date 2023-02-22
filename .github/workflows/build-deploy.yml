@@ -2,6 +2,9 @@
 
 name: build-deploy
 
+env:
+  SDK_VERSION: SDK6.1182.1
+
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -23,12 +26,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
       # get sdk from AWS S3 server
       - name: Configure AWS credentials from Test account
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v1-node16
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -36,7 +36,19 @@ jobs:
 
       - name: Copy SDK files from AWS
         run: |
-          aws s3 cp s3://dlglpcgithubci/sdk/SDK_10.0.12.146.cs_release.1.zip /root/dev/repo/SDK6_release/
+          aws s3 cp s3://dlglpcgithubci/sdk/$SDK_VERSION.zip $GITHUB_WORKSPACE
+
+      - name: Unzip SDK
+        run: |
+          unzip $GITHUB_WORKSPACE/$SDK_VERSION.zip -d $GITHUB_WORKSPACE
+
+      - name: Move SDK
+        run: |
+          mv $GITHUB_WORKSPACE/$SDK_VERSION/* $GITHUB_WORKSPACE/
+
+      # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
+      - uses: actions/checkout@v3
+        path: ./projects/git_examples/$SDK_VERSION/
 
       # run script that builds all examples
       - name: build script

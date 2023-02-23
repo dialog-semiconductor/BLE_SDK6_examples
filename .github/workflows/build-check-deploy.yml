@@ -52,13 +52,15 @@ jobs:
 
       # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
       - uses: actions/checkout@v3
+        with:
+          path: ./projects/
 
       # run script that builds all examples
       - name: build script
         run: |
-          .github/scripts/build-all-examples.sh
+          ./projects/.github/scripts/build-all-examples.sh
 
       # run script that checks the build result
       - name: find failing script
         run: |
-          .github/scripts/find-failing.sh
+          ./projects/.github/scripts/find-failing.sh

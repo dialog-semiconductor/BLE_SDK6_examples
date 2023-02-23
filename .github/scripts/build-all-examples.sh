@@ -13,13 +13,8 @@ fi
 EXAMPLE_ROOT=$(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )))
 cd $EXAMPLE_ROOT
 
-echo "example root: $EXAMPLE_ROOT"
-
-ls -la
-tree -L 2
-
 if [ -z $SDKROOT ]; then
-    SDKROOT="${GITHUB_WORKSPACE}"
+    SDKROOT=$GITHUB_WORKSPACE
 fi
 
 # compile a list of files that can be built
@@ -41,6 +36,17 @@ BUILD_LIST=$(comm -13 <(sort $EXAMPLE_ROOT/.github/config/ignore-list.txt) <(sor
 # write updated build list to file
 printf "%s\n" "${BUILD_LIST[@]}" > $EXAMPLE_ROOT/.github/config/build-list.txt
 
+echo "=== env info ==="
+echo "pwd:"
+pwd
+echo "example root: $EXAMPLE_ROOT"
+echo "sdk root: $SDKROOT"
+echo "ls -la:"
+ls -la
+echo "tree -L 2:"
+tree -L 2
+echo "build list:"
+echo "$BUILD_LIST"
 
 for d in $BUILD_LIST; do
 

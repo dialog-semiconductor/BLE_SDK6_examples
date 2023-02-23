@@ -40,15 +40,15 @@ jobs:
 
       - name: Copy SDK files from AWS
         run: |
-          aws s3 cp s3://dlglpcgithubci/sdk/$SDK_VERSION.zip ..
+          aws s3 cp s3://dlglpcgithubci/sdk/$SDK_VERSION.zip $GITHUB_WORKSPACE
 
       - name: Unzip SDK
         run: |
-          unzip ../$SDK_VERSION.zip -d ..
+          unzip $GITHUB_WORKSPACE/$SDK_VERSION.zip -d $GITHUB_WORKSPACE
 
       - name: Move SDK
         run: |
-          mv ../$SDK_VERSION/* ..
+          mv $GITHUB_WORKSPACE/$SDK_VERSION/* $GITHUB_WORKSPACE
 
       # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
       - uses: actions/checkout@v3

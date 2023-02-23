@@ -14,6 +14,7 @@ EXAMPLE_ROOT=$(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" 
 
 echo "example root: $EXAMPLE_ROOT"
 
+ls -la
 tree -L 2
 
 if [ -z $SDKROOT ]; then

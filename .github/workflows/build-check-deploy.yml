@@ -52,7 +52,7 @@ jobs:
 
       # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
       - uses: actions/checkout@v3
-        path: ./projects/git_examples/$SDK_VERSION/
+        path: /projects/git_examples/$SDK_VERSION/
 
       # run script that builds all examples
       - name: build script

@@ -87,7 +87,7 @@ void periph_init(void)
 #endif
 
     //rom patch
-    patch_func();
+//    patch_func();
 
     //Init pads
     set_pad_functions();

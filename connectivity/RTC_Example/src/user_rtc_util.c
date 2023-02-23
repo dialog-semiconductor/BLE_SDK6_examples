@@ -26,14 +26,14 @@
 #include "arch_system.h"
  
 static uint8_t rtc_interrupt_enable_reg_r               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-extern uint32_t rcx_freq;
+extern rcx_time_data_t rcx_time_data;
  
 void rtc_clock_set(void)
 {
     // Set the frequency that the RTC will operate
     if (arch_clk_is_RCX20()) {
         // Calculate RCX frequency. (1000000 / 625 >> 20) is equal to (100 >> 16), which is equal to 25 >> 14
-        rtc_clk_config(RTC_DIV_DENOM_1000, rcx_freq);
+        rtc_clk_config(RTC_DIV_DENOM_1000, rcx_time_data.rcx_freq);
     } else {
         rtc_clk_config(RTC_DIV_DENOM_1000, 32768);
     }

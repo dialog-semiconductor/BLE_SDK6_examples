@@ -11,6 +11,7 @@ else
 fi
 
 EXAMPLE_ROOT=$(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )))
+cd $EXAMPLE_ROOT
 
 echo "example root: $EXAMPLE_ROOT"
 

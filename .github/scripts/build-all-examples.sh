@@ -12,6 +12,8 @@ fi
 
 EXAMPLE_ROOT=$(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )))
 
+echo "example root: $EXAMPLE_ROOT"
+
 if [ -z $SDKROOT ]; then
     SDKROOT="${GITHUB_WORKSPACE}"
 fi

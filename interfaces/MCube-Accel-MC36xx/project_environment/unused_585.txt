@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu Sep 30 15:54:41 2021
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Mon Feb 20 22:53:20 2023
 ;VERSION 0.2
 ;FILE adc_58x.o
 adc_disable <= USED 0
@@ -51,8 +51,6 @@ app_msg_utils_api_process_handler <= USED 0
 ;FILE app_easy_timer.o
 app_easy_timer_cancel_all <= USED 0
 app_easy_timer_modify <= USED 0
-;FILE app_easy_whitelist.o
-app_easy_manage_wlist <= USED 0
 ;FILE app_entry_point.o
 ;FILE app_msg_utils.o
 app_msg_send_wakeup_ble <= USED 0
@@ -62,8 +60,6 @@ app_fill_random_byte_array <= USED 0
 app_get_address_type <= USED 0
 ;FILE arch_main.o
 ;FILE arch_rom.o
-my_custom_func_a <= USED 0
-my_hibernation_entry_func <= USED 0
 ;FILE arch_sleep.o
 arch_ble_ext_wakeup_off <= USED 0
 arch_ble_ext_wakeup_on <= USED 0
@@ -121,11 +117,15 @@ hw_otpc_tdec <= USED 0
 hw_otpc_twr <= USED 0
 hw_otpc_write_rr <= USED 0
 ;FILE i2c.o
+i2c_init <= USED 0
 i2c_master_receive_buffer_async <= USED 0
 i2c_master_receive_buffer_sync <= USED 0
 i2c_master_transmit_buffer_async <= USED 0
+i2c_master_transmit_buffer_sync <= USED 0
 i2c_register_int <= USED 0
 i2c_release <= USED 0
+i2c_setup_master <= USED 0
+i2c_setup_slave <= USED 0
 i2c_slave_receive_buffer_async <= USED 0
 i2c_slave_receive_buffer_sync <= USED 0
 i2c_slave_transmit_buffer_async <= USED 0
@@ -145,6 +145,11 @@ i2c_eeprom_write_page <= USED 0
 i2c_wait_until_eeprom_ready <= USED 0
 ;FILE jump_table.o
 dummyf <= USED 0
+;FILE m_drv_console.o
+itoa <= USED 0
+mcube_printf <= USED 0
+printf_dec <= USED 0
+reverse <= USED 0
 ;FILE m_drv_interface.o
 m_drv_spi_init <= USED 0
 mcube_burst_read <= USED 0
@@ -167,23 +172,7 @@ _M_DRV_MC36XX_Delay <= USED 0
 ;FILE nvds.o
 ;FILE otp_hdr.o
 ;FILE patch.o
-;FILE pll_vcocal_lut.o
-GPADC_init <= USED 0
-MedianOfFive <= USED 0
-check_pll_lock <= USED 0
-clear_HW_LUT <= USED 0
-find_initial_calcap_ranges <= USED 0
-meas_precharge_freq <= USED 0
-min <= USED 0
-pll_vcocal_LUT_InitUpdate <= USED 0
-save_configure_restore <= USED 0
-set_rf_cal_cap <= USED 0
-update_LUT <= USED 0
-update_calcap_max_channel <= USED 0
-update_calcap_min_channel <= USED 0
-update_calcap_ranges <= USED 0
-write_HW_LUT <= USED 0
-write_one_SW_LUT_entry <= USED 0
+patch_func <= USED 0
 ;FILE prf.o
 prf_reset_func <= USED 0
 ;FILE prf_utils.o
@@ -194,10 +183,7 @@ rf_nfm_disable <= USED 0
 rf_nfm_enable <= USED 0
 rf_nfm_is_enabled <= USED 0
 ;FILE rf_calibration.o
-DCoffsetCalibration_580 <= USED 0
-IffCalibration_580 <= USED 0
 enable_rf_diag_irq <= USED 0
-rf_calibration_580 <= USED 0
 set_gauss_modgain <= USED 0
 ;FILE rwble.o
 ;FILE rwip.o
@@ -227,11 +213,14 @@ spi_flash_chip_erase <= USED 0
 spi_flash_chip_erase_forced <= USED 0
 spi_flash_configure_env <= USED 0
 spi_flash_configure_memory_protection <= USED 0
+spi_flash_disable_power_pin <= USED 0
 spi_flash_enable <= USED 0
+spi_flash_enable_power_pin <= USED 0
 spi_flash_enable_with_autodetect <= USED 0
 spi_flash_erase_fail <= USED 0
 spi_flash_fill <= USED 0
 spi_flash_get_power_mode <= USED 0
+spi_flash_get_power_pin_status <= USED 0
 spi_flash_is_busy <= USED 0
 spi_flash_is_empty <= USED 0
 spi_flash_is_page_empty <= USED 0
@@ -254,6 +243,7 @@ spi_flash_release_from_power_down <= USED 0
 spi_flash_set_power_mode <= USED 0
 spi_flash_set_write_disable <= USED 0
 spi_flash_set_write_enable <= USED 0
+spi_flash_ultra_deep_power_down <= USED 0
 spi_flash_wait_till_ready <= USED 0
 spi_flash_write_data <= USED 0
 spi_flash_write_data_buffer <= USED 0

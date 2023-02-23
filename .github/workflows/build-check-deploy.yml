@@ -44,11 +44,11 @@ jobs:
 
       - name: Unzip SDK
         run: |
-          unzip ./$SDK_VERSION.zip -d .
+          unzip ./$SDK_VERSION.zip -d $GITHUB_WORKSPACE
 
       - name: Move SDK
         run: |
-          mv ./$SDK_VERSION/* ./
+          mv $GITHUB_WORKSPACE/$SDK_VERSION/* $GITHUB_WORKSPACE/
 
       # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
       - uses: actions/checkout@v3

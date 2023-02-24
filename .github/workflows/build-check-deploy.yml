@@ -62,5 +62,6 @@ jobs:
 
       # run script that checks the build result
       - name: find failing script
+        if: always()
         run: |
           ./projects/.github/scripts/find-failing.sh

@@ -12,3 +12,7 @@ list of files to be ignored by CI:
 ./interfaces/SPI_or_I2C_DMA_accelerometer/CMakeLists.txt
 ./interfaces/segger_rtt/CMakeLists.txt
 ./interfaces/MCube-Accel-MC36xx/CMakeLists.txt
+./connectivity/switching_roles/CMakeLists.txt
+./helpers/usb_preloaded_firmware/CMakeLists.txt
+./interfaces/SPI-Master-Slave/SPI_Master/CMakeLists.txt
+./interfaces/SPI-Master-Slave/SPI_Slave/CMakeLists.txt

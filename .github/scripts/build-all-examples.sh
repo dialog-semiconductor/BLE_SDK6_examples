@@ -84,11 +84,12 @@ for d in $BUILD_LIST; do
           -DDIALOG_SDK_PATH=$SDKROOT \
           -DDIALOG_EXAMPLE_PATH=$EXAMPLE_ROOT \
           -S . \
-          -GNinja \
           -B $BUILD_DIR
+#          -GNinja \
     ((BUILDS_PASSED|=$?))
     pushd $BUILD_DIR
-    ninja -j 7
+    make -j 7
+#    ninja -j 7
     ((BUILDS_PASSED|=$?))
     popd
     popd

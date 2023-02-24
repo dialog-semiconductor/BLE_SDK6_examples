@@ -48,6 +48,8 @@ tree -L 2
 echo "build list:"
 echo "$BUILD_LIST"
 
+BUILDS_PASSED=0
+
 for d in $BUILD_LIST; do
 
 
@@ -76,16 +78,21 @@ for d in $BUILD_LIST; do
     fi
 
     cmake -DDEVICE_NAME=$APP_NAME \
-        -DCMAKE_BUILD_TYPE=DEBUG \
-        -DCMAKE_TOOLCHAIN_FILE=$EXAMPLE_ROOT/build_utils/gcc/arm-none-eabi.cmake \
-        -DGCC_TOOLCHAIN_PATH="$GCC_TOOLCHAIN_PATH" \
-        -DDIALOG_SDK_PATH=$SDKROOT \
-        -DDIALOG_EXAMPLE_PATH=$EXAMPLE_ROOT \
-        -S . \
-        -B $BUILD_DIR
-
+          -DCMAKE_BUILD_TYPE=DEBUG \
+          -DCMAKE_TOOLCHAIN_FILE=$EXAMPLE_ROOT/build_utils/gcc/arm-none-eabi.cmake \
+          -DGCC_TOOLCHAIN_PATH="$GCC_TOOLCHAIN_PATH" \
+          -DDIALOG_SDK_PATH=$SDKROOT \
+          -DDIALOG_EXAMPLE_PATH=$EXAMPLE_ROOT \
+          -S . \
+          -B $BUILD_DIR
+    ((BUILDS_PASSED|=$?))
+    echo "------------- builds passed: $BUILDS_PASSED"
     pushd $BUILD_DIR
     make -j 7
+    ((BUILDS_PASSED|=$?))
+    echo "------------- builds passed: $BUILDS_PASSED"
     popd
     popd
     done
+
+exit $BUILDS_PASSED

@@ -156,7 +156,7 @@ void app_advertise_complete(const uint8_t status)
 		// Close PD_TIM
 		SetBits16(PMU_CTRL_REG, TIM_SLEEP, 1);
 		// Wait until PD_TIM is closed
-		while ((GetWord16(SYS_STAT_REG) & TIM_IS_DOWN) != TIM_IS_DOWN);
+		//while ((GetWord16(SYS_STAT_REG) & TIM_IS_DOWN) != TIM_IS_DOWN);
 #endif
 
 #if defined (__DA14531__) && defined (CFG_APP_GOTO_HIBERNATION)

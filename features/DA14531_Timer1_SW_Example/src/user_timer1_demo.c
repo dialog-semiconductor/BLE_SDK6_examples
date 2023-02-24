@@ -146,7 +146,7 @@ bool first_measurement                          __SECTION_ZERO("retention_mem_ar
 uint8_t timer1_cnt_ovf                          __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 bool led_state                                  __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 #endif
-extern uint32_t rcx_freq;
+extern rcx_time_data_t rcx_time_data;
 
 /*
  * FUNCTION DEFINITIONS
@@ -306,7 +306,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
             if (timer1_config.input_clk == TIM1_CLK_SRC_SYS)
                 frequency = (timer1_event_config_ch1.period_count * 16000000) / meas->captrure_val;
             else
-                frequency = (timer1_event_config_ch1.period_count * rcx_freq) / meas->captrure_val;
+                frequency = (timer1_event_config_ch1.period_count * rcx_time_data.rcx_freq) / meas->captrure_val;
             
             // Print out the results
             arch_printf("Counting edges %d\n\r", timer1_event_config_ch1.period_count);
@@ -429,7 +429,7 @@ static void report_measurement_result(void)
     if(timer1_config.input_clk == TIM1_CLK_SRC_SYS)
         time = ((uint64_t)event_in_cycles * 625)/10000;
     else if (timer1_config.input_clk == TIM1_CLK_SRC_LP)
-        time = ((uint64_t)event_in_cycles * 1000000)/rcx_freq;
+        time = ((uint64_t)event_in_cycles * 1000000)/rcx_time_data.rcx_freq;
     
 #ifdef CFG_PRINTF
     arch_printf("Pin asserted for %d cycles \n\r", event_in_cycles);

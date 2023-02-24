@@ -86,11 +86,9 @@ for d in $BUILD_LIST; do
           -S . \
           -B $BUILD_DIR
     ((BUILDS_PASSED|=$?))
-    echo "------------- builds passed: $BUILDS_PASSED"
     pushd $BUILD_DIR
     make -j 7
     ((BUILDS_PASSED|=$?))
-    echo "------------- builds passed: $BUILDS_PASSED"
     popd
     popd
     done

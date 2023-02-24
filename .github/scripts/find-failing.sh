@@ -1,6 +1,7 @@
 #!/bin/bash
 
 EXAMPLE_ROOT=$(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )))
+cd $EXAMPLE_ROOT
 EX_LIST=$(<$EXAMPLE_ROOT/.github/config/build-list.txt)
 
 PASSED_531=()

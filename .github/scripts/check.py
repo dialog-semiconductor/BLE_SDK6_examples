@@ -18,7 +18,9 @@ def bash(command):
     return process.communicate()[0], process.returncode
 
 if __name__ == "__main__":
-    workdir = os.getenv('GITHUB_WORKSPACE/projects',".")
+    workdir = os.getenv('GITHUB_WORKSPACE',".")
+    if (workdir != "."):
+        workdir += "/projects/"
 
     with open(workdir+"/.github/config/build-list.txt") as f:
         exlist = f.read().splitlines()

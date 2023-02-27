@@ -34,14 +34,14 @@ if __name__ == "__main__":
                 else:
                     t.failed.append(exfolder)
 
-for t in targets:
-    print("\npassed "+t.name+":")
-    for p in t.passed:
-        print(p)
-    print("\nfailed "+t.name+":")
-    for p in t.failed:
-        print(p)
-    print("\n---------------")
-    print("| PASSED: "+str(len(t.passed))+" ")
-    print("| FAILED: "+str(len(t.failed))+" ")
-    print("---------------")
+    for t in targets:
+        print("\npassed "+t.name+":")
+        for p in t.passed:
+            print(p)
+        print("\nfailed "+t.name+":")
+        for p in t.failed:
+            print(p)
+        print("\n---------------")
+        print("| PASSED: "+str(len(t.passed))+" ")
+        print("| FAILED: "+str(len(t.failed))+" ")
+        print("---------------")

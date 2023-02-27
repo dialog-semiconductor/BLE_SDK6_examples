@@ -13,16 +13,14 @@ fi
 EXAMPLE_ROOT=$(dirname $(dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )))
 cd $EXAMPLE_ROOT
 
-if [ -z $SDKROOT ]; then
+if [ -z "$1" ]; then
     SDKROOT=$GITHUB_WORKSPACE
+else
+    SDKROOT=$1
 fi
 
 # compile a list of files that can be built
-if [ "$#" -ne 1 ]; then
-    BUILD_LIST=`cd $EXAMPLE_ROOT && find . -name "CMakeLists.txt"`
-else
-    BUILD_LIST="$1/project_evioronment"
-fi
+BUILD_LIST=`cd $EXAMPLE_ROOT && find . -name "CMakeLists.txt"`
 
 # write build list to file
 printf "%s\n" "${BUILD_LIST[@]}" > $EXAMPLE_ROOT/.github/config/build-list.txt
@@ -36,6 +34,7 @@ BUILD_LIST=$(comm -13 <(sort $EXAMPLE_ROOT/.github/config/ignore-list.txt) <(sor
 # write updated build list to file
 printf "%s\n" "${BUILD_LIST[@]}" > $EXAMPLE_ROOT/.github/config/build-list.txt
 
+# print some debug info
 echo "=== env info ==="
 echo "pwd:"
 pwd
@@ -85,11 +84,9 @@ for d in $BUILD_LIST; do
           -DDIALOG_EXAMPLE_PATH=$EXAMPLE_ROOT \
           -S . \
           -B $BUILD_DIR
-#          -GNinja \
     ((BUILDS_PASSED|=$?))
     pushd $BUILD_DIR
     make -j 7
-#    ninja -j 7
     ((BUILDS_PASSED|=$?))
     popd
     popd

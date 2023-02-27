@@ -513,7 +513,7 @@
           <Name></Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint></Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>

@@ -371,10 +371,10 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>..\..\..\..\..\..\..\ARMv6_me\6.0.18.1182.1\sdk\common_project_files\scatterfiles\DA14531_armclang.sct</ScatterFile>
+            <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\DA14531_armclang.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>.\..\..\..\..\..\\sdk\common_project_files\misc\da14531_symbols.txt --symdefs=ble_app_flex_beacon_531_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <Misc> .\..\..\..\..\..\\sdk\common_project_files\misc\da14531_symbols.txt --symdefs=ble_app_flex_beacon_531_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>

@@ -138,7 +138,7 @@
           <Name>-T0</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint></Breakpoint>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>

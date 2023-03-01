@@ -39,7 +39,7 @@ if __name__ == "__main__":
     # set variables
     workdir = os.getenv('GITHUB_WORKSPACE',".")
     if (workdir != "."):
-        workdir += "/projects/"
+        workdir += "/projects"
     artifactsdir = workdir+"/.github/artifacts"
 
     # read buildlist
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         exfolder = bash('dirname '+d)[0].decode("utf-8").rstrip()
         exname = bash('basename '+exfolder)[0].decode("utf-8").rstrip()
         for t in targets:
-            if (bash(["grep","-q","set(BUILD_FOR_"+t.acronym+" TRUE)",exfolder+"/CMakeLists.txt"])[1] == 0):
+            if (bash(["grep","-q","set(BUILD_FOR_"+t.acronym+" TRUE)",workdir+"/"+exfolder+"/CMakeLists.txt"])[1] == 0):
                 if(bash("test -f "+exfolder+"/build/"+exname+"_"+t.acronym+".elf")[1] == 0):
                     t.passed.append(Example(exfolder))
                 else:

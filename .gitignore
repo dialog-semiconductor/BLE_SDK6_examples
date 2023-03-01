@@ -11,3 +11,4 @@
 **/build
 *.secrets
 .github/config/build-list.txt
+.github/artifacts

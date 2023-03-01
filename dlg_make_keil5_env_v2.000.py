@@ -440,7 +440,8 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element, working_dir_path):
             #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + soc_id_to_soc_data(
             #        TARGET_SOCS[loop_idx]).copied_sct_file_name
         else:
-            if (t_sub_element.text.endswith("peripheral_examples.sct")):
+            if (t_sub_element.text.endswith(
+                    "peripheral_examples_armclang.sct")):
                 t_sub_element.text = str(DLG_SDK_ROOT_DIRECTORY + 
                                          SHARED_FOLDER_PATH + "peripheral_examples_armclang.sct")
             else:

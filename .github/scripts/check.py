@@ -15,6 +15,9 @@ if __name__ == "__main__":
     targetsfile = bashexec("find . -name targets.json")[0].decode("utf-8").rstrip()
     buildlistfile = bashexec("find . -name build-list.txt")[0].decode("utf-8").rstrip()
 
+    # cd into workdir
+    os.chdir(workdir)
+
     # read intended targets
     f = open(targetsfile)
     targetsData = json.load(f)
@@ -50,7 +53,7 @@ if __name__ == "__main__":
                         "grep",
                         "-q",
                         "set(BUILD_FOR_" + t.acronym + " TRUE)",
-                        workdir + "/" + exfolder + "/CMakeLists.txt",
+                        "./" + exfolder + "/CMakeLists.txt",
                     ]
                 )[1]
                 == 0

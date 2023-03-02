@@ -25,6 +25,20 @@ if __name__ == "__main__":
     with open(buildlistfile) as f:
         exlist = f.read().splitlines()
 
+    # print debug info
+    print("=== env info ===")
+    print("pwd:")
+    print(bashexec("pwd")[0].decode("utf-8").rstrip())
+    print("targetsfile: " + targetsfile)
+    print("workdir:" + workdir)
+    print("buildlistfile:" + buildlistfile)
+    print("ls -la:")
+    print(bashexec("ls -la")[0].decode("utf-8").rstrip())
+    print("exlist:")
+    print(*exlist, sep="\n")
+    print("targetsData:")
+    print(*targetsData, sep="\n")
+
     # scan build outputs for passed builds
     for d in exlist:
         exfolder = bashexec("dirname " + d)[0].decode("utf-8").rstrip()

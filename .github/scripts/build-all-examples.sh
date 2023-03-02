@@ -40,6 +40,7 @@ echo "pwd:"
 pwd
 echo "example root: $EXAMPLE_ROOT"
 echo "sdk root: $SDKROOT"
+echo "github workspace: $GITHUB_WORKSPACE"
 echo "ls -la:"
 ls -la
 echo "tree -L 2:"

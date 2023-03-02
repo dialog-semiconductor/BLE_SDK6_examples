@@ -53,18 +53,18 @@ jobs:
       # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
       - uses: actions/checkout@v3
         with:
-          path: ./projects/
+          path: ./
 
       # run script that builds all examples
       - name: build script
         run: |
-          ./projects/.github/scripts/build-all-examples.sh
+          .github/scripts/build-all-examples.sh
 
       # run script that checks the build result
       - name: find failing script
         if: always()
         run: |
-          python3 projects/.github/scripts/check.py
+          python3 .github/scripts/check.py
           
       - name: upload aws
         #if: github.event_name == 'push' && github.ref_name == 'main'

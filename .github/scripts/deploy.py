@@ -9,8 +9,6 @@ if __name__ == "__main__":
     targets = []
     returncode = 0
     workdir = os.getenv("GITHUB_WORKSPACE", os.getcwd())
-    # if workdir != os.getcwd():
-    #     workdir += "/projects"
     artifactsdir = workdir + "/artifacts"
     targetsfile = workdir + "/.github/config/targets.json"
     buildlistfile = workdir + "/.github/config/build-list.txt"
@@ -39,5 +37,7 @@ if __name__ == "__main__":
             returncode |= bashexec(["cp", binpath, artifactsdir + "/" + t.name + "/"])[
                 1
             ]
+            print(artifactsdir)
+            print(binpath)
 
     # upload to AWS

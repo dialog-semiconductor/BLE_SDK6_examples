@@ -76,5 +76,5 @@ if __name__ == "__main__":
         for p in t.passed:
             t.metadata.append(p.toDict())
         os.mkdir(artifactsdir + "/" + t.name)
-        with open(artifactsdir + "/" + t.name + "/projectsData.json", "w") as output:
+        with open(artifactsdir + "/" + t.name + "/projectData.json", "w") as output:
             output.write(json.dumps({"examples": t.metadata}, indent=3))

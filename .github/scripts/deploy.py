@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     # copy binaries
     for t in targets:
-        f = open(artifactsdir + "/" + t.name + "/projectsData.json")
+        f = open(artifactsdir + "/" + t.name + "/projectData.json")
         projectsData = json.load(f)
 
         for p in projectsData["examples"]:

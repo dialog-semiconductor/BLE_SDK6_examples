@@ -53,7 +53,7 @@ if __name__ == "__main__":
                         "grep",
                         "-q",
                         "set(BUILD_FOR_" + t.acronym + " TRUE)",
-                        "./" + exfolder + "/CMakeLists.txt",
+                        exfolder + "/CMakeLists.txt",
                     ]
                 )[1]
                 == 0

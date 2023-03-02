@@ -2,66 +2,36 @@
 import json
 import os
 import shutil
-import subprocess
 
-
-class Target:
-    """Build targets are devices for which the build is intended."""
-
-    def __init__(self, name, acronym):
-        """Initialize the target using only the name and acronym."""
-        self.name = name
-        self.acronym = acronym
-        self.metadata = []
-        self.passed = []
-        self.failed = []
-
-
-class Project:
-    """Projects are all of the individual cmake project projects in this repository."""
-
-    def __init__(self, path):
-        """Initialize the Project using the path."""
-        self.path = path
-        self.group = path.split("/")[1]
-        self.title = path.split("/")[len(path.split("/")) - 1]
-
-    def toDict(self):
-        """Get the project as a dictionary."""
-        return {"path": self.path, "group": self.group, "title": self.title}
-
-
-targets = [Target("DA14531", "531"), Target("DA14585", "585"), Target("DA14586", "586")]
-
-
-def bash(command):
-    """Run a bash command."""
-    if type(command) is str:
-        command = command.split()
-    else:
-        command = list(command)
-    process = subprocess.Popen(command, stdout=subprocess.PIPE)
-    return process.communicate()[0], process.returncode
-
+from common import Project, Target, bashexec
 
 if __name__ == "__main__":
     # set variables
-    workdir = os.getenv("GITHUB_WORKSPACE", ".")
-    if workdir != ".":
-        workdir += "/projects"
-    artifactsdir = workdir + "/.github/artifacts"
+    targets = []
+    workdir = os.getenv("GITHUB_WORKSPACE", os.getcwd())
+    # if workdir != os.getcwd():
+    #     workdir += "/projects"
+    artifactsdir = workdir + "/artifacts"
+    targetsfile = workdir + "/.github/config/targets.json"
+    buildlistfile = workdir + "/.github/config/build-list.txt"
+
+    # read intended targets
+    f = open(targetsfile)
+    targetsData = json.load(f)
+    for tD in targetsData:
+        targets.append(Target(tD["name"], tD["acronym"]))
 
     # read buildlist
-    with open(workdir + "/.github/config/build-list.txt") as f:
+    with open(buildlistfile) as f:
         exlist = f.read().splitlines()
 
     # scan build outputs for passed builds
     for d in exlist:
-        exfolder = bash("dirname " + d)[0].decode("utf-8").rstrip()
-        exname = bash("basename " + exfolder)[0].decode("utf-8").rstrip()
+        exfolder = bashexec("dirname " + d)[0].decode("utf-8").rstrip()
+        exname = bashexec("basename " + exfolder)[0].decode("utf-8").rstrip()
         for t in targets:
             if (
-                bash(
+                bashexec(
                     [
                         "grep",
                         "-q",
@@ -72,7 +42,7 @@ if __name__ == "__main__":
                 == 0
             ):
                 if (
-                    bash(
+                    bashexec(
                         "test -f "
                         + exfolder
                         + "/build/"
@@ -108,5 +78,5 @@ if __name__ == "__main__":
         for p in t.passed:
             t.metadata.append(p.toDict())
         os.mkdir(artifactsdir + "/" + t.name)
-        with open(artifactsdir + "/" + t.name + "/projectData.json", "w") as output:
+        with open(artifactsdir + "/" + t.name + "/projectsData.json", "w") as output:
             output.write(json.dumps({"examples": t.metadata}, indent=3))

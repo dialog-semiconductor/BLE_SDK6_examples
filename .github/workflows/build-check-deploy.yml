@@ -64,4 +64,9 @@ jobs:
       - name: find failing script
         if: always()
         run: |
-          python3 ./projects/.github/scripts/check.py
+          python3 projects/.github/scripts/check.py
+          
+      - name: upload aws
+        #if: github.event_name == 'push' && github.ref_name == 'main'
+        run: |
+          aws s3 sync --delete artifacts/DA14531  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14531

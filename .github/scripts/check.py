@@ -17,9 +17,6 @@ if __name__ == "__main__":
     targetsfile = bashexec("find . -name targets.json")[0].decode("utf-8").rstrip()
     buildlistfile = bashexec("find . -name build-list.txt")[0].decode("utf-8").rstrip()
 
-    # cd into workdir
-    os.chdir(workdir)
-
     # read intended targets
     f = open(targetsfile)
     targetsData = json.load(f)

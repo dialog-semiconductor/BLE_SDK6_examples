@@ -9,6 +9,8 @@ if __name__ == "__main__":
     # set variables
     targets = []
     workdir = os.getenv("GITHUB_WORKSPACE", os.getcwd())
+    # cd into workdir
+    os.chdir(workdir)
     if workdir != os.getcwd():
         workdir += "/projects"
     artifactsdir = workdir + "/artifacts"

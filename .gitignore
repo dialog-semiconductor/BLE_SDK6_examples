@@ -12,3 +12,4 @@
 *.secrets
 .github/config/build-list.txt
 artifacts
+*__pycache__

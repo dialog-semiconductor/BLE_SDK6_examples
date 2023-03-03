@@ -1,6 +1,8 @@
 """This script deploys the previously built artifacts and the metadata to the AWS server."""
 import json
 import os
+import shutil
+import sys
 
 from common import Target, bashexec
 
@@ -8,15 +10,11 @@ if __name__ == "__main__":
     # set variables
     targets = []
     returncode = 0
-    workdir = os.getenv("GITHUB_WORKSPACE", os.getcwd())
-    if workdir != os.getcwd():
-        workdir += "/projects"
+    workdir = os.getcwd()
+    projdir = workdir + "/projects"
     artifactsdir = workdir + "/artifacts"
     targetsfile = bashexec("find . -name targets.json")[0].decode("utf-8").rstrip()
     buildlistfile = bashexec("find . -name build-list.txt")[0].decode("utf-8").rstrip()
-
-    # cd into workdir
-    os.chdir(workdir)
 
     # read intended targets
     f = open(targetsfile)
@@ -26,15 +24,32 @@ if __name__ == "__main__":
 
     # copy binaries
     for t in targets:
-        f = open(artifactsdir + "/" + t.name + "/projectData.json")
+        os.chdir(workdir)
+        projdatafile = artifactsdir + "/" + t.name + "/projectData.json"
+        f = open(projdatafile)
         projectsData = json.load(f)
 
+        os.chdir(projdir)
         for p in projectsData["examples"]:
-            binpath = p["path"] + "/build/" + p["title"] + "_" + t.acronym + ".bin"
-            returncode |= bashexec(["cp", binpath, artifactsdir + "/" + t.name + "/"])[
-                1
-            ]
-            print(binpath)
-            # readmepath = bashexec(["find"],p['path'],)
+            binpath = (
+                projdir
+                + p["path"][1:]
+                + "/build/"
+                + p["title"]
+                + "_"
+                + t.acronym
+                + ".bin"
+            )
+            readmepath = projdir + p["path"][1:] + "/Readme.md"
+            shutil.copy(binpath, artifactsdir + "/" + t.name + "/")
+            p["readmePath"] = readmepath
+            p["binPath"] = binpath
+
+        projectsData = json.dumps(projectsData, indent=2)
+
+        with open(projdatafile, "w") as outfile:
+            outfile.write(projectsData)
+
+    sys.exit(returncode)
 
     # upload to AWS

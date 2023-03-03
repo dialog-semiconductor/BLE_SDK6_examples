@@ -2,15 +2,13 @@
 import json
 import os
 import shutil
+import sys
 
 from common import Project, Target, bashexec
 
 if __name__ == "__main__":
     # set variables
     targets = []
-    # workdir = os.getenv("GITHUB_WORKSPACE", os.getcwd())
-    # if workdir != os.getcwd():
-    #     workdir += "/projects"
     workdir = os.getcwd()
     projdir = workdir + "/projects"
     artifactsdir = workdir + "/artifacts"
@@ -65,7 +63,8 @@ if __name__ == "__main__":
                 if (
                     bashexec(
                         "test -f "
-                        + exfolder
+                        + projdir
+                        + exfolder[1:]
                         + "/build/"
                         + exname
                         + "_"
@@ -101,3 +100,5 @@ if __name__ == "__main__":
         os.mkdir(artifactsdir + "/" + t.name)
         with open(artifactsdir + "/" + t.name + "/projectData.json", "w") as output:
             output.write(json.dumps({"examples": t.metadata}, indent=3))
+
+    sys.exit(0)

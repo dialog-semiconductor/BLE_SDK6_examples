@@ -40,10 +40,11 @@ if __name__ == "__main__":
                 + t.acronym
                 + ".bin"
             )
-            readmepath = projdir + p["path"][1:] + "/Readme.md"
             shutil.copy(binpath, artifactsdir + "/" + t.name + "/")
-            p["readmePath"] = readmepath
-            p["binPath"] = binpath
+            p["readmePath"] = p["path"][2:] + "/Readme.md"
+            p["binPath"] = (
+                p["path"][2:] + "/build/" + p["title"] + "_" + t.acronym + ".bin"
+            )
 
         projectsData = json.dumps(projectsData, indent=2)
 

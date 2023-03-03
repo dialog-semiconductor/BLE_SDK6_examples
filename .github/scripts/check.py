@@ -8,14 +8,17 @@ from common import Project, Target, bashexec
 if __name__ == "__main__":
     # set variables
     targets = []
-    workdir = os.getenv("GITHUB_WORKSPACE", os.getcwd())
-    # cd into workdir
-    os.chdir(workdir)
-    if workdir != os.getcwd():
-        workdir += "/projects"
+    # workdir = os.getenv("GITHUB_WORKSPACE", os.getcwd())
+    # if workdir != os.getcwd():
+    #     workdir += "/projects"
+    workdir = os.getcwd()
+    projdir = workdir + "/projects"
     artifactsdir = workdir + "/artifacts"
     targetsfile = bashexec("find . -name targets.json")[0].decode("utf-8").rstrip()
     buildlistfile = bashexec("find . -name build-list.txt")[0].decode("utf-8").rstrip()
+
+    # cd into workdir
+    os.chdir(workdir)
 
     # read intended targets
     f = open(targetsfile)
@@ -44,7 +47,9 @@ if __name__ == "__main__":
     # scan build outputs for passed builds
     for d in exlist:
         exfolder = bashexec("dirname " + d)[0].decode("utf-8").rstrip()
+        print("exfolder: " + exfolder)
         exname = bashexec("basename " + exfolder)[0].decode("utf-8").rstrip()
+        print("exname: " + exname)
         for t in targets:
             if (
                 bashexec(
@@ -52,7 +57,7 @@ if __name__ == "__main__":
                         "grep",
                         "-q",
                         "set(BUILD_FOR_" + t.acronym + " TRUE)",
-                        exfolder + "/CMakeLists.txt",
+                        projdir + exfolder[1:] + "/CMakeLists.txt",
                     ]
                 )[1]
                 == 0

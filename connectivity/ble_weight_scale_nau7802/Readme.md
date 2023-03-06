@@ -36,7 +36,7 @@ Connect a load cell to the click board like shown in the image below. Make sure 
 ![Load Cell connected to click board on DA14531](assets/PRO-DK-MikroBus-Load-Cell.jpg)
 
 
-> **NOTE**
+> **Note**
 > 
 > When using the I2C interface, **the JTAG/Debug interface will be no longer available** because the **P0_2** is shared between the **SWCLK** and the **I2C clock**.
 > This is why you can programme the onboard SPI flash with the generated binary and remove after that the JTAG debug Jumpers (J1:21-22 and J1:23-24). 

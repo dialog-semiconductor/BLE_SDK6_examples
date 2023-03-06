@@ -70,6 +70,8 @@ Then use jumpers wires to establish following connections between the DA145xxDEV
 - Build and download the example using the Keil IDE. 
 
 - Run the example using the Keil debugger. (Disconnect the debugger after uploading to allow P0_2 to be used for the I2C interface)
+> **Warning**
+> It is important that SWD wires are physically disconnected when using SWD to upload the code to RAM. Or else the SWD will interfere with the communication to the NAU7802.
 
 - Monitor the debug output using the terminal you setup in step 3 and you should see the following.
 

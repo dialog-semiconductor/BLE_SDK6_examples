@@ -120,6 +120,9 @@ void periph_init(void)
     while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
     SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
 #endif
+	
+		// disable the debugger
+		SetBits16(SYS_CTRL_REG, DEBUGGER_ENABLE, 0);
 
     // ROM patch
     patch_func();

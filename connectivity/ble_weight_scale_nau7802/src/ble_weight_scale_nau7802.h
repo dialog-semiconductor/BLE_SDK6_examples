@@ -65,12 +65,43 @@ i.e.
  ****************************************************************************************
  */
  
+ /**
+ ****************************************************************************************
+ * @brief gets weight value from nau7802 and add new callback for next update
+ ****************************************************************************************
+*/
 void update_weight(void);
 
+/**
+ ****************************************************************************************
+ * @brief Converts a byte array containing wieght data in grams to 10s of milligrams.
+ * @param[in] data   Byte array of grams. Least significat byte first
+ * @return uint32_r  Weight value in milligrams
+ ****************************************************************************************
+*/
+uint32_t grams_byte_array_to_10milligrams(const uint8_t data[4]);
+
+ /**
+ ****************************************************************************************
+ * @brief starts updating the nau7802 and calls default connection
+ * @param[in] connection_idx  Index number that identifies a connected device
+ * @param[in] param   				Pointer to the parameters of the message.
+ ****************************************************************************************
+*/
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param);
 
+ /**
+ ****************************************************************************************
+ * @brief stops the weight scale updating and calls default disconnect
+ ****************************************************************************************
+*/
 void user_on_disconnect( struct gapc_disconnect_ind const *param );
 
+ /**
+ ****************************************************************************************
+ * @brief initializes wsss app and calls default initializer
+ ****************************************************************************************
+*/
 void user_app_on_init(void);
 
 /**

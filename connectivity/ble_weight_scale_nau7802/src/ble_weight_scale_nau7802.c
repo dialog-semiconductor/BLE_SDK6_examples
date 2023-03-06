@@ -109,8 +109,6 @@ void calib_scale(ke_msg_id_t const msgid, struct custs1_val_write_ind const *par
 		uint32_t calibmicrograms = grams_byte_array_to_10milligrams(param->value);
 		nau7802_calib_scale(calibmicrograms);
 }
-													 
-	
 
 void user_catch_rest_hndl(ke_msg_id_t const msgid, void const *param, 
 													ke_task_id_t const dest_id, ke_task_id_t const src_id)

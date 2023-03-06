@@ -258,6 +258,12 @@ int nau7802_init(void)
 			ret = 0;
 			#endif
 		}
+		else {
+			arch_printf("NAU7802 communication error: %i \n",ret);
+		}
+	}
+	else {
+		arch_printf("NAU7802 communication errorr: %i \n",ret);
 	}
 	
   return ret;
@@ -282,7 +288,7 @@ int nau7802_sw_reset(void)
 	/* check if reset was succesful */
 	get_reg_field(NAU7802_REG_PU_CTRL, NAU7802_POS_PU_CTRL_PUR, NAU7802_MSK_PU_CTRL_PUR,&PUR);
 	
-	return !PUR;
+	return PUR;
 }
 
 /**

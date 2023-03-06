@@ -71,19 +71,31 @@ Then use jumpers wires to establish following connections between the DA145xxDEV
 
 - Run the example using the Keil debugger. (Disconnect the debugger after uploading to allow P0_2 to be used for the I2C interface)
 
-- Monitor the debug output using the terminal you setup in step 3 and you should see the following:
+- Monitor the debug output using the terminal you setup in step 3 and you should see the following.
 
-![Debug Output](assets/debug_output.png)
+![Debug Output](assets/debug_output1.png)
  
-- Now connect to the device using a Smart Device running an App such as the Renesas SmartBond™ app . The example advertises with the name "Weight Scale":
+- Now connect to the device using a Smart Device running an App such as the Renesas SmartBond™ app . The example advertises with the name "Weight Scale".
 
 ![Advertisement](assets/advertisement.png)
 
-- You'll now be able to see a weight scale service and also a service with characteristics that allow taring and calibrating the scale. In the figure below, the top most unknown characteristic is to zero the scale. If a byte of ones is written to this service, the weight scale will be set to zero. This can be confirmed via the terminal.
+- The connection event is printed in the terminal.
+
+![Connection event](assets/debug_output1.png)
+
+- You'll now be able to see a weight scale service and also a service with characteristics that allow taring and calibrating the scale. In the figure below, the top most unknown characteristic is to zero the scale. If a byte of ones is written to this service, the weight scale will be set to zero.
 
 ![Characteristic](assets/characteristics.png)
 
+- This can be confirmed in the terminal.
+
+![Connection event](assets/debug_output2.png)
+
 - To calibrate the scale the bottom unknown characteristic is used. A known calibration weight must be put on the weight scale and the weight of that calibration weight should be sent to the characteristic in grams. The type to send is uint32_t.
+
+- The callibration event is printed in the terminal.
+
+![Connection event](assets/debug_output2.png)
 
 - The weight can then be read via BLE by subscribing to the Weight Measurement characteristic as shown below.
 

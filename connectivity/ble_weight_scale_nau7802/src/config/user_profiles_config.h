@@ -61,15 +61,21 @@
 #define APP_DIS_MANUFACTURER_NAME       ("Dialog Semi")
 #define APP_DIS_MANUFACTURER_NAME_LEN   (11)
 
-/// Model Number String (up to 18 chars)
+/// Model Number String
 #if defined (__DA14586__)
     #define APP_DIS_MODEL_NB_STR            ("DA14586")
-#elif defined (__DA14531__)
+#elif defined (__DA14531__) && !defined (__DA14531_01__)
     #define APP_DIS_MODEL_NB_STR            ("DA14531")
+#elif defined (__DA14531_01__)
+    #define APP_DIS_MODEL_NB_STR            ("DA14531-01")
 #else
      #define APP_DIS_MODEL_NB_STR           ("DA14585")
 #endif
+#ifdef __DA14531_01__
+#define APP_DIS_MODEL_NB_STR_LEN        (10)
+#else
 #define APP_DIS_MODEL_NB_STR_LEN        (7)
+#endif
 
 /// System ID - LSB -> MSB
 #define APP_DIS_SYSTEM_ID               ("\x12\x34\x56\xFF\xFE\x9A\xBC\xDE")
@@ -85,12 +91,18 @@
 /// Hardware Revision String
 #if defined (__DA14586__)
     #define APP_DIS_HARD_REV_STR            ("DA14586")
-#elif defined (__DA14531__)
+#elif defined (__DA14531__) && !defined (__DA14531_01__)
     #define APP_DIS_HARD_REV_STR            ("DA14531")
+#elif defined (__DA14531_01__)
+    #define APP_DIS_HARD_REV_STR            ("DA14531-01")
 #else
     #define APP_DIS_HARD_REV_STR            ("DA14585")
 #endif
+#ifdef __DA14531_01__
+#define APP_DIS_HARD_REV_STR_LEN        (10)
+#else
 #define APP_DIS_HARD_REV_STR_LEN        (7)
+#endif
 
 /// Firmware Revision
 #define APP_DIS_FIRM_REV_STR            SDK_VERSION
@@ -114,6 +126,23 @@
  */
 #define APP_DIS_PNP_ID                  ("\x01\xD2\x00\x80\x05\x00\x01")
 #define APP_DIS_PNP_ID_LEN              (7)
+
+/*
+ ****************************************************************************************
+ * BASS application profile configuration
+ ****************************************************************************************
+ */
+
+// Measured in timer units (10ms)
+#define APP_BASS_POLL_INTERVAL           (6000)  //  (6000*10ms)/60sec = Every 1 minute
+
+/*
+ ****************************************************************************************
+ * SUOTA application profile configuration
+ ****************************************************************************************
+ */
+
+
 
 /// @} APP_CONFIG
 

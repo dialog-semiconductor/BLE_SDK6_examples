@@ -34,7 +34,5 @@ repos:
     rev: feature/pre-commit-support
     hooks:
       - id: header-checker
-        args:
-          - '-e connectivity'
           
 exclude: ^(build_utils/|connectivity/|features/|helpers/|img/|interfaces/|dlg_make_keil5_env_v2.000.py)

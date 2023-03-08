@@ -50,7 +50,7 @@
 
 typedef ke_task_id_t task_id_t;
 
-#define __PORT_RETAINED __attribute__((section("retention_mem_area0"), zero_init))
+#define __PORT_RETAINED __attribute__((section(".bss.")))
 
 #define BLE_TASK TASK_APP
 

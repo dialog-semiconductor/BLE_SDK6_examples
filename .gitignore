@@ -13,3 +13,11 @@
 **/DA14585
 **/build
 **/.settings
+*.secrets
+.github/config/build-list.txt
+.github/artifacts
+**/.DS_Store
+**/.settings
+**/build_clang
+**/build_test
+**/DA14531

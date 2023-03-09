@@ -29,10 +29,5 @@ repos:
           - --ignore-words-list=dout,hass
           - --skip="./.*"
           - --quiet-level=2
-
-  - repo: ssh://git@bitbucket.diasemi.com:7999/lpc_cs/github_ci_header_checker.git
-    rev: feature/pre-commit-support
-    hooks:
-      - id: header-checker
           
-exclude: ^(build_utils/|connectivity/|features/|helpers/|img/|interfaces/|dlg_make_keil5_env_v2.000.py)
+exclude: ^(build_utils/|img/|dlg_make_keil5_env_v2.000.py)

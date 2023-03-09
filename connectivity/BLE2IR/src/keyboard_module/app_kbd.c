@@ -33,7 +33,7 @@
 #include "app_kbd.h"
 #include <port_kbd.h>
 #include <app_kbd_config.h>
-
+#include "app_kbd_matrix.h"
 #define KEY_STATUS_MASK    (0x10)    // pressed or released
 #define KEY_FN_SET_MASK    (0x0F)    // mask for fn modifier
 #define KEY_FN_LOCK_MASK   (0x20)    // pressed or released

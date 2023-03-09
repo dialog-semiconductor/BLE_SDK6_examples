@@ -32,7 +32,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
-
+#include "app_kbd_scan_matrix.h"
 #ifdef CFG_PRF_HOGPD
     #include <user_hogpd_config.h>
 #endif

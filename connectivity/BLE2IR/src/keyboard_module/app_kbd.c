@@ -33,7 +33,7 @@
 #include "app_kbd.h"
 #include <port_kbd.h>
 #include <app_kbd_config.h>
-#include "app_kbd_matrix.h"
+
 #define KEY_STATUS_MASK    (0x10)    // pressed or released
 #define KEY_FN_SET_MASK    (0x0F)    // mask for fn modifier
 #define KEY_FN_LOCK_MASK   (0x20)    // pressed or released
@@ -471,13 +471,13 @@ static uint32_t kbd_process_keycode(struct keycode_buffer_tag *keycode_idx)
         const uint8_t input = keycode_idx->input;
 
         if (kbd_params.has_fn_lock && fn_locked) {
-                fn_mod = (kbd_keymap[1][output][input] != 0) ? 1 : 0;
+                fn_mod = ((uint8_t)kbd_keymap[1][output][input] != 0) ? 1 : 0;
         }
         else {
                 fn_mod = keycode_idx->flags & KEY_FN_SET_MASK;
         }
         
-        const uint16_t keycode = kbd_keymap[fn_mod][output][input];
+        const uint16_t keycode = (uint16_t)kbd_keymap[fn_mod][output][input];
         const uint8_t keychar = keycode & 0xFF;
 
         if (keycode) {

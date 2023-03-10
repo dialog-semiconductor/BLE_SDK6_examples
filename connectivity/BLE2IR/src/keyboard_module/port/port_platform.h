@@ -187,7 +187,7 @@ uint32_t port_get_time(void);
   * \param[in]  delay (in us)
  ****************************************************************************************
  */
-void port_delay_usec(uint32_t delay);
+//void port_delay_usec(uint32_t delay);
             
 #if (RWBLE_SW_VERSION_MAJOR >= 8)
 /**

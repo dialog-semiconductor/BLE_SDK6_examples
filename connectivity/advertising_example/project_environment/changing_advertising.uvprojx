@@ -374,7 +374,7 @@
             <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\DA14585_586_armclang.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc> .\..\..\..\..\..\\sdk\common_project_files\misc\da14585_symbols.txt      --symdefs=ble_app_barebone_585_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <Misc>.\..\..\..\..\..\\sdk\common_project_files\misc\da14585_symbols.txt      --symdefs=ble_app_barebone_585_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>

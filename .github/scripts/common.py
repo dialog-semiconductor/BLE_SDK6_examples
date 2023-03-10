@@ -5,13 +5,16 @@ import pathlib
 import subprocess
 
 
-def bashexec(command):
+def bashexec(command, prnt=False):
     """Run a bash command."""
     if type(command) is str:
         command = command.split()
     else:
         command = list(command)
-    process = subprocess.Popen(command, stdout=subprocess.PIPE)
+    if prnt:
+        process = subprocess.Popen(command)
+    else:
+        process = subprocess.Popen(command, stdout=subprocess.PIPE)
     return process.communicate()[0], process.returncode
 
 
@@ -27,7 +30,7 @@ class Target:
         self.failed = []
 
 
-def getTargetsFromFile(file):
+def getTargetsFile(file):
     """Get a list with target devices."""
     targetlist = []
     f = open(file)
@@ -37,26 +40,107 @@ def getTargetsFromFile(file):
     return targetlist
 
 
+def printReport(targets):
+    """Print a report of the build."""
+    for t in targets:
+        print("\npassed " + t.name + ":")
+        for p in t.passed:
+            print(p.title)
+        print("\nfailed " + t.name + ":")
+        for f in t.failed:
+            print(f.title)
+        print("\n---------------")
+        print("| PASSED: " + str(len(t.passed)) + " ")
+        print("| FAILED: " + str(len(t.failed)) + " ")
+        print("---------------")
+
+
 class Project:
     """Projects are all of the individual cmake project projects in this repository."""
 
-    def __init__(self, path, verbose=False):
+    def __init__(self, source, verbose=False):
+        """Initialize the Project using either a uvprojx path or a dict."""
+        # multiple constructors not officially supported by python, this is a workaround
+        if type(source) == str:
+            self._initFromPath(source, verbose=verbose)
+        elif type(source) == dict:
+            self._initFromDict(source, verbose=verbose)
+        else:
+            raise Exception("source type not supported")
+
+    def _initFromPath(self, path, verbose=False):
         """Initialize the Project using the uvprojx path."""
         self.path = pathlib.Path(path)
         self.basedir = self.path.parents[1]
         self.title = self.path.parents[1].name
         self.group = self.path.parents[2].name
-        self.uvprojxFile = self.path
+        self.uvprojxFile = self.path.relative_to(self.basedir)
         self.uvisionLogFile = self.title + "_log.txt"
-        self.cmakelistsFile = "none"
+        self.cmakelistsFile = ""
         for f in pathlib.Path(self.basedir).rglob("*.txt"):
             self.cmakelistsFile = f.relative_to(self.basedir)
             break
-        self.builddir = self.basedir.joinpath("build")
-        self.buildsPassed = []
+        self.builddir = self.basedir.joinpath("build").relative_to(self.basedir)
+        self.buildStatus = []
         if verbose:
             print("initialized ", end="")
             print(self)
+
+    def _initFromDict(self, dict, verbose=False):
+        """Initialize the Project from a dict."""
+        self.path = ""  # todo
+        self.basedir = pathlib.Path(dict["basedir"])
+        self.title = pathlib.Path(dict["title"])
+        self.group = pathlib.Path(dict["group"])
+        self.uvprojxFile = pathlib.Path(dict["uvprojxFile"])
+        self.uvisionLogFile = dict["uvisionLogFile"]
+        if dict["cmakelistsFile"] == "":
+            self.cmakelistsFile = ""
+        else:
+            self.cmakelistsFile = pathlib.Path(dict["cmakelistsFile"])
+        self.builddir = pathlib.Path(dict["builddir"])
+        self.buildStatus = dict["buildStatus"]
+
+    def addBuildStatus(self, buildsystem, target, passed):
+        """Add a build to the project item."""
+        if not self.buildStatus:
+            self.buildStatus = []
+        for i in range(len(self.buildStatus)):
+            if (self.buildStatus[i]["buildsystem"] == buildsystem) and (
+                self.buildStatus[i]["target"] == target.name
+            ):
+                del self.buildStatus[i]
+                break
+
+        self.buildStatus.append(
+            {"buildsystem": buildsystem, "target": target.name, "passed": passed}
+        )
+
+    def toDictComplete(self):
+        """Get the project as a dictionary."""
+        return {
+            "basedir": str(self.basedir.resolve()),
+            "title": str(self.title),
+            "group": str(self.group),
+            "uvprojxFile": str(self.uvprojxFile),
+            "uvisionLogFile": str(self.uvisionLogFile),
+            "cmakelistsFile": str(self.cmakelistsFile),
+            "builddir": str(self.builddir),
+            "buildStatus": self.buildStatus,
+        }
+
+    def toDictAws(self):
+        """Get the project as a dictionary in standard Renesas AWS artifact format."""
+        return {
+            "basedir": str(self.basedir.resolve()),
+            "title": str(self.title),
+            "group": str(self.group),
+            "uvprojxFile": str(self.uvprojxFile),
+            "uvisionLogFile": str(self.uvisionLogFile),
+            "cmakelistsFile": str(self.cmakelistsFile),
+            "builddir": str(self.builddir),
+            "buildStatus": self.buildStatus,
+        }
 
     def __repr__(self):
         """Representation of the class when printing."""
@@ -75,13 +159,21 @@ class Project:
             + str(self.cmakelistsFile)
             + "\n\tbuilddir: "
             + str(self.builddir)
-            + "\n\tbuildsPassed: "
-            + str(self.buildsPassed)
+            + "\n\tbuildStatus: "
+            + str(self.buildStatus)
         )
 
-    def toDict(self):
-        """Get the project as a dictionary."""
-        return {"title": self.title, "group": self.group}
+
+def getProjectsFile(file, verbose=False):
+    """Get a list with projects from a json file."""
+    file = open(file)
+    projectsData = json.load(file)
+    projectsList = []
+
+    for p in projectsData:
+        projectsList.append(Project(p, verbose=verbose))
+
+    return projectsList
 
 
 def findProjectFiles(directory, verbose=False):
@@ -93,5 +185,19 @@ def findProjectFiles(directory, verbose=False):
                 fullpath = os.path.abspath(os.path.join(dirpath, f))
                 if verbose:
                     print("found project file: " + fullpath)
-                filelist.append(Project(fullpath, verbose))
+                filelist.append(Project(fullpath, verbose=verbose))
     return filelist
+
+
+class bcolors:
+    """Colors for printing in terminal."""
+
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"

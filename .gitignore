@@ -13,3 +13,4 @@
 .github/config/build-list.txt
 artifacts
 *__pycache__
+projectData.json

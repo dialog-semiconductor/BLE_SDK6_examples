@@ -1,104 +1,114 @@
 """This script checks the output of the build process."""
+import argparse
 import json
 import os
-import shutil
-import sys
+import pathlib
 
-from common import Project, Target, bashexec
+from common import bashexec, getProjectsFile, getTargetsFile, printReport
 
-if __name__ == "__main__":
-    # set variables
-    targets = []
-    workdir = os.getcwd()
-    projdir = workdir + "/projects"
-    artifactsdir = workdir + "/artifacts"
-    targetsfile = bashexec("find . -name targets.json")[0].decode("utf-8").rstrip()
-    buildlistfile = bashexec("find . -name build-list.txt")[0].decode("utf-8").rstrip()
 
-    # cd into workdir
-    os.chdir(workdir)
+def parseArgs():
+    """Get the arguments passed to script."""
+    parser = argparse.ArgumentParser(
+        prog="CMakeCheck",
+        description="checks build output in repository produced by build script.",
+    )
+    parser.add_argument(
+        "-t",
+        "--targets",
+        default=".github/config/targets.json",
+        help="The targets definition file. default='.github/config/targets.json'",
+    )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="verbose logging",
+    )
+    parser.add_argument(
+        "-f",
+        "--datafile",
+        default="projectData.json",
+        help="The projects definition file. default='artifacts/projectData.json'",
+    )
+    parser.add_argument(
+        "-a",
+        "--artifacts-dir",
+        default="artifacts",
+        help="The projects definition file. default='artifacts'",
+    )
+    args = parser.parse_args()
 
-    # read intended targets
-    f = open(targetsfile)
-    targetsData = json.load(f)
-    for tD in targetsData:
-        targets.append(Target(tD["name"], tD["acronym"]))
+    return args
 
-    # read buildlist
-    with open(buildlistfile) as f:
-        exlist = f.read().splitlines()
 
-    # print debug info
-    print("=== env info ===")
-    print("pwd:")
-    print(bashexec("pwd")[0].decode("utf-8").rstrip())
-    print("targetsfile: " + targetsfile)
-    print("workdir:" + workdir)
-    print("buildlistfile:" + buildlistfile)
-    print("ls -la:")
-    print(bashexec("ls -la")[0].decode("utf-8").rstrip())
-    print("exlist:")
-    print(*exlist, sep="\n")
-    print("targetsData:")
-    print(*targetsData, sep="\n")
+def setVars():
+    """Set the variables used in script."""
+    projects = getProjectsFile(args.datafile)
+    targets = getTargetsFile(args.targets)
+    examplesdir = projects[0].basedir.parents[1].resolve()
+    startdir = pathlib.Path(os.getcwd())
+    artifactsdir = startdir.joinpath(args.artifacts_dir)
 
-    # scan build outputs for passed builds
-    for d in exlist:
-        exfolder = bashexec("dirname " + d)[0].decode("utf-8").rstrip()
-        print("exfolder: " + exfolder)
-        exname = bashexec("basename " + exfolder)[0].decode("utf-8").rstrip()
-        print("exname: " + exname)
+    return projects, targets, examplesdir, startdir, artifactsdir
+
+
+def checkProjects():
+    """Check all project directories if the builds that are configured have passed."""
+    for p in projects:
+        os.chdir(p.basedir)
         for t in targets:
-            if (
-                bashexec(
-                    [
-                        "grep",
-                        "-q",
-                        "set(BUILD_FOR_" + t.acronym + " TRUE)",
-                        projdir + exfolder[1:] + "/CMakeLists.txt",
-                    ]
-                )[1]
-                == 0
-            ):
+            if p.cmakelistsFile:
+                print(p)
                 if (
                     bashexec(
-                        "test -f "
-                        + projdir
-                        + exfolder[1:]
-                        + "/build/"
-                        + exname
-                        + "_"
-                        + t.acronym
-                        + ".elf"
+                        [
+                            "grep",
+                            "-q",
+                            "set(BUILD_FOR_" + t.acronym + " TRUE)",
+                            p.cmakelistsFile,
+                        ]
                     )[1]
                     == 0
                 ):
-                    t.passed.append(Project(exfolder))
-                else:
-                    t.failed.append(Project(exfolder))
+                    if (
+                        bashexec(
+                            "test -f "
+                            + str(p.builddir)
+                            + "/"
+                            + str(p.title)
+                            + "_"
+                            + t.acronym
+                            + ".elf"
+                        )[1]
+                        == 0
+                    ):
+                        t.passed.append(p)
+                        p.addBuildStatus("CMake", t, True)
+                    else:
+                        t.failed.append(p)
+                        p.addBuildStatus("CMake", t, False)
 
-    # print output
-    for t in targets:
-        print("\npassed " + t.name + ":")
-        for p in t.passed:
-            print(p.path)
-        print("\nfailed " + t.name + ":")
-        for f in t.failed:
-            print(f.path)
-        print("\n---------------")
-        print("| PASSED: " + str(len(t.passed)) + " ")
-        print("| FAILED: " + str(len(t.failed)) + " ")
-        print("---------------")
 
-    # produce meta data (projectData.json)
-    if os.path.exists(artifactsdir):
-        shutil.rmtree(artifactsdir)
-    os.mkdir(artifactsdir, mode=0o777)
-    for t in targets:
-        for p in t.passed:
-            t.metadata.append(p.toDict())
-        os.mkdir(artifactsdir + "/" + t.name)
-        with open(artifactsdir + "/" + t.name + "/projectData.json", "w") as output:
-            output.write(json.dumps({"examples": t.metadata}, indent=3))
+def writeOutput():
+    """Write the output to the standard projectData.json."""
+    if args.verbose:
+        print("writing output")
 
-    sys.exit(0)
+    os.chdir(startdir)
+    projdat = []
+    for p in projects:
+        projdat.append(p.toDictComplete())
+    jsonProjdat = json.dumps(projdat, indent=2)
+
+    with open(args.datafile, "w") as outfile:
+        outfile.write(jsonProjdat)
+
+
+if __name__ == "__main__":
+    args = parseArgs()
+    projects, targets, examplesdir, startdir, artifactsdir = setVars()
+    checkProjects()
+    printReport(targets)
+    # sortProjectData()
+    writeOutput()

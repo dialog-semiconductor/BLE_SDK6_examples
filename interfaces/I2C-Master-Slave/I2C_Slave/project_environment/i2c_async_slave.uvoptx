@@ -12,7 +12,7 @@
     <lExt>*.lib</lExt>
     <tExt>*.txt; *.h; *.inc; *.md</tExt>
     <pExt>*.plm</pExt>
-    <CppX>*.cpp</CppX>
+    <CppX>*.cpp; *.cc; *.cxx</CppX>
     <nMigrate>0</nMigrate>
   </Extensions>
 
@@ -22,13 +22,13 @@
   </DaveTm>
 
   <Target>
-    <TargetName>Simple_Button_585</TargetName>
+    <TargetName>DA14585</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
       <CLKADS>12000000</CLKADS>
       <OPTTT>
-        <gFlags>1</gFlags>
+        <gFlags>0</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
         <RunSim>0</RunSim>
         <RunTarget>1</RunTarget>
@@ -73,11 +73,11 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>1</tvExp>
+        <tvExp>0</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>0</IsCurrentTarget>
+        <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>7</CpuCode>
+      <CpuCode>0</CpuCode>
       <DebugOpt>
         <uSim>0</uSim>
         <uTrg>1</uTrg>
@@ -88,14 +88,14 @@
         <sRmem>1</sRmem>
         <sRfunc>1</sRfunc>
         <sRbox>1</sRbox>
-        <tLdApp>0</tLdApp>
+        <tLdApp>1</tLdApp>
         <tGomain>1</tGomain>
         <tRbreak>1</tRbreak>
         <tRwatch>1</tRwatch>
         <tRmem>1</tRmem>
         <tRfunc>0</tRfunc>
         <tRbox>1</tRbox>
-        <tRtrace>0</tRtrace>
+        <tRtrace>1</tRtrace>
         <sRSysVw>1</sRSysVw>
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
@@ -103,7 +103,7 @@
         <bEvRecOn>1</bEvRecOn>
         <bSchkAxf>0</bSchkAxf>
         <bTchkAxf>0</bTchkAxf>
-        <nTsel>4</nTsel>
+        <nTsel>0</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -113,49 +113,29 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>.\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
-        <pMon>Segger\JL2CM3.dll</pMon>
+        <tIfile></tIfile>
+        <pMon>BIN\UL2CM3.DLL</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>ARMRTXEVENTFLAGS</Key>
-          <Name>-L70 -Z18 -C0 -M0 -T1</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMDBGFLAGS</Key>
-          <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>JL2CM3</Key>
-          <Name>-U480068544 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN1 -FF0NEW_DEVICE.FLM -FS00 -FL040000 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
           <Key>UL2CM3</Key>
-          <Name>UL2CM3(-S0 -C0 -P0 ) -FN1 -FC1000 -FD20000000 -FF0NEW_DEVICE -FL040000 -FS00 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM)</Name>
+          <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint></Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
       <DebugFlag>
         <trace>0</trace>
         <periodic>0</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
-        <viewmode>1</viewmode>
+        <viewmode>0</viewmode>
         <vrSel>0</vrSel>
         <aSym>0</aSym>
         <aTbox>0</aTbox>
@@ -190,16 +170,16 @@
   </Target>
 
   <Target>
-    <TargetName>Simple_Button_586</TargetName>
+    <TargetName>DA14586</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
       <CLKADS>12000000</CLKADS>
       <OPTTT>
-        <gFlags>1</gFlags>
+        <gFlags>0</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
-        <RunSim>0</RunSim>
-        <RunTarget>1</RunTarget>
+        <RunSim>1</RunSim>
+        <RunTarget>0</RunTarget>
         <RunAbUc>0</RunAbUc>
       </OPTTT>
       <OPTHX>
@@ -241,14 +221,14 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>1</tvExp>
+        <tvExp>0</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>1</IsCurrentTarget>
+        <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>7</CpuCode>
+      <CpuCode>0</CpuCode>
       <DebugOpt>
-        <uSim>0</uSim>
-        <uTrg>1</uTrg>
+        <uSim>1</uSim>
+        <uTrg>0</uTrg>
         <sLdApp>1</sLdApp>
         <sGomain>1</sGomain>
         <sRbreak>1</sRbreak>
@@ -256,14 +236,14 @@
         <sRmem>1</sRmem>
         <sRfunc>1</sRfunc>
         <sRbox>1</sRbox>
-        <tLdApp>0</tLdApp>
-        <tGomain>1</tGomain>
+        <tLdApp>1</tLdApp>
+        <tGomain>0</tGomain>
         <tRbreak>1</tRbreak>
         <tRwatch>1</tRwatch>
         <tRmem>1</tRmem>
         <tRfunc>0</tRfunc>
         <tRbox>1</tRbox>
-        <tRtrace>0</tRtrace>
+        <tRtrace>1</tRtrace>
         <sRSysVw>1</sRSysVw>
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
@@ -271,7 +251,7 @@
         <bEvRecOn>1</bEvRecOn>
         <bSchkAxf>0</bSchkAxf>
         <bTchkAxf>0</bTchkAxf>
-        <nTsel>4</nTsel>
+        <nTsel>-1</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -281,49 +261,22 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>.\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14585_586.ini</tIfile>
-        <pMon>Segger\JL2CM3.dll</pMon>
+        <tIfile></tIfile>
+        <pMon></pMon>
       </DebugOpt>
-      <TargetDriverDllRegistry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMRTXEVENTFLAGS</Key>
-          <Name>-L70 -Z18 -C0 -M0 -T1</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMDBGFLAGS</Key>
-          <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>JL2CM3</Key>
-          <Name>-U480066693 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN1 -FF0NEW_DEVICE.FLM -FS00 -FL040000 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>UL2CM3</Key>
-          <Name>UL2CM3(-S0 -C0 -P0 ) -FN1 -FC1000 -FD20000000 -FF0NEW_DEVICE -FL040000 -FS00 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM)</Name>
-        </SetRegEntry>
-      </TargetDriverDllRegistry>
-      <Breakpoint></Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
       <DebugFlag>
         <trace>0</trace>
         <periodic>0</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
-        <viewmode>1</viewmode>
+        <viewmode>0</viewmode>
         <vrSel>0</vrSel>
         <aSym>0</aSym>
         <aTbox>0</aTbox>
@@ -358,16 +311,16 @@
   </Target>
 
   <Target>
-    <TargetName>Simple_Button_531</TargetName>
+    <TargetName>DA14531</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
       <CLKADS>12000000</CLKADS>
       <OPTTT>
-        <gFlags>1</gFlags>
+        <gFlags>0</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
-        <RunSim>0</RunSim>
-        <RunTarget>1</RunTarget>
+        <RunSim>1</RunSim>
+        <RunTarget>0</RunTarget>
         <RunAbUc>0</RunAbUc>
       </OPTTT>
       <OPTHX>
@@ -409,14 +362,14 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>1</tvExp>
+        <tvExp>0</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>1</IsCurrentTarget>
+        <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>7</CpuCode>
+      <CpuCode>0</CpuCode>
       <DebugOpt>
-        <uSim>0</uSim>
-        <uTrg>1</uTrg>
+        <uSim>1</uSim>
+        <uTrg>0</uTrg>
         <sLdApp>1</sLdApp>
         <sGomain>1</sGomain>
         <sRbreak>1</sRbreak>
@@ -424,14 +377,14 @@
         <sRmem>1</sRmem>
         <sRfunc>1</sRfunc>
         <sRbox>1</sRbox>
-        <tLdApp>0</tLdApp>
-        <tGomain>1</tGomain>
+        <tLdApp>1</tLdApp>
+        <tGomain>0</tGomain>
         <tRbreak>1</tRbreak>
         <tRwatch>1</tRwatch>
         <tRmem>1</tRmem>
         <tRfunc>0</tRfunc>
         <tRbox>1</tRbox>
-        <tRtrace>0</tRtrace>
+        <tRtrace>1</tRtrace>
         <sRSysVw>1</sRSysVw>
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
@@ -439,7 +392,7 @@
         <bEvRecOn>1</bEvRecOn>
         <bSchkAxf>0</bSchkAxf>
         <bTchkAxf>0</bTchkAxf>
-        <nTsel>4</nTsel>
+        <nTsel>-1</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -449,54 +402,22 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile>.\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\DA14531.ini</tIfile>
-        <pMon>Segger\JL2CM3.dll</pMon>
+        <tIfile></tIfile>
+        <pMon></pMon>
       </DebugOpt>
-      <TargetDriverDllRegistry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGUARM</Key>
-          <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>UL2CM3</Key>
-          <Name>UL2CM3(-S0 -C0 -P0 )  -FC1000 -FD20000000</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>JL2CM3</Key>
-          <Name>-U480070039 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD20000000 -FC1000 -FN1 -FF0NEW_DEVICE.FLM -FS00 -FL040000 -FP0($$Device:ARMCM0$Device\ARM\Flash\NEW_DEVICE.FLM)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMRTXEVENTFLAGS</Key>
-          <Name>-L70 -Z18 -C0 -M0 -T1</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMDBGFLAGS</Key>
-          <Name></Name>
-        </SetRegEntry>
-      </TargetDriverDllRegistry>
-      <Breakpoint></Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
       <DebugFlag>
         <trace>0</trace>
         <periodic>0</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
-        <viewmode>1</viewmode>
+        <viewmode>0</viewmode>
         <vrSel>0</vrSel>
         <aSym>0</aSym>
         <aTbox>0</aTbox>
@@ -532,7 +453,7 @@
 
   <Group>
     <GroupName>sdk_boot</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -543,7 +464,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14585_586.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -555,7 +476,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14585_586.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -567,7 +488,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -579,7 +500,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -591,7 +512,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\projects\target_apps\peripheral_examples\shared\source\exceptions.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\projects\target_apps\peripheral_examples\shared\source\exceptions.c</PathWithFileName>
       <FilenameWithoutPath>exceptions.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -600,7 +521,7 @@
 
   <Group>
     <GroupName>sdk_driver</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -611,7 +532,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
       <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -623,7 +544,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -635,7 +556,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\uart\uart.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\uart\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -647,7 +568,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
       <FilenameWithoutPath>uart_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -659,8 +580,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\systick\systick.c</PathWithFileName>
-      <FilenameWithoutPath>systick.c</FilenameWithoutPath>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
+      <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -671,8 +592,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
-      <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
+      <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -683,8 +604,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
-      <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
+      <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -695,8 +616,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
-      <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
+      <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -707,8 +628,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
-      <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
+      <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -719,8 +640,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
-      <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\driver\i2c\i2c.c</PathWithFileName>
+      <FilenameWithoutPath>i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -728,7 +649,7 @@
 
   <Group>
     <GroupName>user_app</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -763,7 +684,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\main\arch_system.c</PathWithFileName>
+      <PathWithFileName>.\..\..\..\..\..\..\\sdk\platform\arch\main\arch_system.c</PathWithFileName>
       <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

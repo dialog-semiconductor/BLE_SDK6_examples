@@ -374,7 +374,7 @@
             <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\DA14531_armclang.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\--entry=Reset_Handler --no_startup --via=".\script\ac6\fsp_keep.via"</Misc>
+            <Misc>.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\--entry=Reset_Handler --no_startup --via=".\script\ac6\fsp_keep.via"</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings>6319,6314</DisabledWarnings>
           </LDads>

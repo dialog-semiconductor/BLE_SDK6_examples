@@ -5,7 +5,7 @@ import os
 import pathlib
 import shutil
 
-from common import getProjectsFromFile, getTargetsFromFile
+from common import getProjectsFile, getTargetsFile
 
 
 def parseArgs():
@@ -45,57 +45,48 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    projects = getProjectsFromFile(args.datafile)
-    targets = getTargetsFromFile(args.targets)
-    examplesdir = projects[0].basedir.parents[1].resolve()
+    projects = getProjectsFile(args.datafile)
+    targets = getTargetsFile(args.targets)
+    examplesdir = projects[0].absPath.parents[1].resolve()
     startdir = pathlib.Path(os.getcwd())
     artifactsdir = startdir.joinpath(args.artifacts_dir)
 
     return projects, targets, examplesdir, startdir, artifactsdir
 
 
-# def cleanProjectData():
-#     for t in targets:
-#         projdatafile = str(artifactsdir.joinpath(t.name).joinpath("projectData.json"))
-#         with open(projdatafile) as f:
-#             projectsData = json.load(f)
-
-
-#         for p in projectsData['examples']:
-#             p.pop('basedir',None)
-#             p.pop('uvprojxFile',None)
-#             p.pop('uvisionLogFile',None)
-#             p.pop('buildStatus',None)
-#             p.pop('cmakelistsFile',None)
-#             p.pop('builddir',None)
-
-#         projectsData = json.dumps(projectsData, indent=2)
-
-#         with open(projdatafile, "w") as f:
-#             f.write(projectsData)
-
-
 def sortProjectData():
-    """Sort all project data into the correct folder with the proper format."""
+    """Sort all project data into the correct target folder with the proper format."""
     if os.path.exists(artifactsdir):
         if args.verbose:
             print("removing " + str(artifactsdir) + " directory")
         shutil.rmtree(artifactsdir)
 
-    pathlib.Path(artifactsdir).mkdir()
+    artifactsdir.mkdir()
+
     for t in targets:
-        for p in t.passed:
-            t.metadata.append(p.toDictAws())
-        os.mkdir(artifactsdir.joinpath(t.name))
-        with open(artifactsdir.joinpath(t.name + "/projectData.json"), "w") as output:
+        targetdir = artifactsdir.joinpath(t.name)
+        projdatajson = targetdir.joinpath("projectData.json")
+        targetdir.mkdir()
+        for p in projects:
+            for b in p.buildStatus:
+                if (b["target"]["name"] == t.name) and (b["passed"] is True):
+                    t.metadata.append(p.toDictAws())
+        with open(projdatajson, "w") as output:
             output.write(json.dumps({"examples": t.metadata}, indent=3))
 
 
-# def copyFiles():
-#     for t in targets:
-#         for p in projects:
-#             binpath = p.basedir.joinpath(p.builddir).joinpath(p.title.name+"_"+t.name+".bin")
-#             shutil.copy(binpath, artifactsdir + "/" + t.name + "/")
+def copyFiles():
+    """Copy the files to artifacts folder."""
+    for t in targets:
+        for m in t.metadata:
+            p = next((i for i in projects if str(i.title) == m["title"]), None)
+            binpath = p.absPath.joinpath(p.builddir).joinpath(
+                p.title.name + "_" + t.acronym + ".bin"
+            )
+            artifactpath = artifactsdir.joinpath(t.name).joinpath(p.path)
+            artifactpath.mkdir(parents=True)
+            print(artifactpath)
+            shutil.copy(binpath, artifactpath)
 
 
 if __name__ == "__main__":
@@ -103,6 +94,7 @@ if __name__ == "__main__":
     projects, targets, examplesdir, startdir, artifactsdir = setVars()
 
     sortProjectData()
+    copyFiles()
 
     # # copy binaries
     # for t in targets:

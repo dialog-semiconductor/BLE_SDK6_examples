@@ -89,12 +89,12 @@ def setVars():
     projectFiles = findProjectFiles(args.projdir, verbose=args.verbose)
 
     gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
-    examplesdir = projectFiles[0].basedir.parents[1].resolve()
+    examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
     datafile = startdir.joinpath(args.datafile)
 
     for p in projectFiles:
-        if p.basedir.name in args.exclude:
+        if p.absPath.name in args.exclude:
             if args.verbose:
                 print(
                     bcolors.WARNING
@@ -115,7 +115,7 @@ def buildProjects():
         if p.cmakelistsFile:
             print(bcolors.HEADER + "Building " + str(p) + bcolors.ENDC)
 
-            os.chdir(p.basedir)
+            os.chdir(p.absPath)
 
             if os.path.exists(p.builddir):
                 shutil.rmtree(p.builddir)

@@ -58,18 +58,18 @@ jobs:
       # run script that builds all examples
       - name: build script
         run: |
-          projects/.github/scripts/build-all-examples.sh
+          python3 projects/.github/scripts/build.py -x projects/.github/config/ignore-list.txt -v -p ./projects/
 
       # run script that checks the build result
       - name: check script
         if: always()
         run: |
-          python3  projects/.github/scripts/check.py
+          python3  projects/.github/scripts/check.py -v
 
       # run script that checks the build result
       - name: deploy script
         run: |
-          python3  projects/.github/scripts/deploy.py
+          python3  projects/.github/scripts/deploy.py -v
           
       - name: upload 531 aws
         #if: github.event_name == 'push' && github.ref_name == 'main'

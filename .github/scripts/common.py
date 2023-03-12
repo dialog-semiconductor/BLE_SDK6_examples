@@ -29,6 +29,10 @@ class Target:
         self.passed = []
         self.failed = []
 
+    def to_json(self):
+        """Get target as json."""
+        return {"name": self.name, "acronym": self.acronym}
+
 
 def getTargetsFile(file):
     """Get a list with target devices."""
@@ -70,17 +74,20 @@ class Project:
 
     def _initFromPath(self, path, verbose=False):
         """Initialize the Project using the uvprojx path."""
-        self.path = pathlib.Path(path)
-        self.basedir = self.path.parents[1]
-        self.title = self.path.parents[1].name
-        self.group = self.path.parents[2].name
-        self.uvprojxFile = self.path.relative_to(self.basedir)
+        inPath = pathlib.Path(path)
+        self.absPath = inPath.parents[1]
+        self.path = str(self.absPath).replace(os.getcwd(), "")[1:]
+        self.title = inPath.parents[1].name
+        self.group = str(inPath.relative_to(os.getcwd())).split("/")[0]
+        self.uvprojxFile = inPath.relative_to(inPath.parents[1])
         self.uvisionLogFile = self.title + "_log.txt"
         self.cmakelistsFile = ""
-        for f in pathlib.Path(self.basedir).rglob("*.txt"):
-            self.cmakelistsFile = f.relative_to(self.basedir)
+        for f in pathlib.Path(inPath.parents[1]).rglob("*.txt"):
+            self.cmakelistsFile = f.relative_to(inPath.parents[1])
             break
-        self.builddir = self.basedir.joinpath("build").relative_to(self.basedir)
+        self.builddir = (
+            inPath.parents[1].joinpath("build").relative_to(inPath.parents[1])
+        )
         self.buildStatus = []
         if verbose:
             print("initialized ", end="")
@@ -88,8 +95,8 @@ class Project:
 
     def _initFromDict(self, dict, verbose=False):
         """Initialize the Project from a dict."""
-        self.path = ""  # todo
-        self.basedir = pathlib.Path(dict["basedir"])
+        self.absPath = pathlib.Path(dict["absPath"])
+        self.path = pathlib.Path(dict["path"])
         self.title = pathlib.Path(dict["title"])
         self.group = pathlib.Path(dict["group"])
         self.uvprojxFile = pathlib.Path(dict["uvprojxFile"])
@@ -113,13 +120,14 @@ class Project:
                 break
 
         self.buildStatus.append(
-            {"buildsystem": buildsystem, "target": target.name, "passed": passed}
+            {"buildsystem": buildsystem, "target": target.to_json(), "passed": passed}
         )
 
     def toDictComplete(self):
         """Get the project as a dictionary."""
         return {
-            "basedir": str(self.basedir.resolve()),
+            "absPath": str(self.absPath),
+            "path": str(self.path),
             "title": str(self.title),
             "group": str(self.group),
             "uvprojxFile": str(self.uvprojxFile),
@@ -132,21 +140,20 @@ class Project:
     def toDictAws(self):
         """Get the project as a dictionary in standard Renesas AWS artifact format."""
         return {
-            "basedir": str(self.basedir.resolve()),
-            "title": str(self.title),
+            "path": str(self.path),
             "group": str(self.group),
-            "uvprojxFile": str(self.uvprojxFile),
-            "uvisionLogFile": str(self.uvisionLogFile),
-            "cmakelistsFile": str(self.cmakelistsFile),
-            "builddir": str(self.builddir),
-            "buildStatus": self.buildStatus,
+            "title": str(self.title),
+            "readmePath": "placeholder",
+            "binPath": "placeholder",
         }
 
     def __repr__(self):
         """Representation of the class when printing."""
         return (
-            "Project:\n\tbasedir: "
-            + str(self.basedir)
+            "Project:\n\tabsPath: "
+            + str(self.absPath)
+            + "\n\tpath: "
+            + str(self.path)
             + "\n\ttitle: "
             + str(self.title)
             + "\n\tgroup: "

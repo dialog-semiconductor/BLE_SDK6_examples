@@ -46,7 +46,7 @@ def setVars():
     """Set the variables used in script."""
     projects = getProjectsFile(args.datafile)
     targets = getTargetsFile(args.targets)
-    examplesdir = projects[0].basedir.parents[1].resolve()
+    examplesdir = projects[0].absPath.parents[1].resolve()
     startdir = pathlib.Path(os.getcwd())
     artifactsdir = startdir.joinpath(args.artifacts_dir)
 
@@ -56,7 +56,7 @@ def setVars():
 def checkProjects():
     """Check all project directories if the builds that are configured have passed."""
     for p in projects:
-        os.chdir(p.basedir)
+        os.chdir(p.absPath)
         for t in targets:
             if p.cmakelistsFile:
                 print(p)

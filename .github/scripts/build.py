@@ -145,6 +145,7 @@ def buildProjects():
 
             if bashexec("make -j 7", prnt=args.verbose)[1] != 0:
                 buildResult += 1
+                print(bcolors.FAIL+ str(p)+bcolors.ENDC)
 
     return buildResult
 

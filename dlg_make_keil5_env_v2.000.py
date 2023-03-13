@@ -758,8 +758,10 @@ def setup_keil5_project_environment(sdk_path, working_dir_path):
     # build_uvprojx_element_target_name(XML_PATTERN_TARGET_FILENAME)
     # build_uvprojx_element_output_name(XML_PATTERN_OUTPUT_FILENAME)
     # build_uvoptx_element_debugopt(XML_PATTERN_TIFILE, XML_TAG[4])
-    build_uvoptx_change_element_adresses(XML_PATTERN_PATHWITHFILENAME, XML_TAG[5], working_dir_path)
-    build_uvoptx_change_element_adresses(XML_PATTERN_TIFILE, XML_TAG[4], working_dir_path)
+    # build_uvoptx_change_element_adresses(XML_PATTERN_PATHWITHFILENAME,
+    # XML_TAG[5], working_dir_path)
+    # build_uvoptx_change_element_adresses(XML_PATTERN_TIFILE, XML_TAG[4],
+    # working_dir_path)
     # build_uvoptx_element_targetname(XML_PATTERN_OVOPTX_TARGET_FILENAME)
 
     if (CLEAN_PROJ_ENV):
@@ -787,10 +789,10 @@ def verify_dlg_keil_app_project(path):
             uvprojx_file_extension_counter += 1
         if name.endswith(UVOPTX_FILE_EXTENSION):
             DLG_UVOPTX_NAME = name
-    if (DLG_UVPROJX_NAME.replace(UVPROJX_FILE_EXTENSION, "") != DLG_UVOPTX_NAME.replace(UVOPTX_FILE_EXTENSION, "")):
+    """if (DLG_UVPROJX_NAME.replace(UVPROJX_FILE_EXTENSION, "") != DLG_UVOPTX_NAME.replace(UVOPTX_FILE_EXTENSION, "")):
         print(
             "ERROR		:	FILE NAME OF .UVOPTX AND .UVPROJX FILES ARE NOT IDENTICAL.\n" + DLG_UVOPTX_NAME + "\n" + DLG_UVPROJX_NAME)
-        return False
+        return False"""
 
     if uvprojx_file_extension_counter == 1:
         print('KEIL PROJECT NAME :: ' + path + "\\" + DLG_UVPROJX_NAME + ' IS A VALID PROJECT DIRECTORY...\r\n')
@@ -982,7 +984,8 @@ def link_projects_to_sdk(sdkpath, proj_dir_names):
 # print(dir_names)
 
 def run_all_project_files(pathname, sdkpath):
-    uvoptx_pathnames = glob.glob(pathname + "/**/**/*.uvoptx", recursive=True)
+    uvoptx_pathnames = glob.glob(pathname + "/**/**/*.uvprojx",
+                                 recursive=True)
     proj_dir_names = []
     for uvoptx_pathname in uvoptx_pathnames:
         proj_dir_names.append(os.path.dirname(uvoptx_pathname))

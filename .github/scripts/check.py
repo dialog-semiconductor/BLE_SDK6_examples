@@ -46,7 +46,7 @@ def setVars():
     """Set the variables used in script."""
     projects = getProjectsFile(args.datafile)
     targets = getTargetsFile(args.targets)
-    examplesdir = projects[0].absPath.parents[1].resolve()
+    examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
     artifactsdir = startdir.joinpath(args.artifacts_dir)
 
@@ -110,5 +110,6 @@ if __name__ == "__main__":
     projects, targets, examplesdir, startdir, artifactsdir = setVars()
     checkProjects()
     printReport(targets)
-    # sortProjectData()
     writeOutput()
+
+    os.chdir(startdir)

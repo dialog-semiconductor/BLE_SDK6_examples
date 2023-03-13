@@ -47,7 +47,7 @@ def setVars():
     """Set the variables used in script."""
     projects = getProjectsFile(args.datafile)
     targets = getTargetsFile(args.targets)
-    examplesdir = projects[0].absPath.parents[1].resolve()
+    examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
     artifactsdir = startdir.joinpath(args.artifacts_dir)
 
@@ -70,7 +70,8 @@ def sortProjectData():
         for p in projects:
             for b in p.buildStatus:
                 if (b["target"]["name"] == t.name) and (b["passed"] is True):
-                    t.metadata.append(p.toDictAws())
+                    t.metadata.append(p.toDictAws(examplesdir, t))
+        print(t.metadata)
         with open(projdatajson, "w") as output:
             output.write(json.dumps({"examples": t.metadata}, indent=3))
 
@@ -95,6 +96,8 @@ if __name__ == "__main__":
 
     sortProjectData()
     copyFiles()
+
+    os.chdir(startdir)
 
     # # copy binaries
     # for t in targets:

@@ -18,6 +18,13 @@ def bashexec(command, prnt=False):
     return process.communicate()[0], process.returncode
 
 
+def findFirstOfGlob(path, pathGlob):
+    """Get first found instance of a glob within a folder."""
+    for f in pathlib.Path(path.parents[1]).rglob(pathGlob):
+        return f
+    return ""
+
+
 class Target:
     """Build targets are devices for which the build is intended."""
 
@@ -62,29 +69,27 @@ def printReport(targets):
 class Project:
     """Projects are all of the individual cmake project projects in this repository."""
 
-    def __init__(self, source, verbose=False):
+    def __init__(self, source, exdir=os.getcwd(), verbose=False):
         """Initialize the Project using either a uvprojx path or a dict."""
         # multiple constructors not officially supported by python, this is a workaround
         if type(source) == str:
-            self._initFromPath(source, verbose=verbose)
+            self._initFromPath(source, exdir=exdir, verbose=verbose)
         elif type(source) == dict:
             self._initFromDict(source, verbose=verbose)
         else:
             raise Exception("source type not supported")
 
-    def _initFromPath(self, path, verbose=False):
+    def _initFromPath(self, path, exdir, verbose=False):
         """Initialize the Project using the uvprojx path."""
         inPath = pathlib.Path(path)
         self.absPath = inPath.parents[1]
-        self.path = str(self.absPath).replace(os.getcwd(), "")[1:]
+        self.path = str(self.absPath).replace(str(exdir), "")[1:]
         self.title = inPath.parents[1].name
-        self.group = str(inPath.relative_to(os.getcwd())).split("/")[0]
-        self.uvprojxFile = inPath.relative_to(inPath.parents[1])
+        self.group = str(inPath.relative_to(exdir)).split("/")[0]
+        self.uvprojxFile = inPath
         self.uvisionLogFile = self.title + "_log.txt"
-        self.cmakelistsFile = ""
-        for f in pathlib.Path(inPath.parents[1]).rglob("CMakeLists.txt"):
-            self.cmakelistsFile = f.relative_to(inPath.parents[1])
-            break
+        self.cmakelistsFile = findFirstOfGlob(inPath, "CMakeLists.txt")
+        self.readmePath = findFirstOfGlob(inPath, "Readme.md")
         self.builddir = (
             inPath.parents[1].joinpath("build").relative_to(inPath.parents[1])
         )
@@ -105,6 +110,7 @@ class Project:
             self.cmakelistsFile = ""
         else:
             self.cmakelistsFile = pathlib.Path(dict["cmakelistsFile"])
+        self.readmePath = pathlib.Path(dict["readmePath"])
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
 
@@ -133,17 +139,18 @@ class Project:
             "uvprojxFile": str(self.uvprojxFile),
             "uvisionLogFile": str(self.uvisionLogFile),
             "cmakelistsFile": str(self.cmakelistsFile),
+            "readmePath": str(self.readmePath),
             "builddir": str(self.builddir),
             "buildStatus": self.buildStatus,
         }
 
-    def toDictAws(self):
+    def toDictAws(self, rootdir, fortarget):
         """Get the project as a dictionary in standard Renesas AWS artifact format."""
         return {
             "path": str(self.path),
             "group": str(self.group),
             "title": str(self.title),
-            "readmePath": "placeholder",
+            "readmePath": str(self.readmePath).replace(str(rootdir), "")[1:],
             "binPath": "placeholder",
         }
 
@@ -164,6 +171,8 @@ class Project:
             + str(self.uvisionLogFile)
             + "\n\tcmakelistsFile: "
             + str(self.cmakelistsFile)
+            + "\n\treadmePath: "
+            + str(self.readmePath)
             + "\n\tbuilddir: "
             + str(self.builddir)
             + "\n\tbuildStatus: "
@@ -183,7 +192,7 @@ def getProjectsFile(file, verbose=False):
     return projectsList
 
 
-def findProjectFiles(directory, verbose=False):
+def findProjectFiles(directory, exdir, verbose=False):
     """Get a list with uvprojx files in a directory."""
     filelist = []
     for dirpath, _, filenames in os.walk(directory):
@@ -192,7 +201,7 @@ def findProjectFiles(directory, verbose=False):
                 fullpath = os.path.abspath(os.path.join(dirpath, f))
                 if verbose:
                     print("found project file: " + fullpath)
-                filelist.append(Project(fullpath, verbose=verbose))
+                filelist.append(Project(fullpath, exdir, verbose=verbose))
     return filelist
 
 

@@ -86,11 +86,12 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    projectFiles = findProjectFiles(args.projdir, verbose=args.verbose)
-
     gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
+    projectFiles = findProjectFiles(
+        args.projdir, exdir=examplesdir, verbose=args.verbose
+    )
     datafile = startdir.joinpath(args.datafile)
 
     for p in projectFiles:

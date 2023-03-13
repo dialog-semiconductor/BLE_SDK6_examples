@@ -69,7 +69,7 @@ jobs:
       # run script that checks the build result
       - name: deploy script
         run: |
-          python3  projects/.github/scripts/deploy.py -v
+          python3  projects/.github/scripts/deploy.py -v -t projects/.github/config/targets.json
           
       - name: upload 531 aws
         #if: github.event_name == 'push' && github.ref_name == 'main'

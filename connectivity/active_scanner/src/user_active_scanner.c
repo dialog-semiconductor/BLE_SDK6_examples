@@ -85,7 +85,7 @@ static const struct scan_configuration user_scan_conf ={
     .filter_duplic = SCAN_FILT_DUPLIC_EN
 };
 
-static void user_scan_start( void );
+void user_scan_start( void );
 
 
 

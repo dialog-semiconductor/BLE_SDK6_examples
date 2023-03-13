@@ -499,7 +499,7 @@ struct scan_req_data_msg{
 
 typedef void (scn_response_callback)(struct scan_req_data_msg const*);
 
-#define DLG_EVENT_HANDLER_ENTER() \
+#define unint8_t DLG_EVENT_HANDLER_ENTER() \
 {                                                                                                                               \
     struct ea_elt_tag *elt_s = (struct ea_elt_tag *)co_list_pick(&lld_evt_env.elt_prog);                                        \
     struct lld_evt_tag *evt_s = LLD_EVT_ENV_ADDR_GET(elt_s);                                                                    \

@@ -59,35 +59,35 @@
  ****************************************************************************************
  */
 
-timer_hnd app_adv_data_update_timer_used            __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+timer_hnd app_adv_data_update_timer_used            __attribute__((section(".bss.")));//@RETENTION MEMORY
 
-uint8_t initial_adv_data[ADV_DATA_LEN]              __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t initial_adv_data_len                        __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t initial_adv_data[ADV_DATA_LEN]              __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t initial_adv_data_len                        __attribute__((section(".bss."))); //@RETENTION MEMORY
 
-uint8_t user_adv_data[ADV_DATA_LEN]                 __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t user_adv_data_len                           __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t user_adv_data[ADV_DATA_LEN]                 __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t user_adv_data_len                           __attribute__((section(".bss."))); //@RETENTION MEMORY
 
-uint8_t initial_scan_rsp_data[SCAN_RSP_DATA_LEN]    __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t initial_scan_rsp_data_len                   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t initial_scan_rsp_data[SCAN_RSP_DATA_LEN]    __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t initial_scan_rsp_data_len                   __attribute__((section(".bss."))); //@RETENTION MEMORY
 
-uint8_t user_scan_rsp_data[SCAN_RSP_DATA_LEN]       __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t user_scan_rsp_data_len                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t user_scan_rsp_data[SCAN_RSP_DATA_LEN]       __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t user_scan_rsp_data_len                      __attribute__((section(".bss."))); //@RETENTION MEMORY
 
-uint8_t added_adv_data_len                          __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t added_scan_rsp_data_len                     __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t added_adv_data_len                          __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t added_scan_rsp_data_len                     __attribute__((section(".bss."))); //@RETENTION MEMORY
 
-uint8_t adv_data_cursor                             __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t scan_rsp_data_cursor                        __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t adv_data_cursor                             __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t scan_rsp_data_cursor                        __attribute__((section(".bss.")));//@RETENTION MEMORY
 
-bool 	update_adv_data                             __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+bool 	update_adv_data                             __attribute__((section(".bss."))); //@RETENTION MEMORY
 
-uint8_t user_store_data[USER_DATA_LEN] 				__attribute__((section("retention_mem_area_uninit") , zero_init));  //@RETENTION MEMORY
+uint8_t user_store_data[USER_DATA_LEN] 				__attribute__((section(".bss.")));  //@RETENTION MEMORY
 
-uint8_t user_store_data_len                       	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t user_store_data_counter                   	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t append_data                 			  	__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t user_store_data_len                       	__attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t user_store_data_counter                   	__attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t append_data                 			  	__attribute__((section(".bss.")));//@RETENTION MEMORY
 
-bool  	append_data_empty 							__attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+bool  	append_data_empty 							__attribute__((section(".bss."))); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS

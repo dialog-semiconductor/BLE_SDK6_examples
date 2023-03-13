@@ -1237,8 +1237,9 @@ static void _user_app_sensor_init()
     
     bmi2_set_adv_power_save(BMI2_ENABLE,  port_bmi270_dev_ptr());
 		
-	arch_printf("\n\n\r bmi2_set_adv_power_save = %s", rslt==0? "OK":"NOT OK");
-	#endif
+		#ifdef CFG_PRINTF
+		arch_printf("\n\n\r bmi2_set_adv_power_save = %s", rslt==0? "OK":"NOT OK");
+		#endif
     
     var = 0x00; // latched
     bmi2_set_regs(BMI2_INT_LATCH_ADDR, &var, 1, port_bmi270_dev_ptr());

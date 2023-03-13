@@ -82,6 +82,7 @@ static const wkup_config_t wkup_config[] = {
         .callback         = port_kbd_scan_wakeup_handler,
         .config.pin_mask  = KBD_WKUP_MASK,
     },
+		
     #ifdef HAS_POWERUP_BUTTON	    
     [WKUP_KBD_POWER_BUTTON_CHANNEL] = {
         .single_pin_input           = true,

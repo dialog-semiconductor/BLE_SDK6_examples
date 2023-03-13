@@ -69,7 +69,7 @@
 #define EXCLUDE_DLG_BASS            (0)
 #define EXCLUDE_DLG_FINDL           (0)
 #define EXCLUDE_DLG_FINDT           (0)
-#define EXCLUDE_DLG_SUOTAR          (0)
+#define EXCLUDE_DLG_SUOTAR          (1)
 #define EXCLUDE_DLG_CUSTS1          (0)
 #define EXCLUDE_DLG_CUSTS2          (0)
 

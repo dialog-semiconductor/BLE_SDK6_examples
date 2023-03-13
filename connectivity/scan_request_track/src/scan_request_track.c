@@ -54,7 +54,7 @@
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
-scn_response_callback *scn_rsp_cb               __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+scn_response_callback *scn_rsp_cb               __attribute__((section(".bss."))); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS

@@ -5,9 +5,27 @@
  *
  * @brief User configuration file.
  *
- * Copyright (C) 2015-2020 Dialog Semiconductor.
- * This computer program includes Confidential, Proprietary Information
- * of Dialog Semiconductor. All Rights Reserved.
+ * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ *
+ * This software ("Software") is owned by Dialog Semiconductor.
+ *
+ * By using this Software you agree that Dialog Semiconductor retains all
+ * intellectual property and proprietary rights in and to this Software and any
+ * use, reproduction, disclosure or distribution of the Software without express
+ * written permission or a license agreement from Dialog Semiconductor is
+ * strictly prohibited. This Software is solely for use on or in conjunction
+ * with Dialog Semiconductor products.
+ *
+ * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
+ * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
+ * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
+ * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
+ * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+ * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+ * OF THE SOFTWARE.
  *
  ****************************************************************************************
  */
@@ -55,8 +73,8 @@
 
 /*************************************************************************
  * Controller Privacy Mode:
- * - APP_CFG_CNTL_PRIV_MODE_NETWORK Controler Privacy Network mode (default)
- * - APP_CFG_CNTL_PRIV_MODE_DEVICE  Controler Privacy Device mode
+ * - APP_CFG_CNTL_PRIV_MODE_NETWORK Controller Privacy Network mode (default)
+ * - APP_CFG_CNTL_PRIV_MODE_DEVICE  Controller Privacy Device mode
  *
  * Select only one option for controller privacy mode configuration.
  **************************************************************************
@@ -121,16 +139,12 @@ static const struct advertise_configuration user_adv_conf = {
     /// Host information advertising data (GAPM_ADV_NON_CONN and GAPM_ADV_UNDIRECT)
     /// Advertising filter policy:
     /// - ADV_ALLOW_SCAN_ANY_CON_ANY: Allow both scan and connection requests from anyone
-    /// - ADV_ALLOW_SCAN_ANY_CON_WLST: Allow both scan req from anyone and connection req from
-    ///                                White List devices only
     .adv_filt_policy = ADV_ALLOW_SCAN_ANY_CON_ANY,
 
     /// Address of peer device
-    /// NOTE: Meant for directed advertising (ADV_DIRECT_IND)
     .peer_addr = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6},
 
     /// Address type of peer device (0=public/1=random)
-    /// NOTE: Meant for directed advertising (ADV_DIRECT_IND)
     .peer_addr_type = 0,
 };
 

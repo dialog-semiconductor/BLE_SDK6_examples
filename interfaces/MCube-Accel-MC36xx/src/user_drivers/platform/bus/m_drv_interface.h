@@ -33,6 +33,8 @@ extern "C" {
 #include <stdint.h>
 #include <stdbool.h>
 
+/** mCube functions include */
+#include "m_drv_console.h"
 
 /******************************************************************************
  *** CONSTANT / DEFINE
@@ -48,20 +50,9 @@ extern "C" {
     }
 
 // Select I2C settings
-#if defined (__DA14531__)
-		
-#define I2C_GPIO_PORT    GPIO_PORT_0
-#define I2C_SCL_PIN      GPIO_PIN_7
-#define I2C_SDA_PIN      GPIO_PIN_8
-		
-#else
-
-#define I2C_GPIO_PORT     GPIO_PORT_2//GPIO_PORT_0
-#define I2C_SCL_PIN       GPIO_PIN_7//GPIO_PIN_2
-#define I2C_SDA_PIN       GPIO_PIN_8//GPIO_PIN_3
-
-#endif
-
+#define I2C_GPIO_PORT     GPIO_PORT_1//GPIO_PORT_0
+#define I2C_SCL_PIN       GPIO_PIN_0//GPIO_PIN_2
+#define I2C_SDA_PIN       GPIO_PIN_2//GPIO_PIN_3
 
 /******************************************************************************
  *** DATA TYPE / STRUCTURE DEFINITION / ENUM
@@ -96,7 +87,7 @@ typedef enum
 extern int m_drv_i2c_init(void);
 extern int m_drv_spi_init(e_m_drv_interface_spimode_t spi_hs_mode);
 
-extern void mcube_delay_ms(unsigned int ms);
+extern void mcube_delay_ms(uint32_t ms);
 extern uint8_t mcube_write_regs(bool bSpi, uint8_t chip_select, uint8_t reg,\
                                 uint8_t *value, uint8_t size);
 extern uint8_t mcube_read_regs( bool bSpi, uint8_t chip_select, uint8_t reg,\

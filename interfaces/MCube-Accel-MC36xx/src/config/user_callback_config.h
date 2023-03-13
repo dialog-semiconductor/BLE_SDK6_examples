@@ -5,9 +5,27 @@
  *
  * @brief Callback functions configuration file.
  *
- * Copyright (C) 2015-2019 Dialog Semiconductor.
- * This computer program includes Confidential, Proprietary Information
- * of Dialog Semiconductor. All Rights Reserved.
+ * Copyright (c) 2015-2018 Dialog Semiconductor. All rights reserved.
+ *
+ * This software ("Software") is owned by Dialog Semiconductor.
+ *
+ * By using this Software you agree that Dialog Semiconductor retains all
+ * intellectual property and proprietary rights in and to this Software and any
+ * use, reproduction, disclosure or distribution of the Software without express
+ * written permission or a license agreement from Dialog Semiconductor is
+ * strictly prohibited. This Software is solely for use on or in conjunction
+ * with Dialog Semiconductor products.
+ *
+ * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
+ * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
+ * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
+ * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
+ * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+ * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+ * OF THE SOFTWARE.
  *
  ****************************************************************************************
  */
@@ -55,7 +73,6 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_update_params_request       = default_app_update_params_request,
     .app_on_generate_static_random_addr = default_app_generate_static_random_addr,
     .app_on_svc_changed_cfg_ind         = NULL,
-    .app_on_get_peer_features           = NULL,
 #if (BLE_APP_SEC)
     .app_on_pairing_request             = NULL,
     .app_on_tk_exch                     = NULL,
@@ -87,14 +104,7 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 };
 #endif // (BLE_APP_SEC)
 
-
-/*
- * "app_process_catch_rest_cb" symbol handling:
- * - Use #define if "user_catch_rest_hndl" is defined by the user
- * - Use const declaration if "user_catch_rest_hndl" is NULL
- */
-#define app_process_catch_rest_cb       user_catch_rest_hndl
-// static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
+static const catch_rest_event_func_t app_process_catch_rest_cb = (catch_rest_event_func_t)user_catch_rest_hndl;
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     .app_on_init            = user_app_init,

@@ -14,7 +14,7 @@
 	* DA14531 Default address on SDK 6.0.14 - 0x07fc8708
 	* DA14585/86 Default address on SDK 6.0.14 - 0x07fd434c
 	*/
-	#define SEGGER_RTT_SECTION						CO_ALIGN4_HI(__SCT_BLE_BASE - (CFG_RET_DATA_UNINIT_SIZE + CFG_RET_DATA_SIZE + RET_HEAP_SIZE))
+//	#define SEGGER_RTT_SECTION						CO_ALIGN4_HI(__SCT_BLE_BASE - (CFG_RET_DATA_UNINIT_SIZE + CFG_RET_DATA_SIZE + RET_HEAP_SIZE))
 	#include "SEGGER_RTT.h"
 								 
 	#define SWD_printf(fmt, args...) { SEGGER_RTT_printf(0, fmt, args); }							        

@@ -1,3 +1,4 @@
+**/out_*
 **/out_531
 **/out_585
 **/out_586
@@ -8,9 +9,5 @@
 **/*uvguix*
 **/*scvd
 **/*.sct
-**/build
-*.secrets
-.github/config/build-list.txt
-artifacts
-*__pycache__
-projectData.json
+**/*.uvoptx*
+

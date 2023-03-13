@@ -48,10 +48,10 @@
 #include "arch_console.h"
 #endif
 
-uint8_t ret_conidx __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t ret_conidx __attribute__((section(".bss."))); //@RETENTION MEMORY
 
 
-static struct gapc_bond_cmd *gapc_bond_req[APP_EASY_MAX_ACTIVE_CONNECTION] __attribute__((section("retention_mem_area0"),zero_init));
+static struct gapc_bond_cmd *gapc_bond_req[APP_EASY_MAX_ACTIVE_CONNECTION] __attribute__((section(".bss.")));
 
 
 /**

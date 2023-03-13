@@ -122,17 +122,17 @@ static inline int8_t _port_bmi270_itf_write(uint8_t reg, uint8_t *data, uint16_t
 static inline void _port_bmi270_delay_us(volatile uint32_t nof_us)
 {
     while( nof_us-- ){
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
+        __nop();
+        __nop();
+        __nop();
+        __nop();
+        __nop();
+        __nop();
+        __nop();
+        __nop();
+        __nop();
+        __nop();
+        __nop();
     }
 }
 

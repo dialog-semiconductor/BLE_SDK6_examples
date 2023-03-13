@@ -7,9 +7,9 @@
  *
  * Copyright (C) 2018 Dialog Semiconductor. This computer program or computer programs included in this package ("Software") include confidential, proprietary information of Dialog Semiconductor. All Rights Reserved.
  *
- * THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (ï¿½DIALOGï¿½) AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND.  THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS.  RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOGï¿½S PRIOR WRITTEN PERMISSION.
+ * THIS SOFTWARE IS AN UNOFFICIAL RELEASE FROM DIALOG SEMICONDUCTOR (‘DIALOG’) AND MAY ONLY BE USED BY RECIPIENT AT ITS OWN RISK AND WITHOUT SUPPORT OF ANY KIND.  THIS SOFTWARE IS SOLELY FOR USE ON AUTHORIZED DIALOG PRODUCTS AND PLATFORMS.  RECIPIENT SHALL NOT TRANSMIT ANY SOFTWARE SOURCE CODE TO ANY THIRD PARTY WITHOUT DIALOG’S PRIOR WRITTEN PERMISSION.
  *
- * UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS THAT TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED ï¿½AS ISï¿½, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND ITS AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY REPRESENTATIONS (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED SOFTWARE IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, AND (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY OR INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED BY THE FCC OR OTHER LIKE AGENCIES.
+ * UNLESS SET FORTH IN A SEPARATE AGREEMENT, RECIPIENT ACKNOWLEDGES AND UNDERSTANDS THAT TO THE FULLEST EXTENT PERMITTED BY LAW, THE SOFTWARE IS DELIVERED “AS IS”, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, TITLE OR NON-INFRINGEMENT, AND ALL WARRANTIES THAT MAY ARISE FROM COURSE OF DEALING, CUSTOM OR USAGE IN TRADE. FOR THE SAKE OF CLARITY, DIALOG AND ITS AFFILIATES AND ITS AND THEIR SUPPLIERS DO NOT WARRANT, GUARANTEE OR MAKE ANY REPRESENTATIONS (A) REGARDING THE USE, OR THE RESULTS OF THE USE, OF THE LICENSED SOFTWARE IN TERMS OF CORRECTNESS, COMPLETENESS, ACCURACY, RELIABILITY OR OTHERWISE, AND (B) THAT THE LICENSED SOFTWARE HAS BEEN TESTED FOR COMPLIANCE WITH ANY REGULATORY OR INDUSTRY STANDARD, INCLUDING, WITHOUT LIMITATION, ANY SUCH STANDARDS PROMULGATED BY THE FCC OR OTHER LIKE AGENCIES.
  *
  * IN NO EVENT SHALL DIALOG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
@@ -80,27 +80,27 @@ static uint8_t sniff_delay = 1;
  ****************************************************************************************
  */
 
-uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-timer_hnd app_adv_data_update_timer_used        __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-timer_hnd app_param_update_request_timer_used   __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-int16_t X_data                 __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-int16_t Y_data                 __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-int16_t Z_data                 __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t X_string[8]               __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t Y_string[8]               __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t Z_string[8]               __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t X_timer                   __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t Y_timer                   __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t Z_timer                   __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t g_timer                   __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
+uint8_t app_connection_idx                      __attribute__((section(".bss.")));//@RETENTION MEMORY
+timer_hnd app_adv_data_update_timer_used        __attribute__((section(".bss."))); //@RETENTION MEMORY
+timer_hnd app_param_update_request_timer_used   __attribute__((section(".bss.")));//@RETENTION MEMORY
+int16_t X_data                 __attribute__((section(".bss."))); //@RETENTION MEMORY
+int16_t Y_data                 __attribute__((section(".bss."))); //@RETENTION MEMORY
+int16_t Z_data                 __attribute__((section(".bss.")));//@RETENTION MEMORY
+uint8_t X_string[8]               __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t Y_string[8]               __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t Z_string[8]               __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t X_timer                   __attribute__((section(".bss.")));//@RETENTION MEMORY
+uint8_t Y_timer                   __attribute__((section(".bss.")));//@RETENTION MEMORY
+uint8_t Z_timer                   __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t g_timer                   __attribute__((section(".bss.")));//@RETENTION MEMORY
 // Retained variables
-struct mnf_specific_data_ad_structure mnf_data  __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
+struct mnf_specific_data_ad_structure mnf_data  __attribute__((section(".bss."))); //@RETENTION MEMORY
 // Index of manufacturer data in advertising data or scan response data (when MSB is 1)
-uint8_t mnf_data_index                          __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t stored_adv_data_len                     __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data_len                __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retention_mem_area0"))); //@RETENTION MEMORY
+uint8_t mnf_data_index                          __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_adv_data_len                     __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data_len               __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section(".bss."))); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS

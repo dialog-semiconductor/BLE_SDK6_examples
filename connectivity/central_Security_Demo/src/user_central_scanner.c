@@ -55,12 +55,12 @@
 #include "user_central_scanner.h"
 
 
-struct adv_device scanned_devices[30] __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t device_count __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd scan_timer __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t uart_input __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t uart2_read_in_progress __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-bool is_scanning __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+struct adv_device scanned_devices[30] __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t device_count __attribute__((section(".bss."))); //@RETENTION MEMORY
+timer_hnd scan_timer __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t uart_input __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t uart2_read_in_progress __attribute__((section(".bss."))); //@RETENTION MEMORY
+bool is_scanning __attribute__((section(".bss."))); //@RETENTION MEMORY
 /*
  * FUNCTION DEFINITIONS
  ****************************************************************************************

@@ -44,7 +44,7 @@ uint32_t port_get_time(void)
 #endif    
 }
 
-__asm void port_delay_usec(uint32_t delay)
+/*__asm void port_delay_usec(uint32_t delay)
 {
         push {r1}
         movs r1, #4
@@ -54,7 +54,7 @@ loop
         bne loop
         pop {r1}
         bx lr
-}
+}*/
 
 #if (RWBLE_SW_VERSION_MAJOR >= 8)
 uint8_t port_attmdb_find_by_uuid(uint8_t conidx, uint16_t *start_hdl, uint16_t end_hdl, uint8_t uuid_len, uint8_t *uuid, bool service)

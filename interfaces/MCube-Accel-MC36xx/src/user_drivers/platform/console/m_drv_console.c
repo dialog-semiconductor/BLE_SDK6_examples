@@ -39,8 +39,8 @@
 void mcube_printf(const char *str, ...)
 {
     /** Function hook by customer. */
-    uart2_write((uint8_t *)str, strlen(str), NULL); // send next string character
-    uart2_finish_transfers();
+    uart_write((uint8_t *)str, strlen(str), NULL); // send next string character
+    uart_finish_transfers();
 }
 
 /* reverse:  reverse string s in place */

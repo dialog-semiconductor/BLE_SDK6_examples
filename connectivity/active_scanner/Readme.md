@@ -19,7 +19,7 @@ The user can read the peripheral advertising data in a friendly way on its seria
 * **Software configuration**
 
     - This example requires:
-        * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+        * [SDK6 latest version](https://www.dialog-semiconductor.com/da14531_sdk_latest).
         * SEGGER’s J-Link tools should be downloaded and installed.
 
 For the UART to see the communication logs, check the setup shown below for DA14531 and DA14585/586
@@ -36,7 +36,7 @@ For the UART to see the communication logs, check the setup shown below for DA14
 
 The user manuals for the development kits can be found:
 
-- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [Here](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/02_Introduction/Introduction.html) for the DA145xxDEVKT-P PRO-Motherboard.
 
 
 ## How to run the example

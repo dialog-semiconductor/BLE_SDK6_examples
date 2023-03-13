@@ -52,8 +52,8 @@
 #define BURST_REPEAT_PERIOD_ms				8000
 #define BURST_REPEAT_PERIOD_TICKS			MS_TO_TIMERUNITS(BURST_REPEAT_PERIOD_ms)
 
-static timer_hnd adv_burst_timer_id		__attribute__((section("retention_mem_area0"),zero_init)); // @RETENTION MEMORY
-static uint16_t adv_period_ticks      __attribute__((section("retention_mem_area0"),zero_init)); // @RETENTION MEMORY
+static timer_hnd adv_burst_timer_id		__attribute__((section(".bss."))); // @RETENTION MEMORY
+static uint16_t adv_period_ticks      __attribute__((section(".bss."))); // @RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS

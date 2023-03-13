@@ -82,7 +82,7 @@ class Project:
         self.uvprojxFile = inPath.relative_to(inPath.parents[1])
         self.uvisionLogFile = self.title + "_log.txt"
         self.cmakelistsFile = ""
-        for f in pathlib.Path(inPath.parents[1]).rglob("*.txt"):
+        for f in pathlib.Path(inPath.parents[1]).rglob("CMakeLists.txt"):
             self.cmakelistsFile = f.relative_to(inPath.parents[1])
             break
         self.builddir = (

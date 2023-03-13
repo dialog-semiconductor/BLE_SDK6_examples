@@ -64,7 +64,7 @@ jobs:
       - name: check script
         if: always()
         run: |
-          python3  projects/.github/scripts/check.py -v
+          python3  projects/.github/scripts/check.py -v -t projects/.github/config/targets.json
 
       # run script that checks the build result
       - name: deploy script

@@ -106,7 +106,7 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Control Point Characteristic User Description
     [SVC1_IDX_CONTROL_POINT_USER_DESC] = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, DEF_SVC1_CONTROL_POINT_USER_DESC},
+                                            sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, (uint8_t*)DEF_SVC1_CONTROL_POINT_USER_DESC},
 
 
     // ADC Value 1 Characteristic Declaration
@@ -123,7 +123,7 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // ADC Value 1 Characteristic User Description
     [SVC1_IDX_LOG_VAL_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
-                                            sizeof(DEF_SVC1_LOG_VAL_USER_DESC) - 1, sizeof(DEF_SVC1_LOG_VAL_USER_DESC) - 1, DEF_SVC1_LOG_VAL_USER_DESC},
+                                            sizeof(DEF_SVC1_LOG_VAL_USER_DESC) - 1, sizeof(DEF_SVC1_LOG_VAL_USER_DESC) - 1, (uint8_t*)DEF_SVC1_LOG_VAL_USER_DESC},
 
 
 

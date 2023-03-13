@@ -1,9 +1,9 @@
 #! /usr/bin/python
 '''
 ###########################################################################################
-# @file		:: dlg_make_keil5_env_v2.001.py
+# @file		:: dlg_make_keil5_env_v2.003.py
 #
-# @brief	:: Last modified: 21 Feb 2023.
+# @brief	:: Last modified: 27 Feb 2023.
 #			   
 # 			   This script sets up the software development environment links with Dialog Semiconductor's SDK6 and copies the project
 #			   folders to SDK location under projects_github.
@@ -100,7 +100,7 @@ DLG_UVOPTX_NAME = "test" + UVOPTX_FILE_EXTENSION
 DLG_UVPROJX_NAME = "test" + UVPROJX_FILE_EXTENSION
 SOC_ID_LIST = ['585', '586', '531', "codeless_boot"]
 
-SCATTER_FILE_NAME = ["DA14585_586.sct", "DA14531.sct"]
+SCATTER_FILE_NAME = ["DA14585_586_armclang.sct", "DA14531_armclang.sct"]
 SCATTER_FILE_PATH = [('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[0]),
                      ('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[1])]
 COPIED_SCATTER_FILE_NAME = ["copied_scatter_585_586.sct", "copied_scatter_531.sct"]
@@ -421,24 +421,29 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element, working_dir_path):
 
     for index, t_sub_element in enumerate(root.findall(xml_sub_element)):
         if (CLEAN_PROJ_ENV == True):
-            if (t_sub_element.text.endswith("peripheral_examples.sct")):  # .sct file in SDK used.
+            if (t_sub_element.text.endswith(
+                    "peripheral_examples_armclang.sct")):  # .sct file in SDK used.
                 if get_project_name(working_dir_path) in folder_in_folder:
                     t_sub_element.text = ".\\..\\..\\..\\..\\..\\..\\projects\\target_apps\peripheral_examples\shared" \
-                                         "\peripheral_examples.sct"
+                                         "\peripheral_examples_armclang.sct"
                 else:
                     t_sub_element.text = ".\\..\\..\\..\\..\\..\\projects\\target_apps\peripheral_examples\shared" \
-                                         "\peripheral_examples.sct"
+                                         "\peripheral_examples_armclang.sct"
             else:
                 if 'DA14531' in target_names[index].upper():
-                    t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14531.sct"
+                    t_sub_element.text = \
+                        ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14531_armclang.sct"
                 else:
-                    t_sub_element.text = ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14585_586.sct"
+                    t_sub_element.text = \
+                        ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14585_586_armclang.sct"
             # else:  # .sct file copied from SDk.
             #    t_sub_element.text = DLG_SDK_ROOT_DIRECTORY_TO_WRITE + "\\" + soc_id_to_soc_data(
             #        TARGET_SOCS[loop_idx]).copied_sct_file_name
         else:
-            if (t_sub_element.text.endswith("peripheral_examples.sct")):
-                t_sub_element.text = str(DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct")
+            if (t_sub_element.text.endswith(
+                    "peripheral_examples_armclang.sct")):
+                t_sub_element.text = str(DLG_SDK_ROOT_DIRECTORY + 
+                                         SHARED_FOLDER_PATH + "peripheral_examples_armclang.sct")
             else:
                 if 'DA14531' in target_names[index].upper():
                     t_sub_element.text = ".\..\src\config\copied_scatter_531.sct"
@@ -685,9 +690,10 @@ def update_scatter_file(xml_sub_element):
     #        periph_exist = False
 
     for t_sub_element in root.findall(xml_sub_element):
-         if (t_sub_element.text.endswith("peripheral_examples.sct")):
+         if (t_sub_element.text.endswith("peripheral_examples_armclang.sct")):
              SDK_PERIPH_EX_SCATTER_FILE_PATH = str(
-                 DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + "peripheral_examples.sct")
+                 DLG_SDK_ROOT_DIRECTORY + SHARED_FOLDER_PATH + 
+                 "peripheral_examples_armclang.sct")
              return True
          break
 
@@ -752,8 +758,10 @@ def setup_keil5_project_environment(sdk_path, working_dir_path):
     # build_uvprojx_element_target_name(XML_PATTERN_TARGET_FILENAME)
     # build_uvprojx_element_output_name(XML_PATTERN_OUTPUT_FILENAME)
     # build_uvoptx_element_debugopt(XML_PATTERN_TIFILE, XML_TAG[4])
-    build_uvoptx_change_element_adresses(XML_PATTERN_PATHWITHFILENAME, XML_TAG[5], working_dir_path)
-    build_uvoptx_change_element_adresses(XML_PATTERN_TIFILE, XML_TAG[4], working_dir_path)
+    # build_uvoptx_change_element_adresses(XML_PATTERN_PATHWITHFILENAME,
+    # XML_TAG[5], working_dir_path)
+    # build_uvoptx_change_element_adresses(XML_PATTERN_TIFILE, XML_TAG[4],
+    # working_dir_path)
     # build_uvoptx_element_targetname(XML_PATTERN_OVOPTX_TARGET_FILENAME)
 
     if (CLEAN_PROJ_ENV):
@@ -781,10 +789,10 @@ def verify_dlg_keil_app_project(path):
             uvprojx_file_extension_counter += 1
         if name.endswith(UVOPTX_FILE_EXTENSION):
             DLG_UVOPTX_NAME = name
-    if (DLG_UVPROJX_NAME.replace(UVPROJX_FILE_EXTENSION, "") != DLG_UVOPTX_NAME.replace(UVOPTX_FILE_EXTENSION, "")):
+    """if (DLG_UVPROJX_NAME.replace(UVPROJX_FILE_EXTENSION, "") != DLG_UVOPTX_NAME.replace(UVOPTX_FILE_EXTENSION, "")):
         print(
             "ERROR		:	FILE NAME OF .UVOPTX AND .UVPROJX FILES ARE NOT IDENTICAL.\n" + DLG_UVOPTX_NAME + "\n" + DLG_UVPROJX_NAME)
-        return False
+        return False"""
 
     if uvprojx_file_extension_counter == 1:
         print('KEIL PROJECT NAME :: ' + path + "\\" + DLG_UVPROJX_NAME + ' IS A VALID PROJECT DIRECTORY...\r\n')
@@ -976,7 +984,8 @@ def link_projects_to_sdk(sdkpath, proj_dir_names):
 # print(dir_names)
 
 def run_all_project_files(pathname, sdkpath):
-    uvoptx_pathnames = glob.glob(pathname + "/**/**/*.uvoptx", recursive=True)
+    uvoptx_pathnames = glob.glob(pathname + "/**/**/*.uvprojx",
+                                 recursive=True)
     proj_dir_names = []
     for uvoptx_pathname in uvoptx_pathnames:
         proj_dir_names.append(os.path.dirname(uvoptx_pathname))

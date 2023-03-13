@@ -20,7 +20,7 @@
 #include "spi.h"
 #include "syscntl.h"
 
-static void set_pad_functions(void)
+void set_pad_functions(void)
 {
 /*
     i.e. to set P0_1 as Generic purpose Output:

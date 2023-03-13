@@ -31,7 +31,7 @@
 #include "m_drv_mc36xx.h"
 #include "arch_console.h"
 #include "user_accelerometer.h"
-
+#include "system_library.h"
 #if DEVELOPMENT_DEBUG
 
 void GPIO_reservations(void)
@@ -82,7 +82,7 @@ void periph_init(void)
     SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
 
     //rom patch
-//    patch_func();
+     patch_func();
 
     //Init pads
     set_pad_functions();

@@ -133,7 +133,7 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
+            <Capability>1</Capability>
             <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
@@ -186,6 +186,7 @@
             <RvdsVP>0</RvdsVP>
             <RvdsMve>0</RvdsMve>
             <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>0</StupSel>
@@ -370,10 +371,10 @@
             <TextAddressRange></TextAddressRange>
             <DataAddressRange></DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>.\script\fsp.scat</ScatterFile>
+            <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\DA14531_armclang.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--entry=Reset_Handler --no_startup --via=".\script\ac6\fsp_keep.via"</Misc>
+            <Misc>.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\.\..\..\..\..\..\--entry=Reset_Handler --no_startup --via=".\script\ac6\fsp_keep.via"</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings>6319,6314</DisabledWarnings>
           </LDads>
@@ -451,20 +452,20 @@
     <gpdscs>
       <gpdsc name="buildinfo.gpdsc">
         <targetInfos>
-          <targetInfo name="DA14531_Boot_RA2E1"/>
+          <targetInfo name="DA14531_Boot_RA2E1"></targetInfo>
         </targetInfos>
       </gpdsc>
     </gpdscs>
-    <apis/>
+    <apis></apis>
     <components>
       <component Cclass="Flex Software" Cgroup="RA Configuration" Cvendor="Renesas" Cversion="1.0.0" condition="RA Device" generator="Renesas RA Smart Configurator">
-        <package name="RA_DFP" schemaVersion="1.6.0" url="https://www2.renesas.eu/Keil_MDK_Packs/" vendor="Renesas" version="3.2.0"/>
+        <package name="RA_DFP" schemaVersion="1.6.0" url="https://www2.renesas.eu/Keil_MDK_Packs/" vendor="Renesas" version="3.2.0"></package>
         <targetInfos>
-          <targetInfo name="DA14531_Boot_RA2E1"/>
+          <targetInfo name="DA14531_Boot_RA2E1"></targetInfo>
         </targetInfos>
       </component>
     </components>
-    <files/>
+    <files></files>
   </RTE>
 
   <LayerInfo>

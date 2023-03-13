@@ -56,7 +56,7 @@
  ****************************************************************************************
 */
 
-static void timer_alert_cb(void)
+void timer_alert_cb(void)
 {
     led_alert.alert_timer_interval_hnd = EASY_TIMER_INVALID_TIMER;
     

@@ -197,8 +197,8 @@ Additional information:
 #define SEGGER_RTT_PUT_SECTION(Var, Section) RTT_PRAGMA(location=Section) \
                                         Var
   #elif (defined __CC_ARM)
-    #define SEGGER_RTT_PUT_SECTION(Var, Section) __attribute__ ((section (Section), zero_init))  Var
-		//#define SEGGER_RTT_PUT_SECTION(Var, Section) Var __attribute__ ((at(Section)))
+    //#define SEGGER_RTT_PUT_SECTION(Var, Section) __attribute__ ((section (Section), zero_init))  Var
+		#define SEGGER_RTT_PUT_SECTION(Var, Section) Var __attribute__ ((at(Section)))
   #else
     #error "Section placement not supported for this compiler."
   #endif

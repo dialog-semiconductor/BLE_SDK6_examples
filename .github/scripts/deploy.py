@@ -68,10 +68,9 @@ def sortProjectData():
         projdatajson = targetdir.joinpath("projectData.json")
         targetdir.mkdir()
         for p in projects:
-            for b in p.buildStatus:
-                if (b["target"]["name"] == t.name) and (b["passed"] is True):
-                    t.metadata.append(p.toDictAws(examplesdir, t))
-        print(t.metadata)
+            pDict = p.toDictAws(examplesdir, t)
+            if pDict:
+                t.metadata.append(pDict)
         with open(projdatajson, "w") as output:
             output.write(json.dumps({"examples": t.metadata}, indent=3))
 
@@ -86,7 +85,6 @@ def copyFiles():
             )
             artifactpath = artifactsdir.joinpath(t.name).joinpath(p.path)
             artifactpath.mkdir(parents=True)
-            print(artifactpath)
             shutil.copy(binpath, artifactpath)
 
 

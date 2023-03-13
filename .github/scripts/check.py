@@ -59,7 +59,10 @@ def checkProjects():
         os.chdir(p.absPath)
         for t in targets:
             if p.cmakelistsFile:
-                print(p)
+                binPath = (p.builddir).joinpath(
+                    p.title.name + "_" + str(t.acronym) + ".bin"
+                )
+                print(binPath)
                 if (
                     bashexec(
                         [
@@ -71,23 +74,12 @@ def checkProjects():
                     )[1]
                     == 0
                 ):
-                    if (
-                        bashexec(
-                            "test -f "
-                            + str(p.builddir)
-                            + "/"
-                            + str(p.title)
-                            + "_"
-                            + t.acronym
-                            + ".elf"
-                        )[1]
-                        == 0
-                    ):
+                    if bashexec("test -f " + str(binPath))[1] == 0:
+                        p.addBuildStatus("CMake", t, True, binPath)
                         t.passed.append(p)
-                        p.addBuildStatus("CMake", t, True)
                     else:
+                        p.addBuildStatus("CMake", t, False, binPath)
                         t.failed.append(p)
-                        p.addBuildStatus("CMake", t, False)
 
 
 def writeOutput():

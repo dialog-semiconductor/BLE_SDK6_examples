@@ -114,7 +114,7 @@ class Project:
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
 
-    def addBuildStatus(self, buildsystem, target, passed):
+    def addBuildStatus(self, buildsystem, target, passed, binPath):
         """Add a build to the project item."""
         if not self.buildStatus:
             self.buildStatus = []
@@ -126,7 +126,12 @@ class Project:
                 break
 
         self.buildStatus.append(
-            {"buildsystem": buildsystem, "target": target.to_json(), "passed": passed}
+            {
+                "buildsystem": buildsystem,
+                "target": target.to_json(),
+                "passed": passed,
+                "binPath": str(binPath),
+            }
         )
 
     def toDictComplete(self):
@@ -146,13 +151,20 @@ class Project:
 
     def toDictAws(self, rootdir, fortarget):
         """Get the project as a dictionary in standard Renesas AWS artifact format."""
-        return {
-            "path": str(self.path),
-            "group": str(self.group),
-            "title": str(self.title),
-            "readmePath": str(self.readmePath).replace(str(rootdir), "")[1:],
-            "binPath": "placeholder",
-        }
+        binPath = ""
+        for b in self.buildStatus:
+            if (b["target"]["name"] == fortarget.name) and (b["passed"] is True):
+                binPath = b["binPath"]
+        if binPath != "":
+            return {
+                "path": str(self.path),
+                "group": str(self.group),
+                "title": str(self.title),
+                "readmePath": str(self.readmePath).replace(str(rootdir), "")[1:],
+                "binPath": binPath,
+            }
+        else:
+            return False
 
     def __repr__(self):
         """Representation of the class when printing."""

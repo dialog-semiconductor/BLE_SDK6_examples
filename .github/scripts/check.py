@@ -62,7 +62,6 @@ def checkProjects():
                 binPath = (p.builddir).joinpath(
                     p.title.name + "_" + str(t.acronym) + ".bin"
                 )
-                print(binPath)
                 if (
                     bashexec(
                         [

@@ -10,4 +10,7 @@
 **/*scvd
 **/*.sct
 **/*.uvoptx*
-
+**/build
+.secrets
+*__pycache__
+*projectData.json

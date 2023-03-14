@@ -29,11 +29,9 @@ Connect the Load Cell 2 Click Board™ to the **MikroBUS™ 2** interface on the
 
 Apply the jumper configuration of the image shown below.
 
-![Motherboard_Hardware_Configuration_DA14531](assets/PRO-DK-MiroBus-NAU7802.jpg)
+![Motherboard_Hardware_Configuration_DA14531](assets/PRO-DK-MiroBus-NAU7802.svg)
 
-Connect a load cell to the click board like shown in the image below. Make sure the load cell is mounted according to its manufacturer specification.
-
-![Load Cell connected to click board on DA14531](assets/PRO-DK-MikroBus-Load-Cell.jpg)
+Connect a load cell to the click board. Make sure the load cell is mounted according to its manufacturer specification.
 
 
 > **Note**

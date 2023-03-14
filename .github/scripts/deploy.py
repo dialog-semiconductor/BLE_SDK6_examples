@@ -1,3 +1,15 @@
+# #####################################################################################
+# The MIT License (MIT)
+# Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.
+# #####################################################################################
 """This script deploys the previously built artifacts and the metadata to the AWS server."""
 import argparse
 import json
@@ -96,36 +108,3 @@ if __name__ == "__main__":
     copyFiles()
 
     os.chdir(startdir)
-
-    # # copy binaries
-    # for t in targets:
-    #     os.chdir(workdir)
-    #     projdatafile = artifactsdir + "/" + t.name + "/projectData.json"
-    #     f = open(projdatafile)
-    #     projectsData = json.load(f)
-
-    #     os.chdir(projdir)
-    #     for p in projectsData["examples"]:
-    #         binpath = (
-    #             projdir
-    #             + p["path"][1:]
-    #             + "/build/"
-    #             + p["title"]
-    #             + "_"
-    #             + t.acronym
-    #             + ".bin"
-    #         )
-    #         shutil.copy(binpath, artifactsdir + "/" + t.name + "/")
-    #         p["readmePath"] = p["path"][2:] + "/Readme.md"
-    #         p["binPath"] = (
-    #             p["path"][2:] + "/build/" + p["title"] + "_" + t.acronym + ".bin"
-    #         )
-
-    #     projectsData = json.dumps(projectsData, indent=2)
-
-    #     with open(projdatafile, "w") as outfile:
-    #         outfile.write(projectsData)
-
-    # sys.exit(returncode)
-
-    # upload to AWS

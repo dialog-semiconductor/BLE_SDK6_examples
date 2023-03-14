@@ -13,7 +13,7 @@
  */
 
 /*
- * This file needs to be run nagainst C preprocessor before it is used by the linker program.
+ * This file needs to be run against C preprocessor before it is used by the linker program.
  *
  * ==============================================================================================================================
  * |                                                         System RAM                                                         |

@@ -81,16 +81,16 @@ struct mnf_specific_data_ad_structure
  ****************************************************************************************
  */
 
-uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd app_param_update_request_timer_used   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t app_connection_idx                      __attribute__((section(".bss."))); //@RETENTION MEMORY
+timer_hnd app_param_update_request_timer_used   __attribute__((section(".bss."))); //@RETENTION MEMORY
 
-struct mnf_specific_data_ad_structure mnf_data  __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+struct mnf_specific_data_ad_structure mnf_data  __attribute__((section(".bss."))); //@RETENTION MEMORY
 // Index of manufacturer data in advertising data or scan response data (when MSB is 1)
-uint8_t mnf_data_index                          __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data_len                     __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data_len                __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t mnf_data_index                          __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_adv_data_len                     __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data_len                __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section(".bss."))); //@RETENTION MEMORY
 
 // Timer set for pushing notifications for the ntf enabled characteristics
 timer_hnd axis_ntf_timer_handler                __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY

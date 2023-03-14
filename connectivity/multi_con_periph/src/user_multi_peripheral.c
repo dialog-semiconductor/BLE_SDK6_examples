@@ -338,7 +338,7 @@ bool app_db_init_start(void)
     for(uint8_t idx = 0; idx < APP_IDX_MAX; idx++)
         ke_state_set(KE_BUILD_ID(TASK_APP, idx), APP_DB_INIT);
 
-    end_db_create = app_db_init_next();
+    //end_db_create = app_db_init_next();
 
     return end_db_create;
 }

@@ -75,18 +75,18 @@ struct mnf_specific_data_ad_structure
 uint8_t connection_timer_id = 0;
 static bool g_notifications_enabled = false;
 
-uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"), zero_init));
-timer_hnd app_adv_data_update_timer_used        __attribute__((section("retention_mem_area0"), zero_init));
-timer_hnd app_param_update_request_timer_used   __attribute__((section("retention_mem_area0"), zero_init));
+uint8_t app_connection_idx                      __attribute__((section(".bss.")));
+timer_hnd app_adv_data_update_timer_used        __attribute__((section(".bss.")));
+timer_hnd app_param_update_request_timer_used   __attribute__((section(".bss.")));
 
 // Retained variables
-struct mnf_specific_data_ad_structure mnf_data  __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+struct mnf_specific_data_ad_structure mnf_data  __attribute__((section(".bss."))); //@RETENTION MEMORY
 // Index of manufacturer data in advertising data or scan response data (when MSB is 1)
-uint8_t mnf_data_index                          __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data_len                     __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data_len                __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t mnf_data_index                          __attribute__((section(".bss.")));//@RETENTION MEMORY
+uint8_t stored_adv_data_len                     __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data_len                __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section(".bss.")));//@RETENTION MEMORY
+uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN]__attribute__((section(".bss."))); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS

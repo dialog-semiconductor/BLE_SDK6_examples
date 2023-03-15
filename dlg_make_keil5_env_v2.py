@@ -997,7 +997,7 @@ def run_all_project_files(pathname, sdkpath):
     link_projects_to_sdk(sdkpath, proj_dir_names)
 
 
-def run_application(sdkpath):
+def sdk_link_script(sdkpath):
     pathname = os.getcwd()
 
     if glob.glob('*.uvoptx'):
@@ -1016,5 +1016,5 @@ if __name__ == "__main__":
     args = vars(ap.parse_args())
 
     # print("SDK location {},is the sdk path".format(args["sdkpath"]))
-    run_application(args["sdkpath"])
+    sdk_link_script(args["sdkpath"])
 # run_individual_project_file(dirnames,args["sdkpath"])

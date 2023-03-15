@@ -14,24 +14,31 @@
 import subprocess
 import os
 import shutil
+import sys
+import pathlib
+
 from common import bcolors, bashexec
+sys.path.append(str(pathlib.Path(os.path.abspath(__file__)).parents[2]))
+from dlg_make_keil5_env_v2 import sdk_link_script
 
+def getBuildSystem(buildsystem, examplesdir=False, sdkDir=False, verbose=False):
+    if (buildsystem == "CMake") and all([examplesdir, sdkDir]):
+        return CMake(examplesdir, sdkDir, verbose)
+    elif (buildsystem == "Keil") and sdkDir:
+        return Keil(sdkDir, verbose)
+    else:
+        raise Exception("To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir or To create a Keil build system provide sdkDir")
 
-def getBuildSystem(buildsystem, examplesdir=False, gccPath=False, sdkDir=False, verbose=False):
-    if buildsystem is "CMake":
-        return CMake(examplesdir, gccPath, sdkDir, verbose=verbose)
-    if buildsystem is "Keil":
-        return Keil(verbose=verbose)
 
 class CMake:
     """Build system for CMake."""
-    def __init__(self, examplesdir, gccPath, sdkDir, verbose=False):
+    def __init__(self, examplesdir, sdkDir, verbose=False):
         self.name = "CMake"
         self.verbose = verbose
-        if not any([examplesdir, gccPath, sdkDir]):
+        if not any([examplesdir, sdkDir]):
             raise Exception("To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir")
         self.examplesdir = str(examplesdir)
-        self.gccPath = str(gccPath)
+        self.gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
         self.sdkDir = str(sdkDir)
 
     def build(self, project):
@@ -88,32 +95,45 @@ class CMake:
                 == 0
             ):
                 if bashexec("test -f " + str(binPath))[1] == 0:
-                    project.addBuildStatus("CMake", target, True, binPath)
+                    project.addBuildStatus(self.name, target, True, binPath)
                 else:
-                    project.addBuildStatus("CMake", target, False, binPath)
+                    project.addBuildStatus(self.name, target, False, binPath)
         return 0 
 
 class Keil:
     """Build system for Keil."""
-    def __init__(self):
+    def __init__(self, sdkDir, verbose=False):
         self.name = "Keil"
+        self.sdkDir = sdkDir
+        self.verbose = verbose
+        self.passmarker = '.axf" - 0 Error(s),'
 
     def build(self, project ):
         """Build a project."""
         print(bcolors.OKBLUE + "building " + project.title + "..." + bcolors.ENDC)
-        returncode = subprocess.call(["C:/Keil_v5/UV4/UV4.exe", "-b", project.path, "-z", "-o", project.logfile])
+        os.chdir(project.absPath)
+        sdk_link_script(self.sdkDir)
+        keilCommand = ["C:/Keil_v5/UV4/UV4.exe", "-b", project.uvprojxFile.resolve(), "-z", "-o", project.uvisionLogFile.name]
+        if self.verbose:
+            print("executing Keil command: "+str(keilCommand))
+        returncode = subprocess.call(keilCommand)
         # Keil returns 0 if build is ok, 1 if there are warnings, and 2-20 if there are errors
         colors = [bcolors.OKGREEN, bcolors.WARNING] + [bcolors.FAIL] * 18
-        with open(project.basedir + project.logfile, "r") as f:
+        if returncode >= len(colors): # this is to handle undocumented Keil return codes
+            returncode = 3 
+        with open(project.uvisionLogFile, "r") as f:
             print(colors[returncode] + f.read() + bcolors.ENDC)
+        sdk_link_script("clean")
         return returncode
 
     def check(self, project, target):
         """Check a build."""
-        with open(project.logfile) as log, open(project.uvprojxFile) as proj:
-            if ("<TargetName>" + target.name + "</TargetName>") in proj.read():
-                if (target.acronym + passmarker) in log.read():
-                    target.passed.append(p)
-                else:
-                    target.failed.append(p)
+        if os.path.isfile(project.uvisionLogFile):
+            with open(project.uvisionLogFile) as log, open(project.uvprojxFile) as proj:
+                if ("<TargetName>" + target.name + "</TargetName>") in proj.read():
+                    binPath = project.uvprojxFile.parent.joinpath("out_"+target.name+"/Objects/"+os.path.splitext(project.title.name)[0] + "_" + str(target.acronym) + ".bin")
+                    if ((target.acronym + self.passmarker) in log.read()) and (os.path.isfile(binPath)):
+                        project.addBuildStatus(self.name, target, True, binPath)
+                    else:
+                        project.addBuildStatus(self.name, target, False, binPath)
         return 0 

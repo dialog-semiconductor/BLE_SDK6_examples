@@ -92,7 +92,7 @@ class Project:
         self.title = inPath.parents[1].name
         self.group = str(inPath.relative_to(exdir)).split("/")[0]
         self.uvprojxFile = inPath
-        self.uvisionLogFile = self.title + "_log.txt"
+        self.uvisionLogFile = self.uvprojxFile.parent.joinpath(self.title + "_log.txt")
         self.cmakelistsFile = findFirstOfGlob(inPath, "CMakeLists.txt")
         self.readmePath = findFirstOfGlob(inPath, "Readme.md")
         self.builddir = (

@@ -74,13 +74,12 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
     projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
     targets = getTargetsFile(args.targets)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
     artifactsdir = startdir.joinpath(args.artifacts_dir)
-    buildSystem = getBuildSystem(args.build_system, examplesdir, gccPath, args.sdkdir, args.verbose)
+    buildSystem = getBuildSystem(args.build_system, examplesdir, args.sdkdir, args.verbose)
 
     return projects, targets, examplesdir, startdir, artifactsdir, buildSystem
 

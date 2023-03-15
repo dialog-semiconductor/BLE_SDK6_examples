@@ -79,12 +79,11 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
     projectFiles = ProjectList(projectDirectory=args.projdir, examplesDirectory=examplesdir, verbose=args.verbose)
     datafile = startdir.joinpath(args.datafile)
-    buildSystem = getBuildSystem(args.build_system, examplesdir, gccPath, args.sdkdir, args.verbose)
+    buildSystem = getBuildSystem(args.build_system, examplesdir, args.sdkdir, args.verbose)
 
     for p in projectFiles:
         if p.absPath.name in args.exclude:
@@ -97,7 +96,7 @@ def setVars():
                 )
             p.cmakelistsFile = ""
 
-    return projectFiles, gccPath, examplesdir, startdir, datafile, buildSystem
+    return projectFiles, examplesdir, startdir, datafile, buildSystem
 
 
 def buildProjects():
@@ -134,7 +133,7 @@ def handleAbort(signum, frame):
 
 if __name__ == "__main__":
     args = parseArgs()
-    projectFiles, gccPath, examplesdir, startdir, datafile, buildSystem = setVars()
+    projectFiles, examplesdir, startdir, datafile, buildSystem = setVars()
     signal.signal(
         signal.SIGINT, handleAbort
     )  # still write output if script aborted during build

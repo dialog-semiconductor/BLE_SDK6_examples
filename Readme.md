@@ -124,17 +124,17 @@ Python can be downloaded from [Python.org](http://python.org).
 4. Open a terminal and run:
 
     ```console
-    > python dlg_make_keil5_env_v2.000.py -sdkpath “<path to your sdk repository>”
+    > python dlg_make_keil5_env_v2.py -sdkpath “<path to your sdk repository>”
     ```
 
     For instance to link all projects:
     ```console
-    > ..\BLE_SDK6_examples> python dlg_make_keil5_env_v2.000.py -sdkpath “C:\dev\6.0.14”
+    > ..\BLE_SDK6_examples> python dlg_make_keil5_env_v2.py -sdkpath “C:\dev\6.0.14”
     ```
 	
 	For instance to link a single projects:
     ```console
-    > ..\connectivity\active_scanner\project_environment> python dlg_make_keil5_env_v2.000.py -sdkpath “C:\dev\6.0.14”
+    > ..\connectivity\active_scanner\project_environment> python dlg_make_keil5_env_v2.py -sdkpath “C:\dev\6.0.14”
     ```
 
 5. The script should indicate successful execution, as shown below, 
@@ -165,7 +165,7 @@ Python can be downloaded from [Python.org](http://python.org).
 4. Open a terminal and run:
 
     ```console
-    > python dlg_make_keil5_env_v2.000.py -sdkpath “clean”
+    > python dlg_make_keil5_env_v2.py -sdkpath “clean”
     ```
 
 5. The script should indicate successful execution, as shown below,

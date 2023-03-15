@@ -65,7 +65,7 @@ class ProjectList(list):
             print(project.title)
         print("\nfailed " + target.name + ":")
         for project in failedList:
-            print(target.title)
+            print(project.title)
         print("\n---------------")
         print("| PASSED: " + str(len(passedList)) + " ")
         print("| FAILED: " + str(len(failedList)) + " ")

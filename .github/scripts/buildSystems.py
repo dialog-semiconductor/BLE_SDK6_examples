@@ -38,7 +38,7 @@ class CMake:
         """Build a project."""
         startdir = os.getcwd()
         if not project.cmakelistsFile:
-            print(bcolors.WARNING + "Skipping build due to missing CMakeLists.txt: " + str(project) + bcolors.ENDC)
+            print(bcolors.WARNING + "Skipping build due to missing CMakeLists.txt (skipping can also be caused by soon to be deprecated --exclude option): " + str(project) + bcolors.ENDC)
             return 1
         print(bcolors.HEADER + "Building: " + str(project) + bcolors.ENDC)
         os.chdir(project.absPath)
@@ -71,8 +71,26 @@ class CMake:
         os.chdir(startdir)
         return 0
 
-    def check(self, project):
+    def check(self, project, target):
         """Check a build."""
+        os.chdir(project.absPath)
+        if project.cmakelistsFile:
+            binPath = (project.builddir).joinpath(project.title.name + "_" + str(target.acronym) + ".bin")
+            if (
+                bashexec(
+                    [
+                        "grep",
+                        "-q",
+                        "set(BUILD_FOR_" + target.acronym + " TRUE)",
+                        project.cmakelistsFile,
+                    ]
+                )[1]
+                == 0
+            ):
+                if bashexec("test -f " + str(binPath))[1] == 0:
+                    project.addBuildStatus("CMake", target, True, binPath)
+                else:
+                    project.addBuildStatus("CMake", target, False, binPath)
         return 0 
 
 class Keil:
@@ -90,6 +108,12 @@ class Keil:
             print(colors[returncode] + f.read() + bcolors.ENDC)
         return returncode
 
-    def check(self, project):
+    def check(self, project, target):
         """Check a build."""
+        with open(project.logfile) as log, open(project.uvprojxFile) as proj:
+            if ("<TargetName>" + target.name + "</TargetName>") in proj.read():
+                if (target.acronym + passmarker) in log.read():
+                    target.passed.append(p)
+                else:
+                    target.failed.append(p)
         return 0 

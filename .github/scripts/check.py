@@ -86,29 +86,11 @@ def setVars():
 
 
 def checkProjects():
-    """Check all project directories if the builds that are configured have passed."""
-    for p in projects:
-        os.chdir(p.absPath)
-        for t in targets:
-            if p.cmakelistsFile:
-                binPath = (p.builddir).joinpath(
-                    p.title.name + "_" + str(t.acronym) + ".bin"
-                )
-                if (
-                    bashexec(
-                        [
-                            "grep",
-                            "-q",
-                            "set(BUILD_FOR_" + t.acronym + " TRUE)",
-                            p.cmakelistsFile,
-                        ]
-                    )[1]
-                    == 0
-                ):
-                    if bashexec("test -f " + str(binPath))[1] == 0:
-                        p.addBuildStatus("CMake", t, True, binPath)
-                    else:
-                        p.addBuildStatus("CMake", t, False, binPath)
+    """Use the build system to check the build result."""
+    for project in projects:
+        for target in targets:
+            buildSystem.check(project,target)
+            
 
 
 def writeOutput():

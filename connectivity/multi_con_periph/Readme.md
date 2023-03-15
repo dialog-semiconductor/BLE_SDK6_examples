@@ -54,9 +54,9 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 ![options_for_target](assets/options_for_target.png)
 
 - This example needs changes in the SDK to work. To apply the patch file, execute the following command inside your sdk directory:
-'''
+```
 git apply path/to/patch/SDK6patch.diff
-'''
+```
 
 ## How to run the example
 

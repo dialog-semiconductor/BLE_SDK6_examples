@@ -51,9 +51,9 @@ Note: To configure your device with different BD addresses, follow [here](http:/
 	![exclude_rom_tasks.jpg](assets/exclude_rom_tasks.jpg)
 
 5. This example needs changes in the SDK to work. To apply the patch file, execute the following command inside your sdk directory:
-'''
+```
 git apply path/to/patch/SDK6patch.diff
-'''
+```
 	
 6. Build and compile the project.		
 

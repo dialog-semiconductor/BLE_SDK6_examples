@@ -20,6 +20,7 @@ import signal
 import sys
 
 from common import bashexec, bcolors, findProjectFiles
+from buildSystems import getBuildSystem
 
 
 def parseArgs():
@@ -60,6 +61,13 @@ def parseArgs():
         default="projectData.json",
         help="The projects definition file. default='artifacts/projectData.json'",
     )
+    parser.add_argument(
+        "-b",
+        "--build-system",
+        default = "CMake",
+        choices= ["CMake","Keil"],
+        help="The build system used for the build. default='CMake'",
+    )
     args = parser.parse_args()
 
     if args.exclude:
@@ -77,6 +85,7 @@ def setVars():
         args.projdir, exdir=examplesdir, verbose=args.verbose
     )
     datafile = startdir.joinpath(args.datafile)
+    buildSystem = getBuildSystem(args.build_system, examplesdir, gccPath, args.sdkdi, args.verbose)
 
     for p in projectFiles:
         if p.absPath.name in args.exclude:
@@ -89,47 +98,15 @@ def setVars():
                 )
             p.cmakelistsFile = ""
 
-    return projectFiles, gccPath, examplesdir, startdir, datafile
+    return projectFiles, gccPath, examplesdir, startdir, datafile, buildSystem
 
 
 def buildProjects():
-    """Build the projects with a CMakeLists.txt file."""
+    """Build the projects with the configured build system."""
     buildResult = 0
 
     for p in projectFiles:
-        if p.cmakelistsFile:
-            print(bcolors.HEADER + "Building " + str(p) + bcolors.ENDC)
-
-            os.chdir(p.absPath)
-
-            if os.path.exists(p.builddir):
-                shutil.rmtree(p.builddir)
-            p.builddir.mkdir()
-
-            bashexec(
-                [
-                    "cmake",
-                    "-DDEVICE_NAME=" + p.title,
-                    "-DCMAKE_BUILD_TYPE=DEBUG",
-                    "-DCMAKE_TOOLCHAIN_FILE="
-                    + str(examplesdir)
-                    + "/build_utils/gcc/arm-none-eabi.cmake",
-                    "-DGCC_TOOLCHAIN_PATH=" + str(gccPath),
-                    "-DDIALOG_SDK_PATH=" + str(args.sdkdir),
-                    "-DDIALOG_EXAMPLE_PATH=" + str(examplesdir),
-                    "-S",
-                    ".",
-                    "-B",
-                    str(p.builddir),
-                ],
-                prnt=args.verbose,
-            )
-
-            os.chdir(p.builddir)
-
-            if bashexec("make -j 7", prnt=args.verbose)[1] != 0:
-                buildResult += 1
-                print(bcolors.FAIL+ str(p)+bcolors.ENDC)
+        buildSystem.build(p)
 
     return buildResult
 
@@ -158,7 +135,7 @@ def handleAbort(signum, frame):
 
 if __name__ == "__main__":
     args = parseArgs()
-    projectFiles, gccPath, examplesdir, startdir, datafile = setVars()
+    projectFiles, gccPath, examplesdir, startdir, datafile, buildSystem = setVars()
     signal.signal(
         signal.SIGINT, handleAbort
     )  # still write output if script aborted during build

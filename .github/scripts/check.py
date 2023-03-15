@@ -16,7 +16,8 @@ import json
 import os
 import pathlib
 
-from common import bashexec, getProjectsFile, getTargetsFile, printReport
+from common import bashexec, getTargetsFile, printReport
+from project import ProjectList
 
 
 def parseArgs():
@@ -56,7 +57,7 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    projects = getProjectsFile(args.datafile)
+    projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
     targets = getTargetsFile(args.targets)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())

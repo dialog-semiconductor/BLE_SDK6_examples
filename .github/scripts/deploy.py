@@ -17,7 +17,8 @@ import os
 import pathlib
 import shutil
 
-from common import getProjectsFile, getTargetsFile
+from common import getTargetsFile
+from project import getProjectsFile
 
 
 def parseArgs():

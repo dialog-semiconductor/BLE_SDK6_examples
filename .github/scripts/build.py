@@ -19,7 +19,8 @@ import shutil
 import signal
 import sys
 
-from common import bashexec, bcolors, findProjectFiles
+from common import bashexec, bcolors
+from project import ProjectList
 from buildSystems import getBuildSystem
 
 
@@ -81,11 +82,9 @@ def setVars():
     gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
-    projectFiles = findProjectFiles(
-        args.projdir, exdir=examplesdir, verbose=args.verbose
-    )
+    projectFiles = ProjectList(projectDirectory=args.projdir, examplesDirectory=examplesdir, verbose=args.verbose)
     datafile = startdir.joinpath(args.datafile)
-    buildSystem = getBuildSystem(args.build_system, examplesdir, gccPath, args.sdkdi, args.verbose)
+    buildSystem = getBuildSystem(args.build_system, examplesdir, gccPath, args.sdkdir, args.verbose)
 
     for p in projectFiles:
         if p.absPath.name in args.exclude:

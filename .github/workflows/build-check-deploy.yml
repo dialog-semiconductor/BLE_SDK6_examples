@@ -69,17 +69,17 @@ jobs:
         run: |
           python3  projects/.github/scripts/deploy.py -v -t projects/.github/config/targets.json
           
-      - name: upload 531 aws
-        #if: github.event_name == 'push' && github.ref_name == 'main'
-        run: |
-          aws s3 sync --delete artifacts/DA14531  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14531
+      # - name: upload 531 aws
+      #   #if: github.event_name == 'push' && github.ref_name == 'main'
+      #   run: |
+      #     aws s3 sync --delete artifacts/DA14531  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14531
           
-      - name: upload 585 aws
-        #if: github.event_name == 'push' && github.ref_name == 'main'
-        run: |
-          aws s3 sync --delete artifacts/DA14585  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14585
+      # - name: upload 585 aws
+      #   #if: github.event_name == 'push' && github.ref_name == 'main'
+      #   run: |
+      #     aws s3 sync --delete artifacts/DA14585  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14585
           
-      - name: upload 586 aws
-        #if: github.event_name == 'push' && github.ref_name == 'main'
-        run: |
-          aws s3 sync --delete artifacts/DA14586  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14586
+      # - name: upload 586 aws
+      #   #if: github.event_name == 'push' && github.ref_name == 'main'
+      #   run: |
+      #     aws s3 sync --delete artifacts/DA14586  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14586

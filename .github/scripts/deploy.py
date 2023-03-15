@@ -17,8 +17,8 @@ import os
 import pathlib
 import shutil
 
-from common import getTargetsFile
-from project import getProjectsFile
+from common import getTargetsFile, bashexec
+from project import ProjectList
 
 
 def parseArgs():
@@ -58,7 +58,7 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    projects = getProjectsFile(args.datafile)
+    projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
     targets = getTargetsFile(args.targets)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
@@ -100,6 +100,10 @@ def copyFiles():
             artifactpath.mkdir(parents=True)
             shutil.copy(binpath, artifactpath)
 
+def synchFilesAws():
+    for target in targets:
+        bashexec(["aws","s3","--delete",str(artifactsdir.joinpath(target.name)),"s3://lpccs-docs.renesas.com/examples_arfitacts/"+target.name])
+
 
 if __name__ == "__main__":
     args = parseArgs()
@@ -107,5 +111,6 @@ if __name__ == "__main__":
 
     sortProjectData()
     copyFiles()
+    synchFilesAws()
 
     os.chdir(startdir)

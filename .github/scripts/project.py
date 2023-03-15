@@ -48,6 +48,29 @@ class ProjectList(list):
                         print("found project file: " + fullpath)
                     self.append(Project(fullpath, examplesDirectory, verbose=verbose))
 
+    def printReport(self, target, buildSystem):
+        """Print a report of the build result from a certain target and buildsystem."""
+        # first gather info
+        passedList = []
+        failedList = []
+        for project in self:
+            stat = project.checkBuildStatus(target, buildSystem)
+            if (stat == "passed"):
+                passedList.append(project)
+            elif (stat == "failed"):
+                failedList.append(project)
+        # then print
+        print("\npassed " + target.name + ":")
+        for project in passedList:
+            print(project.title)
+        print("\nfailed " + target.name + ":")
+        for project in failedList:
+            print(target.title)
+        print("\n---------------")
+        print("| PASSED: " + str(len(passedList)) + " ")
+        print("| FAILED: " + str(len(failedList)) + " ")
+        print("---------------")
+
 class Project:
     """Projects are all of the individual cmake project projects in this repository."""
 
@@ -115,6 +138,15 @@ class Project:
                 "binPath": str(binPath),
             }
         )
+
+    def checkBuildStatus(self, target, buildSystem):
+        for build in self.buildStatus:
+            if (build['buildsystem'] is buildSystem.name) and (build['target']['name'] is target.name) and (build['passed'] is True):
+                return "passed"
+            elif (build['buildsystem'] is buildSystem.name) and (build['target']['name'] is target.name) and (build['passed'] is False):
+                return "failed"
+        return False
+
 
     def toDictComplete(self):
         """Get the project as a dictionary."""

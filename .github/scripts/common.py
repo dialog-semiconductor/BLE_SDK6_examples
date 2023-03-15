@@ -45,13 +45,10 @@ class Target:
         self.name = name
         self.acronym = acronym
         self.metadata = []
-        self.passed = []
-        self.failed = []
 
     def to_json(self):
         """Get target as json."""
         return {"name": self.name, "acronym": self.acronym}
-
 
 def getTargetsFile(file):
     """Get a list with target devices."""
@@ -61,25 +58,6 @@ def getTargetsFile(file):
     for tD in targetsData:
         targetlist.append(Target(tD["name"], tD["acronym"]))
     return targetlist
-
-
-def printReport(targets):
-    """Print a report of the build."""
-    for t in targets:
-        print("\npassed " + t.name + ":")
-        for p in t.passed:
-            print(p.title)
-        print("\nfailed " + t.name + ":")
-        for f in t.failed:
-            print(f.title)
-        print("\n---------------")
-        print("| PASSED: " + str(len(t.passed)) + " ")
-        print("| FAILED: " + str(len(t.failed)) + " ")
-        print("---------------")
-
-
-
-
 
 class bcolors:
     """Colors for printing in terminal."""

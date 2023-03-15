@@ -16,8 +16,10 @@ import json
 import os
 import pathlib
 
-from common import bashexec, getTargetsFile, printReport
+from common import bashexec, getTargetsFile
 from project import ProjectList
+from buildSystems import getBuildSystem
+
 
 
 def parseArgs():
@@ -39,6 +41,14 @@ def parseArgs():
         help="verbose logging",
     )
     parser.add_argument(
+        "-s",
+        "--sdkdir",
+        default=os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        ),
+        help="the location of the SDK that is to be used for the build. default = ./build.py/../../../..",
+    )
+    parser.add_argument(
         "-f",
         "--datafile",
         default="projectData.json",
@@ -50,6 +60,13 @@ def parseArgs():
         default="artifacts",
         help="The projects definition file. default='artifacts'",
     )
+    parser.add_argument(
+        "-b",
+        "--build-system",
+        default = "CMake",
+        choices= ["CMake","Keil"],
+        help="The build system used for the build. default='CMake'",
+    )
     args = parser.parse_args()
 
     return args
@@ -57,13 +74,15 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
+    gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
     projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
     targets = getTargetsFile(args.targets)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
     artifactsdir = startdir.joinpath(args.artifacts_dir)
+    buildSystem = getBuildSystem(args.build_system, examplesdir, gccPath, args.sdkdir, args.verbose)
 
-    return projects, targets, examplesdir, startdir, artifactsdir
+    return projects, targets, examplesdir, startdir, artifactsdir, buildSystem
 
 
 def checkProjects():
@@ -88,10 +107,8 @@ def checkProjects():
                 ):
                     if bashexec("test -f " + str(binPath))[1] == 0:
                         p.addBuildStatus("CMake", t, True, binPath)
-                        t.passed.append(p)
                     else:
                         p.addBuildStatus("CMake", t, False, binPath)
-                        t.failed.append(p)
 
 
 def writeOutput():
@@ -111,9 +128,11 @@ def writeOutput():
 
 if __name__ == "__main__":
     args = parseArgs()
-    projects, targets, examplesdir, startdir, artifactsdir = setVars()
+    projects, targets, examplesdir, startdir, artifactsdir, buildSystem = setVars()
     checkProjects()
-    printReport(targets)
+    #printReport(targets)
+    for target in targets:
+        projects.printReport(target, buildSystem)
     writeOutput()
 
     os.chdir(startdir)

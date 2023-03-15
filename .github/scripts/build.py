@@ -104,8 +104,8 @@ def buildProjects():
     """Build the projects with the configured build system."""
     buildResult = 0
 
-    for p in projectFiles:
-        buildSystem.build(p)
+    for project in projectFiles:
+        buildSystem.build(project)
 
     return buildResult
 

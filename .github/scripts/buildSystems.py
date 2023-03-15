@@ -13,6 +13,7 @@
 """This file contains a class to handle different build systems."""
 import subprocess
 import os
+import shutil
 from common import bcolors, bashexec
 
 
@@ -34,6 +35,7 @@ class CMake:
         self.sdkDir = str(sdkDir)
 
     def build(self, project):
+        """Build a project."""
         startdir = os.getcwd()
         if not project.cmakelistsFile:
             print(bcolors.WARNING + "Skipping build due to missing CMakeLists.txt: " + str(project) + bcolors.ENDC)
@@ -69,12 +71,17 @@ class CMake:
         os.chdir(startdir)
         return 0
 
+    def check(self, project):
+        """Check a build."""
+        return 0 
+
 class Keil:
     """Build system for Keil."""
-    def __init__():
+    def __init__(self):
         self.name = "Keil"
 
-    def build( project ):
+    def build(self, project ):
+        """Build a project."""
         print(bcolors.OKBLUE + "building " + project.title + "..." + bcolors.ENDC)
         returncode = subprocess.call(["C:/Keil_v5/UV4/UV4.exe", "-b", project.path, "-z", "-o", project.logfile])
         # Keil returns 0 if build is ok, 1 if there are warnings, and 2-20 if there are errors
@@ -82,3 +89,7 @@ class Keil:
         with open(project.basedir + project.logfile, "r") as f:
             print(colors[returncode] + f.read() + bcolors.ENDC)
         return returncode
+
+    def check(self, project):
+        """Check a build."""
+        return 0 

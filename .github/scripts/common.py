@@ -30,6 +30,7 @@ def bashexec(command, prnt=False):
     return process.communicate()[0], process.returncode
 
 
+
 def findFirstOfGlob(path, pathGlob):
     """Get first found instance of a glob within a folder."""
     for f in pathlib.Path(path.parents[1]).rglob(pathGlob):

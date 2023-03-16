@@ -91,6 +91,9 @@ class Project:
         self.path = str(self.absPath).replace(str(exdir), "")[1:]
         self.title = inPath.parents[1].name
         self.group = str(inPath.relative_to(exdir)).split("/")[0]
+        self.patchFile = False
+        if os.path.isfile(self.absPath.joinpath("patch/SK6patch.diff")):
+            self.patchFile = self.absPath.joinpath("patch/SK6patch.diff")
         self.uvprojxFile = inPath
         self.uvisionLogFile = self.uvprojxFile.parent.joinpath(self.title + "_log.txt")
         self.cmakelistsFile = findFirstOfGlob(inPath, "CMakeLists.txt")
@@ -109,6 +112,7 @@ class Project:
         self.path = pathlib.Path(dict["path"])
         self.title = pathlib.Path(dict["title"])
         self.group = pathlib.Path(dict["group"])
+        self.patchFile = pathlib.Path(dict["patchFile"])
         self.uvprojxFile = pathlib.Path(dict["uvprojxFile"])
         self.uvisionLogFile = dict["uvisionLogFile"]
         if dict["cmakelistsFile"] == "":
@@ -118,6 +122,14 @@ class Project:
         self.readmePath = pathlib.Path(dict["readmePath"])
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
+
+    def applyPatchToSdk(self, sdkPath):
+        if self.patchFile:
+            bashexec(["git","apply",self.patchFile,"--directory",sdkPath])
+
+    def revertPatchToSdk(self, sdkPath):
+        if self.patchFile:
+            bashexec(["git","apply",self.patchFile,"--directory",sdkPath,"--reverse"])
 
     def addBuildStatus(self, buildsystem, target, passed, binPath):
         """Add a build to the project item."""
@@ -155,6 +167,7 @@ class Project:
             "path": str(self.path),
             "title": str(self.title),
             "group": str(self.group),
+            "patchFile": str(self.patchFile),
             "uvprojxFile": str(self.uvprojxFile),
             "uvisionLogFile": str(self.uvisionLogFile),
             "cmakelistsFile": str(self.cmakelistsFile),
@@ -191,6 +204,8 @@ class Project:
             + str(self.title)
             + "\n\tgroup: "
             + str(self.group)
+            + "\n\tpatchFile: "
+            + str(self.patchFile)
             + "\n\tuvprojxFile: "
             + str(self.uvprojxFile)
             + "\n\tuvisionLogFile: "

@@ -104,7 +104,9 @@ def buildProjects():
     buildResult = 0
 
     for project in projectFiles:
+        project.applyPatchToSdk(args.sdkdir)
         buildSystem.build(project)
+        project.revertPatchToSdk(args.sdkdir)
 
     return buildResult
 

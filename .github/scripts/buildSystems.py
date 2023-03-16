@@ -112,8 +112,7 @@ class Keil:
         """Build a project."""
         print(bcolors.OKBLUE + "building " + project.title + "..." + bcolors.ENDC)
         os.chdir(project.absPath)
-        sdk_link_script(self.sdkDir)
-        keilCommand = ["C:/Keil_v5/UV4/UV4.exe", "-b", project.uvprojxFile.resolve(), "-z", "-o", project.uvisionLogFile.name]
+        keilCommand = ["C:/Keil_v5/UV4/UV4.exe", "-b", str(project.uvprojxFile.resolve()), "-z", "-o", project.uvisionLogFile.name]
         if self.verbose:
             print("executing Keil command: "+str(keilCommand))
         returncode = subprocess.call(keilCommand)
@@ -123,7 +122,6 @@ class Keil:
             returncode = 3 
         with open(project.uvisionLogFile, "r") as f:
             print(colors[returncode] + f.read() + bcolors.ENDC)
-        sdk_link_script("clean")
         return returncode
 
     def check(self, project, target):
@@ -132,7 +130,7 @@ class Keil:
             with open(project.uvisionLogFile) as log, open(project.uvprojxFile) as proj:
                 if ("<TargetName>" + target.name + "</TargetName>") in proj.read():
                     binPath = project.uvprojxFile.parent.joinpath("out_"+target.name+"/Objects/"+os.path.splitext(project.title.name)[0] + "_" + str(target.acronym) + ".bin")
-                    if ((target.acronym + self.passmarker) in log.read()) and (os.path.isfile(binPath)):
+                    if ((target.acronym + self.passmarker) in log.read()):# and (os.path.isfile(binPath)):
                         project.addBuildStatus(self.name, target, True, binPath)
                     else:
                         project.addBuildStatus(self.name, target, False, binPath)

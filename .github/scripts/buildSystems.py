@@ -19,7 +19,6 @@ import pathlib
 
 from common import bcolors, bashexec
 sys.path.append(str(pathlib.Path(os.path.abspath(__file__)).parents[2]))
-from dlg_make_keil5_env_v2 import sdk_link_script
 
 def getBuildSystem(buildsystem, examplesdir=False, sdkDir=False, verbose=False):
     if (buildsystem == "CMake") and all([examplesdir, sdkDir]):
@@ -110,7 +109,11 @@ class Keil:
 
     def build(self, project ):
         """Build a project."""
-        print(bcolors.OKBLUE + "building " + project.title + "..." + bcolors.ENDC)
+        if project.uvprojxFile:
+            print(bcolors.OKBLUE + "building " + project.title + "..." + bcolors.ENDC)
+        else:
+            print(bcolors.WARNING + "not building " + project.title + "... (excluded with -x option)" + bcolors.ENDC)
+            return 0
         os.chdir(project.absPath)
         keilCommand = ["C:/Keil_v5/UV4/UV4.exe", "-b", str(project.uvprojxFile.resolve()), "-z", "-o", project.uvisionLogFile.name]
         if self.verbose:

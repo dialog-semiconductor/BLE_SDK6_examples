@@ -95,6 +95,7 @@ def setVars():
                     + bcolors.ENDC
                 )
             p.cmakelistsFile = ""
+            p.uvprojxFile = ""
 
     return projectFiles, examplesdir, startdir, datafile, buildSystem
 

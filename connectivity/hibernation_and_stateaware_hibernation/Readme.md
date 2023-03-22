@@ -66,31 +66,13 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 4. Compile (F7) the program
 
-5. Open the system_DA14531.c, comment out the following, 
-
-	``` C
-		//    if ((GetBits16(HIBERN_CTRL_REG, HIBERNATION_ENABLE) == 1) &&
-		//        (GetBits16(SYS_CTRL_REG, REMAP_ADR0) > 1))
-	```
-
-	and add the following, 
-
-	``` C
-		if ((GetBits16(HIBERN_CTRL_REG, HIBERNATION_ENABLE) == 1) &&
-			GetWord16(RESET_STAT_REG) == 0)
-	```
-
-	as shown in the figure below
-	
-	![Hibernation_code_modification](assets/system_531.png)	
-
-6. Open the user_hibernation.h and declare the following function,
+5. Open the user_hibernation.h and declare the following function,
 
 	``` C
 		void user_app_on_init(void);
 	```
 	
-7. Open the user_hibernation.c and add the function, like so, 
+6. Open the user_hibernation.c and add the function, like so, 
 
 	``` C
 		void user_app_on_init(void)
@@ -102,14 +84,14 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	```
 	![user_app_on_init function](assets/userinit.png)	
 
-8. Open the user_callback_config.h, and replace the default_app_on_init with user_app_on_init, like so, 
+7. Open the user_callback_config.h, and replace the default_app_on_init with user_app_on_init, like so, 
 
 	``` C
 		.app_on_init            = user_app_on_init,
 	```
 	![callback function](assets/callback.png)
 	
-9. Save and compile 
+8. Save and compile 
 
 Now we can start implementing the use-cases. 
 

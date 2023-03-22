@@ -49,25 +49,15 @@ Note: To configure your device with different BD addresses, follow [here](http:/
 4. To be able to override the default functions of the SDK the __ EXCLUDE_ROM_APP_TASK __ should be defined in the C/C++ tab in the "options for target" in keil, like so,
 
 	![exclude_rom_tasks.jpg](assets/exclude_rom_tasks.jpg)
-	
 
-5. On the project explorer, navigate to "app.h" and modify it to support 3 connections, like so, 
+5. This example needs changes in the SDK to work. To apply the patch file, execute the following command inside your sdk directory:
+```
+git apply path/to/patch/SDK6patch.diff
+```
+	
+6. Build and compile the project.		
 
-	![maxconn.jpg](assets/maxconn.jpg)
-	
-	
-6. Open File explorer on your computer, navigate to the project, like so, 
-
-	`C:\......\6.0.14.1114\sdk\common_project_files\misc`
-	
-	in the misc folder, open da14531_symbols.txt in a text editor, and comment out the __EXCLUDE_ROM_APP_TASK__ parts. Use a semi-colon (";") to comment out.
-	
-	![da14531_symbols.jpg](assets/da14531_symbols.jpg)
-	
-	
-7. Build and compile the project.		
-
-8. Download the binary to another DA14531 device (Use flash programmer tool as mentioned in step 1). 
+7. Download the binary to another DA14531 device (Use flash programmer tool as mentioned in step 1). 
 
 **Note**: Use any android/iPhone BLE scanner to connect/disconnect to/from the DA14531.
 

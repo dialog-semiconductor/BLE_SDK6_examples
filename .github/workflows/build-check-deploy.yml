@@ -54,6 +54,11 @@ jobs:
           path: ./projects/
 
       # run script that builds all examples
+      - name: link sdk
+        run: |
+          python3 projects/dlg_make_keil5_env_v2.000.py -sdkpath $GITHUB_WORKSPACE
+
+      # run script that builds all examples
       - name: build script
         run: |
           python3 projects/.github/scripts/build.py -x projects/.github/config/ignore-list.txt -v -p ./projects/

@@ -10,10 +10,7 @@ The example is an update of the [ibeacon SW](https://www.dialog-semiconductor.co
 
 A new ibeacon structure has been created to allow the alternating and the advertising interval is set to 10 s.
 
-This example needs changes in the SDK to work. To apply the patch file, execute the following command inside your sdk directory:
-```
-git apply path/to/patch/SDK6patch.diff
-```
+Because the example needs changes into the SDK we are providing within the source directory for all the modified files: *src\modified_files*
 
 ```` C
 /* Set the advertising rate */

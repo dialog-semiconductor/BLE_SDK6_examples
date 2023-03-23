@@ -5,27 +5,9 @@
  *
  * @brief User configuration file.
  *
- * Copyright (c) 2015-2020 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
+ * Copyright (C) 2015-2020 Dialog Semiconductor.
+ * This computer program includes Confidential, Proprietary Information
+ * of Dialog Semiconductor. All Rights Reserved.
  *
  ****************************************************************************************
  */
@@ -43,9 +25,10 @@
 #include "app_default_handlers.h"
 #include "app_adv_data.h"
 #include "co_bt.h"
+#include "user_periph_setup.h"
 
 /*
- * LOCAL VARIABLES
+ * DEFINES
  ****************************************************************************************
  */
 
@@ -69,18 +52,22 @@
  * Select only one option for privacy / addressing configuration.
  **************************************************************************
  */
-#define USER_CFG_ADDRESS_MODE       APP_CFG_ADDR_STATIC
+#define USER_CFG_ADDRESS_MODE       APP_CFG_ADDR_PUB
 
 /*************************************************************************
  * Controller Privacy Mode:
- * - APP_CFG_CNTL_PRIV_MODE_NETWORK Controller Privacy Network mode (default)
- * - APP_CFG_CNTL_PRIV_MODE_DEVICE  Controller Privacy Device mode
+ * - APP_CFG_CNTL_PRIV_MODE_NETWORK Controler Privacy Network mode (default)
+ * - APP_CFG_CNTL_PRIV_MODE_DEVICE  Controler Privacy Device mode
  *
  * Select only one option for controller privacy mode configuration.
  **************************************************************************
  */
 #define USER_CFG_CNTL_PRIV_MODE     APP_CFG_CNTL_PRIV_MODE_NETWORK
 
+/*
+ * VARIABLES
+ ****************************************************************************************
+ */
 
 /******************************************
  * Default sleep mode. Possible values are:
@@ -104,11 +91,11 @@ static const struct advertise_configuration user_adv_conf = {
 
     .addr_src = APP_CFG_ADDR_SRC(USER_CFG_ADDRESS_MODE),
 
-    /// Minimum interval for advertising - set in user_app.c
-    .intv_min = MS_TO_BLESLOTS(0),                    
+    /// Minimum interval for advertising
+    .intv_min = MS_TO_BLESLOTS(687.5),                    // 687.5ms
 
-    /// Maximum interval for advertising - set in user_app.c
-    .intv_max = MS_TO_BLESLOTS(0),                    
+    /// Maximum interval for advertising
+    .intv_max = MS_TO_BLESLOTS(687.5),                    // 687.5ms
 
     /**
      *  Advertising channels map:
@@ -133,13 +120,18 @@ static const struct advertise_configuration user_adv_conf = {
     .mode = GAP_GEN_DISCOVERABLE,
 
     /// Host information advertising data (GAPM_ADV_NON_CONN and GAPM_ADV_UNDIRECT)
+    /// Advertising filter policy:
     /// - ADV_ALLOW_SCAN_ANY_CON_ANY: Allow both scan and connection requests from anyone
+    /// - ADV_ALLOW_SCAN_ANY_CON_WLST: Allow both scan req from anyone and connection req from
+    ///                                White List devices only
     .adv_filt_policy = ADV_ALLOW_SCAN_ANY_CON_ANY,
 
     /// Address of peer device
+    /// NOTE: Meant for directed advertising (ADV_DIRECT_IND)
     .peer_addr = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6},
 
     /// Address type of peer device (0=public/1=random)
+    /// NOTE: Meant for directed advertising (ADV_DIRECT_IND)
     .peer_addr_type = 0,
 };
 
@@ -151,31 +143,42 @@ static const struct advertise_configuration user_adv_conf = {
  * - ADV_IND: Connectable undirected advertising event.
  *    - The maximum length of the user defined advertising data shall be 28 bytes.
  *    - The Flags data type are written by the related ROM function, hence the user shall
- *      not include them in the advertising data. The related ROM function adds 3 bytes in 
+ *      not include them in the advertising data. The related ROM function adds 3 bytes in
  *      the start of the advertising data that are to be transmitted over the air.
  *    - The maximum length of the user defined response data shall be 31 bytes.
  *
  * - ADV_NONCONN_IND: Non-connectable undirected advertising event.
  *    - The maximum length of the user defined advertising data shall be 31 bytes.
- *    - The Flags data type may be omitted, hence the user can use all the 31 bytes for 
+ *    - The Flags data type may be omitted, hence the user can use all the 31 bytes for
  *      data.
  *    - The scan response data shall be empty.
  *
  * - ADV_SCAN_IND: Scannable undirected advertising event.
  *    - The maximum length of the user defined advertising data shall be 31 bytes.
- *    - The Flags data type may be omitted, hence the user can use all the 31 bytes for 
+ *    - The Flags data type may be omitted, hence the user can use all the 31 bytes for
  *      data.
  *    - The maximum length of the user defined response data shall be 31 bytes.
  ****************************************************************************************
  */
 /// Advertising data
-#define USER_ADVERTISE_DATA                   ""
+#define USER_ADVERTISE_DATA         ("\x09"\
+                                    ADV_TYPE_COMPLETE_LIST_16BIT_SERVICE_IDS\
+                                    ADV_UUID_LINK_LOSS_SERVICE\
+                                    ADV_UUID_IMMEDIATE_ALERT_SERVICE\
+                                    ADV_UUID_TX_POWER_SERVICE\
+                                    ADV_UUID_SUOTAR_SERVICE\
+                                    "\x10"\
+                                    ADV_TYPE_URI\
+                                    "\x16\x2F\x2F\x77\x77\x77\x2E\x69\x61\x6E\x61\x2E\x6F\x72\x67")
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)
 
 /// Scan response data
-#define USER_ADVERTISE_SCAN_RESPONSE_DATA     ""
+#define USER_ADVERTISE_SCAN_RESPONSE_DATA     "\x0a"\
+                                              ADV_TYPE_MANUFACTURER_SPECIFIC_DATA\
+                                              ADV_DIALOG_MANUFACTURER_CODE\
+                                              "DLG-BLE"
 
 /// Scan response data length- maximum 31 bytes
 #define USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN (sizeof(USER_ADVERTISE_SCAN_RESPONSE_DATA)-1)
@@ -193,7 +196,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        ""
+#define USER_DEVICE_NAME        "DLG-PROXR"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)
@@ -211,11 +214,11 @@ static const struct gapm_configuration user_gapm_conf = {
 
     /// Maximal MTU. Shall be set to 23 if Legacy Pairing is used, 65 if Secure Connection is used,
     /// more if required by the application
-    .max_mtu = 23,
+    .max_mtu = 247,
 
     /// Device Address Type
     .addr_type = APP_CFG_ADDR_TYPE(USER_CFG_ADDRESS_MODE),
-    /// Duration before regenerate the random private address when privacy is enabled
+    /// Duration before regenerating the Random Private Address when privacy is enabled
     .renew_dur = 15000,    // 15000 * 10ms = 150s is the minimum value
 
     /***********************
@@ -223,7 +226,7 @@ static const struct gapm_configuration user_gapm_conf = {
      ***********************
      */
 
-    /// Private static address
+    /// Random Static address
     // NOTE: The address shall comply with the following requirements:
     // - the two most significant bits of the address shall be equal to 1,
     // - all the remaining bits of the address shall NOT be equal to 1,
@@ -232,7 +235,7 @@ static const struct gapm_configuration user_gapm_conf = {
     // random static address will be automatically generated.
     .addr = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 
-    /// Device IRK used for resolvable random BD address generation (LSB first)
+    /// Device IRK used for Resolvable Private Address generation (LSB first)
     .irk = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f},
 
     /****************************
@@ -268,10 +271,10 @@ static const struct gapm_configuration user_gapm_conf = {
     .max_mps = 0,
 
     /// Maximal Tx octets (connInitialMaxTxOctets value, as defined in 4.2 Specification)
-    .max_txoctets = 0,
+    .max_txoctets = 251,
 
     /// Maximal Tx time (connInitialMaxTxTime value, as defined in 4.2 Specification)
-    .max_txtime = 0,
+    .max_txtime = 2120,
 };
 
 /*
@@ -318,7 +321,7 @@ static const struct default_handlers_configuration  user_default_hnd_conf = {
     // Possible values:
     //  - DEF_ADV_FOREVER
     //  - DEF_ADV_WITH_TIMEOUT
-    .adv_scenario = DEF_ADV_FOREVER,
+    .adv_scenario = DEF_ADV_WITH_TIMEOUT,
 
     // Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
     // It is measured in timer units (3 min). Use MS_TO_TIMERUNITS macro to convert

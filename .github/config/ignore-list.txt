@@ -44,3 +44,5 @@ list of files to be ignored by CI:
 ./connectivity/active_scanner/CMakeLists.txt
 
 ./interfaces/external-processor-stm32/project_environment/CMakeLists.txt
+./interfaces/segger_rtt/
+./connectivity/multi_con_periph/CMakeLists.txt

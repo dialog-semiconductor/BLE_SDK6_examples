@@ -110,7 +110,7 @@ class Keil:
     def build(self, project ):
         """Build a project."""
         if project.uvprojxFile:
-            print(bcolors.OKBLUE + "building " + project.title + "..." + bcolors.ENDC)
+            print(bcolors.OKBLUE + "building: " + str(project) + bcolors.ENDC)
         else:
             print(bcolors.WARNING + "not building " + project.title + "... (excluded with -x option)" + bcolors.ENDC)
             return 0

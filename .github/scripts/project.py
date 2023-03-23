@@ -92,8 +92,8 @@ class Project:
         self.title = inPath.parents[1].name
         self.group = str(inPath.relative_to(exdir)).split("/")[0]
         self.patchFile = False
-        if os.path.isfile(self.absPath.joinpath("patch/SK6patch.diff")):
-            self.patchFile = self.absPath.joinpath("patch/SK6patch.diff")
+        if os.path.isfile(self.absPath.joinpath("patch/SDK6patch.diff")):
+            self.patchFile = self.absPath.joinpath("patch/SDK6patch.diff")
         self.uvprojxFile = inPath
         self.uvisionLogFile = self.uvprojxFile.parent.joinpath(self.title + "_log.txt")
         self.cmakelistsFile = findFirstOfGlob(inPath, "CMakeLists.txt")
@@ -125,11 +125,21 @@ class Project:
 
     def applyPatchToSdk(self, sdkPath):
         if self.patchFile:
-            bashexec(["git","apply",self.patchFile,"--directory",sdkPath])
+            startdir = pathlib.Path(os.getcwd())
+            sdkdir = pathlib.Path(sdkPath)
+            os.chdir(sdkdir)
+            print(bcolors.OKBLUE + "applying patch for " + self.title + bcolors.ENDC)
+            bashexec(["git","apply",self.patchFile])
+            os.chdir(startdir)
 
     def revertPatchToSdk(self, sdkPath):
         if self.patchFile:
-            bashexec(["git","apply",self.patchFile,"--directory",sdkPath,"--reverse"])
+            startdir = pathlib.Path(os.getcwd())
+            sdkdir = pathlib.Path(sdkPath)
+            os.chdir(sdkdir)
+            print(bcolors.OKBLUE + "removing patch for " + self.title + bcolors.ENDC)
+            bashexec(["git","apply",self.patchFile,"--reverse"])
+            os.chdir(startdir)
 
     def addBuildStatus(self, buildsystem, target, passed, binPath):
         """Add a build to the project item."""

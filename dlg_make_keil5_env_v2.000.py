@@ -378,7 +378,7 @@ def build_uvprojx_element_file(xml_sub_element, xml_tag, working_dir):
                 else:
                     # print("WARNING :: IT IS AN INVALID DIRECTORY PATH, THIS PATH WILL BE AUTOMATICALLY REMOVED...")
                     pass
-                print(single_text)
+                #print(single_text)
     print("")
 
     # my_file = open(DLG_UVPROJX_NAME,"w")
@@ -585,7 +585,7 @@ def build_uvprojx_element_various_controls(xml_sub_element, xml_tag, working_dir
 
     # Print updated_data in a readable format.
     updated_data = updated_data.replace(";", ";\r\n")
-    print("IncludePath ELEMENT TEXT:\r\n" + updated_data + "END OF IncludePath ELEMENT TEXT.\r\n")
+    #print("IncludePath ELEMENT TEXT:\r\n" + updated_data + "END OF IncludePath ELEMENT TEXT.\r\n")
 
     # print(temp_text)
     # print(updated_data[:-1])

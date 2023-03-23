@@ -72,6 +72,7 @@ import re
 import argparse
 import xml.etree.ElementTree as ET
 from typing import NamedTuple
+import time
 
 '''
 Classes
@@ -840,7 +841,7 @@ def verify_dlg_sdk_proj_env_directory(path):
     else:
         return True
 
-
+L
 def handle_space_in_path(path):
     """
     For every directory in given path with a space in the string, this function will replace the
@@ -1009,6 +1010,7 @@ def run_application(sdkpath):
 
 # start application
 if __name__ == "__main__":
+    starttime=time.time()
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("-sdkpath", "--sdkpath", required=True,
@@ -1017,4 +1019,7 @@ if __name__ == "__main__":
 
     # print("SDK location {},is the sdk path".format(args["sdkpath"]))
     run_application(args["sdkpath"])
+    endtime=time.time()
+    difftime=endtime-starttime
+    print("script took "+str(difftime)+"s....")
 # run_individual_project_file(dirnames,args["sdkpath"])

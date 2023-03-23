@@ -1,34 +1,33 @@
-From a3857a2b744775f79ef5007b665e30b23b682522 Mon Sep 17 00:00:00 2001
-From: Moh Nikaeen <m.h.nickaeen@gmail.com>
-Date: Mon, 13 Mar 2023 11:10:38 +0100
-Subject: [PATCH] Take a look at this modified SDK6 compatible with
- Multirole_con_periph example
+From 68f30f7bde3b6e0a516bc41eec1e044244c29286 Mon Sep 17 00:00:00 2001
+From: kvandenm <koen.van-den-maagdenberg.xn@renesas.com>
+Date: Thu, 23 Mar 2023 12:39:07 +0100
+Subject: [PATCH] Modifications to SDK needed to build BLE SDK6 git example
+ multi_con_periph. These modifications are cherry picked from branch
+ SDK6.1182.1_patch_multi_con_periph
 
 ---
- projects/BLE_SDK6_examples                    |  1 +
- sdk/app_modules/api/app.h                     | 15 +++++++-
- sdk/app_modules/api/app_task.h                |  7 ++--
- sdk/app_modules/src/app_common/app_task.c     |  4 +--
- .../src/app_easy/app_easy_msg_utils.c         |  2 +-
- .../da1458x_periph_setup.h                    |  2 +-
+ sdk/app_modules/api/app.h                     | 17 +++++++--
+ sdk/app_modules/api/app_task.h                |  6 +++-
+ sdk/app_modules/src/app_common/app.c          | 15 +++++---
+ sdk/app_modules/src/app_common/app_task.c     | 36 ++++++++++++++-----
  .../misc/da14531_symbols.txt                  | 36 +++++++++----------
- 7 files changed, 42 insertions(+), 25 deletions(-)
- create mode 160000 projects/BLE_SDK6_examples
+ 5 files changed, 76 insertions(+), 34 deletions(-)
 
 diff --git a/sdk/app_modules/api/app.h b/sdk/app_modules/api/app.h
-index aaaca5a..c334c3c 100644
+index aaaca5a..9b55e66 100644
 --- a/sdk/app_modules/api/app.h
 +++ b/sdk/app_modules/api/app.h
 @@ -113,8 +113,11 @@
  #define APP_SCAN_RESP_DATA_MAX_SIZE         (SCAN_RSP_DATA_LEN)
  
  /// Max connections supported by application task
-+#ifdef CFG_ENABLE_MULTIPLE_CONN
-+#define APP_EASY_MAX_ACTIVE_CONNECTION      (BLE_CONNECTION_MAX)
-+#else
- #define APP_EASY_MAX_ACTIVE_CONNECTION      (1)
+-#define APP_EASY_MAX_ACTIVE_CONNECTION      (1)
 -
-+#endif
++  #ifdef CFG_ENABLE_MULTIPLE_CONN
++  #define APP_EASY_MAX_ACTIVE_CONNECTION      (BLE_CONNECTION_MAX)
++  #else
++  #define APP_EASY_MAX_ACTIVE_CONNECTION      (1)
++  #endif
  /*
   * TYPE DEFINITIONS
   ****************************************************************************************
@@ -50,71 +49,116 @@ index aaaca5a..c334c3c 100644
   ****************************************************************************************
   * @brief Start a kernel timer.
 diff --git a/sdk/app_modules/api/app_task.h b/sdk/app_modules/api/app_task.h
-index 57d1aa9..de18e60 100644
+index 57d1aa9..0ffd6d8 100644
 --- a/sdk/app_modules/api/app_task.h
 +++ b/sdk/app_modules/api/app_task.h
-@@ -32,8 +32,11 @@
+@@ -32,7 +32,11 @@
   */
  
  /// Number of APP Task Instances
 -#define APP_IDX_MAX                 (1)
--
 +#ifdef CFG_ENABLE_MULTIPLE_CONN
 +#define APP_IDX_MAX      (1)
 +#else
 +#define APP_IDX_MAX      (APP_EASY_MAX_ACTIVE_CONNECTION)
 +#endif
+ 
  /*
   * ENUMERATIONS
-  ****************************************************************************************
+diff --git a/sdk/app_modules/src/app_common/app.c b/sdk/app_modules/src/app_common/app.c
+index 7ba7156..09480ed 100644
+--- a/sdk/app_modules/src/app_common/app.c
++++ b/sdk/app_modules/src/app_common/app.c
+@@ -185,8 +185,11 @@ static bool app_task_in_user_app(enum KE_API_ID task_id)
+     }
+      return false;
+ }
+-
+-bool app_db_init_next(void)
++  #if (!defined (__DA14531__) || defined (__EXCLUDE_ROM_APP_TASK__)) && !defined (CFG_ENABLE_MULTIPLE_CONN)
++  static bool app_db_init_next(void)
++  #else
++  bool app_db_init_next(void)
++  #endif
+ {
+     static uint8_t i __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY;
+     static uint8_t k __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY;
+@@ -238,8 +241,9 @@ bool app_db_init_next(void)
+ }
+ 
+ #if !defined (__DA14531__) || defined (__EXCLUDE_ROM_APP_TASK__)
+-bool app_db_init_start(void)
+-{
++#if !defined (CFG_ENABLE_MULTIPLE_CONN)
++  bool app_db_init_start(void)
++  {
+     // Indicate if more services need to be added in the database
+     bool end_db_create;
+ 
+@@ -249,7 +253,8 @@ bool app_db_init_start(void)
+     end_db_create = app_db_init_next();
+ 
+     return end_db_create;
+-}
++  }
++  #endif
+ 
+ bool app_db_init(void)
+ {
 diff --git a/sdk/app_modules/src/app_common/app_task.c b/sdk/app_modules/src/app_common/app_task.c
-index 6bbb6d4..6b59429 100644
+index 6bbb6d4..282d090 100644
 --- a/sdk/app_modules/src/app_common/app_task.c
 +++ b/sdk/app_modules/src/app_common/app_task.c
-@@ -213,7 +213,7 @@ static int gapm_cmp_evt_handler(ke_msg_id_t const msgid,
+@@ -213,10 +213,20 @@ static int gapm_cmp_evt_handler(ke_msg_id_t const msgid,
   * @return If the message was consumed or not.
   ****************************************************************************************
   */
 -static int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
-+__WEAK int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
-                                            struct gapc_connection_req_ind const *param,
-                                            ke_task_id_t const dest_id,
-                                            ke_task_id_t const src_id)
-@@ -310,7 +310,7 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
+-                                           struct gapc_connection_req_ind const *param,
+-                                           ke_task_id_t const dest_id,
+-                                           ke_task_id_t const src_id)
++  #ifdef CFG_ENABLE_MULTIPLE_CONN
++  __WEAK int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
++                      struct gapc_connection_req_ind const *param,
++                      ke_task_id_t const dest_id,
++                      ke_task_id_t const src_id)
++
++
++
++  #else
++  static int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
++                      struct gapc_connection_req_ind const *param,
++                      ke_task_id_t const dest_id,
++                      ke_task_id_t const src_id)
++  #endif
+ {
+     // Connection Index
+     if (ke_state_get(dest_id) == APP_CONNECTABLE)
+@@ -310,10 +320,20 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
   * @return If the message was consumed or not.
   ****************************************************************************************
   */
 -static int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
-+__WEAK int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
-                                        struct gapc_disconnect_ind const *param,
-                                        ke_task_id_t const dest_id,
-                                        ke_task_id_t const src_id)
-diff --git a/sdk/app_modules/src/app_easy/app_easy_msg_utils.c b/sdk/app_modules/src/app_easy/app_easy_msg_utils.c
-index f24351f..2371db5 100644
---- a/sdk/app_modules/src/app_easy/app_easy_msg_utils.c
-+++ b/sdk/app_modules/src/app_easy/app_easy_msg_utils.c
-@@ -37,7 +37,7 @@
-  ****************************************************************************************
-  */
- 
--#define APP_MSG_UTIL_MAX_NUM    (APP_MSG_UTIL_API_LAST_MES - APP_MSG_UTIL_API_MES0 + 1)
-+#define APP_MSG_UTIL_MAX_NUM    APP_MSG_UTIL_API_LAST_MES - APP_MSG_UTIL_API_MES0 + 1
- 
- /*
-  * GLOBAL VARIABLE DEFINITIONS
-diff --git a/sdk/common_project_files/da1458x_periph_setup.h b/sdk/common_project_files/da1458x_periph_setup.h
-index 699f17c..cd6495b 100644
---- a/sdk/common_project_files/da1458x_periph_setup.h
-+++ b/sdk/common_project_files/da1458x_periph_setup.h
-@@ -13,7 +13,7 @@
-  */
- 
- #ifndef _DA1458X_PERIPH_SETUP_H_
--    #define _DA1458X_PERIPH_SETUP_H_
-+#define _DA1458X_PERIPH_SETUP_H_
- 
- /*
-  * DEFINES
+-                                       struct gapc_disconnect_ind const *param,
+-                                       ke_task_id_t const dest_id,
+-                                       ke_task_id_t const src_id)
++  #ifdef CFG_ENABLE_MULTIPLE_CONN
++  __WEAK int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
++                      struct gapc_disconnect_ind const *param,
++                      ke_task_id_t const dest_id,
++                      ke_task_id_t const src_id)
++
++
++
++  #else
++  static int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
++                    struct gapc_disconnect_ind const *param,
++                    ke_task_id_t const dest_id,
++                    ke_task_id_t const src_id)
++  #endif
+ {
+     uint8_t state = ke_state_get(dest_id);
+     uint8_t conidx = KE_IDX_GET(src_id);
 diff --git a/sdk/common_project_files/misc/da14531_symbols.txt b/sdk/common_project_files/misc/da14531_symbols.txt
 index 3fb45c5..cc35dcc 100644
 --- a/sdk/common_project_files/misc/da14531_symbols.txt

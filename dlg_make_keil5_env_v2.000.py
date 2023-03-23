@@ -72,7 +72,6 @@ import re
 import argparse
 import xml.etree.ElementTree as ET
 from typing import NamedTuple
-import time
 
 '''
 Classes

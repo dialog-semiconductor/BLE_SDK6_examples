@@ -300,7 +300,7 @@ int nau7802_sw_reset(void)
 
 /**
  ****************************************************************************************
- * @brief   Software reset puts the device into default state.
+ * @brief   Enables the ADC of the NAU7802
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************
@@ -378,7 +378,7 @@ int nau7802_get_ofset_load(int *offsload)
  ****************************************************************************************
  * @brief   Get load cell micrograms value.
  *
- * @param   load - pointer to retern micrograms read from load cell
+ * @param   load - pointer to return micrograms read from load cell
  *
  * @return  0 on success, and non-zero error code on failure
  ****************************************************************************************

@@ -215,6 +215,10 @@ set(DIALOG_SDK_SOURCES_SHARED
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/cts/ctss/src/ctss_task.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/dis/diss/src/diss.c
     ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/dis/diss/src/diss_task.c
+    ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/wss/wssc/src/wssc.c
+    ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/wss/wssc/src/wssc_task.c
+    ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/wss/wsss/src/wsss.c
+    ${DIALOG_SDK_PATH}/sdk/ble_stack/profiles/wss/wsss/src/wsss_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_bond_db/app_bond_db.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app_task.c

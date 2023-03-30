@@ -56,7 +56,7 @@ jobs:
       # run script that builds all examples
       - name: build script
         run: |
-          python3 projects/.github/scripts/build.py -x projects/.github/config/ignore-list.txt -v -p ./projects/
+          python3 projects/.github/scripts/build.py -x projects/.github/config/ignore-list-cmake.txt -v -p ./projects/
 
       # run script that checks the build result
       - name: check script

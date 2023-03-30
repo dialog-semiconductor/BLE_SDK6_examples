@@ -14,3 +14,4 @@
 .secrets
 *__pycache__
 *projectData.json
+*.DS_Store

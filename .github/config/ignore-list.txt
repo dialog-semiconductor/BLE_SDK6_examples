@@ -6,6 +6,7 @@ list of files to be ignored by CI:
 ./connectivity/multi_con_periph/CMakeLists.txt
 ./connectivity/multirole/CMakeLists.txt
 ./connectivity/BLE2IR/CMakeLists.txt
+./connectivity/ble_weight_scale_nau7802/CMakeLists.txt
 ./features/DA14531_Timer1_SW_Example/CMakeLists.txt
 ./features/dynamic_L2CAP_Packet_size_Optimization/CMakeLists.txt
 ./interfaces/HID-Gamepad-Digitizer/CMakeLists.txt

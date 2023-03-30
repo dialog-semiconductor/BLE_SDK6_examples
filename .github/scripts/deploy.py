@@ -51,6 +51,13 @@ def parseArgs():
         default="artifacts",
         help="The projects definition file. default='artifacts'",
     )
+    parser.add_argument(
+        "-b",
+        "--build-system",
+        default = "CMake",
+        choices= ["CMake","Keil"],
+        help="The build system used for the build. default='CMake'",
+    )
     args = parser.parse_args()
 
     return args

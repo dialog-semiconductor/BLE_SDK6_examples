@@ -226,6 +226,8 @@ set(DIALOG_SDK_SOURCES_SHARED
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_common/app_utils.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_ctss/app_ctss.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_ctss/app_ctss_task.c
+    ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_wsss/app_wsss.c
+    ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_wsss/app_wsss_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_custs/app_customs.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_custs/app_customs_task.c
     ${DIALOG_SDK_PATH}/sdk/app_modules/src/app_custs/app_customs_common.c

@@ -9,7 +9,7 @@
 **/*uvguix*
 **/*scvd
 **/*.sct
-**/*.uvoptx*
+
 **/build
 .secrets
 *__pycache__

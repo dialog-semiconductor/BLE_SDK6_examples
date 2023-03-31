@@ -92,9 +92,9 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
   ```c
   /// Number of APP Task Instances
   #ifdef CFG_ENABLE_MULTIPLE_CONN
-  #define APP_IDX_MAX      (APP_EASY_MAX_ACTIVE_CONNECTION)
-  #else
   #define APP_IDX_MAX      (1)
+  #else
+  #define APP_IDX_MAX      (APP_EASY_MAX_ACTIVE_CONNECTION)
   #endif
   ```
 

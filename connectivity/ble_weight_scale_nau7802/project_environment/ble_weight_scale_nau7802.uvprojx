@@ -129,7 +129,7 @@
         </DebugOption>
         <Utilities>
           <Flash1>
-            <UseTargetDll>1</UseTargetDll>
+            <UseTargetDll>0</UseTargetDll>
             <UseExternalTool>1</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
@@ -206,12 +206,12 @@
             <Ro1Chk>0</Ro1Chk>
             <Ro2Chk>0</Ro2Chk>
             <Ro3Chk>0</Ro3Chk>
-            <Ir1Chk>1</Ir1Chk>
+            <Ir1Chk>0</Ir1Chk>
             <Ir2Chk>0</Ir2Chk>
             <Ra1Chk>0</Ra1Chk>
             <Ra2Chk>0</Ra2Chk>
             <Ra3Chk>0</Ra3Chk>
-            <Im1Chk>1</Im1Chk>
+            <Im1Chk>0</Im1Chk>
             <Im2Chk>0</Im2Chk>
             <OnChipMemories>
               <Ocm1>
@@ -333,14 +333,14 @@
             <v6LangP>3</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
-            <v6Lto>0</v6Lto>
+            <v6Lto>1</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-mthumb -c -include da1458x_config_basic.h -include da1458x_config_advanced.h -include user_config.h</MiscControls>
               <Define>__DA14531__</Define>
               <Undefine></Undefine>
-              <IncludePath>..\src;..\src\config;..\src\custom_profile;..\src\platform;..\src\user_drivers;F:\6.0.18.1182.1\\sdk;F:\6.0.18.1182.1\\sdk\app_modules;F:\6.0.18.1182.1\\sdk\app_modules\api;F:\6.0.18.1182.1\\sdk\app_modules\src;F:\6.0.18.1182.1\\sdk\app_modules\src\app_ancc;F:\6.0.18.1182.1\\sdk\app_modules\src\app_bass;F:\6.0.18.1182.1\\sdk\app_modules\src\app_bcss;F:\6.0.18.1182.1\\sdk\app_modules\src\app_bmss;F:\6.0.18.1182.1\\sdk\app_modules\src\app_bond_db;F:\6.0.18.1182.1\\sdk\app_modules\src\app_common;F:\6.0.18.1182.1\\sdk\app_modules\src\app_ctsc;F:\6.0.18.1182.1\\sdk\app_modules\src\app_ctss;F:\6.0.18.1182.1\\sdk\app_modules\src\app_custs;F:\6.0.18.1182.1\\sdk\app_modules\src\app_default_hnd;F:\6.0.18.1182.1\\sdk\app_modules\src\app_diss;F:\6.0.18.1182.1\\sdk\app_modules\src\app_easy;F:\6.0.18.1182.1\\sdk\app_modules\src\app_entry;F:\6.0.18.1182.1\\sdk\app_modules\src\app_findme;F:\6.0.18.1182.1\\sdk\app_modules\src\app_gattc;F:\6.0.18.1182.1\\sdk\app_modules\src\app_proxr;F:\6.0.18.1182.1\\sdk\app_modules\src\app_sec;F:\6.0.18.1182.1\\sdk\app_modules\src\app_suotar;F:\6.0.18.1182.1\\sdk\app_modules\src\app_udss;F:\6.0.18.1182.1\\sdk\app_modules\src\app_wsss;F:\6.0.18.1182.1\\sdk\ble_stack;F:\6.0.18.1182.1\\sdk\ble_stack\controller;F:\6.0.18.1182.1\\sdk\ble_stack\controller\em;F:\6.0.18.1182.1\\sdk\ble_stack\controller\llc;F:\6.0.18.1182.1\\sdk\ble_stack\controller\lld;F:\6.0.18.1182.1\\sdk\ble_stack\controller\llm;F:\6.0.18.1182.1\\sdk\ble_stack\ea;F:\6.0.18.1182.1\\sdk\ble_stack\ea\api;F:\6.0.18.1182.1\\sdk\ble_stack\em;F:\6.0.18.1182.1\\sdk\ble_stack\em\api;F:\6.0.18.1182.1\\sdk\ble_stack\hci;F:\6.0.18.1182.1\\sdk\ble_stack\hci\api;F:\6.0.18.1182.1\\sdk\ble_stack\hci\src;F:\6.0.18.1182.1\\sdk\ble_stack\host;F:\6.0.18.1182.1\\sdk\ble_stack\host\att;F:\6.0.18.1182.1\\sdk\ble_stack\host\att\attc;F:\6.0.18.1182.1\\sdk\ble_stack\host\att\attm;F:\6.0.18.1182.1\\sdk\ble_stack\host\att\atts;F:\6.0.18.1182.1\\sdk\ble_stack\host\gap;F:\6.0.18.1182.1\\sdk\ble_stack\host\gap\gapc;F:\6.0.18.1182.1\\sdk\ble_stack\host\gap\gapm;F:\6.0.18.1182.1\\sdk\ble_stack\host\gatt;F:\6.0.18.1182.1\\sdk\ble_stack\host\gatt\gattc;F:\6.0.18.1182.1\\sdk\ble_stack\host\gatt\gattm;F:\6.0.18.1182.1\\sdk\ble_stack\host\l2c;F:\6.0.18.1182.1\\sdk\ble_stack\host\l2c\l2cc;F:\6.0.18.1182.1\\sdk\ble_stack\host\l2c\l2cm;F:\6.0.18.1182.1\\sdk\ble_stack\host\smp;F:\6.0.18.1182.1\\sdk\ble_stack\host\smp\smpc;F:\6.0.18.1182.1\\sdk\ble_stack\host\smp\smpm;F:\6.0.18.1182.1\\sdk\ble_stack\profiles;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anc\ancc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anc\ancc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anc\ancc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anp\anpc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anp\anpc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anp\anpc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anp\anps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anp\anps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\anp\anps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bas;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bas\basc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bas\basc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bas\basc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bas\bass;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bas\bass\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bas\bass\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bcs;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bcs\bcsc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bcs\bcsc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bcs\bcsc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bcs\bcss;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bcs\bcss\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bcs\bcss\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\blp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\blp\blpc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\blp\blpc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\blp\blpc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\blp\blps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\blp\blps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\blp\blps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bms;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bms\bmsc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bms\bmsc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bms\bmsc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bms\bmss;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bms\bmss\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\bms\bmss\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cpp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cpp\cppc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cpp\cppc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cpp\cppc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cpp\cpps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cpp\cpps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cpp\cpps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cscp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cscp\cscpc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cscp\cscpc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cscp\cscpc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cscp\cscps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cscp\cscps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cscp\cscps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cts;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cts\ctsc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cts\ctsc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cts\ctsc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cts\ctss;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cts\ctss\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\cts\ctss\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\custom;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\custom\custs;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\custom\custs\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\custom\custs\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis\disc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis\disc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis\disc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis\diss;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis\diss\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis\diss\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\find;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\find\findl;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\find\findl\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\find\findl\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\find\findt;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\find\findt\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\find\findt\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\gatt;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\gatt\gatt_client;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\gatt\gatt_client\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\gatt\gatt_client\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\glp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\glp\glpc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\glp\glpc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\glp\glpc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\glp\glps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\glp\glps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\glp\glps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogpbh;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogpbh\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogpbh\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogpd;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogpd\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogpd\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogprh;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogprh\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hogp\hogprh\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hrp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hrp\hrpc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hrp\hrpc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hrp\hrpc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hrp\hrps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hrp\hrps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\hrp\hrps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\htp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\htp\htpc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\htp\htpc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\htp\htpc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\htp\htpt;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\htp\htpt\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\htp\htpt\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\lan;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\lan\lanc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\lan\lanc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\lan\lanc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\lan\lans;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\lan\lans\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\lan\lans\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\pasp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\pasp\paspc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\pasp\paspc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\pasp\paspc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\pasp\pasps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\pasp\pasps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\pasp\pasps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prox;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prox\proxm;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prox\proxm\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prox\proxm\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prox\proxr;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prox\proxr\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prox\proxr\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\rscp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\rscp\rscpc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\rscp\rscpc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\rscp\rscpc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\rscp\rscps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\rscp\rscps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\rscp\rscps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\scpp;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\scpp\scppc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\scpp\scppc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\scpp\scppc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\scpp\scpps;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\scpp\scpps\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\scpp\scpps\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\suota;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\suota\suotar;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\suota\suotar\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\suota\suotar\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\tip;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\tip\tipc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\tip\tipc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\tip\tipc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\tip\tips;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\tip\tips\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\tip\tips\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\uds;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\uds\udsc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\uds\udsc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\uds\udsc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\uds\udss;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\uds\udss\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\uds\udss\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss\wssc;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss\wssc\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss\wssc\src;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss\wsss;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss\wsss\api;F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss\wsss\src;F:\6.0.18.1182.1\\sdk\ble_stack\rwble;F:\6.0.18.1182.1\\sdk\ble_stack\rwble_hl;F:\6.0.18.1182.1\\sdk\common_project_files;F:\6.0.18.1182.1\\sdk\common_project_files\IAR;F:\6.0.18.1182.1\\sdk\common_project_files\ldscripts;F:\6.0.18.1182.1\\sdk\common_project_files\misc;F:\6.0.18.1182.1\\sdk\common_project_files\scatterfiles;F:\6.0.18.1182.1\\sdk\platform;F:\6.0.18.1182.1\\sdk\platform\arch;F:\6.0.18.1182.1\\sdk\platform\arch\boot;F:\6.0.18.1182.1\\sdk\platform\arch\boot\ARM;F:\6.0.18.1182.1\\sdk\platform\arch\boot\ARM_clang;F:\6.0.18.1182.1\\sdk\platform\arch\boot\GCC;F:\6.0.18.1182.1\\sdk\platform\arch\boot\IAR;F:\6.0.18.1182.1\\sdk\platform\arch\compiler;F:\6.0.18.1182.1\\sdk\platform\arch\compiler\ARM;F:\6.0.18.1182.1\\sdk\platform\arch\compiler\ARM_clang;F:\6.0.18.1182.1\\sdk\platform\arch\compiler\GCC;F:\6.0.18.1182.1\\sdk\platform\arch\compiler\IAR;F:\6.0.18.1182.1\\sdk\platform\arch\ll;F:\6.0.18.1182.1\\sdk\platform\arch\main;F:\6.0.18.1182.1\\sdk\platform\core_modules;F:\6.0.18.1182.1\\sdk\platform\core_modules\arch_console;F:\6.0.18.1182.1\\sdk\platform\core_modules\common;F:\6.0.18.1182.1\\sdk\platform\core_modules\common\api;F:\6.0.18.1182.1\\sdk\platform\core_modules\crypto;F:\6.0.18.1182.1\\sdk\platform\core_modules\dbg;F:\6.0.18.1182.1\\sdk\platform\core_modules\dbg\api;F:\6.0.18.1182.1\\sdk\platform\core_modules\gtl;F:\6.0.18.1182.1\\sdk\platform\core_modules\gtl\api;F:\6.0.18.1182.1\\sdk\platform\core_modules\gtl\src;F:\6.0.18.1182.1\\sdk\platform\core_modules\h4tl;F:\6.0.18.1182.1\\sdk\platform\core_modules\h4tl\api;F:\6.0.18.1182.1\\sdk\platform\core_modules\ke;F:\6.0.18.1182.1\\sdk\platform\core_modules\ke\api;F:\6.0.18.1182.1\\sdk\platform\core_modules\ke\src;F:\6.0.18.1182.1\\sdk\platform\core_modules\nvds;F:\6.0.18.1182.1\\sdk\platform\core_modules\nvds\api;F:\6.0.18.1182.1\\sdk\platform\core_modules\nvds\src;F:\6.0.18.1182.1\\sdk\platform\core_modules\rf;F:\6.0.18.1182.1\\sdk\platform\core_modules\rf\api;F:\6.0.18.1182.1\\sdk\platform\core_modules\rf\src;F:\6.0.18.1182.1\\sdk\platform\core_modules\rwip;F:\6.0.18.1182.1\\sdk\platform\core_modules\rwip\api;F:\6.0.18.1182.1\\sdk\platform\core_modules\rwip\src;F:\6.0.18.1182.1\\sdk\platform\driver;F:\6.0.18.1182.1\\sdk\platform\driver\adc;F:\6.0.18.1182.1\\sdk\platform\driver\battery;F:\6.0.18.1182.1\\sdk\platform\driver\ble;F:\6.0.18.1182.1\\sdk\platform\driver\dma;F:\6.0.18.1182.1\\sdk\platform\driver\gpio;F:\6.0.18.1182.1\\sdk\platform\driver\hw_otpc;F:\6.0.18.1182.1\\sdk\platform\driver\i2c;F:\6.0.18.1182.1\\sdk\platform\driver\i2c_eeprom;F:\6.0.18.1182.1\\sdk\platform\driver\pdm;F:\6.0.18.1182.1\\sdk\platform\driver\reg;F:\6.0.18.1182.1\\sdk\platform\driver\rtc;F:\6.0.18.1182.1\\sdk\platform\driver\spi;F:\6.0.18.1182.1\\sdk\platform\driver\spi_flash;F:\6.0.18.1182.1\\sdk\platform\driver\syscntl;F:\6.0.18.1182.1\\sdk\platform\driver\systick;F:\6.0.18.1182.1\\sdk\platform\driver\timer;F:\6.0.18.1182.1\\sdk\platform\driver\trng;F:\6.0.18.1182.1\\sdk\platform\driver\uart;F:\6.0.18.1182.1\\sdk\platform\driver\wifi;F:\6.0.18.1182.1\\sdk\platform\driver\wkupct_quadec;F:\6.0.18.1182.1\\sdk\platform\include;F:\6.0.18.1182.1\\sdk\platform\include\CMSIS;F:\6.0.18.1182.1\\sdk\platform\include\CMSIS\5.6.0;F:\6.0.18.1182.1\\sdk\platform\include\CMSIS\5.6.0\Include;F:\6.0.18.1182.1\\sdk\platform\include\CMSIS\5.9.0;F:\6.0.18.1182.1\\sdk\platform\include\CMSIS\5.9.0\CMSIS;F:\6.0.18.1182.1\\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core;F:\6.0.18.1182.1\\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core\Include;F:\6.0.18.1182.1\\sdk\platform\system_library;F:\6.0.18.1182.1\\sdk\platform\system_library\include;F:\6.0.18.1182.1\\sdk\platform\system_library\output;F:\6.0.18.1182.1\\sdk\platform\system_library\output\IAR;F:\6.0.18.1182.1\\sdk\platform\system_library\output\Keil_5;F:\6.0.18.1182.1\\sdk\platform\utilities;F:\6.0.18.1182.1\\sdk\platform\utilities\otp_cs;F:\6.0.18.1182.1\\sdk\platform\utilities\otp_hdr;F:\6.0.18.1182.1\\third_party;F:\6.0.18.1182.1\\third_party\crc32;F:\6.0.18.1182.1\\third_party\hash;F:\6.0.18.1182.1\\third_party\irng;F:\6.0.18.1182.1\\third_party\micro_ecc;F:\6.0.18.1182.1\\third_party\rand</IncludePath>
+              <IncludePath>..\src;..\src\config;..\src\custom_profile;..\src\platform;..\src\user_drivers;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_ancc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_bass;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_bcss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_bmss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_bond_db;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_common;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_ctsc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_ctss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_custs;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_default_hnd;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_diss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_easy;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_entry;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_findme;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_gattc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_proxr;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_sec;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_suotar;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_udss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_wsss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\controller;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\controller\em;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\controller\llc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\controller\lld;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\controller\llm;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\ea;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\ea\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\em;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\em\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\hci;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\hci\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\hci\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\att;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\att\attc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\att\attm;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\att\atts;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\gap;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\gap\gapc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\gap\gapm;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\gatt;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\gatt\gattc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\gatt\gattm;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\l2c;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\l2c\l2cc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\l2c\l2cm;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\smp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\smp\smpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\smp\smpm;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anc\ancc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anc\ancc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anc\ancc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anp\anpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anp\anpc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anp\anpc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anp\anps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anp\anps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\anp\anps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bas;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bas\basc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bas\basc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bas\basc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bas\bass;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bas\bass\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bas\bass\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bcs;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bcs\bcsc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bcs\bcsc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bcs\bcsc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bcs\bcss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bcs\bcss\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bcs\bcss\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\blp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\blp\blpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\blp\blpc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\blp\blpc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\blp\blps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\blp\blps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\blp\blps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bms;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bms\bmsc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bms\bmsc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bms\bmsc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bms\bmss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bms\bmss\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\bms\bmss\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cpp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cpp\cppc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cpp\cppc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cpp\cppc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cpp\cpps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cpp\cpps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cpp\cpps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cscp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cscp\cscpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cscp\cscpc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cscp\cscpc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cscp\cscps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cscp\cscps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cscp\cscps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cts;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cts\ctsc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cts\ctsc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cts\ctsc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cts\ctss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cts\ctss\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\cts\ctss\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\custom;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\custom\custs;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\custom\custs\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\custom\custs\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis\disc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis\disc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis\disc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis\diss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis\diss\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis\diss\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\find;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\find\findl;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\find\findl\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\find\findl\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\find\findt;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\find\findt\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\find\findt\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\gatt;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\gatt\gatt_client;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\gatt\gatt_client\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\gatt\gatt_client\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\glp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\glp\glpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\glp\glpc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\glp\glpc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\glp\glps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\glp\glps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\glp\glps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogpbh;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogpbh\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogpbh\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogpd;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogpd\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogpd\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogprh;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogprh\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hogp\hogprh\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hrp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hrp\hrpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hrp\hrpc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hrp\hrpc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hrp\hrps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hrp\hrps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\hrp\hrps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\htp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\htp\htpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\htp\htpc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\htp\htpc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\htp\htpt;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\htp\htpt\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\htp\htpt\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\lan;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\lan\lanc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\lan\lanc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\lan\lanc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\lan\lans;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\lan\lans\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\lan\lans\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\pasp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\pasp\paspc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\pasp\paspc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\pasp\paspc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\pasp\pasps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\pasp\pasps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\pasp\pasps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prox;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prox\proxm;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prox\proxm\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prox\proxm\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prox\proxr;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prox\proxr\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prox\proxr\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\rscp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\rscp\rscpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\rscp\rscpc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\rscp\rscpc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\rscp\rscps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\rscp\rscps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\rscp\rscps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\scpp;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\scpp\scppc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\scpp\scppc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\scpp\scppc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\scpp\scpps;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\scpp\scpps\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\scpp\scpps\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\suota;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\suota\suotar;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\suota\suotar\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\suota\suotar\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\tip;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\tip\tipc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\tip\tipc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\tip\tipc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\tip\tips;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\tip\tips\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\tip\tips\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\uds;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\uds\udsc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\uds\udsc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\uds\udsc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\uds\udss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\uds\udss\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\uds\udss\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss\wssc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss\wssc\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss\wssc\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss\wsss;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss\wsss\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss\wsss\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\rwble;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\rwble_hl;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\common_project_files;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\common_project_files\IAR;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\common_project_files\ldscripts;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\common_project_files\misc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\common_project_files\scatterfiles;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\boot;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\boot\ARM;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\boot\ARM_clang;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\boot\GCC;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\boot\IAR;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\compiler;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\compiler\ARM;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\compiler\ARM_clang;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\compiler\GCC;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\compiler\IAR;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\ll;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\main;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\arch_console;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\common;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\common\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\crypto;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\dbg;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\dbg\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\gtl;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\gtl\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\gtl\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\h4tl;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\h4tl\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\ke;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\ke\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\ke\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\nvds;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\nvds\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\nvds\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rf;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rf\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rf\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rwip;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rwip\api;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rwip\src;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\adc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\battery;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\ble;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\dma;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\gpio;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\hw_otpc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\i2c;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\i2c_eeprom;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\pdm;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\reg;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\rtc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\spi;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\spi_flash;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\syscntl;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\systick;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\timer;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\trng;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\uart;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\wifi;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\wkupct_quadec;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\include;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\include\CMSIS;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\include\CMSIS\5.6.0;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\include\CMSIS\5.6.0\Include;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\include\CMSIS\5.9.0;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\include\CMSIS\5.9.0\CMSIS;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core\Include;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\system_library;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\system_library\include;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\system_library\output;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\system_library\output\IAR;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\system_library\output\Keil_5;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\utilities;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\utilities\otp_cs;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\utilities\otp_hdr;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\third_party;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\third_party\crc32;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\third_party\hash;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\third_party\irng;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\third_party\micro_ecc;C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\third_party\rand;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -374,7 +374,7 @@
             <ScatterFile>.\..\src\config\copied_scatter_531.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc> F:\6.0.18.1182.1\\sdk\common_project_files\misc\da14531_symbols.txt      --symdefs=ble_weight_scale_nau7802_531_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <Misc> C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\common_project_files\misc\da14585_symbols.txt      --symdefs=ble_app_peripheral_585_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -387,22 +387,22 @@
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\boot\system_DA14531.c</FilePath>
             </File>
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
             </File>
             <File>
               <FileName>hardfault_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\main\hardfault_handler.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\main\hardfault_handler.c</FilePath>
             </File>
             <File>
               <FileName>nmi_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\main\nmi_handler.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\main\nmi_handler.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -412,62 +412,62 @@
             <File>
               <FileName>arch_console.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\core_modules\arch_console\arch_console.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\arch_console\arch_console.c</FilePath>
             </File>
             <File>
               <FileName>nvds.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\core_modules\nvds\src\nvds.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\nvds\src\nvds.c</FilePath>
             </File>
             <File>
               <FileName>arch_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\main\arch_main.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\main\arch_main.c</FilePath>
             </File>
             <File>
               <FileName>jump_table.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\main\jump_table.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\main\jump_table.c</FilePath>
             </File>
             <File>
               <FileName>arch_sleep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\main\arch_sleep.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\main\arch_sleep.c</FilePath>
             </File>
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
             <File>
               <FileName>arch_rom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\arch\main\arch_rom.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\arch\main\arch_rom.c</FilePath>
             </File>
             <File>
               <FileName>chacha20.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\third_party\rand\chacha20.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\third_party\rand\chacha20.c</FilePath>
             </File>
             <File>
               <FileName>hash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\third_party\hash\hash.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\third_party\hash\hash.c</FilePath>
             </File>
             <File>
               <FileName>da14531.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\system_library\output\Keil_5\da14531.lib</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\system_library\output\Keil_5\da14531.lib</FilePath>
             </File>
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
             </File>
             <File>
               <FileName>otp_hdr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\utilities\otp_hdr\otp_hdr.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\utilities\otp_hdr\otp_hdr.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -477,27 +477,27 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>wkupct_quadec.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
             </File>
             <File>
               <FileName>adc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\adc\adc_531.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\adc\adc_531.c</FilePath>
             </File>
             <File>
               <FileName>spi_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\spi\spi_531.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\spi\spi_531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -553,37 +553,37 @@
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
             </File>
             <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\i2c\i2c.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\i2c\i2c.c</FilePath>
             </File>
             <File>
               <FileName>i2c_eeprom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>trng.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\trng\trng.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\trng\trng.c</FilePath>
             </File>
             <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\driver\dma\dma.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -593,22 +593,22 @@
             <File>
               <FileName>rwble.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\rwble\rwble.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\rwble\rwble.c</FilePath>
             </File>
             <File>
               <FileName>rwip.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
             </File>
             <File>
               <FileName>ble_arp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\core_modules\rf\src\ble_arp.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rf\src\ble_arp.c</FilePath>
             </File>
             <File>
               <FileName>rf_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\platform\core_modules\rf\src\rf_531.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\platform\core_modules\rf\src\rf_531.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -618,52 +618,52 @@
             <File>
               <FileName>attm_db_128.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\host\att\attm\attm_db_128.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\host\att\attm\attm_db_128.c</FilePath>
             </File>
             <File>
               <FileName>prf_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prf_utils.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prf_utils.c</FilePath>
             </File>
             <File>
               <FileName>custom_common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\custom\custom_common.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\custom\custom_common.c</FilePath>
             </File>
             <File>
               <FileName>diss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
             </File>
             <File>
               <FileName>diss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
             </File>
             <File>
               <FileName>custs1_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\custom\custs\src\custs1_task.c</FilePath>
             </File>
             <File>
               <FileName>prf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\prf.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\prf.c</FilePath>
             </File>
             <File>
               <FileName>custs1.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\custom\custs\src\custs1.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\custom\custs\src\custs1.c</FilePath>
             </File>
             <File>
               <FileName>wsss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss\wsss\src\wsss.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss\wsss\src\wsss.c</FilePath>
             </File>
             <File>
               <FileName>wsss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\ble_stack\profiles\wss\wsss\src\wsss_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\ble_stack\profiles\wss\wsss\src\wsss_task.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -673,137 +673,137 @@
             <File>
               <FileName>app_default_handlers.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</FilePath>
             </File>
             <File>
               <FileName>app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_common\app.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_common\app.c</FilePath>
             </File>
             <File>
               <FileName>app_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_common\app_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_common\app_task.c</FilePath>
             </File>
             <File>
               <FileName>app_security.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_sec\app_security.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_sec\app_security.c</FilePath>
             </File>
             <File>
               <FileName>app_security_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
             </File>
             <File>
               <FileName>app_bass.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_bass\app_bass.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_bass\app_bass.c</FilePath>
             </File>
             <File>
               <FileName>app_bass_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_bass\app_bass_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_bass\app_bass_task.c</FilePath>
             </File>
             <File>
               <FileName>app_findme.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_findme\app_findme.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_findme\app_findme.c</FilePath>
             </File>
             <File>
               <FileName>app_findme_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_findme\app_findme_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_findme\app_findme_task.c</FilePath>
             </File>
             <File>
               <FileName>app_proxr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_proxr\app_proxr.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_proxr\app_proxr.c</FilePath>
             </File>
             <File>
               <FileName>app_proxr_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_proxr\app_proxr_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_proxr\app_proxr_task.c</FilePath>
             </File>
             <File>
               <FileName>app_diss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
             </File>
             <File>
               <FileName>app_diss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
             </File>
             <File>
               <FileName>app_suotar.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_suotar\app_suotar.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_suotar\app_suotar.c</FilePath>
             </File>
             <File>
               <FileName>app_suotar_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_suotar\app_suotar_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_suotar\app_suotar_task.c</FilePath>
             </File>
             <File>
               <FileName>app_entry_point.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
             </File>
             <File>
               <FileName>app_msg_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_common\app_msg_utils.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_common\app_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_msg_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_security.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
             </File>
             <File>
               <FileName>app_customs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_custs\app_customs.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_custs\app_customs.c</FilePath>
             </File>
             <File>
               <FileName>app_customs_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_custs\app_customs_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_custs\app_customs_task.c</FilePath>
             </File>
             <File>
               <FileName>app_customs_common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_custs\app_customs_common.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_custs\app_customs_common.c</FilePath>
             </File>
             <File>
               <FileName>app_bond_db.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
             </File>
             <File>
               <FileName>app_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_common\app_utils.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_common\app_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_wsss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_wsss\app_wsss.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_wsss\app_wsss.c</FilePath>
             </File>
             <File>
               <FileName>app_wsss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>F:\6.0.18.1182.1\\sdk\app_modules\src\app_wsss\app_wsss_task.c</FilePath>
+              <FilePath>C:\Users\a5140624\Desktop\Func_test\6.0.18.1182.1\sdk\app_modules\src\app_wsss\app_wsss_task.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -907,9 +907,9 @@
   </Targets>
 
   <RTE>
-    <apis/>
-    <components/>
-    <files/>
+    <apis></apis>
+    <components></components>
+    <files></files>
   </RTE>
 
   <LayerInfo>

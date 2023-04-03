@@ -100,7 +100,7 @@ def writeOutput():
     os.chdir(startdir)
     projdat = []
     for p in projects:
-        projdat.append(p.toDictComplete())
+        projdat.append(p.toDictComplete(examplesdir))
     jsonProjdat = json.dumps(projdat, indent=2)
 
     with open(args.datafile, "w") as outfile:

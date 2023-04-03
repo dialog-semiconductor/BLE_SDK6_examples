@@ -54,14 +54,14 @@ class CMake:
         bashexec(
             [
                 "cmake",
-                "-DDEVICE_NAME=" + project.title,
+                "-DDEVICE_NAME=" + str(project.title),
                 "-DCMAKE_BUILD_TYPE=DEBUG",
                 "-DCMAKE_TOOLCHAIN_FILE="
-                + self.examplesdir
+                + str(self.examplesdir)
                 + "/build_utils/gcc/arm-none-eabi.cmake",
-                "-DGCC_TOOLCHAIN_PATH=" + self.gccPath,
-                "-DDIALOG_SDK_PATH=" + self.sdkDir,
-                "-DDIALOG_EXAMPLE_PATH=" + self.examplesdir,
+                "-DGCC_TOOLCHAIN_PATH=" + str(self.gccPath),
+                "-DDIALOG_SDK_PATH=" + str(self.sdkDir),
+                "-DDIALOG_EXAMPLE_PATH=" + str(self.examplesdir),
                 "-S",
                 ".",
                 "-B",

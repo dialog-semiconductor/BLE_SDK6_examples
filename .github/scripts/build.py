@@ -60,7 +60,7 @@ def parseArgs():
         "-f",
         "--datafile",
         default="projectData.json",
-        help="The projects definition file. default='artifacts/projectData.json'",
+        help="The projects definition file. default='projectData.json'",
     )
     parser.add_argument(
         "-b",
@@ -90,7 +90,7 @@ def setVars():
     datafile = startdir.joinpath(args.datafile)
     buildSystem = getBuildSystem(args.build_system, examplesdir, args.sdkdir, args.verbose)
     if args.append:
-        projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
+        projectFiles = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
     else:
         projectFiles = ProjectList(projectDirectory=args.projdir, examplesDirectory=examplesdir, verbose=args.verbose)
 
@@ -129,7 +129,7 @@ def writeOutput():
     os.chdir(startdir)
     projdat = []
     for p in projectFiles:
-        projdat.append(p.toDictComplete())
+        projdat.append(p.toDictComplete(examplesdir))
     jsonProjdat = json.dumps(projdat, indent=2)
 
     with open(datafile, "w") as outfile:

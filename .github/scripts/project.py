@@ -80,7 +80,7 @@ class Project:
         if type(source) == str:
             self._initFromPath(source, exdir=exdir, verbose=verbose)
         elif type(source) == dict:
-            self._initFromDict(source, verbose=verbose)
+            self._initFromDict(source, pathrelativeto=exdir, verbose=verbose)
         else:
             raise Exception("source type not supported")
 
@@ -91,7 +91,7 @@ class Project:
         self.path = str(self.absPath).replace(str(exdir), "")[1:]
         self.title = inPath.parents[1].name
         self.group = str(inPath.relative_to(exdir)).split("/")[0]
-        self.patchFile = False
+        self.patchFile = ""
         if os.path.isfile(self.absPath.joinpath("patch/SDK6patch.diff")):
             self.patchFile = self.absPath.joinpath("patch/SDK6patch.diff")
         self.uvprojxFile = inPath
@@ -106,29 +106,35 @@ class Project:
             print("initialized ", end="")
             print(self)
 
-    def _initFromDict(self, dict, verbose=False):
+    def _initFromDict(self, dict, pathrelativeto=False, verbose=False):
         """Initialize the Project from a dict."""
-        self.absPath = pathlib.Path(dict["absPath"])
         self.path = pathlib.Path(dict["path"])
         self.title = pathlib.Path(dict["title"])
         self.group = pathlib.Path(dict["group"])
-        self.patchFile = pathlib.Path(dict["patchFile"])
-        self.uvprojxFile = pathlib.Path(dict["uvprojxFile"])
-        self.uvisionLogFile = dict["uvisionLogFile"]
-        if dict["cmakelistsFile"] == "":
-            self.cmakelistsFile = ""
-        else:
-            self.cmakelistsFile = pathlib.Path(dict["cmakelistsFile"])
         self.readmePath = pathlib.Path(dict["readmePath"])
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
+        if pathrelativeto:
+            self.absPath = pathlib.Path(pathrelativeto).joinpath(dict["absPath"])
+            self.patchFile = pathlib.Path(pathrelativeto).joinpath(dict["patchFile"]) if dict["patchFile"] else ""
+            self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(dict["uvprojxFile"]) if dict["uvprojxFile"] else ""
+            self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(dict["uvisionLogFile"]) if dict["uvisionLogFile"] else ""
+            self.cmakelistsFile = pathlib.Path(pathrelativeto).joinpath(dict["cmakelistsFile"]) if dict["cmakelistsFile"] else ""
+            self.readmePath = pathlib.Path(pathrelativeto).joinpath(dict["readmePath"]) if dict["readmePath"] else ""
+        else:
+            self.absPath = pathlib.Path(dict["absPath"])
+            self.patchFile = pathlib.Path(dict["patchFile"])
+            self.uvprojxFile = pathlib.Path(dict["uvprojxFile"])
+            self.uvisionLogFile = dict["uvisionLogFile"]
+            self.cmakelistsFile = pathlib.Path(dict["cmakelistsFile"])
+            self.readmePath = pathlib.Path(dict["readmePath"])
 
     def applyPatchToSdk(self, sdkPath):
         if self.patchFile:
             startdir = pathlib.Path(os.getcwd())
             sdkdir = pathlib.Path(sdkPath)
             os.chdir(sdkdir)
-            print(bcolors.OKBLUE + "applying patch for " + self.title + bcolors.ENDC)
+            print(bcolors.OKBLUE + "applying patch for " + str(self.title) + bcolors.ENDC)
             bashexec(["git","apply",self.patchFile])
             os.chdir(startdir)
 
@@ -137,7 +143,7 @@ class Project:
             startdir = pathlib.Path(os.getcwd())
             sdkdir = pathlib.Path(sdkPath)
             os.chdir(sdkdir)
-            print(bcolors.OKBLUE + "removing patch for " + self.title + bcolors.ENDC)
+            print(bcolors.OKBLUE + "removing patch for " + str(self.title) + bcolors.ENDC)
             bashexec(["git","apply",self.patchFile,"--reverse"])
             os.chdir(startdir)
 
@@ -147,7 +153,7 @@ class Project:
             self.buildStatus = []
         for i in range(len(self.buildStatus)):
             if (self.buildStatus[i]["buildsystem"] == buildsystem) and (
-                self.buildStatus[i]["target"] == target.name
+                self.buildStatus[i]["target"]["name"] == target.name
             ):
                 del self.buildStatus[i]
                 break
@@ -170,21 +176,36 @@ class Project:
         return False
 
 
-    def toDictComplete(self):
+    def toDictComplete(self, pathrelativeto=False):
         """Get the project as a dictionary."""
-        return {
-            "absPath": str(self.absPath),
-            "path": str(self.path),
-            "title": str(self.title),
-            "group": str(self.group),
-            "patchFile": str(self.patchFile),
-            "uvprojxFile": str(self.uvprojxFile),
-            "uvisionLogFile": str(self.uvisionLogFile),
-            "cmakelistsFile": str(self.cmakelistsFile),
-            "readmePath": str(self.readmePath),
-            "builddir": str(self.builddir),
-            "buildStatus": self.buildStatus,
-        }
+        if pathrelativeto:
+            return {
+                "absPath": str(pathlib.Path(self.absPath).relative_to(pathlib.Path(pathrelativeto))) if self.absPath else self.absPath,
+                "path": str(self.path),
+                "title": str(self.title),
+                "group": str(self.group),
+                "patchFile": str(pathlib.Path(self.patchFile).relative_to(pathlib.Path(pathrelativeto))) if self.patchFile else self.patchFile,
+                "uvprojxFile": str(pathlib.Path(self.uvprojxFile).relative_to(pathlib.Path(pathrelativeto))) if self.uvprojxFile else self.uvprojxFile,
+                "uvisionLogFile": str(pathlib.Path(self.uvisionLogFile).relative_to(pathlib.Path(pathrelativeto))) if self.uvisionLogFile else self.uvisionLogFile,
+                "cmakelistsFile": str(pathlib.Path(self.cmakelistsFile).relative_to(pathlib.Path(pathrelativeto))) if self.cmakelistsFile else self.cmakelistsFile,
+                "readmePath": str(pathlib.Path(self.readmePath).relative_to(pathlib.Path(pathrelativeto))) if self.readmePath else self.readmePath,
+                "builddir": str(self.builddir),
+                "buildStatus": self.buildStatus,
+            }
+        else:
+            return {
+                "absPath": str(self.absPath),
+                "path": str(self.path),
+                "title": str(self.title),
+                "group": str(self.group),
+                "patchFile": str(self.patchFile),
+                "uvprojxFile": str(self.uvprojxFile),
+                "uvisionLogFile": str(self.uvisionLogFile),
+                "cmakelistsFile": str(self.cmakelistsFile),
+                "readmePath": str(self.readmePath),
+                "builddir": str(self.builddir),
+                "buildStatus": self.buildStatus,
+            }
 
     def toDictAws(self, rootdir, fortarget):
         """Get the project as a dictionary in standard Renesas AWS artifact format."""

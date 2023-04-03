@@ -129,7 +129,7 @@
         </DebugOption>
         <Utilities>
           <Flash1>
-            <UseTargetDll>1</UseTargetDll>
+            <UseTargetDll>0</UseTargetDll>
             <UseExternalTool>1</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
@@ -374,7 +374,7 @@
             <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\DA14585_586_armclang.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>.\..\..\..\..\..\\sdk\common_project_files\misc\da14585_symbols.txt   --symdefs=mc36xx_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
+            <Misc> .\..\..\..\..\..\\sdk\common_project_files\misc\da14585_symbols.txt   --symdefs=mc36xx_symdef.txt --any_placement=best_fit --datacompressor off</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -395,14 +395,14 @@
               <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
             </File>
             <File>
-              <FileName>system_DA14585_586.c</FileName>
+              <FileName>hardfault_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>..\..\..\..\..\sdk\platform\arch\main\hardfault_handler.c</FilePath>
             </File>
             <File>
-              <FileName>startup_DA14585_586.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FileName>nmi_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\sdk\platform\arch\main\nmi_handler.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -459,11 +459,6 @@
               <FileType>4</FileType>
               <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
             </File>
-            <File>
-              <FileName>da14585_586.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5\da14585_586.lib</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -491,7 +486,6 @@
             </File>
             <File>
               <FileName>adc_58x.c</FileName>
-              <FileName>adc_58x.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\..\..\..\..\\sdk\platform\driver\adc\adc_58x.c</FilePath>
             </File>
@@ -507,7 +501,6 @@
             </File>
             <File>
               <FileName>spi_58x.c</FileName>
-              <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</FilePath>
             </File>
@@ -518,12 +511,10 @@
             </File>
             <File>
               <FileName>uart.c</FileName>
-              <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\..\..\..\..\\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
-              <FileName>hw_otpc_58x.c</FileName>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>

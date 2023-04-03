@@ -16,3 +16,4 @@
 *projectData.json
 *_log.txt
 artifacts
+*.DS_Store

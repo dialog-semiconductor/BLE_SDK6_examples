@@ -233,12 +233,9 @@
 /* If the CFG_CUSTOM_SCATTER_FILE flag is undefined, the system knows which blocks to retain based on the       */
 /* default SDK scatter file.                                                                                    */
 /****************************************************************************************************************/
-#undef CFG_CUSTOM_SCATTER_FILE
-#ifdef CFG_CUSTOM_SCATTER_FILE
-    #define CFG_RETAIN_RAM_1_BLOCK
-    #define CFG_RETAIN_RAM_2_BLOCK
-    #define CFG_RETAIN_RAM_3_BLOCK
-#endif
+#define CFG_RETAIN_RAM_1_BLOCK
+#define CFG_RETAIN_RAM_2_BLOCK
+#define CFG_RETAIN_RAM_3_BLOCK
 
 /****************************************************************************************************************/
 /* Code location selection.                                                                                     */
@@ -460,12 +457,9 @@
 /* If the CFG_CUSTOM_SCATTER_FILE flag is undefined, the system knows which blocks to retain based on the       */
 /* default SDK scatter file.                                                                                    */
 /****************************************************************************************************************/
-#undef CFG_CUSTOM_SCATTER_FILE
-#ifdef CFG_CUSTOM_SCATTER_FILE
-    #define CFG_RETAIN_RAM_1_BLOCK
-    #define CFG_RETAIN_RAM_2_BLOCK
-    #define CFG_RETAIN_RAM_3_BLOCK
-#endif
+#define CFG_RETAIN_RAM_1_BLOCK
+#define CFG_RETAIN_RAM_2_BLOCK
+#define CFG_RETAIN_RAM_3_BLOCK
 
 /****************************************************************************************************************/
 /* Code location selection.                                                                                     */

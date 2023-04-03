@@ -69,6 +69,12 @@ def parseArgs():
         choices= ["CMake","Keil"],
         help="The build system used for the build. default='CMake'",
     )
+    parser.add_argument(
+        "-a",
+        "--append",
+        action="store_true",
+        help="Append to an existing datafile (given with option --datafile)",
+    )
     args = parser.parse_args()
 
     if args.exclude:
@@ -81,9 +87,12 @@ def setVars():
     """Set the variables used in script."""
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
-    projectFiles = ProjectList(projectDirectory=args.projdir, examplesDirectory=examplesdir, verbose=args.verbose)
     datafile = startdir.joinpath(args.datafile)
     buildSystem = getBuildSystem(args.build_system, examplesdir, args.sdkdir, args.verbose)
+    if args.append:
+        projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
+    else:
+        projectFiles = ProjectList(projectDirectory=args.projdir, examplesDirectory=examplesdir, verbose=args.verbose)
 
     for p in projectFiles:
         if p.absPath.name in args.exclude:

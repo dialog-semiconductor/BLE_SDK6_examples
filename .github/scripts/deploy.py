@@ -109,7 +109,7 @@ def copyFiles():
 
 def synchFilesAws():
     for target in targets:
-        bashexec(["aws","s3","--delete",str(artifactsdir.joinpath(target.name)),"s3://lpccs-docs.renesas.com/examples_arfitacts/"+target.name])
+        bashexec(["aws","s3","sync","--delete",str(artifactsdir.joinpath(target.name)),"s3://lpccs-docs.renesas.com/examples_arfitacts/"+target.name])
 
 
 if __name__ == "__main__":

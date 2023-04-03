@@ -9,7 +9,7 @@
 **/*uvguix*
 **/*scvd
 **/*.sct
-da1458x_config_advance.h
+
 **/build
 .secrets
 *__pycache__

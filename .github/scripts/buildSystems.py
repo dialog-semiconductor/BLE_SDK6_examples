@@ -132,7 +132,7 @@ class Keil:
 
     def check(self, project, target):
         """Check a build."""
-        if os.path.isfile(project.uvisionLogFile) and os.path.isfile(project.uvprojxFile):
+        if self.name not in project.excludeBuilds:
             with open(project.uvisionLogFile) as log, open(project.uvprojxFile) as proj:
                 if ("<TargetName>" + target.name + "</TargetName>") in proj.read():
                     binPath = pathlib.Path(project.uvprojxFile.parent.name).joinpath("out_"+target.name+"/Objects/"+os.path.splitext(project.title.name)[0] + "_" + str(target.acronym) + ".bin")

@@ -132,7 +132,7 @@ class Keil:
         if os.path.isfile(project.uvisionLogFile) and os.path.isfile(project.uvprojxFile):
             with open(project.uvisionLogFile) as log, open(project.uvprojxFile) as proj:
                 if ("<TargetName>" + target.name + "</TargetName>") in proj.read():
-                    binPath = project.uvprojxFile.parent.joinpath("out_"+target.name+"/Objects/"+os.path.splitext(project.title.name)[0] + "_" + str(target.acronym) + ".bin")
+                    binPath = pathlib.Path(project.uvprojxFile.parent.name).joinpath("out_"+target.name+"/Objects/"+os.path.splitext(project.title.name)[0] + "_" + str(target.acronym) + ".bin")
                     if ((target.acronym + self.passmarker) in log.read()):# and (os.path.isfile(binPath)):
                         project.addBuildStatus(self.name, target, True, binPath)
                     else:

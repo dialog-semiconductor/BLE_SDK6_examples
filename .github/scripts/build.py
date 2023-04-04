@@ -19,7 +19,7 @@ import shutil
 import signal
 import sys
 
-from common import bashexec, bcolors
+from common import bcolors, getTargetsFile
 from project import ProjectList
 from buildSystems import getBuildSystem
 
@@ -29,6 +29,12 @@ def parseArgs():
     parser = argparse.ArgumentParser(
         prog="cMakeBuild",
         description="Builds projects in repository using Cmake.",
+    )
+    parser.add_argument(
+        "-t",
+        "--targets",
+        default=".github/config/targets.json",
+        help="The targets definition file. default='.github/config/targets.json'",
     )
     parser.add_argument(
         "-p",
@@ -63,6 +69,12 @@ def parseArgs():
         help="The projects definition file. default='projectData.json'",
     )
     parser.add_argument(
+        "-a",
+        "--artifacts-dir",
+        default="artifacts",
+        help="The projects definition file. default='artifacts'",
+    )
+    parser.add_argument(
         "-b",
         "--build-system",
         default = "CMake",
@@ -70,7 +82,6 @@ def parseArgs():
         help="The build system used for the build. default='CMake'",
     )
     parser.add_argument(
-        "-a",
         "--append",
         action="store_true",
         help="Append to an existing datafile (given with option --datafile)",
@@ -86,6 +97,7 @@ def parseArgs():
 def setVars():
     """Set the variables used in script."""
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
+    targets = getTargetsFile(args.targets)
     startdir = pathlib.Path(os.getcwd())
     datafile = startdir.joinpath(args.datafile)
     buildSystem = getBuildSystem(args.build_system, examplesdir, args.sdkdir, args.verbose)
@@ -106,7 +118,14 @@ def setVars():
             p.cmakelistsFile = ""
             p.uvprojxFile = ""
 
-    return projectFiles, examplesdir, startdir, datafile, buildSystem
+    return projectFiles, targets, examplesdir, startdir, datafile, buildSystem
+
+
+def checkProjects():
+    """Use the build system to check the build result."""
+    for project in projectFiles:
+        for target in targets:
+            buildSystem.check(project,target)
 
 
 def buildProjects():
@@ -145,11 +164,14 @@ def handleAbort(signum, frame):
 
 if __name__ == "__main__":
     args = parseArgs()
-    projectFiles, examplesdir, startdir, datafile, buildSystem = setVars()
+    projectFiles, targets, examplesdir, startdir, datafile, buildSystem = setVars()
     signal.signal(
         signal.SIGINT, handleAbort
     )  # still write output if script aborted during build
     buildResult = buildProjects()
+    checkProjects()
+    for target in targets:
+        projectFiles.printReport(target, buildSystem)
     writeOutput()
 
     os.chdir(startdir)

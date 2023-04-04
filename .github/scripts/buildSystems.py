@@ -112,7 +112,7 @@ class Keil:
         if project.uvprojxFile:
             print(bcolors.OKBLUE + "building: " + str(project) + bcolors.ENDC)
         else:
-            print(bcolors.WARNING + "not building " + project.title + "... (excluded with -x option)" + bcolors.ENDC)
+            print(bcolors.WARNING + "not building " + str(project.title) + "... (excluded with -x option)" + bcolors.ENDC)
             return 0
         os.chdir(project.absPath)
         keilCommand = ["C:/Keil_v5/UV4/UV4.exe", "-b", str(project.uvprojxFile.resolve()), "-z", "-o", project.uvisionLogFile.name]

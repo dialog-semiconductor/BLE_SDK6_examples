@@ -91,6 +91,7 @@ class Project:
         self.path = str(self.absPath).replace(str(exdir), "")[1:]
         self.title = inPath.parents[1].name
         self.group = str(inPath.relative_to(exdir)).split("/")[0]
+        self.excludeBuilds = []
         self.patchFile = ""
         if os.path.isfile(self.absPath.joinpath("patch/SDK6patch.diff")):
             self.patchFile = self.absPath.joinpath("patch/SDK6patch.diff")
@@ -111,14 +112,15 @@ class Project:
         self.path = pathlib.Path(dict["path"])
         self.title = pathlib.Path(dict["title"])
         self.group = pathlib.Path(dict["group"])
+        self.excludeBuilds = dict["excludeBuilds"]
         self.readmePath = pathlib.Path(dict["readmePath"])
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
         if pathrelativeto:
             self.absPath = pathlib.Path(pathrelativeto).joinpath(dict["absPath"])
             self.patchFile = pathlib.Path(pathrelativeto).joinpath(dict["patchFile"]) if dict["patchFile"] else ""
-            self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(dict["uvprojxFile"]) if dict["uvprojxFile"] else ""
-            self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(dict["uvisionLogFile"]) if dict["uvisionLogFile"] else ""
+            self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(dict["uvprojxFile"])
+            self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(dict["uvisionLogFile"])
             self.cmakelistsFile = pathlib.Path(pathrelativeto).joinpath(dict["cmakelistsFile"]) if dict["cmakelistsFile"] else ""
             self.readmePath = pathlib.Path(pathrelativeto).joinpath(dict["readmePath"]) if dict["readmePath"] else ""
         else:
@@ -184,6 +186,7 @@ class Project:
                 "path": str(self.path),
                 "title": str(self.title),
                 "group": str(self.group),
+                "excludeBuilds": str(self.excludeBuilds),
                 "patchFile": str(pathlib.Path(self.patchFile).relative_to(pathlib.Path(pathrelativeto))) if self.patchFile else self.patchFile,
                 "uvprojxFile": str(pathlib.Path(self.uvprojxFile).relative_to(pathlib.Path(pathrelativeto))) if self.uvprojxFile else self.uvprojxFile,
                 "uvisionLogFile": str(pathlib.Path(self.uvisionLogFile).relative_to(pathlib.Path(pathrelativeto))) if self.uvisionLogFile else self.uvisionLogFile,
@@ -198,6 +201,7 @@ class Project:
                 "path": str(self.path),
                 "title": str(self.title),
                 "group": str(self.group),
+                "excludeBuilds": str(self.excludeBuilds),
                 "patchFile": str(self.patchFile),
                 "uvprojxFile": str(self.uvprojxFile),
                 "uvisionLogFile": str(self.uvisionLogFile),
@@ -235,6 +239,8 @@ class Project:
             + str(self.title)
             + "\n\tgroup: "
             + str(self.group)
+            + "\n\texcludeBuilds: "
+            + str(self.excludeBuilds)
             + "\n\tpatchFile: "
             + str(self.patchFile)
             + "\n\tuvprojxFile: "

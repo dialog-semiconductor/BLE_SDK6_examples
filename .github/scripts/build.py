@@ -115,8 +115,7 @@ def setVars():
                     + str(p)
                     + bcolors.ENDC
                 )
-            p.cmakelistsFile = ""
-            p.uvprojxFile = ""
+            p.excludeBuilds.append(args.build_system)
 
     return projectFiles, targets, examplesdir, startdir, datafile, buildSystem
 

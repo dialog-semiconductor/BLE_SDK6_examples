@@ -44,7 +44,10 @@ class CMake:
         """Build a project."""
         startdir = os.getcwd()
         if not project.cmakelistsFile:
-            print(bcolors.WARNING + "Skipping build due to missing CMakeLists.txt (skipping can also be caused by soon to be deprecated --exclude option): " + str(project) + bcolors.ENDC)
+            print(bcolors.WARNING + "Skipping build due to missing CMakeLists.txt\n" + str(project) + bcolors.ENDC)
+            return 1
+        if self.name in project.excludeBuilds:
+            print(bcolors.WARNING + "Skipping build exluded with --exclude option:\n" + str(project) + bcolors.ENDC)
             return 1
         print(bcolors.HEADER + "Building: " + str(project) + bcolors.ENDC)
         os.chdir(project.absPath)
@@ -80,8 +83,8 @@ class CMake:
     def check(self, project, target):
         """Check a build."""
         os.chdir(project.absPath)
-        if project.cmakelistsFile:
-            binPath = (project.builddir).joinpath(project.title.name + "_" + str(target.acronym) + ".bin")
+        if project.cmakelistsFile and self.name not in project.excludeBuilds:
+            binPath = (project.builddir).joinpath(str(project.title) + "_" + str(target.acronym) + ".bin")
             if (
                 bashexec(
                     [
@@ -109,7 +112,7 @@ class Keil:
 
     def build(self, project ):
         """Build a project."""
-        if project.uvprojxFile:
+        if self.name not in project.excludeBuilds:
             print(bcolors.OKBLUE + "building: " + str(project) + bcolors.ENDC)
         else:
             print(bcolors.WARNING + "not building " + str(project.title) + "... (excluded with -x option)" + bcolors.ENDC)

@@ -63,4 +63,4 @@ jobs:
       # run script that checks the build result
       - name: deploy script
         run: |
-          python3  projects/.github/scripts/deploy.py -v -t projects/.github/config/targets.json
+          python3  projects/.github/scripts/deploy-artifacts.py -v -t projects/.github/config/targets.json

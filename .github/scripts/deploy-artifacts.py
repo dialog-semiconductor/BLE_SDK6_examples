@@ -24,8 +24,8 @@ from project import ProjectList
 def parseArgs():
     """Get the arguments passed to script."""
     parser = argparse.ArgumentParser(
-        prog="CMakeDeploy",
-        description="deploys artifacts made by build and check script.",
+        prog="Deploy Artifacts",
+        description="deploys artifacts made by build script.",
     )
     parser.add_argument(
         "-t",
@@ -43,7 +43,7 @@ def parseArgs():
         "-f",
         "--datafile",
         default="projectData.json",
-        help="The projects definition file. default='artifacts/projectData.json'",
+        help="The projects definition file. default='projectData.json'",
     )
     parser.add_argument(
         "-a",

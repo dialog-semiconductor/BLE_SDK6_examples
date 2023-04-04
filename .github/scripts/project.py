@@ -186,7 +186,7 @@ class Project:
                 "path": str(self.path),
                 "title": str(self.title),
                 "group": str(self.group),
-                "excludeBuilds": str(self.excludeBuilds),
+                "excludeBuilds": self.excludeBuilds,
                 "patchFile": str(pathlib.Path(self.patchFile).relative_to(pathlib.Path(pathrelativeto))) if self.patchFile else self.patchFile,
                 "uvprojxFile": str(pathlib.Path(self.uvprojxFile).relative_to(pathlib.Path(pathrelativeto))) if self.uvprojxFile else self.uvprojxFile,
                 "uvisionLogFile": str(pathlib.Path(self.uvisionLogFile).relative_to(pathlib.Path(pathrelativeto))) if self.uvisionLogFile else self.uvisionLogFile,

@@ -16,9 +16,9 @@ import imgkit
 from common import getTargetsFile, bashexec
 from project import ProjectList
 
-shieldsIoPrefix = '''<img src="https://img.shields.io/badge/'''
+shieldsIoPrefix = '''<img style="background-color:transparent" src="https://img.shields.io/badge/'''
 shieldsIoSuffix = '''?style=flat-square" alt="banner">'''
-shieldsIoSdk = '''<img src="https://img.shields.io/badge/SDK-6.0.18-blue?style=flat-square" alt="banner">'''
+shieldsIoSdk = '''<img style="background-color:transparent" src="https://img.shields.io/badge/SDK-6.0.18-blue?style=flat-square" alt="banner">'''
 
 def parseArgs():
     """Get the arguments passed to script."""
@@ -59,7 +59,7 @@ def setVars():
 def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
     if args.verbose:
         print("generating banner for "+str(project.title))
-    bannerText = '''<div id="banner">'''
+    bannerText = '''<div style="background-color:transparent">'''
     for buildSystem in allBuildSystems:
         bannerText += shieldsIoPrefix
         bannerText += buildSystem + '%20builds-'
@@ -82,7 +82,7 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
         bannerText += "\n"
 
     bannerText += shieldsIoSdk
-    bannerText += '</div'
+    bannerText += "</div>"
 
     with open(filePath, "w") as outfile:
         outfile.write(str(bannerText))
@@ -92,18 +92,11 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
 def htmlToSvg(path):
     if args.verbose:
         print("converting html to svg "+str(path))
-    outfile = str(path.parents[0].joinpath("banner.svg"))
+    outfile = str(path.parents[0].joinpath("banner.png"))
     if args.verbose:
         print("svg outfile: "+str(outfile))
-    imgkit.from_file(str(path),outfile)
-    
-    # doc = aw.Document(str(path))
-    # for page in range(0, doc.page_count):
-    #     extractedPage = doc.extract_pages(page, 1)
-    #     outfile = str(path.parents[1].joinpath("banner.svg"))
-        # if args.verbose:
-        #     print("svg outfile: "+str(outfile))
-        # extractedPage.save(outfile)
+    imgkit.from_file(str(path), outfile, options={"transparent": "",} )
+
 
 def findAllBuildSystems(projects):
     buildSystems = []

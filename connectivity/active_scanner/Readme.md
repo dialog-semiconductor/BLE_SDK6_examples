@@ -3,7 +3,6 @@
 
 <img src="https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.svg">
 
-
 ---
 
 

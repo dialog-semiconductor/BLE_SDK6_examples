@@ -11,7 +11,7 @@
 {{ readFile "https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.svg" | safeHTML }}
 </figure>
 
-<svg xmlns="https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.svg">
+<svg xmlns="https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.svg" viewBox="0 0 360 64">
 	
     <path fill="#2E2E2E" d="..."/>
 </svg>

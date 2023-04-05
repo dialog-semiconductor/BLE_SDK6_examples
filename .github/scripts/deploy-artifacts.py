@@ -98,8 +98,11 @@ def sortProjectData():
 def copyFiles():
     """Copy the files to artifacts folder."""
     for t in targets:
+        print("Copying "+t.name)
         for m in t.metadata:
             p = next((i for i in projects if str(i.title) == m["title"]), None)
+            if args.verbose:
+                print("Copying "+str(p.title))
             binpath = p.absPath.joinpath(p.builddir).joinpath(
                 p.title.name + "_" + t.acronym + ".bin"
             )
@@ -109,7 +112,11 @@ def copyFiles():
 
 def synchFilesAws():
     for target in targets:
-        bashexec(["aws","s3","sync","--delete",str(artifactsdir.joinpath(target.name)),"s3://lpccs-docs.renesas.com/examples_arfitacts/"+target.name])
+        print("deploying "+target.name)
+        command = ["aws","s3","sync","--delete",str(artifactsdir.joinpath(target.name)),"s3://lpccs-docs.renesas.com/examples_arfitacts/"+target.name]
+        if args.verbose:
+            print("Executing "+str(command))
+        bashexec(command)
 
 
 if __name__ == "__main__":

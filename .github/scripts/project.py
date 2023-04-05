@@ -117,7 +117,8 @@ class Project:
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
         if pathrelativeto:
-            self.absPath = pathlib.Path(pathrelativeto).joinpath(dict["absPath"])
+            abspathMatchedGlob = sorted(pathlib.Path('.').glob("**/*"+dict["absPath"]))[-1]
+            self.absPath = pathlib.Path(pathrelativeto).joinpath(abspathMatchedGlob)
             self.patchFile = pathlib.Path(pathrelativeto).joinpath(dict["patchFile"]) if dict["patchFile"] else ""
             self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(dict["uvprojxFile"])
             self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(dict["uvisionLogFile"])

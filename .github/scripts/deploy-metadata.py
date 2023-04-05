@@ -11,12 +11,14 @@ import json
 import os
 import pathlib
 import shutil
+import imgkit
 
 from common import getTargetsFile, bashexec
 from project import ProjectList
 
 shieldsIoPrefix = '''<img src="https://img.shields.io/badge/'''
 shieldsIoSuffix = '''?style=flat-square" alt="banner">'''
+shieldsIoSdk = '''<img src="https://img.shields.io/badge/SDK-6.0.18-blue?style=flat-square" alt="banner">'''
 
 def parseArgs():
     """Get the arguments passed to script."""
@@ -57,7 +59,7 @@ def setVars():
 def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
     if args.verbose:
         print("generating banner for "+str(project.title))
-    bannerText = ""
+    bannerText = '''<div id="banner">'''
     for buildSystem in allBuildSystems:
         bannerText += shieldsIoPrefix
         bannerText += buildSystem + '%20builds-'
@@ -79,10 +81,29 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
                 bannerText += shieldsIoSuffix
         bannerText += "\n"
 
+    bannerText += shieldsIoSdk
+    bannerText += '</div'
+
     with open(filePath, "w") as outfile:
         outfile.write(str(bannerText))
 
     return "<p>"+str(project.title) + ": " + bannerText + "</p>"
+
+def htmlToSvg(path):
+    if args.verbose:
+        print("converting html to svg "+str(path))
+    outfile = str(path.parents[0].joinpath("banner.svg"))
+    if args.verbose:
+        print("svg outfile: "+str(outfile))
+    imgkit.from_file(str(path),outfile)
+    
+    # doc = aw.Document(str(path))
+    # for page in range(0, doc.page_count):
+    #     extractedPage = doc.extract_pages(page, 1)
+    #     outfile = str(path.parents[1].joinpath("banner.svg"))
+        # if args.verbose:
+        #     print("svg outfile: "+str(outfile))
+        # extractedPage.save(outfile)
 
 def findAllBuildSystems(projects):
     buildSystems = []
@@ -124,6 +145,7 @@ if __name__ == "__main__":
         bannerDirPath.mkdir(parents=True,exist_ok=True)
         bannerFilePath = bannerDirPath.joinpath("banner.html")
         debugBannerText += makeBadgeBanner(project, bannerFilePath, allBuildSystems, allTargets)
+        htmlToSvg(bannerFilePath)
     
     with open(metadatadir.joinpath("debugBanner.html"), "w") as outfile:
         outfile.write(str(debugBannerText))

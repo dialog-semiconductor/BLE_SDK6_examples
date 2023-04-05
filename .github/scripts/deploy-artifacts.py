@@ -101,12 +101,15 @@ def copyFiles():
         print("Copying "+t.name)
         for m in t.metadata:
             p = next((i for i in projects if str(i.title) == m["title"]), None)
-            if args.verbose:
-                print("Copying "+str(p.title))
             binpath = p.absPath.joinpath(p.builddir).joinpath(
                 p.title.name + "_" + t.acronym + ".bin"
             )
             artifactpath = artifactsdir.joinpath(t.name).joinpath(p.path)
+            if args.verbose:
+                print("Copying:")
+                print(str(p))
+                print("binpath = "+str(binpath))
+                print("artifactpath = " + str(artifactpath))
             artifactpath.mkdir(parents=True)
             shutil.copy(binpath, artifactpath)
 

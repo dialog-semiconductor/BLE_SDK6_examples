@@ -11,9 +11,21 @@
 {{ readFile "https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.svg" | safeHTML }}
 </figure>
 
-<p align="center">
-    <img src="https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.svg" alt="banner">
-</p>
+<svg xmlns="https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.svg">
+  <defs>
+    <style>
+      svg {
+        background-color: white;
+        color-scheme:light dark;
+      }
+      @media (prefers-color-scheme:dark) {
+        svg {
+          background-color: black;
+        }
+      }
+    </style>
+  </defs>
+</svg>
 
 ---
 

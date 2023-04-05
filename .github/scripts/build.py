@@ -107,7 +107,7 @@ def setVars():
         projectFiles = ProjectList(projectDirectory=args.projdir, examplesDirectory=examplesdir, verbose=args.verbose)
 
     for p in projectFiles:
-        if p.absPath.name in args.exclude:
+        if (str(p.path)+"/") in args.exclude:
             if args.verbose:
                 print(
                     bcolors.WARNING

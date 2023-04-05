@@ -25,11 +25,6 @@ def parseArgs():
         description="deploys metadata made by build script.",
     )
     parser.add_argument(
-        "--targets",
-        default=".github/config/targets.json",
-        help="The targets definition file. default='.github/config/targets.json'",
-    )
-    parser.add_argument(
         "-v",
         "--verbose",
         action="store_true",
@@ -53,17 +48,17 @@ def parseArgs():
 def setVars():
     """Set the variables used in script."""
     projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
-    targets = getTargetsFile(args.targets)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
     metadatadir = startdir.joinpath(args.metadata_dir)
 
-    return projects, targets, examplesdir, startdir, metadatadir
+    return projects, examplesdir, startdir, metadatadir
 
 def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
+    if args.verbose:
+        print("generating banner for "+str(project.title))
     bannerText = ""
     for buildSystem in allBuildSystems:
-        print(buildSystem)
         bannerText += shieldsIoPrefix
         bannerText += buildSystem + '%20builds-'
         for target in allTargets:
@@ -94,19 +89,32 @@ def findAllBuildSystems(projects):
     for project in projects:
         for build in project.buildStatus:
             buildSystems.append(build["buildsystem"])
-    return set(buildSystems)
+    buildSystems = set(buildSystems)
+    if args.verbose:
+        print("found buildSystems "+str(buildSystems))
+    return buildSystems
 
 def findAllTargets(projects):
     targets = []
     for project in projects:
         for build in project.buildStatus:
             targets.append(build["target"]["name"])
-    return set(targets)
+    targets = set(targets)
+    if args.verbose:
+        print("found targets "+str(targets))
+    return targets
+
+def synchFilesAws():
+    print("Synching metadata to AWS...")
+    command = ["aws","s3","sync","--delete",str(metadatadir),"s3://lpccs-docs.renesas.com/metadata/BLE_SDK6_examples"]
+    if args.verbose:
+        print("Executing "+str(command))
+    bashexec(command)
 
 
 if __name__ == "__main__":
     args = parseArgs()
-    projects, targets, examplesdir, startdir, metadatadir = setVars()
+    projects, examplesdir, startdir, metadatadir = setVars()
     allBuildSystems = findAllBuildSystems(projects)
     allTargets = findAllTargets(projects)
     debugBannerText = ""
@@ -119,5 +127,7 @@ if __name__ == "__main__":
     
     with open(metadatadir.joinpath("debugBanner.html"), "w") as outfile:
         outfile.write(str(debugBannerText))
+
+    synchFilesAws()
 
     os.chdir(startdir)

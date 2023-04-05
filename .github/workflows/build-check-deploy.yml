@@ -61,6 +61,11 @@ jobs:
           python3 projects/.github/scripts/build.py -x projects/.github/config/ignore-list-cmake.txt -v -p ./projects/ -t projects/.github/config/targets.json
 
       # run script that checks the build result
-      - name: deploy script
+      - name: deploy atrifacts script
         run: |
           python3  projects/.github/scripts/deploy-artifacts.py -v -t projects/.github/config/targets.json -a ./projects/artifacts
+
+      # run script that checks the build result
+      - name: deploy metadata script
+        run: |
+          python3  projects/.github/scripts/deploy-metadata.py -v

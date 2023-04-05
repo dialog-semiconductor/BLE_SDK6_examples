@@ -1,7 +1,7 @@
 
 # DA14531 and DA14585/586 Active scanner
 
-<img src="https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.svg">
+<img src="https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/active_scanner/banner.png" />
 
 ---
 

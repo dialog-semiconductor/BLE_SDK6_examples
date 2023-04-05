@@ -92,10 +92,10 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
 def htmlToSvg(path):
     if args.verbose:
         print("converting html to svg "+str(path))
-    outfile = str(path.parents[0].joinpath("banner.svg"))
+    outfile = str(path.parents[0].joinpath("banner.png"))
     if args.verbose:
         print("svg outfile: "+str(outfile))
-    imgkit.from_file(str(path), outfile, options={"transparent": "",} )
+    imgkit.from_file(str(path), outfile, options={"transparent": "","quality":"100"} )
 
 
 def findAllBuildSystems(projects):

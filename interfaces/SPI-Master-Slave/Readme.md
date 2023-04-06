@@ -1,6 +1,10 @@
 
 # DA14531 SPI Master Slave example
----
+
+Master:
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/SPI_Master/banner.svg?v=1)
+Slave:
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/SPI_Slave/banner.svg?v=1)
 
 ## Example description
 

@@ -58,7 +58,7 @@ The user manuals for the development kits can be found:
 	- An active-low switch should be connected to P1_1, located on J4, as displayed in the following schematic.
 	- Connect the basic dev kit to the working station through USB1 connector.
 
-	![simple_button_basic](assets/simple_button_basic.svgg)
+	![simple_button_basic](assets/simple_button_basic.svg)
 
 
 ### __Software configuration__

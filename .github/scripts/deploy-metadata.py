@@ -7,11 +7,9 @@
 # #####################################################################################
 """This script deploys the previously built artifacts and the metadata to the AWS server."""
 import argparse
-import json
 import os
 import pathlib
-import shutil
-import imgkit
+from banner import shieldsBanner
 
 from common import getTargetsFile, bashexec
 from project import ProjectList
@@ -59,43 +57,52 @@ def setVars():
 def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
     if args.verbose:
         print("generating banner for "+str(project.title))
-    bannerText = '''<div style="background-color:transparent">'''
+
+    banner = shieldsBanner()
+    banner.addShield("SDK","6.0.18","blue")
+    firstShieldAdded = False
+
     for buildSystem in allBuildSystems:
-        bannerText += shieldsIoPrefix
-        bannerText += buildSystem + '%20builds-'
+        banner.addWhiteSpace(10)
         for target in allTargets:
-            targetFound = False
             for build in project.buildStatus:
                 if (buildSystem == build["buildsystem"])and(target == build["target"]["name"]):
-                    if not bannerText.endswith(buildSystem + '%20builds-'):
-                        bannerText += shieldsIoPrefix + "-"
-                    bannerText += build["target"]["name"] + "-"
-                    bannerText += "brightgreen" if build["passed"] is True else "red"
-                    bannerText += shieldsIoSuffix
-                    targetFound = True
-            if not targetFound:
-                if not bannerText.endswith(buildSystem + '%20builds-'):
-                    bannerText += shieldsIoPrefix + "-"
-                bannerText += target + "-"
-                bannerText += "inactive"
-                bannerText += shieldsIoSuffix
-        bannerText += "\n"
+                    if firstShieldAdded:
+                        banner.addShield(str(buildSystem + '%20builds-'),build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
+                    else:
+                        banner.addShield("",build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
 
-    bannerText += shieldsIoSdk
-    bannerText += "</div>"
+    # banner.save(filePath)
 
-    with open(filePath, "w") as outfile:
-        outfile.write(str(bannerText))
+    # bannerText = '''<div style="background-color:transparent">'''
+    # for buildSystem in allBuildSystems:
+    #     bannerText += shieldsIoPrefix
+    #     bannerText += buildSystem + '%20builds-'
+    #     for target in allTargets:
+    #         targetFound = False
+    #         for build in project.buildStatus:
+    #             if (buildSystem == build["buildsystem"])and(target == build["target"]["name"]):
+    #                 if not bannerText.endswith(buildSystem + '%20builds-'):
+    #                     bannerText += shieldsIoPrefix + "-"
+    #                 bannerText += build["target"]["name"] + "-"
+    #                 bannerText += "brightgreen" if build["passed"] is True else "red"
+    #                 bannerText += shieldsIoSuffix
+    #                 targetFound = True
+    #         if not targetFound:
+    #             if not bannerText.endswith(buildSystem + '%20builds-'):
+    #                 bannerText += shieldsIoPrefix + "-"
+    #             bannerText += target + "-"
+    #             bannerText += "inactive"
+    #             bannerText += shieldsIoSuffix
+    #     bannerText += "\n"
 
-    return "<p>"+str(project.title) + ": " + bannerText + "</p>"
+    # bannerText += shieldsIoSdk
+    # bannerText += "</div>"
 
-def htmlToSvg(path):
-    if args.verbose:
-        print("converting html to svg "+str(path))
-    outfile = str(path.parents[0].joinpath("banner.svg"))
-    if args.verbose:
-        print("svg outfile: "+str(outfile))
-    imgkit.from_file(str(path), outfile, options={"transparent": "",} )
+    # with open(filePath, "w") as outfile:
+    #     outfile.write(str(bannerText))
+
+    # return "<p>"+str(project.title) + ": " + bannerText + "</p>"
 
 
 def findAllBuildSystems(projects):
@@ -131,17 +138,13 @@ if __name__ == "__main__":
     projects, examplesdir, startdir, metadatadir = setVars()
     allBuildSystems = findAllBuildSystems(projects)
     allTargets = findAllTargets(projects)
-    debugBannerText = ""
 
     for project in projects:
         bannerDirPath = metadatadir.joinpath(project.path)
         bannerDirPath.mkdir(parents=True,exist_ok=True)
-        bannerFilePath = bannerDirPath.joinpath("banner.html")
-        debugBannerText += makeBadgeBanner(project, bannerFilePath, allBuildSystems, allTargets)
-        htmlToSvg(bannerFilePath)
-    
-    with open(metadatadir.joinpath("debugBanner.html"), "w") as outfile:
-        outfile.write(str(debugBannerText))
+        bannerFilePath = bannerDirPath.joinpath("banner.svg")
+        makeBadgeBanner(project, bannerFilePath, allBuildSystems, allTargets)
+
 
     synchFilesAws()
 

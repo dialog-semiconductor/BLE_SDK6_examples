@@ -8,7 +8,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
-   sodipodi:docname="da14585.svg"
+   sodipodi:docname="Motherboard_Hardware_Configuration_DA14585.svg"
    inkscape:export-filename="C:\Users\imorris\Documents\SDKs\BLE\SDK\6.0.12.1020\projects\target_apps\ble_examples\ble_data_logger_htu21d\assets\DA14531-jumper-wires.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -442,11 +442,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0609903"
-     inkscape:cx="94.722826"
-     inkscape:cy="265.78942"
+     inkscape:zoom="6.0018675"
+     inkscape:cx="324.64895"
+     inkscape:cy="376.8827"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:snap-nodes="false"
      inkscape:window-width="1920"
@@ -5410,9 +5410,9 @@
        transform="translate(6.4379959,-60.974027)"><tspan
          x="110.26179"
          y="94.574738"
-         id="tspan26125"><tspan
+         id="tspan30309"><tspan
            style="fill:#ff0000"
-           id="tspan26123">Red box 1</tspan></tspan></text>
+           id="tspan30307">Red box 1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:3.175px;display:inline;fill:#00130c;fill-opacity:1;stroke-width:0.264583"
@@ -5436,19 +5436,19 @@
          x="117.69888"
          y="106.97899">Red box 3</tspan></text>
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.236772;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2)"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.236772;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2)"
        d="m 111.19142,93.440006 3.59721,0.766771"
        id="path16056"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.25096;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2-4)"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.25096;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2-4)"
        d="m 108.47232,33.679795 6.78326,-0.39642"
        id="path16056-5"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.411349;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.411349;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L)"
        d="m 99.831463,99.761602 15.813627,6.070058"
        id="path25121"
        inkscape:connector-type="polyline"

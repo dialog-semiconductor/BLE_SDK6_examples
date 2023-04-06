@@ -60,11 +60,12 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
 
     banner = shieldsBanner()
     banner.addShield("SDK","6.0.18","blue")
-    firstShieldAdded = False
 
     for buildSystem in allBuildSystems:
+        firstShieldAdded = False
         banner.addWhiteSpace(10)
         for target in allTargets:
+            targetFound = False
             for build in project.buildStatus:
                 if (buildSystem == build["buildsystem"])and(target == build["target"]["name"]):
                     if not firstShieldAdded:
@@ -72,39 +73,15 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
                         firstShieldAdded = True
                     else:
                         banner.addShield("",build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
+                    targetFound = True
+            if not targetFound:
+                if not firstShieldAdded:
+                    banner.addShield(str(buildSystem + '%20builds'),target,"inactive")
+                    firstShieldAdded = True
+                else:
+                    banner.addShield("",target,"inactive")
 
     banner.save(filePath)
-
-    # bannerText = '''<div style="background-color:transparent">'''
-    # for buildSystem in allBuildSystems:
-    #     bannerText += shieldsIoPrefix
-    #     bannerText += buildSystem + '%20builds-'
-    #     for target in allTargets:
-    #         targetFound = False
-    #         for build in project.buildStatus:
-    #             if (buildSystem == build["buildsystem"])and(target == build["target"]["name"]):
-    #                 if not bannerText.endswith(buildSystem + '%20builds-'):
-    #                     bannerText += shieldsIoPrefix + "-"
-    #                 bannerText += build["target"]["name"] + "-"
-    #                 bannerText += "brightgreen" if build["passed"] is True else "red"
-    #                 bannerText += shieldsIoSuffix
-    #                 targetFound = True
-    #         if not targetFound:
-    #             if not bannerText.endswith(buildSystem + '%20builds-'):
-    #                 bannerText += shieldsIoPrefix + "-"
-    #             bannerText += target + "-"
-    #             bannerText += "inactive"
-    #             bannerText += shieldsIoSuffix
-    #     bannerText += "\n"
-
-    # bannerText += shieldsIoSdk
-    # bannerText += "</div>"
-
-    # with open(filePath, "w") as outfile:
-    #     outfile.write(str(bannerText))
-
-    # return "<p>"+str(project.title) + ": " + bannerText + "</p>"
-
 
 def findAllBuildSystems(projects):
     buildSystems = []

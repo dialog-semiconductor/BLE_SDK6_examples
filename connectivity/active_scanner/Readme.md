@@ -30,8 +30,8 @@ For the UART to see the communication logs, check the setup shown below for DA14
 
 # Hardware configuration for the DA14585/586:
 
- 
-![DA14585 Jumper setting ](assets/da14585.svg width="256" height="256" )
+<img src="assets/da14585.svg"  width="600" height="30>
+
 
 
 The user manuals for the development kits can be found:

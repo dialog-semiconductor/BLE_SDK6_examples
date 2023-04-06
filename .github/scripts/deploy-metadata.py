@@ -67,8 +67,9 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
         for target in allTargets:
             for build in project.buildStatus:
                 if (buildSystem == build["buildsystem"])and(target == build["target"]["name"]):
-                    if firstShieldAdded:
-                        banner.addShield(str(buildSystem + '%20builds-'),build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
+                    if not firstShieldAdded:
+                        banner.addShield(str(buildSystem + '%20builds'),build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
+                        firstShieldAdded = True
                     else:
                         banner.addShield("",build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
 

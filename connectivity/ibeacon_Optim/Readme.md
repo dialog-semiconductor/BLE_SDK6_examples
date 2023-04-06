@@ -1,5 +1,7 @@
 ## Optimised Ibeacon example
 
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ibeacon_Optim/banner.svg?v=1)
+
 The example demonstrates an optimized software implementation for ibeacon on the DA14531, it can be downloaded from [A14531 Power optimized Dynamic advertising](http://lpccs-docs.dialog-semiconductor.com/SW_Example/SDK6/DA14531_Power_optimized_Dynamic_advertising.zip)
 
 The example is an update of the [ibeacon SW](https://www.dialog-semiconductor.com/sites/default/files/da14531_ibeacon.zip), below the main modifications, basically we demonstrate how to:

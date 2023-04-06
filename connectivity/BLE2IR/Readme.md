@@ -1,6 +1,6 @@
 # DA14585 Simple Remote Control Unit peripheral example
 
----
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/BLE2IR/banner.svg?v=1)
 
 
 ## Example description

@@ -1,5 +1,7 @@
 # DA14531/585/586 Multirole Example
 
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/multirole/banner.svg?v=1)
+
 ## Example Description
 
 The example demonstrates the capabilities of the DA14531/585/586 as a Central and a peripheral i.e. scan and advertise role. 

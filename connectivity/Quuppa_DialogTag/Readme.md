@@ -1,6 +1,8 @@
 
 # DA14531 Quuppa Tag Emu example
 
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/Quuppa_DialogTag/banner.svg?v=1)
+
 ## Overview
 
 ### Quuppa technology overview

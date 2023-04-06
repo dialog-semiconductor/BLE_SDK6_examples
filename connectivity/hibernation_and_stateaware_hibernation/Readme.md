@@ -1,5 +1,8 @@
 ## Hibernation and State aware hibernation
 
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/hibernation_and_stateaware_hibernation/banner.svg?v=1)
+
+
 - This project starts with undirected connectable advertising
 
 - In between 2 advertising events extended sleep is applied

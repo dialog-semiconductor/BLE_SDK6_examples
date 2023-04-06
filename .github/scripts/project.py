@@ -109,7 +109,7 @@ class Project:
 
     def _initFromDict(self, dict, pathrelativeto=False, verbose=False):
         """Initialize the Project from a dict."""
-        self.path = pathlib.Path(dict["path"])
+        self.path = pathlib.Path(dict["path"].replace("\\","/"))
         self.title = pathlib.Path(dict["title"])
         self.group = pathlib.Path(dict["group"])
         self.excludeBuilds = dict["excludeBuilds"]
@@ -117,13 +117,13 @@ class Project:
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
         if pathrelativeto:
-            abspathMatchedGlob = sorted(pathlib.Path('.').glob("**/*"+dict["absPath"]))[-1]
+            abspathMatchedGlob = sorted(pathlib.Path('.').glob("**/*"+str(pathlib.Path(dict["absPath"].replace("\\","/")))))[-1]
             self.absPath = pathlib.Path(pathrelativeto).joinpath(abspathMatchedGlob)
-            self.patchFile = pathlib.Path(pathrelativeto).joinpath(dict["patchFile"]) if dict["patchFile"] else ""
-            self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(dict["uvprojxFile"])
-            self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(dict["uvisionLogFile"])
-            self.cmakelistsFile = pathlib.Path(pathrelativeto).joinpath(dict["cmakelistsFile"]) if dict["cmakelistsFile"] else ""
-            self.readmePath = pathlib.Path(pathrelativeto).joinpath(dict["readmePath"]) if dict["readmePath"] else ""
+            self.patchFile = pathlib.Path(pathrelativeto).joinpath(dict["patchFile"].replace("\\","/")) if dict["patchFile"] else ""
+            self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(dict["uvprojxFile"].replace("\\","/"))
+            self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(dict["uvisionLogFile"].replace("\\","/"))
+            self.cmakelistsFile = pathlib.Path(pathrelativeto).joinpath(dict["cmakelistsFile"].replace("\\","/")) if dict["cmakelistsFile"] else ""
+            self.readmePath = pathlib.Path(pathrelativeto).joinpath(dict["readmePath"].replace("\\","/")) if dict["readmePath"] else ""
         else:
             self.absPath = pathlib.Path(dict["absPath"])
             self.patchFile = pathlib.Path(dict["patchFile"])

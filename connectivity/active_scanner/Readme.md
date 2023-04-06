@@ -26,15 +26,13 @@ For the UART to see the communication logs, check the setup shown below for DA14
 
 # Hardware configuration for the DA14531:
 
-.. figure:: assets/da14531.svg
-   :width: 600 px
-   :align: center
-   :figclass: align-center
+![DA14531 Jumper setting](assets/da14531.svg)
+
 
 # Hardware configuration for the DA14585/586:
 
  
-![DA14585 Jumper setting ](assets/da14585.svg )
+![DA14585 Jumper setting ](assets/da14585.svg )(width=300, height=200)
 
 
 The user manuals for the development kits can be found:

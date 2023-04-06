@@ -23,6 +23,17 @@
   <defs
      id="defs2">
     <inkscape:path-effect
+       effect="bspline"
+       id="path-effect117035"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
        effect="spiro"
        id="path-effect879"
        is_visible="true"
@@ -198,10 +209,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.5004669"
-     inkscape:cx="398.87584"
-     inkscape:cy="284.57809"
+     inkscape:cx="263.58462"
+     inkscape:cy="267.91661"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer9"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:snap-nodes="false"
      inkscape:window-width="1920"
@@ -1631,6 +1642,15 @@
            style="opacity:0.608;fill:#ff6600;fill-opacity:0.969849;stroke:none;stroke-width:0.264583" />
       </g>
     </g>
+    <circle
+       style="display:inline;fill:#ff9700;fill-opacity:1;stroke:#f00500;stroke-width:0.540815;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle3034-4-9-0-5-8"
+       cx="34.022575"
+       cy="-104.1953"
+       r="1.2878302"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       transform="rotate(90)" />
     <g
        style="display:inline;opacity:1"
        id="g2452-5-5-4"
@@ -2528,6 +2548,15 @@
         </g>
       </g>
     </g>
+    <circle
+       style="display:inline;fill:#ff9700;fill-opacity:1;stroke:#f00500;stroke-width:0.540815;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle3034-4-9-0-5-8-0"
+       cx="92.971634"
+       cy="-81.099007"
+       r="1.2878302"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       transform="rotate(90)" />
     <g
        style="display:inline"
        id="g3048-41"
@@ -5093,6 +5122,24 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
        transform="rotate(90)" />
+    <path
+       style="fill:#ff9700;fill-opacity:0.00429185;stroke:#f00500;stroke-width:0.499999;stroke-linecap:round;stroke-miterlimit:2;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 80.795874,91.719988 C 73.596038,75.823471 66.396308,59.927188 70.081642,50.310657 73.766976,40.694126 88.337405,37.358309 102.90747,34.022575"
+       id="path117033"
+       inkscape:path-effect="#path-effect117035"
+       inkscape:original-d="M 80.795874,91.719988 C 73.596158,75.823417 66.396428,59.927133 59.196181,44.030027 73.767047,40.694435 88.337476,37.358617 102.90747,34.022575"
+       sodipodi:nodetypes="ccc"
+       inkscape:transform-center-x="2.2443654"
+       inkscape:transform-center-y="-1.3092132" />
+    <image
+       width="44.802971"
+       height="7.0691838"
+       preserveAspectRatio="none"
+       xlink:href="data:image/png;base64,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 AElFTkSuQmCC "
+       id="image47068"
+       x="110.19703"
+       y="117.93082"
+       style="display:inline" />
   </g>
   <g
      inkscape:groupmode="layer"

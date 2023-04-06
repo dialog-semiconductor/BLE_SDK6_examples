@@ -32,7 +32,7 @@ This why we have opted to programme the onboard SPI flash with the generated bin
 
 Apply the jumper configuration of the image shown below.
 
-![Motherboard_Hardware_Configuration_DA14531](assets/da14531_temp.svg)
+![Motherboard_Hardware_Configuration_DA14531](assets/da14531_temp.jpg)
 	
 if you would like to use the JTAG interface for debug purpose you have to choose different i2C GPIOs configurations. Be sure to update the `user_periph_setup.h` with the following configuration as an example:
 
@@ -59,7 +59,7 @@ __Hardware configuration DA14585/DA14586 using DA145xxDEVKT-P PRO-Motherboard__
 
 Plug the thermo 8 click board on the mikrobus 1 interface (J15-J16).	
 
-![Motherboard_Hardware_Configuration_DA14585](assets/da14585_temp.svg)
+![Motherboard_Hardware_Configuration_DA14585](assets/da14585_temp.jpg)
 
 __Hardware configuration DA14585 using the basic development kit__
 

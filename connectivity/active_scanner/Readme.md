@@ -24,11 +24,11 @@ The user can read the peripheral advertising data in a friendly way on its seria
 
 For the UART to see the communication logs, check the setup shown below for DA14531 and DA14585/586
 
-### Hardware configuration for the DA14531
+# Hardware configuration for the DA14531:
 
 ![DA14531 Jumper setting](assets/da14531.jpg)
 
-### Hardware configuration for the DA14585/586
+# Hardware configuration for the DA14585/586:
 
  
 ![DA14585 Jumper setting](assets/da14585.jpg)

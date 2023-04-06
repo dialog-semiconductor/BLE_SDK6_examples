@@ -234,8 +234,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.5004669"
-     inkscape:cx="96.969818"
-     inkscape:cy="350.55756"
+     inkscape:cx="97.636276"
+     inkscape:cy="350.55755"
      inkscape:document-units="mm"
      inkscape:current-layer="layer6"
      showgrid="false"
@@ -5294,9 +5294,9 @@
        transform="translate(6.1279373,0.59338388)"><tspan
          x="110.26179"
          y="94.574738"
-         id="tspan28171"><tspan
+         id="tspan34003"><tspan
            style="fill:#ff0000"
-           id="tspan28169">Red box 1</tspan></tspan></text>
+           id="tspan34001">Red box 1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:3.175px;display:inline;fill:#00130c;fill-opacity:1;stroke-width:0.264583"
@@ -5309,7 +5309,7 @@
          x="116.69971"
          y="101.69248">Red box 2</tspan></text>
     <path
-       style="display:inline;fill:#ffffdf;fill-rule:evenodd;stroke:#ff0069;stroke-width:0.252501px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L);fill-opacity:1"
+       style="display:inline;fill:#ffffdf;fill-opacity:1;fill-rule:evenodd;stroke:#ff0069;stroke-width:0.252501px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
        d="m 111.40458,95.147008 3.63905,-0.591663"
        id="path16054"
        inkscape:connector-type="polyline"

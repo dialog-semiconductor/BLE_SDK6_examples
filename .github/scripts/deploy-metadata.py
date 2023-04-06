@@ -72,7 +72,7 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
                     else:
                         banner.addShield("",build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
 
-    # banner.save(filePath)
+    banner.save(filePath)
 
     # bannerText = '''<div style="background-color:transparent">'''
     # for buildSystem in allBuildSystems:

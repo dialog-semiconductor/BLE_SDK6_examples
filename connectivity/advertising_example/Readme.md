@@ -38,7 +38,7 @@ The user manuals for the development kits can be found:
 
 	The image below shows the Motherboard with jumper (wire) configuration for the DA14531.
 
-	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
+	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.svg)
 		
 * __Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard__
 
@@ -49,7 +49,7 @@ The user manuals for the development kits can be found:
 
 	The image below shows the Motherboard with jumper configuration for the DA14585
 
-	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
+	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.svg)
 
 * __Hardware configuration DA14585 using the basic dev kit__
 

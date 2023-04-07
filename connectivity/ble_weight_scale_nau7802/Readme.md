@@ -1,3 +1,7 @@
+# BLE weight scale using NAU7802
+
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_weight_scale_nau7802/banner.svg?v=1)
+
 ## Example description
 
 Simple example showing how to interface the DA14531 with the [LOAD CELL 2 CLICK Board™](https://www.mikroe.com/load-cell-2-click) which features the Nuvoton NAU7802 bridge sensor ADC via I2C. 

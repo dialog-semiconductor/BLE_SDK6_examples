@@ -9,11 +9,11 @@ on:
   pull_request:
     branches: 
       - main
-      - 'cmake_build'
+      - 'ci-cd'
   push:
     branches: 
       - main
-      - 'cmake_build'
+      - 'ci-cd'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -58,30 +58,19 @@ jobs:
       # run script that builds all examples
       - name: build script
         run: |
-          python3 projects/.github/scripts/build.py -x projects/.github/config/ignore-list.txt -v -p ./projects/
+          python3 projects/.github/scripts/build.py -x projects/.github/config/ignore-list-cmake.txt -v -p ./projects/ -t projects/.github/config/targets.json
 
       # run script that checks the build result
-      - name: check script
-        if: always()
+      - name: deploy atrifacts script
         run: |
-          python3  projects/.github/scripts/check.py -v -t projects/.github/config/targets.json
+          python3  projects/.github/scripts/deploy-artifacts.py -v -t projects/.github/config/targets.json -a ./projects/artifacts
 
       # run script that checks the build result
-      - name: deploy script
+      - name: deploy metadata script
         run: |
-          python3  projects/.github/scripts/deploy.py -v -t projects/.github/config/targets.json
-          
-      - name: upload 531 aws
-        #if: github.event_name == 'push' && github.ref_name == 'main'
+          python3  projects/.github/scripts/deploy-metadata.py -v
+
+      # run script that purges all of the banner images from the github cache so the new one is displayed
+      - name: purge github images script
         run: |
-          aws s3 sync --delete artifacts/DA14531  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14531
-          
-      - name: upload 585 aws
-        #if: github.event_name == 'push' && github.ref_name == 'main'
-        run: |
-          aws s3 sync --delete artifacts/DA14585  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14585
-          
-      - name: upload 586 aws
-        #if: github.event_name == 'push' && github.ref_name == 'main'
-        run: |
-          aws s3 sync --delete artifacts/DA14586  s3://lpccs-docs.renesas.com/examples_arfitacts/DA14586
+           python3 projects/.github/scripts/purge-github-img.py -u https://github.com/dialog-semiconductor/BLE_SDK6_examples -b ${GITHUB_REF##*/} -v

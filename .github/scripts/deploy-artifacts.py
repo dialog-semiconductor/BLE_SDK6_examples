@@ -17,14 +17,15 @@ import os
 import pathlib
 import shutil
 
-from common import getProjectsFile, getTargetsFile
+from common import bashexec, getTargetsFile
+from project import ProjectList
 
 
 def parseArgs():
     """Get the arguments passed to script."""
     parser = argparse.ArgumentParser(
-        prog="CMakeDeploy",
-        description="deploys artifacts made by build and check script.",
+        prog="Deploy Artifacts",
+        description="deploys artifacts made by build script.",
     )
     parser.add_argument(
         "-t",
@@ -42,13 +43,20 @@ def parseArgs():
         "-f",
         "--datafile",
         default="projectData.json",
-        help="The projects definition file. default='artifacts/projectData.json'",
+        help="The projects definition file. default='projectData.json'",
     )
     parser.add_argument(
         "-a",
         "--artifacts-dir",
         default="artifacts",
         help="The projects definition file. default='artifacts'",
+    )
+    parser.add_argument(
+        "-b",
+        "--build-system",
+        default="CMake",
+        choices=["CMake", "Keil"],
+        help="The build system used for the build. default='CMake'",
     )
     args = parser.parse_args()
 
@@ -57,7 +65,7 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    projects = getProjectsFile(args.datafile)
+    projects = ProjectList(jsonFile=args.datafile, verbose=args.verbose)
     targets = getTargetsFile(args.targets)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
@@ -90,14 +98,37 @@ def sortProjectData():
 def copyFiles():
     """Copy the files to artifacts folder."""
     for t in targets:
+        print("Copying " + t.name)
         for m in t.metadata:
             p = next((i for i in projects if str(i.title) == m["title"]), None)
             binpath = p.absPath.joinpath(p.builddir).joinpath(
                 p.title.name + "_" + t.acronym + ".bin"
             )
             artifactpath = artifactsdir.joinpath(t.name).joinpath(p.path)
+            if args.verbose:
+                print("Copying:")
+                print(str(p))
+                print("binpath = " + str(binpath))
+                print("artifactpath = " + str(artifactpath))
             artifactpath.mkdir(parents=True)
             shutil.copy(binpath, artifactpath)
+
+
+def synchFilesAws():
+    """Synchronize the files to AWS."""
+    for target in targets:
+        print("deploying " + target.name)
+        command = [
+            "aws",
+            "s3",
+            "sync",
+            "--delete",
+            str(artifactsdir.joinpath(target.name)),
+            "s3://lpccs-docs.renesas.com/examples_arfitacts/" + target.name,
+        ]
+        if args.verbose:
+            print("Executing " + str(command))
+        bashexec(command)
 
 
 if __name__ == "__main__":
@@ -106,5 +137,6 @@ if __name__ == "__main__":
 
     sortProjectData()
     copyFiles()
+    synchFilesAws()
 
     os.chdir(startdir)

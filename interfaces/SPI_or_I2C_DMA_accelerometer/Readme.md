@@ -1,6 +1,6 @@
 ﻿# SPI or I2C reading with DMA
 
----
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/SPI_or_I2C_DMA_accelerometer/banner.svg?v=1)
 
 
 ## Example description

@@ -87,7 +87,7 @@ To run any of these SW examples, the user needs:
 
 - DA14531/DA14585/DA14586 hardware.
 - Keil µvision.
-- Dialog SDK 6.0.14 available
+- Dialog SDK 6.0.18 available
 - Python script
 
 <br/>
@@ -99,19 +99,19 @@ Begin by cloning this repository locally and then link the SW example to the SDK
 
 <br/>
 
-### <ins> Linking the project environment and the Dialog 6.0.14 SDK </ins>
+### <ins> Linking the project environment and the Dialog 6.0.18 SDK </ins>
 
 <br/>
 
-**Note**: _Linking the SW example project environment and Dialog 6.0.14 SDK adds absolute file paths to files in your SW example project environment path containing information about your system’s folder structure._ 
+**Note**: _Linking the SW example project environment and Dialog 6.0.18 SDK adds absolute file paths to files in your SW example project environment path containing information about your system’s folder structure._ 
 
-_If the repository is cloned inside the SDK's project folder then by default all the projects are linked to that SDK given that the folder structure looks like "..\6.0.14.1114\projects\BLE_SDK6_examples"._
+_If the repository is cloned inside the SDK's project folder then by default all the projects are linked to that SDK given that the folder structure looks like "..\6.0.18.1182\projects\BLE_SDK6_examples"._
 
 _The Python script also supports cleaning these absolute file paths.See “Cleaning the project environment”._
 
 <br/>
 
-Below are the steps to link all the SW example project environments to the 6.0.14 SDK. This script will also copy project folders into SDK location at projects_github.
+Below are the steps to link all the SW example project environments to the 6.0.18 SDK. This script will also copy project folders into SDK location at projects_github.
 
 1. Python 3.6 or higher is required to run the small example environment generation script.
 Python can be downloaded from [Python.org](http://python.org).
@@ -130,12 +130,12 @@ Python can be downloaded from [Python.org](http://python.org).
 
     For instance to link all projects:
     ```console
-    > ..\BLE_SDK6_examples> python dlg_make_keil5_env_v2.py -sdkpath “C:\dev\6.0.14”
+    > ..\BLE_SDK6_examples> python dlg_make_keil5_env_v2.py -sdkpath “C:\dev\6.0.18”
     ```
 	
 	For instance to link a single projects:
     ```console
-    > ..\connectivity\active_scanner\project_environment> python dlg_make_keil5_env_v2.py -sdkpath “C:\dev\6.0.14”
+    > ..\connectivity\active_scanner\project_environment> python dlg_make_keil5_env_v2.py -sdkpath “C:\dev\6.0.18”
     ```
 
 5. The script should indicate successful execution, as shown below, 
@@ -148,7 +148,7 @@ Python can be downloaded from [Python.org](http://python.org).
 
 <br/>
 
-Linking the project adds absolute paths to the project files, pointing them to the 6.0.14 SDK and adding projects in SDK location under folder projects_github. The clean functionality removes these absolute paths.
+Linking the project adds absolute paths to the project files, pointing them to the 6.0.18 SDK and adding projects in SDK location under folder projects_github. The clean functionality removes these absolute paths.
 Since absolute paths contain intermediate directory names, the clean command makes sure these intermediate directories are not shared with internal and external application users.
 
 Example: After linking, `C:\Users\Your_name\Upcoming_project\Keil_5` reveals the user’s name and the name of the project the user is working on.

@@ -9,14 +9,11 @@
 import argparse
 import os
 import pathlib
-from banner import shieldsBanner
 
-from common import getTargetsFile, bashexec
+from banner import shieldsBanner
+from common import bashexec
 from project import ProjectList
 
-shieldsIoPrefix = '''<img style="background-color:transparent" src="https://img.shields.io/badge/'''
-shieldsIoSuffix = '''?style=flat-square" alt="banner">'''
-shieldsIoSdk = '''<img style="background-color:transparent" src="https://img.shields.io/badge/SDK-6.0.18-blue?style=flat-square" alt="banner">'''
 
 def parseArgs():
     """Get the arguments passed to script."""
@@ -47,19 +44,21 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
+    projects = ProjectList(jsonFile=args.datafile, verbose=args.verbose)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
     metadatadir = startdir.joinpath(args.metadata_dir)
 
     return projects, examplesdir, startdir, metadatadir
 
+
 def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
+    """Make the banner with shields.io badges."""
     if args.verbose:
-        print("generating banner for "+str(project.title))
+        print("generating banner for " + str(project.title))
 
     banner = shieldsBanner()
-    banner.addShield("SDK","6.0.18","blue")
+    banner.addShield("SDK", "6.0.18", "blue")
 
     for buildSystem in allBuildSystems:
         firstShieldAdded = False
@@ -67,47 +66,70 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
         for target in allTargets:
             targetFound = False
             for build in project.buildStatus:
-                if (buildSystem == build["buildsystem"])and(target == build["target"]["name"]):
+                if (buildSystem == build["buildsystem"]) and (
+                    target == build["target"]["name"]
+                ):
                     if not firstShieldAdded:
-                        banner.addShield(str(buildSystem + '%20builds'),build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
+                        banner.addShield(
+                            str(buildSystem + "%20builds"),
+                            build["target"]["name"],
+                            "brightgreen" if build["passed"] is True else "red",
+                        )
                         firstShieldAdded = True
                     else:
-                        banner.addShield("",build["target"]["name"],"brightgreen" if build["passed"] is True else "red")
+                        banner.addShield(
+                            "",
+                            build["target"]["name"],
+                            "brightgreen" if build["passed"] is True else "red",
+                        )
                     targetFound = True
             if not targetFound:
                 if not firstShieldAdded:
-                    banner.addShield(str(buildSystem + '%20builds'),target,"inactive")
+                    banner.addShield(str(buildSystem + "%20builds"), target, "inactive")
                     firstShieldAdded = True
                 else:
-                    banner.addShield("",target,"inactive")
+                    banner.addShield("", target, "inactive")
 
     banner.save(filePath)
 
+
 def findAllBuildSystems(projects):
+    """Find all build systems that are present in the projects."""
     buildSystems = []
     for project in projects:
         for build in project.buildStatus:
             buildSystems.append(build["buildsystem"])
     buildSystems = set(buildSystems)
     if args.verbose:
-        print("found buildSystems "+str(buildSystems))
+        print("found buildSystems " + str(buildSystems))
     return buildSystems
 
+
 def findAllTargets(projects):
+    """Find all targets that are present in the projects."""
     targets = []
     for project in projects:
         for build in project.buildStatus:
             targets.append(build["target"]["name"])
     targets = set(targets)
     if args.verbose:
-        print("found targets "+str(targets))
+        print("found targets " + str(targets))
     return targets
 
+
 def synchFilesAws():
-    print("Synching metadata to AWS...")
-    command = ["aws","s3","sync","--delete",str(metadatadir),"s3://lpccs-docs.renesas.com/metadata/BLE_SDK6_examples"]
+    """Synchronize the files to AWS."""
+    print("Syncing metadata to AWS...")
+    command = [
+        "aws",
+        "s3",
+        "sync",
+        "--delete",
+        str(metadatadir),
+        "s3://lpccs-docs.renesas.com/metadata/BLE_SDK6_examples",
+    ]
     if args.verbose:
-        print("Executing "+str(command))
+        print("Executing " + str(command))
     bashexec(command)
 
 
@@ -119,10 +141,9 @@ if __name__ == "__main__":
 
     for project in projects:
         bannerDirPath = metadatadir.joinpath(project.path)
-        bannerDirPath.mkdir(parents=True,exist_ok=True)
+        bannerDirPath.mkdir(parents=True, exist_ok=True)
         bannerFilePath = bannerDirPath.joinpath("banner.svg")
         makeBadgeBanner(project, bannerFilePath, allBuildSystems, allTargets)
-
 
     synchFilesAws()
 

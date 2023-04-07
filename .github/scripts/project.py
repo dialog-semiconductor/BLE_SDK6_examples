@@ -15,21 +15,29 @@
 import json
 import os
 import pathlib
-import subprocess
 
-from common import bcolors, bashexec, findFirstOfGlob
+from common import bashexec, bcolors, findFirstOfGlob
+
 
 class ProjectList(list):
     """The project list class is a python list of project items with custom initialization items and some custom print options."""
 
-    def __init__(self, jsonFile=False, projectDirectory=False, examplesDirectory=False, verbose=False):
+    def __init__(
+        self,
+        jsonFile=False,
+        projectDirectory=False,
+        examplesDirectory=False,
+        verbose=False,
+    ):
         """Initialize the Project using either a json file or a directory to start searching for the projects."""
         if jsonFile:
             self._initFromJsonFile(jsonFile, verbose)
         elif all([projectDirectory, examplesDirectory]):
             self._initFromDirectory(projectDirectory, examplesDirectory, verbose)
         else:
-            raise Exception("To initialize a ProjectList from a json, provide argument with json file. Or to initialize a ProjectList from a directory, provide arguments projectDirectory and examplesDirectory")
+            raise Exception(
+                "To initialize a ProjectList from a json, provide argument with json file. Or to initialize a ProjectList from a directory, provide arguments projectDirectory and examplesDirectory"
+            )
 
     def _initFromJsonFile(self, jsonFile, verbose=False):
         """Initialize from a json file."""
@@ -55,9 +63,9 @@ class ProjectList(list):
         failedList = []
         for project in self:
             stat = project.checkBuildStatus(target, buildSystem)
-            if (stat == "passed"):
+            if stat == "passed":
                 passedList.append(project)
-            elif (stat == "failed"):
+            elif stat == "failed":
                 failedList.append(project)
         # then print
         print("\npassed " + target.name + ":")
@@ -70,6 +78,7 @@ class ProjectList(list):
         print("| PASSED: " + str(len(passedList)) + " ")
         print("| FAILED: " + str(len(failedList)) + " ")
         print("---------------")
+
 
 class Project:
     """Projects are all of the individual cmake project projects in this repository."""
@@ -109,9 +118,9 @@ class Project:
 
     def _initFromDict(self, dict, pathrelativeto=False, verbose=False):
         """Initialize the Project from a dict."""
-        self.path = pathlib.Path(dict["path"].replace("\\","/"))
+        self.path = pathlib.Path(dict["path"].replace("\\", "/"))
         if verbose:
-            print("Initializing "+str(self.path))
+            print("Initializing " + str(self.path))
         self.title = pathlib.Path(dict["title"])
         self.group = pathlib.Path(dict["group"])
         self.excludeBuilds = dict["excludeBuilds"]
@@ -119,15 +128,45 @@ class Project:
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
         if pathrelativeto:
-            self.absPath = pathlib.Path(pathrelativeto).joinpath(dict["absPath"].replace("\\","/"))
-            if not self.absPath.exists(): # if path is not directly relative, search within folders
-                abspathMatchedGlob = sorted(pathlib.Path('.').glob("**/*"+str(pathlib.Path(dict["absPath"].replace("\\","/")))))[-1]
+            self.absPath = pathlib.Path(pathrelativeto).joinpath(
+                dict["absPath"].replace("\\", "/")
+            )
+            if (
+                not self.absPath.exists()
+            ):  # if path is not directly relative, search within folders
+                abspathMatchedGlob = sorted(
+                    pathlib.Path(".").glob(
+                        "**/*" + str(pathlib.Path(dict["absPath"].replace("\\", "/")))
+                    )
+                )[-1]
                 self.absPath = pathlib.Path(pathrelativeto).joinpath(abspathMatchedGlob)
-            self.patchFile = pathlib.Path(pathrelativeto).joinpath(dict["patchFile"].replace("\\","/")) if dict["patchFile"] else ""
-            self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(dict["uvprojxFile"].replace("\\","/"))
-            self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(dict["uvisionLogFile"].replace("\\","/"))
-            self.cmakelistsFile = pathlib.Path(pathrelativeto).joinpath(dict["cmakelistsFile"].replace("\\","/")) if dict["cmakelistsFile"] else ""
-            self.readmePath = pathlib.Path(pathrelativeto).joinpath(dict["readmePath"].replace("\\","/")) if dict["readmePath"] else ""
+            self.patchFile = (
+                pathlib.Path(pathrelativeto).joinpath(
+                    dict["patchFile"].replace("\\", "/")
+                )
+                if dict["patchFile"]
+                else ""
+            )
+            self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(
+                dict["uvprojxFile"].replace("\\", "/")
+            )
+            self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(
+                dict["uvisionLogFile"].replace("\\", "/")
+            )
+            self.cmakelistsFile = (
+                pathlib.Path(pathrelativeto).joinpath(
+                    dict["cmakelistsFile"].replace("\\", "/")
+                )
+                if dict["cmakelistsFile"]
+                else ""
+            )
+            self.readmePath = (
+                pathlib.Path(pathrelativeto).joinpath(
+                    dict["readmePath"].replace("\\", "/")
+                )
+                if dict["readmePath"]
+                else ""
+            )
         else:
             self.absPath = pathlib.Path(dict["absPath"])
             self.patchFile = pathlib.Path(dict["patchFile"])
@@ -137,21 +176,27 @@ class Project:
             self.readmePath = pathlib.Path(dict["readmePath"])
 
     def applyPatchToSdk(self, sdkPath):
+        """Apply a patch file to an sdkPath."""
         if self.patchFile:
             startdir = pathlib.Path(os.getcwd())
             sdkdir = pathlib.Path(sdkPath)
             os.chdir(sdkdir)
-            print(bcolors.OKBLUE + "applying patch for " + str(self.title) + bcolors.ENDC)
-            bashexec(["git","apply",self.patchFile])
+            print(
+                bcolors.OKBLUE + "applying patch for " + str(self.title) + bcolors.ENDC
+            )
+            bashexec(["git", "apply", self.patchFile])
             os.chdir(startdir)
 
     def revertPatchToSdk(self, sdkPath):
+        """Revert a patch file to an sdkPath."""
         if self.patchFile:
             startdir = pathlib.Path(os.getcwd())
             sdkdir = pathlib.Path(sdkPath)
             os.chdir(sdkdir)
-            print(bcolors.OKBLUE + "removing patch for " + str(self.title) + bcolors.ENDC)
-            bashexec(["git","apply",self.patchFile,"--reverse"])
+            print(
+                bcolors.OKBLUE + "removing patch for " + str(self.title) + bcolors.ENDC
+            )
+            bashexec(["git", "apply", self.patchFile, "--reverse"])
             os.chdir(startdir)
 
     def addBuildStatus(self, buildsystem, target, passed, binPath):
@@ -175,28 +220,70 @@ class Project:
         )
 
     def checkBuildStatus(self, target, buildSystem):
+        """Check if a build status is passed."""
         for build in self.buildStatus:
-            if (build['buildsystem'] is buildSystem.name) and (build['target']['name'] is target.name) and (build['passed'] is True):
+            if (
+                (build["buildsystem"] is buildSystem.name)
+                and (build["target"]["name"] is target.name)
+                and (build["passed"] is True)
+            ):
                 return "passed"
-            elif (build['buildsystem'] is buildSystem.name) and (build['target']['name'] is target.name) and (build['passed'] is False):
+            elif (
+                (build["buildsystem"] is buildSystem.name)
+                and (build["target"]["name"] is target.name)
+                and (build["passed"] is False)
+            ):
                 return "failed"
         return False
-
 
     def toDictComplete(self, pathrelativeto=False):
         """Get the project as a dictionary."""
         if pathrelativeto:
             return {
-                "absPath": str(pathlib.Path(self.absPath).relative_to(pathlib.Path(pathrelativeto))) if self.absPath else self.absPath,
+                "absPath": str(
+                    pathlib.Path(self.absPath).relative_to(pathlib.Path(pathrelativeto))
+                )
+                if self.absPath
+                else self.absPath,
                 "path": str(self.path),
                 "title": str(self.title),
                 "group": str(self.group),
                 "excludeBuilds": self.excludeBuilds,
-                "patchFile": str(pathlib.Path(self.patchFile).relative_to(pathlib.Path(pathrelativeto))) if self.patchFile else self.patchFile,
-                "uvprojxFile": str(pathlib.Path(self.uvprojxFile).relative_to(pathlib.Path(pathrelativeto))) if self.uvprojxFile else self.uvprojxFile,
-                "uvisionLogFile": str(pathlib.Path(self.uvisionLogFile).relative_to(pathlib.Path(pathrelativeto))) if self.uvisionLogFile else self.uvisionLogFile,
-                "cmakelistsFile": str(pathlib.Path(self.cmakelistsFile).relative_to(pathlib.Path(pathrelativeto))) if self.cmakelistsFile else self.cmakelistsFile,
-                "readmePath": str(pathlib.Path(self.readmePath).relative_to(pathlib.Path(pathrelativeto))) if self.readmePath else self.readmePath,
+                "patchFile": str(
+                    pathlib.Path(self.patchFile).relative_to(
+                        pathlib.Path(pathrelativeto)
+                    )
+                )
+                if self.patchFile
+                else self.patchFile,
+                "uvprojxFile": str(
+                    pathlib.Path(self.uvprojxFile).relative_to(
+                        pathlib.Path(pathrelativeto)
+                    )
+                )
+                if self.uvprojxFile
+                else self.uvprojxFile,
+                "uvisionLogFile": str(
+                    pathlib.Path(self.uvisionLogFile).relative_to(
+                        pathlib.Path(pathrelativeto)
+                    )
+                )
+                if self.uvisionLogFile
+                else self.uvisionLogFile,
+                "cmakelistsFile": str(
+                    pathlib.Path(self.cmakelistsFile).relative_to(
+                        pathlib.Path(pathrelativeto)
+                    )
+                )
+                if self.cmakelistsFile
+                else self.cmakelistsFile,
+                "readmePath": str(
+                    pathlib.Path(self.readmePath).relative_to(
+                        pathlib.Path(pathrelativeto)
+                    )
+                )
+                if self.readmePath
+                else self.readmePath,
                 "builddir": str(self.builddir),
                 "buildStatus": self.buildStatus,
             }
@@ -261,5 +348,3 @@ class Project:
             + "\n\tbuildStatus: "
             + str(self.buildStatus)
         )
-
-

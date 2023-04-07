@@ -15,13 +15,12 @@ import argparse
 import json
 import os
 import pathlib
-import shutil
 import signal
 import sys
 
+from buildSystems import getBuildSystem
 from common import bcolors, getTargetsFile
 from project import ProjectList
-from buildSystems import getBuildSystem
 
 
 def parseArgs():
@@ -77,8 +76,8 @@ def parseArgs():
     parser.add_argument(
         "-b",
         "--build-system",
-        default = "CMake/gcc10",
-        choices= ["CMake/gcc10","Keil/armcomp6"],
+        default="CMake/gcc10",
+        choices=["CMake/gcc10", "Keil/armcomp6"],
         help="The build system used for the build. default='CMake'",
     )
     parser.add_argument(
@@ -100,14 +99,20 @@ def setVars():
     targets = getTargetsFile(args.targets)
     startdir = pathlib.Path(os.getcwd())
     datafile = startdir.joinpath(args.datafile)
-    buildSystem = getBuildSystem(args.build_system, examplesdir, args.sdkdir, args.verbose)
+    buildSystem = getBuildSystem(
+        args.build_system, examplesdir, args.sdkdir, args.verbose
+    )
     if args.append:
-        projectFiles = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
+        projectFiles = ProjectList(jsonFile=args.datafile, verbose=args.verbose)
     else:
-        projectFiles = ProjectList(projectDirectory=args.projdir, examplesDirectory=examplesdir, verbose=args.verbose)
+        projectFiles = ProjectList(
+            projectDirectory=args.projdir,
+            examplesDirectory=examplesdir,
+            verbose=args.verbose,
+        )
 
     for p in projectFiles:
-        if (str(p.path)+"/") in args.exclude:
+        if (str(p.path) + "/") in args.exclude:
             if args.verbose:
                 print(
                     bcolors.WARNING
@@ -124,7 +129,7 @@ def checkProjects():
     """Use the build system to check the build result."""
     for project in projectFiles:
         for target in targets:
-            buildSystem.check(project,target)
+            buildSystem.check(project, target)
 
 
 def buildProjects():

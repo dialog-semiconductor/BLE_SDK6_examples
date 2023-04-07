@@ -17,7 +17,7 @@ import os
 import pathlib
 import shutil
 
-from common import getTargetsFile, bashexec
+from common import bashexec, getTargetsFile
 from project import ProjectList
 
 
@@ -54,8 +54,8 @@ def parseArgs():
     parser.add_argument(
         "-b",
         "--build-system",
-        default = "CMake",
-        choices= ["CMake","Keil"],
+        default="CMake",
+        choices=["CMake", "Keil"],
         help="The build system used for the build. default='CMake'",
     )
     args = parser.parse_args()
@@ -65,7 +65,7 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
+    projects = ProjectList(jsonFile=args.datafile, verbose=args.verbose)
     targets = getTargetsFile(args.targets)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
@@ -98,7 +98,7 @@ def sortProjectData():
 def copyFiles():
     """Copy the files to artifacts folder."""
     for t in targets:
-        print("Copying "+t.name)
+        print("Copying " + t.name)
         for m in t.metadata:
             p = next((i for i in projects if str(i.title) == m["title"]), None)
             binpath = p.absPath.joinpath(p.builddir).joinpath(
@@ -108,17 +108,26 @@ def copyFiles():
             if args.verbose:
                 print("Copying:")
                 print(str(p))
-                print("binpath = "+str(binpath))
+                print("binpath = " + str(binpath))
                 print("artifactpath = " + str(artifactpath))
             artifactpath.mkdir(parents=True)
             shutil.copy(binpath, artifactpath)
 
+
 def synchFilesAws():
+    """Synchronize the files to AWS."""
     for target in targets:
-        print("deploying "+target.name)
-        command = ["aws","s3","sync","--delete",str(artifactsdir.joinpath(target.name)),"s3://lpccs-docs.renesas.com/examples_arfitacts/"+target.name]
+        print("deploying " + target.name)
+        command = [
+            "aws",
+            "s3",
+            "sync",
+            "--delete",
+            str(artifactsdir.joinpath(target.name)),
+            "s3://lpccs-docs.renesas.com/examples_arfitacts/" + target.name,
+        ]
         if args.verbose:
-            print("Executing "+str(command))
+            print("Executing " + str(command))
         bashexec(command)
 
 

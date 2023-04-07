@@ -12,7 +12,6 @@
 # #####################################################################################
 """This file contains the common functions and classes used by the build process."""
 import json
-import os
 import pathlib
 import subprocess
 
@@ -28,7 +27,6 @@ def bashexec(command, prnt=False):
     else:
         process = subprocess.Popen(command, stdout=subprocess.PIPE)
     return process.communicate()[0], process.returncode
-
 
 
 def findFirstOfGlob(path, pathGlob):
@@ -51,6 +49,7 @@ class Target:
         """Get target as json."""
         return {"name": self.name, "acronym": self.acronym}
 
+
 def getTargetsFile(file):
     """Get a list with target devices."""
     targetlist = []
@@ -59,6 +58,7 @@ def getTargetsFile(file):
     for tD in targetsData:
         targetlist.append(Target(tD["name"], tD["acronym"]))
     return targetlist
+
 
 class bcolors:
     """Colors for printing in terminal."""

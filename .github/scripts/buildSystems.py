@@ -11,31 +11,40 @@
 # OR OTHER DEALINGS IN THE SOFTWARE.
 # #####################################################################################
 """This file contains a class to handle different build systems."""
-import subprocess
 import os
-import shutil
-import sys
 import pathlib
+import shutil
+import subprocess
+import sys
 
-from common import bcolors, bashexec
+from common import bashexec, bcolors
+
 sys.path.append(str(pathlib.Path(os.path.abspath(__file__)).parents[2]))
 
+
 def getBuildSystem(buildsystem, examplesdir=False, sdkDir=False, verbose=False):
+    """Get a build system based on the type specified by buildSystem."""
     if (buildsystem == "CMake/gcc10") and all([examplesdir, sdkDir]):
         return CMake(examplesdir, sdkDir, verbose)
     elif (buildsystem == "Keil/armcomp6") and sdkDir:
         return Keil(sdkDir, verbose)
     else:
-        raise Exception("To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir or To create a Keil build system provide sdkDir")
+        raise Exception(
+            "To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir or To create a Keil build system provide sdkDir"
+        )
 
 
 class CMake:
     """Build system for CMake."""
+
     def __init__(self, examplesdir, sdkDir, verbose=False):
+        """Initialize the CMake build system."""
         self.name = "CMake/gcc10"
         self.verbose = verbose
         if not any([examplesdir, sdkDir]):
-            raise Exception("To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir")
+            raise Exception(
+                "To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir"
+            )
         self.examplesdir = str(examplesdir)
         self.gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
         self.sdkDir = str(sdkDir)
@@ -44,10 +53,20 @@ class CMake:
         """Build a project."""
         startdir = os.getcwd()
         if not project.cmakelistsFile:
-            print(bcolors.WARNING + "Skipping build due to missing CMakeLists.txt\n" + str(project) + bcolors.ENDC)
+            print(
+                bcolors.WARNING
+                + "Skipping build due to missing CMakeLists.txt\n"
+                + str(project)
+                + bcolors.ENDC
+            )
             return 1
         if self.name in project.excludeBuilds:
-            print(bcolors.WARNING + "Skipping build exluded with --exclude option:\n" + str(project) + bcolors.ENDC)
+            print(
+                bcolors.WARNING
+                + "Skipping build excluded with --exclude option:\n"
+                + str(project)
+                + bcolors.ENDC
+            )
             return 1
         print(bcolors.HEADER + "Building: " + str(project) + bcolors.ENDC)
         os.chdir(project.absPath)
@@ -74,7 +93,7 @@ class CMake:
         )
         os.chdir(project.builddir)
         if bashexec("make -j 7", prnt=self.verbose)[1] != 0:
-            print(bcolors.FAIL+ str(project)+bcolors.ENDC)
+            print(bcolors.FAIL + str(project) + bcolors.ENDC)
             os.chdir(startdir)
             return 1
         os.chdir(startdir)
@@ -84,7 +103,9 @@ class CMake:
         """Check a build."""
         os.chdir(project.absPath)
         if project.cmakelistsFile and self.name not in project.excludeBuilds:
-            binPath = (project.builddir).joinpath(str(project.title) + "_" + str(target.acronym) + ".bin")
+            binPath = (project.builddir).joinpath(
+                str(project.title) + "_" + str(target.acronym) + ".bin"
+            )
             if (
                 bashexec(
                     [
@@ -100,32 +121,50 @@ class CMake:
                     project.addBuildStatus(self.name, target, True, binPath)
                 else:
                     project.addBuildStatus(self.name, target, False, binPath)
-        return 0 
+        return 0
+
 
 class Keil:
     """Build system for Keil."""
+
     def __init__(self, sdkDir, verbose=False):
+        """Initialize the Keil build system."""
         self.name = "Keil/armcomp6"
         self.sdkDir = sdkDir
         self.verbose = verbose
         self.passmarker = '.axf" - 0 Error(s),'
 
-    def build(self, project ):
+    def build(self, project):
         """Build a project."""
         if self.name not in project.excludeBuilds:
             print(bcolors.OKBLUE + "building: " + str(project) + bcolors.ENDC)
         else:
-            print(bcolors.WARNING + "not building " + str(project.title) + "... (excluded with -x option)" + bcolors.ENDC)
+            print(
+                bcolors.WARNING
+                + "not building "
+                + str(project.title)
+                + "... (excluded with -x option)"
+                + bcolors.ENDC
+            )
             return 0
         os.chdir(project.absPath)
-        keilCommand = ["C:/Keil_v5/UV4/UV4.exe", "-b", str(project.uvprojxFile.resolve()), "-z", "-o", project.uvisionLogFile.name]
+        keilCommand = [
+            "C:/Keil_v5/UV4/UV4.exe",
+            "-b",
+            str(project.uvprojxFile.resolve()),
+            "-z",
+            "-o",
+            project.uvisionLogFile.name,
+        ]
         if self.verbose:
-            print("executing Keil command: "+str(keilCommand))
+            print("executing Keil command: " + str(keilCommand))
         returncode = subprocess.call(keilCommand)
         # Keil returns 0 if build is ok, 1 if there are warnings, and 2-20 if there are errors
         colors = [bcolors.OKGREEN, bcolors.WARNING] + [bcolors.FAIL] * 18
-        if returncode >= len(colors): # this is to handle undocumented Keil return codes
-            returncode = 3 
+        if returncode >= len(
+            colors
+        ):  # this is to handle undocumented Keil return codes
+            returncode = 3
         with open(project.uvisionLogFile, "r") as f:
             print(colors[returncode] + f.read() + bcolors.ENDC)
         return returncode
@@ -135,9 +174,19 @@ class Keil:
         if self.name not in project.excludeBuilds:
             with open(project.uvisionLogFile) as log, open(project.uvprojxFile) as proj:
                 if ("<TargetName>" + target.name + "</TargetName>") in proj.read():
-                    binPath = pathlib.Path(project.uvprojxFile.parent.name).joinpath("out_"+target.name+"/Objects/"+os.path.splitext(project.title.name)[0] + "_" + str(target.acronym) + ".bin")
-                    if ((target.acronym + self.passmarker) in log.read()):# and (os.path.isfile(binPath)):
+                    binPath = pathlib.Path(project.uvprojxFile.parent.name).joinpath(
+                        "out_"
+                        + target.name
+                        + "/Objects/"
+                        + os.path.splitext(project.title.name)[0]
+                        + "_"
+                        + str(target.acronym)
+                        + ".bin"
+                    )
+                    if (
+                        target.acronym + self.passmarker
+                    ) in log.read():  # and (os.path.isfile(binPath)):
                         project.addBuildStatus(self.name, target, True, binPath)
                     else:
                         project.addBuildStatus(self.name, target, False, binPath)
-        return 0 
+        return 0

@@ -12,14 +12,13 @@
 # #####################################################################################
 """A script to send a purge request to github to purge repo images."""
 import argparse
-import pathlib
 import os
-import urllib.request
+import pathlib
 
 from project import ProjectList
-from common import bashexec
 
-#https://dev.to/jcubic/github-action-to-clear-cache-on-images-in-readme-5g1n
+# https://dev.to/jcubic/github-action-to-clear-cache-on-images-in-readme-5g1n
+
 
 def parseArgs():
     """Get the arguments passed to script."""
@@ -55,20 +54,32 @@ def parseArgs():
 
     return args
 
+
 def setVars():
     """Set the variables used in script."""
-    projects = ProjectList(jsonFile=args.datafile,verbose=args.verbose)
+    projects = ProjectList(jsonFile=args.datafile, verbose=args.verbose)
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
     startdir = pathlib.Path(os.getcwd())
 
     return projects, examplesdir, startdir
 
+
 def purgeGithubCache(project):
-    readmeUrl = str(args.url)+"/blob/"+str(args.branch)+"/"+str(project.path)+"/Readme.md"
+    """Send a request to github to purge the cache of the readme from a project."""
+    readmeUrl = (
+        str(args.url)
+        + "/blob/"
+        + str(args.branch)
+        + "/"
+        + str(project.path)
+        + "/Readme.md"
+    )
     if args.verbose:
-        print("purging readme "+readmeUrl)
-    os.system("curl -s "+readmeUrl+" > readme.html")
-    os.system('''grep -Eo '<img src="[^"]+"' readme.html | grep camo | grep -Eo 'https[^"]+' | xargs -I {} curl -w "\n" -s -X PURGE {}''')
+        print("purging readme " + readmeUrl)
+    os.system("curl -s " + readmeUrl + " > readme.html")
+    os.system(
+        """grep -Eo '<img src="[^"]+"' readme.html | grep camo | grep -Eo 'https[^"]+' | xargs -I {} curl -w "\n" -s -X PURGE {}"""
+    )
 
 
 if __name__ == "__main__":

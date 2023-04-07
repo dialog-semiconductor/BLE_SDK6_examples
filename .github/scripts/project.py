@@ -110,6 +110,8 @@ class Project:
     def _initFromDict(self, dict, pathrelativeto=False, verbose=False):
         """Initialize the Project from a dict."""
         self.path = pathlib.Path(dict["path"].replace("\\","/"))
+        if verbose:
+            print("Initializing "+str(self.path))
         self.title = pathlib.Path(dict["title"])
         self.group = pathlib.Path(dict["group"])
         self.excludeBuilds = dict["excludeBuilds"]
@@ -117,8 +119,10 @@ class Project:
         self.builddir = pathlib.Path(dict["builddir"])
         self.buildStatus = dict["buildStatus"]
         if pathrelativeto:
-            abspathMatchedGlob = sorted(pathlib.Path('.').glob("**/*"+str(pathlib.Path(dict["absPath"].replace("\\","/")))))[-1]
-            self.absPath = pathlib.Path(pathrelativeto).joinpath(abspathMatchedGlob)
+            self.absPath = pathlib.Path(pathrelativeto).joinpath(dict["absPath"].replace("\\","/"))
+            if not self.absPath.exists(): # if path is not directly relative, search within folders
+                abspathMatchedGlob = sorted(pathlib.Path('.').glob("**/*"+str(pathlib.Path(dict["absPath"].replace("\\","/")))))[-1]
+                self.absPath = pathlib.Path(pathrelativeto).joinpath(abspathMatchedGlob)
             self.patchFile = pathlib.Path(pathrelativeto).joinpath(dict["patchFile"].replace("\\","/")) if dict["patchFile"] else ""
             self.uvprojxFile = pathlib.Path(pathrelativeto).joinpath(dict["uvprojxFile"].replace("\\","/"))
             self.uvisionLogFile = pathlib.Path(pathrelativeto).joinpath(dict["uvisionLogFile"].replace("\\","/"))

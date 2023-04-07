@@ -29,7 +29,7 @@ Connect the Pressure 5 Click Board™ to the **MikroBUS™ 2** interface on the 
 
 Apply the jumper configuration of the image shown below.
 
-![Motherboard_Hardware_Configuration_DA14531](assets/PRO-DK-MikroBus-BMP388.jpg)
+![Motherboard_Hardware_Configuration_DA14531](assets/PRO-DK-MikroBus-BMP388.svg)
 
 You'll also need to connect the following jumper wire to the Development Kit PRO motherboard this is to connect the INT pin on the Pressure 5 Click to P0_8 on the DA14531 because 
 the label of J18, pin 2 which indicated as P3_1 unconnected.
@@ -74,7 +74,7 @@ Finally, you'll need to change the jumper settings on the BMP388 MikroBUS™ boa
 
 Plug the Pressure 5 Click board™ to the **MikroBUS™ 1** interface (J15-J16).	
 
-![Motherboard_Hardware_Configuration_DA14585](assets/DA14585_PRO-DK-MikroBus-BMP388.jpg)
+![Motherboard_Hardware_Configuration_DA14585](assets/DA14585_PRO-DK-MikroBus-BMP388.svg)
 
 **NOTE 5**
 

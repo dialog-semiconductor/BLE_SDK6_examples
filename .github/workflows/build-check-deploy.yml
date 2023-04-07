@@ -69,3 +69,8 @@ jobs:
       - name: deploy metadata script
         run: |
           python3  projects/.github/scripts/deploy-metadata.py -v
+
+      # run script that purges all of the banner images from the github cache so the new one is displayed
+      - name: purge github images script
+        run: |
+           python3 .github/scripts/purge-github-img.py -u https://github.com/dialog-semiconductor/BLE_SDK6_examples -b ${GITHUB_REF##*/} -v

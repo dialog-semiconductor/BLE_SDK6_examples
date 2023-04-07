@@ -21,9 +21,9 @@ from common import bcolors, bashexec
 sys.path.append(str(pathlib.Path(os.path.abspath(__file__)).parents[2]))
 
 def getBuildSystem(buildsystem, examplesdir=False, sdkDir=False, verbose=False):
-    if (buildsystem == "CMake") and all([examplesdir, sdkDir]):
+    if (buildsystem == "CMake/gcc10") and all([examplesdir, sdkDir]):
         return CMake(examplesdir, sdkDir, verbose)
-    elif (buildsystem == "Keil") and sdkDir:
+    elif (buildsystem == "Keil/armcomp6") and sdkDir:
         return Keil(sdkDir, verbose)
     else:
         raise Exception("To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir or To create a Keil build system provide sdkDir")
@@ -32,7 +32,7 @@ def getBuildSystem(buildsystem, examplesdir=False, sdkDir=False, verbose=False):
 class CMake:
     """Build system for CMake."""
     def __init__(self, examplesdir, sdkDir, verbose=False):
-        self.name = "CMake"
+        self.name = "CMake/gcc10"
         self.verbose = verbose
         if not any([examplesdir, sdkDir]):
             raise Exception("To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir")
@@ -105,7 +105,7 @@ class CMake:
 class Keil:
     """Build system for Keil."""
     def __init__(self, sdkDir, verbose=False):
-        self.name = "Keil"
+        self.name = "Keil/armcomp6"
         self.sdkDir = sdkDir
         self.verbose = verbose
         self.passmarker = '.axf" - 0 Error(s),'

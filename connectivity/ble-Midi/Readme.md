@@ -33,17 +33,17 @@ The example is running from SRAM. To run the program from flash please visit cha
 	- SW2 (button 2) is configured to P0_11, located on J19 (red box)
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
-	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
+	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.svg)
 	
 * **Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard**
 
 	- SW3 (button 3) is configured to P1_1, located on J19 (red box)
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector.
 
-	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
+	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.svg)
 	
 - **Software configuration**
-    - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest)
+    - [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826)
     - **SEGGER’s J-Link** tools should be downloaded and installed.
     - An iOS smartphone with a MIDI app (for example **KORG Module**).
 

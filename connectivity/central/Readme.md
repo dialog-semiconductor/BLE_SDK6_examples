@@ -34,18 +34,18 @@ The user manuals for the development kits can be found:
 	
 	- When using DA14531, Jumper P2_6 from J2 to UTX (Pin 17 on J1) for serial UART communication.
 	
-	![da14531.jpg](assets/da14531.jpg).
+	![da14531.jpg](assets/da14531.svg).
 	
     - When using DA14531 USB development kit no hardware configuration is needed. You need only to Redefine the UART2_TX_PIN to GPIO_PIN_5 (1 wire UART ) 
 	  
 	  **#define UART2_TX_PIN            GPIO_PIN_5**
 
-	![da14531_usb.png](assets/da14531_usb.png).
+	![da14531_usb.png](assets/da14531_usb.svg).
 	
 * **Software configuration**
 
     - This example requires:
-        * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest), Older versions of SDK6 require minimal changes.
+        * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826), Older versions of SDK6 require minimal changes.
         * SEGGER’s J-Link tools should be downloaded and installed.
 
 

@@ -17,7 +17,7 @@ When connected to a BLE central this example allows the measured pressure and te
 
 The user manuals for the development kits can be found:
 
-- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [Here](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese?r=1564826) for the DA145xxDEVKT-P PRO-Motherboard.
 
 ## How to run the example
 
@@ -109,7 +109,7 @@ If you want to use the I2C interface, no jumpers wires are required, you can ref
 ## Known Limitations
 
 - There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+[known hardware limitations for DA1458x devices](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese?r=1564826) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
 - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
 - you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
 

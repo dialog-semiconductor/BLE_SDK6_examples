@@ -12,7 +12,7 @@ When connected to a BLE central this example allows the measured pressure and te
 
 ### **Software configuration**
 - This example requires:
-  * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+  * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826).
   * SEGGER’s J-Link tools should be downloaded and installed.
 
 The user manuals for the development kits can be found:

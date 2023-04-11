@@ -16,7 +16,7 @@ The service can be interrogated using a BLE scanning app.
 
 - **Hardware configuration**
   - This example runs on the DA14531, DA14585/586 Bluetooth Smart SoC devices.
-  - The DA1458x / DA145xx Pro Development kit is needed for this example with the jumper configuration depicted below ![Uart_Jumper](assets/uart_connection.svg)
+  - The DA1458x / DA145xx Pro Development kit is needed for this example with the jumper configuration depicted below ![Uart_Jumper](assets/uart_connection.svg.2023_04_06_11_34_06.0.svg)
   - Connect the USB Development kit to the host computer.
 - **Software configuration**
   - [SDK6.0.16](https://www.dialog-semiconductor.com/da14531_sdk_latest).

@@ -210,7 +210,8 @@ A 128-bit UUID custom service is also exposed with 3 custom characteristics for 
   - A flywire should be placed between the P06 and the FTDI's UTX pin if printing is enabled (PRINT_DATE_TIME_DATA defined) as well as J8[3:4] jumper for the alert LED.
   - If flash is not used, there is no need for the flash jumpers.  
 
- ![Pro-DK Jumper Placement](assets/hardware_setup_531.jpg)
+ ![Pro-DK Jumper Placement](assets/hardware_setup_531.svg)
+ 
 
 - **Software configuration**
   - This example requires:

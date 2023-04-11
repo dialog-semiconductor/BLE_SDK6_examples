@@ -1,0 +1,19 @@
+
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject>
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Target(s)</th>
+                    <th>Tags</th>
+                </tr>
+                <tr>
+                    <th>test</th>
+                    <th>test</th>
+                    <th>test</th>
+                </tr>
+            </table>
+        </div>
+    </foreignObject>
+</svg>

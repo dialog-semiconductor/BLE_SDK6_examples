@@ -61,11 +61,11 @@ This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices.
 
 In case of DA14585/586,  DA145xx Pro Development Kit is required with default jumper configuration. Please see illustration below:
 
-![58x_pro_dk.](assets/58x_pro_dk.png)
+![58x_pro_dk.](assets/58x_pro_dk.svg)
 
 The Example can also run on ***DA14585 Basic Development Kit*** with default jumper configuration, as demonstrated below:
 
-![585_basic_DK](assets/585_basic_DK.png)
+![585_basic_DK](assets/585_basic_DK.svg)
 
 Refer to the getting started guide of [DA14585 Basic Development Kit](http://lpccs-docs.dialog-semiconductor.com/DA14585_Getting_Started_basic/index.html).
 
@@ -75,12 +75,12 @@ In case of DA14531, the ***DA145xx Pro Development Kit*** is also required for t
 
 Jumpers are placed in default configurations. Refer to the getting started guide of [DA145xx Pro Development Kit](https://www.dialog-semiconductor.com/da14531-getting-started).
 
-![531_pro_dk](assets/531_pro_dk.png)
+![531_pro_dk](assets/531_pro_dk.svg)
 
 ### Software configuration
 
 
-  - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest) or later
+  - [SDK6.0.14](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826) or later
 
   - ***SEGGER’s J-Link*** tools should be downloaded and installed.
 

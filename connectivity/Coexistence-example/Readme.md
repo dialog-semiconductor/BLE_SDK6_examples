@@ -29,10 +29,10 @@ Example requirements:
 - In order to emulate an external device requesting radio transmission a simple button can be used and connected on pin J2:1 (V3) of the motherboard and on WLAN_COEX_24G_EIP pin (default at P05 for DA14531 or P00 for DA14585/586).
 
 <figure>
-<img src="media/DevKit531.png" alt="motherboard_with_DA14531_DB_eval_kit">
+<img src="media/DevKit531.svg" alt="motherboard_with_DA14531_DB_eval_kit">
 	<figcaption>Fig. 1: DA14531 Daughter Board along with Pro Dev Kit</figcaption>
 
-<img src="media/DevKit585_586.png" alt="motherboard_with_DA14585/586_DB_eval_kit">
+<img src="media/DevKit585_586.svg" alt="motherboard_with_DA14585/586_DB_eval_kit">
 	<figcaption>Fig. 2: DA14585/586 Daughter Board along with Pro Dev Kit</figcaption>
 </figure>
 
@@ -405,6 +405,6 @@ Zooming in on Fig. 9 is clear that there is Tx/Rx activity on the 1st depicted c
 ## Known Limitations
 
 - No known hardware limitations for this example, but it is recommended to see the following:
-  - Application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
+  - Application note for [known hardware limitations for DA14531 devices](https://www.renesas.com/eu/en/document/apn/b-075-da14530531-hardware-guidelines?r=1564826)
   - Dialog Software [Forum link](https://www.dialog-semiconductor.com/support)
   - [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started)

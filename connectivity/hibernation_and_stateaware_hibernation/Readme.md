@@ -40,13 +40,13 @@ To run the program from flash or OTP, please visit chapter 11 of the [SmartSnipp
 	- The general hardware configuration remains the same for the 3 use-cases here. Only for the SPI Flash use-case (not for module) we need additional jumper settings.
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
-	![Motherboard_Hardware_Configuration_DA14531](assets/jtag.png)
+	![Motherboard_Hardware_Configuration_DA14531](assets/jtag.svg)
 	
 * **Software configuration**
 
 	- This example requires:
 	* SmartSnippets Toolbox v5.0.14
-    * [SDK6.0.14.1114](https://www.dialog-semiconductor.com/da14531_sdk_latest)
+    * [SDK6 latest version](https://www.dialog-semiconductor.com/da14531_sdk_latest)
 	* Keil5
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
@@ -59,7 +59,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 2. Expand the dialog shown in the red box in the image below.
 
-	![Expand_Select_Device](assets/keil_531.png)
+	![Expand_Select_Device](assets/keil_531.svg)
 
 
 3. Select the device: DA14531

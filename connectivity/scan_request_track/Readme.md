@@ -21,10 +21,10 @@ The example doesn't require any change in the SDK 6.0.14 code as in previous SDK
 	- Connect the DA145xx Pro Development Kit to the host computer.
 	- UART TX on P0_4 for DA14585/DA14586 (place jumper between J1:17 and J1:18)
 
-		![DA14585_connection_wires](assets/DA14585_connection_wires.png)
+		![DA14585_connection_wires](assets/DA14585_connection_wires.svg)
 	- UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27)
 	
-		![DA14531_connection_wires](assets/DA14531_connection_wires.png)
+		![DA14531_connection_wires](assets/DA14531_connection_wires.svg)
 	- For the cursor to operate on DA14531 on the Pro Development kit a fly wire is needed connecting J2:24 with J8.2 pin (default jumper on J8 should be removed).
 	- For the cursor to operate on DA14585 on the Pro Development kit a jumper is needed connecting J8:1 with J8.2 pin (default jumper connection).
 
@@ -53,10 +53,10 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 		- flow  control: none
  - If the device is actively scanned the FW will print the BD address that scanned the device.
  
-	![scan_requests_print](assets/scan_requests_print.svg)
+	![scan_requests_print](assets/scan_requests_print.png)
  - In the case of a scan request, a cursor will also appear in the power profiler of Smart Snippets.
 
-	![scan_request_cursor](assets/scan_request_cursor.svg)
+	![scan_request_cursor](assets/scan_request_cursor.png)
 
 
 ## Known Limitations

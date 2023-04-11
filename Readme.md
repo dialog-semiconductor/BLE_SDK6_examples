@@ -6,6 +6,12 @@ For information about the DA145xx platform and how to bring up your development 
 
 ## Examples Overview
 
+as html:  
+<img src="https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/table.svg?v=1" />
+
+
+
+as markdown:  
 ![Table](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/table.svg?v=1)
 
 

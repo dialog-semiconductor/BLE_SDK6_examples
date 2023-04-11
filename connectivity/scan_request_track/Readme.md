@@ -32,7 +32,7 @@ The example doesn't require any change in the SDK 6.0.14 code as in previous SDK
 
 	- This example requires:
     * Smartsnippets Toolbox 5.0.16.
-    * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+    * [SDK6 Latest version ](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826).
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- **A simple serial terminal** should be installed on the PC
 
@@ -53,10 +53,10 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 		- flow  control: none
  - If the device is actively scanned the FW will print the BD address that scanned the device.
  
-	![scan_requests_print](assets/scan_requests_print.png)
+	![scan_requests_print](assets/scan_requests_print.svg)
  - In the case of a scan request, a cursor will also appear in the power profiler of Smart Snippets.
 
-	![scan_request_cursor](assets/scan_request_cursor.png)
+	![scan_request_cursor](assets/scan_request_cursor.svg)
 
 
 ## Known Limitations

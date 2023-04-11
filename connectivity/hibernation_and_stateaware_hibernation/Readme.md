@@ -59,7 +59,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 2. Expand the dialog shown in the red box in the image below.
 
-	![Expand_Select_Device](assets/keil_531.svg)
+	![Expand_Select_Device](assets/keil_531.png)
 
 
 3. Select the device: DA14531
@@ -202,7 +202,7 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 7. Program the DA14531 using the compiled hex file and boot from flash. To do this, please refer to chapter 13 SPI Flash Programmer in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
 	
-	![SPI Jtag jumper settings](assets/spi.png)
+	![SPI Jtag jumper settings](assets/spi.svg)
 
 ### Using OTP 
 

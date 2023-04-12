@@ -43,7 +43,7 @@ The example is running from SRAM. To run the program from flash please visit cha
 	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.svg)
 	
 - **Software configuration**
-    - [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826)
+    - [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856)
     - **SEGGER’s J-Link** tools should be downloaded and installed.
     - An iOS smartphone with a MIDI app (for example **KORG Module**).
 

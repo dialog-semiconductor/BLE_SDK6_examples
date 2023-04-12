@@ -19,7 +19,7 @@ The user can read the peripheral advertising data in a friendly way on its seria
 * **Software configuration**
 
     - This example requires:
-        * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826).
+        * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856).
         * SEGGER’s J-Link tools should be downloaded and installed.
 
 For the UART to see the communication logs, check the setup shown below for DA14531 and DA14585/586

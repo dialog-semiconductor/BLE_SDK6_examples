@@ -1,9 +1,6 @@
-
-------
-
 # Reset type identification on DA14585/586, DA14531
 
-------
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/features/reset_Indication_update/banner.svg?v=1)
 
 ## Example Description
 Both DA14531 and DA14585/586 devices comprise three main reset signals that can be triggered from different sources, the reset signals are:

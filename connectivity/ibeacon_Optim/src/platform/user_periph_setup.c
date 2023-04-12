@@ -41,8 +41,6 @@
 #include "rwip_config.h"
 #include "gpio.h"
 #include "uart.h"
-#include "spi.h"
-#include "spi_flash.h"
 #include "syscntl.h"
 
 /*
@@ -59,13 +57,12 @@ void GPIO_reservations(void)
     RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
 */
 
-	  RESERVE_GPIO(SPI_FLASH_CS, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
-	  RESERVE_GPIO(SPI_FLASH_CLK, SPI_CLK_PORT, SPI_CLK_PIN, PID_SPI_CLK);
-	  RESERVE_GPIO(SPI_FLASH_DO, SPI_DO_PORT, SPI_DO_PIN, PID_SPI_DO);
-	  RESERVE_GPIO(SPI_FLASH_DI, SPI_DI_PORT, SPI_DI_PIN, PID_SPI_DI);
-
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
+#endif
+
+#if !defined (__DA14586__)
+    RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
 #endif
 }
 
@@ -81,15 +78,11 @@ void set_pad_functions(void)
 #if defined (__DA14586__)
     // Disallow spontaneous DA14586 SPI Flash wake-up
     GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
+#else
+    // Disallow spontaneous SPI Flash wake-up
+    GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
 #endif
 
-    // Configure pins used for SPI flash interface
-		GPIO_Disable_HW_Reset();	
-    GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
-    GPIO_ConfigurePin(SPI_CLK_PORT, SPI_CLK_PIN, OUTPUT, PID_SPI_CLK, false);
-    GPIO_ConfigurePin(SPI_DO_PORT, SPI_DO_PIN, OUTPUT, PID_SPI_DO, false);
-    GPIO_ConfigurePin(SPI_DI_PORT, SPI_DI_PIN, INPUT, PID_SPI_DI, false);
-	
 #if defined (CFG_PRINTF_UART2)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
@@ -112,28 +105,6 @@ static const uart_cfg_t uart_cfg = {
 };
 #endif
 
-/* Default SPI configuration */
-static const spi_cfg_t spi_cfg = {
-    .spi_ms = SPI_MS_MODE_MASTER,
-    .spi_cp = SPI_CP_MODE_0,
-    .spi_speed = SPI_SPEED_MODE_4MHz,
-    .spi_wsz = SPI_MODE_8BIT,
-    .spi_cs = SPI_CS_0,
-    .cs_pad.port = SPI_EN_PORT,
-    .cs_pad.pin = SPI_EN_PIN,
-#if defined (__DA14531__)
-    .spi_capture = SPI_MASTER_EDGE_CAPTURE,
-#endif
-};
-
-/* SPI flash configuration - assumes use of a Macronix MXR2035F as this is
-   present on the DA145xx PRO development kit */
-static const spi_flash_cfg_t spi_flash_cfg = {
-    .dev_index = MX25R2035F_DEV_INDEX,
-    .jedec_id  = MX25V2035F_JEDEC_ID,
-    .chip_size = MX25V2035F_CHIP_SIZE,
-};
-
 void periph_init(void)
 {
 #if defined (__DA14531__)
@@ -154,10 +125,6 @@ void periph_init(void)
     // Initialize UART2
     uart_initialize(UART2, &uart_cfg);
 #endif
-
-  	// Initialize interface to SPI flash so we can use it from within the application
-    spi_flash_configure_env(&spi_flash_cfg);
-    spi_initialize(&spi_cfg);
 
     // Set pad functionality
     set_pad_functions();

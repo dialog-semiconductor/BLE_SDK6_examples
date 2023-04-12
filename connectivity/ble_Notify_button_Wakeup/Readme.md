@@ -1,5 +1,7 @@
 # BLE Notifications on Button Press with Wake-up Controller
 
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_Notify_button_Wakeup/banner.svg?v=1)
+
 ## Example description
 
 This example shows how to configure a DA14531 or DA14585/586 device to send notifications to a BLE central by button presses. The application advertises its presence and waits for a connection. When a central is connected and enables notifications, the application will be able to deliver notifications when the user presses one of the programmable buttons. The service also waits for a predefined message to which it will respond. 

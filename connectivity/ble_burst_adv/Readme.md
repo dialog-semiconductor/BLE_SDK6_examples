@@ -1,6 +1,6 @@
-# ble_burst_adv
+# Burst Advertising with Bluetooth LE
 
-Burst Advertising with Bluetooth LE
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_burst_adv/banner.svg?v=1)
 
 ## Example description
 

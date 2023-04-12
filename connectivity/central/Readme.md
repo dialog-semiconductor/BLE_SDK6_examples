@@ -1,6 +1,6 @@
 # DA14585/DA14586/DA14531 Central Implementation
 
----
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/central/banner.svg?v=1)
 
 
 ## Example description
@@ -108,6 +108,26 @@ This example was written generically enough that it can be exanded on for a cent
 
 - This example is written in a manner to have the capability of supporting more than one connection.  It must be noted that multiple connections requires
 some slight modifications of the SDK, but is possible.  The 58x supports 6-8 connections where the 531 is limited to 3.
+
+## Description of functions
+
+The application functionality is broken up into three source code files: user_central_app.c, user_ble_gap.c and user_ble_gatt.c. The description of the most important functions is as follows:
+
+1.  user_central_app.c
+    -   app_button_press_cb: The function that will be called back when the button is pressed and the associated interrupt triggered. It will perform a write alert level to the Immediate Alert Service for every connected peripheral.
+	-   configure_alert_button: Register the callback function and the interrupt which will fire on button press.
+	-	handle_service_disc_finished: Will be called when a message is delivered to the application task which signals that the Service Discovery has finished. If the Battery Service is enabled on the peripheral, it will read the Battery Level and configure the button for alert.
+	-	user_on_adv_report_ind: Application hook which formats and outputs the advertising reports and saves the identity of the peripheral for later connection.
+	-	user_on_connection: Application hook for a connection event. It will trigger a Service Discovery. 
+	-	handle_svc_ind: Outputs information of the Characteristics during the Service Discovery and checks for the Battery Service and Immediate Alert Service. Handles, UUIDs, properties etc. can be checked here for later processing and use by the application. 
+2.	user_ble_gap.c
+	-	user_ble_gap_start_scan: Configures scanning parameters and starts scanning for peripherals.
+	-	user_ble_gap_connect: Initiates a connection request.
+3.	user_ble_gatt.c
+	-	user_gatt_discover_all_services: Starts a Service Discovery for all handle values (0 to maximum permitted, 0xFF).
+	-	user_ble_gatt_write: Helper function to write values to Characteristics.
+	-	user_gatt_read_simple: Helper function to read the value of a Characteristic.
+	-	user_gatt_parse_service: Parses a service.
 
 
 ## Known Limitations

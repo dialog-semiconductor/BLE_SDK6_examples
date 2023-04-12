@@ -80,27 +80,27 @@ static uint8_t sniff_delay = 1;
  ****************************************************************************************
  */
 
-uint8_t app_connection_idx                      __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd app_adv_data_update_timer_used        __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-timer_hnd app_param_update_request_timer_used   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t X_data                 __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t Y_data                 __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-int16_t Z_data                 __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t X_string[8]               __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Y_string[8]               __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Z_string[8]               __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t X_timer                   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Y_timer                   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t Z_timer                   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t g_timer                   __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t app_connection_idx                      __attribute__((section(".bss.")));//@RETENTION MEMORY
+timer_hnd app_adv_data_update_timer_used        __attribute__((section(".bss."))); //@RETENTION MEMORY
+timer_hnd app_param_update_request_timer_used   __attribute__((section(".bss.")));//@RETENTION MEMORY
+int16_t X_data                 __attribute__((section(".bss."))); //@RETENTION MEMORY
+int16_t Y_data                 __attribute__((section(".bss."))); //@RETENTION MEMORY
+int16_t Z_data                 __attribute__((section(".bss.")));//@RETENTION MEMORY
+uint8_t X_string[8]               __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t Y_string[8]               __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t Z_string[8]               __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t X_timer                   __attribute__((section(".bss.")));//@RETENTION MEMORY
+uint8_t Y_timer                   __attribute__((section(".bss.")));//@RETENTION MEMORY
+uint8_t Z_timer                   __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t g_timer                   __attribute__((section(".bss.")));//@RETENTION MEMORY
 // Retained variables
-struct mnf_specific_data_ad_structure mnf_data  __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+struct mnf_specific_data_ad_structure mnf_data  __attribute__((section(".bss."))); //@RETENTION MEMORY
 // Index of manufacturer data in advertising data or scan response data (when MSB is 1)
-uint8_t mnf_data_index                          __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data_len                     __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data_len                __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
-uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section("retention_mem_area0"), zero_init)); //@RETENTION MEMORY
+uint8_t mnf_data_index                          __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_adv_data_len                     __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data_len               __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_adv_data[ADV_DATA_LEN]           __attribute__((section(".bss."))); //@RETENTION MEMORY
+uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __attribute__((section(".bss."))); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS

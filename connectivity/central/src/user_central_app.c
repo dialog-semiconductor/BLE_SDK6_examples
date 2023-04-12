@@ -431,6 +431,7 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 	
 		if(central_app_env.connection_timer != EASY_TIMER_INVALID_TIMER){
 			app_easy_timer_cancel(central_app_env.connection_timer);
+			central_app_env.connection_timer = EASY_TIMER_INVALID_TIMER;
 		}
 	
     default_app_on_connection(connection_idx, param);
@@ -470,6 +471,7 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param )
 	
 		if(central_app_env.connection_timer != EASY_TIMER_INVALID_TIMER){
 			app_easy_timer_cancel(central_app_env.connection_timer);
+			central_app_env.connection_timer = EASY_TIMER_INVALID_TIMER;
 		}
 		if( central_app_env.num_connections == CFG_MAX_CONNECTIONS)
 		{

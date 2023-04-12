@@ -1,5 +1,7 @@
 # ibeacon
 
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ibeacon/banner.svg?v=1)
+
 iBeacon implementation for the DA14531, DA14585/DA14586
 
 ## Example description

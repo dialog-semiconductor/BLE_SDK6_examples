@@ -96,7 +96,7 @@ typedef struct
 }tput_envt_t;
 
 
-tput_envt_t tput_env																		__attribute__((section("retention_mem_area0"), zero_init));
+tput_envt_t tput_env																		__attribute__((section(".bss.")));
 
 
 /**

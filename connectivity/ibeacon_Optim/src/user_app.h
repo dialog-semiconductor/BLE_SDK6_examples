@@ -51,7 +51,7 @@
 #include <stdint.h>
 
 #include "rf_531.h"
-#include "spi_flash.h"
+//#include "spi_flash.h"
 #include "battery.h"
 #include "llc_util.h"
 #include "lld_util.h"  

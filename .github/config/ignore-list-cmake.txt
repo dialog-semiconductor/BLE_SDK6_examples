@@ -1,0 +1,20 @@
+list of files to be ignored by CI:
+./connectivity/Quuppa_DialogTag/CMakeLists.txt
+./connectivity/RTC_Example/CMakeLists.txt
+./connectivity/ble_pressure_sensor_bmp388/CMakeLists.txt
+./connectivity/ibeacon_Optim/CMakeLists.txt
+./connectivity/multi_con_periph/CMakeLists.txt
+./connectivity/multirole/CMakeLists.txt
+./connectivity/BLE2IR/CMakeLists.txt
+./connectivity/ble_weight_scale_nau7802/CMakeLists.txt
+./features/DA14531_Timer1_SW_Example/CMakeLists.txt
+./features/dynamic_L2CAP_Packet_size_Optimization/CMakeLists.txt
+./interfaces/HID-Gamepad-Digitizer/CMakeLists.txt
+./interfaces/SPI_or_I2C_DMA_accelerometer/CMakeLists.txt
+./interfaces/segger_rtt/CMakeLists.txt
+./interfaces/MCube-Accel-MC36xx/CMakeLists.txt
+./connectivity/switching_roles/CMakeLists.txt
+./helpers/usb_preloaded_firmware/CMakeLists.txt
+./interfaces/I2C-Master-Slave/I2C_Master/CMakeLists.txt
+./interfaces/SPI-Master-Slave/SPI_Master/CMakeLists.txt
+./interfaces/SPI-Master-Slave/SPI_Slave/CMakeLists.txt

@@ -74,7 +74,7 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param ){
     default_app_on_disconnect(param);
 }
 
-static void start_bluetooth_routine(void){
+void start_bluetooth_routine(void){
 	#if defined(CFG_PRINTF)
 	arch_puts("\n\rStart bluetooth routine\n\r");
 	arch_puts("Nonconnectable mode\n\r");
@@ -177,15 +177,14 @@ void led_cycle_cb(void){
 		GPIO_SetInactive(LED_PIN_PORT, LED_PIN);
 	}	
 }
-static void toggle_led(void){
+void toggle_led(void){
 	if (GPIO_GetPinStatus(LED_PIN_PORT, LED_PIN)){
 		GPIO_SetInactive(LED_PIN_PORT, LED_PIN);
 	}else{
 		GPIO_SetActive(LED_PIN_PORT, LED_PIN);
 	}
 }
-
-static void turn_led_off_cb(void){
+void turn_led_off_cb(void){
 	GPIO_SetInactive(LED_PIN_PORT, LED_PIN);
 }
 #endif

@@ -1,6 +1,6 @@
-				# DA14585/DA14586/DA14531 - Changing advertising methods using GPIO button interrupt or timer callbacks
+# DA14585/DA14586/DA14531 - Changing advertising methods using GPIO button interrupt or timer callbacks
 
----
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/advertising_example/banner.svg?v=1)
 
 
 ## Example description
@@ -25,8 +25,8 @@ This example runs on the BLE Smart SoC (System on Chip) devices:
 - DA14585/DA14586 basic development kit.
 
 The user manuals for the development kits can be found:
-- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
-- [Here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
+- [Here](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html) for the DA145xxDEVKT-P PRO-Motherboard.
+- [Here](https://www.renesas.com/tw/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-00fxdevkt-u-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-usb-development-kit) for the Basic Development Kit.
 
 * __Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard__
 
@@ -63,9 +63,11 @@ The user manuals for the development kits can be found:
 
 ### __Software configuration__
 
+  - This example was built on SDK 6.0.14 will be compatible with latest versions.
+
 This example requires:
 	
-- [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+- [SDK latest version](https://www.dialog-semiconductor.com/da14531_sdk_latest).
 - Keil5.
 - __SEGGER’s J-Link__ tools should be downloaded and installed.
 - Serial Terminal software. For example Tera Term or PuTTY.
@@ -96,9 +98,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	```
 
 5. Compile (F7) and launch (ctrl + F5) the example.\
-   If the warning shown below pops up press OK.
- 
-   ![warning](assets/warning.png)
+
 
 ## GPIO identification 
 Make sure to read the correct identification according to your mother board and daughter board.
@@ -165,6 +165,6 @@ Starting point for this example is the BLE barebone project from SDK6. This prov
 - Try different jumper wire, if used.
 
 - If none of the steps described above help, please check the user manual according to your development kit. 
-	- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
-	- [Here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
+	- [Here](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html) for the DA145xxDEVKT-P PRO-Motherboard.
+	- [Here](https://www.renesas.com/tw/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-00fxdevkt-u-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-usb-development-kit) for the Basic Development Kit.
 

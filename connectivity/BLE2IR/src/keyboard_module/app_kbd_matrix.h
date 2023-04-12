@@ -40,6 +40,7 @@
 	#include <app_con_fsm_config.h>
 #endif
 #include "app_kbd_defs.h"
+#include "app_kbd_scan_matrix.h"
 
 /**
  ****************************************************************************************

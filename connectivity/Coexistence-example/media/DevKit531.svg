@@ -530,17 +530,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.1219806"
-     inkscape:cx="303.49005"
-     inkscape:cy="212.77292"
+     inkscape:zoom="1.5004669"
+     inkscape:cx="323.89919"
+     inkscape:cy="257.58649"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:snap-nodes="false"
      inkscape:window-width="1527"
-     inkscape:window-height="1230"
-     inkscape:window-x="-6"
-     inkscape:window-y="53"
+     inkscape:window-height="1368"
+     inkscape:window-x="171"
+     inkscape:window-y="0"
      inkscape:window-maximized="0"
      showborder="false"
      showguides="false"
@@ -846,8 +846,8 @@
          id="flowPara2966-7-4-7">JJ20</flowPara></flowRoot>
     <rect
        ry="0.49145114"
-       y="-113.80446"
-       x="6.2872005"
+       y="-114.14966"
+       x="6.3745866"
        height="90.401512"
        width="105.83169"
        id="rect2322-6-8-7"
@@ -2988,7 +2988,7 @@
     <ellipse
        style="display:inline;fill:#ff0000;fill-opacity:0;stroke:#ff0035;stroke-width:0.333857;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
        id="path42926-0"
-       cx="84.381332"
+       cx="84.318993"
        cy="92.979622"
        rx="1.0729815"
        ry="1.004521" />
@@ -5033,16 +5033,16 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.00522px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.250653"
-       x="123.54437"
-       y="64.112762"
+       x="123.499"
+       y="64.138214"
        id="text5757-9-75"
        transform="scale(0.70098119,1.4265718)"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
          id="tspan5755-3-1"
-         x="123.54437"
-         y="64.112762"
+         x="123.499"
+         y="64.138214"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.00522px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;stroke-width:0.250653">P25</tspan></text>
     <text
        xml:space="preserve"
@@ -5617,96 +5617,98 @@
        ry="1.004521" />
     <text
        xml:space="preserve"
-       style="font-size:4.22498px;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.28600001;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-       x="85.025024"
-       y="51.778542"
-       id="text44237"
-       transform="scale(0.5719283,1.7484709)"><tspan
-         sodipodi:role="line"
-         id="tspan44235"
-         style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.28600001;stroke-dasharray:none;stroke-opacity:1"
-         x="85.025024"
-         y="51.778542">WLAN_COEX_BLE_EIP</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:3.86157px;display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.23499999;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-       x="76.100845"
-       y="62.257408"
+       style="font-size:2.32074px;display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.201;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="64.421471"
+       y="74.924805"
        id="text44237-4"
-       transform="scale(0.6220701,1.6075359)"><tspan
+       transform="scale(0.75884337,1.317795)"><tspan
          sodipodi:role="line"
          id="tspan44235-4"
-         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.23499999;stroke-dasharray:none;stroke-opacity:1"
-         x="76.100845"
-         y="62.257408">WLAN_COEX_DEBUG_B</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:3.56957px;display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.235;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-       x="142.09853"
-       y="47.287441"
-       id="text44237-8"
-       transform="scale(0.62879664,1.5903393)"><tspan
-         sodipodi:role="line"
-         id="tspan44235-1"
-         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.235;stroke-dasharray:none;stroke-opacity:1"
-         x="142.09853"
-         y="47.287441">WLAN_COEX_24G_EIP</tspan></text>
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.201;stroke-dasharray:none;stroke-opacity:1"
+         x="64.421471"
+         y="74.924805">WLAN_COEX_DEBUG_B</tspan></text>
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.136072;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L)"
-       d="M 80.657221,90.349343 76.126064,89.58864"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.283;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="M 80.663551,90.330468 72.264632,88.5574"
        id="path45487"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.172176;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker45706)"
-       d="m 80.801746,93.643956 -2.90743,1.971822"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.283;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker45706)"
+       d="m 79.961757,93.618651 -6.678931,2.606637"
        id="path45702"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
-    <text
-       xml:space="preserve"
-       style="font-size:2.21386px;display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.235;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-       x="128.79427"
-       y="73.723778"
-       id="text44237-48"
-       transform="scale(0.70228413,1.4239251)"><tspan
-         sodipodi:role="line"
-         id="tspan44235-8"
-         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.235;stroke-dasharray:none;stroke-opacity:1"
-         x="128.79427"
-         y="73.723778">WLAN_COEX_DEBUG_A</tspan></text>
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.402;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker46500)"
-       d="m 85.84362,86.637252 4.909528,-6.687036"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.289088;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker46500)"
+       d="M 85.685583,87.175034 90.69398,80.96325"
        id="path46496"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
-       inkscape:transform-center-x="-0.24924354"
-       inkscape:transform-center-y="9.7013808" />
+       inkscape:transform-center-x="-0.25426285"
+       inkscape:transform-center-y="9.0118983" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.195221px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker46546)"
-       d="m 86.021685,90.993864 3.055282,-1.689476"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.283;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker46546);stroke-dasharray:none"
+       d="m 85.72515,90.323298 4.027546,-1.724551"
        id="path46542"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:transform-center-x="0.92912728"
+       inkscape:transform-center-y="1.1291253" />
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.227565px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker46604)"
-       d="m 85.028118,94.175009 5.731983,6.985261"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.283;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker46604)"
+       d="m 85.464196,93.752045 5.551071,6.365035"
        id="path46600"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-size:3.1511px;display:inline;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:1.71208;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-       x="156.58154"
-       y="51.735447"
+       style="font-size:2.29743px;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.201;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:0.76;paint-order:stroke fill markers"
+       x="61.857243"
+       y="69.768997"
+       id="text44237"
+       transform="scale(0.79137359,1.2636257)"><tspan
+         sodipodi:role="line"
+         id="tspan44235"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.201;stroke-dasharray:none;stroke-opacity:0.76"
+         x="61.857243"
+         y="69.768997">WLAN_COEX_BLE_EIP</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.56619px;display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.201;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="104.18418"
+       y="70.157722"
+       id="text44237-8"
+       transform="scale(0.88661199,1.1278891)"><tspan
+         sodipodi:role="line"
+         id="tspan44235-1"
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.201;stroke-dasharray:none;stroke-opacity:1"
+         x="104.18418"
+         y="70.157722">WLAN_COEX_24G_EIP</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.02492px;display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.1296;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="119.61842"
+       y="80.878075"
+       id="text44237-48"
+       transform="scale(0.77218215,1.2950312)"><tspan
+         sodipodi:role="line"
+         id="tspan44235-8"
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.1296;stroke-dasharray:none;stroke-opacity:1"
+         x="119.61842"
+         y="80.878075">WLAN_COEX_DEBUG_A</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.21105px;display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.201;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="106.18004"
+       y="76.806183"
        id="text44237-1"
-       transform="scale(0.57696327,1.7332126)"><tspan
+       transform="scale(0.87009506,1.1492997)"><tspan
          sodipodi:role="line"
          id="tspan44235-3"
-         style="fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:1.71208;stroke-dasharray:none;stroke-opacity:1"
-         x="156.58154"
-         y="51.735447">WLAN_COEX_BLE_PRIO</tspan></text>
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.201;stroke-dasharray:none;stroke-opacity:1"
+         x="106.18004"
+         y="76.806183">WLAN_COEX_BLE_PRIO</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"

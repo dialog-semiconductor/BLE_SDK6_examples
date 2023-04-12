@@ -1,6 +1,6 @@
 # Multi-peripheral Example
 
----
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/multi_con_periph/banner.svg?v=1)
 
 ## Example description
 
@@ -53,6 +53,7 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
 - To be able to override the default functions of the SDK the ____EXCLUDE_ROM_APP_TASK__ __ should be defined in the C/C++ tab in the "options for target" in keil.
 ![options_for_target](assets/options_for_target.png)
 
+<<<<<<< unifymodify
    **Note:** The ROM functions that correspond to **\_\_EXCLUDE_ROM_APP_TASK\_\_** guard should also be removed from the da14531_symbols.txt. If not removed the linker will output an error for multiple defined functions. From the error of the linker it is visible to the end user which function should be removed from the .txt file (the da14531_symbols.txt file is located in */sdk/common_project_files/misc/*).
 
    When all ROM functions are commented from the da14531_symbols.txt file the linking should also fail due to the multiple definition of the app_db_init_start() function declared in the user_multmi_peripheral.c file. This is an SDK function that it will be overridden via application level code.
@@ -215,6 +216,12 @@ Minor changes in the SDK files, that should be applied in order to change SDK co
       uint8_t state = ke_state_get(dest_id);
       uint8_t conidx = KE_IDX_GET(src_id);
   ```
+=======
+- This example needs changes in the SDK to work. To apply the patch file, execute the following command inside your sdk directory:
+```
+git apply path/to/patch/SDK6patch.diff
+```
+>>>>>>> main
 
 ## How to run the example
 

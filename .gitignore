@@ -1,3 +1,4 @@
+**/out_*
 **/out_531
 **/out_585
 **/out_586
@@ -8,9 +9,12 @@
 **/*uvguix*
 **/*scvd
 **/*.sct
-**.o
-**.d
-**.lds
-**da14531
-**da14585
-**da14586
+
+**/build
+.secrets
+*__pycache__
+*projectData.json
+*_log.txt
+artifacts
+*.DS_Store
+*metadata

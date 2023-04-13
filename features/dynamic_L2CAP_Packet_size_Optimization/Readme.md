@@ -23,7 +23,7 @@ This example runs on the BLE Smart SoC (System on Chip) devices:
 - DA14531 USB Kit
 
 The user manuals for the development kits can be found:
-- [DA14531 Development Kit Product page](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [DA14531 Development Kit Product page](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese) for the DA145xxDEVKT-P PRO-Motherboard.
 - [DA14585 Development Kit Basic](https://www.dialog-semiconductor.com/products/da14585-development-kit-basic) for the Basic Development Kit.
 - [DA14531 USB Development Kit Product page](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) for the DA14531 USB Development Kit.
 
@@ -31,17 +31,17 @@ The user manuals for the development kits can be found:
 
 	- When using DA14585/DA14586, Jumper P0_6 from J2 to UTX (Pin 17 on J1).
 	
-	![da14585.jpg](assets/da14585.jpg).
+	![da14585.jpg](assets/da14585.svg).
 	
 	- When using DA14531, Jumper P2_6 from J2 to UTX (Pin 17 on J1) for serial UART communication.
 	
-	![da14531.jpg](assets/da14531.jpg).
+	![da14531.jpg](assets/da14531.svg).
 	
     - When using DA14531 USB development kit no hardware configurationis needed. You need only to Redefine the UART2_TX_PIN to GPIO_PIN_5 (1 wire UART ) 
 	  
 	  **#define UART2_TX_PIN            GPIO_PIN_5**
 
-	![da14531_usb.png](assets/da14531_usb.png).
+	![da14531_usb.png](assets/da14531_usb.svg).
 	
 * **Software configuration**
 

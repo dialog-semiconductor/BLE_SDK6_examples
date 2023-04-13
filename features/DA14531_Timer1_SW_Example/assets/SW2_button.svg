@@ -5292,15 +5292,15 @@
        y="18.557657" />
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,44.73936,4.2501451)"
+       transform="matrix(0.26458333,0,0,0.26458333,47.737038,-8.1062614)"
        id="text5778"
        style="white-space:pre;shape-inside:url(#rect5780);fill:#009cff;fill-opacity:0;stroke:#ff0000;stroke-width:1.02047;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"><tspan
          x="-73.976562"
          y="77.385464"
-         id="tspan1697">SW2 </tspan><tspan
+         id="tspan2758">SW2 </tspan><tspan
          x="-73.976562"
          y="92.385464"
-         id="tspan1699">BUTTON</tspan></text>
+         id="tspan2760">BUTTON</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"

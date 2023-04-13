@@ -205,8 +205,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.5004669"
-     inkscape:cx="90.638454"
-     inkscape:cy="344.22619"
+     inkscape:cx="271.2489"
+     inkscape:cy="360.88767"
      inkscape:document-units="mm"
      inkscape:current-layer="layer10"
      showgrid="false"
@@ -1579,27 +1579,27 @@
        xml:space="preserve"
        transform="scale(0.26458333)"
        id="text4999"
-       style="white-space:pre;shape-inside:url(#rect5001);fill:#009cff;fill-opacity:0;stroke:#ff0000;stroke-width:1.02047;stroke-linecap:round;stroke-miterlimit:2;paint-order:stroke fill markers"><tspan
+       style="white-space:pre;shape-inside:url(#rect5001);display:inline;fill:#009cff;fill-opacity:0;stroke:#ff0000;stroke-width:1.02047;stroke-linecap:round;stroke-miterlimit:2;paint-order:stroke fill markers"><tspan
          x="370.2832"
          y="162.39914"
-         id="tspan6194">LED</tspan></text>
+         id="tspan8542">LED</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-3.517544,6.6445986)"
        id="text5055"
-       style="white-space:pre;shape-inside:url(#rect5057);fill:#009cff;fill-opacity:0;stroke:#ff0000;stroke-width:1.02047;stroke-linecap:round;stroke-miterlimit:2;paint-order:stroke fill markers"><tspan
+       style="white-space:pre;shape-inside:url(#rect5057);display:inline;fill:#009cff;fill-opacity:0;stroke:#ff0000;stroke-width:1.02047;stroke-linecap:round;stroke-miterlimit:2;paint-order:stroke fill markers"><tspan
          x="226.70117"
          y="314.36203"
-         id="tspan6196">SW2</tspan></text>
+         id="tspan8544">SW2</tspan></text>
     <path
-       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5925)"
-       d="M 59.491298,84.596484 59.299255,79.225016"
+       style="display:inline;fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5925)"
+       d="M 59.745161,85.028351 59.553118,79.656883"
        id="path5106"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.1787px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
-       d="m 103.86612,55.420753 -2.2685,-10.819299"
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.1787px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 103.82204,55.345835 -2.2685,-10.819299"
        id="path5108"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />

@@ -20,7 +20,7 @@ The example can be downloaded from Here.
 
 The DA14531 product family incorporates three (3) HW timer blocks **Timer0**, **Timer1**, **Timer2**. From the aforementioned timers only Timer1 is capable of running while the device is in sleep mode since its physically located in a separate power domain (PD_TIM). Thus **Timer1** can be used as a wake up source while the device is in extended or deep sleep.  
 
-![timer1_block_diagram](assets/timer1_block_diagram.svg)
+![timer1_block_diagram](assets/timer1_block_diagram.png)
 
 For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.renesas.com/eu/en/document/dst/da14531-datasheet).
  
@@ -264,7 +264,7 @@ If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following resu
 
     The demo is using the SW2 button for toggling the line high or low, due to the bouncing of the switch miscounts may occur, especially if the system clock is used as a clock source for timer1. In cases where bouncing is expected a more sophisticated scheme should be applied based on the bouncing profile of the signal.
 
-    ![hw_setup](assets/SW2_button.PNG)
+    ![hw_setup](assets/SW2_button.svg)
 
 **Results**
 

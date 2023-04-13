@@ -6,7 +6,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
-   sodipodi:docname="da14531.svg"
+   sodipodi:docname="DevKit531.svg"
    inkscape:export-filename="C:\Users\imorris\Documents\SDKs\BLE\SDK\6.0.12.1020\projects\target_apps\ble_examples\ble_data_logger_htu21d\assets\DA14531-jumper-wires.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -196,9 +196,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0609903"
-     inkscape:cx="78.700058"
-     inkscape:cy="256.36426"
+     inkscape:zoom="6.0018675"
+     inkscape:cx="269.33284"
+     inkscape:cy="342.0602"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="false"
@@ -1776,6 +1776,16 @@
            ry="0.3661648" />
       </g>
     </g>
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0.277946"
+       id="rect3417-1-2-6-2-3-7-6-8-6-7-5-5"
+       width="5.6962767"
+       height="2.3269157"
+       x="105.54778"
+       y="37.096027"
+       ry="0.36616445"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <g
        transform="translate(230.45284,-120.97049)"
        id="g3456-3-6-54"
@@ -2915,6 +2925,17 @@
            ry="0.3661648" />
       </g>
     </g>
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0.253181"
+       id="rect3417-1-2-5-0-0-1-2-0"
+       width="4.7264395"
+       height="2.3269157"
+       x="93.381157"
+       y="-103.38771"
+       ry="0.36616445"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       transform="rotate(90)" />
     <g
        style="display:inline"
        id="g3266-3"
@@ -5238,25 +5259,6 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
        transform="rotate(90)" />
-    <circle
-       style="fill:#ffff00;fill-opacity:1;stroke:#00ffff;stroke-width:0.648999"
-       id="path1610"
-       cx="107.29169"
-       cy="35.453423"
-       r="0.99749571" />
-    <circle
-       style="display:inline;fill:#ffff00;fill-opacity:1;stroke:#00ffff;stroke-width:0.648999"
-       id="path1610-3"
-       cx="84.575729"
-       cy="94.801041"
-       r="0.99749577" />
-    <path
-       style="fill:none;stroke:#00ffff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 85.379317,95.210027 c 8.636128,1.810921 17.873133,0.614053 25.762513,-3.33813 7.88939,-3.952184 14.37895,-10.633528 18.09974,-18.634643 2.83899,-6.104892 4.07887,-12.980624 3.30186,-19.668359 -0.77701,-6.687734 -3.60297,-13.159964 -8.16465,-18.111795 -1.96545,-2.133549 -4.32589,-4.027805 -7.12174,-4.801258 -1.39793,-0.386727 -2.88738,-0.479842 -4.30595,-0.177518 -1.41858,0.302324 -2.76176,1.01071 -3.74675,2.075396 -0.57248,0.618799 -1.0206,1.352181 -1.31001,2.14394"
-       id="path1824"
-       inkscape:path-effect="#path-effect1826"
-       inkscape:original-d="M 85.379317,95.210027 C 98.305459,88.061572 116.27439,80.4278 129.24157,73.237254 142.20875,66.046707 124.58685,48.300123 124.37878,35.4571 c -0.20808,-12.843021 -9.93732,-2.071869 -15.17444,-2.90338 -5.23712,-0.831511 -1.28939,4.886632 -1.31001,2.14394"
-       sodipodi:nodetypes="csssc" />
     <image
        width="44.802971"
        height="7.0691838"
@@ -5266,6 +5268,26 @@
        x="109.99681"
        y="116.3914"
        style="display:inline" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0.277946"
+       id="rect3417-1-2-6-2-3-7-6-8-6-7-5-66"
+       width="5.6962767"
+       height="2.3269157"
+       x="102.99095"
+       y="34.451027"
+       ry="0.36616445"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0.277946"
+       id="rect3417-1-2-6-2-3-7-6-8-6-7-5-6"
+       width="5.6962767"
+       height="2.3269157"
+       x="102.99095"
+       y="31.806009"
+       ry="0.36616445"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
   <g
      inkscape:groupmode="layer"

@@ -33,7 +33,7 @@ The Example can also run on ***DA145xx Pro Development Kit*** with default jumpe
 - Jumper J10:1-J1:15 and J10:2 – J1:17 for shorting UTX and URX through 1K resistor for single wire functionality.
 - Jumper J1:19 – J1:20 for connecting the 1 wire output with P05 of the DA14531. 
  
-![j1_config](assets/j1_config (2).svg)
+![j1_config](assets/j1_config.svg)
 
 Refer to the DA14531 getting started guide of [DA14531 Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
 

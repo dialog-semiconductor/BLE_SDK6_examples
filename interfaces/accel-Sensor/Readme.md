@@ -74,7 +74,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 
 - There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.renesas.com/us/en/document/oth/da1458x-hardware-known-limitations).
 
 - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
 

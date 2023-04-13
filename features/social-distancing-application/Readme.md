@@ -28,7 +28,7 @@ Example requirements:
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D5 on DA14xxx Pro Development Kit for the case of the DA14531 daughtercard
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
 	
-	![motherboard_with_daughter_conf](assets/DevKit531.svg)
+	![motherboard_with_daughter_conf](assets/DevKit5311.svg)
 
 ### Hardware Configuration for the DA14531 USB Kit
 

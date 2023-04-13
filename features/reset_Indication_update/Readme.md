@@ -41,13 +41,13 @@ The DA14531 includes a special register that indicates the reset source previous
       - Connect the DA145xx Pro Development Kit to the host computer.
       - UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionality.
 	
-	![DA14531_connection_wires](assets/hardware_setup_531.jpg)
+	![DA14531_connection_wires](assets/hardware_setup_531.svg)
 
   - For running the example on a **DA14585/586 Daughter board + DA145xxDEVKT-P PRO Motherboard** the following configuration is required.         
       - Connect the DA145xx Pro Development Kit to the host computer.
       - UART TX on P0_6 for DA14585/586 (Place wire between J1:17 and J2:11) for printing functionality.
 	
-	![DA14531_connection_wires](assets/hardware_setup_585.jpg)
+	![DA14531_connection_wires](assets/hardware_setup_585.svg)
 
 * **Software configuration**
 

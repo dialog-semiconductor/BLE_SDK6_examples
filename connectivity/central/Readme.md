@@ -45,7 +45,7 @@ The user manuals for the development kits can be found:
 * **Software configuration**
 
     - This example requires:
-        * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826), Older versions of SDK6 require minimal changes.
+        * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856), Older versions of SDK6 require minimal changes.
         * SEGGER’s J-Link tools should be downloaded and installed.
 
 

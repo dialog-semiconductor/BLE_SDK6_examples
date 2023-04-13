@@ -80,7 +80,7 @@ Jumpers are placed in default configurations. Refer to the getting started guide
 ### Software configuration
 
 
-  - [SDK6.0.14](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826) or later
+  - [SDK6.0.14](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856) or later
 
   - ***SEGGER’s J-Link*** tools should be downloaded and installed.
 

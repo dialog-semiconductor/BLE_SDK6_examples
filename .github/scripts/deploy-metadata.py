@@ -13,6 +13,7 @@ from banner import shieldsBanner
 
 from common import getTargetsFile, bashexec
 from project import ProjectList
+from githubTable import githubTable, getCssFromUrl
 
 shieldsIoPrefix = '''<img style="background-color:transparent" src="https://img.shields.io/badge/'''
 shieldsIoSuffix = '''?style=flat-square" alt="banner">'''
@@ -82,25 +83,6 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
                     banner.addShield("",target,"inactive")
 
     banner.save(filePath)
-
-def makeTableRow(project):
-    """Make a row of an html table."""
-    if args.verbose:
-        print("making table row for "+str(project.title))
-    return ""
-
-def wrapHtmlInSvg(htmlText):
-    """Wrap html text in an svg image."""
-    if args.verbose:
-        print("Wrapping HTML in SVG")
-    svgStart = '''
-<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-    <foreignObject>'''
-    svgEnd = '''
-    </foreignObject>
-</svg>'''
-    return (svgStart + htmlText + svgEnd)
-
     
 
 def saveToFile(svgText, filePath):
@@ -146,36 +128,20 @@ if __name__ == "__main__":
     allBuildSystems = findAllBuildSystems(projects)
     allTargets = findAllTargets(projects)
 
-    # make banners with shields for each project
+    # # make banners with shields for each project
     # for project in projects:
     #     bannerDirPath = metadatadir.joinpath(project.path)
     #     bannerDirPath.mkdir(parents=True, exist_ok=True)
     #     bannerFilePath = bannerDirPath.joinpath("banner.svg")
     #     makeBadgeBanner(project, bannerFilePath, allBuildSystems, allTargets)
 
-    # make a table for the main readme.md
-    tableHtml = '''
-        <div xmlns="http://www.w3.org/1999/xhtml">
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Target(s)</th>
-                    <th>Tags</th>
-                </tr>
-                <tr>
-                    <th>test</th>
-                    <th>test</th>
-                    <th>test</th>
-                </tr>'''
+    table = githubTable() 
+    table.defineCss(getCssFromUrl("https://github.com/dialog-semiconductor/BLE_SDK6_examples/blob/main/Readme.md")) 
+    table.addHeader("light")
     for project in projects:
-        tableHtml += makeTableRow(project)
-
-    tableHtml += '''
-            </table>
-        </div>'''
-
-    tableSvg = wrapHtmlInSvg(tableHtml)
-    saveToFile(tableSvg, "table.svg")
+        table.addRow(project)
+    table.addFooter()
+    table.save("table.svg")
 
     #synchFilesAws()
 

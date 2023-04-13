@@ -183,6 +183,14 @@ class Project:
         return False
 
 
+    def getAllBuildingTargets(self):
+        passedBuilds=[]
+        for build in self.buildStatus:
+            if (build['passed'] is True):
+                passedBuilds.append(build['target']['name'])
+        return set(passedBuilds)
+
+
     def toDictComplete(self, pathrelativeto=False):
         """Get the project as a dictionary."""
         if pathrelativeto:

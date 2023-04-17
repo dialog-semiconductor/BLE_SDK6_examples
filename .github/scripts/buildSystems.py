@@ -61,8 +61,7 @@ class CMake:
                 "-DCMAKE_BUILD_TYPE=DEBUG",
                 "-DCMAKE_TOOLCHAIN_FILE="
                 + str(self.examplesdir)
-                + "/build_utils/gcc/arm-none-eabi.cmake",
-                "-DGCC_TOOLCHAIN_PATH=" + str(self.gccPath),
+                + "/build_utils/gcc/clang.cmake",
                 "-DDIALOG_SDK_PATH=" + str(self.sdkDir),
                 "-DDIALOG_EXAMPLE_PATH=" + str(self.examplesdir),
                 "-S",

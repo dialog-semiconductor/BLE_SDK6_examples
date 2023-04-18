@@ -234,10 +234,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.5004669"
-     inkscape:cx="97.636276"
-     inkscape:cy="350.55755"
+     inkscape:cx="88.972306"
+     inkscape:cy="391.21156"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:snap-nodes="false"
      inkscape:window-width="1920"
@@ -2696,8 +2696,8 @@
     <circle
        style="display:inline;fill:#ff9700;fill-opacity:1;stroke:#f00500;stroke-width:0.540815;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="circle3034-4-9-0-5-8-0"
-       cx="92.971634"
-       cy="-81.099007"
+       cx="85.307472"
+       cy="-84.306175"
        r="1.2878302"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
@@ -5269,10 +5269,10 @@
        transform="rotate(90)" />
     <path
        style="fill:#ff9700;fill-opacity:0.00429185;stroke:#f00500;stroke-width:0.499999;stroke-linecap:round;stroke-miterlimit:2;stroke-opacity:1;paint-order:stroke fill markers"
-       d="M 80.795874,91.719988 C 73.596038,75.823471 66.396308,59.927188 70.081642,50.310657 73.766976,40.694126 88.337405,37.358309 102.90747,34.022575"
+       d="M 83.12017,84.606954 C 75.1456,71.081469 67.171122,57.556141 70.469049,49.125133 73.766976,40.694126 88.337405,37.358309 102.90747,34.022575"
        id="path117033"
        inkscape:path-effect="#path-effect117035"
-       inkscape:original-d="M 80.795874,91.719988 C 73.596158,75.823417 66.396428,59.927133 59.196181,44.030027 73.767047,40.694435 88.337476,37.358617 102.90747,34.022575"
+       inkscape:original-d="M 83.12017,84.606954 C 75.14568,71.081421 67.171203,57.556094 59.196181,44.030027 73.767047,40.694435 88.337476,37.358617 102.90747,34.022575"
        sodipodi:nodetypes="ccc"
        inkscape:transform-center-x="2.2443654"
        inkscape:transform-center-y="-1.3092132" />
@@ -5294,9 +5294,9 @@
        transform="translate(6.1279373,0.59338388)"><tspan
          x="110.26179"
          y="94.574738"
-         id="tspan34003"><tspan
+         id="tspan1882"><tspan
            style="fill:#ff0000"
-           id="tspan34001">Red box 1</tspan></tspan></text>
+           id="tspan1880">Red box 1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:3.175px;display:inline;fill:#00130c;fill-opacity:1;stroke-width:0.264583"

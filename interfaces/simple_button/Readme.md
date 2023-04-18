@@ -33,7 +33,7 @@ The user manuals for the development kits can be found:
 
 	The image below shows the Motherboard with jumper (wire) configuration for the DA14531.
 
-	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
+	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.svg)
 		
 * __Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard__
 
@@ -44,7 +44,7 @@ The user manuals for the development kits can be found:
 
 	The image below shows the Motherboard with jumper configuration for the DA14585
 
-	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
+	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.svg)
 
 * __Hardware configuration DA14585 using the basic dev kit__
 
@@ -53,11 +53,11 @@ The user manuals for the development kits can be found:
 	- An active-low switch should be connected to P1_1, located on J4, as displayed in the following schematic.
 	- Connect the basic dev kit to the working station through USB1 connector.
 
-	![simple_button_basic](assets/simple_button_basic.png)
+	![simple_button_basic](assets/simple_button_basic.svg)
 
 * __Software configuration__
 This example requires:
-	- [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+	- [SDK6.0.18](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856).
 	- Keil5.
 	- __SEGGER’s J-Link__ tools should be downloaded and installed.
 	- Serial Terminal software. For example Tera Term or PuTTY.
@@ -87,10 +87,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 - flow  control: none
 ```
 
-5. Compile (F7) and launch (ctrl + F5) the example.\
-If the warning (shown below) pops up press OK.
- 
-![warning](assets/warning.png)
+
 
 ## Expected Results
 The button interrupt with edge detection example is now running. Follow the steps according to your Mother board and daughter board.

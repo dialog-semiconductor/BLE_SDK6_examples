@@ -1,0 +1,220 @@
+From 68f30f7bde3b6e0a516bc41eec1e044244c29286 Mon Sep 17 00:00:00 2001
+From: kvandenm <koen.van-den-maagdenberg.xn@renesas.com>
+Date: Thu, 23 Mar 2023 12:39:07 +0100
+Subject: [PATCH] Modifications to SDK needed to build BLE SDK6 git example
+ multi_con_periph. These modifications are cherry picked from branch
+ SDK6.1182.1_patch_multi_con_periph
+
+---
+ sdk/app_modules/api/app.h                     | 17 +++++++--
+ sdk/app_modules/api/app_task.h                |  6 +++-
+ sdk/app_modules/src/app_common/app.c          | 15 +++++---
+ sdk/app_modules/src/app_common/app_task.c     | 36 ++++++++++++++-----
+ .../misc/da14531_symbols.txt                  | 36 +++++++++----------
+ 5 files changed, 76 insertions(+), 34 deletions(-)
+
+diff --git a/sdk/app_modules/api/app.h b/sdk/app_modules/api/app.h
+index aaaca5a..9b55e66 100644
+--- a/sdk/app_modules/api/app.h
++++ b/sdk/app_modules/api/app.h
+@@ -113,8 +113,11 @@
+ #define APP_SCAN_RESP_DATA_MAX_SIZE         (SCAN_RSP_DATA_LEN)
+ 
+ /// Max connections supported by application task
+-#define APP_EASY_MAX_ACTIVE_CONNECTION      (1)
+-
++  #ifdef CFG_ENABLE_MULTIPLE_CONN
++  #define APP_EASY_MAX_ACTIVE_CONNECTION      (BLE_CONNECTION_MAX)
++  #else
++  #define APP_EASY_MAX_ACTIVE_CONNECTION      (1)
++  #endif
+ /*
+  * TYPE DEFINITIONS
+  ****************************************************************************************
+@@ -247,6 +250,16 @@ bool app_db_init_start(void);
+  */
+ bool app_db_init(void);
+ 
++#if (defined (__DA14531__) && !defined (__EXCLUDE_ROM_APP_TASK__)) || defined (CFG_ENABLE_MULTIPLE_CONN)
++/**
++****************************************************************************************
++* @brief Initialize the database for all the included profiles.
++* @return true if succeeded, else false
++****************************************************************************************
++*/
++bool app_db_init_next(void);
++#endif
++
+ /**
+  ****************************************************************************************
+  * @brief Start a kernel timer.
+diff --git a/sdk/app_modules/api/app_task.h b/sdk/app_modules/api/app_task.h
+index 57d1aa9..0ffd6d8 100644
+--- a/sdk/app_modules/api/app_task.h
++++ b/sdk/app_modules/api/app_task.h
+@@ -32,7 +32,11 @@
+  */
+ 
+ /// Number of APP Task Instances
+-#define APP_IDX_MAX                 (1)
++#ifdef CFG_ENABLE_MULTIPLE_CONN
++#define APP_IDX_MAX      (1)
++#else
++#define APP_IDX_MAX      (APP_EASY_MAX_ACTIVE_CONNECTION)
++#endif
+ 
+ /*
+  * ENUMERATIONS
+diff --git a/sdk/app_modules/src/app_common/app.c b/sdk/app_modules/src/app_common/app.c
+index 7ba7156..09480ed 100644
+--- a/sdk/app_modules/src/app_common/app.c
++++ b/sdk/app_modules/src/app_common/app.c
+@@ -185,8 +185,11 @@ static bool app_task_in_user_app(enum KE_API_ID task_id)
+     }
+      return false;
+ }
+-
+-bool app_db_init_next(void)
++  #if (!defined (__DA14531__) || defined (__EXCLUDE_ROM_APP_TASK__)) && !defined (CFG_ENABLE_MULTIPLE_CONN)
++  static bool app_db_init_next(void)
++  #else
++  bool app_db_init_next(void)
++  #endif
+ {
+     static uint8_t i __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY;
+     static uint8_t k __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY;
+@@ -238,8 +241,9 @@ bool app_db_init_next(void)
+ }
+ 
+ #if !defined (__DA14531__) || defined (__EXCLUDE_ROM_APP_TASK__)
+-bool app_db_init_start(void)
+-{
++#if !defined (CFG_ENABLE_MULTIPLE_CONN)
++  bool app_db_init_start(void)
++  {
+     // Indicate if more services need to be added in the database
+     bool end_db_create;
+ 
+@@ -249,7 +253,8 @@ bool app_db_init_start(void)
+     end_db_create = app_db_init_next();
+ 
+     return end_db_create;
+-}
++  }
++  #endif
+ 
+ bool app_db_init(void)
+ {
+diff --git a/sdk/app_modules/src/app_common/app_task.c b/sdk/app_modules/src/app_common/app_task.c
+index 6bbb6d4..282d090 100644
+--- a/sdk/app_modules/src/app_common/app_task.c
++++ b/sdk/app_modules/src/app_common/app_task.c
+@@ -213,10 +213,20 @@ static int gapm_cmp_evt_handler(ke_msg_id_t const msgid,
+  * @return If the message was consumed or not.
+  ****************************************************************************************
+  */
+-static int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
+-                                           struct gapc_connection_req_ind const *param,
+-                                           ke_task_id_t const dest_id,
+-                                           ke_task_id_t const src_id)
++  #ifdef CFG_ENABLE_MULTIPLE_CONN
++  __WEAK int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
++                      struct gapc_connection_req_ind const *param,
++                      ke_task_id_t const dest_id,
++                      ke_task_id_t const src_id)
++
++
++
++  #else
++  static int gapc_connection_req_ind_handler(ke_msg_id_t const msgid,
++                      struct gapc_connection_req_ind const *param,
++                      ke_task_id_t const dest_id,
++                      ke_task_id_t const src_id)
++  #endif
+ {
+     // Connection Index
+     if (ke_state_get(dest_id) == APP_CONNECTABLE)
+@@ -310,10 +320,20 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
+  * @return If the message was consumed or not.
+  ****************************************************************************************
+  */
+-static int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
+-                                       struct gapc_disconnect_ind const *param,
+-                                       ke_task_id_t const dest_id,
+-                                       ke_task_id_t const src_id)
++  #ifdef CFG_ENABLE_MULTIPLE_CONN
++  __WEAK int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
++                      struct gapc_disconnect_ind const *param,
++                      ke_task_id_t const dest_id,
++                      ke_task_id_t const src_id)
++
++
++
++  #else
++  static int gapc_disconnect_ind_handler(ke_msg_id_t const msgid,
++                    struct gapc_disconnect_ind const *param,
++                    ke_task_id_t const dest_id,
++                    ke_task_id_t const src_id)
++  #endif
+ {
+     uint8_t state = ke_state_get(dest_id);
+     uint8_t conidx = KE_IDX_GET(src_id);
+diff --git a/sdk/common_project_files/misc/da14531_symbols.txt b/sdk/common_project_files/misc/da14531_symbols.txt
+index 3fb45c5..cc35dcc 100644
+--- a/sdk/common_project_files/misc/da14531_symbols.txt
++++ b/sdk/common_project_files/misc/da14531_symbols.txt
+@@ -1112,8 +1112,8 @@
+ 0x07f22c19 T attm_svc_create_db_128
+ 
+ ; app_entry_point.c (__EXCLUDE_ROM_APP_TASK__)
+-0x07f232a9 T app_entry_point_handler                  
+-0x07f232f1 T app_std_process_event     
++;0x07f232a9 T app_entry_point_handler                  
++;0x07f232f1 T app_std_process_event     
+ 
+ ; app_utils.c - (controlled by __EXCLUDE_ROM_APP_UTILS__)
+ 0x07f23335 T app_get_address_type_ROM
+@@ -1126,24 +1126,24 @@
+ 0x07f23461 T __aeabi_uldivmod
+ 
+ ; app.c (controlled by __EXCLUDE_ROM_APP_TASK__)
+-0x07f234c1 T app_db_init_start
+-0x07f234dd T app_db_init
+-0x07f234e9 T app_easy_gap_confirm
+-0x07f23515 T append_device_name                              
+-0x07f23539 T app_easy_gap_update_adv_data 
+-0x07f23581 T app_easy_gap_disconnect
+-0x07f235bd T app_easy_gap_advertise_stop
+-0x07f235d9 T active_conidx_to_conhdl
+-0x07f23605 T active_conhdl_to_conidx
+-0x07f23641 T app_timer_set
+-0x07f2365d T app_easy_gap_set_data_packet_length
+-0x07f23699 T get_user_prf_srv_perm
+-0x07f236c1 T app_set_prf_srv_perm
+-0x07f236f1 T prf_init_srv_perm
+-0x07f23715 T app_gattc_svc_changed_cmd_send                
++;0x07f234c1 T app_db_init_start
++;0x07f234dd T app_db_init
++;0x07f234e9 T app_easy_gap_confirm
++;0x07f23515 T append_device_name                              
++;0x07f23539 T app_easy_gap_update_adv_data 
++;0x07f23581 T app_easy_gap_disconnect
++;0x07f235bd T app_easy_gap_advertise_stop
++;0x07f235d9 T active_conidx_to_conhdl
++;0x07f23605 T active_conhdl_to_conidx
++;0x07f23641 T app_timer_set
++;0x07f2365d T app_easy_gap_set_data_packet_length
++;0x07f23699 T get_user_prf_srv_perm
++;0x07f236c1 T app_set_prf_srv_perm
++;0x07f236f1 T prf_init_srv_perm
++;0x07f23715 T app_gattc_svc_changed_cmd_send                
+ 
+ ; (controlled by __EXCLUDE_ROM_APP_TASK__)
+-0x07f23f58 D app_default_handler
++;0x07f23f58 D app_default_handler
+ 
+ ; (controlled by __EXCLUDE_ROM_GAP_CFG_DATA__)               
+ 0x07f23f60 D gap_cfg_user_var_struct
+-- 
+2.39.2.windows.1
+

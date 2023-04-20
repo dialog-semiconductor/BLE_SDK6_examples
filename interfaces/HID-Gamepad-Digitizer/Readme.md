@@ -1,7 +1,7 @@
 
 # HID Gamepad Demo
 
----
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/HID-Gamepad-Digitizer/banner.svg?v=1)
 
 
 ## Example Overview

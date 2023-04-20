@@ -14,4 +14,8 @@
 .secrets
 *__pycache__
 *projectData.json
+*_log.txt
+artifacts
 *.DS_Store
+*metadata
+connectivity/multi_con_periph/Readme.md

@@ -1,3 +1,8 @@
+
+# ble_pressure_sensor_bmp388
+
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_pressure_sensor_bmp388/banner.svg?v=1)
+
 ## Example description
 
 Simple example showing how to interface the DA14585/586 and DA14531 with the [PRESSURE 5 CLICK Board™](https://www.mikroe.com/pressure-5-click) which features the Bosch BMP388 Digital Pressure Sensor via I2C or SPI. 

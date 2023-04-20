@@ -1,9 +1,6 @@
-
-------
-
 # DA14531 - DA14585/586 Simple Beacon Example
 
-------
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/simple_beacon/banner.svg?v=1)
 
 ## Example description
 

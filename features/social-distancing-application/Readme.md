@@ -1,3 +1,7 @@
+# Social Distancing Application
+
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/features/social-distancing-application/banner.svg?v=1)
+
 ## Example Description
 
 This example configures a DA14531 device to be used for social distancing purposes. The Social Distancing Tag (SDT) is a reference software example that targets mainly, but not exclusively, wearable devices allowing its users to be warned if they do not comply with social distancing recommendations. In the COVID-19 pandemic context, the SDT users should not gather with a physical distance lower than 1.5m. The users in a professional environment should be warned that they are not complying with the recommended physical distanciation.

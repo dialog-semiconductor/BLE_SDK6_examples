@@ -15,11 +15,12 @@ import argparse
 import json
 import os
 import pathlib
-import shutil
 import signal
 import sys
 
-from common import bashexec, bcolors, findProjectFiles
+from buildSystems import getBuildSystem
+from common import bcolors, getTargetsFile
+from project import ProjectList
 
 
 def parseArgs():
@@ -27,6 +28,12 @@ def parseArgs():
     parser = argparse.ArgumentParser(
         prog="cMakeBuild",
         description="Builds projects in repository using Cmake.",
+    )
+    parser.add_argument(
+        "-t",
+        "--targets",
+        default=".github/config/targets.json",
+        help="The targets definition file. default='.github/config/targets.json'",
     )
     parser.add_argument(
         "-p",
@@ -58,7 +65,25 @@ def parseArgs():
         "-f",
         "--datafile",
         default="projectData.json",
-        help="The projects definition file. default='artifacts/projectData.json'",
+        help="The projects definition file. default='projectData.json'",
+    )
+    parser.add_argument(
+        "-a",
+        "--artifacts-dir",
+        default="artifacts",
+        help="The projects definition file. default='artifacts'",
+    )
+    parser.add_argument(
+        "-b",
+        "--build-system",
+        default="CMake/gcc10",
+        choices=["CMake/gcc10", "Keil/armcomp6"],
+        help="The build system used for the build. default='CMake'",
+    )
+    parser.add_argument(
+        "--append",
+        action="store_true",
+        help="Append to an existing datafile (given with option --datafile)",
     )
     args = parser.parse_args()
 
@@ -70,16 +95,24 @@ def parseArgs():
 
 def setVars():
     """Set the variables used in script."""
-    gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()
     examplesdir = pathlib.Path(__file__).parents[2].resolve()
+    targets = getTargetsFile(args.targets)
     startdir = pathlib.Path(os.getcwd())
-    projectFiles = findProjectFiles(
-        args.projdir, exdir=examplesdir, verbose=args.verbose
-    )
     datafile = startdir.joinpath(args.datafile)
+    buildSystem = getBuildSystem(
+        args.build_system, examplesdir, args.sdkdir, args.verbose
+    )
+    if args.append:
+        projectFiles = ProjectList(jsonFile=args.datafile, verbose=args.verbose)
+    else:
+        projectFiles = ProjectList(
+            projectDirectory=args.projdir,
+            examplesDirectory=examplesdir,
+            verbose=args.verbose,
+        )
 
     for p in projectFiles:
-        if p.absPath.name in args.exclude:
+        if (str(p.path) + "/") in args.exclude:
             if args.verbose:
                 print(
                     bcolors.WARNING
@@ -87,49 +120,26 @@ def setVars():
                     + str(p)
                     + bcolors.ENDC
                 )
-            p.cmakelistsFile = ""
+            p.excludeBuilds.append(args.build_system)
 
-    return projectFiles, gccPath, examplesdir, startdir, datafile
+    return projectFiles, targets, examplesdir, startdir, datafile, buildSystem
+
+
+def checkProjects():
+    """Use the build system to check the build result."""
+    for project in projectFiles:
+        for target in targets:
+            buildSystem.check(project, target)
 
 
 def buildProjects():
-    """Build the projects with a CMakeLists.txt file."""
+    """Build the projects with the configured build system."""
     buildResult = 0
 
-    for p in projectFiles:
-        if p.cmakelistsFile:
-            print(bcolors.HEADER + "Building " + str(p) + bcolors.ENDC)
-
-            os.chdir(p.absPath)
-
-            if os.path.exists(p.builddir):
-                shutil.rmtree(p.builddir)
-            p.builddir.mkdir()
-
-            bashexec(
-                [
-                    "cmake",
-                    "-DDEVICE_NAME=" + p.title,
-                    "-DCMAKE_BUILD_TYPE=DEBUG",
-                    "-DCMAKE_TOOLCHAIN_FILE="
-                    + str(examplesdir)
-                    + "/build_utils/gcc/arm-none-eabi.cmake",
-                    "-DGCC_TOOLCHAIN_PATH=" + str(gccPath),
-                    "-DDIALOG_SDK_PATH=" + str(args.sdkdir),
-                    "-DDIALOG_EXAMPLE_PATH=" + str(examplesdir),
-                    "-S",
-                    ".",
-                    "-B",
-                    str(p.builddir),
-                ],
-                prnt=args.verbose,
-            )
-
-            os.chdir(p.builddir)
-
-            if bashexec("make -j 7", prnt=args.verbose)[1] != 0:
-                buildResult += 1
-                print(bcolors.FAIL+ str(p)+bcolors.ENDC)
+    for project in projectFiles:
+        project.applyPatchToSdk(args.sdkdir)
+        buildSystem.build(project)
+        project.revertPatchToSdk(args.sdkdir)
 
     return buildResult
 
@@ -142,7 +152,7 @@ def writeOutput():
     os.chdir(startdir)
     projdat = []
     for p in projectFiles:
-        projdat.append(p.toDictComplete())
+        projdat.append(p.toDictComplete(examplesdir))
     jsonProjdat = json.dumps(projdat, indent=2)
 
     with open(datafile, "w") as outfile:
@@ -158,11 +168,14 @@ def handleAbort(signum, frame):
 
 if __name__ == "__main__":
     args = parseArgs()
-    projectFiles, gccPath, examplesdir, startdir, datafile = setVars()
+    projectFiles, targets, examplesdir, startdir, datafile, buildSystem = setVars()
     signal.signal(
         signal.SIGINT, handleAbort
     )  # still write output if script aborted during build
     buildResult = buildProjects()
+    checkProjects()
+    for target in targets:
+        projectFiles.printReport(target, buildSystem)
     writeOutput()
 
     os.chdir(startdir)

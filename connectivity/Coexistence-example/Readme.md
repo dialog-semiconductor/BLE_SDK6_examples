@@ -1,3 +1,7 @@
+# Coexistance example
+
+![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/Coexistence-example/banner.svg?v=1)
+
 ## Example Description
 
 Purpose of the current example is to demonstrate the WiFi coexistence feature available in the SDK 6.0.14.1114. The example provides guidelines on how the feature can be enabled on the SDK as well as the signal behavior that should be expected on the configured pins under the various states and priority configuration rules set from application level.

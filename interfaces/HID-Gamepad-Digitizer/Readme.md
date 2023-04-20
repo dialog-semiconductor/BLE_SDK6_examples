@@ -80,7 +80,7 @@ The user manual for the development kits can be found:
 
 	- This example requires:
 		* Keil uVision 5
-		* 6.0.14.1114 (https://www.dialog-semiconductor.com/da14531_sdk_latest)
+		* SDK 6 latest version (https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856)
 		- **SEGGER’s J-Link** driver installed
 
 

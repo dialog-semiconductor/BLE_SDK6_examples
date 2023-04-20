@@ -200,16 +200,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0609903"
-     inkscape:cx="334.12181"
-     inkscape:cy="336.4781"
+     inkscape:zoom="4"
+     inkscape:cx="417.375"
+     inkscape:cy="131.25"
      inkscape:document-units="mm"
      inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:snap-nodes="false"
      inkscape:window-width="1920"
      inkscape:window-height="1137"
-     inkscape:window-x="-8"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showborder="false"
@@ -2986,6 +2986,34 @@
        height="19.749409"
        x="79.823067"
        y="11.9724" />
+    <text
+       xml:space="preserve"
+       style="font-size:0.892887px;display:inline;fill:#ff0000;fill-opacity:0;stroke:#000400;stroke-width:0.117;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="96.426811"
+       y="17.25321"
+       id="text1686-7-4"
+       transform="scale(0.97295155,1.0278004)"
+       inkscape:transform-center-x="-1.1248166"
+       inkscape:transform-center-y="-0.34871632"><tspan
+         sodipodi:role="line"
+         id="tspan1684-0-1"
+         style="fill:#ffff00;fill-opacity:1;stroke:#0004ff;stroke-width:0.117;stroke-dasharray:none;stroke-opacity:1"
+         x="96.426811"
+         y="17.25321">SCL</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.892887px;display:inline;fill:#ff0000;fill-opacity:0;stroke:#000400;stroke-width:0.11727;stroke-linecap:round;stroke-miterlimit:2;stroke-opacity:1;paint-order:stroke fill markers"
+       x="92.050659"
+       y="17.252207"
+       id="text1686-7"
+       transform="scale(0.97295155,1.0278004)"
+       inkscape:transform-center-x="-1.1248166"
+       inkscape:transform-center-y="-0.34871632"><tspan
+         sodipodi:role="line"
+         id="tspan1684-0"
+         style="fill:#ff0000;fill-opacity:0;stroke:#000400;stroke-width:0.11727;stroke-opacity:1"
+         x="92.050659"
+         y="17.252207">GND</tspan></text>
     <rect
        ry="0.33344039"
        y="19.708042"
@@ -3140,6 +3168,34 @@
        inkscape:path-effect="#path-effect32369"
        inkscape:original-d="m 100.46634,14.920596 c 6.36956,12.927241 12.73885,25.854196 19.10789,38.780874 6.36903,12.92667 -15.64635,2.92728 -22.924691,5.27805"
        sodipodi:nodetypes="csc" />
+    <text
+       xml:space="preserve"
+       style="font-size:0.892887px;fill:#ff0000;fill-opacity:0;stroke:#ff0400;stroke-width:0.11727;stroke-linecap:round;stroke-miterlimit:2;stroke-opacity:1;paint-order:stroke fill markers"
+       x="87.193695"
+       y="17.189108"
+       id="text1686"
+       transform="scale(0.97295154,1.0278004)"
+       inkscape:transform-center-x="-1.1248166"
+       inkscape:transform-center-y="-0.34871632"><tspan
+         sodipodi:role="line"
+         id="tspan1684"
+         style="fill:#ff0000;fill-opacity:0;stroke:#ff0400;stroke-width:0.11727;stroke-opacity:1"
+         x="87.193695"
+         y="17.189108">VCC</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.892887px;display:inline;fill:#0000ff;fill-opacity:1;stroke:#ffff00;stroke-width:0.117;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="100.53862"
+       y="17.25321"
+       id="text1686-7-4-8"
+       transform="scale(0.97295155,1.0278004)"
+       inkscape:transform-center-x="-1.1248166"
+       inkscape:transform-center-y="-0.34871632"><tspan
+         sodipodi:role="line"
+         id="tspan1684-0-1-4"
+         style="fill:#0000ff;fill-opacity:1;stroke:#ffff00;stroke-width:0.117;stroke-dasharray:none;stroke-opacity:1"
+         x="100.53862"
+         y="17.25321">SDA</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -3376,7 +3432,7 @@
        width="5.6962767"
        height="2.3269157"
        x="-102.94918"
-       y="78.845604"
+       y="79.032623"
        ry="0.36616445"
        transform="rotate(-90)"
        inkscape:export-xdpi="96"

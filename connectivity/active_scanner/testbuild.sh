@@ -1,4 +1,4 @@
-rm -r build
+rm -rf build
 
 cmake -DDEVICE_NAME="active_scanner" \
     -DCMAKE_BUILD_TYPE=DEBUG \

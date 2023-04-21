@@ -78,7 +78,7 @@ __Software configuration__
 
 This example requires:
 
-- [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826).
+- [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856).
 - Keil5.
 - __SEGGER’s J-Link__ tools should be downloaded and installed..
 

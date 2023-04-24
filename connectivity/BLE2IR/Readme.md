@@ -25,7 +25,7 @@ This SDK6 DA14585 example provides an implementation of a Simple RCU using a cus
 
 	**Lay-out sketch**
 
-	![breadboard](assets/rcu_lay_out.png)
+	![breadboard](assets/rcu_lay_out.svg)
 	
 	**Columns and Rows of 4x4 button matrix**
 	
@@ -35,7 +35,7 @@ This SDK6 DA14585 example provides an implementation of a Simple RCU using a cus
 
 	- This example requires:
     * SmartSnippets Studio V2.0.16.
-    * SDK6.0.16.1144
+    * SDK6 latest version
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 

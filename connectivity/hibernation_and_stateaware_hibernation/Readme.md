@@ -43,13 +43,13 @@ To run the program from flash or OTP, please visit chapter 11 of the [SmartSnipp
 	- The general hardware configuration remains the same for the 3 use-cases here. Only for the SPI Flash use-case (not for module) we need additional jumper settings.
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
-	![Motherboard_Hardware_Configuration_DA14531](assets/jtag.png)
+	![Motherboard_Hardware_Configuration_DA14531](assets/jtag.svg)
 	
 * **Software configuration**
 
 	- This example requires:
 	* SmartSnippets Toolbox v5.0.14
-    * [SDK6.0.14.1114](https://www.dialog-semiconductor.com/da14531_sdk_latest)
+    * [SDK6 latest version](https://www.dialog-semiconductor.com/da14531_sdk_latest)
 	* Keil5
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
@@ -187,7 +187,7 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 7. Program the DA14531 using the compiled hex file and boot from flash. To do this, please refer to chapter 13 SPI Flash Programmer in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
 	
-	![SPI Jtag jumper settings](assets/spi.png)
+	![SPI Jtag jumper settings](assets/spi.svg)
 
 ### Using OTP 
 

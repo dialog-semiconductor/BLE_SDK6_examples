@@ -35,7 +35,7 @@ The example is running from SRAM. To run the program from flash please visit cha
 	- SW3 (button 3) on J19 is configured to P0_7 (P27) on J2, see green line in the image below
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
-	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.png)
+	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.svg)
 	
 * **Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard**
 
@@ -45,7 +45,7 @@ The example is running from SRAM. To run the program from flash please visit cha
 	- SW3 (button 3) is configured to P1_1, located on J19 (red box 2)
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector.
 
-	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.png)
+	![Motherboard_Hardware_Configuration_DA14585](assets/Motherboard_Hardware_Configuration_DA14585.svg)
 
 * **Hardware configuration DA14585 using the Basic Development Kit**
 
@@ -54,13 +54,13 @@ The example is running from SRAM. To run the program from flash please visit cha
 	- An active-low switch should be connected to P1_1, located on J4, (this switch will be SW3) as displayed in the following schematic
 	- An active-low switch should be connected to P0_6, located on J4, (this switch will be SW2) as displayed in the following schematic
 	
-	![connections](assets/connections.png)
+	![connections](assets/connections.svg)
 
 * **Software configuration**
 
 	- This example requires:
 	* (optional) SmartSnippets Toolbox v5.0.10
-    * [SDK6.0.12](https://www.dialog-semiconductor.com/da14531_sdk_latest)
+    * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856)
 	* Keil5
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
@@ -91,10 +91,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 5. (Optional) open and connect your device in SmartSnippets Toolbox 
 
-6. Compile (F7) and launch (ctrl + F5) the example.\
-If the warning (shown below) pops up press OK.
- 
-![warning](assets/warning.png)
+
 
 ## Expected Results
 

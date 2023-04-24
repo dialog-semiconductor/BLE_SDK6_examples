@@ -74,13 +74,13 @@ The user manual for the development kits can be found:
 - If the joystick module is not available, make sure to set **CFG_USE_JOYSTICKS** to 0 in order to disable related codes and prevent the device sending funny HID reports
 - One of the four ADC channels is shared with the SWD debugging. Therefore there is a flag added in user_periph_setup.h un-defining this flag will enable the fourth channel, but debugging will be impossible. 
 
-![Hardware Setup](assets/HW_Setup.jpg)
+![Hardware Setup](assets/HW_Setup.svg)
 
 * **Software configuration**
 
 	- This example requires:
 		* Keil uVision 5
-		* 6.0.14.1114 (https://www.dialog-semiconductor.com/da14531_sdk_latest)
+		* SDK 6 latest version (https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856)
 		- **SEGGER’s J-Link** driver installed
 
 

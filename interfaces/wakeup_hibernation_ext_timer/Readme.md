@@ -15,7 +15,7 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
 - Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
 - Connect the SPI flash and JTAG debugger with the appropriate jumpers on header J1.
 	
-	![deep_sleep_board_cfg](assets/deep_sleep_cfg.png)
+	![deep_sleep_board_cfg](assets/deep_sleep_cfg.svg)
 
 
 ### Hardware configuration for use in hibernation mode
@@ -27,7 +27,7 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
 
 	You can see the jumper configuration below.
 
-	![hibernation_board_cfg](assets/hibernation_cfg.png)
+	![hibernation_board_cfg](assets/hibernation_cfg.svg)
 
 ### Software configuration
 

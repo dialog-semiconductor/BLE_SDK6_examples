@@ -18,22 +18,22 @@ The project works as a Central connecting to 2 peripherals, and once connected, 
  
  <ins>DA14531 daughterboard</ins>
  
- ![da14531.jpg](assets/da14531.jpg)
+ ![da14531.jpg](assets/da14531.svg)
  
   <ins>DA14531 module</ins>
   
- ![module.jpg](assets/module.jpg)
+ ![module.jpg](assets/module.svg)
  
  <ins>DA14585 daughterboard</ins>
  
- ![da14585.jpg](assets/da14585.jpg)
+ ![da14585.jpg](assets/da14585.svg)
  
  
- The user manuals for the development kits can be found [here](https://www.dialog-semiconductor.com/um-114-da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+ The user manuals for the development kits can be found [here](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese?r=1564826) for the DA145xxDEVKT-P PRO-Motherboard.
 
 ## SW setup 
 
- - SDK 6.0.14.1114 
+ - SDK 6 latest version
  - SmartSnippets Toolbox 5.0.14.3038 
  - a terminal for UART logs (teraterm, termite, etc..)
  

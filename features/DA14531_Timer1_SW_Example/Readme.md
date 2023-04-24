@@ -20,9 +20,9 @@ The example can be downloaded from Here.
 
 The DA14531 product family incorporates three (3) HW timer blocks **Timer0**, **Timer1**, **Timer2**. From the aforementioned timers only Timer1 is capable of running while the device is in sleep mode since its physically located in a separate power domain (PD_TIM). Thus **Timer1** can be used as a wake up source while the device is in extended or deep sleep.  
 
-![timer1_block_diagram](assets/timer1_block_diagram.PNG)
+![timer1_block_diagram](assets/timer1_block_diagram.png)
 
-For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.dialog-semiconductor.com/sites/default/files/2021-03/DA14530_datasheet_3v2_0.pdf).
+For getting more information about the HW Timers on DA14531, please refer to the [datasheet](https://www.renesas.com/eu/en/document/dst/da14531-datasheet).
  
 ***Useful Note*** :    
 
@@ -54,16 +54,16 @@ It is an 11-bit timer which supports Counting and Input Capturing, as input cloc
 
 **DA14531 Pro Kit Daughterboard +  DA14531 Pro Kit Daughterboard**
 
-![hw_setup](assets/531_hw_setup.PNG)
+![hw_setup](assets/531_hw_setup.svg)
 
 **DA14531 Pro Kit Daughterboard +  DA14531 Module Daughterboard**
 
-![hw_setup](assets/module_hw_config.PNG)
+![hw_setup](assets/module_hw_config.svg)
 
 ### SW Configuration
 
 - This example requires:
-  - [SDK6.0.14.1114](https://www.dialog-semiconductor.com/system/files/2020-08/SDK_6.0.14.1114.zip)
+  - [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856)
   - **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ## How to run the example
@@ -72,7 +72,7 @@ It is an 11-bit timer which supports Counting and Input Capturing, as input cloc
 
 - For the initial setup, please refer to [this section](https://www.dialog-semiconductor.com/sites/default/files/sw-example-da145x-example-setup.pdf).
 
-- For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
+- For the DA14531 Getting started guide you can refer to this [link](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese).
 
 ### Compile & Run
 
@@ -264,7 +264,7 @@ If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following resu
 
     The demo is using the SW2 button for toggling the line high or low, due to the bouncing of the switch miscounts may occur, especially if the system clock is used as a clock source for timer1. In cases where bouncing is expected a more sophisticated scheme should be applied based on the bouncing profile of the signal.
 
-    ![hw_setup](assets/SW2_button.PNG)
+    ![hw_setup](assets/SW2_button.svg)
 
 **Results**
 

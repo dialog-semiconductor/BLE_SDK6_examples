@@ -78,7 +78,7 @@ __Software configuration__
 
 This example requires:
 
-- [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+- [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856).
 - Keil5.
 - __SEGGER’s J-Link__ tools should be downloaded and installed..
 
@@ -98,10 +98,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 		
 ![Select_Device](assets/Select_Device.png)
 
-4. Compile (F7) and launch (ctrl + F5) the example.\
-If the warning (shown below) pops up press OK.
- 
-![warning](assets/warning.png)
+
 
 ## Expected Results
 

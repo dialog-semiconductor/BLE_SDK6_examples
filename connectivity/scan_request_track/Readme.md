@@ -21,10 +21,10 @@ The example doesn't require any change in the SDK 6.0.14 code as in previous SDK
 	- Connect the DA145xx Pro Development Kit to the host computer.
 	- UART TX on P0_4 for DA14585/DA14586 (place jumper between J1:17 and J1:18)
 
-		![DA14585_connection_wires](assets/DA14585_connection_wires.png)
+		![DA14585_connection_wires](assets/DA14585_connection_wires.svg)
 	- UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27)
 	
-		![DA14531_connection_wires](assets/DA14531_connection_wires.png)
+		![DA14531_connection_wires](assets/DA14531_connection_wires.svg)
 	- For the cursor to operate on DA14531 on the Pro Development kit a fly wire is needed connecting J2:24 with J8.2 pin (default jumper on J8 should be removed).
 	- For the cursor to operate on DA14585 on the Pro Development kit a jumper is needed connecting J8:1 with J8.2 pin (default jumper connection).
 
@@ -32,7 +32,7 @@ The example doesn't require any change in the SDK 6.0.14 code as in previous SDK
 
 	- This example requires:
     * Smartsnippets Toolbox 5.0.16.
-    * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+    * [SDK6 Latest version ](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826).
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 	- **A simple serial terminal** should be installed on the PC
 

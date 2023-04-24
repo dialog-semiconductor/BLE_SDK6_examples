@@ -36,7 +36,7 @@ An exception is the situation that the slave device somehow removed stored info 
 	* Central:
 		- Jumpers placed as standard SPI flash setup, plus extra jumpers for UTX prints on P04 - JL_RxD,and jumping wiring for **JL_TxD on P02**. See illustration below:
         
-        ![Cenrtal Jumper Placement/Wiring](assets/Board_setup.png)
+        ![Cenrtal Jumper Placement/Wiring](assets/Board_setup.svg)
 
 * **Software configuration**
 	* Peripheral:

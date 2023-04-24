@@ -17,12 +17,12 @@ When connected to a BLE central this example allows the measured pressure and te
 
 ### **Software configuration**
 - This example requires:
-  * [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+  * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826).
   * SEGGER’s J-Link tools should be downloaded and installed.
 
 The user manuals for the development kits can be found:
 
-- [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [Here](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese?r=1564826) for the DA145xxDEVKT-P PRO-Motherboard.
 
 ## How to run the example
 
@@ -34,7 +34,7 @@ Connect the Pressure 5 Click Board™ to the **MikroBUS™ 2** interface on the 
 
 Apply the jumper configuration of the image shown below.
 
-![Motherboard_Hardware_Configuration_DA14531](assets/PRO-DK-MikroBus-BMP388.jpg)
+![Motherboard_Hardware_Configuration_DA14531](assets/PRO-DK-MikroBus-BMP388.svg)
 
 You'll also need to connect the following jumper wire to the Development Kit PRO motherboard this is to connect the INT pin on the Pressure 5 Click to P0_8 on the DA14531 because 
 the label of J18, pin 2 which indicated as P3_1 unconnected.
@@ -79,7 +79,7 @@ Finally, you'll need to change the jumper settings on the BMP388 MikroBUS™ boa
 
 Plug the Pressure 5 Click board™ to the **MikroBUS™ 1** interface (J15-J16).	
 
-![Motherboard_Hardware_Configuration_DA14585](assets/DA14585_PRO-DK-MikroBus-BMP388.jpg)
+![Motherboard_Hardware_Configuration_DA14585](assets/DA14585_PRO-DK-MikroBus-BMP388.svg)
 
 **NOTE 5**
 
@@ -114,7 +114,7 @@ If you want to use the I2C interface, no jumpers wires are required, you can ref
 ## Known Limitations
 
 - There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
+[known hardware limitations for DA1458x devices](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese?r=1564826) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
 - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
 - you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
 

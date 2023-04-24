@@ -28,7 +28,7 @@ To run the program from flash or OTP, please visit chapter 11 of the [SmartSnipp
 
 For this example the headers should be configured as on the image below.
 
-![mb_setup](assets/mb_setup.png)
+![mb_setup](assets/mb_setup.svg)
 
 ### Software configuration
 
@@ -36,7 +36,7 @@ This example requires:
 
 - Terminal software like Termite or Teraterm
 - BLE scanner app like BLE scanner for Android (can be found [here](https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner))
-- [SDK6.0.16](https://www.dialog-semiconductor.com/da14531_sdk_latest)
+- [SDK6 latest version](https://www.renesas.com/sg/en/document/swo/sdk601811821-da1453x-da145856)
 - Keil5
 - **SEGGER’s J-Link** tools should be downloaded and installed.
 

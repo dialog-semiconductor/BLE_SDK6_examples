@@ -25,7 +25,7 @@ The current example focuses on the implementation of Accel connected via I2C and
 - These pins are defined in the m_drv_interface.h file
 
 <p align="center">
-	<img src="assets/Hardware_setup_DA14585_MC36xx.jpg">
+	<img src="assets/Hardware_setup_DA14585_MC36xx.svg">
 </p>
 
 ### Software configuration
@@ -33,7 +33,7 @@ The current example focuses on the implementation of Accel connected via I2C and
 Before user starts to load this DEMO. The following software tools has to be setup.
 - This example requires:
 	- Keil μVision 5
-	- Dialog SDK 6.0.10
+	- Dialog SDK 6 latest version
 	- Smartphone with a BLE scanning app (for example BLE Scanner on Android or Lightblue on IOS)
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 

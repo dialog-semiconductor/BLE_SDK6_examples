@@ -22,7 +22,7 @@ Example requirements:
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D2 on TINY module
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin
 
-	![motherboard_with_module_conf](assets/DevKit531_TINY.png)
+	![motherboard_with_module_conf](assets/DevKit531_TINY.svg)
 
 ### Hardware Configuration for the DA14531 Smartbond Daughterboard
 
@@ -32,7 +32,7 @@ Example requirements:
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D5 on DA14xxx Pro Development Kit for the case of the DA14531 daughtercard
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
 	
-	![motherboard_with_daughter_conf](assets/DevKit531.png)
+	![motherboard_with_daughter_conf](assets/DevKit5311.svg)
 
 ### Hardware Configuration for the DA14531 USB Kit
 
@@ -43,7 +43,7 @@ Example requirements:
 - The LED that indicates the proximity alert is on pin P09 by default, thus the alert indication is on D7 on DA14531 USB Development Kit.
 - The UART output is on pin P05 (single wire UART), thus the downloading of the fw via UART and the printing of the application messages is done via the same pin	
 	
-	![da14531_USB_kit](assets/da14531_usbkit.png)
+	![da14531_USB_kit](assets/da14531_usbkit.svg)
 
 ### Software Configuration
 
@@ -179,6 +179,6 @@ As already mentioned, the devices running the SDT SW go through periods of Adver
 - No known hardware limitations for this example, but it is recommended to see the following:
   - Application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
   - Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum)
-  - [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started)
+  - [DA14531 Getting Started guide](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese)
 
 

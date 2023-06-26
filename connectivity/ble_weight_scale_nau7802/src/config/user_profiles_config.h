@@ -6,8 +6,10 @@
  * @brief Configuration file for the profiles used in the application.
  *
  * The MIT License (MIT)
- * Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
- *
+ * Copyright (c) 2023 Renesas Electronics Corporation. All rights reserved.
+ * 
+ * The MIT License (MIT)
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.

@@ -1,15 +1,19 @@
 /******************************************************************************
  *
- * Copyright (c) 2018 mCube, Inc.  All rights reserved.
+ * Copyright (c) 2021 Renesas Electronics Corporation. All rights reserved.
+ * 
+ * The MIT License (MIT)
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ * OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * This source is subject to the mCube Software License.
- * This software is protected by Copyright and the information and source code
- * contained herein is confidential. The software including the source code
- * may not be copied and the information contained herein may not be used or
- * disclosed except with the written permission of mCube Inc.
- *
- * All other rights reserved.
- *****************************************************************************/
+ ***************************************************************************************
+ */
 
 /**
  * @file    m_drv_interface.c
@@ -180,4 +184,3 @@ uint8_t mcube_burst_read(uint8_t address, uint8_t *buf, uint8_t size)
 {
     return mcube_read_regs(0, 0, address, buf, size);
 }
-

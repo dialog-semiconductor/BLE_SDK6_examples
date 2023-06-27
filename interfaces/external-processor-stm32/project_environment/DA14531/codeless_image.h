@@ -1,3 +1,19 @@
+ /**
+ ***************************************************************************************
+ * Copyright (c) 2021 Renesas Electronics Corporation. All rights reserved.
+ * 
+ * The MIT License (MIT)
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ * OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ ***************************************************************************************
+ */
 const unsigned char CODELESS[] = {
 	0x00, 0xac, 0xfc, 0x07, 0x95, 0x01, 0xfc, 0x07, 
 	0x9d, 0x01, 0xfc, 0x07, 0xb5, 0x01, 0xfc, 0x07, 
@@ -4336,4 +4352,3 @@ const unsigned char CODELESS[] = {
 const unsigned char CODELESS_CRC = 0xdf;
 
 const unsigned short CODELESS_SIZE = 34656;
-

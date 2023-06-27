@@ -1,135 +1,18 @@
 /*
- * Copyright (c) 2013-2018 Arm Limited. All rights reserved.
+ * Copyright (c) 2021 Renesas Electronics Corporation. All rights reserved.
+ * 
+ * The MIT License (MIT)
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ * OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * SPDX-License-Identifier: Apache-2.0
- *
- * Licensed under the Apache License, Version 2.0 (the License); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * ----------------------------------------------------------------------
- *
- * $Date:        18. June 2018
- * $Revision:    V2.1.3
- *
- * Project:      CMSIS-RTOS API
- * Title:        cmsis_os.h template header file
- *
- * Version 0.02
- *    Initial Proposal Phase
- * Version 0.03
- *    osKernelStart added, optional feature: main started as thread
- *    osSemaphores have standard behavior
- *    osTimerCreate does not start the timer, added osTimerStart
- *    osThreadPass is renamed to osThreadYield
- * Version 1.01
- *    Support for C++ interface
- *     - const attribute removed from the osXxxxDef_t typedefs
- *     - const attribute added to the osXxxxDef macros
- *    Added: osTimerDelete, osMutexDelete, osSemaphoreDelete
- *    Added: osKernelInitialize
- * Version 1.02
- *    Control functions for short timeouts in microsecond resolution:
- *    Added: osKernelSysTick, osKernelSysTickFrequency, osKernelSysTickMicroSec
- *    Removed: osSignalGet 
- * Version 2.0.0
- *    OS objects creation without macros (dynamic creation and resource allocation):
- *     - added: osXxxxNew functions which replace osXxxxCreate
- *     - added: osXxxxAttr_t structures
- *     - deprecated: osXxxxCreate functions, osXxxxDef_t structures
- *     - deprecated: osXxxxDef and osXxxx macros
- *    osStatus codes simplified and renamed to osStatus_t
- *    osEvent return structure deprecated
- *    Kernel:
- *     - added: osKernelInfo_t and osKernelGetInfo
- *     - added: osKernelState_t and osKernelGetState (replaces osKernelRunning)
- *     - added: osKernelLock, osKernelUnlock
- *     - added: osKernelSuspend, osKernelResume
- *     - added: osKernelGetTickCount, osKernelGetTickFreq
- *     - renamed osKernelSysTick to osKernelGetSysTimerCount
- *     - replaced osKernelSysTickFrequency with osKernelGetSysTimerFreq
- *     - deprecated osKernelSysTickMicroSec
- *    Thread:
- *     - extended number of thread priorities
- *     - renamed osPrioriry to osPrioriry_t
- *     - replaced osThreadCreate with osThreadNew
- *     - added: osThreadGetName
- *     - added: osThreadState_t and osThreadGetState
- *     - added: osThreadGetStackSize, osThreadGetStackSpace
- *     - added: osThreadSuspend, osThreadResume
- *     - added: osThreadJoin, osThreadDetach, osThreadExit
- *     - added: osThreadGetCount, osThreadEnumerate
- *     - added: Thread Flags (moved from Signals) 
- *    Signals:
- *     - renamed osSignals to osThreadFlags (moved to Thread Flags)
- *     - changed return value of Set/Clear/Wait functions
- *     - Clear function limited to current running thread
- *     - extended Wait function (options)
- *     - added: osThreadFlagsGet
- *    Event Flags:
- *     - added new independent object for handling Event Flags
- *    Delay and Wait functions:
- *     - added: osDelayUntil
- *     - deprecated: osWait
- *    Timer:
- *     - replaced osTimerCreate with osTimerNew
- *     - added: osTimerGetName, osTimerIsRunning
- *    Mutex:
- *     - extended: attributes (Recursive, Priority Inherit, Robust)
- *     - replaced osMutexCreate with osMutexNew
- *     - renamed osMutexWait to osMutexAcquire
- *     - added: osMutexGetName, osMutexGetOwner
- *    Semaphore:
- *     - extended: maximum and initial token count
- *     - replaced osSemaphoreCreate with osSemaphoreNew
- *     - renamed osSemaphoreWait to osSemaphoreAcquire (changed return value)
- *     - added: osSemaphoreGetName, osSemaphoreGetCount
- *    Memory Pool:
- *     - using osMemoryPool prefix instead of osPool
- *     - replaced osPoolCreate with osMemoryPoolNew
- *     - extended osMemoryPoolAlloc (timeout)
- *     - added: osMemoryPoolGetName
- *     - added: osMemoryPoolGetCapacity, osMemoryPoolGetBlockSize
- *     - added: osMemoryPoolGetCount, osMemoryPoolGetSpace
- *     - added: osMemoryPoolDelete
- *     - deprecated: osPoolCAlloc
- *    Message Queue:
- *     - extended: fixed size message instead of a single 32-bit value
- *     - using osMessageQueue prefix instead of osMessage
- *     - replaced osMessageCreate with osMessageQueueNew
- *     - updated: osMessageQueuePut, osMessageQueueGet
- *     - added: osMessageQueueGetName
- *     - added: osMessageQueueGetCapacity, osMessageQueueGetMsgSize
- *     - added: osMessageQueueGetCount, osMessageQueueGetSpace
- *     - added: osMessageQueueReset, osMessageQueueDelete
- *    Mail Queue: 
- *     - deprecated (superseded by extended Message Queue functionality)
- * Version 2.1.0
- *    Support for critical and uncritical sections (nesting safe):
- *    - updated: osKernelLock, osKernelUnlock
- *    - added: osKernelRestoreLock
- *    Updated Thread and Event Flags:
- *    - changed flags parameter and return type from int32_t to uint32_t
- * Version 2.1.1
- *    Additional functions allowed to be called from Interrupt Service Routines:
- *    - osKernelGetTickCount, osKernelGetTickFreq
- *    Changed Kernel Tick type to uint32_t:
- *    - updated: osKernelGetTickCount, osDelayUntil
- * Version 2.1.2
- *    Additional functions allowed to be called from Interrupt Service Routines:
- *    - osKernelGetInfo, osKernelGetState
- * Version 2.1.3
- *    Additional functions allowed to be called from Interrupt Service Routines:
- *    - osThreadGetId
- *---------------------------------------------------------------------------*/
+ ***************************************************************************************
+ */
  
 #ifndef CMSIS_OS_H_
 #define CMSIS_OS_H_

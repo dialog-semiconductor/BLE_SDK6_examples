@@ -45,13 +45,13 @@ SECTIONS
         KEEP(*(.vectors))
         KEEP(*(.otp_cs_booter))
 
-        . = BOOT_VECTOR_AREA_SZ;
+        /*. = BOOT_VECTOR_AREA_SZ;*/
     } > LR_IROM1
 
     ER_IROM2 :
     {
         KEEP(*(.patch_table))
-        . = PATCH_TABLE_AREA_SZ;
+        /*. = PATCH_TABLE_AREA_SZ;*/
     } > LR_IROM2
 
     ER_IROM3 :

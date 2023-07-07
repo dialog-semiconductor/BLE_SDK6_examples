@@ -279,7 +279,7 @@ set(DIALOG_SDK_SOURCES_531
     ${DIALOG_SDK_PATH}/sdk/platform/core_modules/rf/src/rf_531.c
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/system_DA14531.c
     ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/ivtable_DA14531.S
-    ${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/startup_DA14531.S
+    #${DIALOG_SDK_PATH}/sdk/platform/arch/boot/GCC/startup_DA14531.S
 )
 
 set(DIALOG_SDK_SOURCES_58x_BLE

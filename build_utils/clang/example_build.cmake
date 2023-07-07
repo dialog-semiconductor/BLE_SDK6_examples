@@ -1,7 +1,7 @@
 
-include(${DIALOG_EXAMPLE_PATH}/build_utils/gcc/dialog-sdk.cmake)
+include(${DIALOG_EXAMPLE_PATH}/build_utils/clang/dialog-sdk.cmake)
 # Include Dialog SDK
-include(${DIALOG_EXAMPLE_PATH}/build_utils/gcc/dialog-sdk.cmake)
+include(${DIALOG_EXAMPLE_PATH}/build_utils/clang/dialog-sdk.cmake)
 include_directories(src/config src src/custom_profile)
 FILE(GLOB_RECURSE sourcesFiles src/*.c)
 LIST(APPEND userSourceFiles ${sourcesFiles})
@@ -237,14 +237,14 @@ if(BUILD_FOR_586 OR BUILD_FOR_586_PERIPHERAL_EXAMPLE)
 endif()
 
 # Linker file needs to be preprocessed
-set(LINKER_SCRIPT_IN_531 "${DIALOG_EXAMPLE_PATH}/build_utils/gcc/ldscript_DA14531.lds.S")
+set(LINKER_SCRIPT_IN_531 "${DIALOG_EXAMPLE_PATH}/build_utils/clang/ldscript_DA14531.lds.S")
 set(LINKER_SCRIPT_OUT_531 "ldscript_531.lds")
 # Linker file needs to be preprocessed
-set(LINKER_SCRIPT_IN_58x "${DIALOG_EXAMPLE_PATH}/build_utils/gcc/ldscript_DA14585_586.lds.S")
+set(LINKER_SCRIPT_IN_58x "${DIALOG_EXAMPLE_PATH}/build_utils/clang/ldscript_DA14585_586.lds.S")
 set(LINKER_SCRIPT_OUT_585 "ldscript_585.lds")
 set(LINKER_SCRIPT_OUT_586 "ldscript_586.lds")
 # Linker file needs to be preprocessed
-set(LINKER_SCRIPT_IN_58x_PERIPHERAL_EXAMPLE "${DIALOG_EXAMPLE_PATH}/build_utils/gcc/ldscript_peripheral_examples.lds.S")
+set(LINKER_SCRIPT_IN_58x_PERIPHERAL_EXAMPLE "${DIALOG_EXAMPLE_PATH}/build_utils/clang/ldscript_peripheral_examples.lds.S")
 set(LINKER_SCRIPT_OUT_531_PERIPHERAL_EXAMPLE "ldscript_531_PERIPHERAL_EXAMPLE.lds")
 set(LINKER_SCRIPT_OUT_585_PERIPHERAL_EXAMPLE "ldscript_585_PERIPHERAL_EXAMPLE.lds")
 set(LINKER_SCRIPT_OUT_586_PERIPHERAL_EXAMPLE "ldscript_586_PERIPHERAL_EXAMPLE.lds")
@@ -252,7 +252,7 @@ set(LINKER_SCRIPT_OUT_586_PERIPHERAL_EXAMPLE "ldscript_586_PERIPHERAL_EXAMPLE.ld
 # Linker script includes
 set(LINKER_SCRIPT_INCLUDES
     -I ${DIALOG_SDK_PATH}/sdk/common_project_files
-    -I ${DIALOG_EXAMPLE_PATH}/build_utils/gcc/
+    -I ${DIALOG_EXAMPLE_PATH}/build_utils/clang/
     -I ${CMAKE_SOURCE_DIR}/src/config
     -I ${CMAKE_SOURCE_DIR}/src
 )
@@ -354,8 +354,8 @@ endif()
 set(TARGET_LINK_OPTIONS_COMMON
     "-Xlinker"
     "--gc-sections"
-    "--specs=nosys.specs"
-    "-Wl,--no-wchar-size-warning" # Suppress the warning from linking Dialog's system library
+    #"--specs=nosys.specs"
+    #"-Wl,--no-wchar-size-warning" # Suppress the warning from linking Dialog's system library
 )
 
 if(BUILD_FOR_531)

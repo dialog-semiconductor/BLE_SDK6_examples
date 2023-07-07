@@ -10,7 +10,8 @@
 **/*scvd
 **/*.sct
 
-**/build
+**/build-gcc
+**/build-clang
 .secrets
 *__pycache__
 *projectData.json

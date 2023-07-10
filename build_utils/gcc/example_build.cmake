@@ -354,13 +354,8 @@ endif()
 set(TARGET_LINK_OPTIONS_COMMON
     "-Xlinker"
     "--gc-sections"
-<<<<<<< HEAD
     "--specs=nosys.specs"
     "-Wl,--no-wchar-size-warning" # Suppress the warning from linking Dialog's system library
-=======
-    #"--specs=nosys.specs"
-    #"-Wl,--no-wchar-size-warning" # Suppress the warning from linking Dialog's system library
->>>>>>> 4398b8ab20b37bec8ebbd21648f85e78fa3689fc
 )
 
 if(BUILD_FOR_531)

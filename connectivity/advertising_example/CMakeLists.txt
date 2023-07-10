@@ -18,5 +18,9 @@ message("GCC_TOOLCHAIN_PATH = ${GCC_TOOLCHAIN_PATH}")
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
+<<<<<<< HEAD
 include (${DIALOG_EXAMPLE_PATH}/build_utils/${COMPILER}/example_build.cmake)
 
+=======
+include (${DIALOG_EXAMPLE_PATH}/build_utils/gcc/example_build.cmake)
+>>>>>>> 4398b8ab20b37bec8ebbd21648f85e78fa3689fc

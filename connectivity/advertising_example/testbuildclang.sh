@@ -11,3 +11,6 @@ cmake -DDEVICE_NAME="advertising_example" \
 
 cd ./build-clang
 make -j 7
+
+llvm-objdump-15 -ht advertising_example_531.elf > objdump.txt
+ls -lah advertising_example_531.elf > ls.txt

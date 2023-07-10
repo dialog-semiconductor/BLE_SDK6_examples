@@ -13,3 +13,6 @@ cmake -DDEVICE_NAME="advertising_example" \
 
 cd ./build-gcc
 make -j 7
+
+objdump -ht advertising_example_531.elf > objdump.txt
+ls -lah advertising_example_531.elf > ls.txt

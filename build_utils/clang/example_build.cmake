@@ -66,8 +66,8 @@ ${DIALOG_SDK_SOURCES_531}
 )
 endif()
 
-set(GLOBAL_DEBUG_OPTIONS_531 -mthumb -mcpu=cortex-m0plus -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall  --specs=nano.specs )
-set(GLOBAL_DEBUG_OPTIONS_58x -mthumb -mcpu=cortex-m0 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall  --specs=nano.specs )
+set(GLOBAL_DEBUG_OPTIONS_531 -mthumb -mcpu=cortex-m0plus -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall)#  --specs=nano.specs )
+set(GLOBAL_DEBUG_OPTIONS_58x -mthumb -mcpu=cortex-m0 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wall)#  --specs=nano.specs )
 
 
 if(BUILD_FOR_531)
@@ -416,17 +416,17 @@ endif()
 
 if(BUILD_FOR_531 OR BUILD_FOR_531_PERIPHERAL_EXAMPLE)
     add_custom_command(TARGET ${PROJECT_NAME}_531 POST_BUILD
-        COMMAND ${CMAKE_SIZE} --format=berkeley "$<TARGET_FILE:${PROJECT_NAME}_531>"
+        #COMMAND ${CMAKE_SIZE} "$<TARGET_FILE:${PROJECT_NAME}_531>"
         COMMENT "Print output application size"
     )
 
     add_custom_command(TARGET ${PROJECT_NAME}_531 POST_BUILD
-        COMMAND ${CMAKE_OBJCOPY} -Oihex "$<TARGET_FILE:${PROJECT_NAME}_531>" ${PROJECT_NAME}_531.hex
+        #COMMAND ${CMAKE_OBJCOPY} -Oihex "$<TARGET_FILE:${PROJECT_NAME}_531>" ${PROJECT_NAME}_531.hex
         COMMENT "Convert output to hex"
     )
 
     add_custom_command(TARGET ${PROJECT_NAME}_531 POST_BUILD
-        COMMAND ${CMAKE_OBJCOPY} -Obinary "$<TARGET_FILE:${PROJECT_NAME}_531>" ${PROJECT_NAME}_531.bin
+        #COMMAND ${CMAKE_OBJCOPY} -Obinary "$<TARGET_FILE:${PROJECT_NAME}_531>" ${PROJECT_NAME}_531.bin
         COMMENT "Convert output to binary"
     )
 endif()
@@ -435,7 +435,7 @@ endif()
 
 if(BUILD_FOR_585 OR BUILD_FOR_585_PERIPHERAL_EXAMPLE)
 add_custom_command(TARGET ${PROJECT_NAME}_585 POST_BUILD
-    COMMAND ${CMAKE_SIZE} --format=berkeley "$<TARGET_FILE:${PROJECT_NAME}_585>"
+    COMMAND ${CMAKE_SIZE} "$<TARGET_FILE:${PROJECT_NAME}_585>"
     COMMENT "Print output application size"
 )
 
@@ -454,7 +454,7 @@ endif()
 
 if(BUILD_FOR_586 OR BUILD_FOR_586_PERIPHERAL_EXAMPLE)
     add_custom_command(TARGET ${PROJECT_NAME}_586 POST_BUILD
-        COMMAND ${CMAKE_SIZE} --format=berkeley "$<TARGET_FILE:${PROJECT_NAME}_586>"
+        COMMAND ${CMAKE_SIZE} "$<TARGET_FILE:${PROJECT_NAME}_586>"
         COMMENT "Print output application size"
     )
 

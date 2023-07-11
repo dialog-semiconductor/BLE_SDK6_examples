@@ -352,9 +352,9 @@ if(BUILD_FOR_586 OR BUILD_FOR_586_PERIPHERAL_EXAMPLE)
 endif()
 
 set(TARGET_LINK_OPTIONS_COMMON
-    "-Xlinker"
-    "--gc-sections"
-    #"--specs=nosys.specs"
+    "-Wl,"
+    "-v"
+    "-nodefaultlibs"
     #"-Wl,--no-wchar-size-warning" # Suppress the warning from linking Dialog's system library
 )
 
@@ -416,17 +416,17 @@ endif()
 
 if(BUILD_FOR_531 OR BUILD_FOR_531_PERIPHERAL_EXAMPLE)
     add_custom_command(TARGET ${PROJECT_NAME}_531 POST_BUILD
-        #COMMAND ${CMAKE_SIZE} "$<TARGET_FILE:${PROJECT_NAME}_531>"
+        COMMAND ${CMAKE_SIZE} "$<TARGET_FILE:${PROJECT_NAME}_531>"
         COMMENT "Print output application size"
     )
 
     add_custom_command(TARGET ${PROJECT_NAME}_531 POST_BUILD
-        #COMMAND ${CMAKE_OBJCOPY} -Oihex "$<TARGET_FILE:${PROJECT_NAME}_531>" ${PROJECT_NAME}_531.hex
+        COMMAND ${CMAKE_OBJCOPY} -Oihex "$<TARGET_FILE:${PROJECT_NAME}_531>" ${PROJECT_NAME}_531.hex
         COMMENT "Convert output to hex"
     )
 
     add_custom_command(TARGET ${PROJECT_NAME}_531 POST_BUILD
-        #COMMAND ${CMAKE_OBJCOPY} -Obinary "$<TARGET_FILE:${PROJECT_NAME}_531>" ${PROJECT_NAME}_531.bin
+        COMMAND ${CMAKE_OBJCOPY} -Obinary "$<TARGET_FILE:${PROJECT_NAME}_531>" ${PROJECT_NAME}_531.bin
         COMMENT "Convert output to binary"
     )
 endif()

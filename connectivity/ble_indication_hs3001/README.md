@@ -34,7 +34,7 @@ You can find more information about the Attribute Protocol in the BLE network st
 
  **_NOTE:_**  Peripheral or central devices can BOTH act as a server or client, depending on how data is flowing.
 
-# Short Summary on GATT:
+## Short Summary on GATT:
 
 GATT Operations are responsible for Data Transfer.
 GATT Operations are dictated by Properties of GATT Characteristics. 

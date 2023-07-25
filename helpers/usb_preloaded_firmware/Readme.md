@@ -52,10 +52,14 @@ Refer to the DA14531 getting started guide of [DA14531 Development Kit](http://l
 - For the initial setup, please refer [here] https://github.com/dialog-semiconductor/BLE_SDK6_examples
 
 
+
+
 ### Compile & Run
 
-- Copy/replace **arch_main.c** file under ``src\main`` directory to ``sdk\platform\arch\main``
-- Copy/replace **app.c** file under ``src\app_common`` directory to ``sdk\app_modules\src\app_common``
+- This example needs changes in the SDK to work. To apply the patch file, execute the following command inside your sdk directory:
+```
+git apply path/to/patch/SDK6patch.diff
+```
 - Navigate to ``project_environment`` folder and open the ***Keil*** project.
 - Compile and then launch the demonstration example. You can download the firmware either into System-RAM or SPI Flash. To download the firmware into SPI Flash, the  SPI Flash programmer from SmartSnippets Toolbox should be used. 
 For programming the DA14531 using the compiled hex file and boot from flash, please refer to  [Chapter 13 SPI Flash Programmer in the SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html).

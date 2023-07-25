@@ -5,28 +5,26 @@
  *
  * @brief Peripheral project source code.
  *
- * Copyright (c) 2015-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
- *
+ * Copyright (c) 2015-2023 Dialog Semiconductor
+# The MIT License (MIT)
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.E.
  ****************************************************************************************
  */
 
@@ -92,10 +90,6 @@ uint8_t stored_scan_rsp_data_len                __SECTION_ZERO("retention_mem_ar
 uint8_t stored_adv_data[ADV_DATA_LEN]           __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
-/*
- * FUNCTION DEFINITIONS
- ****************************************************************************************
-*/
 
 /**
  ****************************************************************************************
@@ -105,47 +99,39 @@ uint8_t stored_scan_rsp_data[SCAN_RSP_DATA_LEN] __SECTION_ZERO("retention_mem_ar
  */
 static void mnf_data_init()
 {
-    mnf_data.ad_structure_size_temp = sizeof(struct mnf_specific_data_ad_structure ) - sizeof(uint8_t); // minus the size of the ad_structure_size field
-	  mnf_data.ad_structure_size_hum = sizeof(struct mnf_specific_data_ad_structure ) - sizeof(uint8_t);
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
+				adc_config_t temp_config = {
+						.input_mode = ADC_INPUT_MODE_SINGLE_ENDED,
+						.input = ADC_INPUT_SE_TEMP_SENS,
+				};
+						
+				adc_init(&temp_config);
+				
+				int8_t temperature = adc_get_temp();
+				
+				adc_disable();
+#else
+				
+		    double temperature;
+	      double humidity ;
+				#define length_temp    snprintf((char*)mnf_data.proprietary_data_temp, TEMPERATURE_DATA, SNPRINT_FORMAT, temperature)
+        #define length_humid   snprintf((char*)mnf_data.proprietary_data_hum, TEMPERATURE_DATA, SNPRINT_FORMAT, humidity)
+			
+	
+#endif 
+
     mnf_data.ad_structure_type = GAP_AD_TYPE_MANU_SPECIFIC_DATA;
     mnf_data.company_id[0] = APP_AD_MSD_COMPANY_ID & 0xFF; // LSB
     mnf_data.company_id[1] = (APP_AD_MSD_COMPANY_ID >> 8 )& 0xFF; // MSB
     memset(mnf_data.proprietary_data_temp, 0, APP_AD_MSD_DATA_LEN_temp);
 		memset(mnf_data.proprietary_data_hum, 0, APP_AD_MSD_DATA_LEN_hum);
-}
+		
 
-/**
- ****************************************************************************************
- * @brief Update Manufacturer Specific Data
- * @return void
- ****************************************************************************************
- */
-static void mnf_data_update()
-{
-    uint8_t length_temp;
-		uint8_t length_humid;
-		uint8_t buffer[4];
-#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
-    adc_config_t temp_config = {
-        .input_mode = ADC_INPUT_MODE_SINGLE_ENDED,
-        .input = ADC_INPUT_SE_TEMP_SENS,
-    };
-        
-    adc_init(&temp_config);
-    
-    int8_t temperature = adc_get_temp();
-    
-    adc_disable();
-#else
-				Data_Fetch_all (buffer);
-		    double temperature = HS3001_get_temperature(buffer);
-	      double humidity = HS3001_get_humidity(buffer);
-#endif 
-    length_temp = snprintf((char*)mnf_data.proprietary_data_temp, TEMPERATURE_DATA, SNPRINT_FORMAT, temperature);
-	  length_humid = snprintf((char*)mnf_data.proprietary_data_hum, TEMPERATURE_DATA, SNPRINT_FORMAT, humidity);
-    mnf_data.ad_structure_size_temp = sizeof(struct mnf_specific_data_ad_structure ) - sizeof(uint8_t) - (APP_AD_MSD_DATA_LEN_temp - length_temp);
+		mnf_data.ad_structure_size_temp = sizeof(struct mnf_specific_data_ad_structure ) - sizeof(uint8_t) - (APP_AD_MSD_DATA_LEN_temp - length_temp);
 		mnf_data.ad_structure_size_hum = sizeof(struct mnf_specific_data_ad_structure ) - sizeof(uint8_t) - (APP_AD_MSD_DATA_LEN_hum - length_humid);
 }
+
+
 
 /**
  ****************************************************************************************
@@ -187,19 +173,15 @@ static void app_add_ad_struct(struct gapm_start_advertise_cmd *cmd, void *ad_str
         // Mark that manufacturer data is in scan response and not advertising data
         mnf_data_index |= 0x80;
     }
-    else
-    {
-        // Manufacturer Specific Data do not fit in either Advertising Data or Scan Response Data
-        ASSERT_WARNING(0);
-    }
-    // Store advertising data length
-    stored_adv_data_len = cmd->info.host.adv_data_len;
-    // Store advertising data
-    memcpy(stored_adv_data, cmd->info.host.adv_data, stored_adv_data_len);
-    // Store scan response data length
-    stored_scan_rsp_data_len = cmd->info.host.scan_rsp_data_len;
-    // Store scan_response data
-    memcpy(stored_scan_rsp_data, cmd->info.host.scan_rsp_data, stored_scan_rsp_data_len);
+
+				// Store advertising data length
+				stored_adv_data_len = cmd->info.host.adv_data_len;
+				// Store advertising data
+				memcpy(stored_adv_data, cmd->info.host.adv_data, stored_adv_data_len);
+				// Store scan response data length
+				stored_scan_rsp_data_len = cmd->info.host.scan_rsp_data_len;
+				// Store scan_response data
+				memcpy(stored_scan_rsp_data, cmd->info.host.scan_rsp_data, stored_scan_rsp_data_len);
 }
 
 /**
@@ -213,8 +195,6 @@ static void adv_data_update_timer_cb()
     // If mnd_data_index has MSB set, manufacturer data is stored in scan response
     uint8_t *mnf_data_storage = (mnf_data_index & 0x80) ? stored_scan_rsp_data : stored_adv_data;
 
-    // Update manufacturer data
-    mnf_data_update();
 
     // Update the selected fields of the advertising data (manufacturer data)
     memcpy(mnf_data_storage + (mnf_data_index & 0x7F), &mnf_data, sizeof(struct mnf_specific_data_ad_structure));
@@ -232,6 +212,8 @@ static void adv_data_update_timer_cb()
  * @return void
  ****************************************************************************************
 */
+
+
 static void param_update_request_timer_cb()
 {
     app_easy_gap_param_update_start(app_connection_idx);
@@ -259,9 +241,6 @@ void user_app_adv_start(void)
 {
     // Schedule the next advertising data update
     app_adv_data_update_timer_used = app_easy_timer(APP_ADV_DATA_UPDATE_TO, adv_data_update_timer_cb);
-    
-    // Place the current temperature in the advertising string
-    mnf_data_update();
 
     struct gapm_start_advertise_cmd* cmd;
     cmd = app_easy_gap_undirected_advertise_get_active();
@@ -311,15 +290,17 @@ void user_app_adv_undirect_complete(uint8_t status)
 }
 
 void user_app_disconnect(struct gapc_disconnect_ind const *param)
-{
-    // Cancel the parameter update request timer
+{	
+	
+		arch_printf("disconnected");
+   
+	
     if (app_param_update_request_timer_used != EASY_TIMER_INVALID_TIMER)
     {
         app_easy_timer_cancel(app_param_update_request_timer_used);
         app_param_update_request_timer_used = EASY_TIMER_INVALID_TIMER;
     }
-    // Update manufacturer data for the next advertsing event
-    mnf_data_update();
+		
     // Restart Advertising
     user_app_adv_start();
 }
@@ -337,9 +318,9 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
             switch (msg_param->handle)
             {
-                case SVC1_IDX_TEMPERATURE_VAL_NTF_CFG:
-                    user_temperature_message_handler(msg_param);
-									  user_humidity_message_handler(msg_param);
+                case SVC1_IDX_TEMPERATURE_VAL_IND_CFG:
+                    user_message_handler(msg_param);
+
                     break;
 
                 default:

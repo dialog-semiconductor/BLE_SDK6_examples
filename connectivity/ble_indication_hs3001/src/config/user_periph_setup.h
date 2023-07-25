@@ -5,10 +5,26 @@
  *
  * @brief Peripherals setup header file.
  *
- * Copyright (C) 2015-2019 Dialog Semiconductor.
- * This computer program includes Confidential, Proprietary Information
- * of Dialog Semiconductor. All Rights Reserved.
- *
+ * Copyright (C) 2015-2023 Dialog Semiconductor
+# The MIT License (MIT)
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.E.
  ****************************************************************************************
  */
 
@@ -44,7 +60,7 @@
 // Define UART2 Tx Pad
 #if defined (__DA14531__)
     #define UART2_TX_PORT           GPIO_PORT_0
-    #define UART2_TX_PIN            GPIO_PIN_1
+    #define UART2_TX_PIN            GPIO_PIN_5
 #else
     #define UART2_TX_PORT           GPIO_PORT_0
     #define UART2_TX_PIN            GPIO_PIN_4
@@ -61,7 +77,7 @@
 /****************************************************************************************/
 /* I2C configuration                                                                  	*/
 /****************************************************************************************/
-#define I2C_SLAVE_ADDRESS           0x44        // Set slave device address
+#define I2C_SLAVE_ADDRESS           0x44                  // Set slave device address
 #define I2C_SPEED_MODE              I2C_SPEED_FAST        // Speed mode: 			I2C_SPEED_FAST (400 kbits/s)
 #define I2C_ADDRESS_MODE            I2C_ADDRESSING_7B     // Addressing mode: I2C_ADDRESSING_7B
 #define I2C_ADDRESS_SIZE            I2C_1BYTES_ADDR       // Address width: 	I2C_1BYTE_ADDR 
@@ -77,36 +93,6 @@
 #define HS3001_SCL_PIN	            GPIO_PIN_7
 #define HS3001_SDA_PORT            GPIO_PORT_0
 #define HS3001_SDA_PIN             GPIO_PIN_4
-#endif
-/****************************************************************************************/
-/* SPI configuration                                                                    */
-/****************************************************************************************/
-// Define SPI Pads
-#if defined (__DA14531__)
-    #define SPI_EN_PORT             GPIO_PORT_0
-    #define SPI_EN_PIN              GPIO_PIN_1
-
-    #define SPI_CLK_PORT            GPIO_PORT_0
-    #define SPI_CLK_PIN             GPIO_PIN_4
-
-    #define SPI_DO_PORT             GPIO_PORT_0
-    #define SPI_DO_PIN              GPIO_PIN_0
-
-    #define SPI_DI_PORT             GPIO_PORT_0
-    #define SPI_DI_PIN              GPIO_PIN_3
-
-#elif !defined (__DA14586__)
-    #define SPI_EN_PORT             GPIO_PORT_0
-    #define SPI_EN_PIN              GPIO_PIN_3
-
-    #define SPI_CLK_PORT            GPIO_PORT_0
-    #define SPI_CLK_PIN             GPIO_PIN_0
-
-    #define SPI_DO_PORT             GPIO_PORT_0
-    #define SPI_DO_PIN              GPIO_PIN_6
-
-    #define SPI_DI_PORT             GPIO_PORT_0
-    #define SPI_DI_PIN              GPIO_PIN_5
 #endif
 
 

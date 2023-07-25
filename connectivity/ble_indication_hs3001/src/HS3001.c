@@ -5,10 +5,26 @@
  *
  * @brief HS3001 module.
  *
- * Copyright (C) 2012-2019 Dialog Semiconductor.
- * This computer program includes Confidential, Proprietary Information
- * of Dialog Semiconductor. All Rights Reserved.
- *
+ * Copyright (C) 2012-2023 Dialog Semiconductor
+# The MIT License (MIT)
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.E.
  ****************************************************************************************
  */
 
@@ -58,21 +74,26 @@ void HS3001_wakeup(void){
     }
 	
 	if(abort_code != I2C_ABORT_NONE) {
-		//insert error handler
+		
+		ASSERT_ERROR(0);
+		
 	}
 }
+
+
 
 void Data_Fetch_all (uint8_t* buffer){
 	
 	
 			 HS3001_wakeup();
-	
 			 i2c_abort_t abort_code = I2C_ABORT_NONE;
-
-
-	     i2c_master_receive_buffer_sync(buffer,4,&abort_code,I2C_F_ADD_STOP);
+       i2c_master_receive_buffer_sync(buffer,4,&abort_code,I2C_F_ADD_STOP);
+	
 	if(abort_code != I2C_ABORT_NONE) {
-		//insert error handler
+		ASSERT_ERROR(0);
+		
+		
+		
 	}
 
 } 
@@ -89,6 +110,7 @@ double HS3001_get_temperature (uint8_t *buffer){
 			return temperature;
 			}
 
+			
 double HS3001_get_humidity (uint8_t *buffer){
 				
 

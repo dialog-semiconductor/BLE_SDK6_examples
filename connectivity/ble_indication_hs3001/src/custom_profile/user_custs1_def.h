@@ -5,28 +5,26 @@
  *
  * @brief Custom Server 1 (CUSTS1) profile database definitions.
  *
- * Copyright (c) 2016-2019 Dialog Semiconductor. All rights reserved.
- *
- * This software ("Software") is owned by Dialog Semiconductor.
- *
- * By using this Software you agree that Dialog Semiconductor retains all
- * intellectual property and proprietary rights in and to this Software and any
- * use, reproduction, disclosure or distribution of the Software without express
- * written permission or a license agreement from Dialog Semiconductor is
- * strictly prohibited. This Software is solely for use on or in conjunction
- * with Dialog Semiconductor products.
- *
- * EXCEPT AS OTHERWISE PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, THE
- * SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. EXCEPT AS OTHERWISE
- * PROVIDED IN A LICENSE AGREEMENT BETWEEN THE PARTIES, IN NO EVENT SHALL
- * DIALOG SEMICONDUCTOR BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
- * USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
- * OF THE SOFTWARE.
- *
+ * Copyright (c) 2016-2023 Dialog Semiconductor
+# The MIT License (MIT)
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.E.
  ****************************************************************************************
  */
 
@@ -65,7 +63,7 @@
 
 
 #define USER_IDX_TEMPERATURE_VAL_CHAR_LEN 	9
-#define USER_IDX_HUMIDITY_VAL_CHAR_LEN 	9
+#define USER_IDX_HUMIDITY_VAL_CHAR_LEN 	    9
 
 #if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)
 #define USER_IDX_TEMPERATURE_VAL_USER_DESC	"Internal sensor temperature data"
@@ -79,25 +77,26 @@
 
 
 /// Custom1 Service Data Base Characteristic enum
+
 enum
 {
 //    // Custom Service 1
-    SVC1_IDX_SVC = 0,// Must be the first line because your characteristics must between two values in this case its between SVC1_IDX_SVC and CUSTS1_IDX_NB 
+    SVC1_IDX_SVC = 0,               // Must be the first line because your characteristics must between two values in this case its between SVC1_IDX_SVC and CUSTS1_IDX_NB 
 		
 		USER_IDX_TEMPERATURE_VAL_CHAR,
 		USER_IDX_TEMPERATURE_VAL_VAL,
-		SVC1_IDX_TEMPERATURE_VAL_NTF_CFG,
+		SVC1_IDX_TEMPERATURE_VAL_IND_CFG,
 		USER_IDX_TEMPERATURE_VAL_DESC,
 	
 	
 	  // Custom Service 2
-//    SVC2_IDX_SVC,
+
 		USER_IDX_HUMIDITY_VAL_CHAR,
 		USER_IDX_HUMIDITY_VAL_VAL,
-		SVC1_IDX_HUMIDITY_VAL_NTF_CFG,
+		SVC1_IDX_HUMIDITY_VAL_IND_CFG,
 		USER_IDX_HUMIDITY_VAL_DESC,
 
-    CUSTS1_IDX_NB// must be the last line of the enum because it indicates a size
+    CUSTS1_IDX_NB                 // must be the last line of the enum because it indicates a size
 	
 	
 };

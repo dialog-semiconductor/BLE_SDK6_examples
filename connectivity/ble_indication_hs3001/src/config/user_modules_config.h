@@ -5,7 +5,7 @@
  *
  * @brief User modules configuration file.
  *
- * Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
- ***************************************************************************************
+ ****************************************************************************************
  */
 
 #ifndef _USER_MODULES_CONFIG_H_
@@ -60,16 +60,16 @@
 /***************************************************************************************/
 #define EXCLUDE_DLG_GAP             (0)
 #define EXCLUDE_DLG_TIMER           (0)
-#define EXCLUDE_DLG_MSG             (0)
-#define EXCLUDE_DLG_SEC             (0)
+#define EXCLUDE_DLG_MSG             (1)
+#define EXCLUDE_DLG_SEC             (1)
 #define EXCLUDE_DLG_DISS            (0)
-#define EXCLUDE_DLG_PROXR           (0)
-#define EXCLUDE_DLG_BASS            (0)
-#define EXCLUDE_DLG_FINDL           (0)
-#define EXCLUDE_DLG_FINDT           (0)
-#define EXCLUDE_DLG_SUOTAR          (0)
-#define EXCLUDE_DLG_CUSTS1          (1)
-#define EXCLUDE_DLG_CUSTS2          (0)
+#define EXCLUDE_DLG_PROXR           (1)
+#define EXCLUDE_DLG_BASS            (1)
+#define EXCLUDE_DLG_FINDL           (1)
+#define EXCLUDE_DLG_FINDT           (1)
+#define EXCLUDE_DLG_SUOTAR          (1)
+#define EXCLUDE_DLG_CUSTS1          (0)//This module gets _included_
+#define EXCLUDE_DLG_CUSTS2          (1)
 
 /// @} APP
 

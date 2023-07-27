@@ -5,7 +5,7 @@
  *
  * @brief Peripherals setup and initialization.
  *
- * Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
- ***************************************************************************************
+ ****************************************************************************************
  */
 
 /*
@@ -39,13 +39,33 @@
 #include "rwip_config.h"
 #include "gpio.h"
 #include "uart.h"
-#include "i2c.h"
 #include "syscntl.h"
+#include "i2c.h"
+
+#include "HS3001.h"
 
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
+//i2c configuration
+i2c_cfg_t i2c_cfg = {
+    .clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET,
+    .clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET,
+    .clock_cfg.fs_hcnt = I2C_FS_SCL_HCNT_REG_RESET,
+    .clock_cfg.fs_lcnt = I2C_FS_SCL_LCNT_REG_RESET,
+    .restart_en = I2C_RESTART_ENABLE,
+    .speed = I2C_SPEED_MODE,
+    .mode = I2C_MODE_MASTER,
+    .addr_mode = I2C_ADDRESS_MODE,
+    .address = I2C_SLAVE_ADDRESS,
+    .tx_fifo_level = 16,
+    .rx_fifo_level = 16,
+	
+};
+
+
+
 
 #if DEVELOPMENT_DEBUG
 
@@ -55,16 +75,18 @@ void GPIO_reservations(void)
     i.e. to reserve P0_1 as Generic Purpose I/O:
     RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
 */
-		RESERVE_GPIO(NAU7802_I2C_SCL, NAU7802_I2C_SCL_PORT, NAU7802_I2C_SCL_PIN, PID_I2C_SCL);
-		RESERVE_GPIO(NAU7802_I2C_SDA, NAU7802_I2C_SDA_PORT, NAU7802_I2C_SDA_PIN, PID_I2C_SDA);
+	RESERVE_GPIO(LED, LED_PORT, LED_PIN, PID_GPIO);
 
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
 
-#if !defined (__DA14586__)
-    RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
-#endif
+
+	
+	
+	  RESERVE_GPIO(I2C_CLK, HS3001_SCL_PORT, HS3001_SCL_PIN, PID_I2C_SCL);
+    RESERVE_GPIO(I2C_SDA, HS3001_SDA_PORT, HS3001_SDA_PIN, PID_SDA_SCL);
+
 }
 
 #endif
@@ -75,21 +97,15 @@ void set_pad_functions(void)
     i.e. to set P0_1 as Generic purpose Output:
     GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
-		GPIO_ConfigurePin(NAU7802_I2C_SCL_PORT, NAU7802_I2C_SCL_PIN, INPUT_PULLUP, PID_I2C_SCL, false);  
-		GPIO_ConfigurePin(NAU7802_I2C_SDA_PORT, NAU7802_I2C_SDA_PIN, INPUT_PULLUP, PID_I2C_SDA, false);
+GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, false);
 
-#if defined (__DA14586__)
-    // Disallow spontaneous DA14586 SPI Flash wake-up
-    GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
-#else
-    // Disallow spontaneous SPI Flash wake-up
-    GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
-#endif
 
 #if defined (CFG_PRINTF_UART2)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
+		GPIO_ConfigurePin(HS3001_SCL_PORT, HS3001_SCL_PIN, INPUT, PID_I2C_SCL, false);
+    GPIO_ConfigurePin(HS3001_SDA_PORT, HS3001_SDA_PIN, INPUT, PID_I2C_SDA, false);
 
 }
 
@@ -108,25 +124,8 @@ static const uart_cfg_t uart_cfg = {
 };
 #endif
 
-/* Default I2C interface configuration */
-static const i2c_cfg_t i2c_cfg = {
-  .clock_cfg.ss_hcnt = I2C_SS_SCL_HCNT_REG_RESET,
-  .clock_cfg.ss_lcnt = I2C_SS_SCL_LCNT_REG_RESET,
-  .clock_cfg.fs_hcnt = I2C_FS_SCL_HCNT_REG_RESET,
-  .clock_cfg.fs_lcnt = I2C_FS_SCL_LCNT_REG_RESET,
-  .restart_en = I2C_RESTART_ENABLE,
-  .speed = I2C_SPEED_STANDARD,
-  .mode = I2C_MODE_MASTER,
-  .addr_mode = I2C_ADDRESSING_7B,
-  /* Device address specified when read/write takes place allowing 
-     multiple devices to be present on the same I2C bus */
-  .address = 0x2A,
-  .tx_fifo_level = 1,
-  .rx_fifo_level = 1,
-};
-
 void periph_init(void)
-{	
+{
 #if defined (__DA14531__)
     // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
     syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
@@ -136,12 +135,10 @@ void periph_init(void)
     while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
     SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
 #endif
-	
-		// disable the debugger
-		SetBits16(SYS_CTRL_REG, DEBUGGER_ENABLE, 0);
 
     // ROM patch
     patch_func();
+	
 
     // Initialize peripherals
 #if defined (CFG_PRINTF_UART2)
@@ -151,10 +148,8 @@ void periph_init(void)
 
     // Set pad functionality
     set_pad_functions();
-
+    i2c_init(&i2c_cfg);
     // Enable the pads
     GPIO_set_pad_latch_en(true);
-		
-		// init i2c with connected NAU7802
-		i2c_init(&i2c_cfg);
+		HS3001_wakeup();
 }

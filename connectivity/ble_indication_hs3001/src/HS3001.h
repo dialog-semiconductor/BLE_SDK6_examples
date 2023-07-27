@@ -1,4 +1,12 @@
- * Copyright (c) 2021 Renesas Electronics Corporation and/or its affiliates
+
+/**
+ ****************************************************************************************
+ *
+ * @file HS3001.h
+ *
+ * @brief HS3001 module.
+ *
+ * Copyright (C) 2012-2023 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,5 +26,36 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
- 
- 
+ ****************************************************************************************
+ */
+#define _HS3001_H_
+
+
+#define DF_command 0xff
+
+#include "rwip_config.h"             // SW configuration
+#include "arch_console.h"
+#include "gpio.h"
+#include "user_periph_setup.h"
+#include "i2c.h"
+#include "math.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*****************************************Prototypes***************************************************************************/
+void HS3001_wakeup(void);
+void Data_Fetch_all (uint8_t* buffer);
+double HS3001_get_temperature (uint8_t *buffer);
+double HS3001_get_humidity (uint8_t *buffer);

@@ -5,7 +5,7 @@
  *
  * @brief Basic compile configuration file.
  *
- * Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (c) 2015-2023 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
- ***************************************************************************************
+ ****************************************************************************************
  */
 
 #ifndef _DA1458X_CONFIG_BASIC_H_
@@ -34,7 +34,7 @@
 #include "da1458x_stack_config.h"
 #include "user_profiles_config.h"
 
-#if !defined (__DA14531__)
+#if !defined (__DA14531__) && !defined (__ES1_DA14531__)
 
 /***************************************************************************************************************/
 /* Integrated or external processor configuration                                                              */
@@ -48,19 +48,12 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
-#define CFG_APP_SECURITY
+#undef CFG_APP_SECURITY
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
 /****************************************************************************************************************/
 #define CFG_WDOG
-
-/****************************************************************************************************************/
-/* Watchdog timer behavior in production mode:                                                                  */
-/*     Flag is not defined: Watchdog timer generates NMI at value 0.                                            */
-/*     Flag is defined    : Watchdog timer generates a WDOG (SYS) reset at value 0.                             */
-/****************************************************************************************************************/
-#undef CFG_WDG_TRIGGER_HW_RESET_IN_PRODUCTION_MODE
 
 /****************************************************************************************************************/
 /* Determines maximum concurrent connections supported by application. It configures the heap memory allocated  */
@@ -85,16 +78,16 @@
 
 /****************************************************************************************************************/
 /* UART Console Print. If CFG_PRINTF is defined, serial interface logging mechanism will be enabled.            */
-/* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implented using UART2, else UART1 */
+/* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implemented using UART2, else UART1 */
 /* will be used.                                                                                                */
 /****************************************************************************************************************/
-#define CFG_PRINTF
+#undef CFG_PRINTF
 #ifdef CFG_PRINTF
     #define CFG_PRINTF_UART2
 #endif
 
 /****************************************************************************************************************/
-/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overriden and UART SDK    */
+/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overridden and UART SDK    */
 /* driver will be used, else ROM driver will be used for UART1 module.                                          */
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK
@@ -136,19 +129,12 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
-#define CFG_APP_SECURITY
+#undef CFG_APP_SECURITY
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
 /****************************************************************************************************************/
-#undef CFG_WDOG
-
-/****************************************************************************************************************/
-/* Watchdog timer behavior in production mode:                                                                  */
-/*     Flag is not defined: Watchdog timer generates NMI at value 0.                                            */
-/*     Flag is defined    : Watchdog timer generates a WDOG (SYS) reset at value 0.                             */
-/****************************************************************************************************************/
-#undef CFG_WDG_TRIGGER_HW_RESET_IN_PRODUCTION_MODE
+#define CFG_WDOG
 
 /****************************************************************************************************************/
 /* Determines maximum concurrent connections supported by application. It configures the heap memory allocated  */
@@ -173,16 +159,17 @@
 
 /****************************************************************************************************************/
 /* UART Console Print. If CFG_PRINTF is defined, serial interface logging mechanism will be enabled.            */
-/* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implented using UART2, else UART1 */
+/* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implemented using UART2, else UART1 */
 /* will be used.                                                                                                */
 /****************************************************************************************************************/
 #define CFG_PRINTF
+
 #ifdef CFG_PRINTF
     #define CFG_PRINTF_UART2
 #endif
 
 /****************************************************************************************************************/
-/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overriden and UART SDK    */
+/* UART1 Driver Implementation. If CFG_UART1_SDK is defined, UART1 ROM driver will be overridden and UART SDK    */
 /* driver will be used, else ROM driver will be used for UART1 module.                                          */
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK
@@ -213,6 +200,8 @@
 /*     - CFG_POWER_MODE_BYPASS = Bypass mode                                                                    */
 /****************************************************************************************************************/
 #undef CFG_POWER_MODE_BYPASS
+
+//#define CFG_USE_INTERNAL_TEMP_SENSOR
 
 #endif
 

@@ -5,7 +5,7 @@
  *
  * @brief Custom1/2 Server (CUSTS1/2) profile database structure and initialization.
  *
- * Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (C) 2016-2023 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
- ***************************************************************************************
+ ****************************************************************************************
  */
 
 /**

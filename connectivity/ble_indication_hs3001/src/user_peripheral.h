@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_empty_peripheral_template.h
+ * @file user_peripheral_proj.h
  *
- * @brief Empty peripheral template project header file.
+ * @brief Peripheral project header file.
  *
- * Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (c) 2015-2023 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,18 +25,18 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
- ***************************************************************************************
+ ****************************************************************************************
  */
 
-#ifndef _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
-#define _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#ifndef _USER_PERIPHERAL_H_
+#define _USER_PERIPHERAL_H_
 
 /**
  ****************************************************************************************
  * @addtogroup APP
  * @ingroup RICOW
  *
- * @brief 
+ * @brief
  *
  * @{
  ****************************************************************************************
@@ -53,72 +53,97 @@
 #include "gapm_task.h"                 // gap functions and messages
 #include "app.h"                       // application definitions
 #include "co_error.h"                  // error code definitions
+#include "arch_wdg.h"
+
+#include "app_callback.h"
+#include "app_default_handlers.h"
+
+
+/*
+ * DEFINES
+ ****************************************************************************************
+ */
+#define DECIMAL "%d"
+#define FLOAT   "%.4f" 
  
-
-/****************************************************************************
-Add here supported profiles' application header files.
-i.e.
-#if (BLE_DIS_SERVER)
-#include "app_dis.h"
-#include "app_dis_task.h"
+#if defined (CFG_USE_INTERNAL_TEMP_SENSOR) && (__DA14531__)  
+#define TEMPERATURE_DATA    (4)
+#define HUMIDITY_DATA    (9)
+#define SNPRINT_FORMAT      DECIMAL
+#else
+#define TEMPERATURE_DATA    (9)
+#define HUMIDITY_DATA       (9)
+#define SNPRINT_FORMAT      FLOAT
 #endif
-*****************************************************************************/
 
+/* Duration of timer for connection parameter update request */
+#define APP_PARAM_UPDATE_REQUEST_TO         (1000)  	 	// 1000*10ms = 10sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+
+/* Advertising data update timer */
+#define APP_ADV_DATA_UPDATE_TO              (3000)   		// 3000*10ms = 30sec, The maximum allowed value is 41943sec (4194300 * 10ms)
+
+/* Manufacturer specific data constants */
+#define APP_AD_MSD_COMPANY_ID              (0xABCD)
+#define APP_AD_MSD_COMPANY_ID_LEN          (2)
+#define APP_AD_MSD_DATA_LEN_temp         TEMPERATURE_DATA
+#define APP_AD_MSD_DATA_LEN_hum          HUMIDITY_DATA
+
+#define APP_PERIPHERAL_CTRL_TIMER_DELAY    100
+#define INDICATION_DELAY 					         300  								//Time between notifications in ms
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
  */
 
 /*
- * DEFINES
- ****************************************************************************************
- */
- 
- #define WEIGHT_SCALE_UPDATE_INTERVAL 100
-
-/*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
  */
- 
- /**
- ****************************************************************************************
- * @brief gets weight value from nau7802 and add new callback for next update
- ****************************************************************************************
-*/
-void update_weight(void);
 
 /**
  ****************************************************************************************
- * @brief Converts a byte array containing wieght data in grams to 10s of milligrams.
- * @param[in] data   Byte array of grams. Least significat byte first
- * @return uint32_r  Weight value in milligrams
+ * @brief Application initialization function.
+ * @return void
  ****************************************************************************************
 */
-uint32_t grams_byte_array_to_10milligrams(const uint8_t data[4]);
+void user_app_init(void);
 
- /**
+/**
  ****************************************************************************************
- * @brief starts updating the nau7802 and calls default connection
- * @param[in] connection_idx  Index number that identifies a connected device
- * @param[in] param   				Pointer to the parameters of the message.
+ * @brief Advertising function.
+ * @return void
  ****************************************************************************************
 */
-void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param);
+void user_app_adv_start(void);
 
- /**
+/**
  ****************************************************************************************
- * @brief stops the weight scale updating and calls default disconnect
+ * @brief Connection function.
+ * @param[in] connection_idx Connection Id index
+ * @param[in] param Pointer to GAPC_CONNECTION_REQ_IND message
+ * @return void
  ****************************************************************************************
 */
-void user_on_disconnect( struct gapc_disconnect_ind const *param );
+void user_app_connection(uint8_t connection_idx, 
+                         struct gapc_connection_req_ind const *param);
 
- /**
+/**
  ****************************************************************************************
- * @brief initializes wsss app and calls default initializer
+ * @brief Undirect advertising completion function.
+ * @param[in] status Command complete event message status
+ * @return void
  ****************************************************************************************
 */
-void user_app_on_init(void);
+void user_app_adv_undirect_complete(uint8_t status);
+
+/**
+ ****************************************************************************************
+ * @brief Disconnection function.
+ * @param[in] param Pointer to GAPC_DISCONNECT_IND message
+ * @return void
+ ****************************************************************************************
+*/
+void user_app_disconnect(struct gapc_disconnect_ind const *param);
 
 /**
  ****************************************************************************************
@@ -127,6 +152,7 @@ void user_app_on_init(void);
  * @param[in] param   Pointer to the parameters of the message.
  * @param[in] dest_id ID of the receiving task instance.
  * @param[in] src_id  ID of the sending task instance.
+ * @return void
  ****************************************************************************************
 */
 void user_catch_rest_hndl(ke_msg_id_t const msgid,
@@ -136,4 +162,4 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
 /// @} APP
 
-#endif // _USER_EMPTY_PERIPHERAL_TEMPLATE_H_
+#endif // _USER_PERIPHERAL_H_

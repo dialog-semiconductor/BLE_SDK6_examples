@@ -5,7 +5,7 @@
  *
  * @brief Callback functions configuration file.
  *
- * Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (c) 2015-2023 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
- ***************************************************************************************
+ ****************************************************************************************
  */
 
 #ifndef _USER_CALLBACK_CONFIG_H_
@@ -36,89 +36,29 @@
  ****************************************************************************************
  */
 
-#include "app_api.h"
-#include "app_bass.h"
-#include "app_findme.h"
-#include "app_proxr.h"
-#include "app_suotar.h"
+#include <stdio.h>
 #include "app_callback.h"
+#include "app_default_handlers.h"
+#include "app_entry_point.h"
 #include "app_prf_types.h"
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
-#if (BLE_WSS_SERVER)
-#include "app_wsss.h"
-#endif // (BLE_WSS_SERVER)
-#include "ble_weight_scale_nau7802.h"
-
-/*
- * FUNCTION DECLARATIONS
- ****************************************************************************************
- */
-
-/**
- ****************************************************************************************
- * @brief Function to be called on the advertising completion event.
- * @param[in] uint8_t GAP Error code
- ****************************************************************************************
- */
-void app_advertise_complete(const uint8_t);
-
-/**
- ****************************************************************************************
- * @brief SUOTAR session start or stop event handler.
- * @param[in] suotar_event SUOTAR_START/SUOTAR_STOP
- ****************************************************************************************
- */
-void on_suotar_status_change(const uint8_t suotar_event);
-
+#include "user_peripheral.h"
 
 /*
  * LOCAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
 
-#if (BLE_WSS_SERVER)
-static const struct app_wsss_cb user_app_wsss_cb = {
-    .on_wsss_bcs_reference_req = NULL,
-    .on_wsss_ind_cfg_ind = NULL,
-    .on_wsss_send_measurement_cfm = NULL,
-};
-#endif
-
-#if (BLE_BATT_SERVER)
-static const struct app_bass_cb user_app_bass_cb = {
-    .on_batt_level_upd_rsp      = NULL,
-    .on_batt_level_ntf_cfg_ind  = NULL,
-};
-#endif
-
-#if (BLE_FINDME_TARGET)
-static const struct app_findt_cb user_app_findt_cb = {
-    .on_findt_alert_ind         = default_findt_alert_ind_handler,
-};
-#endif
-
-#if (BLE_PROX_REPORTER)
-static const struct app_proxr_cb user_app_proxr_cb = {
-    .on_proxr_alert_ind      = default_proxr_alert_ind_handler,
-};
-#endif
-
-#if (BLE_SUOTA_RECEIVER)
-static const struct app_suotar_cb user_app_suotar_cb = {
-    .on_suotar_status_change = on_suotar_status_change,
-};
-#endif
-
 static const struct app_callbacks user_app_callbacks = {
-    .app_on_connection                  = user_on_connection,
-    .app_on_disconnect                  = user_on_disconnect,
+    .app_on_connection                  = user_app_connection,
+    .app_on_disconnect                  = user_app_disconnect,
     .app_on_update_params_rejected      = NULL,
     .app_on_update_params_complete      = NULL,
     .app_on_set_dev_config_complete     = default_app_on_set_dev_config_complete,
     .app_on_adv_nonconn_complete        = NULL,
-    .app_on_adv_undirect_complete       = NULL,
+    .app_on_adv_undirect_complete       = user_app_adv_undirect_complete,
     .app_on_adv_direct_complete         = NULL,
     .app_on_db_init_complete            = default_app_on_db_init_complete,
     .app_on_scanning_completed          = NULL,
@@ -133,28 +73,26 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_svc_changed_cfg_ind         = NULL,
     .app_on_get_peer_features           = NULL,
 #if (BLE_APP_SEC)
-    .app_on_pairing_request             = default_app_on_pairing_request,
-    .app_on_tk_exch                     = default_app_on_tk_exch,
+    .app_on_pairing_request             = NULL,
+    .app_on_tk_exch                     = NULL,
     .app_on_irk_exch                    = NULL,
     .app_on_csrk_exch                   = NULL,
-    .app_on_ltk_exch                    = default_app_on_ltk_exch,
+    .app_on_ltk_exch                    = NULL,
     .app_on_pairing_succeeded           = NULL,
     .app_on_encrypt_ind                 = NULL,
     .app_on_encrypt_req_ind             = NULL,
     .app_on_security_req_ind            = NULL,
     .app_on_addr_solved_ind             = NULL,
     .app_on_addr_resolve_failed         = NULL,
-#if !defined (__DA14531_01__)
     .app_on_ral_cmp_evt                 = NULL,
     .app_on_ral_size_ind                = NULL,
     .app_on_ral_addr_ind                = NULL,
-#endif // __DA14531_01__
 #endif // (BLE_APP_SEC)
 };
 
 #if (BLE_APP_SEC)
 static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
-    .app_bdb_init                       = user_app_on_init,
+    .app_bdb_init                       = NULL,
     .app_bdb_get_size                   = NULL,
     .app_bdb_add_entry                  = NULL,
     .app_bdb_remove_entry               = NULL,
@@ -165,20 +103,17 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 };
 #endif // (BLE_APP_SEC)
 
+
 /*
  * "app_process_catch_rest_cb" symbol handling:
  * - Use #define if "user_catch_rest_hndl" is defined by the user
  * - Use const declaration if "user_catch_rest_hndl" is NULL
  */
 #define app_process_catch_rest_cb       user_catch_rest_hndl
-//static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
-
-static const struct default_app_operations user_default_app_operations = {
-    .default_operation_adv = default_advertise_operation,
-};
+// static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
-    .app_on_init            = user_app_on_init,
+    .app_on_init            = user_app_init,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,
@@ -198,10 +133,15 @@ static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     .app_resume_from_sleep  = NULL,
 };
 
-//place in this structure the app_<profile>_db_create and app_<profile>_enable functions
-//for SIG profiles that do not have this function already implemented in the SDK
-//or if you want to override the functionality. Check the prf_func array in the SDK
-//for your reference of which profiles are supported.
+// Default Handler Operations
+static const struct default_app_operations user_default_app_operations = {
+    .default_operation_adv = user_app_adv_start,
+};
+
+// Place in this structure the app_<profile>_db_create and app_<profile>_enable functions
+// for SIG profiles that do not have this function already implemented in the SDK
+// or if you want to override the functionality. Check the prf_func array in the SDK
+// for your reference of which profiles are supported.
 static const struct prf_func_callbacks user_prf_funcs[] =
 {
     {TASK_ID_INVALID,    NULL, NULL}   // DO NOT MOVE. Must always be last

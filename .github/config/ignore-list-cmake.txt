@@ -1,6 +1,7 @@
 list of files to be ignored by CI:
 ./connectivity/Quuppa_DialogTag/CMakeLists.txt
 ./connectivity/RTC_Example/CMakeLists.txt
+./connectivity/ble_indication_hs3001/CMakeLists.txt
 ./connectivity/ble_pressure_sensor_bmp388/CMakeLists.txt
 ./connectivity/ibeacon_Optim/CMakeLists.txt
 ./connectivity/multi_con_periph/CMakeLists.txt

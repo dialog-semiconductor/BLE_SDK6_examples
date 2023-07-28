@@ -66,7 +66,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
     ![Terminal_Error](assets/terminal_capture.PNG)
 
 
-5.  In addition to the UART printout, advertising data, along with a custom service is enabled to retrive the data.  A seperate tool has been created for the DA14531, as a central, to retrieve this data using GTL and python. The BLE interface is described below, and the ReadMe.md can for central_crash_info can be referrred to for operation.  
+5.  In addition to the UART printout, advertising data, along with a custom service is enabled to retrive the data.  A seperate tool has been created for the DA14531, as a central, to retrieve this data using GTL and python. The BLE interface is described below, and the ReadMe.md for central_crash_info can be referred to for operation.  
 
 ## DCI API and Use
 
@@ -101,8 +101,7 @@ typedef __PACKED_STRUCT
 {
 	uint8_t			header;
 	uint16_t 		length;
-	dci_data_t	    *data;		
-	
+	dci_data_t	    	*data;		
 }dci_info_t;
 ```
 
@@ -113,10 +112,9 @@ typedef __PACKED_STRUCT
 ```c
 typedef __PACKED_STRUCT
 {
-	dci_reset_reason_t		    last_reset_reason;
-	uint8_t						num_resets;
-	dci_fault_info_t			fault_data[DCI_NUM_RESETS_STORED];
-	
+	dci_reset_reason_t	last_reset_reason;
+	uint8_t			num_resets;
+	dci_fault_info_t	fault_data[DCI_NUM_RESETS_STORED];
 }dci_data_t;
 ```
 
@@ -154,12 +152,12 @@ LF_PLATFORM_RESET is currently not implemented.  This typically is a result of m
 ```c
 typedef __PACKED_STRUCT
 {
-	uint8_t 					data_valid;
-	uint32_t					epoch;
+	uint8_t 			data_valid;
+	uint32_t			epoch;
 	dci_last_fault_hdlr_t		fault_handler;
 	cortex_m0_stack_frame_t		stack_frame;
-	uint8_t						num_of_call_vals;
-	uint32_t					call_trace[DCI_CALL_DEPTH];
+	uint8_t				num_of_call_vals;
+	uint32_t			call_trace[DCI_CALL_DEPTH];
 	
 }dci_fault_info_t;
 ```
@@ -190,14 +188,14 @@ This example uses the UUID from the DCI Service and appends a uint8_t for the nu
 |  1   |     2     | GAP_AD_TYPE_FLAGS                | 0x06 (BR/EDR Not Supported, LE Gerneral Discoverable) |
 |  2   |     18    | GAP_AD_TYPE_SERVICE_128_BIT_DATA | <DCI Sevice UUID, Number of Resets>                   |
 
-![advertising data](assets/advertising_data.PNG)
+![advertising data](assets/advertising_data.png)
 
 ***Scan Response Data***
 | AD # | AD Length | AD Type                          | AD Data |
 |------|-----------|----------------------------------|---------|
 |  1   |     4     | GAP_AD_TYPE_COMPLETE_NAME        | "DCI"   |
 
-![scan response data](assets/scan_rsp_data.PNG)
+![scan response data](assets/scan_rsp_data.png)
 
 ### *DCI Service*
 

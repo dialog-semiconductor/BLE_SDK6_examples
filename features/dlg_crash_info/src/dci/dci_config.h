@@ -6,7 +6,7 @@
 ***********************WARNING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*****************************************
 * This should be undefined once used in production.  The purpose of this is to test the module with RAM 
 * use ONLY.   This modifies the reset procedure to do a soft reset back into RAM and could potentially
-* cause isses iwth the scatterload.
+* cause isses with the scatterload.
 */
 #undef DCI_RAMAP_ADDR0_TEST	
 

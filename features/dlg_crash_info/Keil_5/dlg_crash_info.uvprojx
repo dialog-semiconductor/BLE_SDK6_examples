@@ -84,7 +84,7 @@
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>1</RunUserProg2>
             <UserProg1Name>fromelf --bincombined --output=".\out_DA14531\Objects\@L.bin"  "!L"</UserProg1Name>
-            <UserProg2Name>fromelf $Pout_DA14531\Objects\%L --disassemble --interleave=source  --text -c --output=outfile.lst</UserProg2Name>
+            <UserProg2Name>fromelf --text -a -c --output=.\out_DA14531\asm\@L_asm.txt "!L"</UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>

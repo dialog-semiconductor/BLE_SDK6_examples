@@ -175,7 +175,7 @@ The DCI Module uses the property of the ARM core pushing linked addresses to the
 
 ## DCI Service and BLE Usage
 
-There is a full example of using this service with the PyBLE Manager here: [PyBLEManager Example](https://github.com/dialog-semiconductor/py_ble_manager/tree/main/examples/central/3_central_crash_info).
+There is a [PyBLEManager Example](https://github.com/dialog-semiconductor/py_ble_manager/tree/main/examples/central/3_central_crash_info) that can be  used to directly pull the DCI data from this example or be used for reference in a custom application.  
 
 ### *Advertising*
 

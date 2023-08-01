@@ -175,6 +175,8 @@ The DCI Module uses the property of the ARM core pushing linked addresses to the
 
 ## DCI Service and BLE Usage
 
+There is a [PyBLEManager Example](https://github.com/dialog-semiconductor/py_ble_manager/tree/main/examples/central/3_central_crash_info) that can be  used to directly pull the DCI data from this example or be used for reference in a custom application.  
+
 ### *Advertising*
 
 This example uses advertising to indicate to a central that there is reset data available.  The advertising payload uses service data, and then appends the number of resets from dci_data_t.  This allows for a central to scan and determine if a device has reset information it can connect and extract data from.  Please see the following example for more references on ![service data adertising](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/svc_data_beacon)

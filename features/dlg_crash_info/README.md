@@ -18,7 +18,7 @@ This particular example runs on the DA1453x architecture but could easily be por
       - Connect the DA145xx Pro Development Kit to the host computer.
       - UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionality.
 
-      ![DA14531_connection_wires](assets/hardware_setup_531.jpg)
+      ![DA14531_connection_wires](assets/hardware_setup_531.SVG)
 
 * **Software configuration**
 

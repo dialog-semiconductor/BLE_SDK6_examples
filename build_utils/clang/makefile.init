@@ -1,0 +1,21 @@
+#Build options, da14531, da14585, da14586
+BUILD_CONFIG := da14531
+#Upper directory level where SDK is located
+#Default: ../../../../../..
+SOURCEROOT = ../../../lpc_cs_sdk6
+#Application firmware source directory
+APP_SOURCE_DIR =./src
+#Source config folder directory
+CONFIG_SOURCE_DIR = $(addsuffix /config, $(APP_SOURCE_DIR))
+
+#Clang doesn't have standard C libraries, need GCC standard C libraries and v6 thumb libraries
+GCC_LIB_DIR :=/root/gcc-arm-none-eabi-7-2018-q2-update
+
+#Cross Compiler - if not exported to path, point the makefile to the clang directory
+CC = clang
+
+#Optimize for Size and link-time-optimizations
+LD_OPTIMIZATION =-Oz
+ENABLE_LTO =1
+
+

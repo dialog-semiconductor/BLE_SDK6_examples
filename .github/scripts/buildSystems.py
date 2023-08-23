@@ -16,6 +16,7 @@ import pathlib
 import shutil
 import subprocess
 import sys
+import re
 
 from common import bashexec, bcolors
 
@@ -75,11 +76,16 @@ class Clang:
         """Check a build."""
         os.chdir(project.absPath)
         if project.cmakelistsFile and self.name not in project.excludeBuilds:
-            binPath = (project.builddir+"_clang").joinpath(
+            binPath = (pathlib.Path(str(project.builddir)+"-clang")).joinpath(
                 str(project.title) + ".bin"
             )
             if bashexec("test -f " + str(binPath))[1] == 0:
-                project.addBuildStatus(self.name, target, True, binPath)
+                size = bashexec("llvm-size "+str(pathlib.Path(str(project.builddir)+"-clang").joinpath(str(project.title) + ".elf")))[0]
+                size = size.split(b'\t')
+                textSize = re.search(r'\d+', str(size[5])).group()
+                dataSize = re.search(r'\d+', str(size[6])).group()
+                bssSize = re.search(r'\d+', str(size[7])).group()
+                project.addBuildStatus(self.name, target, True, binPath, textSizeBytes=textSize, dataSizeBytes=dataSize, bssSizeBytes=bssSize)
             else:
                 project.addBuildStatus(self.name, target, False, binPath)
         return 0

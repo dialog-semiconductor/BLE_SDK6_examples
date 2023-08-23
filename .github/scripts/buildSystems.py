@@ -28,10 +28,61 @@ def getBuildSystem(buildsystem, examplesdir=False, sdkDir=False, verbose=False):
         return CMake(examplesdir, sdkDir, verbose)
     elif (buildsystem == "Keil/armcomp6") and sdkDir:
         return Keil(sdkDir, verbose)
+    elif (buildsystem == "clang") and all([examplesdir, sdkDir]):
+        return Clang(examplesdir, sdkDir, verbose)
     else:
         raise Exception(
-            "To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir or To create a Keil build system provide sdkDir"
+            "To create a CMake build system, provide the following parameters: examplesdir, sdkDir or To create a Keil build system provide sdkDir"
         )
+
+
+class Clang:
+    """Build system for clang."""
+
+    def __init__(self, examplesdir, sdkDir, verbose=False):
+        """Initialize the Clang build system."""
+        self.name = "Clang"
+        self.verbose = verbose
+        if not any([examplesdir, sdkDir]):
+            raise Exception(
+                "To create a clang build system, provide the following parameters: examplesdir, sdkDir"
+            )
+        self.examplesdir = str(examplesdir)
+        self.gccPath = bashexec("which clang")[0].decode("utf-8").rstrip()
+        self.sdkDir = str(sdkDir)
+
+    def build(self, project):
+        """Build a project."""
+        startdir = os.getcwd()
+        if self.name in project.excludeBuilds:
+            print(
+                bcolors.WARNING
+                + "Skipping build excluded with --exclude option:\n"
+                + str(project)
+                + bcolors.ENDC
+            )
+            return 1
+        print(bcolors.HEADER + "Building: " + str(project) + bcolors.ENDC)
+        os.chdir(project.absPath)
+        if bashexec("make -f /root/repos/BLE_SDK6_examples/build_utils/clang/Makefile", prnt=self.verbose)[1] != 0:
+            print(bcolors.FAIL + str(project) + bcolors.ENDC)
+            os.chdir(startdir)
+            return 1
+        os.chdir(startdir)
+        return 0
+
+    def check(self, project, target):
+        """Check a build."""
+        os.chdir(project.absPath)
+        if project.cmakelistsFile and self.name not in project.excludeBuilds:
+            binPath = (project.builddir+"_clang").joinpath(
+                str(project.title) + ".bin"
+            )
+            if bashexec("test -f " + str(binPath))[1] == 0:
+                project.addBuildStatus(self.name, target, True, binPath)
+            else:
+                project.addBuildStatus(self.name, target, False, binPath)
+        return 0
 
 
 class CMake:
@@ -43,7 +94,7 @@ class CMake:
         self.verbose = verbose
         if not any([examplesdir, sdkDir]):
             raise Exception(
-                "To create a CMake build system, provide the following parameters: examplesdir, gccPath, sdkDir"
+                "To create a CMake build system, provide the following parameters: examplesdir, sdkDir"
             )
         self.examplesdir = str(examplesdir)
         self.gccPath = bashexec("which arm-none-eabi-gcc")[0].decode("utf-8").rstrip()

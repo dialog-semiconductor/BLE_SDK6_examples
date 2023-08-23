@@ -77,7 +77,7 @@ def parseArgs():
         "-b",
         "--build-system",
         default="CMake/gcc10",
-        choices=["CMake/gcc10", "Keil/armcomp6"],
+        choices=["clang", "CMake/gcc10", "Keil/armcomp6"],
         help="The build system used for the build. default='CMake'",
     )
     parser.add_argument(

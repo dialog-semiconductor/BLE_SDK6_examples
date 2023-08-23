@@ -18,7 +18,7 @@ BUILD_CONFIG_TYPES := da14531
 BUILD_CONFIG_TYPES += da14585 
 BUILD_CONFIG_TYPES += da14586 
 
-BUILD_OUTPUT_DIR := $(BUILD_CONFIG)
+BUILD_OUTPUT_DIR := build-clang
 
 CC   ?= clang
 OPT_FLAGS ?=-Oz
@@ -31,9 +31,9 @@ endif
 OBJCOPY :=llvm-objcopy
 OBJSIZE  :=llvm-size
 
-BUILD_GCC_OBJS:= $(SOURCEROOT)/crt_objects/crt0.o \
-                 $(SOURCEROOT)/crt_objects/crti.o \
-                 $(SOURCEROOT)/crt_objects/crtn.o
+BUILD_GCC_OBJS:= ../../build_utils/clang/crt_objects/crt0.o \
+                 ../../build_utils/clang/crt_objects/crti.o \
+                 ../../build_utils/clang/crt_objects/crtn.o
 
 RM := rm -rf
 
@@ -476,7 +476,7 @@ $(wildcard ../../build_utils/clang/makefile.defs) \
 $(wildcard ../../build_utils/clang/makefile.init) \
 $(wildcard ../../build_utils/clang/makefile.targets) \
 
-BUILD_ARTIFACT_NAME ?= pxp_reporter
+BUILD_ARTIFACT_NAME ?= $(shell basename $(CURDIR))
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -559,6 +559,8 @@ ifeq (,$(findstring $(BUILD_CONFIG), $(BUILD_CONFIG_TYPES)))
 	$(error Invalid build configuration. Please set BUILD_CONFIG to one of {$(BUILD_CONFIG_TYPES)})
 endif
 
+LDSCRIPT_PATH ?= "../../build_utils/clang/clang_ldscripts"
+
 # Generate linker scripts TODO need to change LDSCRIPT_FILES for 14585/86
 pre-build: check-build-config
 	-@echo 'Generate linker scripts.'
@@ -568,11 +570,31 @@ pre-build: check-build-config
 	-@echo 'LDSCRIPT: $(LDSCRIPT)'
 	-@echo 'CC: $(CC)'
 	-@mkdir -p $(BUILD_OUTPUT_DIR)
-	@make generate_ldscripts PRE_BUILD_EXTRA_DEFS="-D$(DEVICE)" \
+	-@echo $(shell ls $(LDSCRIPT_PATH))
+	-@echo $(shell pwd)
+
+	-@make -f ../../build_utils/clang/Makefile generate_ldscripts PRE_BUILD_EXTRA_DEFS="-D$(DEVICE)" \
 	CC="$(CC)" \
 	LDSCRIPT_INCLUDE_DIR="$(CONFIG_SOURCE_DIR) $(SDKROOT)/common_project_files" \
 	LDSCRIPT_PATH="../../build_utils/clang/clang_ldscripts" \
 	LDSCRIPT_FILES="$(LDSCRIPT)"
+
+	-@echo $(shell ls $(LDSCRIPT_PATH))
+	-@echo $(shell pwd)
+	-@echo 'LDSCRIPT_INCLUDE_DIR: $(LDSCRIPT_INCLUDE_DIR)'
+	-@echo 'LDSCRIPT_PATH: $(LDSCRIPT_PATH)'
+	-@echo 'LDSCRIPT_FILES: $(LDSCRIPT_FILES)'
+
+
+
+
+
+	# @make generate_ldscripts PRE_BUILD_EXTRA_DEFS="-D__DA14531__" \
+	# CC="/root/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04/bin/clang" \
+	# LDSCRIPT_INCLUDE_DIR="/root/repos/BLE_SDK6_examples/connectivity/advertising_example/src/config /root/repos/lpc_cs_sdk6/sdk/common_project_files" \
+	# LDSCRIPT_PATH="/root/repos/BLE_SDK6_examples/build_utils/clang/clang_ldscripts" \
+	# LDSCRIPT_FILES="/root/repos/BLE_SDK6_examples/build_utils/clang/clang_ldscripts/ldscript_DA14531.lds.S"
+
 	-@echo ' '
 
 

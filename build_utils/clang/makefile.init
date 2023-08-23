@@ -2,7 +2,8 @@
 BUILD_CONFIG := da14531
 #Upper directory level where SDK is located
 #Default: ../../../../../..
-SOURCEROOT = ../../../lpc_cs_sdk6
+#SOURCEROOT = ../../../lpc_cs_sdk6
+SOURCEROOT = ../../../clang_port/SDK6
 #Application firmware source directory
 APP_SOURCE_DIR =./src
 #Source config folder directory

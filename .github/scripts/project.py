@@ -199,7 +199,7 @@ class Project:
             bashexec(["git", "apply", self.patchFile, "--reverse"])
             os.chdir(startdir)
 
-    def addBuildStatus(self, buildsystem, target, passed, binPath, textSizeBytes=False, dataSizeBytes=False, bssSizeBytes=False):
+    def addBuildStatus(self, buildsystem, target, passed, binPath, textSizeBytes=False, dataSizeBytes=False, bssSizeBytes=False, codeSizeBytes=False, roSizeBytes=False, rwSizeBytes=False, ziSizeBytes=False):
         """Add a build to the project item."""
         if not self.buildStatus:
             self.buildStatus = []
@@ -215,12 +215,19 @@ class Project:
                 "buildsystem": buildsystem,
                 "target": target.to_json(),
                 "passed": passed,
-                "binPath": str(binPath),
-                "textSizeBytes": str(textSizeBytes),
-                "dataSizeBytes": str(dataSizeBytes),
-                "bssSizeBytes": str(bssSizeBytes),
+                "binPath": str(binPath)
             }
         )
+        if (textSizeBytes or dataSizeBytes or bssSizeBytes):
+            self.buildStatus[-1]["textSizeBytes"] = textSizeBytes
+            self.buildStatus[-1]["dataSizeBytes"] = dataSizeBytes
+            self.buildStatus[-1]["bssSizeBytes"] = bssSizeBytes
+        if (codeSizeBytes or roSizeBytes or rwSizeBytes or ziSizeBytes):
+            self.buildStatus[-1]["codeSizeBytes"] = codeSizeBytes
+            self.buildStatus[-1]["roSizeBytes"] = roSizeBytes
+            self.buildStatus[-1]["rwSizeBytes"] = rwSizeBytes
+            self.buildStatus[-1]["ziSizeBytes"] = ziSizeBytes
+        
 
     def checkBuildStatus(self, target, buildSystem):
         """Check if a build status is passed."""

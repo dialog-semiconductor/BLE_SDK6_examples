@@ -127,32 +127,32 @@ class CMake:
             return 1
         print(bcolors.HEADER + "Building: " + str(project) + bcolors.ENDC)
         os.chdir(project.absPath)
-        if os.path.exists(project.builddir):
-            shutil.rmtree(project.builddir)
-        project.builddir.mkdir()
-        bashexec(
-            [
-                "cmake",
-                "-DDEVICE_NAME=" + str(project.title),
-                "-DCMAKE_BUILD_TYPE=DEBUG",
-                "-DCMAKE_TOOLCHAIN_FILE="
-                + str(self.examplesdir)
-                + "/build_utils/gcc/arm-none-eabi.cmake",
-                "-DGCC_TOOLCHAIN_PATH=" + str(self.gccPath),
-                "-DDIALOG_SDK_PATH=" + str(self.sdkDir),
-                "-DDIALOG_EXAMPLE_PATH=" + str(self.examplesdir),
-                "-S",
-                ".",
-                "-B",
-                str(project.builddir),
-            ],
-            prnt=self.verbose,
-        )
+        # if os.path.exists(project.builddir):
+        #     shutil.rmtree(project.builddir)
+        # project.builddir.mkdir()
+        # bashexec(
+        #     [
+        #         "cmake",
+        #         "-DDEVICE_NAME=" + str(project.title),
+        #         "-DCMAKE_BUILD_TYPE=DEBUG",
+        #         "-DCMAKE_TOOLCHAIN_FILE="
+        #         + str(self.examplesdir)
+        #         + "/build_utils/gcc/arm-none-eabi.cmake",
+        #         "-DGCC_TOOLCHAIN_PATH=" + str(self.gccPath),
+        #         "-DDIALOG_SDK_PATH=" + str(self.sdkDir),
+        #         "-DDIALOG_EXAMPLE_PATH=" + str(self.examplesdir),
+        #         "-S",
+        #         ".",
+        #         "-B",
+        #         str(project.builddir),
+        #     ],
+        #     prnt=self.verbose,
+        # )
         os.chdir(project.builddir)
-        if bashexec("make -j 7", prnt=self.verbose)[1] != 0:
-            print(bcolors.FAIL + str(project) + bcolors.ENDC)
-            os.chdir(startdir)
-            return 1
+        # if bashexec("make -j 7", prnt=self.verbose)[1] != 0:
+        #     print(bcolors.FAIL + str(project) + bcolors.ENDC)
+        #     os.chdir(startdir)
+        #     return 1
         os.chdir(startdir)
         return 0
 
@@ -175,7 +175,12 @@ class CMake:
                 == 0
             ):
                 if bashexec("test -f " + str(binPath))[1] == 0:
-                    project.addBuildStatus(self.name, target, True, binPath)
+                    size = bashexec("arm-none-eabi-size "+str(pathlib.Path(str(project.builddir)).joinpath(str(project.title) + "_" + str(target.acronym) + ".elf")))[0]
+                    size = size.split(b'\t')
+                    textSize = re.search(r'\d+', str(size[5])).group()
+                    dataSize = re.search(r'\d+', str(size[6])).group()
+                    bssSize = re.search(r'\d+', str(size[7])).group()
+                    project.addBuildStatus(self.name, target, True, binPath, textSizeBytes=textSize, dataSizeBytes=dataSize, bssSizeBytes=bssSize)
                 else:
                     project.addBuildStatus(self.name, target, False, binPath)
         return 0

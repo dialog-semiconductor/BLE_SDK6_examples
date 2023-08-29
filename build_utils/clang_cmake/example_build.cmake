@@ -1,6 +1,7 @@
 
 # Include Dialog SDK
-include(${DIALOG_EXAMPLE_PATH}/dialog-sdk.cmake)
+
+include(${DIALOG_EXAMPLE_PATH}/../../build_utils/clang_cmake/dialog-sdk.cmake)
 include_directories(src/config src src/custom_profile)
 FILE(GLOB_RECURSE sourcesFiles src/*.c)
 LIST(APPEND userSourceFiles ${sourcesFiles})

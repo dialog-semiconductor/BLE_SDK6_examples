@@ -65,7 +65,7 @@
 #define CODE_AREA_START          				(0x07fc0000 + 0xC0 + 80)
 #define CODE_AREA_END										(0x07FCBFFF)
 
-#define ROM_CODE_START									(0x07f0200)
+#define ROM_CODE_START									(0x07f00200)
 #define ROM_CODE_END										(0x07F24000)
 
 #define IS_IN_RAM(x)                    (x > CODE_AREA_START && x < CODE_AREA_END)

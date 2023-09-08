@@ -15,8 +15,14 @@ message("DEVICE_NAME = ${DEVICE_NAME}")
 message("DIALOG_SDK_PATH = ${DIALOG_SDK_PATH}")
 message("DIALOG_EXAMPLE_PATH = ${DIALOG_EXAMPLE_PATH}")
 message("GCC_TOOLCHAIN_PATH = ${GCC_TOOLCHAIN_PATH}")
+message("CLANG_TOOLCHAIN_PATH = ${CLANG_TOOLCHAIN_PATH}")
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
-include (${DIALOG_EXAMPLE_PATH}/build_utils/gcc/example_build.cmake)
-
+if("${CLANG_TOOLCHAIN_PATH}" STREQUAL "")    
+    include (${DIALOG_EXAMPLE_PATH}/build_utils/gcc/example_build.cmake)
+else()
+    set(BUILD_FOR_585 FALSE)
+    set(BUILD_FOR_586 FALSE)
+    include (${DIALOG_EXAMPLE_PATH}/../../build_utils/clang_cmake/example_build.cmake)
+endif()

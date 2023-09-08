@@ -1,6 +1,7 @@
 
 # Include Dialog SDK
 
+# TODO update path for CI
 include(${DIALOG_EXAMPLE_PATH}/../../build_utils/clang_cmake/dialog-sdk.cmake)
 include_directories(src/config src src/custom_profile)
 
@@ -57,9 +58,10 @@ set(LDFLAGS
 
 # GCC crt objects to build 
 set(BUILD_GCC_OBJS
-    ${DIALOG_SDK_PATH}/crt_objects/crt0.o
-    ${DIALOG_SDK_PATH}/crt_objects/crti.o
-    ${DIALOG_SDK_PATH}/crt_objects/crtn.o
+    # TODO update path for CI
+    ${DIALOG_EXAMPLE_PATH}/../../build_utils/clang_cmake/crt_objects/crt0.o
+    ${DIALOG_EXAMPLE_PATH}/../../build_utils/clang_cmake/crt_objects/crti.o
+    ${DIALOG_EXAMPLE_PATH}/../../build_utils/clang_cmake/crt_objects/crtn.o
     )
 
 if(BUILD_FOR_531)
@@ -119,7 +121,8 @@ if(BUILD_FOR_531 OR BUILD_FOR_531_PERIPHERAL_EXAMPLE)
 endif()
 
 # Linker file needs to be preprocessed
-set(LINKER_SCRIPT_IN_531 "${DIALOG_SDK_PATH}/clang_ldscripts/ldscript_DA14531.lds.S")
+# TODO update path for CI
+set(LINKER_SCRIPT_IN_531 "${DIALOG_EXAMPLE_PATH}/../../build_utils/clang_cmake/clang_ldscripts/ldscript_DA14531.lds.S")
 set(LINKER_SCRIPT_OUT_531 "ldscript_DA14531.lds")
 
 

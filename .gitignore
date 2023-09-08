@@ -19,4 +19,3 @@ artifacts
 *.DS_Store
 *metadata
 connectivity/multi_con_periph/Readme.md
-*CMake_build

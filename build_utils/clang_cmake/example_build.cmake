@@ -3,6 +3,11 @@
 
 include(${DIALOG_EXAMPLE_PATH}/../../build_utils/clang_cmake/dialog-sdk.cmake)
 include_directories(src/config src src/custom_profile)
+
+# Consider refactoring this. CMAKE does not advise using GLOB to collect source files: https://cmake.org/cmake/help/v3.7/command/file.html :
+# Note We do not recommend using GLOB to collect a list of source files from your source tree. 
+# If no CMakeLists.txt file changes when a source is added or removed then the generated 
+# build system cannot know when to ask CMake to regenerate.
 FILE(GLOB_RECURSE sourcesFiles src/*.c)
 LIST(APPEND userSourceFiles ${sourcesFiles})
 
@@ -40,7 +45,7 @@ set(CFLAGS
 # linker flags
 set(LDFLAGS 
     --target=arm-unknown-none-eabi 
-    -march=armv6-m 
+    -march=armv6s-m 
     -mcpu=cortex-m0plus 
     -nostdlib
     ${COMMON_FLAGS}

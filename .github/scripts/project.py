@@ -199,7 +199,7 @@ class Project:
             bashexec(["git", "apply", self.patchFile, "--reverse"])
             os.chdir(startdir)
 
-    def addBuildStatus(self, buildsystem, target, passed, binPath, textSizeBytes=False, dataSizeBytes=False, bssSizeBytes=False, codeSizeBytes=False, roSizeBytes=False, rwSizeBytes=False, ziSizeBytes=False):
+    def addBuildStatus(self, buildsystem, target, passed, binPath=False, binSizeBytes=False, textSizeBytes=False, dataSizeBytes=False, bssSizeBytes=False, codeSizeBytes=False, roSizeBytes=False, rwSizeBytes=False, ziSizeBytes=False):
         """Add a build to the project item."""
         if not self.buildStatus:
             self.buildStatus = []
@@ -215,9 +215,12 @@ class Project:
                 "buildsystem": buildsystem,
                 "target": target.to_json(),
                 "passed": passed,
-                "binPath": str(binPath)
             }
         )
+        if (binPath):
+            self.buildStatus[-1]["binPath"] = str(binPath)
+        if (binSizeBytes):
+            self.buildStatus[-1]["binSizeBytes"] = binSizeBytes
         if (textSizeBytes or dataSizeBytes or bssSizeBytes):
             self.buildStatus[-1]["textSizeBytes"] = textSizeBytes
             self.buildStatus[-1]["dataSizeBytes"] = dataSizeBytes

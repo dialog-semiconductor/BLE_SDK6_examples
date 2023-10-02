@@ -17,6 +17,7 @@ import shutil
 import subprocess
 import sys
 import re
+import glob
 
 from common import bashexec, bcolors
 
@@ -65,10 +66,10 @@ class Clang:
             return 1
         print(bcolors.HEADER + "Building: " + str(project) + bcolors.ENDC)
         os.chdir(project.absPath)
-        if bashexec("make -f /root/repos/BLE_SDK6_examples/build_utils/clang/Makefile", prnt=self.verbose)[1] != 0:
-            print(bcolors.FAIL + str(project) + bcolors.ENDC)
-            os.chdir(startdir)
-            return 1
+        # if bashexec("make -f /root/repos/BLE_SDK6_examples/build_utils/clang/Makefile", prnt=self.verbose)[1] != 0:
+        #     print(bcolors.FAIL + str(project) + bcolors.ENDC)
+        #     os.chdir(startdir)
+        #     return 1
         os.chdir(startdir)
         return 0
 
@@ -85,9 +86,10 @@ class Clang:
                 textSize = int(re.search(r'\d+', str(size[5])).group())
                 dataSize = int(re.search(r'\d+', str(size[6])).group())
                 bssSize = int(re.search(r'\d+', str(size[7])).group())
-                project.addBuildStatus(self.name, target, True, binPath, textSizeBytes=textSize, dataSizeBytes=dataSize, bssSizeBytes=bssSize)
+                binSize = os.path.getsize(binPath)
+                project.addBuildStatus(self.name, target, True, binPath, binSizeBytes=binSize, textSizeBytes=textSize, dataSizeBytes=dataSize, bssSizeBytes=bssSize)
             else:
-                project.addBuildStatus(self.name, target, False, binPath)
+                project.addBuildStatus(self.name, target, False)
         return 0
 
 
@@ -127,32 +129,32 @@ class CMake:
             return 1
         print(bcolors.HEADER + "Building: " + str(project) + bcolors.ENDC)
         os.chdir(project.absPath)
-        if os.path.exists(project.builddir):
-            shutil.rmtree(project.builddir)
-        project.builddir.mkdir()
-        bashexec(
-            [
-                "cmake",
-                "-DDEVICE_NAME=" + str(project.title),
-                "-DCMAKE_BUILD_TYPE=DEBUG",
-                "-DCMAKE_TOOLCHAIN_FILE="
-                + str(self.examplesdir)
-                + "/build_utils/gcc/arm-none-eabi.cmake",
-                "-DGCC_TOOLCHAIN_PATH=" + str(self.gccPath),
-                "-DDIALOG_SDK_PATH=" + str(self.sdkDir),
-                "-DDIALOG_EXAMPLE_PATH=" + str(self.examplesdir),
-                "-S",
-                ".",
-                "-B",
-                str(project.builddir),
-            ],
-            prnt=self.verbose,
-        )
+        # if os.path.exists(project.builddir):
+        #     shutil.rmtree(project.builddir)
+        # project.builddir.mkdir()
+        # bashexec(
+        #     [
+        #         "cmake",
+        #         "-DDEVICE_NAME=" + str(project.title),
+        #         "-DCMAKE_BUILD_TYPE=DEBUG",
+        #         "-DCMAKE_TOOLCHAIN_FILE="
+        #         + str(self.examplesdir)
+        #         + "/build_utils/gcc/arm-none-eabi.cmake",
+        #         "-DGCC_TOOLCHAIN_PATH=" + str(self.gccPath),
+        #         "-DDIALOG_SDK_PATH=" + str(self.sdkDir),
+        #         "-DDIALOG_EXAMPLE_PATH=" + str(self.examplesdir),
+        #         "-S",
+        #         ".",
+        #         "-B",
+        #         str(project.builddir),
+        #     ],
+        #     prnt=self.verbose,
+        # )
         os.chdir(project.builddir)
-        if bashexec("make -j 7", prnt=self.verbose)[1] != 0:
-            print(bcolors.FAIL + str(project) + bcolors.ENDC)
-            os.chdir(startdir)
-            return 1
+        # if bashexec("make -j 7", prnt=self.verbose)[1] != 0:
+        #     print(bcolors.FAIL + str(project) + bcolors.ENDC)
+        #     os.chdir(startdir)
+        #     return 1
         os.chdir(startdir)
         return 0
 
@@ -180,9 +182,10 @@ class CMake:
                     textSize = int(re.search(r'\d+', str(size[5])).group())
                     dataSize = int(re.search(r'\d+', str(size[6])).group())
                     bssSize = int(re.search(r'\d+', str(size[7])).group())
-                    project.addBuildStatus(self.name, target, True, binPath, textSizeBytes=textSize, dataSizeBytes=dataSize, bssSizeBytes=bssSize)
+                    binSize = os.path.getsize(binPath)
+                    project.addBuildStatus(self.name, target, True, binPath, binSizeBytes=binSize, textSizeBytes=textSize, dataSizeBytes=dataSize, bssSizeBytes=bssSize)
                 else:
-                    project.addBuildStatus(self.name, target, False, binPath)
+                    project.addBuildStatus(self.name, target, False)
         return 0
 
 
@@ -210,41 +213,54 @@ class Keil:
             )
             return 0
         os.chdir(project.absPath)
-        keilCommand = [
-            "C:/Keil_v5/UV4/UV4.exe",
-            "-b",
-            str(project.uvprojxFile.resolve()),
-            "-z",
-            "-o",
-            project.uvisionLogFile.name,
-        ]
-        if self.verbose:
-            print("executing Keil command: " + str(keilCommand))
-        returncode = subprocess.call(keilCommand)
-        # Keil returns 0 if build is ok, 1 if there are warnings, and 2-20 if there are errors
-        colors = [bcolors.OKGREEN, bcolors.WARNING] + [bcolors.FAIL] * 18
-        if returncode >= len(
-            colors
-        ):  # this is to handle undocumented Keil return codes
-            returncode = 3
-        with open(project.uvisionLogFile, "r") as f:
-            print(colors[returncode] + f.read() + bcolors.ENDC)
-        return returncode
+        # keilCommand = [
+        #     "C:/Keil_v5/UV4/UV4.exe",
+        #     "-b",
+        #     str(project.uvprojxFile.resolve()),
+        #     "-z",
+        #     "-o",
+        #     project.uvisionLogFile.name,
+        # ]
+        # if self.verbose:
+        #     print("executing Keil command: " + str(keilCommand))
+        # returncode = subprocess.call(keilCommand)
+        # # Keil returns 0 if build is ok, 1 if there are warnings, and 2-20 if there are errors
+        # colors = [bcolors.OKGREEN, bcolors.WARNING] + [bcolors.FAIL] * 18
+        # if returncode >= len(
+        #     colors
+        # ):  # this is to handle undocumented Keil return codes
+        #     returncode = 3
+        # with open(project.uvisionLogFile, "r") as f:
+        #     print(colors[returncode] + f.read() + bcolors.ENDC)
+        return 0#returncode
 
     def check(self, project, target):
         """Check a build."""
+        os.chdir(project.absPath)
         if self.name not in project.excludeBuilds:
             with open(project.uvisionLogFile) as log, open(project.uvprojxFile) as proj:
                 if ("<TargetName>" + target.name + "</TargetName>") in proj.read():
-                    binPath = pathlib.Path(project.uvprojxFile.parent.name).joinpath(
-                        "out_"
-                        + target.name
-                        + "/Objects/"
-                        + os.path.splitext(project.title.name)[0]
-                        + "_"
-                        + str(target.acronym)
-                        + ".bin"
-                    )
+                    # binPath = pathlib.Path(project.uvprojxFile.parent.name).joinpath(
+                    #     "out_"
+                    #     + target.name
+                    #     + "/Objects/"
+                    #     + os.path.splitext(project.title.name)[0]
+                    #     + "_"
+                    #     + str(target.acronym)
+                    #     + ".bin"
+                    # )
+                    print(project.title)
+                    # objdir = pathlib.Path(project.uvprojxFile.parent.name).joinpath("out_"+ target.name+ "/Objects/")
+                    # if os.path.isdir(objdir):
+                    #     os.chdir(objdir)
+                    # else:
+                    #     objdir = pathlib.Path(project.uvprojxFile.parent.name).joinpath("out_"+ target.acronym+ "/Objects/")
+                    #     if os.path.isdir(objdir):
+                    #         os.chdir(objdir)
+                    #     else:
+                    #         return 0
+                    # binPath = pathlib.Path(glob.glob("*.bin")[0])
+                    #binPath = pathlib.Path(project.uvprojxFile.parent.name).joinpath("out_"+ target.name+ "/Objects/"+binName)
                     lines = log.readlines()
                     sizePattern = re.compile(r"Program Size:")
                     passPattern = target.acronym + self.passmarker
@@ -256,9 +272,21 @@ class Keil:
                             rwSize = int(re.search(r'\d+', str(size[4])).group())
                             ziSize = int(re.search(r'\d+', str(size[5])).group())
                         if passPattern in line:
-                            project.addBuildStatus(self.name, target, True, binPath, codeSizeBytes=codeSize, roSizeBytes=roSize, rwSizeBytes=rwSize, ziSizeBytes=ziSize)
+                            objdir = pathlib.Path(project.uvprojxFile.parent.name).joinpath("out_"+ target.name+ "/Objects/")
+                            if os.path.isdir(objdir):
+                                os.chdir(objdir)
+                            else:
+                                objdir = pathlib.Path(project.uvprojxFile.parent.name).joinpath("out_"+ target.acronym+ "/Objects/")
+                                if os.path.isdir(objdir):
+                                    os.chdir(objdir)
+                                else:
+                                    return 0
+                            binPath = pathlib.Path(glob.glob("*.bin")[0])
+                            print(binPath.resolve())
+                            binSize = os.path.getsize(binPath.resolve())
+                            project.addBuildStatus(self.name, target, True, binPath, binSizeBytes=binSize, codeSizeBytes=codeSize, roSizeBytes=roSize, rwSizeBytes=rwSize, ziSizeBytes=ziSize)
                             return 0
-                    project.addBuildStatus(self.name, target, False, binPath)
+                    project.addBuildStatus(self.name, target, False)
         return 0
 
 

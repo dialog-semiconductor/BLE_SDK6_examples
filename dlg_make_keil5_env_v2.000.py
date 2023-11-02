@@ -566,6 +566,10 @@ def build_uvprojx_element_various_controls(xml_sub_element, xml_tag, working_dir
     end_ele_char = ";"
     updated_data = ""
 
+    for dirpath, dirname, filename in os.walk(DLG_WORKING_PROJECT_PARENT_DIRECTORY):
+        # if x = os.path.basename(dirpath)
+        updated_data = updated_data + dirpath + end_ele_char
+
     for dirpath, dirname, filename in os.walk(DLG_PROJECT_SOURCE_SUBFOLDER_DIRECTORY):
         # if x = os.path.basename(dirpath)
         updated_data = updated_data + dirpath + end_ele_char

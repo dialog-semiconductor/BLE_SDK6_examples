@@ -1,0 +1,58 @@
+diff --git a/sdk/ble_stack/profiles/wss/wsss/src/wsss_task.c b/sdk/ble_stack/profiles/wss/wsss/src/wsss_task.c
+index deead39..08da48b 100644
+--- a/sdk/ble_stack/profiles/wss/wsss/src/wsss_task.c
++++ b/sdk/ble_stack/profiles/wss/wsss/src/wsss_task.c
+@@ -29,10 +29,7 @@
+ #include "prf_utils.h"
+ #include "wsss.h"
+ #include "wsss_task.h"
+-#ifdef __APP_WSSS__ 
+-#include "user_callback_config.h"
+-#include "app_callback.h"
+-#endif
++
+ /*
+  * FUNCTION DEFINITIONS
+  ****************************************************************************************
+@@ -100,15 +97,8 @@ static int wsss_meas_send_req_handler(ke_msg_id_t const msgid,
+ 
+     struct wsss_env_tag *wsss_env = PRF_ENV_GET(WSSS, wsss);
+     uint8_t conidx = KE_IDX_GET(src_id);
+-#ifdef __APP_WSSS__
+-    if(gapc_get_conhdl(conidx) == GAP_INVALID_CONHDL)
+-    {
+-        status = PRF_ERR_DISCONNECTED;
+-    }
+-    else if(ke_state_get(dest_id) == WSSS_IDLE)
+-#else
++
+     if (ke_state_get(dest_id) == WSSS_IDLE)
+-#endif
+     {
+         if (WSSS_IS_ENABLED(WSSS_WT_MEAS_IND_CFG))
+         {
+@@ -137,24 +127,9 @@ static int wsss_meas_send_req_handler(ke_msg_id_t const msgid,
+         {
+             status = PRF_ERR_IND_DISABLED;
+         }
+-
+         wsss_meas_send_cfm_send(conidx, status);
+-
+         msg_status = KE_MSG_CONSUMED;
+     }
+-    else
+-    {
+-        // Save it for later
+-        msg_status = KE_MSG_SAVED;
+-    }
+-
+-#ifdef __APP_WSSS__
+-    if(status != GAP_ERR_NO_ERROR)
+-    {
+-        // Send error message to application
+-        wsss_meas_send_cfm_send(conidx, status);
+-    }
+-#endif
+ 
+     return msg_status;
+ }

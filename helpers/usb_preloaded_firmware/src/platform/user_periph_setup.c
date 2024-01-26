@@ -5,26 +5,29 @@
  *
  * @brief Peripherals setup and initialization.
  *
- * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates
- * The MIT License (MIT)
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE.
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * All rights reserved. Confidential Information.
+ *
+ * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
+ * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
+ * revocable, non-sub-licensable right and license to use the Software, solely if used in
+ * or together with Renesas products. You may make copies of this Software, provided this
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * reserves the right to change or discontinue the Software at any time without notice.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
+ * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGES. USE OF THIS SOFTWARE MAY BE SUBJECT TO TERMS AND CONDITIONS CONTAINED IN
+ * AN ADDITIONAL AGREEMENT BETWEEN YOU AND RENESAS. IN CASE OF CONFLICT BETWEEN THE TERMS
+ * OF THIS NOTICE AND ANY SUCH ADDITIONAL LICENSE AGREEMENT, THE TERMS OF THE AGREEMENT
+ * SHALL TAKE PRECEDENCE. BY CONTINUING TO USE THIS SOFTWARE, YOU AGREE TO THE TERMS OF
+ * THIS NOTICE.IF YOU DO NOT AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO USE THIS
+ * SOFTWARE.
+ *
  ****************************************************************************************
  */
 
@@ -40,12 +43,20 @@
 #include "gpio.h"
 #include "uart.h"
 #include "syscntl.h"
-
+#include "fpga_helper.h"
+#include "systick.h"
+#include "uart_utils.h"
+#include "user_config.h"
+#include "arch_ram.h"
+#include "app.h"                // Application Definition
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
 
+extern struct bd_addr app_random_addr                                              __SECTION_ZERO("retention_mem_area0"); //@ RETENTION MEMORY
+static void print_db_adress(void);
+int systick_var = 0;
 /**
  ****************************************************************************************
  * @brief Each application reserves its own GPIOs here.
@@ -97,7 +108,6 @@ void set_pad_functions(void)
     GPIO_ConfigurePin(GPIO_LED_PORT, GPIO_LED_PIN, OUTPUT, PID_GPIO, false);
 }
 
-#if defined (CFG_PRINTF_UART2)
 // Configuration struct for UART2
 static const uart_cfg_t uart_cfg = {
     .baud_rate = UART2_BAUDRATE,
@@ -110,12 +120,77 @@ static const uart_cfg_t uart_cfg = {
     .rx_fifo_tr_lvl = UART2_RX_FIFO_LEVEL,
     .intr_priority = 2,
 };
-#endif
+
+static void print_db_adress(void)
+{
+	    static uint8_t n = 0;
+    // when pass  10 * 100ms
+    if ( 10 == n )
+    {
+        n = 0;
+//        timeout_expiration--;
+					printf_string(UART2, "#########################################################################################");
+					printf_string(UART2, "\n\r");
+					#if defined (__DA14531__) && (__DA14535__)
+					printf_string(UART2, " This is your Unique Static Random Address For your Device embed in the DA14535 USB KIT : \n\r");
+					#else
+					printf_string(UART2, " This is your Unique Static Random Address For your Device embed in the DA14531 USB KIT : \n\r");
+					#endif
+					printf_string(UART2, "#########################################################################################");
+					   
+					printf_string(UART2, "\n\r");
+					printf_string(UART2, "\n\r");
+					          
+				  printf_byte(UART2, app_random_addr.addr[5]);
+					printf_string(UART2, ":");
+					printf_byte(UART2, app_random_addr.addr[4]);
+					printf_string(UART2, ":");
+					printf_byte(UART2, app_random_addr.addr[3]);
+					printf_string(UART2, ":");
+					printf_byte(UART2, app_random_addr.addr[2]);
+					printf_string(UART2, ":");
+					printf_byte(UART2, app_random_addr.addr[1]);
+					printf_string(UART2, ":");
+					printf_byte(UART2, app_random_addr.addr[0]);
+					printf_string(UART2, "\n\r");
+					printf_string(UART2, "\n\r");
+					printf_string(UART2, "\n\r");
+     }
+		
+     n++;
+}
+static void systick_isr(void)
+{	 
+    if (systick_var == 0)
+    {
+        GPIO_SetActive(GPIO_LED_PORT, GPIO_LED_PIN);
+        systick_var = 1;
+		  print_db_adress();
+    }
+    else
+    {
+        GPIO_SetInactive(GPIO_LED_PORT, GPIO_LED_PIN);
+        systick_var = 0;
+		  print_db_adress();
+    }
+}
+
+void demo_start(void)
+{
+    systick_register_callback(systick_isr);
+    // Systick will be initialized to use a reference clock frequency of 1 MHz
+    systick_start(SYSTICK_PERIOD_US, SYSTICK_EXCEPTION);
+}
 
 void periph_init(void)
 {
 #if defined (__DA14531__)
+    // Select FPGA GPIO_MAP 1
+    // set debugger SWD to SW_CLK = P0[2], SW_DIO=P0[5]
+    //FPGA_HELPER(FPGA_GPIO_MAP_1, SWD_DATA_AT_P0_5);
+
     // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
+    // Assumption: The connected external peripheral is powered by 3V
     syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
 #else
     // Power up peripherals' power domain
@@ -127,15 +202,15 @@ void periph_init(void)
     // ROM patch
     patch_func();
 
-    // Initialize peripherals
-#if defined (CFG_PRINTF_UART2)
-    // Initialize UART2
-    uart_initialize(UART2, &uart_cfg);
-#endif
-
     // Set pad functionality
     set_pad_functions();
-
-    // Enable the pads
+	
+		    // Enable the pads
     GPIO_set_pad_latch_en(true);
+		
+		uart_initialize(UART2, &uart_cfg);
+				
+		GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
+		
+		demo_start();
 }

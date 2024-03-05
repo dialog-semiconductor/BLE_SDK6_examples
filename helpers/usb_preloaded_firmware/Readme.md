@@ -1,18 +1,18 @@
-# DA14531 USB Preloaded Firmware
+# DA1453x USB Preloaded Firmware
 
 ![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/helpers/usb_preloaded_firmware/banner.svg?v=1)
 
 ## Example description
 
-The main purpose of this software example is to provide the source files containing the firmware for the preloaded binary  in the DA14531 USB kit.
-The [UM-B-121 DA14531 Quick Started Guide with the USB Development Kit](https://www.dialog-semiconductor.com/da14531-usb-getting-started) shows how to run the 
+The main purpose of this software example is to provide the source files containing the firmware for the preloaded binary  in the DA1453x USB kit.
+The [UM-B-121 DA1453x Quick Started Guide with the USB Development Kit](https://lpccs-docs.renesas.com/UM-B-121-USB-Getting-Started-Guide/index.html) shows how to run the 
 demo.
 
 ## Hardware & Software Configuration
 
-This firmware example runs on DA14531 Bluetooth Smart SoC devices. 
+This firmware example runs on DA1453x Bluetooth Smart SoC devices. 
 
-  - Connect the ***DA14531 USB Kit***  to the host computer via the USB connector. 
+  - Connect the ***DA1453x USB Kit***  to the host computer via the USB connector. 
  
   - Please find below the appropriate hardware configurations.
 
@@ -37,7 +37,7 @@ Refer to the DA14531 getting started guide of [DA14531 Development Kit](http://l
 
 ### Software configuration
 
-  - SDK6.0.14 or later
+  - SDK6.0.20 or later
 
   - ***SEGGER’s J-Link*** tools should be downloaded and installed.
 
@@ -54,8 +54,7 @@ Refer to the DA14531 getting started guide of [DA14531 Development Kit](http://l
 
 ### Compile & Run
 
-- Copy/replace **arch_main.c** file under ``src\main`` directory to ``sdk\platform\arch\main``
-- Copy/replace **app.c** file under ``src\app_common`` directory to ``sdk\app_modules\src\app_common``
+- Apply the ``SDK6patch.diff`` patch 
 - Navigate to ``project_environment`` folder and open the ***Keil*** project.
 - Compile and then launch the demonstration example. You can download the firmware either into System-RAM or SPI Flash. To download the firmware into SPI Flash, the  SPI Flash programmer from SmartSnippets Toolbox should be used. 
 For programming the DA14531 using the compiled hex file and boot from flash, please refer to  [Chapter 13 SPI Flash Programmer in the SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/Software_Example_Setup/index.html).

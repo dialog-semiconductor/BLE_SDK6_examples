@@ -58,7 +58,7 @@ def makeBadgeBanner(project, filePath, allBuildSystems, allTargets):
         print("generating banner for " + str(project.title))
 
     banner = shieldsBanner()
-    banner.addShield("SDK", "6.0.18", "blue")
+    banner.addShield("SDK", "6.0.22", "blue")
 
     for buildSystem in allBuildSystems:
         firstShieldAdded = False

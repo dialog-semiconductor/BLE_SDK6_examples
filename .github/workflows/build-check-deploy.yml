@@ -1,7 +1,7 @@
 name: build-check-deploy
 
 env:
-  SDK_VERSION: SDK6.1182.1
+  SDK_VERSION: SDK_6.0.22.1401
 
 # Controls when the action will run. 
 on:

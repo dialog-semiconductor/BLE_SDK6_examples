@@ -119,8 +119,10 @@ class CMake:
             ):
                 if bashexec("test -f " + str(binPath))[1] == 0:
                     project.addBuildStatus(self.name, target, True, binPath)
+                    return 0
                 else:
                     project.addBuildStatus(self.name, target, False, binPath)
+                    return 1
         return 0
 
 

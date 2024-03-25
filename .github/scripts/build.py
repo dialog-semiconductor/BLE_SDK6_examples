@@ -127,9 +127,14 @@ def setVars():
 
 def checkProjects():
     """Use the build system to check the build result."""
+    checkResult = 0 
+
     for project in projectFiles:
         for target in targets:
-            buildSystem.check(project, target)
+            if buildSystem.check(project, target) == 1: # 1 indicates a failed build
+                checkResult = 1
+
+    return checkResult
 
 
 def buildProjects():
@@ -138,7 +143,8 @@ def buildProjects():
 
     for project in projectFiles:
         project.applyPatchToSdk(args.sdkdir)
-        buildSystem.build(project)
+        if not buildSystem.build(project):
+            buildResult = 1
         project.revertPatchToSdk(args.sdkdir)
 
     return buildResult
@@ -172,11 +178,11 @@ if __name__ == "__main__":
     signal.signal(
         signal.SIGINT, handleAbort
     )  # still write output if script aborted during build
-    buildResult = buildProjects()
-    checkProjects()
+    buildProjects()
+    checkResult = checkProjects()
     for target in targets:
         projectFiles.printReport(target, buildSystem)
     writeOutput()
 
     os.chdir(startdir)
-    sys.exit(buildResult)
+    sys.exit(checkResult)

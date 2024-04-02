@@ -20,6 +20,11 @@ The project works as a Central connecting to 2 peripherals, and once connected, 
  
  ![da14531.jpg](assets/da14531.svg)
  
+
+  <ins>DA14535 daughterboard</ins>
+ 
+ ![da14535.jpg](assets/da14535_535dau.svg)
+
   <ins>DA14531 module</ins>
   
  ![module.jpg](assets/module.svg)

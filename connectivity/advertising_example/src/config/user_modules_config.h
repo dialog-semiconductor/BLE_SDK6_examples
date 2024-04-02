@@ -5,7 +5,7 @@
  *
  * @brief User modules configuration file.
  *
- * Copyright (c) 2015-2021 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (c) 2015-2023 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy

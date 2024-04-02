@@ -1,4 +1,4 @@
-# DA14585/DA14586/DA14531 - Changing advertising methods using GPIO button interrupt or timer callbacks
+# DA14585/DA14586/DA1453x - Changing advertising methods using GPIO button interrupt or timer callbacks
 
 ![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/advertising_example/banner.svg?v=1)
 
@@ -21,11 +21,11 @@ The expected result of the example can be verified by:
 ### **Hardware configuration**
 
 This example runs on the BLE Smart SoC (System on Chip) devices:
-- DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
+- DA14585/DA14586 or DA1453x daughter board + DA145xxDEVKT-P PRO-Motherboard or DA1453x DEVKT-P Motherboard.
 - DA14585/DA14586 basic development kit.
 
 The user manuals for the development kits can be found:
-- [Here](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html) for the DA145xxDEVKT-P PRO-Motherboard.
+- [Here](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html) for the DA14531 DEVKT-P Motherboard or DA1453x DEVKT-P Motherboard.
 - [Here](https://www.renesas.com/tw/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-00fxdevkt-u-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-usb-development-kit) for the Basic Development Kit.
 
 * __Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard__
@@ -40,6 +40,8 @@ The user manuals for the development kits can be found:
 
 	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.svg)
 		
+	![Motherboard_Hardware_Configuration_DA14535](assets/Motherboard_Hardware_Configuration_DA14535.svg)
+
 * __Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard__
 
 	- UART TX jumper on P0_4, located on J1 (red box 1).
@@ -109,7 +111,7 @@ Make sure to read the correct identification according to your mother board and 
 2. Identify button:
 	- `SW3` is used as button in this example
 
-### DA14531 GPIO identification with DA145xxDEVKT-P PRO-Motherboard
+### DA1453x GPIO identification with DA145xxDEVKT-P PRO-Motherboard
 1. Identify LED:
 	- The LED controlled in this example is `D5` and the color is `orange`.
 2. Identify button:

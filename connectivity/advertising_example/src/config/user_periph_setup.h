@@ -89,7 +89,7 @@
 #if defined (__DA14531__)
 	  #define GPIO_SW_PORT			 GPIO_PORT_0 
 		#define GPIO_SW_PIN			 GPIO_PIN_11
-#elif defined(__DA14585__) || defined(__DA14586__)
+#else 
 		#define GPIO_SW_PORT		GPIO_PORT_1 
 		#define GPIO_SW_PIN			 GPIO_PIN_1	
 #endif

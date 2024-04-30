@@ -95,6 +95,7 @@ static const uint16_t att_desc_user_desc = ATT_DESC_CHAR_USER_DESCRIPTION;
 const uint8_t custs1_services[]  = {SVC1_IDX_SVC, SVC2_IDX_SVC, SVC3_IDX_SVC, CUSTS1_IDX_NB};
 const uint8_t custs1_services_size = ARRAY_LEN(custs1_services) - 1;
 const uint16_t custs1_att_max_nb = CUSTS1_IDX_NB;
+
 /// Full CUSTS1 Database Description - Used to add attributes into the database
 const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 {
@@ -116,7 +117,7 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
                                             DEF_SVC1_CTRL_POINT_CHAR_LEN, 0, NULL},
 
     // Control Point Characteristic User Description
-    [SVC1_IDX_CONTROL_POINT_USER_DESC] = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE) ,
+    [SVC1_IDX_CONTROL_POINT_USER_DESC] = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1, sizeof(DEF_SVC1_CONTROL_POINT_USER_DESC) - 1,
                                             (uint8_t *) DEF_SVC1_CONTROL_POINT_USER_DESC},
 
@@ -126,7 +127,7 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // LED State Characteristic Value
     [SVC1_IDX_LED_STATE_VAL]           = {SVC1_LED_STATE_UUID_128, ATT_UUID_128_LEN, PERM(WR, ENABLE) | PERM(WRITE_COMMAND, ENABLE),
-                                            DEF_SVC1_LED_STATE_CHAR_LEN, 0, NULL},
+                                            PERM(RI, ENABLE) | DEF_SVC1_LED_STATE_CHAR_LEN, 0, NULL},
 
     // LED State Characteristic User Description
     [SVC1_IDX_LED_STATE_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
@@ -228,7 +229,7 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 
     // Write 1 Characteristic Value
     [SVC2_WRITE_1_VAL]                 = {SVC2_WRITE_VAL_1_UUID_128, ATT_UUID_128_LEN, PERM(WR, ENABLE) | PERM(WRITE_REQ, ENABLE),
-                                            DEF_SVC2_WRITE_VAL_1_CHAR_LEN, 0, NULL},
+                                            PERM(RI, ENABLE) | DEF_SVC2_WRITE_VAL_1_CHAR_LEN, 0, NULL},
 
     // Write 1 Characteristic User Description
     [SVC2_WRITE_1_USER_DESC]           = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),

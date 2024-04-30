@@ -5,7 +5,7 @@
  *
  * @brief Basic compile configuration file.
  *
- * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * Copyright (C) 2014-2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -49,13 +49,12 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
-#undef CFG_APP_SECURITY
+#define CFG_APP_SECURITY
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
 /****************************************************************************************************************/
 #define CFG_WDOG
-
 
 /****************************************************************************************************************/
 /* Watchdog timer behavior in production mode:                                                                  */
@@ -120,6 +119,8 @@
 #undef CFG_UART_DMA_SUPPORT
 #undef CFG_SPI_DMA_SUPPORT
 #undef CFG_I2C_DMA_SUPPORT
+#undef CFG_ADC_DMA_SUPPORT
+
 /****************************************************************************************************************/
 /* Notify the SDK about the fixed power mode (currently used only for Bypass):                                  */
 /*     - CFG_POWER_MODE_BYPASS = Bypass mode                                                                    */

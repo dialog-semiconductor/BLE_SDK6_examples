@@ -5,7 +5,7 @@
  *
  * @brief Basic compile configuration file.
  *
- * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * Copyright (C) 2014-2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -49,12 +49,19 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
-#undef CFG_APP_SECURITY
+#define CFG_APP_SECURITY
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
 /****************************************************************************************************************/
 #define CFG_WDOG
+
+/****************************************************************************************************************/
+/* Watchdog timer behavior in production mode:                                                                  */
+/*     Flag is not defined: Watchdog timer generates NMI at value 0.                                            */
+/*     Flag is defined    : Watchdog timer generates a WDOG (SYS) reset at value 0.                             */
+/****************************************************************************************************************/
+#undef CFG_WDG_TRIGGER_HW_RESET_IN_PRODUCTION_MODE
 
 /****************************************************************************************************************/
 /* Determines maximum concurrent connections supported by application. It configures the heap memory allocated  */
@@ -82,7 +89,7 @@
 /* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implented using UART2, else UART1 */
 /* will be used.                                                                                                */
 /****************************************************************************************************************/
-#define CFG_PRINTF
+#undef CFG_PRINTF
 #ifdef CFG_PRINTF
     #define CFG_PRINTF_UART2
 #endif

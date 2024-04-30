@@ -12,12 +12,12 @@
  * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
  * revocable, non-sub-licensable right and license to use the Software, solely if used in
  * or together with Renesas products. You may make copies of this Software, provided this
- * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
  * reserves the right to change or discontinue the Software at any time without notice.
  *
  * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
  * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
  * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
  * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
@@ -41,6 +41,9 @@
 /*      -LP_CLK_XTAL32      External XTAL32K oscillator                                                         */
 /*      -LP_CLK_RCX20       Internal RCX clock                                                                  */
 /*      -LP_CLK_FROM_OTP    Use the selection in the corresponding field of OTP Header                          */
+/*                                                                                                              */
+/* NOTE: Disable CFG_XTAL16M_ADAPTIVE_SETTLING flag when RCX is chosen as the LP clock either from the OTP      */
+/*       header or from the SDK.                                                                                */
 /****************************************************************************************************************/
 #define CFG_LP_CLK              LP_CLK_XTAL32
 
@@ -98,7 +101,7 @@
 /* The ECDH keys are always created after a pairing request. If the legacy pairing is to be used, it is         */
 /* recommended to undefine the macro in order to reduce the RAM footprint.                                      */
 /****************************************************************************************************************/
-#undef CFG_ENABLE_SMP_SECURE
+#define CFG_ENABLE_SMP_SECURE
 
 /****************************************************************************************************************/
 /* Uses ChaCha20 random number generator instead of the C standard library random number generator.             */
@@ -132,14 +135,14 @@
 /* - CFG_NVDS_TAG_BLE_CA_NB_PKT         Number of packets to receive for statistics                             */
 /* - CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT     Number  of bad packets needed to remove a channel                       */
 /****************************************************************************************************************/
-#define CFG_NVDS_TAG_BD_ADDRESS             {0x0B, 0x00, 0xF4, 0x35, 0x23, 0x48}
+#define CFG_NVDS_TAG_BD_ADDRESS             {0x17, 0x00, 0xF4, 0x35, 0x23, 0x48}
 
 #define CFG_NVDS_TAG_LPCLK_DRIFT            DRIFT_500PPM
-#define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       2000
-#define CFG_NVDS_TAG_BLE_CRA_TIMER_DUR      6
-#define CFG_NVDS_TAG_BLE_CA_MIN_RSSI        0x40
-#define CFG_NVDS_TAG_BLE_CA_NB_PKT          100
-#define CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT      50
+#define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       (500)
+#define CFG_NVDS_TAG_BLE_CRA_TIMER_DUR      (8)
+#define CFG_NVDS_TAG_BLE_CA_MIN_RSSI        (-60)
+#define CFG_NVDS_TAG_BLE_CA_NB_PKT          (20)
+#define CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT      (CFG_NVDS_TAG_BLE_CA_NB_PKT/2)
 
 /****************************************************************************************************************/
 /* Enables the BLE statistics measurement feature.                                                              */

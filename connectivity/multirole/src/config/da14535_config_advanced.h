@@ -12,12 +12,12 @@
  * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
  * revocable, non-sub-licensable right and license to use the Software, solely if used in
  * or together with Renesas products. You may make copies of this Software, provided this
- * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
  * reserves the right to change or discontinue the Software at any time without notice.
  *
  * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
  * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
  * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
  * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
@@ -42,17 +42,7 @@
 /*      -LP_CLK_RCX20       Internal RCX clock                                                                  */
 /*      -LP_CLK_FROM_OTP    Use the selection in the corresponding field of OTP Header                          */
 /****************************************************************************************************************/
-#define CFG_LP_CLK              LP_CLK_XTAL32
-
-
-/****************************************************************************************************************/
-/* If defined the application uses a hardcoded value for XTAL16M trimming. Should be disabled for devices       */
-/* where XTAL16M is calibrated and trim value is stored in OTP.                                                 */
-/* Important note. The hardcoded value is the average value of the trimming values giving the optimal results   */
-/* for DA14585 DK devices. May not be applicable in other designs                                               */
-/****************************************************************************************************************/
-#define CFG_USE_DEFAULT_XTAL16M_TRIM_VALUE_IF_NOT_CALIBRATED
-
+#define CFG_LP_CLK              LP_CLK_RCX20
 
 /****************************************************************************************************************/
 /* Periodic wakeup period to poll GTL iface. Time in msec.                                                      */
@@ -78,7 +68,7 @@
 /* Enables True Random Number Generator. A true random number, generated at system initialization, is used to   */
 /* seed any random number generator (C standard library, ChaCha20, etc.).                                       */
 /****************************************************************************************************************/
-#define CFG_TRNG (1024)
+#define CFG_TRNG
 
 /****************************************************************************************************************/
 /* Secure connections support.                                                                                  */
@@ -92,7 +82,7 @@
 /* The ECDH keys are always created after a pairing request. If the legacy pairing is to be used, it is         */
 /* recommended to undefine the macro in order to reduce the RAM footprint.                                      */
 /****************************************************************************************************************/
-#undef CFG_ENABLE_SMP_SECURE
+#define CFG_ENABLE_SMP_SECURE
 
 /****************************************************************************************************************/
 /* Uses ChaCha20 random number generator instead of the C standard library random number generator.             */
@@ -126,14 +116,24 @@
 /* - CFG_NVDS_TAG_BLE_CA_NB_PKT         Number of packets to receive for statistics                             */
 /* - CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT     Number  of bad packets needed to remove a channel                       */
 /****************************************************************************************************************/
-#define CFG_NVDS_TAG_BD_ADDRESS             {0x0B, 0x00, 0xF4, 0x35, 0x23, 0x48}
+#define CFG_NVDS_TAG_BD_ADDRESS             {0x17, 0x00, 0xF4, 0x35, 0x23, 0x48}
 
 #define CFG_NVDS_TAG_LPCLK_DRIFT            DRIFT_500PPM
-#define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       2000
-#define CFG_NVDS_TAG_BLE_CRA_TIMER_DUR      6
-#define CFG_NVDS_TAG_BLE_CA_MIN_RSSI        0x40
-#define CFG_NVDS_TAG_BLE_CA_NB_PKT          100
-#define CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT      50
+#define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       (500)
+#define CFG_NVDS_TAG_BLE_CRA_TIMER_DUR      (8)
+#define CFG_NVDS_TAG_BLE_CA_MIN_RSSI        (-60)
+#define CFG_NVDS_TAG_BLE_CA_NB_PKT          (20)
+#define CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT      (CFG_NVDS_TAG_BLE_CA_NB_PKT/2)
+
+
+
+/****************************************************************************************************************/
+/* Enables the logging of heap memories usage. The feature can be used in development/debug mode.               */
+/* Application must be executed in Keil debugger environment and "da14531.lib" must be replaced with            */
+/* "da14531_with_heap_logging.lib" in project structure under sdk_arch. Developer must stop execution           */
+/* and type disp_heaplog in debugger's command window. Heap memory statistics will be displayed on window       */
+/****************************************************************************************************************/
+#undef CFG_LOG_HEAP_USAGE
 
 /****************************************************************************************************************/
 /* Enables the BLE statistics measurement feature.                                                              */
@@ -215,8 +215,6 @@
 /* By default, the SDK keeps all RAM cells retained.                                                            */
 /****************************************************************************************************************/
 #define CFG_RETAIN_RAM_1_BLOCK
-#define CFG_RETAIN_RAM_2_BLOCK
-#define CFG_RETAIN_RAM_3_BLOCK
 
 /****************************************************************************************************************/
 /* Non-retained heap handling. The non-retained heap is either empty or not, and it may fill with messages      */
@@ -239,9 +237,14 @@
 #define CFG_CODE_LOCATION_EXT
 #undef CFG_CODE_LOCATION_OTP
 
+/****************************************************************************************************************/
+/* Code size for OTP copy on (extended sleep with OTP copy on). If the OTP copy is on and the default SDK       */
+/* scatter file is not used the following macro must define the code size in bytes for the OTP copy.            */
+/****************************************************************************************************************/
+#undef CFG_CODE_SIZE_FOR_OTP_COPY_ON
 
 /****************************************************************************************************************/
-/* Temperature range selection.                                                                                 */
+/* Temperature range selection (it applies to hibernation mode only).                                           */
 /* - CFG_HIGH_TEMPERATURE:         Device is configured to operate at high temperature range (-40C to +105C).   */
 /* - CFG_AMB_TEMPERATURE:          Device is configured to operate at ambient temperature range (-40C to +40C). */
 /* - CFG_MID_TEMPERATURE:          Device is configured to operate at mid temperature range (-40C to +60C).     */
@@ -249,11 +252,15 @@
 /****************************************************************************************************************/
 #define CFG_AMB_TEMPERATURE
 
+/****************************************************************************************************************/
+/* Disable quadrature decoder on start up. The quadrature decoder is by default enabled on system power up and  */
+/* it may count events. This leads to WKUP_QUADEC_IRQn pending interrupts.                                      */
+/****************************************************************************************************************/
+#define CFG_DISABLE_QUADEC_ON_START_UP
 
 /****************************************************************************************************************/
-/* Enable power optimizations using the XTAL16M adaptive settling algorithm.                                    */
-/* NOTE: The XTAL16M adaptive settling algorithm works only with XTAL23K and not with RCX, as the LP clock.     */
+/* Enables the XTAL32M dynamic frequency trimming based on the temperature changes.                             */
 /****************************************************************************************************************/
-#define CFG_XTAL16M_ADAPTIVE_SETTLING
+#undef CFG_XTAL32M_DYN_FREQ_TRIMMING
 
 #endif // _DA14535_CONFIG_ADVANCED_H_

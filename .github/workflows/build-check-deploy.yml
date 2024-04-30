@@ -5,15 +5,9 @@ env:
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events for any branch
   pull_request:
-    branches: 
-      - main
-      - 'ci-cd'
   push:
-    branches: 
-      - main
-      - 'ci-cd'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -60,15 +54,17 @@ jobs:
         run: |
           python3 projects/.github/scripts/build.py -x projects/.github/config/ignore-list-cmake.txt -v -p ./projects/ -t projects/.github/config/targets.json
 
-      # run script that checks the build result
+      # run script that checks the build result only on main branch
       - name: deploy atrifacts script
         run: |
           python3  projects/.github/scripts/deploy-artifacts.py -v -t projects/.github/config/targets.json -a ./projects/artifacts
+        if: github.ref == 'refs/heads/main'
 
-      # run script that checks the build result
+      # run script that checks the build result only on main branch
       - name: deploy metadata script
         run: |
           python3  projects/.github/scripts/deploy-metadata.py -v
+        if: github.ref == 'refs/heads/main'
 
       # run script that purges all of the banner images from the github cache so the new one is displayed
       - name: purge github images script

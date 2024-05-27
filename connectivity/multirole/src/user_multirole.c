@@ -1,9 +1,9 @@
 /**
  ****************************************************************************************
  *
- * @file user_central_app.c
+ * @file user_multirole.c
  *
- * @brief Cental application project source code.
+ * @brief multirole application project source code.
  *
  * Copyright (c) 2012-2021 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
@@ -314,34 +314,46 @@ void user_on_adv_report_ind(struct gapm_adv_report_ind const * adv_ind)
  ****************************************************************************************
  */
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
-{		
-		if(central_app_env.connection_timer != EASY_TIMER_INVALID_TIMER){
-			
-			app_easy_timer_cancel(central_app_env.connection_timer);
-			central_app_env.connection_timer = EASY_TIMER_INVALID_TIMER;
-		}
-	
+{       
+    if (central_app_env.connection_timer != EASY_TIMER_INVALID_TIMER) {
+        // Cancel the connection timer
+        app_easy_timer_cancel(central_app_env.connection_timer);
+        central_app_env.connection_timer = EASY_TIMER_INVALID_TIMER;
+        
+        // Print message if the timer ran out and no connection was established
+        dbg_printf("Connection attempt timed out: No connection established. Number of connected peripherals: %d\r\n", central_app_env.num_connections);
+    }
+
     default_app_on_connection(connection_idx, param);
-		
-		
-		central_app_env.periph_devices[connection_idx].addr = param->peer_addr;
-		central_app_env.periph_devices[connection_idx].con_idx = connection_idx;
-		central_app_env.periph_devices[connection_idx].con_valid = true;
-		central_app_env.num_connections++;
-	
-		if(central_app_env.num_connections < (CFG_MAX_CONNECTIONS - 1)) 
-		{
-			ble_scan_for_devices();			
-		}
-		
-		if(central_app_env.num_connections == (CFG_MAX_CONNECTIONS - 1))
-		{
-			
-			app_easy_gap_undirected_advertise_start(); 
-		}
-		
-		user_gatt_discover_all_services(connection_idx, 1);
+    
+    central_app_env.periph_devices[connection_idx].addr = param->peer_addr;
+    central_app_env.periph_devices[connection_idx].con_idx = connection_idx;
+    central_app_env.periph_devices[connection_idx].con_valid = true;
+    central_app_env.num_connections++;
+    
+    // Print message when a connection is established
+    dbg_printf("Connected to peripheral %d\r\n", central_app_env.num_connections);
+
+    // Print a counter for each peripheral connected
+    for (uint8_t i = 0; i < central_app_env.num_connections; ++i) {
+        dbg_printf("Peripheral %d: %s\r\n", i + 1, format_bd_address(&central_app_env.periph_devices[i].addr));
+    }
+
+    if (central_app_env.num_connections < (CFG_MAX_CONNECTIONS )) {
+        ble_scan_for_devices();         
+    }
+    
+    if (central_app_env.num_connections == (CFG_MAX_CONNECTIONS)) {
+        // Print message when the maximum number of connections is reached
+        dbg_printf("Maximum number of connections reached: %d\r\n", central_app_env.num_connections);
+        
+        // Start advertising
+        app_easy_gap_undirected_advertise_start(); 
+    }
+    
+    user_gatt_discover_all_services(connection_idx, 1);
 }
+
 
 /**
  ****************************************************************************************

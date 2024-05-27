@@ -126,7 +126,6 @@
 #define CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT      (CFG_NVDS_TAG_BLE_CA_NB_PKT/2)
 
 
-
 /****************************************************************************************************************/
 /* Enables the logging of heap memories usage. The feature can be used in development/debug mode.               */
 /* Application must be executed in Keil debugger environment and "da14531.lib" must be replaced with            */
@@ -134,6 +133,7 @@
 /* and type disp_heaplog in debugger's command window. Heap memory statistics will be displayed on window       */
 /****************************************************************************************************************/
 #undef CFG_LOG_HEAP_USAGE
+
 
 /****************************************************************************************************************/
 /* Enables the BLE statistics measurement feature.                                                              */
@@ -191,6 +191,12 @@
 #undef CFG_BLE_DUPLICATE_FILTER_FOUND
 
 /****************************************************************************************************************/
+/* Resolving list maximum size.                                                                                 */
+/****************************************************************************************************************/
+#define CFG_LLM_RESOLVING_LIST_MAX      LLM_RESOLVING_LIST_MAX
+
+
+/****************************************************************************************************************/
 /* Enables automatic data packet length negotiation.                                                            */
 /* NOTE: Enable only if peer device supports data length extension!!                                            */
 /****************************************************************************************************************/
@@ -215,6 +221,8 @@
 /* By default, the SDK keeps all RAM cells retained.                                                            */
 /****************************************************************************************************************/
 #define CFG_RETAIN_RAM_1_BLOCK
+#define CFG_RETAIN_RAM_2_BLOCK
+#define CFG_RETAIN_RAM_3_BLOCK
 
 /****************************************************************************************************************/
 /* Non-retained heap handling. The non-retained heap is either empty or not, and it may fill with messages      */

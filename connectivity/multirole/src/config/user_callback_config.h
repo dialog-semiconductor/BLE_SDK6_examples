@@ -110,7 +110,7 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_update_params_complete      = NULL,
     .app_on_set_dev_config_complete     = user_app_on_set_dev_config_complete,
     .app_on_adv_nonconn_complete        = NULL,
-    .app_on_adv_undirect_complete       = NULL,
+    .app_on_adv_undirect_complete       = NULL, 
     .app_on_adv_direct_complete         = NULL,
     .app_on_db_init_complete            = default_app_on_db_init_complete,
     .app_on_scanning_completed          = user_on_scanning_completed,
@@ -160,7 +160,7 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 #define app_process_catch_rest_cb       user_catch_rest_hndl
 
 static const struct default_app_operations user_default_app_operations = {
-    .default_operation_adv = NULL,
+    .default_operation_adv = default_advertise_operation,
 };
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {

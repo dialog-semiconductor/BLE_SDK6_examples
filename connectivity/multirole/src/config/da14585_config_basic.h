@@ -69,7 +69,7 @@
 /* should be set to 1 for optimizing memory utilization.                                                        */
 /*      - MAX value for DA14585: 8                                                                              */
 /****************************************************************************************************************/
-#define CFG_MAX_CONNECTIONS     (1)
+#define CFG_MAX_CONNECTIONS     (2)
 
 /****************************************************************************************************************/
 /* Enables development/debug mode. For production mode builds it must be disabled.                              */

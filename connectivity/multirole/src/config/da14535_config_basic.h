@@ -86,7 +86,7 @@
 
 /****************************************************************************************************************/
 /* UART Console Print. If CFG_PRINTF is defined, serial interface logging mechanism will be enabled.            */
-/* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implented using UART2, else UART1 */
+/* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implemented using UART2, else UART1 */
 /* will be used.                                                                                                */
 /****************************************************************************************************************/
 #define CFG_PRINTF

@@ -1,4 +1,4 @@
-# ble_indication_hs3001
+# ble GATT Role for indication
 
 ![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_indication_hs3001/banner.svg?v=1)
 
@@ -51,7 +51,7 @@ Notify: Same as indication but no response is expected from Client.
 ## HW and SW configuration
 
 This example runs on the BLE "SmartBond device family" devices:
-- DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
+- DA1453x daughter board + DA14531DEVKT-P or DA1453xDEVKT-P .
 
 The user manuals for the development kits & HS3001 can be found:
 - [Here](https://www.renesas.com/eu/en/document/mat/um-b-114-da14531-development-kit-pro-hardware-user-manual) for the DA145xxDEVKT-P PRO-Motherboard.

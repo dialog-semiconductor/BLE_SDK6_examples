@@ -101,7 +101,7 @@ void user_app_on_init(void)
                     0);
 
   /* Initialize BMP388 interface and sensor */
-  (void)bmp388_init();
+  bmp388_init();
   (void)bmp388_config(&cfg);
   (void)bmp388_set_int_active_level(BMP388_INT_LVL_ACT_LO);
   (void)bmp388_enable_drdy_int();
@@ -234,8 +234,10 @@ static void wakeup_callback(void)
   periph_init();
 
   #ifdef CFG_PRINTF
+	
     arch_printf("\n\r%s", __FUNCTION__);
-  #endif
+  
+	#endif
 
   /* Determine source of interrupt */
   if (GPIO_GetPinStatus(BMP388_INT_PORT, BMP388_INT_PIN) == 0) {

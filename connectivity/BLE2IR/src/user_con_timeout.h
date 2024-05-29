@@ -43,7 +43,9 @@
  *						uint_8t connection_id: id of the connection to be terminated. 
  * @return 		void
  ****************************************************************************************
-*/	void user_con_timeout_init(uint32_t delay, uint8_t connection_id);
+*/	
+
+void user_con_timeout_init(uint32_t delay, uint8_t connection_id);
 
 
 /**

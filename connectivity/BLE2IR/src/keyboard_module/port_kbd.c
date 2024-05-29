@@ -55,7 +55,8 @@
 #include "port_wkup.h"
 #include <app_kbd_config.h>
 #include <port_timer_config.h>
-
+#include <stdint.h>
+#include <arm_acle.h>
 #ifdef HAS_CONNECTION_FSM 
     #include "app_con_fsm.h"
 #endif

@@ -5,26 +5,29 @@
  *
  * @brief Custom Server 1 (CUSTS1) profile database definitions.
  *
- * Copyright (C) 2016-2021 Renesas Electronics Corporation and/or its affiliates
- * The MIT License (MIT)
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE.
+ * Copyright (C) 2016-2023 Renesas Electronics Corporation and/or its affiliates.
+ * All rights reserved. Confidential Information.
+ *
+ * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
+ * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
+ * revocable, non-sub-licensable right and license to use the Software, solely if used in
+ * or together with Renesas products. You may make copies of this Software, provided this
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * reserves the right to change or discontinue the Software at any time without notice.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
+ * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGES. USE OF THIS SOFTWARE MAY BE SUBJECT TO TERMS AND CONDITIONS CONTAINED IN
+ * AN ADDITIONAL AGREEMENT BETWEEN YOU AND RENESAS. IN CASE OF CONFLICT BETWEEN THE TERMS
+ * OF THIS NOTICE AND ANY SUCH ADDITIONAL LICENSE AGREEMENT, THE TERMS OF THE AGREEMENT
+ * SHALL TAKE PRECEDENCE. BY CONTINUING TO USE THIS SOFTWARE, YOU AGREE TO THE TERMS OF
+ * THIS NOTICE.IF YOU DO NOT AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO USE THIS
+ * SOFTWARE.
+ *
  ****************************************************************************************
  */
 
@@ -98,17 +101,14 @@
 #define DEF_SVC3_READ_VAL_1_UUID_128     {0x17, 0xB9, 0x67, 0x98, 0x4C, 0x66, 0x4C, 0x01, 0x96, 0x33, 0x31, 0xB1, 0x91, 0x59, 0x00, 0x14}
 #define DEF_SVC3_READ_VAL_2_UUID_128     {0x23, 0x68, 0xEC, 0x52, 0x1E, 0x62, 0x44, 0x74, 0x9A, 0x1B, 0xD1, 0x8B, 0xAB, 0x75, 0xB6, 0x6D}
 #define DEF_SVC3_READ_VAL_3_UUID_128     {0x28, 0xD5, 0xE1, 0xC1, 0xE1, 0xC5, 0x47, 0x29, 0xB5, 0x57, 0x65, 0xC3, 0xBA, 0x47, 0x15, 0x9D}
-#define DEF_SVC3_READ_VAL_4_UUID_128     {0xF3, 0xD8, 0x1C, 0x45, 0x11, 0x96, 0x4D, 0x12, 0x13, 0xFE, 0xD6, 0x3B, 0xCC, 0x31, 0x6C, 0x6E}
 
 #define DEF_SVC3_READ_VAL_1_CHAR_LEN     2
 #define DEF_SVC3_READ_VAL_2_CHAR_LEN     2
 #define DEF_SVC3_READ_VAL_3_CHAR_LEN     2
-#define DEF_SVC3_READ_VAL_4_CHAR_LEN     2
 
 #define DEF_SVC3_READ_VAL_1_USER_DESC    "Read me (notify)"
 #define DEF_SVC3_READ_VAL_2_USER_DESC    "Read me"
 #define DEF_SVC3_READ_VAL_3_USER_DESC    "Read me (indicate)"
-#define DEF_SVC3_READ_VAL_4_USER_DESC    "Read me (RI)"
 
 /// Custom1 Service Data Base Characteristic enum
 enum
@@ -147,10 +147,10 @@ enum
     SVC1_IDX_LONG_VALUE_VAL,
     SVC1_IDX_LONG_VALUE_NTF_CFG,
     SVC1_IDX_LONG_VALUE_USER_DESC,
-
+    
     // Custom Service 2
     SVC2_IDX_SVC,
-
+    
     SVC2_WRITE_1_CHAR,
     SVC2_WRITE_1_VAL,
     SVC2_WRITE_1_USER_DESC,
@@ -158,10 +158,10 @@ enum
     SVC2_WRITE_2_CHAR,
     SVC2_WRITE_2_VAL,
     SVC2_WRITE_2_USER_DESC,
-
+    
     // Custom Service 3
     SVC3_IDX_SVC,
-
+    
     SVC3_IDX_READ_1_CHAR,
     SVC3_IDX_READ_1_VAL,
     SVC3_IDX_READ_1_NTF_CFG,
@@ -170,15 +170,11 @@ enum
     SVC3_IDX_READ_2_CHAR,
     SVC3_IDX_READ_2_VAL,
     SVC3_IDX_READ_2_USER_DESC,
-
+    
     SVC3_IDX_READ_3_CHAR,
     SVC3_IDX_READ_3_VAL,
     SVC3_IDX_READ_3_IND_CFG,
     SVC3_IDX_READ_3_USER_DESC,
-
-    SVC3_IDX_READ_4_CHAR,
-    SVC3_IDX_READ_4_VAL,
-    SVC3_IDX_READ_4_USER_DESC,
 
     CUSTS1_IDX_NB
 };

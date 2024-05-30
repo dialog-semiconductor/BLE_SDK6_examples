@@ -51,7 +51,7 @@
 #include "rf_531.h"
 
 #include "port_bmi270.h"
-
+#include "user_periph_setup.h"
 #include "adc.h"
 #include "battery.h"
 

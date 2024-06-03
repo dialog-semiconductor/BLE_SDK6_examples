@@ -49,9 +49,8 @@
 #include "syscntl.h"
 #include "arch_system.h"
 #include "arch_console.h"
-
-#include "dci_config.h"
 #include "dci_types.h"
+#include "dci_config.h"
 #include "dci.h"
 
 
@@ -306,10 +305,7 @@ __STATIC_INLINE bool init_dci_fault_info(dci_last_fault_hdlr_t fault_hdlr)
 
 
 
-void HardFault_HandlerC(unsigned long *hardfault_args);
-
-
-
+/*
 void HardFault_HandlerC(unsigned long *hardfault_args)
 {
 
@@ -352,6 +348,9 @@ void HardFault_HandlerC(unsigned long *hardfault_args)
 
 }
 
+*/
+
+/*
 void NMI_HandlerC(unsigned long *nmi_args);
 
 void NMI_HandlerC(unsigned long *nmi_args)
@@ -396,6 +395,8 @@ void NMI_HandlerC(unsigned long *nmi_args)
 				}
     }
 
+
+
 #ifdef DCI_RAMAP_ADDR0_TEST
         SetWord16(SYS_CTRL_REG, GetWord16(SYS_CTRL_REG)  | SW_RESET );
 #else
@@ -403,7 +404,7 @@ void NMI_HandlerC(unsigned long *nmi_args)
 #endif 
 
 }
-
+*/
 
 /// @} APP
 

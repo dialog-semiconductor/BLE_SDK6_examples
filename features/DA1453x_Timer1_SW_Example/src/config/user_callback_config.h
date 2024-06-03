@@ -49,8 +49,7 @@
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
-#include "user_throughput_opt.h"
-
+#include "user_timer1_demo.h"
 /*
  * FUNCTION DECLARATIONS
  ****************************************************************************************
@@ -106,9 +105,9 @@ static const struct app_suotar_cb user_app_suotar_cb = {
 static const struct app_callbacks user_app_callbacks = {
     .app_on_connection                  = user_on_connection,
     .app_on_disconnect                  = user_on_disconnect,
-    .app_on_update_params_rejected      = user_on_update_params_rejected,
-    .app_on_update_params_complete      = user_on_update_params_complete,
-    .app_on_set_dev_config_complete     = user_app_on_set_dev_config_complete,
+    .app_on_update_params_rejected      = NULL,
+    .app_on_update_params_complete      = NULL,
+    .app_on_set_dev_config_complete     = default_app_on_set_dev_config_complete,
     .app_on_adv_nonconn_complete        = NULL,
     .app_on_adv_undirect_complete       = NULL,
     .app_on_adv_direct_complete         = NULL,
@@ -119,11 +118,11 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_get_dev_appearance          = default_app_on_get_dev_appearance,
     .app_on_get_dev_slv_pref_params     = default_app_on_get_dev_slv_pref_params,
     .app_on_set_dev_info                = default_app_on_set_dev_info,
-    .app_on_data_length_change          = user_on_data_length_change,
+    .app_on_data_length_change          = NULL,
     .app_on_update_params_request       = default_app_update_params_request,
     .app_on_generate_static_random_addr = default_app_generate_static_random_addr,
     .app_on_svc_changed_cfg_ind         = NULL,
-    .app_on_get_peer_features           = user_app_on_get_peer_features,
+    .app_on_get_peer_features           = NULL,
 #if (BLE_APP_SEC)
     .app_on_pairing_request             = default_app_on_pairing_request,
     .app_on_tk_exch                     = default_app_on_tk_exch,
@@ -157,14 +156,17 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 };
 #endif // (BLE_APP_SEC)
 
-#define app_process_catch_rest_cb       user_process_catch_rest
+#if (ENABLE_FREQ_COUNTING)
+#define app_process_catch_rest_cb       user_catch_rest_hndl
+#elif (ENABLE_PULSE_MEASURING || ENABLE_TMR_COUNTING)
+static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
+#endif
 
 static const struct default_app_operations user_default_app_operations = {
-    .default_operation_adv = default_advertise_operation,
+    .default_operation_adv = user_app_adv_start, //default_advertise_operation,
 };
-
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
-    .app_on_init            = default_app_on_init,
+    .app_on_init            = user_app_init,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,

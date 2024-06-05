@@ -73,9 +73,9 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>0</tvExp>
+        <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>0</IsCurrentTarget>
+        <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>7</CpuCode>
       <DebugOpt>
@@ -131,10 +131,6 @@
           <Number>0</Number>
           <Key>ARMDBGFLAGS</Key>
           <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGUARM</Key>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -400,7 +396,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>1</IsCurrentTarget>
+        <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
       <CpuCode>7</CpuCode>
       <DebugOpt>
@@ -501,7 +497,7 @@
 
   <Group>
     <GroupName>sdk_boot</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -512,7 +508,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\arch\boot\system_DA14585_586.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14585_586.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -524,7 +520,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14585_586.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -536,7 +532,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\arch\boot\system_DA14531.c</PathWithFileName>
       <FilenameWithoutPath>system_DA14531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -548,7 +544,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\arch\boot\ARM\startup_DA14531.s</PathWithFileName>
       <FilenameWithoutPath>startup_DA14531.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -560,7 +556,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\projects\target_apps\peripheral_examples\shared\source\exceptions.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\projects\target_apps\peripheral_examples\shared\source\exceptions.c</PathWithFileName>
       <FilenameWithoutPath>exceptions.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -569,7 +565,7 @@
 
   <Group>
     <GroupName>sdk_driver</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -580,7 +576,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\syscntl\syscntl.c</PathWithFileName>
       <FilenameWithoutPath>syscntl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -592,7 +588,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\gpio\gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -604,7 +600,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\uart\uart.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\uart\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -616,7 +612,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\uart\uart_utils.c</PathWithFileName>
       <FilenameWithoutPath>uart_utils.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -628,7 +624,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\systick\systick.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\systick\systick.c</PathWithFileName>
       <FilenameWithoutPath>systick.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -640,7 +636,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -652,7 +648,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\hw_otpc\hw_otpc_531.c</PathWithFileName>
       <FilenameWithoutPath>hw_otpc_531.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -664,7 +660,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\utilities\otp_cs\otp_cs.c</PathWithFileName>
       <FilenameWithoutPath>otp_cs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -676,7 +672,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\spi_flash\spi_flash.c</PathWithFileName>
       <FilenameWithoutPath>spi_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -688,7 +684,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\driver\spi\spi_58x.c</PathWithFileName>
       <FilenameWithoutPath>spi_58x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -697,7 +693,7 @@
 
   <Group>
     <GroupName>user_app</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -732,7 +728,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>C:\Users\a5128281\Documents\Git\SDK_6.0.18.1182.1\DA145xx_SDK\6.0.18.1182.1\sdk\platform\arch\main\arch_system.c</PathWithFileName>
+      <PathWithFileName>C:\work\DA145xx_SDK\All_examples_update\6.0.22.1401\sdk\platform\arch\main\arch_system.c</PathWithFileName>
       <FilenameWithoutPath>arch_system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

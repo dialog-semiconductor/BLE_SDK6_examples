@@ -35,6 +35,7 @@
 #include "uart.h"
 #include "spi.h"
 #include "syscntl.h"
+#include "spi_flash.h"
 
 void set_pad_functions(void)
 {

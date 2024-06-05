@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file da14531_config_basic.h
+ * @file da14535_config_basic.h
  *
  * @brief Basic compile configuration file.
  *
- * Copyright (C) 2014-2023 Renesas Electronics Corporation and/or its affiliates.
+ * Copyright (C) 2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -31,15 +31,15 @@
  ****************************************************************************************
  */
 
-#ifndef _DA14531_CONFIG_BASIC_H_
-#define _DA14531_CONFIG_BASIC_H_
+#ifndef _DA14535_CONFIG_BASIC_H_
+#define _DA14535_CONFIG_BASIC_H_
 
 #include "da1458x_stack_config.h"
 #include "user_profiles_config.h"
 
 /***************************************************************************************************************/
 /* Integrated or external processor configuration                                                              */
-/*    -defined      Integrated processor mode. Host application runs in DA14585 processor. Host application    */
+/*    -defined      Integrated processor mode. Host application runs in DA14535 processor. Host application    */
 /*                  is the TASK_APP kernel task.                                                               */
 /*    -undefined    External processor mode. Host application runs on an external processor. Communicates with */
 /*                  BLE application through GTL protocol over a signalling iface (UART, SPI etc)               */
@@ -49,7 +49,7 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
-#define CFG_APP_SECURITY
+#undef CFG_APP_SECURITY
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
@@ -67,7 +67,7 @@
 /* Determines maximum concurrent connections supported by application. It configures the heap memory allocated  */
 /* to service multiple connections. It is used for GAP central role applications. For GAP peripheral role it    */
 /* should be set to 1 for optimizing memory utilization.                                                        */
-/*      - MAX value for DA14531: 3                                                                              */
+/*      - MAX value for DA14535: 3                                                                              */
 /****************************************************************************************************************/
 #define CFG_MAX_CONNECTIONS     (1)
 
@@ -127,4 +127,4 @@
 /****************************************************************************************************************/
 #undef CFG_POWER_MODE_BYPASS
 
-#endif // _DA14531_CONFIG_BASIC_H_
+#endif // _DA14535_CONFIG_BASIC_H_

@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file da14535_config_basic.h
+ * @file da14585_config_basic.h
  *
  * @brief Basic compile configuration file.
  *
- * Copyright (C) 2022-2023 Renesas Electronics Corporation and/or its affiliates.
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -31,15 +31,15 @@
  ****************************************************************************************
  */
 
-#ifndef _DA14535_CONFIG_BASIC_H_
-#define _DA14535_CONFIG_BASIC_H_
+#ifndef _DA14585_CONFIG_BASIC_H_
+#define _DA14585_CONFIG_BASIC_H_
 
 #include "da1458x_stack_config.h"
 #include "user_profiles_config.h"
 
 /***************************************************************************************************************/
 /* Integrated or external processor configuration                                                              */
-/*    -defined      Integrated processor mode. Host application runs in DA14535 processor. Host application    */
+/*    -defined      Integrated processor mode. Host application runs in DA14585 processor. Host application    */
 /*                  is the TASK_APP kernel task.                                                               */
 /*    -undefined    External processor mode. Host application runs on an external processor. Communicates with */
 /*                  BLE application through GTL protocol over a signalling iface (UART, SPI etc)               */
@@ -49,7 +49,7 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
-#define CFG_APP_SECURITY
+#undef CFG_APP_SECURITY
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
@@ -67,7 +67,7 @@
 /* Determines maximum concurrent connections supported by application. It configures the heap memory allocated  */
 /* to service multiple connections. It is used for GAP central role applications. For GAP peripheral role it    */
 /* should be set to 1 for optimizing memory utilization.                                                        */
-/*      - MAX value for DA14535: 3                                                                              */
+/*      - MAX value for DA14585: 8                                                                              */
 /****************************************************************************************************************/
 #define CFG_MAX_CONNECTIONS     (1)
 
@@ -89,7 +89,7 @@
 /* If CFG_PRINTF_UART2 is defined, then serial interface logging mechanism is implented using UART2, else UART1 */
 /* will be used.                                                                                                */
 /****************************************************************************************************************/
-#undef CFG_PRINTF
+#define CFG_PRINTF
 #ifdef CFG_PRINTF
     #define CFG_PRINTF_UART2
 #endif
@@ -99,6 +99,7 @@
 /* driver will be used, else ROM driver will be used for UART1 module.                                          */
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK
+
 
 /****************************************************************************************************************/
 /* Select external memory device for data storage                                                               */
@@ -113,17 +114,9 @@
 /*     - UART                                                                                                   */
 /*     - SPI                                                                                                    */
 /*     - I2C                                                                                                    */
-/*     - ADC                                                                                                    */
 /****************************************************************************************************************/
 #undef CFG_UART_DMA_SUPPORT
 #undef CFG_SPI_DMA_SUPPORT
 #undef CFG_I2C_DMA_SUPPORT
-#undef CFG_ADC_DMA_SUPPORT
 
-/****************************************************************************************************************/
-/* Notify the SDK about the fixed power mode (currently used only for Bypass):                                  */
-/*     - CFG_POWER_MODE_BYPASS = Bypass mode                                                                    */
-/****************************************************************************************************************/
-#undef CFG_POWER_MODE_BYPASS
-
-#endif // _DA14535_CONFIG_BASIC_H_
+#endif // _DA14585_CONFIG_BASIC_H_

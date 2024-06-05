@@ -5,19 +5,19 @@
  *
  * @brief Advanced compile configuration file.
  *
- * Copyright (C) 2022-2023 Renesas Electronics Corporation and/or its affiliates.
+ * Copyright (C) 2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
  * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
  * revocable, non-sub-licensable right and license to use the Software, solely if used in
  * or together with Renesas products. You may make copies of this Software, provided this
- * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
  * reserves the right to change or discontinue the Software at any time without notice.
  *
  * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
  * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
  * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
  * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
@@ -82,7 +82,7 @@
 /* The ECDH keys are always created after a pairing request. If the legacy pairing is to be used, it is         */
 /* recommended to undefine the macro in order to reduce the RAM footprint.                                      */
 /****************************************************************************************************************/
-#define CFG_ENABLE_SMP_SECURE
+#undef CFG_ENABLE_SMP_SECURE
 
 /****************************************************************************************************************/
 /* Uses ChaCha20 random number generator instead of the C standard library random number generator.             */
@@ -116,7 +116,7 @@
 /* - CFG_NVDS_TAG_BLE_CA_NB_PKT         Number of packets to receive for statistics                             */
 /* - CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT     Number  of bad packets needed to remove a channel                       */
 /****************************************************************************************************************/
-#define CFG_NVDS_TAG_BD_ADDRESS             {0x17, 0x00, 0xF4, 0x35, 0x23, 0x48}
+#define CFG_NVDS_TAG_BD_ADDRESS             {0x09, 0x00, 0xF4, 0x35, 0x23, 0x48}
 
 #define CFG_NVDS_TAG_LPCLK_DRIFT            DRIFT_500PPM
 #define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       (500)

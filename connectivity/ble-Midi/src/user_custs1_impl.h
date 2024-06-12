@@ -55,6 +55,25 @@
  * DEFINES
  ****************************************************************************************
  */
+/*
+ ****************************************************************************************
+ * CUSTS1 application profile configuration
+ ****************************************************************************************
+ */
+
+/************************************************************
+ * CUSTS1 security requirements (@see app_prf_srv_perm)
+ *
+ * - SRV_PERM_DISABLE       Disable access
+ * - SRV_PERM_ENABLE        Enable access
+ * - SRV_PERM_UNAUTH        Access Requires Unauthenticated link
+ * - SRV_PERM_AUTH          Access Requires Authenticated link
+ * - SRV_PERM_SECURE        Access Requires Authenticated Secure Connection Pairing
+ *
+ * Select only one option.
+ ************************************************************
+ */
+#define APP_CUSTS1_SEC_REQ  SRV_PERM_UNAUTH
 
 enum
 {

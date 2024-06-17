@@ -1,23 +1,23 @@
 /**
  ****************************************************************************************
  *
- * @file user_custs_config.c
+ * @file user_callback_config.h
  *
- * @brief Custom1/2 Server (CUSTS1/2) profile database structure and initialization.
+ * @brief Callback functions configuration file.
  *
- * Copyright (C) 2016-2023 Renesas Electronics Corporation and/or its affiliates.
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
  * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
  * revocable, non-sub-licensable right and license to use the Software, solely if used in
  * or together with Renesas products. You may make copies of this Software, provided this
- * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
  * reserves the right to change or discontinue the Software at any time without notice.
  *
  * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
  * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
  * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
  * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
@@ -31,62 +31,41 @@
  ****************************************************************************************
  */
 
-/**
- ****************************************************************************************
- * @defgroup USER_CONFIG
- * @ingroup USER
- * @brief Custom1/2 Server (CUSTS1/2) profile database structure and initialization.
- *
- * @{
- ****************************************************************************************
- */
+#ifndef _USER_CALLBACK_CONFIG_H_
+#define _USER_CALLBACK_CONFIG_H_
 
 /*
  * INCLUDE FILES
  ****************************************************************************************
  */
 
-#include "app_prf_types.h"
-#include "app_customs.h"
-#include "user_custs1_def.h"
+#include "arch_api.h"
+#include "user_fsp.h"
 
 /*
- * GLOBAL VARIABLE DEFINITIONS
+ * LOCAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
 
-#if (BLE_CUSTOM1_SERVER)
-extern const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB];
-#endif
-
-/// Custom1/2 server function callback table
-const struct cust_prf_func_callbacks cust_prf_funcs[] =
-{
-#if (BLE_CUSTOM1_SERVER)
-    {   TASK_ID_CUSTS1,
-        custs1_att_db,
-        CUSTS1_IDX_NB,
-        #if (BLE_APP_PRESENT)
-        app_custs1_create_db, NULL,
-        #else
-        NULL, NULL,
-        #endif
-        NULL, NULL,
-    },
-#endif
-#if (BLE_CUSTOM2_SERVER)
-    {   TASK_ID_CUSTS2,
-        NULL,
-        0,
-        #if (BLE_APP_PRESENT)
-        app_custs2_create_db, NULL,
-        #else
-        NULL, NULL,
-        #endif
-        NULL, NULL,
-    },
-#endif
-    {TASK_ID_INVALID, NULL, 0, NULL, NULL, NULL, NULL},   // DO NOT MOVE. Must always be last
+static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
+    .app_on_init            = user_on_init,
+    
+    // By default the watchdog timer is reloaded and resumed when the system wakes up.
+    // The user has to take into account the watchdog timer handling (keep it running, 
+    // freeze it, reload it, resume it, etc), when the app_on_ble_powered() is being 
+    // called and may potentially affect the main loop.
+    .app_on_ble_powered     = NULL,
+    
+    // By default the watchdog timer is reloaded and resumed when the system wakes up.
+    // The user has to take into account the watchdog timer handling (keep it running, 
+    // freeze it, reload it, resume it, etc), when the app_on_system_powered() is being 
+    // called and may potentially affect the main loop.
+    .app_on_system_powered  = NULL,
+    
+    .app_before_sleep       = NULL,
+    .app_validate_sleep     = NULL,
+    .app_going_to_sleep     = NULL,
+    .app_resume_from_sleep  = NULL,
 };
 
-/// @} USER_CONFIG
+#endif // _USER_CALLBACK_CONFIG_H_

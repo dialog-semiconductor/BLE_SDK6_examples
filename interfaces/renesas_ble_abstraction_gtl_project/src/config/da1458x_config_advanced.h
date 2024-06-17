@@ -1,9 +1,9 @@
 /**
  ****************************************************************************************
  *
- * @file da1458x_config_basic.h
+ * @file da1458x_config_advanced.h
  *
- * @brief Basic compile configuration file.
+ * @brief Advanced compile configuration file.
  *
  * Copyright (C) 2014-2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
@@ -12,12 +12,12 @@
  * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
  * revocable, non-sub-licensable right and license to use the Software, solely if used in
  * or together with Renesas products. You may make copies of this Software, provided this
- * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
  * reserves the right to change or discontinue the Software at any time without notice.
  *
  * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
  * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
  * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
  * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
@@ -31,15 +31,15 @@
  ****************************************************************************************
  */
 
-#ifndef _DA1458X_CONFIG_BASIC_H_
-#define _DA1458X_CONFIG_BASIC_H_
+#ifndef _DA1458X_CONFIG_ADVANCED_H_
+#define _DA1458X_CONFIG_ADVANCED_H_
 
 #if defined (__DA14535__)
-    #include "da14535_config_basic.h"
+    #include "da14535_config_advanced.h"
 #elif defined (__DA14531__)
-    #include "da14531_config_basic.h"
+    #include "da14531_config_advanced.h"
 #else
-    #include "da14585_config_basic.h"
+    #include "da14585_config_advanced.h"
 #endif
 
-#endif // _DA1458X_CONFIG_BASIC_H_
+#endif // _DA1458X_CONFIG_ADVANCED_H_

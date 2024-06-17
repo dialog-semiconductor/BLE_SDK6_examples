@@ -4,9 +4,13 @@
 
 ## Example description
 
-The main purpose of this software example is to provide the source files containing the firmware for the preloaded binary  in the DA1453x USB kit.
-The [UM-B-121 DA1453x Quick Started Guide with the USB Development Kit](https://lpccs-docs.renesas.com/UM-B-121-USB-Getting-Started-Guide/index.html) shows how to run the 
-demo.
+The main purpose of this software example is to provide the source files containing the firmware for the preloaded binary in the DA1453x USB kit.
+- Devices naming:
+    - DA1453x is refering to DA14531-00, DA14531-01, DA14530 and DA14535.
+    - The DA14531-00 is the main DA14531 device. The -00 is just a new naming to introduce the variant DA14531-01. The DA14531-01 is a ROM variant of the main DA14531-00.
+    - The DA14535 is a DA14531 upgrade.
+
+The [UM-B-121 DA14531 getting Started with the USB Development Kit](https://lpccs-docs.renesas.com/UM-B-121-USB-Getting-Started-Guide/index.html)  and The [UM-B-183 DA14535 getting Started with the USB Development Kit](https://lpccs-docs.renesas.com/UM-B-183-DA14535-USB-Getting-Started/index.html) show how to run the demo.
 
 ## Hardware & Software Configuration
 
@@ -20,7 +24,7 @@ This firmware example runs on DA1453x Bluetooth Smart SoC devices.
 
 The DIP switch should have the following assignment as illustrated below, this allows the system to boot from external flash or 1-wire UART and communicate through JTAG for debugging
 
-![j1_config](assets/dip_switch.svg)
+![j1_config](assets/dip_switch.png)
 
 The Example can also run on ***DA145xx Pro Development Kit*** with default jumper configuration, as demonstrated below:
 
@@ -32,12 +36,15 @@ The Example can also run on ***DA145xx Pro Development Kit*** with default jumpe
  
 ![j1_config](assets/j1_config.svg)
 
-Refer to the DA14531 getting started guide of [DA14531 Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
+You can also refer to the following documentation:
+- For the DA14531 getting started guide you can refer to [UM-B-117](https://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
+
+- For the DA14535 getting started guide you can refer to this [UM-B-165](https://lpccs-docs.renesas.com/DA14535/UM-B-165-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html#device-family-getting-started-with-the-pro-development-kits)
 
 
 ### Software configuration
 
-  - SDK6.0.20 or later
+ - [SDK6 latest version](https://www.renesas.com/sdk6_latest)
 
   - ***SEGGER’s J-Link*** tools should be downloaded and installed.
 
@@ -61,6 +68,16 @@ For programming the DA14531 using the compiled hex file and boot from flash, ple
 
 ## Known Limitations
 
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
+- There are No known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
-- If you have any question, please contact us in our [public Bluetooth forums](https://www.dialog-semiconductor.com/forum) 
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you to contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

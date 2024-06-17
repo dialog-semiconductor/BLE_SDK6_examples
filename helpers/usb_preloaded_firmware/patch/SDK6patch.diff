@@ -1,7 +1,7 @@
-diff --git a/Main_SDK_6.0.20/6.0.20.1338/sdk/app_modules/src/app_common/app.c b/Main_SDK_6.0.20/6.0.20.1338/sdk/app_modules/src/app_common/app.c
-index 454e955..7e771d3 100644
---- a/Main_SDK_6.0.20/6.0.20.1338/sdk/app_modules/src/app_common/app.c
-+++ b/Main_SDK_6.0.20/6.0.20.1338/sdk/app_modules/src/app_common/app.c
+diff --git a/6.0.22.1401/sdk/app_modules/src/app_common/app.c b/6.0.22.1401/sdk/app_modules/src/app_common/app.c
+index 2e78357..95c3a72 100644
+--- a/6.0.22.1401/sdk/app_modules/src/app_common/app.c
++++ b/6.0.22.1401/sdk/app_modules/src/app_common/app.c
 @@ -44,7 +44,7 @@
  #include "app_adv_data.h"
  #include "llm.h"
@@ -11,7 +11,7 @@ index 454e955..7e771d3 100644
  #include "user_config.h"
  
  #if BLE_CUSTOM_SERVER
-@@ -156,7 +156,7 @@ static timer_hnd adv_timer_id
+@@ -168,7 +168,7 @@ static timer_hnd adv_timer_id
  static void (*adv_timeout_callback)(void)                                          __SECTION_ZERO("retention_mem_area0"); // @RETENTION MEMORY
  
  #if (USER_CFG_ADDRESS_MODE == APP_CFG_ADDR_STATIC)
@@ -20,7 +20,7 @@ index 454e955..7e771d3 100644
  #endif
  
  /*
-@@ -692,8 +692,30 @@ static struct gapm_set_dev_config_cmd* app_easy_gap_dev_config_create_msg(void)
+@@ -704,8 +704,30 @@ static struct gapm_set_dev_config_cmd* app_easy_gap_dev_config_create_msg(void)
          // Check whether the user-defined Random Static address is null.
          if (memcmp(user_gapm_conf.addr, &co_null_bdaddr, BD_ADDR_LEN) == 0)
          {
@@ -30,7 +30,7 @@ index 454e955..7e771d3 100644
 +          memcpy(cmd->addr.addr, app_random_addr.addr, BD_ADDR_LEN * sizeof(uint8_t));
 +					printf_string(UART2, "#########################################################################################");
 +					printf_string(UART2, "\n\r");
-+					printf_string(UART2, " This is your Unique Static Random Address For your Device embed in the DA14531 USB KIT : \n\r");
++					printf_string(UART2, " This is your Unique Static Random Address For your Device embed in the DA14535 USB KIT : \n\r");
 +					printf_string(UART2, "#########################################################################################");
 +					   
 +					printf_string(UART2, "\n\r");

@@ -78,6 +78,15 @@ void on_suotar_status_change(const uint8_t suotar_event);
  ****************************************************************************************
  */
 
+#if (BLE_WSS_SERVER)
+static const struct app_wsss_cb user_app_wsss_cb = {
+    .on_wsss_bcs_reference_req = NULL,
+    .on_wsss_ind_cfg_ind = NULL,
+    .on_wsss_send_measurement_cfm = NULL,
+};
+#endif
+
+
 #if (BLE_BATT_SERVER)
 static const struct app_bass_cb user_app_bass_cb = {
     .on_batt_level_upd_rsp      = NULL,
@@ -164,7 +173,7 @@ static const struct default_app_operations user_default_app_operations = {
 };
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
-    .app_on_init            = default_app_on_init,
+    .app_on_init            = user_app_on_init,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,

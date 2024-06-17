@@ -48,7 +48,8 @@ The example is running from SRAM. To run the program from flash please visit sec
 
 	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.svg)
     
-    - ![Motherboard_Hardware_Configuration_DA14531](assets/da14535.svg)
+    - This example works also on the DA1453x DEVKT-P with with any DA1453x Daughterboard
+	![Motherboard_Hardware_Configuration_DA14531](assets/da14535.svg)
 	
 * **Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard**
 

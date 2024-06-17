@@ -149,6 +149,52 @@
 #define APP_DIS_PNP_ID                  ("\x01\xD2\x00\x80\x05\x00\x01")
 #define APP_DIS_PNP_ID_LEN              (7)
 
+/************************************************************
+ * Select memory medium for SUOTA data storage:
+ *
+ * - Disable use of SPI FLASH  (#define CFG_SUOTAR_SPI_DISABLE)
+ * - Disable use of I2C EEPROM (#define CFG_SUOTAR_I2C_DISABLE)
+ *
+ ************************************************************
+ */
+#undef CFG_SUOTAR_SPI_DISABLE
+#define CFG_SUOTAR_I2C_DISABLE
+
+
+/************************************************************
+ * SUOTA security requirements (@see app_prf_srv_perm)
+ *
+ * - SRV_PERM_DISABLE       Disable access
+ * - SRV_PERM_ENABLE        Enable access
+ * - SRV_PERM_UNAUTH        Access Requires Unauthenticated link
+ * - SRV_PERM_AUTH          Access Requires Authenticated link
+ * - SRV_PERM_SECURE        Access Requires Authenticated Secure Connection Pairing
+ *
+ * Select only one option.
+ ************************************************************
+ */
+#define APP_SUOTA_SEC_REQ  SRV_PERM_UNAUTH
+
+/*
+ ****************************************************************************************
+ * CUSTS1 application profile configuration
+ ****************************************************************************************
+ */
+
+/************************************************************
+ * CUSTS1 security requirements (@see app_prf_srv_perm)
+ *
+ * - SRV_PERM_DISABLE       Disable access
+ * - SRV_PERM_ENABLE        Enable access
+ * - SRV_PERM_UNAUTH        Access Requires Unauthenticated link
+ * - SRV_PERM_AUTH          Access Requires Authenticated link
+ * - SRV_PERM_SECURE        Access Requires Authenticated Secure Connection Pairing
+ *
+ * Select only one option.
+ ************************************************************
+ */
+#define APP_CUSTS1_SEC_REQ  SRV_PERM_UNAUTH
+
 /// @} APP_CONFIG
 
 #endif // _USER_PROFILES_CONFIG_H_

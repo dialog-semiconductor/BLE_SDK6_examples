@@ -94,6 +94,127 @@
  */
 static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
 
+
+
+/*
+ ****************************************************************************************
+ *
+ * Security configuration
+ *
+ ****************************************************************************************
+ */
+
+/************************************************************
+ * Select memory medium for bond data storage:
+ *
+ * - SPI FLASH  (#define USER_CFG_APP_BOND_DB_USE_SPI_FLASH)
+ * - I2C EEPROM (#define USER_CFG_APP_BOND_DB_USE_I2C_EEPROM)
+ * - cache only (define nothing)
+ *
+ * Select only one option.
+ ************************************************************
+ */
+#define USER_CFG_APP_BOND_DB_USE_SPI_FLASH
+#undef USER_CFG_APP_BOND_DB_USE_I2C_EEPROM
+
+
+/************************************************************
+ * Select memory offset for bond data storage:
+ *
+ * - 0x39000 if valid for SUOTA-ready memory layout
+ *
+ ************************************************************
+ */
+#define USER_CFG_BOND_DB_DATA_OFFSET (0x39000)
+
+/************************************************************
+ * Device IO Capability (@see gap_io_cap)
+ *
+ * - GAP_IO_CAP_DISPLAY_ONLY          Display Only
+ * - GAP_IO_CAP_DISPLAY_YES_NO        Display Yes No
+ * - GAP_IO_CAP_KB_ONLY               Keyboard Only
+ * - GAP_IO_CAP_NO_INPUT_NO_OUTPUT    No Input No Output
+ * - GAP_IO_CAP_KB_DISPLAY            Keyboard Display
+ *
+ * Select only one option.
+ ************************************************************
+ */
+#define USER_CFG_FEAT_IO_CAP    GAP_IO_CAP_NO_INPUT_NO_OUTPUT
+
+/************************************************************
+ * OOB information (@see gap_oob)
+ *
+ * - GAP_OOB_AUTH_DATA_NOT_PRESENT    OOB Data not present
+ * - GAP_OOB_AUTH_DATA_PRESENT        OOB data present
+ *
+ * Select only one option.
+ * Note: OOB is only supported with Legacy Pairing
+ ************************************************************
+ */
+#define USER_CFG_FEAT_OOB       GAP_OOB_AUTH_DATA_NOT_PRESENT
+
+/************************************************************
+ * Authentication Requirements (@see gap_auth_mask)
+ *
+ * - GAP_AUTH_NONE      None
+ * - GAP_AUTH_BOND      Bond
+ * - GAP_AUTH_MITM      MITM
+ * - GAP_AUTH_SEC       Secure Connection
+ * - GAP_AUTH_KEY       Keypress Notification (Not Supported)
+ *
+ * Any combination of the above.
+ ************************************************************
+ */
+#define USER_CFG_FEAT_AUTH_REQ  (GAP_AUTH_BOND | GAP_AUTH_MITM | GAP_AUTH_SEC)
+
+/************************************************************
+ * Encryption Max key size (7 to 16) - USER_CFG_FEAT_KEY_SIZE
+ ************************************************************
+ */
+//#define USER_CFG_FEAT_KEY_SIZE  KEY_LEN
+
+/************************************************************
+ * Device security requirements (@see gap_sec_req)
+ *
+ * - GAP_NO_SEC                 No security (no authentication and encryption)
+ * - GAP_SEC1_NOAUTH_PAIR_ENC   Unauthenticated pairing with encryption
+ * - GAP_SEC1_AUTH_PAIR_ENC     Authenticated pairing with encryption
+ * - GAP_SEC1_SEC_PAIR_ENC      Authenticated LE Secure Connections pairing with encryption
+ * - GAP_SEC2_NOAUTH_DATA_SGN   Unauthenticated pairing with data signing
+ * - GAP_SEC2_AUTH_DATA_SGN     Authentication pairing with data signing
+ *
+ * Select only one option.
+ ************************************************************
+ */
+#define USER_CFG_FEAT_SEC_REQ   GAP_SEC1_NOAUTH_PAIR_ENC
+
+/**************************************************************************************
+ * Initiator key distribution (@see gap_kdist)
+ *
+ * - GAP_KDIST_NONE             No Keys to distribute
+ * - GAP_KDIST_ENCKEY           LTK (Encryption key) in distribution
+ * - GAP_KDIST_IDKEY            IRK (ID key)in distribution
+ * - GAP_KDIST_SIGNKEY          CSRK (Signature key) in distribution
+ *
+ * Any combination of the above
+ **************************************************************************************
+ */
+#define USER_CFG_FEAT_INIT_KDIST (GAP_KDIST_ENCKEY | GAP_KDIST_IDKEY | GAP_KDIST_SIGNKEY)
+
+/**************************************************************************************
+ * Responder key distribution (@see gap_kdist)
+ *
+ * - GAP_KDIST_NONE             No Keys to distribute
+ * - GAP_KDIST_ENCKEY           LTK (Encryption key) in distribution
+ * - GAP_KDIST_IDKEY            IRK (ID key)in distribution
+ * - GAP_KDIST_SIGNKEY          CSRK (Signature key) in distribution
+ *
+ * Any combination of the above
+ **************************************************************************************
+ */
+#define USER_CFG_FEAT_RESP_KDIST (GAP_KDIST_ENCKEY | GAP_KDIST_IDKEY | GAP_KDIST_SIGNKEY)
+
+
 /*
  ****************************************************************************************
  *

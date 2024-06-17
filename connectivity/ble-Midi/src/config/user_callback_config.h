@@ -126,18 +126,18 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_get_peer_features           = NULL,
 #if (BLE_APP_SEC)
     .app_on_pairing_request             = default_app_on_pairing_request,
-    .app_on_tk_exch                     = default_app_on_tk_exch,
+    .app_on_tk_exch                     = user_app_on_tk_exch,
     .app_on_irk_exch                    = NULL,
-    .app_on_csrk_exch                   = NULL,
+    .app_on_csrk_exch                   = default_app_on_csrk_exch,
     .app_on_ltk_exch                    = default_app_on_ltk_exch,
-    .app_on_pairing_succeeded           = NULL,
+    .app_on_pairing_succeeded           = default_app_on_pairing_succeeded,
     .app_on_encrypt_ind                 = NULL,
-    .app_on_encrypt_req_ind             = NULL,
+    .app_on_encrypt_req_ind             = default_app_on_encrypt_req_ind,
     .app_on_security_req_ind            = NULL,
-    .app_on_addr_solved_ind             = NULL,
-    .app_on_addr_resolve_failed         = NULL,
+    .app_on_addr_solved_ind             = default_app_on_addr_solved_ind,
+    .app_on_addr_resolve_failed         = default_app_on_addr_resolve_failed,
 #if !defined (__DA14531_01__) && !defined (__DA14535__)
-    .app_on_ral_cmp_evt                 = NULL,
+    .app_on_ral_cmp_evt                 = default_app_on_ral_cmp_evt,
     .app_on_ral_size_ind                = NULL,
     .app_on_ral_addr_ind                = NULL,
 #endif // not for DA14531-01, DA14535
@@ -146,14 +146,14 @@ static const struct app_callbacks user_app_callbacks = {
 
 #if (BLE_APP_SEC)
 static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
-    .app_bdb_init                       = NULL,
-    .app_bdb_get_size                   = NULL,
-    .app_bdb_add_entry                  = NULL,
+    .app_bdb_init                       = default_app_bdb_init,
+    .app_bdb_get_size                   = default_app_bdb_get_size,
+    .app_bdb_add_entry                  = default_app_bdb_add_entry,
     .app_bdb_remove_entry               = NULL,
-    .app_bdb_search_entry               = NULL,
-    .app_bdb_get_number_of_stored_irks  = NULL,
-    .app_bdb_get_stored_irks            = NULL,
-    .app_bdb_get_device_info_from_slot  = NULL,
+    .app_bdb_search_entry               = default_app_bdb_search_entry,
+    .app_bdb_get_number_of_stored_irks  = default_app_bdb_get_number_of_stored_irks,
+    .app_bdb_get_stored_irks            = default_app_bdb_get_stored_irks,
+    .app_bdb_get_device_info_from_slot  = default_app_bdb_get_device_info_from_slot,
 };
 #endif // (BLE_APP_SEC)
 

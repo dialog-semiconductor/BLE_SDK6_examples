@@ -43,7 +43,10 @@
 #include "gpio.h"
 #include "uart.h"
 #include "syscntl.h"
-
+#if defined (CFG_SPI_FLASH_ENABLE)
+#include "spi.h"
+#include "spi_flash.h"
+#endif
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
@@ -65,6 +68,8 @@ void GPIO_reservations(void)
 #if !defined (__DA14586__)
     RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
 #endif
+	
+	  RESERVE_GPIO(SW2, GPIO_SW2_PORT, GPIO_SW2_PIN, PID_GPIO);
 }
 
 #endif
@@ -89,7 +94,29 @@ void set_pad_functions(void)
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
 
+			GPIO_ConfigurePin(GPIO_SW2_PORT, GPIO_SW2_PIN, INPUT_PULLUP, PID_GPIO, false);
 }
+
+#if defined (CFG_SPI_FLASH_ENABLE)
+// Configuration struct for SPI
+static const spi_cfg_t spi_cfg = {
+    .spi_ms = SPI_MS_MODE,
+    .spi_cp = SPI_CP_MODE,
+    .spi_speed = SPI_SPEED_MODE,
+    .spi_wsz = SPI_WSZ,
+    .spi_cs = SPI_CS,
+    .cs_pad.port = SPI_EN_PORT,
+    .cs_pad.pin = SPI_EN_PIN,
+#if defined (__DA14531__)
+    .spi_capture = SPI_EDGE_CAPTURE,
+#endif
+};
+
+// Configuration struct for SPI FLASH
+static const spi_flash_cfg_t spi_flash_cfg = {
+    .chip_size = SPI_FLASH_DEV_SIZE,
+};
+#endif
 
 #if defined (CFG_PRINTF_UART2)
 // Configuration struct for UART2
@@ -109,6 +136,9 @@ static const uart_cfg_t uart_cfg = {
 void periph_init(void)
 {
 #if defined (__DA14531__)
+	
+	    // Disable HW Reset functionality of P0_0
+    GPIO_Disable_HW_Reset();
     // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
     syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
 #else
@@ -125,6 +155,14 @@ void periph_init(void)
 #if defined (CFG_PRINTF_UART2)
     // Initialize UART2
     uart_initialize(UART2, &uart_cfg);
+#endif
+
+#if defined (CFG_SPI_FLASH_ENABLE)
+    // Configure SPI Flash environment
+    spi_flash_configure_env(&spi_flash_cfg);
+
+    // Initialize SPI
+    spi_initialize(&spi_cfg);
 #endif
 
     // Set pad functionality

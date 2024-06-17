@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file user_custs1_impl.c
+ * @file user_custs_config.h
  *
- * @brief Peripheral project Custom1 Server implementation source code.
+ * @brief Custom1/2 Server (CUSTS1/2) profile database initialization.
  *
- * Copyright (c) 2023 Renesas Electronics Corporation and/or its affiliates
+ * Copyright (C) 2016-2021 Renesas Electronics Corporation and/or its affiliates
  * The MIT License (MIT)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,20 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
- ***************************************************************************************
+ ****************************************************************************************
+ */
+
+#ifndef _USER_CUSTS_CONFIG_H_
+#define _USER_CUSTS_CONFIG_H_
+
+/**
+ ****************************************************************************************
+ * @defgroup USER_CONFIG
+ * @ingroup USER
+ * @brief Custom1/2 Server (CUSTS1/2) profile database initialization.
+ *
+ * @{
+ ****************************************************************************************
  */
 
 /*
@@ -33,45 +46,15 @@
  ****************************************************************************************
  */
 
-#include "gpio.h"
-#include "app_api.h"
-#include "app.h"
-#include "prf_utils.h"
-#include "custs1.h"
-#include "custs1_task.h"
-#include "user_custs1_def.h"
-#include "user_custs1_impl.h"
-#include "ble_weight_scale_nau7802.h"
-#include "user_periph_setup.h"
+#include "app_prf_types.h"
 
 /*
- * GLOBAL VARIABLE DEFINITIONS
+ * GLOBAL VARIABLE DECLARATIONS
  ****************************************************************************************
  */
 
-ke_msg_id_t timer_used      __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-uint16_t indication_counter __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
-uint16_t non_db_val_counter __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
+extern const struct cust_prf_func_callbacks cust_prf_funcs[];
 
-/*
- * FUNCTION DEFINITIONS
- ****************************************************************************************
- */
+/// @} USER_CONFIG
 
-void user_svc1_led_wr_ind_handler(ke_msg_id_t const msgid,
-                                     struct custs1_val_write_ind const *param,
-                                     ke_task_id_t const dest_id,
-                                     ke_task_id_t const src_id)
-{
-    uint8_t val = 0;
-    memcpy(&val, &param->value[0], param->length);
-
-//    if (val == CUSTS1_LED_ON)
-//    {
-//        GPIO_SetActive(GPIO_LED_PORT, GPIO_LED_PIN);
-//    }
-//    else if (val == CUSTS1_LED_OFF)
-//    {
-//        GPIO_SetInactive(GPIO_LED_PORT, GPIO_LED_PIN);
-//    }
-}
+#endif // _USER_CUSTS_CONFIG_H_

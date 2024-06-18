@@ -5,7 +5,7 @@
  *
  * @brief Configuration file for the profiles used in the application.
  *
- * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * Copyright (C) 2017-2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -56,6 +56,7 @@
 /***************************************************************************************/
 
 #define CFG_PRF_DISS
+#define CFG_PRF_CUST1
 
 /***************************************************************************************/
 /* Profile application configuration section                                           */
@@ -147,6 +148,12 @@
  */
 #define APP_DIS_PNP_ID                  ("\x01\xD2\x00\x80\x05\x00\x01")
 #define APP_DIS_PNP_ID_LEN              (7)
+
+/*
+ ****************************************************************************************
+ * CUST1 application profile configuration
+ ****************************************************************************************
+ */
 
 /// @} APP_CONFIG
 

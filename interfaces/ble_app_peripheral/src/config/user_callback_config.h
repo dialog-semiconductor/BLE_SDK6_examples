@@ -47,7 +47,7 @@
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
-#include "user_ble_burst_adv.h"
+#include "user_peripheral.h"
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -55,13 +55,13 @@
  */
 
 static const struct app_callbacks user_app_callbacks = {
-    .app_on_connection                  = user_on_connection,
-    .app_on_disconnect                  = user_on_disconnect,
+    .app_on_connection                  = user_app_connection,
+    .app_on_disconnect                  = user_app_disconnect,
     .app_on_update_params_rejected      = NULL,
     .app_on_update_params_complete      = NULL,
-    .app_on_set_dev_config_complete     = user_on_set_dev_config_complete,
+    .app_on_set_dev_config_complete     = default_app_on_set_dev_config_complete,
     .app_on_adv_nonconn_complete        = NULL,
-    .app_on_adv_undirect_complete       = user_on_adv_undirect_complete,
+    .app_on_adv_undirect_complete       = user_app_adv_undirect_complete,
     .app_on_adv_direct_complete         = NULL,
     .app_on_db_init_complete            = default_app_on_db_init_complete,
     .app_on_scanning_completed          = NULL,
@@ -109,10 +109,9 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 #endif // (BLE_APP_SEC)
 
 #define app_process_catch_rest_cb       user_catch_rest_hndl
-static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
-    .app_on_init            = default_app_on_init,
+    .app_on_init            = user_app_init,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,
@@ -132,10 +131,9 @@ static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     .app_resume_from_sleep  = NULL,
 };
 
-
 // Default Handler Operations
 static const struct default_app_operations user_default_app_operations = {
-    .default_operation_adv = NULL,
+    .default_operation_adv = user_app_adv_start,
 };
 
 // Place in this structure the app_<profile>_db_create and app_<profile>_enable functions

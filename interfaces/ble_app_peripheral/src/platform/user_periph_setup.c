@@ -50,6 +50,12 @@
  ****************************************************************************************
  */
 
+/**
+ ****************************************************************************************
+ * @brief Each application reserves its own GPIOs here.
+ ****************************************************************************************
+ */
+
 #if DEVELOPMENT_DEBUG
 
 void GPIO_reservations(void)
@@ -62,6 +68,8 @@ void GPIO_reservations(void)
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
+
+    RESERVE_GPIO(LED, GPIO_LED_PORT, GPIO_LED_PIN, PID_GPIO);
 
 #if !defined (__DA14586__)
     RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
@@ -89,6 +97,8 @@ void set_pad_functions(void)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
+
+    GPIO_ConfigurePin(GPIO_LED_PORT, GPIO_LED_PIN, OUTPUT, PID_GPIO, false);
 }
 
 #if defined (CFG_PRINTF_UART2)
@@ -109,11 +119,12 @@ static const uart_cfg_t uart_cfg = {
 void periph_init(void)
 {
 #if defined (__DA14531__)
-    // Select FPGA GPIO_MAP 2 to work with the FPGA add-on board SPI memory flash
+    // Select FPGA GPIO_MAP 1
     // set debugger SWD to SW_CLK = P0[2], SW_DIO=P0[5]
-    FPGA_HELPER(FPGA_GPIO_MAP_2, SWD_DATA_AT_P0_5);
+    FPGA_HELPER(FPGA_GPIO_MAP_1, SWD_DATA_AT_P0_5);
 
     // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
+    // Assumption: The connected external peripheral is powered by 3V
     syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
 #else
     // Power up peripherals' power domain

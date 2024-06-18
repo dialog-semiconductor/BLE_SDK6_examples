@@ -71,7 +71,7 @@
 #define EXCLUDE_DLG_FINDL           (1)
 #define EXCLUDE_DLG_FINDT           (1)
 #define EXCLUDE_DLG_SUOTAR          (1)
-#define EXCLUDE_DLG_CUSTS1          (1)
+#define EXCLUDE_DLG_CUSTS1          (0)
 #define EXCLUDE_DLG_CUSTS2          (1)
 
 /// @} APP

@@ -1,11 +1,11 @@
 /**
  ****************************************************************************************
  *
- * @file da1458x_config_basic.h
+ * @file user_custs_config.h
  *
- * @brief Basic compile configuration file.
+ * @brief Custom1/2 Server (CUSTS1/2) profile database initialization.
  *
- * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * Copyright (C) 2016-2023 Renesas Electronics Corporation and/or its affiliates.
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -31,15 +31,33 @@
  ****************************************************************************************
  */
 
-#ifndef _DA1458X_CONFIG_BASIC_H_
-#define _DA1458X_CONFIG_BASIC_H_
+#ifndef _USER_CUSTS_CONFIG_H_
+#define _USER_CUSTS_CONFIG_H_
 
-#if defined (__DA14535__)
-    #include "da14535_config_basic.h"
-#elif defined (__DA14531__)
-    #include "da14531_config_basic.h"
-#else
-    #include "da14585_config_basic.h"
-#endif
+/**
+ ****************************************************************************************
+ * @defgroup USER_CONFIG
+ * @ingroup USER
+ * @brief Custom1/2 Server (CUSTS1/2) profile database initialization.
+ *
+ * @{
+ ****************************************************************************************
+ */
 
-#endif // _DA1458X_CONFIG_BASIC_H_
+/*
+ * INCLUDE FILES
+ ****************************************************************************************
+ */
+
+#include "app_prf_types.h"
+
+/*
+ * GLOBAL VARIABLE DECLARATIONS
+ ****************************************************************************************
+ */
+
+extern const struct cust_prf_func_callbacks cust_prf_funcs[];
+
+/// @} USER_CONFIG
+
+#endif // _USER_CUSTS_CONFIG_H_

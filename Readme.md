@@ -40,7 +40,7 @@ To run any of these SW examples, the user needs:
 
 
 
-**Note**: _It is highly recommended the user creates files that are added in the *src* folder of the SW example. By default, the Python script does not process user files located outside the *src* folder. You are free to create any folder under the *src* user space. You need to make sure the new folder path under *src* is added in the Keil project as a relative path._
+**Note**: _It is highly recommended the user creates files that are added in the *src* folder of the SW example._
 
 
 ## Examples Overview

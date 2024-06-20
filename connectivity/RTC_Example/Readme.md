@@ -204,7 +204,7 @@ A 128-bit UUID custom service is also exposed with 3 custom characteristics for 
 ## HW and SW configuration
 
 - **Hardware configuration**
-  - This example runs only on DA14530/531 Bluetooth Smart SoC devices.
+  - This example runs on all DA1453x Bluetooth Smart SoC devices.
   - The Pro Development kit is required for this example.
   - Connect the Development kit to the host computer.
   - A flywire should be placed between the P06 and the FTDI's UTX pin if printing is enabled (PRINT_DATE_TIME_DATA defined) as well as J8[3:4] jumper for the alert LED.
@@ -216,7 +216,7 @@ A 128-bit UUID custom service is also exposed with 3 custom characteristics for 
 - **Software configuration**
   - This example requires:
     - Smartsnippets Toolbox 5.0.16.
-    - SDK6.0.14
+    - SDK6.0.22
     - A smartphone with a BLE scanning app (for example BLE scanner on Android or Lightblue on IOS)
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - Python 3.5 or greater

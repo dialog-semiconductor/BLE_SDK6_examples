@@ -69,8 +69,7 @@ The device should display the advertising data as shown in the picture below
 ## Known Limitations
 
 
-- There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+- There are no known limitations for this example. But you can check and refer to the following web page [known limitations for SDK6 devices](https://lpccs-docs.renesas.com/sdk6_kll/index.html).
+- Renesas Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](https://lpccs-docs.renesas.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
 

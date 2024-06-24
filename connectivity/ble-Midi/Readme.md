@@ -96,14 +96,20 @@ For the initial setup of the project that involves linking the SDK to this SW ex
         ![playnote](assets/playnote.png)
 
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
+- There are no known limitations for this example. But you can check and refer to the following application note for
 [SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
 ## Feedback and support ?
 
-If you have any comments or suggestions about this document, you to contact us through:
+If you have any comments or suggestions about this document, you can contact us through:
 
 - [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
 

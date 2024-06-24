@@ -59,7 +59,8 @@ Note: To configure your device with different BD addresses, follow [here](http:/
 
 5. This example needs changes in the SDK to work. To apply the patch file, execute the following command inside your sdk directory:
 ```
-git apply path/to/patch/SDK6patch.diff
+git apply path/to/changes.patch
+
 ```
 	
 6. Build and compile the project.		
@@ -105,17 +106,24 @@ For Android, you can use any BLE scanner app to connect and disconnect.
 
 ![logs.jpg](assets/logs.jpg)
 
-## Limitations
+## Further reading
 
-- The current example doesn't handle the disconnection of P1 or P2 from their central C0. This will be handled in future release.
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
 
-## Troubleshooting
 
-- Try a different USB1 cable.
 
-- Try different jumper wires, if used.
+## Known Limitations
 
-- Verify using any BLE scanner that the 2 peripherals are advertising before attempting connection. 
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
-- If none of the above helps, please check with the customer support team who would be glad to provide you the solution.
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

@@ -39,68 +39,19 @@
  ****************************************************************************************
  */
 
-#include "app_api.h"
-#include "app_bass.h"
-#include "app_findme.h"
-#include "app_proxr.h"
-#include "app_suotar.h"
+#include <stdio.h>
 #include "app_callback.h"
+#include "app_default_handlers.h"
+#include "app_entry_point.h"
 #include "app_prf_types.h"
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
 #include "user_lis2dh_app.h"
 /*
- * FUNCTION DECLARATIONS
- ****************************************************************************************
- */
-
-/**
- ****************************************************************************************
- * @brief Function to be called on the advertising completion event.
- * @param[in] uint8_t GAP Error code
- ****************************************************************************************
- */
-void app_advertise_complete(const uint8_t);
-
-/**
- ****************************************************************************************
- * @brief SUOTAR session start or stop event handler.
- * @param[in] suotar_event SUOTAR_START/SUOTAR_STOP
- ****************************************************************************************
- */
-void on_suotar_status_change(const uint8_t suotar_event);
-
-
-/*
  * LOCAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
-
-#if (BLE_BATT_SERVER)
-static const struct app_bass_cb user_app_bass_cb = {
-    .on_batt_level_upd_rsp      = NULL,
-    .on_batt_level_ntf_cfg_ind  = NULL,
-};
-#endif
-
-#if (BLE_FINDME_TARGET)
-static const struct app_findt_cb user_app_findt_cb = {
-    .on_findt_alert_ind         = default_findt_alert_ind_handler,
-};
-#endif
-
-#if (BLE_PROX_REPORTER)
-static const struct app_proxr_cb user_app_proxr_cb = {
-    .on_proxr_alert_ind      = default_proxr_alert_ind_handler,
-};
-#endif
-
-#if (BLE_SUOTA_RECEIVER)
-static const struct app_suotar_cb user_app_suotar_cb = {
-    .on_suotar_status_change = on_suotar_status_change,
-};
-#endif
 
 static const struct app_callbacks user_app_callbacks = {
     .app_on_connection                  = user_on_connection,
@@ -124,11 +75,11 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_svc_changed_cfg_ind         = NULL,
     .app_on_get_peer_features           = NULL,
 #if (BLE_APP_SEC)
-    .app_on_pairing_request             = default_app_on_pairing_request,
-    .app_on_tk_exch                     = default_app_on_tk_exch,
+    .app_on_pairing_request             = NULL,
+    .app_on_tk_exch                     = NULL,
     .app_on_irk_exch                    = NULL,
     .app_on_csrk_exch                   = NULL,
-    .app_on_ltk_exch                    = default_app_on_ltk_exch,
+    .app_on_ltk_exch                    = NULL,
     .app_on_pairing_succeeded           = NULL,
     .app_on_encrypt_ind                 = NULL,
     .app_on_encrypt_req_ind             = NULL,
@@ -156,12 +107,11 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 };
 #endif // (BLE_APP_SEC)
 
+<<<<<<< HEAD
+=======
 //#define app_process_catch_rest_cb       user_catch_rest_hndl
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
-
-static const struct default_app_operations user_default_app_operations = {
-    .default_operation_adv = default_advertise_operation,
-};
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     .app_on_init            = default_app_on_init,
@@ -184,10 +134,16 @@ static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     .app_resume_from_sleep  = NULL,
 };
 
-//place in this structure the app_<profile>_db_create and app_<profile>_enable functions
-//for SIG profiles that do not have this function already implemented in the SDK
-//or if you want to override the functionality. Check the prf_func array in the SDK
-//for your reference of which profiles are supported.
+
+// Default Handler Operations
+static const struct default_app_operations user_default_app_operations = {
+    .default_operation_adv = default_advertise_operation,
+};
+
+// Place in this structure the app_<profile>_db_create and app_<profile>_enable functions
+// for SIG profiles that do not have this function already implemented in the SDK
+// or if you want to override the functionality. Check the prf_func array in the SDK
+// for your reference of which profiles are supported.
 static const struct prf_func_callbacks user_prf_funcs[] =
 {
     {TASK_ID_INVALID,    NULL, NULL}   // DO NOT MOVE. Must always be last

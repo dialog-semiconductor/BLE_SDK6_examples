@@ -5,7 +5,11 @@
  *
  * @brief Basic compile configuration file.
  *
+<<<<<<< HEAD
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+=======
  * Copyright (C) 2014-2023 Renesas Electronics Corporation and/or its affiliates.
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -42,4 +46,8 @@
     #include "da14585_config_basic.h"
 #endif
 
+<<<<<<< HEAD
 #endif // _DA1458X_CONFIG_BASIC_H_
+=======
+#endif // _DA1458X_CONFIG_BASIC_H_
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d

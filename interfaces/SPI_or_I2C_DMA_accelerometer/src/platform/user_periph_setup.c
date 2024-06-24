@@ -110,7 +110,7 @@ spi_cfg_t spi_cfg =
 
 
 #else
-	#error "Please define i2c/spi interface
+	#error "Please define i2c/spi interface"
 #endif
 
 

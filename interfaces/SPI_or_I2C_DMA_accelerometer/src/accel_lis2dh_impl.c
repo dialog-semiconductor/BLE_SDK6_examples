@@ -49,24 +49,32 @@
 
 accel_config_t accel_config 				__SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
-
 #if defined(__ACCEL_IF_I2C__)
 uint8_t accel_lis2dh_start_acquisition(uint8_t acq_len, AxesRaw_t buff[32], i2c_complete_cb_t cb)
+
 #elif defined(__ACCEL_IF_SPI__)
+
 uint8_t accel_lis2dh_start_acquisition(uint8_t acq_len, AxesRaw_t buff[32], spi_cb_t cb)
-#endif 
+
+
+#endif
+
 {
     uint8_t response;
 
+// Set the appropriate callback based on the interface
 #if defined(__ACCEL_IF_I2C__)
     i2c_accel_set_cb(cb);
 #elif defined(__ACCEL_IF_SPI__)
-		spi_accel_set_cb(cb);
+    spi_accel_set_cb(cb);
 #endif 
+
+    // Start data acquisition
     response = LIS2DH_GetAccAxesRawBurst(buff, acq_len);
 
     return response;
 }
+
 
 void accel_lis2dh_handle_watermark_int1(uint8_t * data)
 {

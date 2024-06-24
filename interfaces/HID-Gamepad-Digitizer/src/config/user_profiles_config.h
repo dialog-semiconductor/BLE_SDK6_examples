@@ -5,29 +5,26 @@
  *
  * @brief Configuration file for the profiles used in the application.
  *
- * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
- * All rights reserved. Confidential Information.
- *
- * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
- * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
- * revocable, non-sub-licensable right and license to use the Software, solely if used in
- * or together with Renesas products. You may make copies of this Software, provided this
- * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
- * reserves the right to change or discontinue the Software at any time without notice.
- *
- * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
- * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
- * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGES. USE OF THIS SOFTWARE MAY BE SUBJECT TO TERMS AND CONDITIONS CONTAINED IN
- * AN ADDITIONAL AGREEMENT BETWEEN YOU AND RENESAS. IN CASE OF CONFLICT BETWEEN THE TERMS
- * OF THIS NOTICE AND ANY SUCH ADDITIONAL LICENSE AGREEMENT, THE TERMS OF THE AGREEMENT
- * SHALL TAKE PRECEDENCE. BY CONTINUING TO USE THIS SOFTWARE, YOU AGREE TO THE TERMS OF
- * THIS NOTICE.IF YOU DO NOT AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO USE THIS
- * SOFTWARE.
- *
+ * Copyright (c) 2017-2021 Renesas Electronics Corporation and/or its affiliates
+ * The MIT License (MIT)
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ * OR OTHER DEALINGS IN THE SOFTWARE.
  ****************************************************************************************
  */
 
@@ -55,7 +52,9 @@
 /* Used BLE profiles (used by "rwprf_config.h").                                       */
 /***************************************************************************************/
 
+#define CFG_PRF_HOGPD
 #define CFG_PRF_DISS
+#define CFG_PRF_CUST1
 
 /***************************************************************************************/
 /* Profile application configuration section                                           */
@@ -74,27 +73,19 @@
                                         DIS_FIRM_REV_STR_CHAR_SUP | \
                                         DIS_PNP_ID_CHAR_SUP)
 
-/// Manufacturer Name (up to 18 chars)
-#define APP_DIS_MANUFACTURER_NAME       ("Renesas")
-#define APP_DIS_MANUFACTURER_NAME_LEN   (sizeof(APP_DIS_MANUFACTURER_NAME) - 1)
+/// Manufacturer Name
+#define APP_DIS_MANUFACTURER_NAME       ("Dialog Semi")
+#define APP_DIS_MANUFACTURER_NAME_LEN   (11)
 
 /// Model Number String
 #if defined (__DA14586__)
     #define APP_DIS_MODEL_NB_STR            ("DA14586")
-#elif defined (__DA14535__)
-    #define APP_DIS_MODEL_NB_STR            ("DA14535")
-#elif defined (__DA14531_01__)
-    #define APP_DIS_MODEL_NB_STR            ("DA14531-01")
 #elif defined (__DA14531__)
     #define APP_DIS_MODEL_NB_STR            ("DA14531")
 #else
-    #define APP_DIS_MODEL_NB_STR            ("DA14585")
+     #define APP_DIS_MODEL_NB_STR           ("DA14585")
 #endif
-#ifdef __DA14531_01__
-#define APP_DIS_MODEL_NB_STR_LEN        (10)
-#else
 #define APP_DIS_MODEL_NB_STR_LEN        (7)
-#endif
 
 /// System ID - LSB -> MSB
 #define APP_DIS_SYSTEM_ID               ("\x12\x34\x56\xFF\xFE\x9A\xBC\xDE")
@@ -110,20 +101,12 @@
 /// Hardware Revision String
 #if defined (__DA14586__)
     #define APP_DIS_HARD_REV_STR            ("DA14586")
-#elif defined (__DA14535__)
-    #define APP_DIS_HARD_REV_STR            ("DA14535")
-#elif defined (__DA14531_01__)
-    #define APP_DIS_HARD_REV_STR            ("DA14531-01")
 #elif defined (__DA14531__)
     #define APP_DIS_HARD_REV_STR            ("DA14531")
 #else
     #define APP_DIS_HARD_REV_STR            ("DA14585")
 #endif
-#ifdef __DA14531_01__
-#define APP_DIS_HARD_REV_STR_LEN        (10)
-#else
 #define APP_DIS_HARD_REV_STR_LEN        (7)
-#endif
 
 /// Firmware Revision
 #define APP_DIS_FIRM_REV_STR            SDK_VERSION
@@ -147,6 +130,12 @@
  */
 #define APP_DIS_PNP_ID                  ("\x01\xD2\x00\x80\x05\x00\x01")
 #define APP_DIS_PNP_ID_LEN              (7)
+
+/*
+ ****************************************************************************************
+ * CUST1 application profile configuration
+ ****************************************************************************************
+ */
 
 /// @} APP_CONFIG
 

@@ -82,7 +82,11 @@
 /* The ECDH keys are always created after a pairing request. If the legacy pairing is to be used, it is         */
 /* recommended to undefine the macro in order to reduce the RAM footprint.                                      */
 /****************************************************************************************************************/
+<<<<<<< HEAD
+#undef CFG_ENABLE_SMP_SECURE
+=======
 #define CFG_ENABLE_SMP_SECURE
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 
 /****************************************************************************************************************/
 /* Uses ChaCha20 random number generator instead of the C standard library random number generator.             */
@@ -116,7 +120,11 @@
 /* - CFG_NVDS_TAG_BLE_CA_NB_PKT         Number of packets to receive for statistics                             */
 /* - CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT     Number  of bad packets needed to remove a channel                       */
 /****************************************************************************************************************/
+<<<<<<< HEAD
+#define CFG_NVDS_TAG_BD_ADDRESS             {0x09, 0x00, 0xF4, 0x35, 0x23, 0x48}
+=======
 #define CFG_NVDS_TAG_BD_ADDRESS             {0x17, 0x00, 0xF4, 0x35, 0x23, 0x48}
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 
 #define CFG_NVDS_TAG_LPCLK_DRIFT            DRIFT_500PPM
 #define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       (500)
@@ -210,9 +218,17 @@
 /*     - CFG_RETAIN_RAM_2_BLOCK: if defined, the 2nd RAM block must be retained.                                */
 /* By default, the SDK keeps all RAM cells retained.                                                            */
 /****************************************************************************************************************/
+<<<<<<< HEAD
+#undef CFG_CUSTOM_SCATTER_FILE
+#ifdef CFG_CUSTOM_SCATTER_FILE
+    #define CFG_RETAIN_RAM_1_BLOCK
+    #define CFG_RETAIN_RAM_2_BLOCK
+#endif
+=======
 #define CFG_RETAIN_RAM_1_BLOCK
 #define CFG_RETAIN_RAM_2_BLOCK
 
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 /****************************************************************************************************************/
 /* Non-retained heap handling. The non-retained heap is either empty or not, and it may fill with messages      */
 /* during the application runtime. If it is not empty while the system is going to extended sleep, it must be   */

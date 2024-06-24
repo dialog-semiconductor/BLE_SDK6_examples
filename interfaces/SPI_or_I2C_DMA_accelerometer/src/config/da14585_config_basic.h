@@ -5,7 +5,11 @@
  *
  * @brief Basic compile configuration file.
  *
+<<<<<<< HEAD
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+=======
  * Copyright (C) 2014-2023 Renesas Electronics Corporation and/or its affiliates.
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -49,7 +53,11 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
+<<<<<<< HEAD
+#undef CFG_APP_SECURITY
+=======
 #define CFG_APP_SECURITY
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
@@ -119,4 +127,8 @@
 #undef CFG_SPI_DMA_SUPPORT
 #undef CFG_I2C_DMA_SUPPORT
 
+<<<<<<< HEAD
 #endif // _DA14585_CONFIG_BASIC_H_
+=======
+#endif // _DA14585_CONFIG_BASIC_H_
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d

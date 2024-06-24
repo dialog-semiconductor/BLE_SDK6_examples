@@ -5,7 +5,11 @@
  *
  * @brief Basic compile configuration file.
  *
+<<<<<<< HEAD
+ * Copyright (C) 2023 Renesas Electronics Corporation and/or its affiliates.
+=======
  * Copyright (C) 2022-2023 Renesas Electronics Corporation and/or its affiliates.
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -49,7 +53,11 @@
 /****************************************************************************************************************/
 /* Enables the BLE security functionality in TASK_APP. If not defined BLE security related code is compiled out.*/
 /****************************************************************************************************************/
+<<<<<<< HEAD
+#undef CFG_APP_SECURITY
+=======
 #define CFG_APP_SECURITY
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
@@ -100,6 +108,10 @@
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 /****************************************************************************************************************/
 /* Select external memory device for data storage                                                               */
 /* SPI FLASH  (#define CFG_SPI_FLASH_ENABLE)                                                                    */
@@ -115,9 +127,20 @@
 /*     - I2C                                                                                                    */
 /*     - ADC                                                                                                    */
 /****************************************************************************************************************/
+<<<<<<< HEAD
+#if defined(__ACCEL_USE_DMA__) && defined(__ACCEL_IF_SPI__)
+	#define CFG_SPI_DMA_SUPPORT
+#endif 
+
+#if defined(__ACCEL_USE_DMA__) && defined(__ACCEL_IF_I2C__)
+	#define CFG_I2C_DMA_SUPPORT
+#endif
+
+=======
 #undef CFG_UART_DMA_SUPPORT
 #undef CFG_SPI_DMA_SUPPORT
 #undef CFG_I2C_DMA_SUPPORT
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 #undef CFG_ADC_DMA_SUPPORT
 
 /****************************************************************************************************************/

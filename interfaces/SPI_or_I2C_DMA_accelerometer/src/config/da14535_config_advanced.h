@@ -5,7 +5,11 @@
  *
  * @brief Advanced compile configuration file.
  *
+<<<<<<< HEAD
+ * Copyright (C) 2023 Renesas Electronics Corporation and/or its affiliates.
+=======
  * Copyright (C) 2022-2023 Renesas Electronics Corporation and/or its affiliates.
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
  * All rights reserved. Confidential Information.
  *
  * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
@@ -82,7 +86,11 @@
 /* The ECDH keys are always created after a pairing request. If the legacy pairing is to be used, it is         */
 /* recommended to undefine the macro in order to reduce the RAM footprint.                                      */
 /****************************************************************************************************************/
+<<<<<<< HEAD
+#undef CFG_ENABLE_SMP_SECURE
+=======
 #define CFG_ENABLE_SMP_SECURE
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 
 /****************************************************************************************************************/
 /* Uses ChaCha20 random number generator instead of the C standard library random number generator.             */
@@ -116,7 +124,11 @@
 /* - CFG_NVDS_TAG_BLE_CA_NB_PKT         Number of packets to receive for statistics                             */
 /* - CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT     Number  of bad packets needed to remove a channel                       */
 /****************************************************************************************************************/
+<<<<<<< HEAD
+#define CFG_NVDS_TAG_BD_ADDRESS             {0x09, 0x00, 0xF4, 0x35, 0x23, 0x48}
+=======
 #define CFG_NVDS_TAG_BD_ADDRESS             {0x17, 0x00, 0xF4, 0x35, 0x23, 0x48}
+>>>>>>> 98ccc16b07388245caadbe7332f97878f9a1ec9d
 
 #define CFG_NVDS_TAG_LPCLK_DRIFT            DRIFT_500PPM
 #define CFG_NVDS_TAG_BLE_CA_TIMER_DUR       (500)

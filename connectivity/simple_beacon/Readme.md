@@ -68,11 +68,13 @@ Refer to the getting started guide of [DA14585 Basic Development Kit](http://lpc
 
 ### DA14531 Hardware Configuration
 
-In case of DA14531, the ***DA145xx Pro Development Kit*** is also required for this Software Example with default jumper configuration. Please see the illustrations below:
+In case of DA14531, the ***DA14531 Pro Development Kit*** is also required for this Software Example with default jumper configuration. Please see the illustrations below:
 
-Jumpers are placed in default configurations. Refer to the getting started guide of [DA145xx Pro Development Kit](https://www.dialog-semiconductor.com/da14531-getting-started).
+Jumpers are placed in default configurations. Refer to the getting started guide of [DA14531 Pro Development Kit](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 ![531_pro_dk](assets/531_pro_dk.svg)
+
+![535_pro_dk](assets/53x_pro_dk.svg)
 
 ### Software configuration
 

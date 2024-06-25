@@ -94,6 +94,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
     }
 }
 
+
+
 static void user_scan_request_cb(struct scan_req_data_msg const * param)
 {
     arch_printf("Scan request from ");

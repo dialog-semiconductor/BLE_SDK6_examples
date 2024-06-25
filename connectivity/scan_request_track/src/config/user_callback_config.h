@@ -158,13 +158,14 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 #endif // (BLE_APP_SEC)
 
 #define app_process_catch_rest_cb       user_catch_rest_hndl
+//static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
 
 static const struct default_app_operations user_default_app_operations = {
     .default_operation_adv = default_advertise_operation,
 };
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
-    .app_on_init            = default_app_on_init,
+    .app_on_init            = user_app_init,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,

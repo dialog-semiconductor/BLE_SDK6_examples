@@ -340,7 +340,7 @@
               <MiscControls>-mthumb -c -include da1458x_config_basic.h -include da1458x_config_advanced.h -include user_config.h</MiscControls>
               <Define>__DA14531__</Define>
               <Undefine></Undefine>
-              <IncludePath>..\;..\assets;..\Keil_5;..\src;..\src\config;..\src\platform;..\src;..\src\config;..\src\platform;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_ancc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bass;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bcss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bmss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bond_db;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_cgms;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_ctsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_ctss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_custs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_default_hnd;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_diss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_entry;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_findme;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_gattc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_glps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_lecb;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_plxs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_proxr;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_sec;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_suotar;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_udss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_wsss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller\em;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller\llc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller\lld;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller\llm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\ea;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\ea\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\em;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\em\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\hci;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\hci\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\hci\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\att;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\att\attc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\att\attm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\att\atts;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gap;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gap\gapc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gap\gapm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gatt;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gatt\gattc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gatt\gattm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\l2c;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\l2c\l2cc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\l2c\l2cm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\smp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\smp\smpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\smp\smpm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anc\ancc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anc\ancc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anc\ancc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\basc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\basc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\basc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\bass;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\bass\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\bass\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcsc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcsc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmsc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmsc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cgmp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cgmp\cgms;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cgmp\cgms\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cgmp\cgms\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cppc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cppc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cppc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cpps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cpps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cpps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctsc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctsc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\custom;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\custom\custs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\custom\custs\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\custom\custs\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\disc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\disc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\disc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findl\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findl\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findt;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findt\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findt\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\gatt;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\gatt\gatt_client;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\gatt\gatt_client\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\gatt\gatt_client\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpbh;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpbh\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpbh\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpd;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpd\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpd\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogprh;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogprh\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogprh\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpt;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpt\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpt\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lanc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lanc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lanc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lans;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lans\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lans\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\paspc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\paspc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\paspc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\pasps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\pasps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\pasps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\plx;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\plx\plxs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\plx\plxs\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\plx\plxs\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxm\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxm\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxr;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxr\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxr\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scppc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scppc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scppc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scpps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scpps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scpps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\suota;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\suota\suotar;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\suota\suotar\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\suota\suotar\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tipc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tipc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tipc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tips;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tips\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tips\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udsc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udsc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wssc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wssc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wssc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wsss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wsss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wsss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\rwble;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\rwble_hl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files\IAR;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files\ldscripts;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files\misc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files\scatterfiles;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\asm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\asm\ARM;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\asm\IAR;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\ARM;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\GCC;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\IAR;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\LLVM;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\compiler;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\fpga;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\ll;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\arch_console;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\common;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\common\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\crypto;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\dbg;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\dbg\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\gtl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\gtl\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\gtl\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\h4tl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\h4tl\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\ke;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\ke\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\ke\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\nvds;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\nvds\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\nvds\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rwip;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rwip\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rwip\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\adc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\battery;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\ble;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\dma;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\gpio;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\hw_otpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\i2c;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\i2c_eeprom;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\pdm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\reg;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\rtc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi_flash;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi_hddr;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\syscntl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\systick;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\timer;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\trng;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\uart;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\wifi;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\wkupct_quadec;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.6.0;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.6.0\Include;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.9.0;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.9.0\CMSIS;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core\Include;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\include;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\output;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\output\IAR;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\output\Keil_5;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14531;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14531_01;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14535;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14585_586;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\fsp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\otp_cs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\otp_hdr;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\crc32;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\hash;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\irng;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\micro_ecc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\rand;</IncludePath>
+              <IncludePath>..\;..\assets;..\Keil_5;..\src;..\src\config;..\src\platform;..\src;..\src\config;..\src\platform;.\..\..\..\..\..\\sdk;.\..\..\..\..\..\\sdk\app_modules;.\..\..\..\..\..\\sdk\app_modules\api;.\..\..\..\..\..\\sdk\app_modules\src;.\..\..\..\..\..\\sdk\app_modules\src\app_ancc;.\..\..\..\..\..\\sdk\app_modules\src\app_bass;.\..\..\..\..\..\\sdk\app_modules\src\app_bcss;.\..\..\..\..\..\\sdk\app_modules\src\app_bmss;.\..\..\..\..\..\\sdk\app_modules\src\app_bond_db;.\..\..\..\..\..\\sdk\app_modules\src\app_cgms;.\..\..\..\..\..\\sdk\app_modules\src\app_common;.\..\..\..\..\..\\sdk\app_modules\src\app_ctsc;.\..\..\..\..\..\\sdk\app_modules\src\app_ctss;.\..\..\..\..\..\\sdk\app_modules\src\app_custs;.\..\..\..\..\..\\sdk\app_modules\src\app_default_hnd;.\..\..\..\..\..\\sdk\app_modules\src\app_diss;.\..\..\..\..\..\\sdk\app_modules\src\app_easy;.\..\..\..\..\..\\sdk\app_modules\src\app_entry;.\..\..\..\..\..\\sdk\app_modules\src\app_findme;.\..\..\..\..\..\\sdk\app_modules\src\app_gattc;.\..\..\..\..\..\\sdk\app_modules\src\app_glps;.\..\..\..\..\..\\sdk\app_modules\src\app_lecb;.\..\..\..\..\..\\sdk\app_modules\src\app_plxs;.\..\..\..\..\..\\sdk\app_modules\src\app_proxr;.\..\..\..\..\..\\sdk\app_modules\src\app_sec;.\..\..\..\..\..\\sdk\app_modules\src\app_suotar;.\..\..\..\..\..\\sdk\app_modules\src\app_udss;.\..\..\..\..\..\\sdk\app_modules\src\app_wsss;.\..\..\..\..\..\\sdk\ble_stack;.\..\..\..\..\..\\sdk\ble_stack\controller;.\..\..\..\..\..\\sdk\ble_stack\controller\em;.\..\..\..\..\..\\sdk\ble_stack\controller\llc;.\..\..\..\..\..\\sdk\ble_stack\controller\lld;.\..\..\..\..\..\\sdk\ble_stack\controller\llm;.\..\..\..\..\..\\sdk\ble_stack\ea;.\..\..\..\..\..\\sdk\ble_stack\ea\api;.\..\..\..\..\..\\sdk\ble_stack\em;.\..\..\..\..\..\\sdk\ble_stack\em\api;.\..\..\..\..\..\\sdk\ble_stack\hci;.\..\..\..\..\..\\sdk\ble_stack\hci\api;.\..\..\..\..\..\\sdk\ble_stack\hci\src;.\..\..\..\..\..\\sdk\ble_stack\host;.\..\..\..\..\..\\sdk\ble_stack\host\att;.\..\..\..\..\..\\sdk\ble_stack\host\att\attc;.\..\..\..\..\..\\sdk\ble_stack\host\att\attm;.\..\..\..\..\..\\sdk\ble_stack\host\att\atts;.\..\..\..\..\..\\sdk\ble_stack\host\gap;.\..\..\..\..\..\\sdk\ble_stack\host\gap\gapc;.\..\..\..\..\..\\sdk\ble_stack\host\gap\gapm;.\..\..\..\..\..\\sdk\ble_stack\host\gatt;.\..\..\..\..\..\\sdk\ble_stack\host\gatt\gattc;.\..\..\..\..\..\\sdk\ble_stack\host\gatt\gattm;.\..\..\..\..\..\\sdk\ble_stack\host\l2c;.\..\..\..\..\..\\sdk\ble_stack\host\l2c\l2cc;.\..\..\..\..\..\\sdk\ble_stack\host\l2c\l2cm;.\..\..\..\..\..\\sdk\ble_stack\host\smp;.\..\..\..\..\..\\sdk\ble_stack\host\smp\smpc;.\..\..\..\..\..\\sdk\ble_stack\host\smp\smpm;.\..\..\..\..\..\\sdk\ble_stack\profiles;.\..\..\..\..\..\\sdk\ble_stack\profiles\anc;.\..\..\..\..\..\\sdk\ble_stack\profiles\anc\ancc;.\..\..\..\..\..\\sdk\ble_stack\profiles\anc\ancc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\anc\ancc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anps;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\basc;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\basc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\basc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\bass;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\bass\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\bass\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcsc;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcsc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcsc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcss;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blps;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmsc;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmsc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmsc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmss;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cgmp;.\..\..\..\..\..\\sdk\ble_stack\profiles\cgmp\cgms;.\..\..\..\..\..\\sdk\ble_stack\profiles\cgmp\cgms\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cgmp\cgms\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cppc;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cppc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cppc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cpps;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cpps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cpps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscps;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctsc;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctsc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctsc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctss;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\custom;.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs;.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\disc;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\disc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\disc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\find;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findl;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findl\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findl\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findt;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findt\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findt\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\gatt;.\..\..\..\..\..\\sdk\ble_stack\profiles\gatt\gatt_client;.\..\..\..\..\..\\sdk\ble_stack\profiles\gatt\gatt_client\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\gatt\gatt_client\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glps;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpbh;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpbh\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpbh\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpd;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpd\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpd\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogprh;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogprh\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogprh\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrps;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpt;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpt\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpt\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lanc;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lanc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lanc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lans;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lans\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lans\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\paspc;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\paspc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\paspc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\pasps;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\pasps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\pasps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\plx;.\..\..\..\..\..\\sdk\ble_stack\profiles\plx\plxs;.\..\..\..\..\..\\sdk\ble_stack\profiles\plx\plxs\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\plx\plxs\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxm;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxm\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxm\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxr;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxr\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxr\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscps;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scppc;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scppc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scppc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scpps;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scpps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scpps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\suota;.\..\..\..\..\..\\sdk\ble_stack\profiles\suota\suotar;.\..\..\..\..\..\\sdk\ble_stack\profiles\suota\suotar\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\suota\suotar\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tipc;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tipc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tipc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tips;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tips\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tips\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udsc;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udsc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udsc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udss;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wssc;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wssc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wssc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wsss;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wsss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wsss\src;.\..\..\..\..\..\\sdk\ble_stack\rwble;.\..\..\..\..\..\\sdk\ble_stack\rwble_hl;.\..\..\..\..\..\\sdk\common_project_files;.\..\..\..\..\..\\sdk\common_project_files\IAR;.\..\..\..\..\..\\sdk\common_project_files\ldscripts;.\..\..\..\..\..\\sdk\common_project_files\misc;.\..\..\..\..\..\\sdk\common_project_files\scatterfiles;.\..\..\..\..\..\\sdk\platform;.\..\..\..\..\..\\sdk\platform\arch;.\..\..\..\..\..\\sdk\platform\arch\asm;.\..\..\..\..\..\\sdk\platform\arch\asm\ARM;.\..\..\..\..\..\\sdk\platform\arch\asm\IAR;.\..\..\..\..\..\\sdk\platform\arch\boot;.\..\..\..\..\..\\sdk\platform\arch\boot\ARM;.\..\..\..\..\..\\sdk\platform\arch\boot\GCC;.\..\..\..\..\..\\sdk\platform\arch\boot\IAR;.\..\..\..\..\..\\sdk\platform\arch\boot\LLVM;.\..\..\..\..\..\\sdk\platform\arch\compiler;.\..\..\..\..\..\\sdk\platform\arch\fpga;.\..\..\..\..\..\\sdk\platform\arch\ll;.\..\..\..\..\..\\sdk\platform\arch\main;.\..\..\..\..\..\\sdk\platform\core_modules;.\..\..\..\..\..\\sdk\platform\core_modules\arch_console;.\..\..\..\..\..\\sdk\platform\core_modules\common;.\..\..\..\..\..\\sdk\platform\core_modules\common\api;.\..\..\..\..\..\\sdk\platform\core_modules\crypto;.\..\..\..\..\..\\sdk\platform\core_modules\dbg;.\..\..\..\..\..\\sdk\platform\core_modules\dbg\api;.\..\..\..\..\..\\sdk\platform\core_modules\gtl;.\..\..\..\..\..\\sdk\platform\core_modules\gtl\api;.\..\..\..\..\..\\sdk\platform\core_modules\gtl\src;.\..\..\..\..\..\\sdk\platform\core_modules\h4tl;.\..\..\..\..\..\\sdk\platform\core_modules\h4tl\api;.\..\..\..\..\..\\sdk\platform\core_modules\ke;.\..\..\..\..\..\\sdk\platform\core_modules\ke\api;.\..\..\..\..\..\\sdk\platform\core_modules\ke\src;.\..\..\..\..\..\\sdk\platform\core_modules\nvds;.\..\..\..\..\..\\sdk\platform\core_modules\nvds\api;.\..\..\..\..\..\\sdk\platform\core_modules\nvds\src;.\..\..\..\..\..\\sdk\platform\core_modules\rf;.\..\..\..\..\..\\sdk\platform\core_modules\rf\api;.\..\..\..\..\..\\sdk\platform\core_modules\rf\src;.\..\..\..\..\..\\sdk\platform\core_modules\rwip;.\..\..\..\..\..\\sdk\platform\core_modules\rwip\api;.\..\..\..\..\..\\sdk\platform\core_modules\rwip\src;.\..\..\..\..\..\\sdk\platform\driver;.\..\..\..\..\..\\sdk\platform\driver\adc;.\..\..\..\..\..\\sdk\platform\driver\battery;.\..\..\..\..\..\\sdk\platform\driver\ble;.\..\..\..\..\..\\sdk\platform\driver\dma;.\..\..\..\..\..\\sdk\platform\driver\gpio;.\..\..\..\..\..\\sdk\platform\driver\hw_otpc;.\..\..\..\..\..\\sdk\platform\driver\i2c;.\..\..\..\..\..\\sdk\platform\driver\i2c_eeprom;.\..\..\..\..\..\\sdk\platform\driver\pdm;.\..\..\..\..\..\\sdk\platform\driver\reg;.\..\..\..\..\..\\sdk\platform\driver\rtc;.\..\..\..\..\..\\sdk\platform\driver\spi;.\..\..\..\..\..\\sdk\platform\driver\spi_flash;.\..\..\..\..\..\\sdk\platform\driver\spi_hddr;.\..\..\..\..\..\\sdk\platform\driver\syscntl;.\..\..\..\..\..\\sdk\platform\driver\systick;.\..\..\..\..\..\\sdk\platform\driver\timer;.\..\..\..\..\..\\sdk\platform\driver\trng;.\..\..\..\..\..\\sdk\platform\driver\uart;.\..\..\..\..\..\\sdk\platform\driver\wifi;.\..\..\..\..\..\\sdk\platform\driver\wkupct_quadec;.\..\..\..\..\..\\sdk\platform\include;.\..\..\..\..\..\\sdk\platform\include\CMSIS;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.6.0;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.6.0\Include;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.9.0;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.9.0\CMSIS;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core\Include;.\..\..\..\..\..\\sdk\platform\system_library;.\..\..\..\..\..\\sdk\platform\system_library\include;.\..\..\..\..\..\\sdk\platform\system_library\output;.\..\..\..\..\..\\sdk\platform\system_library\output\IAR;.\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5;.\..\..\..\..\..\\sdk\platform\system_library\src;.\..\..\..\..\..\\sdk\platform\system_library\src\DA14531;.\..\..\..\..\..\\sdk\platform\system_library\src\DA14531_01;.\..\..\..\..\..\\sdk\platform\system_library\src\DA14535;.\..\..\..\..\..\\sdk\platform\system_library\src\DA14585_586;.\..\..\..\..\..\\sdk\platform\utilities;.\..\..\..\..\..\\sdk\platform\utilities\fsp;.\..\..\..\..\..\\sdk\platform\utilities\otp_cs;.\..\..\..\..\..\\sdk\platform\utilities\otp_hdr;.\..\..\..\..\..\\third_party;.\..\..\..\..\..\\third_party\crc32;.\..\..\..\..\..\\third_party\hash;.\..\..\..\..\..\\third_party\irng;.\..\..\..\..\..\\third_party\micro_ecc;.\..\..\..\..\..\\third_party\rand;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -371,11 +371,11 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>.\..\src\config\copied_scatter_531.sct</ScatterFile>
+            <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\DA14531_armclang.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>.\..\..\..\..\..\sdk\common_project_files\misc\da14531_symbols.txt --symdefs=ble_app_barebone_531_symdef.txt --any_placement=best_fit --datacompressor off
---userlibpath C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\output\Keil_5\ da14531.lib</Misc>
+--userlibpath .\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5\ da14531.lib</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -388,7 +388,7 @@
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -444,7 +444,7 @@
             <File>
               <FileName>startup_DA14585_586.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -487,17 +487,17 @@
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</FilePath>
             </File>
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
             </File>
             <File>
               <FileName>startup_DA14535.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\ARM\startup_DA14535.s</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14535.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -540,7 +540,7 @@
             <File>
               <FileName>system_DA14535.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\system_DA14535.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14535.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -596,12 +596,12 @@
             <File>
               <FileName>hardfault_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\hardfault_handler.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\hardfault_handler.c</FilePath>
             </File>
             <File>
               <FileName>nmi_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\nmi_handler.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\nmi_handler.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -611,82 +611,82 @@
             <File>
               <FileName>arch_console.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\arch_console\arch_console.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\arch_console\arch_console.c</FilePath>
             </File>
             <File>
               <FileName>nvds.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\nvds\src\nvds.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\nvds\src\nvds.c</FilePath>
             </File>
             <File>
               <FileName>arch_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_main.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_main.c</FilePath>
             </File>
             <File>
               <FileName>jump_table.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\jump_table.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\jump_table.c</FilePath>
             </File>
             <File>
               <FileName>arch_sleep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_sleep.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_sleep.c</FilePath>
             </File>
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
             <File>
               <FileName>arch_hibernation.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_hibernation.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_hibernation.c</FilePath>
             </File>
             <File>
               <FileName>arch_rom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_rom.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_rom.c</FilePath>
             </File>
             <File>
               <FileName>chacha20.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\rand\chacha20.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\third_party\rand\chacha20.c</FilePath>
             </File>
             <File>
               <FileName>hash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\hash\hash.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\third_party\hash\hash.c</FilePath>
             </File>
             <File>
               <FileName>system_library_585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14585_586\system_library_585_586.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\src\DA14585_586\system_library_585_586.c</FilePath>
             </File>
             <File>
               <FileName>system_library_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14531\system_library_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\src\DA14531\system_library_531.c</FilePath>
             </File>
             <File>
               <FileName>system_library_531_01.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14531_01\system_library_531_01.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\src\DA14531_01\system_library_531_01.c</FilePath>
             </File>
             <File>
               <FileName>system_library_535.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14535\system_library_535.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\src\DA14535\system_library_535.c</FilePath>
             </File>
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
             </File>
             <File>
               <FileName>otp_hdr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\otp_hdr\otp_hdr.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\utilities\otp_hdr\otp_hdr.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -696,27 +696,27 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>battery.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\battery\battery.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\battery\battery.c</FilePath>
             </File>
             <File>
               <FileName>wkupct_quadec.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
             </File>
             <File>
               <FileName>adc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\adc\adc_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\adc\adc_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -772,12 +772,12 @@
             <File>
               <FileName>adc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\adc\adc_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\adc\adc_531.c</FilePath>
             </File>
             <File>
               <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi\spi_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -833,32 +833,32 @@
             <File>
               <FileName>spi_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi\spi_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi\spi_531.c</FilePath>
             </File>
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
             </File>
             <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\i2c\i2c.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\i2c\i2c.c</FilePath>
             </File>
             <File>
               <FileName>i2c_eeprom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -914,17 +914,17 @@
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
             </File>
             <File>
               <FileName>trng.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\trng\trng.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\trng\trng.c</FilePath>
             </File>
             <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\dma\dma.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -934,27 +934,27 @@
             <File>
               <FileName>rf_585.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
             </File>
             <File>
               <FileName>rwble.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\rwble\rwble.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\rwble\rwble.c</FilePath>
             </File>
             <File>
               <FileName>rwip.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
             </File>
             <File>
               <FileName>ble_arp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\src\ble_arp.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\ble_arp.c</FilePath>
             </File>
             <File>
               <FileName>rf_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\src\rf_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\rf_531.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -964,22 +964,22 @@
             <File>
               <FileName>prf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prf.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\prf.c</FilePath>
             </File>
             <File>
               <FileName>prf_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prf_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\prf_utils.c</FilePath>
             </File>
             <File>
               <FileName>diss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
             </File>
             <File>
               <FileName>diss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -989,77 +989,77 @@
             <File>
               <FileName>app_default_handlers.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</FilePath>
             </File>
             <File>
               <FileName>app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common\app.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app.c</FilePath>
             </File>
             <File>
               <FileName>app_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common\app_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_task.c</FilePath>
             </File>
             <File>
               <FileName>app_security.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_sec\app_security.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_sec\app_security.c</FilePath>
             </File>
             <File>
               <FileName>app_security_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
             </File>
             <File>
               <FileName>app_entry_point.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
             </File>
             <File>
               <FileName>app_msg_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common\app_msg_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_security.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_msg_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_diss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
             </File>
             <File>
               <FileName>app_diss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
             </File>
             <File>
               <FileName>app_bond_db.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
             </File>
             <File>
               <FileName>app_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common\app_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_whitelist.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy\app_easy_whitelist.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_whitelist.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1642,7 +1642,7 @@
               <MiscControls>-mthumb -c -include da1458x_config_basic.h -include da1458x_config_advanced.h -include user_config.h</MiscControls>
               <Define>__DA14531__ __DA14535__</Define>
               <Undefine></Undefine>
-              <IncludePath>..\;..\assets;..\Keil_5;..\src;..\src\config;..\src\platform;..\src;..\src\config;..\src\platform;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_ancc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bass;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bcss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bmss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bond_db;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_cgms;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_ctsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_ctss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_custs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_default_hnd;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_diss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_entry;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_findme;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_gattc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_glps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_lecb;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_plxs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_proxr;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_sec;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_suotar;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_udss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_wsss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller\em;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller\llc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller\lld;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\controller\llm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\ea;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\ea\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\em;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\em\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\hci;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\hci\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\hci\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\att;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\att\attc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\att\attm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\att\atts;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gap;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gap\gapc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gap\gapm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gatt;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gatt\gattc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\gatt\gattm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\l2c;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\l2c\l2cc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\l2c\l2cm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\smp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\smp\smpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\host\smp\smpm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anc\ancc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anc\ancc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anc\ancc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\anp\anps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\basc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\basc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\basc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\bass;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\bass\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bas\bass\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcsc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcsc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bcs\bcss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\blp\blps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmsc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmsc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\bms\bmss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cgmp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cgmp\cgms;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cgmp\cgms\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cgmp\cgms\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cppc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cppc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cppc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cpps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cpps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cpp\cpps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cscp\cscps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctsc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctsc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\cts\ctss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\custom;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\custom\custs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\custom\custs\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\custom\custs\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\disc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\disc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\disc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findl\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findl\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findt;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findt\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\find\findt\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\gatt;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\gatt\gatt_client;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\gatt\gatt_client\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\gatt\gatt_client\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\glp\glps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpbh;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpbh\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpbh\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpd;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpd\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogpd\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogprh;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogprh\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hogp\hogprh\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\hrp\hrps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpt;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpt\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\htp\htpt\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lanc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lanc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lanc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lans;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lans\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\lan\lans\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\paspc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\paspc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\paspc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\pasps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\pasps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\pasp\pasps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\plx;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\plx\plxs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\plx\plxs\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\plx\plxs\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxm\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxm\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxr;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxr\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prox\proxr\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscpc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscpc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\rscp\rscps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scppc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scppc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scppc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scpps;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scpps\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\scpp\scpps\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\suota;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\suota\suotar;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\suota\suotar\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\suota\suotar\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tipc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tipc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tipc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tips;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tips\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\tip\tips\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udsc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udsc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udsc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\uds\udss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wssc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wssc\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wssc\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wsss;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wsss\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\wss\wsss\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\rwble;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\rwble_hl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files\IAR;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files\ldscripts;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files\misc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\common_project_files\scatterfiles;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\asm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\asm\ARM;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\asm\IAR;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\ARM;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\GCC;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\IAR;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\LLVM;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\compiler;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\fpga;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\ll;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\arch_console;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\common;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\common\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\crypto;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\dbg;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\dbg\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\gtl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\gtl\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\gtl\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\h4tl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\h4tl\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\ke;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\ke\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\ke\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\nvds;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\nvds\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\nvds\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rwip;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rwip\api;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rwip\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\adc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\battery;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\ble;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\dma;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\gpio;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\hw_otpc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\i2c;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\i2c_eeprom;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\pdm;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\reg;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\rtc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi_flash;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi_hddr;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\syscntl;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\systick;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\timer;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\trng;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\uart;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\wifi;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\wkupct_quadec;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.6.0;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.6.0\Include;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.9.0;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.9.0\CMSIS;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core\Include;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\include;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\output;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\output\IAR;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\output\Keil_5;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14531;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14531_01;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14535;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14585_586;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\fsp;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\otp_cs;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\otp_hdr;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\crc32;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\hash;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\irng;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\micro_ecc;C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\rand;</IncludePath>
+              <IncludePath>..\;..\assets;..\Keil_5;..\src;..\src\config;..\src\platform;..\src;..\src\config;..\src\platform;.\..\..\..\..\..\\sdk;.\..\..\..\..\..\\sdk\app_modules;.\..\..\..\..\..\\sdk\app_modules\api;.\..\..\..\..\..\\sdk\app_modules\src;.\..\..\..\..\..\\sdk\app_modules\src\app_ancc;.\..\..\..\..\..\\sdk\app_modules\src\app_bass;.\..\..\..\..\..\\sdk\app_modules\src\app_bcss;.\..\..\..\..\..\\sdk\app_modules\src\app_bmss;.\..\..\..\..\..\\sdk\app_modules\src\app_bond_db;.\..\..\..\..\..\\sdk\app_modules\src\app_cgms;.\..\..\..\..\..\\sdk\app_modules\src\app_common;.\..\..\..\..\..\\sdk\app_modules\src\app_ctsc;.\..\..\..\..\..\\sdk\app_modules\src\app_ctss;.\..\..\..\..\..\\sdk\app_modules\src\app_custs;.\..\..\..\..\..\\sdk\app_modules\src\app_default_hnd;.\..\..\..\..\..\\sdk\app_modules\src\app_diss;.\..\..\..\..\..\\sdk\app_modules\src\app_easy;.\..\..\..\..\..\\sdk\app_modules\src\app_entry;.\..\..\..\..\..\\sdk\app_modules\src\app_findme;.\..\..\..\..\..\\sdk\app_modules\src\app_gattc;.\..\..\..\..\..\\sdk\app_modules\src\app_glps;.\..\..\..\..\..\\sdk\app_modules\src\app_lecb;.\..\..\..\..\..\\sdk\app_modules\src\app_plxs;.\..\..\..\..\..\\sdk\app_modules\src\app_proxr;.\..\..\..\..\..\\sdk\app_modules\src\app_sec;.\..\..\..\..\..\\sdk\app_modules\src\app_suotar;.\..\..\..\..\..\\sdk\app_modules\src\app_udss;.\..\..\..\..\..\\sdk\app_modules\src\app_wsss;.\..\..\..\..\..\\sdk\ble_stack;.\..\..\..\..\..\\sdk\ble_stack\controller;.\..\..\..\..\..\\sdk\ble_stack\controller\em;.\..\..\..\..\..\\sdk\ble_stack\controller\llc;.\..\..\..\..\..\\sdk\ble_stack\controller\lld;.\..\..\..\..\..\\sdk\ble_stack\controller\llm;.\..\..\..\..\..\\sdk\ble_stack\ea;.\..\..\..\..\..\\sdk\ble_stack\ea\api;.\..\..\..\..\..\\sdk\ble_stack\em;.\..\..\..\..\..\\sdk\ble_stack\em\api;.\..\..\..\..\..\\sdk\ble_stack\hci;.\..\..\..\..\..\\sdk\ble_stack\hci\api;.\..\..\..\..\..\\sdk\ble_stack\hci\src;.\..\..\..\..\..\\sdk\ble_stack\host;.\..\..\..\..\..\\sdk\ble_stack\host\att;.\..\..\..\..\..\\sdk\ble_stack\host\att\attc;.\..\..\..\..\..\\sdk\ble_stack\host\att\attm;.\..\..\..\..\..\\sdk\ble_stack\host\att\atts;.\..\..\..\..\..\\sdk\ble_stack\host\gap;.\..\..\..\..\..\\sdk\ble_stack\host\gap\gapc;.\..\..\..\..\..\\sdk\ble_stack\host\gap\gapm;.\..\..\..\..\..\\sdk\ble_stack\host\gatt;.\..\..\..\..\..\\sdk\ble_stack\host\gatt\gattc;.\..\..\..\..\..\\sdk\ble_stack\host\gatt\gattm;.\..\..\..\..\..\\sdk\ble_stack\host\l2c;.\..\..\..\..\..\\sdk\ble_stack\host\l2c\l2cc;.\..\..\..\..\..\\sdk\ble_stack\host\l2c\l2cm;.\..\..\..\..\..\\sdk\ble_stack\host\smp;.\..\..\..\..\..\\sdk\ble_stack\host\smp\smpc;.\..\..\..\..\..\\sdk\ble_stack\host\smp\smpm;.\..\..\..\..\..\\sdk\ble_stack\profiles;.\..\..\..\..\..\\sdk\ble_stack\profiles\anc;.\..\..\..\..\..\\sdk\ble_stack\profiles\anc\ancc;.\..\..\..\..\..\\sdk\ble_stack\profiles\anc\ancc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\anc\ancc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anps;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\anp\anps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\basc;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\basc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\basc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\bass;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\bass\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bas\bass\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcsc;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcsc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcsc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcss;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bcs\bcss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blps;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\blp\blps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmsc;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmsc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmsc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmss;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\bms\bmss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cgmp;.\..\..\..\..\..\\sdk\ble_stack\profiles\cgmp\cgms;.\..\..\..\..\..\\sdk\ble_stack\profiles\cgmp\cgms\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cgmp\cgms\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cppc;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cppc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cppc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cpps;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cpps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cpp\cpps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscps;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cscp\cscps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctsc;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctsc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctsc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctss;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\cts\ctss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\custom;.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs;.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\custom\custs\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\disc;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\disc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\disc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\find;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findl;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findl\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findl\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findt;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findt\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\find\findt\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\gatt;.\..\..\..\..\..\\sdk\ble_stack\profiles\gatt\gatt_client;.\..\..\..\..\..\\sdk\ble_stack\profiles\gatt\gatt_client\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\gatt\gatt_client\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glps;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\glp\glps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpbh;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpbh\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpbh\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpd;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpd\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogpd\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogprh;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogprh\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hogp\hogprh\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrps;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\hrp\hrps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpt;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpt\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\htp\htpt\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lanc;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lanc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lanc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lans;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lans\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\lan\lans\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\paspc;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\paspc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\paspc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\pasps;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\pasps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\pasp\pasps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\plx;.\..\..\..\..\..\\sdk\ble_stack\profiles\plx\plxs;.\..\..\..\..\..\\sdk\ble_stack\profiles\plx\plxs\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\plx\plxs\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxm;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxm\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxm\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxr;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxr\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\prox\proxr\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscpc;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscpc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscpc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscps;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\rscp\rscps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scppc;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scppc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scppc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scpps;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scpps\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\scpp\scpps\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\suota;.\..\..\..\..\..\\sdk\ble_stack\profiles\suota\suotar;.\..\..\..\..\..\\sdk\ble_stack\profiles\suota\suotar\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\suota\suotar\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tipc;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tipc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tipc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tips;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tips\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\tip\tips\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udsc;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udsc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udsc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udss;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\uds\udss\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wssc;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wssc\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wssc\src;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wsss;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wsss\api;.\..\..\..\..\..\\sdk\ble_stack\profiles\wss\wsss\src;.\..\..\..\..\..\\sdk\ble_stack\rwble;.\..\..\..\..\..\\sdk\ble_stack\rwble_hl;.\..\..\..\..\..\\sdk\common_project_files;.\..\..\..\..\..\\sdk\common_project_files\IAR;.\..\..\..\..\..\\sdk\common_project_files\ldscripts;.\..\..\..\..\..\\sdk\common_project_files\misc;.\..\..\..\..\..\\sdk\common_project_files\scatterfiles;.\..\..\..\..\..\\sdk\platform;.\..\..\..\..\..\\sdk\platform\arch;.\..\..\..\..\..\\sdk\platform\arch\asm;.\..\..\..\..\..\\sdk\platform\arch\asm\ARM;.\..\..\..\..\..\\sdk\platform\arch\asm\IAR;.\..\..\..\..\..\\sdk\platform\arch\boot;.\..\..\..\..\..\\sdk\platform\arch\boot\ARM;.\..\..\..\..\..\\sdk\platform\arch\boot\GCC;.\..\..\..\..\..\\sdk\platform\arch\boot\IAR;.\..\..\..\..\..\\sdk\platform\arch\boot\LLVM;.\..\..\..\..\..\\sdk\platform\arch\compiler;.\..\..\..\..\..\\sdk\platform\arch\fpga;.\..\..\..\..\..\\sdk\platform\arch\ll;.\..\..\..\..\..\\sdk\platform\arch\main;.\..\..\..\..\..\\sdk\platform\core_modules;.\..\..\..\..\..\\sdk\platform\core_modules\arch_console;.\..\..\..\..\..\\sdk\platform\core_modules\common;.\..\..\..\..\..\\sdk\platform\core_modules\common\api;.\..\..\..\..\..\\sdk\platform\core_modules\crypto;.\..\..\..\..\..\\sdk\platform\core_modules\dbg;.\..\..\..\..\..\\sdk\platform\core_modules\dbg\api;.\..\..\..\..\..\\sdk\platform\core_modules\gtl;.\..\..\..\..\..\\sdk\platform\core_modules\gtl\api;.\..\..\..\..\..\\sdk\platform\core_modules\gtl\src;.\..\..\..\..\..\\sdk\platform\core_modules\h4tl;.\..\..\..\..\..\\sdk\platform\core_modules\h4tl\api;.\..\..\..\..\..\\sdk\platform\core_modules\ke;.\..\..\..\..\..\\sdk\platform\core_modules\ke\api;.\..\..\..\..\..\\sdk\platform\core_modules\ke\src;.\..\..\..\..\..\\sdk\platform\core_modules\nvds;.\..\..\..\..\..\\sdk\platform\core_modules\nvds\api;.\..\..\..\..\..\\sdk\platform\core_modules\nvds\src;.\..\..\..\..\..\\sdk\platform\core_modules\rf;.\..\..\..\..\..\\sdk\platform\core_modules\rf\api;.\..\..\..\..\..\\sdk\platform\core_modules\rf\src;.\..\..\..\..\..\\sdk\platform\core_modules\rwip;.\..\..\..\..\..\\sdk\platform\core_modules\rwip\api;.\..\..\..\..\..\\sdk\platform\core_modules\rwip\src;.\..\..\..\..\..\\sdk\platform\driver;.\..\..\..\..\..\\sdk\platform\driver\adc;.\..\..\..\..\..\\sdk\platform\driver\battery;.\..\..\..\..\..\\sdk\platform\driver\ble;.\..\..\..\..\..\\sdk\platform\driver\dma;.\..\..\..\..\..\\sdk\platform\driver\gpio;.\..\..\..\..\..\\sdk\platform\driver\hw_otpc;.\..\..\..\..\..\\sdk\platform\driver\i2c;.\..\..\..\..\..\\sdk\platform\driver\i2c_eeprom;.\..\..\..\..\..\\sdk\platform\driver\pdm;.\..\..\..\..\..\\sdk\platform\driver\reg;.\..\..\..\..\..\\sdk\platform\driver\rtc;.\..\..\..\..\..\\sdk\platform\driver\spi;.\..\..\..\..\..\\sdk\platform\driver\spi_flash;.\..\..\..\..\..\\sdk\platform\driver\spi_hddr;.\..\..\..\..\..\\sdk\platform\driver\syscntl;.\..\..\..\..\..\\sdk\platform\driver\systick;.\..\..\..\..\..\\sdk\platform\driver\timer;.\..\..\..\..\..\\sdk\platform\driver\trng;.\..\..\..\..\..\\sdk\platform\driver\uart;.\..\..\..\..\..\\sdk\platform\driver\wifi;.\..\..\..\..\..\\sdk\platform\driver\wkupct_quadec;.\..\..\..\..\..\\sdk\platform\include;.\..\..\..\..\..\\sdk\platform\include\CMSIS;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.6.0;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.6.0\Include;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.9.0;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.9.0\CMSIS;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core;.\..\..\..\..\..\\sdk\platform\include\CMSIS\5.9.0\CMSIS\Core\Include;.\..\..\..\..\..\\sdk\platform\system_library;.\..\..\..\..\..\\sdk\platform\system_library\include;.\..\..\..\..\..\\sdk\platform\system_library\output;.\..\..\..\..\..\\sdk\platform\system_library\output\IAR;.\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5;.\..\..\..\..\..\\sdk\platform\system_library\src;.\..\..\..\..\..\\sdk\platform\system_library\src\DA14531;.\..\..\..\..\..\\sdk\platform\system_library\src\DA14531_01;.\..\..\..\..\..\\sdk\platform\system_library\src\DA14535;.\..\..\..\..\..\\sdk\platform\system_library\src\DA14585_586;.\..\..\..\..\..\\sdk\platform\utilities;.\..\..\..\..\..\\sdk\platform\utilities\fsp;.\..\..\..\..\..\\sdk\platform\utilities\otp_cs;.\..\..\..\..\..\\sdk\platform\utilities\otp_hdr;.\..\..\..\..\..\\third_party;.\..\..\..\..\..\\third_party\crc32;.\..\..\..\..\..\\third_party\hash;.\..\..\..\..\..\\third_party\irng;.\..\..\..\..\..\\third_party\micro_ecc;.\..\..\..\..\..\\third_party\rand;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1673,11 +1673,11 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x00000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>.\..\src\config\copied_scatter_585_586.sct</ScatterFile>
+            <ScatterFile>.\..\..\..\..\..\sdk\common_project_files\scatterfiles\DA14585_586_armclang.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>.\..\..\..\..\..\sdk\common_project_files\misc\da14535_symbols.txt --symdefs=ble_app_barebone_535_symdef.txt --any_placement=best_fit --datacompressor off
---userlibpath C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\output\Keil_5\ da14535.lib</Misc>
+--userlibpath .\..\..\..\..\..\\sdk\platform\system_library\output\Keil_5\ da14535.lib</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -1690,7 +1690,7 @@
             <File>
               <FileName>system_DA14585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14585_586.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1746,7 +1746,7 @@
             <File>
               <FileName>startup_DA14585_586.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14585_586.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1789,7 +1789,7 @@
             <File>
               <FileName>system_DA14531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\system_DA14531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14531.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1845,7 +1845,7 @@
             <File>
               <FileName>startup_DA14531.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14531.s</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1888,22 +1888,22 @@
             <File>
               <FileName>startup_DA14535.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\ARM\startup_DA14535.s</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\ARM\startup_DA14535.s</FilePath>
             </File>
             <File>
               <FileName>system_DA14535.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\boot\system_DA14535.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\boot\system_DA14535.c</FilePath>
             </File>
             <File>
               <FileName>hardfault_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\hardfault_handler.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\hardfault_handler.c</FilePath>
             </File>
             <File>
               <FileName>nmi_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\nmi_handler.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\nmi_handler.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1913,82 +1913,82 @@
             <File>
               <FileName>arch_console.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\arch_console\arch_console.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\arch_console\arch_console.c</FilePath>
             </File>
             <File>
               <FileName>nvds.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\nvds\src\nvds.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\nvds\src\nvds.c</FilePath>
             </File>
             <File>
               <FileName>arch_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_main.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_main.c</FilePath>
             </File>
             <File>
               <FileName>jump_table.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\jump_table.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\jump_table.c</FilePath>
             </File>
             <File>
               <FileName>arch_sleep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_sleep.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_sleep.c</FilePath>
             </File>
             <File>
               <FileName>arch_system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_system.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_system.c</FilePath>
             </File>
             <File>
               <FileName>arch_hibernation.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_hibernation.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_hibernation.c</FilePath>
             </File>
             <File>
               <FileName>arch_rom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\arch\main\arch_rom.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\arch\main\arch_rom.c</FilePath>
             </File>
             <File>
               <FileName>chacha20.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\rand\chacha20.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\third_party\rand\chacha20.c</FilePath>
             </File>
             <File>
               <FileName>hash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\third_party\hash\hash.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\third_party\hash\hash.c</FilePath>
             </File>
             <File>
               <FileName>system_library_585_586.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14585_586\system_library_585_586.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\src\DA14585_586\system_library_585_586.c</FilePath>
             </File>
             <File>
               <FileName>system_library_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14531\system_library_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\src\DA14531\system_library_531.c</FilePath>
             </File>
             <File>
               <FileName>system_library_531_01.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14531_01\system_library_531_01.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\src\DA14531_01\system_library_531_01.c</FilePath>
             </File>
             <File>
               <FileName>system_library_535.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\system_library\src\DA14535\system_library_535.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\system_library\src\DA14535\system_library_535.c</FilePath>
             </File>
             <File>
               <FileName>otp_cs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\utilities\otp_cs\otp_cs.c</FilePath>
             </File>
             <File>
               <FileName>otp_hdr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\utilities\otp_hdr\otp_hdr.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\utilities\otp_hdr\otp_hdr.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1998,27 +1998,27 @@
             <File>
               <FileName>syscntl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\syscntl\syscntl.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\syscntl\syscntl.c</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\gpio\gpio.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\gpio\gpio.c</FilePath>
             </File>
             <File>
               <FileName>battery.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\battery\battery.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\battery\battery.c</FilePath>
             </File>
             <File>
               <FileName>wkupct_quadec.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\wkupct_quadec\wkupct_quadec.c</FilePath>
             </File>
             <File>
               <FileName>adc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\adc\adc_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\adc\adc_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2074,12 +2074,12 @@
             <File>
               <FileName>adc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\adc\adc_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\adc\adc_531.c</FilePath>
             </File>
             <File>
               <FileName>spi_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi\spi_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi\spi_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2135,32 +2135,32 @@
             <File>
               <FileName>spi_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi\spi_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi\spi_531.c</FilePath>
             </File>
             <File>
               <FileName>spi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\spi_flash\spi_flash.c</FilePath>
             </File>
             <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\i2c\i2c.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\i2c\i2c.c</FilePath>
             </File>
             <File>
               <FileName>i2c_eeprom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\i2c_eeprom\i2c_eeprom.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\uart\uart.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\uart\uart.c</FilePath>
             </File>
             <File>
               <FileName>hw_otpc_58x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_58x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2216,17 +2216,17 @@
             <File>
               <FileName>hw_otpc_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\hw_otpc\hw_otpc_531.c</FilePath>
             </File>
             <File>
               <FileName>trng.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\trng\trng.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\trng\trng.c</FilePath>
             </File>
             <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\driver\dma\dma.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\driver\dma\dma.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2236,27 +2236,27 @@
             <File>
               <FileName>rf_585.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\rf_585.c</FilePath>
             </File>
             <File>
               <FileName>rwble.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\rwble\rwble.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\rwble\rwble.c</FilePath>
             </File>
             <File>
               <FileName>rwip.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rwip\src\rwip.c</FilePath>
             </File>
             <File>
               <FileName>ble_arp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\src\ble_arp.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\ble_arp.c</FilePath>
             </File>
             <File>
               <FileName>rf_531.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\platform\core_modules\rf\src\rf_531.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\platform\core_modules\rf\src\rf_531.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2266,22 +2266,22 @@
             <File>
               <FileName>prf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prf.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\prf.c</FilePath>
             </File>
             <File>
               <FileName>prf_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\prf_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\prf_utils.c</FilePath>
             </File>
             <File>
               <FileName>diss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src\diss.c</FilePath>
             </File>
             <File>
               <FileName>diss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\ble_stack\profiles\dis\diss\src\diss_task.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2291,77 +2291,77 @@
             <File>
               <FileName>app_default_handlers.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_default_hnd\app_default_handlers.c</FilePath>
             </File>
             <File>
               <FileName>app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common\app.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app.c</FilePath>
             </File>
             <File>
               <FileName>app_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common\app_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_task.c</FilePath>
             </File>
             <File>
               <FileName>app_security.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_sec\app_security.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_sec\app_security.c</FilePath>
             </File>
             <File>
               <FileName>app_security_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_sec\app_security_task.c</FilePath>
             </File>
             <File>
               <FileName>app_entry_point.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_entry\app_entry_point.c</FilePath>
             </File>
             <File>
               <FileName>app_msg_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common\app_msg_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_timer.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_security.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_security.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_msg_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_msg_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_diss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_diss\app_diss.c</FilePath>
             </File>
             <File>
               <FileName>app_diss_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_diss\app_diss_task.c</FilePath>
             </File>
             <File>
               <FileName>app_bond_db.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_bond_db\app_bond_db.c</FilePath>
             </File>
             <File>
               <FileName>app_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_common\app_utils.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_common\app_utils.c</FilePath>
             </File>
             <File>
               <FileName>app_easy_whitelist.c</FileName>
               <FileType>1</FileType>
-              <FilePath>C:\work\DA145xx_SDK\git_diff_batch\sdk6\6.0.22.1401\sdk\app_modules\src\app_easy\app_easy_whitelist.c</FilePath>
+              <FilePath>.\..\..\..\..\..\\sdk\app_modules\src\app_easy\app_easy_whitelist.c</FilePath>
             </File>
           </Files>
         </Group>

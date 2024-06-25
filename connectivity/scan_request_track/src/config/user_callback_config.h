@@ -39,39 +39,15 @@
  ****************************************************************************************
  */
 
-#include "app_api.h"
-#include "app_bass.h"
-#include "app_findme.h"
-#include "app_proxr.h"
-#include "app_suotar.h"
+#include <stdio.h>
 #include "app_callback.h"
+#include "app_default_handlers.h"
+#include "app_entry_point.h"
 #include "app_prf_types.h"
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
 #include "scan_request_track.h"
-
-/*
- * FUNCTION DECLARATIONS
- ****************************************************************************************
- */
-
-/**
- ****************************************************************************************
- * @brief Function to be called on the advertising completion event.
- * @param[in] uint8_t GAP Error code
- ****************************************************************************************
- */
-void app_advertise_complete(const uint8_t);
-
-/**
- ****************************************************************************************
- * @brief SUOTAR session start or stop event handler.
- * @param[in] suotar_event SUOTAR_START/SUOTAR_STOP
- ****************************************************************************************
- */
-void on_suotar_status_change(const uint8_t suotar_event);
-
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -102,6 +78,8 @@ static const struct app_suotar_cb user_app_suotar_cb = {
     .on_suotar_status_change = on_suotar_status_change,
 };
 #endif
+
+
 
 static const struct app_callbacks user_app_callbacks = {
     .app_on_connection                  = user_on_connection,
@@ -160,10 +138,6 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 #define app_process_catch_rest_cb       user_catch_rest_hndl
 //static const catch_rest_event_func_t app_process_catch_rest_cb = NULL;
 
-static const struct default_app_operations user_default_app_operations = {
-    .default_operation_adv = default_advertise_operation,
-};
-
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     .app_on_init            = user_app_init,
 
@@ -185,10 +159,16 @@ static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
     .app_resume_from_sleep  = NULL,
 };
 
-//place in this structure the app_<profile>_db_create and app_<profile>_enable functions
-//for SIG profiles that do not have this function already implemented in the SDK
-//or if you want to override the functionality. Check the prf_func array in the SDK
-//for your reference of which profiles are supported.
+
+// Default Handler Operations
+static const struct default_app_operations user_default_app_operations = {
+    .default_operation_adv = default_advertise_operation,
+};
+
+// Place in this structure the app_<profile>_db_create and app_<profile>_enable functions
+// for SIG profiles that do not have this function already implemented in the SDK
+// or if you want to override the functionality. Check the prf_func array in the SDK
+// for your reference of which profiles are supported.
 static const struct prf_func_callbacks user_prf_funcs[] =
 {
     {TASK_ID_INVALID,    NULL, NULL}   // DO NOT MOVE. Must always be last

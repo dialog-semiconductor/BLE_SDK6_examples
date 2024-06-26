@@ -70,14 +70,18 @@ You can also refer to the following documentation:
 - Compile and then launch the demonstration example. You can download the firmware either into System-RAM or SPI Flash. To download the firmware into SPI Flash, the SPI Flash programmer from SmartSnippets Toolbox should be used. 
 For programming the DA14531 using the compiled hex file and boot from flash, please refer to  section 3.1 of the [UM-B-083 SmartSnippets Toolbox User Manual](https://lpccs-docs.renesas.com/UM-B-083/index.html)
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
 ## Known Limitations
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
+- There are no known limitations for this example. But you can check and refer to the following application note for
 [SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
 ## Feedback and support ?
 
-If you have any comments or suggestions about this document, you to contact us through:
+If you have any comments or suggestions about this document, you can contact us through:
 
 - [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
 

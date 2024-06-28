@@ -1,0 +1,173 @@
+diff --git a/sdk/app_modules/api/app.h b/sdk/app_modules/api/app.h
+index 8ee3766..6ceb7d3 100644
+--- a/sdk/app_modules/api/app.h
++++ b/sdk/app_modules/api/app.h
+@@ -128,7 +128,7 @@
+ #define APP_SCAN_RESP_DATA_MAX_SIZE         (SCAN_RSP_DATA_LEN)
+ 
+ /// Max connections supported by application task
+-#define APP_EASY_MAX_ACTIVE_CONNECTION      (1)
++#define APP_EASY_MAX_ACTIVE_CONNECTION      (3)
+ 
+ /*
+  * TYPE DEFINITIONS
+@@ -262,6 +262,16 @@ bool app_db_init_start(void);
+  */
+ bool app_db_init(void);
+ 
++#if (defined (__DA14531__) && !defined (__EXCLUDE_ROM_APP_TASK__)) || defined (CFG_ENABLE_MULTIPLE_CONN)
++/**
++****************************************************************************************
++* @brief Initialize the database for all the included profiles.
++* @return true if succeeded, else false
++****************************************************************************************
++*/
++bool app_db_init_next(void);
++#endif
++
+ /**
+  ****************************************************************************************
+  * @brief Start a kernel timer.
+diff --git a/sdk/app_modules/api/app_task.h b/sdk/app_modules/api/app_task.h
+index d260573..a7925e3 100644
+--- a/sdk/app_modules/api/app_task.h
++++ b/sdk/app_modules/api/app_task.h
+@@ -32,7 +32,7 @@
+  */
+ 
+ /// Number of APP Task Instances
+-#define APP_IDX_MAX                 (1)
++#define APP_IDX_MAX                 (APP_EASY_MAX_ACTIVE_CONNECTION)
+ 
+ /*
+  * ENUMERATIONS
+diff --git a/sdk/app_modules/src/app_custs/app_customs.c b/sdk/app_modules/src/app_custs/app_customs.c
+index 18eec22..f2bf59e 100644
+--- a/sdk/app_modules/src/app_custs/app_customs.c
++++ b/sdk/app_modules/src/app_custs/app_customs.c
+@@ -47,10 +47,8 @@
+ #include "prf_types.h"
+ #include "app_prf_types.h"
+ #include "app_prf_perm_types.h"
+-
+-#if BLE_CUSTOM_SERVER
+ #include "user_custs_config.h"
+-#endif
++
+ /*
+  * FUNCTION DEFINITIONS
+  ****************************************************************************************
+diff --git a/sdk/common_project_files/misc/da14531_symbols.txt b/sdk/common_project_files/misc/da14531_symbols.txt
+index e8cff13..eda1e39 100644
+--- a/sdk/common_project_files/misc/da14531_symbols.txt
++++ b/sdk/common_project_files/misc/da14531_symbols.txt
+@@ -1111,8 +1111,8 @@
+ 0x07f22c19 T attm_svc_create_db_128
+ 
+ ; app_entry_point.c (__EXCLUDE_ROM_APP_TASK__)
+-0x07f232a9 T app_entry_point_handler                  
+-0x07f232f1 T app_std_process_event     
++;0x07f232a9 T app_entry_point_handler                  
++;0x07f232f1 T app_std_process_event     
+ 
+ ; app_utils.c - (controlled by __EXCLUDE_ROM_APP_UTILS__)
+ 0x07f23335 T app_get_address_type_ROM
+@@ -1125,24 +1125,24 @@
+ 0x07f23461 T __aeabi_uldivmod
+ 
+ ; app.c (controlled by __EXCLUDE_ROM_APP_TASK__)
+-0x07f234c1 T app_db_init_start
+-0x07f234dd T app_db_init
+-0x07f234e9 T app_easy_gap_confirm
+-0x07f23515 T append_device_name                              
+-0x07f23539 T app_easy_gap_update_adv_data 
+-0x07f23581 T app_easy_gap_disconnect
+-0x07f235bd T app_easy_gap_advertise_stop
+-0x07f235d9 T active_conidx_to_conhdl
+-0x07f23605 T active_conhdl_to_conidx
+-0x07f23641 T app_timer_set
+-0x07f2365d T app_easy_gap_set_data_packet_length
+-0x07f23699 T get_user_prf_srv_perm
+-0x07f236c1 T app_set_prf_srv_perm
+-0x07f236f1 T prf_init_srv_perm
+-0x07f23715 T app_gattc_svc_changed_cmd_send                
++;0x07f234c1 T app_db_init_start
++;0x07f234dd T app_db_init
++;0x07f234e9 T app_easy_gap_confirm
++;0x07f23515 T append_device_name                              
++;0x07f23539 T app_easy_gap_update_adv_data 
++;0x07f23581 T app_easy_gap_disconnect
++;0x07f235bd T app_easy_gap_advertise_stop
++;0x07f235d9 T active_conidx_to_conhdl
++;0x07f23605 T active_conhdl_to_conidx
++;0x07f23641 T app_timer_set
++;0x07f2365d T app_easy_gap_set_data_packet_length
++;0x07f23699 T get_user_prf_srv_perm
++;0x07f236c1 T app_set_prf_srv_perm
++;0x07f236f1 T prf_init_srv_perm
++;0x07f23715 T app_gattc_svc_changed_cmd_send                
+ 
+ ; (controlled by __EXCLUDE_ROM_APP_TASK__)
+-0x07f23f58 D app_default_handler
++;0x07f23f58 D app_default_handler
+ 
+ ; (controlled by __EXCLUDE_ROM_GAP_CFG_DATA__)               
+ 0x07f23f60 D gap_cfg_user_var_struct
+diff --git a/sdk/common_project_files/misc/da14535_symbols.txt b/sdk/common_project_files/misc/da14535_symbols.txt
+index 771cbe4..95f2dc7 100644
+--- a/sdk/common_project_files/misc/da14535_symbols.txt
++++ b/sdk/common_project_files/misc/da14535_symbols.txt
+@@ -1214,26 +1214,26 @@
+ 0x07f22845 T suotar_prf_itf_get
+ 
+ ; app.c (controlled by __EXCLUDE_ROM_APP_TASK__)
+-0x07f22b35 T app_db_init_start
+-0x07f22b51 T app_db_init
+-0x07f22b5d T app_easy_gap_confirm
+-0x07f22b89 T append_device_name
+-0x07f22bad T app_easy_gap_update_adv_data
+-0x07f22bf5 T active_conidx_to_conhdl
+-0x07f22c19 T active_conhdl_to_conidx
+-0x07f22c55 T app_easy_gap_disconnect
+-0x07f22c91 T app_easy_gap_advertise_stop
+-0x07f22cad T app_timer_set
+-0x07f22cc9 T app_easy_gap_set_data_packet_length
+-0x07f22d09 T get_user_prf_srv_perm
+-0x07f22d31 T app_set_prf_srv_perm
+-0x07f22d61 T prf_init_srv_perm
+-0x07f22d85 T app_gattc_svc_changed_cmd_send
+-0x07f231fd T app_gap_process_handler
++;0x07f22b35 T app_db_init_start
++;0x07f22b51 T app_db_init
++;0x07f22b5d T app_easy_gap_confirm
++;0x07f22b89 T append_device_name
++;0x07f22bad T app_easy_gap_update_adv_data
++;0x07f22bf5 T active_conidx_to_conhdl
++;0x07f22c19 T active_conhdl_to_conidx
++;0x07f22c55 T app_easy_gap_disconnect
++;0x07f22c91 T app_easy_gap_advertise_stop
++;0x07f22cad T app_timer_set
++;0x07f22cc9 T app_easy_gap_set_data_packet_length
++;0x07f22d09 T get_user_prf_srv_perm
++;0x07f22d31 T app_set_prf_srv_perm
++;0x07f22d61 T prf_init_srv_perm
++;0x07f22d85 T app_gattc_svc_changed_cmd_send
++;0x07f231fd T app_gap_process_handler
+ 
+ ; app_entry_point.c (controlled by __EXCLUDE_ROM_APP_TASK__)
+-0x07f23219 T app_entry_point_handler
+-0x07f23261 T app_std_process_event
++;0x07f23219 T app_entry_point_handler
++;0x07f23261 T app_std_process_event
+ 
+ ; app_utils.c - (controlled by __EXCLUDE_ROM_APP_UTILS__)
+ 0x07f232a5 T app_get_address_type
+@@ -1252,7 +1252,7 @@
+ 0x07f2377c D arp_init_table
+ 
+ ; app_task.c (controlled by __EXCLUDE_ROM_APP_TASK__)
+-0x07f23b98 D app_default_handler
++;0x07f23b98 D app_default_handler
+ 
+ ; RW _rand_state variable in stdlib/rand.c (microlib)
+ 0x07fcfa20 D _rand_state_ROM_DATA

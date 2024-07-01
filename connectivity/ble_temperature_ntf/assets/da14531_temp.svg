@@ -7,7 +7,7 @@
    viewBox="0 0 155 120"
    version="1.1"
    id="svg8"
-   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    sodipodi:docname="da14531_temp.svg"
    inkscape:export-filename="C:\Users\imorris\Documents\SDKs\BLE\SDK\6.0.12.1020\projects\target_apps\ble_examples\ble_data_logger_htu21d\assets\DA14531-jumper-wires.png"
    inkscape:export-xdpi="96"
@@ -25,8 +25,8 @@
     <rect
        x="471.85314"
        y="134.62477"
-       width="104.19301"
-       height="28.98524"
+       width="109.19146"
+       height="83.634898"
        id="rect10431" />
     <rect
        x="458.15298"
@@ -360,17 +360,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.0009337"
-     inkscape:cx="346.39219"
-     inkscape:cy="429.19975"
+     inkscape:zoom="2.1219806"
+     inkscape:cx="180.25613"
+     inkscape:cy="153.86569"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer16"
      showgrid="false"
      inkscape:snap-nodes="false"
      inkscape:window-width="1920"
      inkscape:window-height="1137"
      inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-y="163"
      inkscape:window-maximized="1"
      showborder="false"
      showguides="false"
@@ -5218,7 +5218,8 @@
          style="display:inline;opacity:1;fill:#009c23;fill-opacity:0.587629;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          sodipodi:nodetypes="cccccccccccccccccccc"
          inkscape:original-d="m 76.308643,128.83833 c 2.65e-4,-13.51607 2.65e-4,-27.03186 0,-40.547403 0.02231,0.0218 0.04436,0.0438 0.06615,0.0661 0.22075,-0.50738 0.441238,-1.0145 0.661458,-1.52136 0.35282,-0.33078 0.705821,-0.70582 1.058334,-1.05833 0.39684,-0.26465 0.794014,-0.52943 1.190625,-0.79375 0.330739,-0.0443 0.661723,-0.0885 0.992187,-0.13229 16.676195,-0.0443 33.381863,-0.0885 50.072383,-0.13229 -0.0218,-0.0223 -0.0438,-0.0444 -0.0661,-0.0661 1.8303,1.71953 3.66033,3.43932 5.4901,5.15938 2.7e-4,0.0218 2.7e-4,0.0438 0,0.0661 -0.0667,14.458693 -0.13202,28.574743 -0.19843,42.862503 2.6e-4,-0.0223 2.6e-4,-0.0444 0,-0.0661 l -0.1323,0.1323 c -18.83131,-0.089 -37.438265,-0.17666 -56.1578,-0.26459 -0.03077,0.0863 -0.06198,0.17292 -0.09365,0.26006 -0.677242,-0.3325 -1.354743,-0.66446 -2.032842,-0.99605 -0.216772,-0.63709 -0.433941,-1.27358 -0.651634,-1.90984 -0.0657,-0.35328 -0.132027,-0.70582 -0.198438,-1.05833 z"
-         inkscape:path-effect="#path-effect1004-3-0" />
+         inkscape:path-effect="#path-effect1004-3-0"
+         transform="translate(-1.2011447,0.00769748)" />
     </g>
     <text
        xml:space="preserve"
@@ -5884,7 +5885,7 @@
        xml:space="preserve"
        transform="scale(0.26458333)"
        id="text10417"
-       style="stroke-width:1.86708661;fill:#ff7194;paint-order:stroke fill markers;stroke-linecap:round;stroke-miterlimit:2;stroke:#fd0000;fill-opacity:0;stroke-opacity:1;white-space:pre;shape-inside:url(#rect10419)" />
+       style="white-space:pre;shape-inside:url(#rect10419);display:inline;fill:#ff7194;fill-opacity:0;stroke:#fd0000;stroke-width:1.86709;stroke-linecap:round;stroke-miterlimit:2;stroke-opacity:1;paint-order:stroke fill markers" />
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#ff7194;fill-opacity:0;stroke:#fd0000;stroke-width:0.294;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
@@ -5903,16 +5904,25 @@
          id="tspan10427">JUMPERS ON</tspan></text>
     <text
        xml:space="preserve"
-       transform="scale(0.26458333)"
+       transform="matrix(0.26458333,0,0,0.26458333,-1.8515071,-7.0533603)"
        id="text10429"
-       style="white-space:pre;shape-inside:url(#rect10431);fill:#ff7194;fill-opacity:0;stroke:#fd0000;stroke-width:1.11118111;stroke-linecap:round;stroke-miterlimit:2;stroke-opacity:1;paint-order:stroke fill markers;stroke-dasharray:none"><tspan
+       style="white-space:pre;shape-inside:url(#rect10431);display:inline;fill:#ff7194;fill-opacity:0;stroke:#fd0000;stroke-width:1.11118;stroke-linecap:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"><tspan
          x="471.85352"
          y="145.57296"
-         id="tspan15548">SWCLK/SWDIO
+         id="tspan1">SWCLK/SWDIO
 </tspan><tspan
          x="471.85352"
          y="160.57296"
-         id="tspan15550">JUMPERS OFF</tspan></text>
+         id="tspan2">JUMPERS OFF </tspan><tspan
+         x="471.85352"
+         y="175.57296"
+         id="tspan3">after downloading </tspan><tspan
+         x="471.85352"
+         y="190.57296"
+         id="tspan4">the binary in to </tspan><tspan
+         x="471.85352"
+         y="205.57296"
+         id="tspan5">flash</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"

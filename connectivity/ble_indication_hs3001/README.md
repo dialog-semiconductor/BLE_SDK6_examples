@@ -74,6 +74,7 @@ In `user_periph_setup.h` you can check the following configuration for I2c.It is
 ## Hardware configuration:
 Regarding following figure you can connect the sensor to the development board.
 ![Motherboard_Hardware_Configuration_DA14531](assets/HS3001_DA1531.svg)
+![Motherboard_Hardware_Configuration_DA14531](assets/HS3001_DA1535.svg)
 
 In the same header file you can see the following configuration for HS3001:
 
@@ -247,3 +248,27 @@ This function will examine the write's content.
 
  **_7_**  After the message is sent, the app_easy_timer function is used to schedule the next call to  **user_send_temperature_ind** or **user_send_humidity_ind** function. This will ensure the temperature or humidity is transmitted regularly and after each change the user will receive an indication. The `app_easy_timer`function
 has a resolution of 10ms hence we divide the desired delay in ms by 10. 
+
+
+
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
+## Known Limitations
+
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

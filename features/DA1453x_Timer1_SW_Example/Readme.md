@@ -52,9 +52,12 @@ It is an 11-bit timer which supports Counting and Input Capturing, as input cloc
 - Jumpers should be placed on default setup.
 - For UART configuration (optional), extra wiring (in red) is required from J2.24 (P23) to J2.21.
 
-**DA14531 Pro Kit Daughterboard +  DA14531 Pro Kit Daughterboard**
+**DA14531 Pro Kit Daughterboard +  DA14531 Pro Kit**
 
 ![hw_setup](assets/531_hw_setup.svg)
+
+**DA14535 Pro Kit Daughterboard +  DA1453x Pro Kit**
+![hw_setup](assets/535_hw_setup.svg)
 
 **DA14531 Pro Kit Daughterboard +  DA14531 Module Daughterboard**
 
@@ -274,10 +277,27 @@ If **CFG_PRINTF** is defined in the `da1458x_config_basic.h`, the following resu
 
 Of course the results depend on how much timer the SW2 button is pressed. 
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/support).
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+
 
 ## License
 

@@ -102,6 +102,12 @@ void busy_wait(uint32_t delay) {
     for (volatile uint32_t i = 0; i < delay; i++);
 }
 
+
+static inline void __nop(void) {
+    // Implementation of no-operation, for example, using inline assembly
+    __asm__("nop");
+}
+
 //Write/Read multiple bytes to/From I2C slave asynchronously. 
 void i2c_master_transmit_receive(void) {
    

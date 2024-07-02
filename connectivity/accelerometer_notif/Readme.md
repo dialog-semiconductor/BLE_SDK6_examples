@@ -48,7 +48,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 - Start Keil µVision.
   - Optionally, change the parameters in ADXL345.h
-- Select the DA14531, DA14585 or DA14586 device in the box shown below
+- Select the DA1453x, DA14585 or DA14586 device in the box shown below
 
     ![select_5xx_device](assets/select_5xx_device.png)
 
@@ -71,12 +71,24 @@ For the initial setup of the project that involves linking the SDK to this SW ex
     
     ![subscribe](assets/subscribe.jpg)
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-
 - There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.renesas.com/us/en/document/oth/da1458x-hardware-known-limitations).
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+## Feedback and support ?
 
-- You can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

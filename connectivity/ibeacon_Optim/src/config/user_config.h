@@ -92,7 +92,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
+static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
 
 /*
  ****************************************************************************************
@@ -105,11 +105,11 @@ static const struct advertise_configuration user_adv_conf = {
 
     .addr_src = APP_CFG_ADDR_SRC(USER_CFG_ADDRESS_MODE),
 
-    /// Minimum interval for advertising
-    .intv_min = MS_TO_BLESLOTS(687.5),                    // 687.5ms
+    /// Minimum interval for advertising - set in user_app.c
+    .intv_min = MS_TO_BLESLOTS(0),                    
 
-    /// Maximum interval for advertising
-    .intv_max = MS_TO_BLESLOTS(687.5),                    // 687.5ms
+    /// Maximum interval for advertising - set in user_app.c
+    .intv_max = MS_TO_BLESLOTS(0),                    
 
     /**
      *  Advertising channels map:
@@ -172,26 +172,15 @@ static const struct advertise_configuration user_adv_conf = {
  *      data.
  *    - The maximum length of the user defined response data shall be 31 bytes.
  ****************************************************************************************
-*/ 
-
-#define USER_ADVERTISE_DATA         ("\x09"\
-                                    ADV_TYPE_COMPLETE_LIST_16BIT_SERVICE_IDS\
-                                    ADV_UUID_LINK_LOSS_SERVICE\
-                                    ADV_UUID_IMMEDIATE_ALERT_SERVICE\
-                                    ADV_UUID_TX_POWER_SERVICE\
-                                    ADV_UUID_SUOTAR_SERVICE\
-                                    "\x10"\
-                                    ADV_TYPE_URI\
-                                    "\x16\x2F\x2F\x77\x77\x77\x2E\x69\x61\x6E\x61\x2E\x6F\x72\x67")
+ */
+/// Advertising data
+#define USER_ADVERTISE_DATA                   ""
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)
 
 /// Scan response data
-#define USER_ADVERTISE_SCAN_RESPONSE_DATA     "\x0a"\
-                                              ADV_TYPE_MANUFACTURER_SPECIFIC_DATA\
-                                              ADV_DIALOG_MANUFACTURER_CODE\
-                                              "DLG-BLE"
+#define USER_ADVERTISE_SCAN_RESPONSE_DATA     ""
 
 /// Scan response data length- maximum 31 bytes
 #define USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN (sizeof(USER_ADVERTISE_SCAN_RESPONSE_DATA)-1)
@@ -209,7 +198,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "DLG-PROXR"
+#define USER_DEVICE_NAME        ""
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)

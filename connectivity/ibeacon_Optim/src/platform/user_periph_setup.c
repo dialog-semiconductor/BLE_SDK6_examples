@@ -102,6 +102,19 @@ static const uart_cfg_t uart_cfg = {
     .intr_priority = 2,
 };
 #endif
+/* Default SPI configuration */
+static const spi_cfg_t spi_cfg = {
+    .spi_ms = SPI_MS_MODE_MASTER,
+    .spi_cp = SPI_CP_MODE_0,
+    .spi_speed = SPI_SPEED_MODE_4MHz,
+    .spi_wsz = SPI_MODE_8BIT,
+    .spi_cs = SPI_CS_0,
+    .cs_pad.port = SPI_EN_PORT,
+    .cs_pad.pin = SPI_EN_PIN,
+#if defined (__DA14531__)
+    .spi_capture = SPI_MASTER_EDGE_CAPTURE,
+#endif
+};
 
 void periph_init(void)
 {
@@ -123,6 +136,8 @@ void periph_init(void)
     // Initialize UART2
     uart_initialize(UART2, &uart_cfg);
 #endif
+	
+	  spi_initialize(&spi_cfg);
 
     // Set pad functionality
     set_pad_functions();

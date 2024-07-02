@@ -49,7 +49,7 @@
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
-#include "user_empty_peripheral_template.h"
+#include "user_app.h"
 
 /*
  * FUNCTION DECLARATIONS
@@ -121,7 +121,7 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_set_dev_info                = NULL,
     .app_on_data_length_change          = NULL,
     .app_on_update_params_request       = NULL,
-    .app_on_generate_static_random_addr = default_app_generate_static_random_addr,
+    .app_on_generate_static_random_addr = default_app_generate_unique_static_random_addr,
     .app_on_svc_changed_cfg_ind         = NULL,
     .app_on_get_peer_features           = NULL,
 #if (BLE_APP_SEC)
@@ -166,11 +166,11 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
 #endif
 	
 static const struct default_app_operations user_default_app_operations = {
-    .default_operation_adv = default_advertise_operation,
+    .default_operation_adv = user_app_adv_start,
 };
 
 static const struct arch_main_loop_callbacks user_app_main_loop_callbacks = {
-    .app_on_init            = default_app_on_init,
+    .app_on_init            = user_app_on_init,
 
     // By default the watchdog timer is reloaded and resumed when the system wakes up.
     // The user has to take into account the watchdog timer handling (keep it running,

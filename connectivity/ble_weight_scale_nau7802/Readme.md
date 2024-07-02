@@ -16,12 +16,13 @@ When connected to a BLE central this example allows the measured weight value to
 
 ### **Software configuration**
 - This example requires:
-  * [SDK6.0.18](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826).
+  * [SDK6.0.18](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856?r=1564826)or higher.
   * SEGGER’s J-Link tools should be downloaded and installed.
 
 The user manuals for the development kits can be found:
 
-- [Here](https://www.renesas.com/eu/en/document/mat/um-b-114-da14531-development-kit-pro-hardware-user-manual) for the DA145xxDEVKT-P PRO-Motherboard.
+- [Here](https://www.renesas.com/eu/en/document/mat/um-b-114-da14531-development-kit-pro-hardware-user-manual) for the DA14531DEVKT-P .
+- [Here](https://www.renesas.com/eu/en/document/mat/um-b-114-da1453x-development-kit-pro-hardware-user-manual) for the DA1453xDEVKT-P .
 
 ## How to run the example
 
@@ -105,7 +106,24 @@ Connect a load cell to the click board. Make sure the load cell is mounted accor
 
 ![Characteristic](assets/weight-measurement.png)
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
 - There are no known limitations for this example. But you can check and refer to the following application note for
-[known limitations for SDK6 devices](http://lpccs-docs.renesas.com/sdk6_kll/index.html)
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

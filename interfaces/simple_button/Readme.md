@@ -33,6 +33,7 @@ The user manuals for the development kits can be found:
 	The image below shows the Motherboard with jumper (wire) configuration for the DA14531.
 
 	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.svg)
+	![Motherboard_Hardware_Configuration_DA14535](assets/Motherboard_Hardware_Configuration_DA14535.svg)
 		
 * __Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard__
 
@@ -131,12 +132,24 @@ The button interrupt with edge detection example is now running. Follow the step
 4. Pressing the button again:
 	- Stops LED blinking.
 
-## Troubleshooting
-- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
+## Further reading
 
-- Try a different USB1 cable.
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
 
-- Try different jumper wire, if used.
 
-- If none of the steps described above help, please check the user manual according to your daughter board and mother board. User manual can be found ["here"](##HW-and-SW-configuration)
+
+## Known Limitations
+
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

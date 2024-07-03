@@ -35,7 +35,7 @@
 
 #include "user_periph_setup.h"
 #include "datasheet.h"
-#include "arch.h"
+
 static void set_pad_functions(void)
 {
 #if defined (__DA14586__)

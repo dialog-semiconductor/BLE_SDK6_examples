@@ -98,21 +98,26 @@ UVOPTX_FILE_EXTENSION = ".uvoptx"
 UVPROJX_FILE_EXTENSION = ".uvprojx"
 DLG_UVOPTX_NAME = "test" + UVOPTX_FILE_EXTENSION
 DLG_UVPROJX_NAME = "test" + UVPROJX_FILE_EXTENSION
-SOC_ID_LIST = ['585', '586', '531', "codeless_boot"]
+SOC_ID_LIST = ['585', '586', '531', "codeless_boot", "535"]
 
-SCATTER_FILE_NAME = ["DA14585_586_armclang.sct", "DA14531_armclang.sct"]
+SCATTER_FILE_NAME = ["DA14585_586_armclang.sct", "DA14531_armclang.sct", "DA14535_armclang.sct"]
 SCATTER_FILE_PATH = [('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[0]),
-                     ('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[1])]
-COPIED_SCATTER_FILE_NAME = ["copied_scatter_585_586.sct", "copied_scatter_531.sct"]
+                     ('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[1]),
+                     ('\\sdk\\common_project_files\\scatterfiles\\' + SCATTER_FILE_NAME[2])]
+COPIED_SCATTER_FILE_NAME = ["copied_scatter_585_586.sct", "copied_scatter_531.sct", "copied_scatter_535.sct"]
 COPIED_SCATTER_FILE_PATH = [('.\\..\\src\\config\\' + COPIED_SCATTER_FILE_NAME[0]),
-                            ('.\\..\\src\\config\\' + COPIED_SCATTER_FILE_NAME[1])]
+                            ('.\\..\\src\\config\\' + COPIED_SCATTER_FILE_NAME[1]),
+                            ('.\\..\\src\\config\\' + COPIED_SCATTER_FILE_NAME[2]),]
 
 DA1458x = Soc_data("DA1458x", SCATTER_FILE_NAME[0], SCATTER_FILE_PATH[0], COPIED_SCATTER_FILE_NAME[0],
                    COPIED_SCATTER_FILE_PATH[0])
 DA14531 = Soc_data("DA14531", SCATTER_FILE_NAME[1], SCATTER_FILE_PATH[1], COPIED_SCATTER_FILE_NAME[1],
                    COPIED_SCATTER_FILE_PATH[1])
-SOC_DATA_LIST = [DA1458x, DA14531]
-SOC_LIST = [(SOC_ID_LIST[0], SOC_DATA_LIST[0]), (SOC_ID_LIST[1], SOC_DATA_LIST[0]), (SOC_ID_LIST[2], SOC_DATA_LIST[1])]
+DA14535 = Soc_data("DA14535", SCATTER_FILE_NAME[2], SCATTER_FILE_PATH[2], COPIED_SCATTER_FILE_NAME[2],
+                   COPIED_SCATTER_FILE_PATH[2])
+                   
+SOC_DATA_LIST = [DA1458x, DA14531, DA14535]
+SOC_LIST = [(SOC_ID_LIST[0], SOC_DATA_LIST[0]), (SOC_ID_LIST[1], SOC_DATA_LIST[0]), (SOC_ID_LIST[2], SOC_DATA_LIST[1]),(SOC_ID_LIST[4], SOC_DATA_LIST[2])]
 
 TARGET_SOCS = []  # List of IDs of SoCs encountered in project targets.
 UNIQUE_SOCS = []  # List of IDs of unique SoCs encountered in project targets.
@@ -433,6 +438,9 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element, working_dir_path):
                 if 'DA14531' in target_names[index].upper():
                     t_sub_element.text = \
                         ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14531_armclang.sct"
+                if 'DA14535' in target_names[index].upper():
+                    t_sub_element.text = \
+                        ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14535_armclang.sct"
                 else:
                     t_sub_element.text = \
                         ".\\..\\..\\..\\..\\..\\sdk\\common_project_files\\scatterfiles\\DA14585_586_armclang.sct"
@@ -447,6 +455,8 @@ def build_uvprojx_element_ldads_scatterfile(xml_sub_element, working_dir_path):
             else:
                 if 'DA14531' in target_names[index].upper():
                     t_sub_element.text = ".\..\src\config\copied_scatter_531.sct"
+                if 'DA14535' in target_names[index].upper():
+                    t_sub_element.text = ".\..\src\config\copied_scatter_535.sct"
                 else:
                     t_sub_element.text = ".\..\src\config\copied_scatter_585_586.sct"
 

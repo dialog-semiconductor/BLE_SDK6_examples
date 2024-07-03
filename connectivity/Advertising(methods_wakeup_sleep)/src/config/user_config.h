@@ -47,7 +47,7 @@
  ****************************************************************************************
  */
  
-#undef ADV_EXAMPLE                 // Enable the advertising example on top of the barebone project
+#define ADV_EXAMPLE                 // Enable the advertising example on top of the barebone project
 /***************************************************************************************************/
 /* The example operates by default using timers, define the ADV_BUTTON_EXAMPLE for button operation*/
 /***************************************************************************************************/

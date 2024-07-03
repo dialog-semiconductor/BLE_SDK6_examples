@@ -52,6 +52,12 @@
  * LOCAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
+ 
+#if (BLE_PROX_REPORTER)
+static const struct app_proxr_cb user_app_proxr_cb = {
+    .on_proxr_alert_ind      = default_proxr_alert_ind_handler,
+};
+#endif // BLE_PROX_REPORTER
 
 static const struct app_callbacks user_app_callbacks = {
     .app_on_connection                  = default_app_on_connection,

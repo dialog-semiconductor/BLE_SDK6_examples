@@ -96,7 +96,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
+static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
 
 /*
  ****************************************************************************************
@@ -179,15 +179,24 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Advertising data
-#define USER_ADVERTISE_DATA         "\x03"\
+#define USER_ADVERTISE_DATA         ("\x09"\
                                     ADV_TYPE_COMPLETE_LIST_16BIT_SERVICE_IDS\
-                                    ADV_UUID_DEVICE_INFORMATION_SERVICE
+                                    ADV_UUID_LINK_LOSS_SERVICE\
+                                    ADV_UUID_IMMEDIATE_ALERT_SERVICE\
+                                    ADV_UUID_TX_POWER_SERVICE\
+                                    ADV_UUID_SUOTAR_SERVICE\
+                                    "\x10"\
+                                    ADV_TYPE_URI\
+                                    "\x16\x2F\x2F\x77\x77\x77\x2E\x69\x61\x6E\x61\x2E\x6F\x72\x67")
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)
 
 /// Scan response data
-#define USER_ADVERTISE_SCAN_RESPONSE_DATA ""
+#define USER_ADVERTISE_SCAN_RESPONSE_DATA     "\x0a"\
+                                              ADV_TYPE_MANUFACTURER_SPECIFIC_DATA\
+                                              ADV_DIALOG_MANUFACTURER_CODE\
+                                              "DLG-BLE"
 
 /// Scan response data length- maximum 31 bytes
 #define USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN (sizeof(USER_ADVERTISE_SCAN_RESPONSE_DATA)-1)
@@ -223,7 +232,7 @@ static const struct gapm_configuration user_gapm_conf = {
 
     /// Maximal MTU. Shall be set to 23 if Legacy Pairing is used, 65 if Secure Connection is used,
     /// more if required by the application
-    .max_mtu = 23,
+    .max_mtu = 247,
 
     /// Device Address Type
     .addr_type = APP_CFG_ADDR_TYPE(USER_CFG_ADDRESS_MODE),
@@ -330,12 +339,12 @@ static const struct default_handlers_configuration  user_default_hnd_conf = {
     // Possible values:
     //  - DEF_ADV_FOREVER
     //  - DEF_ADV_WITH_TIMEOUT
-    .adv_scenario = DEF_ADV_FOREVER,
+    .adv_scenario = DEF_ADV_WITH_TIMEOUT,
 
     // Configure the advertise period in case of DEF_ADV_WITH_TIMEOUT.
     // It is measured in timer units (3 min). Use MS_TO_TIMERUNITS macro to convert
     // from milliseconds (ms) to timer units.
-    .advertise_period = MS_TO_TIMERUNITS(180000),
+    .advertise_period = MS_TO_TIMERUNITS(15000),
 
     // Configure the security start operation of the default handlers
     // if the security is enabled (CFG_APP_SECURITY)

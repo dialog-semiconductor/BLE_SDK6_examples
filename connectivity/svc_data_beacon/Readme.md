@@ -21,7 +21,7 @@ For getting more information about the Non-Connectable Advertising, please refer
   - The DA1458x / DA145xx Pro Development kit is needed for this example with default jumper configuration..
   - Connect the USB Development kit to the host computer.
 - **Software configuration**
-  - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+  - [SDK6 latest version](https://www.renesas.com/us/en/document/swo/sdk60221401-da1453x-da145856).
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - A smartphone with a BLE scanning app (for example **BLE scanner** on Android or **Lightblue** on IOS).
   - A BLE Sniffing tool is also useful; though not mandatory .
@@ -34,6 +34,9 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 - For the DA14585/586 getting started guide you can refer to this [link](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html).
 - For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
+- For the DA14535 Getting started guide you can refer to this [link](https://lpccs-docs.renesas.com/DA14535/UM-B-165-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
+
+
 
 ### Compile & Run
 
@@ -74,9 +77,24 @@ To verify please take a look at the BLE sniffer log data, like so,
 - We are using 16-bit service Data, since we are exposing the serial number from the Device Information Service.  
 - Referencing the core supplement, the payload requires the first two bytes to be the UUID, followed by the service data. 
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- Refer to the following application note for [DA1458x known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf  "known hardware limitations").
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

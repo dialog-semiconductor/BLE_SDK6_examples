@@ -16,10 +16,11 @@ The service can be interrogated using a BLE scanning app.
 
 - **Hardware configuration**
   - This example runs on the DA14531, DA14585/586 Bluetooth Smart SoC devices.
-  - The DA1458x / DA145xx Pro Development kit is needed for this example with the jumper configuration depicted below ![Uart_Jumper](assets/uart_connection.svg)
+  - The DA1458x / DA14531 Pro Development kit is needed for this example with the jumper configuration depicted below ![Uart_Jumper](assets/uart_connection.svg)
+  - DA1453x Pro Development kit is needed for this example with the jumper configuration depicted below ![Uart_Jumper](assets/uart_connection_535.svg)
   - Connect the USB Development kit to the host computer.
 - **Software configuration**
-  - [SDK6.0.16](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+  - [SDK6 latest version](https://www.dialog-semiconductor.com/da14531_sdk_latest).
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - A smartphone with a BLE scanning app (for example **BLE scanner** on Android or **Lightblue** on IOS).
   - A terminal emulator (for example **Tera Term**)
@@ -81,9 +82,24 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 ![ntf_ex_1](assets/notification_example_1_of_2.png)
 ![ntf_ex_2](assets/notification_example_2_of_2.png)
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- Refer to the following application note for [DA1458x known hardware limitations](https://www.renesas.com/us/en/document/oth/da1458x-hardware-known-limitations  "known hardware limitations").
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.renesas.com/us/en/document/dve/da14531-errata-datasheet  "known hardware limitations"). 
-- Renesas [Forum link](https://renesasrulz.com/wireles-connectivity/f/bluetooth-low-energy).
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

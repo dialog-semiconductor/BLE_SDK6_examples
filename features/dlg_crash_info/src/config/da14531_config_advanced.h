@@ -210,9 +210,11 @@
 /*     - CFG_RETAIN_RAM_2_BLOCK: if defined, the 2nd RAM block must be retained.                                */
 /* By default, the SDK keeps all RAM cells retained.                                                            */
 /****************************************************************************************************************/
-#define CFG_RETAIN_RAM_1_BLOCK
-#define CFG_RETAIN_RAM_2_BLOCK
-
+#undef CFG_CUSTOM_SCATTER_FILE
+#ifdef CFG_CUSTOM_SCATTER_FILE
+    #define CFG_RETAIN_RAM_1_BLOCK
+    #define CFG_RETAIN_RAM_2_BLOCK
+#endif
 /****************************************************************************************************************/
 /* Non-retained heap handling. The non-retained heap is either empty or not, and it may fill with messages      */
 /* during the application runtime. If it is not empty while the system is going to extended sleep, it must be   */

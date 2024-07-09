@@ -89,6 +89,11 @@ void dci_clear_data(void);
 
 void dci_get_data(dci_info_t *info);
 
+
+
+void HardFault_HandlerC(unsigned long *hardfault_args);
+void NMI_HandlerC(unsigned long *nmi_args);
+
 #ifdef DCI_PRINT_VERBOSE
 
 /**

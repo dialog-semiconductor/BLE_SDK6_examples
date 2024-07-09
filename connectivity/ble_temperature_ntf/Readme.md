@@ -89,23 +89,13 @@ This example requires:
 ### Setup
 For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
-1. Start Keil using the `ble_temperature_ntf.uvprojx` Keil project file.
-
-2. Expand the dialog shown in the red box in the image below.
-
-![Expand_Select_Device](assets/Expand_Select_Device.png)
-
-3. Select your device: DA14531, DA14586 or DA14585.
-		
-![Select_Device](assets/Select_Device.png)
-
 
 Remember to download the binary of the application in to the Flash and then remove the Jtag pins.
 
 
 ## Expected Results
 
-1. Open the BLE scanner app and look for "DLG-TEMP".
+1. Open the BLE scanner app and look for "Temp_ntf".
 
 2. Connect to the device.
 

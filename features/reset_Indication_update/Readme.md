@@ -55,7 +55,7 @@ This example requires:
 * **A simple serial terminal** should be installed on the PC (e.g. Putty or Teraterm).
 * The example provides also the below options:
   * define **CFG_PRINTF** (in da1458x_config_basic.h) for printing the reset reason and faults when start up.
-  * define **CFG_SPI_FLASH_ENABLE** (in da1458x_config_basic.h) for powering off the flash in case the device boots from the external SPI memory (by default enabled in the SW example).
+  * define **CFG_SPI_FLASH_ENABLE** (in da14585_config_basic.h) for powering off the flash in case the device boots from the external SPI memory (by default enabled in the SW example).
 
 
 ## How to run

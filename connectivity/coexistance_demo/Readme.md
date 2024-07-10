@@ -36,8 +36,14 @@ Example requirements:
 <img src="media/DevKit531.svg" alt="motherboard_with_DA14531_DB_eval_kit">
 	<figcaption>Fig. 1: DA14531 Daughter Board along with Pro Dev Kit</figcaption>
 
+
+<figure>
+<img src="media/DevKit535.svg" alt="motherboard_with_DA14535_DB_eval_kit">
+	<figcaption>Fig. 2: DA14535 Daughter Board along with Pro Dev Kit DA1453x</figcaption>
+
+
 <img src="media/DevKit585_586.svg" alt="motherboard_with_DA14585/586_DB_eval_kit">
-	<figcaption>Fig. 2: DA14585/586 Daughter Board along with Pro Dev Kit</figcaption>
+	<figcaption>Fig. 3: DA14585/586 Daughter Board along with Pro Dev Kit</figcaption>
 </figure>
 
 ### Software Configuration
@@ -205,7 +211,7 @@ The following guidelines enable the COEX feature on the template example located
    	wlan_coex_gpio_cfg();
 	#endif
 	```
-7. Now the COEX feature is enabled in the project. A final step is required in order to access the API from application level. The following modifications are required in the user_empty_peripheral_template.c file or the corresponding user file that holds the user application.
+7. Now the COEX feature is enabled in the project. A final step is required in order to access the API from application level. The following modifications are required in the corresponding user file that holds the user application.
 	- Add the required include files, wlan_coex.h and lld.h in the Include Files section.
 	```c
 	#if (WLAN_COEX_ENABLED)
@@ -234,88 +240,9 @@ The following guidelines enable the COEX feature on the template example located
 	<figcaption>Fig. 5: Modifications in user_empty_peripheral template</figcaption>
 </figure>
 
->**_Note_**:
-	The HW supports assigning the BLE_EIP signal to pins **P00 up to P011** for the DA14531 and to pins **P00 up to P07** and **P10 up to P13** for the DA14585. As already mentioned this is not supported from the current SDK coex driver. This is only possible by applying the following modification in the **wlan_coex_BLE_set()** and in the **wlan_coex_gpio_cfg** functions, as indicated in the below snippet.
-	
-The following modifications should be applied in the default SDK driver in order to assign the BLE_EIP signal on the additional available pins.
+**please notice here user_empty_peripheral_template.c is the user application file.** 
 
-- Change the restriction of the SDK driver that limits the Diagnostic pins to P00 up to P07 in the wlan_coex_gpio_cfg() function and apply the new extended pin restriction.
-	```C
-	void wlan_coex_gpio_cfg(void)
-	{
-		// WLAN_COEX_BLE_EVENT can be applied on any pin for DA14531 and only on pins P0[0-7] and P1[1-3] for DA14585.
-		#if!(__DA14531__)
-			ASSERT_WARNING((wlan_coex_cfg.ble_eip_pin <= GPIO_PIN_7) && (wlan_coex_cfg.ble_eip_port == GPIO_PORT_0) ||
-						(wlan_coex_cfg.ble_eip_pin <= GPIO_PIN_3) && (wlan_coex_cfg.ble_eip_port == GPIO_PORT_1));
-		#endif
 
-		// Drive to inactive state the pin used for the BLE event in progress signal
-		wlan_coex_set_ble_eip_pin_inactive();
-
-		// Configure selected GPIO as output - BLE priority
-		GPIO_ConfigurePin(wlan_coex_cfg.ble_prio_port, wlan_coex_cfg.ble_prio_pin, OUTPUT, PID_GPIO, false);
-
-		// Configure selected GPIO as input with pull-down - 2.4GHz external device event in progress
-		GPIO_ConfigurePin(wlan_coex_cfg.ext_24g_eip_port, wlan_coex_cfg.ext_24g_eip_pin, INPUT_PULLDOWN, PID_GPIO, false);
-
-		// Configure 2.4GHz external device event in progress signal to act as a GPIO interrupt
-		GPIO_RegisterCallback((IRQn_Type)(GPIO0_IRQn + wlan_coex_cfg.irq), ext_24g_eip_handler);
-		GPIO_EnableIRQ(wlan_coex_cfg.ext_24g_eip_port, wlan_coex_cfg.ext_24g_eip_pin, (IRQn_Type)(GPIO0_IRQn + wlan_coex_cfg.irq),
-					/*low_input*/ false, /*release_wait*/ false, /*debounce_ms*/ 0);
-
-	#if defined (CFG_WLAN_COEX_DEBUG)
-		GPIO_ConfigurePin(wlan_coex_cfg.debug_a_port, wlan_coex_cfg.debug_a_pin, OUTPUT, PID_GPIO, false);
-		GPIO_ConfigurePin(wlan_coex_cfg.debug_b_port, wlan_coex_cfg.debug_b_pin, OUTPUT, PID_GPIO, false);
-	#endif
-	}
-	```
-
-	- Replace the existing wlan_coex_BLE_set() with the following snippet.
-
-	```c
-	void wlan_coex_BLE_set(void)
-	{
-		uint8_t shift;
-		GPIO_PIN diag_en;
-	#if (__DA14531__)
-		if ((wlan_coex_cfg.ble_eip_pin < GPIO_PIN_4) || (wlan_coex_cfg.ble_eip_pin > GPIO_PIN_7))
-	#else
-		if (wlan_coex_cfg.ble_eip_pin < GPIO_PIN_4)
-	#endif
-		{
-	#if (__DA14531__)
-			if(wlan_coex_cfg.ble_eip_pin > GPIO_PIN_7)
-			{
-				diag_en = (GPIO_PIN)(wlan_coex_cfg.ble_eip_pin - GPIO_PIN_8);
-				shift = diag_en * 8;
-			}
-			else
-	#endif
-			{
-				shift = wlan_coex_cfg.ble_eip_pin * 8;
-				diag_en = wlan_coex_cfg.ble_eip_pin;
-			}
-			// Enable BLE event in progress
-			SetBits32(BLE_DIAGCNTL_REG, DIAG0 << shift, 0x1F);
-			SetBits32(BLE_DIAGCNTL_REG, DIAG0_EN << shift, 1);
-		}
-		else
-		{
-			shift = (wlan_coex_cfg.ble_eip_pin - 4) * 8;
-			diag_en = wlan_coex_cfg.ble_eip_pin;
-			// Enable BLE event in progress
-			SetBits32(BLE_DIAGCNTL2_REG, DIAG4 << shift, 0x1F);
-			SetBits32(BLE_DIAGCNTL2_REG, DIAG4_EN << shift, 1);
-		}
-		
-		SetWord16(GPIO_BASE + 0x6 + (wlan_coex_cfg.ble_eip_port << 5) + (wlan_coex_cfg.ble_eip_pin << 1), 0x312);
-
-	#if defined (CFG_WLAN_COEX_BLE_EVENT_INV)
-		SetBits32(BLE_DIAGCNTL3_REG, (DIAG0_INV << (diag_en * 4)), 1);
-	#endif
-		SetBits32(BLE_DIAGCNTL3_REG, (DIAG0_BIT << (diag_en * 4)), 7);
-	}
-	```
 
 ## Run the Example
 
@@ -366,8 +293,8 @@ In the ```.app_on_init callback``` the ```wlan_coex_prio_criteria_add(WLAN_COEX_
 	<figcaption>Fig. 6: Priority on BLE advertising events along 24G activity</figcaption>
 </figure>
 
-Since we have applied the rule for prioritizing BLE advertising events and asserted the **24G EIP** (emulating a request from the 24G device) the **BLE PRIO** pin is asserted to indicate to the 24G device not to transmit since an advertising BLE event is ongoing (the **BLE PRIO** signal will be asserted regardless if the **24G_EIP** is asserted or not). The **BLE PRIO** signal remains asserted as long as the Radio events are ongoing and de-asserts as soon as the BLE device is done with the radio. The **BLE EIP** signal always asserts during a radio event regardless the rules applied and envelopes the entire BLE radio activity.
-As far as the debugging signals, **DEBUG A** is asserted when there is a request from the 24G device and de-asserted if the BLE radio is **NOT** overruled. The **Events** trace is an indication of the current consumed from the device while advertising (the 3 bumps on the trace depict the TX/RX activity of the device while advertising). **DEBUG B** signal indicates that there is a request from an external 24G device in order to send data. 
+Since we have applied the rule for prioritizing BLE advertising events and asserted the **24G EIP** (emulating a request from the 24G device by connecting this pin to GND by Button maybe) the **BLE PRIO** pin is asserted to indicate to the 24G device not to transmit since an advertising BLE event is ongoing (the **BLE PRIO** signal will be asserted regardless if the **24G_EIP** is asserted or not). The **BLE PRIO** signal remains asserted as long as the Radio events are ongoing and de-asserts as soon as the BLE device is done with the radio. The **BLE EIP** signal always asserts during a radio event regardless the rules applied and envelopes the entire BLE radio activity.
+As far as the debugging signals, **DEBUG A** is asserted when there is a request from the 24G device and de-asserted if the BLE radio is **NOT** overruled. The **Events**(You can check it by connecting a pin to J20.2,On DA1453x devkit use the PMM2) trace is an indication of the current consumed from the device while advertising (the 3 bumps on the trace depict the TX/RX activity of the device while advertising). **DEBUG B** signal indicates that there is a request from an external 24G device in order to send data. 
 
 2. ### Priority on 24G packets while advertising
 The current trace demonstrates the state of signals when there is no rule for prioritizing BLE advertising events. This means that either data packets are prioritised or no valid rule is applied for prioritizing BLE events.
@@ -406,9 +333,24 @@ Zooming in on Fig. 9 is clear that there is Tx/Rx activity on the 1st depicted c
 
 **Note: The advertising or connection events depicted on the above traces (at the "Events" channel) are indications and do not represent the actual current consumed from the events.**
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- No known hardware limitations for this example, but it is recommended to see the following:
-  - Application note for [known hardware limitations for DA14531 devices](https://www.renesas.com/eu/en/document/apn/b-075-da14530531-hardware-guidelines?r=1564826)
-  - Dialog Software [Forum link](https://www.dialog-semiconductor.com/support)
-  - [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started)
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

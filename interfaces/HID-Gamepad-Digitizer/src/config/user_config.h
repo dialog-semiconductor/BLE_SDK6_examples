@@ -208,7 +208,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "DLG-PRPH"
+#define USER_DEVICE_NAME        "DLG-GAMEPAD"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)
@@ -345,7 +345,7 @@ static const struct default_handlers_configuration  user_default_hnd_conf = {
     // Possible values:
     //  - DEF_SEC_REQ_NEVER
     //  - DEF_SEC_REQ_ON_CONNECT
-    .security_request_scenario = DEF_SEC_REQ_NEVER
+    .security_request_scenario = DEF_SEC_REQ_ON_CONNECT
 };
 
 /*
@@ -471,7 +471,7 @@ static const struct security_configuration user_security_conf = {
     #if defined (USER_CFG_FEAT_AUTH_REQ)
     .auth           = USER_CFG_FEAT_AUTH_REQ,
     #else
-    .auth           = GAP_AUTH_NONE,
+    .auth           = GAP_AUTH_REQ_NO_MITM_BOND,
     #endif
 
     // LTK size
@@ -485,7 +485,7 @@ static const struct security_configuration user_security_conf = {
     #if defined (USER_CFG_FEAT_INIT_KDIST)
     .ikey_dist      = USER_CFG_FEAT_INIT_KDIST,
     #else
-    .ikey_dist      = GAP_KDIST_NONE,
+    .ikey_dist      = GAP_KDIST_SIGNKEY,
     #endif
 
     // Responder key distribution

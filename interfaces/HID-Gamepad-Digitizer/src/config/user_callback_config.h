@@ -47,6 +47,9 @@
 #if (BLE_APP_SEC)
 #include "app_bond_db.h"
 #endif // (BLE_APP_SEC)
+#if (BLE_HID_DEVICE)
+#include "app_hogpd.h"
+#endif
 #include "user_peripheral.h"
 
 /*
@@ -63,7 +66,7 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_adv_nonconn_complete        = NULL,
     .app_on_adv_undirect_complete       = user_app_adv_undirect_complete,
     .app_on_adv_direct_complete         = NULL,
-    .app_on_db_init_complete            = default_app_on_db_init_complete,
+    .app_on_db_init_complete            = user_app_on_db_init_complete,
     .app_on_scanning_completed          = NULL,
     .app_on_adv_report_ind              = NULL,
     .app_on_get_dev_name                = default_app_on_get_dev_name,
@@ -76,14 +79,14 @@ static const struct app_callbacks user_app_callbacks = {
     .app_on_svc_changed_cfg_ind         = NULL,
     .app_on_get_peer_features           = NULL,
 #if (BLE_APP_SEC)
-    .app_on_pairing_request             = NULL,
-    .app_on_tk_exch                     = NULL,
+    .app_on_pairing_request             = default_app_on_pairing_request,
+    .app_on_tk_exch                     = default_app_on_tk_exch,
     .app_on_irk_exch                    = NULL,
-    .app_on_csrk_exch                   = NULL,
-    .app_on_ltk_exch                    = NULL,
+    .app_on_csrk_exch                   = default_app_on_csrk_exch,
+    .app_on_ltk_exch                    = default_app_on_ltk_exch,
     .app_on_pairing_succeeded           = NULL,
     .app_on_encrypt_ind                 = NULL,
-    .app_on_encrypt_req_ind             = NULL,
+    .app_on_encrypt_req_ind             = default_app_on_encrypt_req_ind,
     .app_on_security_req_ind            = NULL,
     .app_on_addr_solved_ind             = NULL,
     .app_on_addr_resolve_failed         = NULL,
@@ -142,6 +145,9 @@ static const struct default_app_operations user_default_app_operations = {
 // for your reference of which profiles are supported.
 static const struct prf_func_callbacks user_prf_funcs[] =
 {
+#if BLE_HID_DEVICE
+		{TASK_ID_HOGPD,			app_hogpd_create_db, app_hogpd_enable},
+#endif
     {TASK_ID_INVALID,    NULL, NULL}   // DO NOT MOVE. Must always be last
 };
 

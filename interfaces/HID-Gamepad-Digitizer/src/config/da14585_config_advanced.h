@@ -272,6 +272,12 @@
 #define CFG_AMB_TEMPERATURE
 
 /****************************************************************************************************************/
+/* Disable quadrature decoder on start up. The quadrature decoder is by default enabled on system power up and  */
+/* it may count events. This leads to WKUP_QUADEC_IRQn pending interrupts.                                      */
+/****************************************************************************************************************/
+#define CFG_DISABLE_QUADEC_ON_START_UP
+
+/****************************************************************************************************************/
 /* Enable power optimizations using the XTAL16M adaptive settling algorithm.                                    */
 /* NOTE: The XTAL16M adaptive settling algorithm works only with XTAL32K and not with RCX, as the LP clock.     */
 /****************************************************************************************************************/

@@ -143,6 +143,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,
                           ke_task_id_t const src_id);
+													
+void user_app_on_db_init_complete(void);
 
 /// @} APP
 

@@ -55,7 +55,8 @@ timer_hnd timer_test;
 */
 static void test_timer_cb(void)
 {
-		SWD_printf("Test Timer CB\r\n\r\n", NULL);
+	  static int i = 0;
+		SWD_printf("Test Timer CB %d\r\n", i++);
 		timer_test = app_easy_timer(100, test_timer_cb);
 }
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)

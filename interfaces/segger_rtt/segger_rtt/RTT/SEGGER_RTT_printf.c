@@ -3,7 +3,7 @@
 *                        The Embedded Experts                        *
 **********************************************************************
 *                                                                    *
-*            (c) 1995 - 2019 SEGGER Microcontroller GmbH             *
+*            (c) 1995 - 2021 SEGGER Microcontroller GmbH             *
 *                                                                    *
 *       www.segger.com     Support: support@segger.com               *
 *                                                                    *
@@ -42,7 +42,7 @@
 *                                                                    *
 **********************************************************************
 *                                                                    *
-*       RTT version: 6.83b                                           *
+*       RTT version: 7.96s                                           *
 *                                                                    *
 **********************************************************************
 
@@ -52,11 +52,12 @@ Purpose : Replacement for printf to write formatted data via RTT
 Revision: $Rev: 17697 $
 ----------------------------------------------------------------------
 */
+
+#ifdef CFG_SWD_PRINTF
+
 #include "SEGGER_RTT.h"
 #include "SEGGER_RTT_Conf.h"
 
-
-#ifdef CFG_SWD_PRINTF
 /*********************************************************************
 *
 *       Defines, configurable
@@ -426,6 +427,9 @@ int SEGGER_RTT_vprintf(unsigned BufferIndex, const char * sFormat, va_list * pPa
       case 's':
         {
           const char * s = va_arg(*pParamList, const char *);
+          if (s == NULL) {
+            s = "(NULL)";  // Print (NULL) instead of crashing or breaking, as it is more informative to the user.
+          }
           do {
             c = *s;
             s++;
@@ -504,6 +508,7 @@ int SEGGER_RTT_printf(unsigned BufferIndex, const char * sFormat, ...) {
   va_end(ParamList);
   return r;
 }
-/*************************** End of file ****************************/
 
-#endif //CFG_SWD_PRINTF
+#endif //CFG_USE_SWD_PRINTF
+
+/*************************** End of file ****************************/

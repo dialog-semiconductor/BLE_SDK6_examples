@@ -1,4 +1,4 @@
-\# renesas_ble_abstraction_gtl_project
+## renesas_ble_abstraction_gtl_project
 
 ## Example description
 

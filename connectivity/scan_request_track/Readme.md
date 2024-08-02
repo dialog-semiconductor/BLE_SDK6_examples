@@ -1,8 +1,5 @@
 # DA14585/DA14586 - DA14531 Scan Request Track
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/scan_request_track/banner.svg?v=1)
-
-
 ## Example description
 
 This SDK6 DA14585 / DA14531 example demonstrates how a peripheral device can track if it is scanned and which central device 

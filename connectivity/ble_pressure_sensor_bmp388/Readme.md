@@ -1,7 +1,4 @@
-
 # ble_pressure_sensor_bmp388
-
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_pressure_sensor_bmp388/banner.svg?v=1)
 
 ## Example description
 

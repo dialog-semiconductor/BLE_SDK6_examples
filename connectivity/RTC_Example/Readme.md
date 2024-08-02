@@ -1,7 +1,5 @@
 # Real Time Clock example 
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/RTC_Example/banner.svg?v=1)
-
 ## Example description
 
 The main purpose of this SW example is to demonstrate how to configure the RTC in order to keep time while the BLE is operating as well as use the **EVENTS** and **ALARMS** available on the RTC HW.

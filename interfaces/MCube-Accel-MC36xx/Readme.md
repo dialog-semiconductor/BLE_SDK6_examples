@@ -1,7 +1,4 @@
-
 # DA14585/586 interface with mCube Accelerometer over I2C
-
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/MCube-Accel-MC36xx/banner.svg?v=1)
 
 ## Example description
 

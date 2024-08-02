@@ -1,8 +1,8 @@
 # dlg_crash_info
 
-## DCI Description
+## Example description
 
-The intent of this applicatiopn is to provide a module to the user that enables a more detailed crash information log.  This example provides the user with a dlg crash info (DCI) module to utilize in their project, along with an example BLE service for gathering crash info and communicating to a host.  
+The intent of this application is to provide a module to the user that enables a more detailed crash information log.  This example provides the user with a dlg crash info (DCI) module to utilize in their project, along with an example BLE service for gathering crash info and communicating to a host.  
 
 The DCI module is interleaved into the fault handlers, and upon exception entry, will gather the stack frame along with a stack trace and log this into memory.  This data is stored into an unitialized section of RAM, and following a reset, the user can acess this data to deliver to a host system for further analysis.  
 

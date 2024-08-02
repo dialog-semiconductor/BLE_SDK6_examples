@@ -1,6 +1,6 @@
-## Optimised Ibeacon example
+# Optimised Ibeacon example
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ibeacon_Optim/banner.svg?v=1)
+## Example description
 
 The example demonstrates an optimized software implementation for ibeacon on the DA14531.
 

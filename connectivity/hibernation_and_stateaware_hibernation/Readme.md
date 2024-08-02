@@ -1,6 +1,6 @@
-## Hibernation and State aware hibernation
+# Hibernation and State aware hibernation
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/hibernation_and_stateaware_hibernation/banner.svg?v=1)
+## Example description
 
 The DA1453x supports a number of lower power modes; sleep, extended sleep, deep sleep and hibernate. Hibernate mode provides the lowest power operation as no internal clocks are running and the RAM is not retained (although there is an option to retain it if required).
 

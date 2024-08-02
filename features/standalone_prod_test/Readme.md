@@ -1,11 +1,7 @@
-
-------
-
 # Standalone Production test FW for DA14531-00/01 and DA14585/586
 
-------
-
 ## Example Description
+
 During radio frequency product certification (FCC, ETSI, etc) using the standard prod_test fw requires that the device under test should be connected over UART via predefined pins in order for the DUT to receive the test commands. This is not always an option for designs that have pin limitations or the predefined pins are already connected to application specific HW. 
 
 The current SW example is a feature implementation on top of the original prod_test fw and allows the radio frequency tests to be performed without having the device connected over UART for issuing the corresponding commands. 

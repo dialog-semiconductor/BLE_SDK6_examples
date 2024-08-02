@@ -1,10 +1,4 @@
-
 # DA145xx I2C Master Slave example
-
-Master  
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/I2C-Master-Slave/I2C_Master/banner.svg?v=1)  
-Slave  
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/I2C-Master-Slave/I2C_Slave/banner.svg?v=1)
 
 ## Example description
 

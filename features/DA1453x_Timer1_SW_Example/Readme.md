@@ -1,7 +1,4 @@
-
 # DA14531 Timer1 Software Example
-
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/features/DA14531_Timer1_SW_Example/banner.svg?v=1)
 
 ## Example Description
 

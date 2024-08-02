@@ -1,7 +1,5 @@
-
 # Booting the DA14531 through a R7FA2E1 from RENESAS (EK-RA2E1)
 
----
 ## Example description
 
 The DA14531 has an integrated ARM Cortex M0+ and can be used for programming and controlling the SoC. 

@@ -1,8 +1,5 @@
 # DA14585/DA14586/DA14531 DLE and L2CAP Packet Optimization
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/features/dynamic_L2CAP_Packet_size_Optimization/banner.svg?v=1)
-
-
 ## Example description
 
 This project is intended to illustrate to the user:

@@ -1,7 +1,5 @@
 # DA1453x USB Preloaded Firmware
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/helpers/usb_preloaded_firmware/banner.svg?v=1)
-
 ## Example description
 
 The main purpose of this software example is to provide the source files containing the firmware for the preloaded binary in the DA1453x USB kit.

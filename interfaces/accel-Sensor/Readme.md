@@ -1,6 +1,5 @@
 # Reading an I2C accelerometer and sending BLE notifications
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/accel-Sensor/banner.svg?v=1)
 ## Example description
 
 This example shows how to acquire data from an I2C accelerometer and send the measurements with BLE notifications using a DA14531 or DA14585/586 device. You could use a BLE Scanner app to read out the measurements.

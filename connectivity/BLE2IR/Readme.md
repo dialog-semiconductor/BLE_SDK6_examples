@@ -1,9 +1,7 @@
 # DA14585 Simple Remote Control Unit peripheral example
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/BLE2IR/banner.svg?v=1)
-
-
 ## Example description
+
 This SDK6 DA14585 example provides an implementation of a Simple RCU using a custom BLE profile. The example uses a 4x4 button matrix, which state is read and buffered with the keyboard module from the [Voice RCU reference design](https://support.dialog-semiconductor.com/connectivity/product/da14585?qt-product_restricted_=5&qt-view__reference_designs__block_1=4#qt-view__reference_designs__block_1). The example makes use of the update parameter request and slave latency functionality.
 
 ## HW and SW configuration

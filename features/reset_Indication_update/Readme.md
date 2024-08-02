@@ -1,8 +1,7 @@
 # Reset type identification on DA14585/586, DA14531
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/features/reset_Indication_update/banner.svg?v=1)
-
 ## Example Description
+
 Both DA14531 and DA14585/586 devices comprise three main reset signals that can be triggered from different sources, the reset signals are:
 * **POR** : Triggred when VDD (VBAT_LOW and VBAT_HIGH rails only for the DA14531) voltage crosses the minimum voltage threshold value or optionally triggered by a configured GPIO or if the RST pad is held high for more than the POR_TIMER_REG value.
 * **HW RESET** : Triggered by the RST pad (P00 for the DA14531), the watchdog, or when waking up from sleep while having the RESET_ON_WAKEUP bit set. 

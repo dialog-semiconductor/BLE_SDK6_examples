@@ -1,7 +1,5 @@
 ﻿# DA14585/DA14586/DA14531 Peripheral - GPIO button interrupt with edge detection
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/simple_button/banner.svg?v=1)
-
 ## Example description
 
 This example shows:

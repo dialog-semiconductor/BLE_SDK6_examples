@@ -68,6 +68,7 @@ void GPIO_reservations(void)
 #endif
 
     //RESERVE_GPIO(LED, GPIO_LED_PORT, GPIO_LED_PIN, PID_GPIO);
+		
 
 #if !defined (__DA14586__) && !defined(__DA14531__)
     RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);

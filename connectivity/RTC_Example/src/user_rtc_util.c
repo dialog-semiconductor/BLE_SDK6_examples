@@ -40,6 +40,8 @@
  ****************************************************************************************
  */
 #include "arch_system.h"
+#include "user_rtc_util.h"
+#include "rtc.h"
  
 static uint8_t rtc_interrupt_enable_reg_r               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 extern rcx_time_data_t rcx_time_data;

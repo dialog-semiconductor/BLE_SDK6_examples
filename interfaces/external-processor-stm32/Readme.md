@@ -1,7 +1,5 @@
-
 # Booting the DA14531 with Codeless through a STM32
 
----
 
 ## Example description
 

@@ -1,10 +1,4 @@
-
 # DA14531 SPI Master Slave example
-
-Master  
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/SPI-Master-Slave/SPI_Master/banner.svg?v=1)  
-Slave  
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/SPI-Master-Slave/SPI_Slave/banner.svg?v=1)
 
 ## Example description
 
@@ -16,9 +10,9 @@ The project is split in two parts: The master board and the slave board.
 
 ### Hardware configuration
 
-- This example runs on the DA14531 Bluetooth Smart SoC devices.
-- Two DA145xx Pro Development Kits are needed for this example. One will act as master, the other as slave.
-- You need to make the following interconnections between the two DA145xx Pro Development Kits.
+- This example runs on the DA1453x Bluetooth Smart SoC devices.
+- Two DA14531 or DA1453x Pro Development Kits are needed for this example. One will act as master,   the other as slave.
+- You need to make the following interconnections between the two DA14531 or DA1453x Pro Development Kits.
   The interconnections between the two DA145xx Pro Development Kits are given in the `user_periph_setup.h` file, on your setup, the SPI signals (CLK, MOSI, MISO, SC) need to have a 1kOhm resistor each in series and the SPI CLK must be in a twisted-pair configuration with the GND.
 - Also, on each board you must connect P05 (P25 on the J2 DA14531 Signals) to UTX pin 17 on J1 (J5.12) in order to have UART console logging.
 
@@ -76,7 +70,24 @@ The following will be printed on the master and slave sides:
 ![SPI-SLAVE-MASTER_DA14531](assets/logic_trace.png)
 
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- You can also refer to the [DA14531 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
-- Dialog Software [Forum link](https://community.renesas.com/wireles-connectivity/f/bluetooth-low-energy).
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

@@ -1,8 +1,8 @@
 # dlg_crash_info
 
-## DCI Description
+## Example description
 
-The intent of this applicatiopn is to provide a module to the user that enables a more detailed crash information log.  This example provides the user with a dlg crash info (DCI) module to utilize in their project, along with an example BLE service for gathering crash info and communicating to a host.  
+The intent of this application is to provide a module to the user that enables a more detailed crash information log.  This example provides the user with a dlg crash info (DCI) module to utilize in their project, along with an example BLE service for gathering crash info and communicating to a host.  
 
 The DCI module is interleaved into the fault handlers, and upon exception entry, will gather the stack frame along with a stack trace and log this into memory.  This data is stored into an unitialized section of RAM, and following a reset, the user can acess this data to deliver to a host system for further analysis.  
 
@@ -14,11 +14,12 @@ Utilizing this type of mechanism will allow a more seemless debugging approach w
 This particular example runs on the DA1453x architecture but could easily be ported to any ARMv7 core. To run this project 'as-is', any of the following kits can be used:
     - DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard
     - DA14531 SmartBond TINY™ Module + DA145xxDEVKT-P PRO Motherboard
-    - For running the example on a **DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard** the following configuration is required.
+    - For running the example on a **DA14531 Daughter board + DA14531DEVKT-P PRO Motherboard** or **DA14535 Daughter board + DA1453xDEVKT-P PRO Motherboard**the following configuration is required.
       - Connect the DA145xx Pro Development Kit to the host computer.
       - UART TX on P0_6 for DA14531 (Place wire between J1:17 and J2:27) for printing functionality.
 
       ![DA14531_connection_wires](assets/hardware_setup_531.svg)
+	  ![DA14535_connection_wires](assets/hardware_setup_535.svg)
 
 * **Software configuration**
 
@@ -30,7 +31,7 @@ This example requires:
 
 ## Project Modifications
 
-In your project, make sure to exlude the default fault handler files, hardfault_handler.c and nmi_handler.c:
+In your project, make sure to exclude the default fault handler files, hardfault_handler.c and nmi_handler.c:
 
 ![Excluded Files](assets/exclude_handlers.PNG)
 
@@ -179,7 +180,7 @@ There is a [PyBLEManager Example](https://github.com/dialog-semiconductor/py_ble
 
 ### *Advertising*
 
-This example uses advertising to indicate to a central that there is reset data available.  The advertising payload uses service data, and then appends the number of resets from dci_data_t.  This allows for a central to scan and determine if a device has reset information it can connect and extract data from.  Please see the following example for more references on ![service data adertising](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/svc_data_beacon)
+This example uses advertising to indicate to a central that there is reset data available.  The advertising payload uses service data, and then appends the number of resets from dci_data_t.  This allows for a central to scan and determine if a device has reset information it can connect and extract data from.  Please see the following example for more references on [service data adertising](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/svc_data_beacon)
 
 This example uses the UUID from the DCI Service and appends a uint8_t for the number of resets.
 
@@ -251,3 +252,27 @@ The service uses this characteristic to transmit DCI data back to the client.  T
 | current command | uint16_t          | 0x02 (GET_NUM_RESETS)                          | 2    |
 | length          | uint16_t          | 0x01                                           | 2    |
 | num resets      | uint8_t           | number of resets that are stored on the device | 1    |
+
+
+
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
+## Known Limitations
+
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

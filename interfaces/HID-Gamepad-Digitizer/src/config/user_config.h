@@ -5,26 +5,29 @@
  *
  * @brief User configuration file.
  *
- * Copyright (c) 2015-2021 Renesas Electronics Corporation and/or its affiliates
- * The MIT License (MIT)
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE.
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * All rights reserved. Confidential Information.
+ *
+ * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
+ * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
+ * revocable, non-sub-licensable right and license to use the Software, solely if used in
+ * or together with Renesas products. You may make copies of this Software, provided this
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * reserves the right to change or discontinue the Software at any time without notice.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
+ * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGES. USE OF THIS SOFTWARE MAY BE SUBJECT TO TERMS AND CONDITIONS CONTAINED IN
+ * AN ADDITIONAL AGREEMENT BETWEEN YOU AND RENESAS. IN CASE OF CONFLICT BETWEEN THE TERMS
+ * OF THIS NOTICE AND ANY SUCH ADDITIONAL LICENSE AGREEMENT, THE TERMS OF THE AGREEMENT
+ * SHALL TAKE PRECEDENCE. BY CONTINUING TO USE THIS SOFTWARE, YOU AGREE TO THE TERMS OF
+ * THIS NOTICE.IF YOU DO NOT AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO USE THIS
+ * SOFTWARE.
+ *
  ****************************************************************************************
  */
 
@@ -71,8 +74,8 @@
 
 /*************************************************************************
  * Controller Privacy Mode:
- * - APP_CFG_CNTL_PRIV_MODE_NETWORK Controller Privacy Network mode (default)
- * - APP_CFG_CNTL_PRIV_MODE_DEVICE  Controller Privacy Device mode
+ * - APP_CFG_CNTL_PRIV_MODE_NETWORK Controler Privacy Network mode (default)
+ * - APP_CFG_CNTL_PRIV_MODE_DEVICE  Controler Privacy Device mode
  *
  * Select only one option for controller privacy mode configuration.
  **************************************************************************
@@ -107,10 +110,10 @@ static const struct advertise_configuration user_adv_conf = {
     .addr_src = APP_CFG_ADDR_SRC(USER_CFG_ADDRESS_MODE),
 
     /// Minimum interval for advertising
-    .intv_min = MS_TO_BLESLOTS(250),                    // 250ms
+    .intv_min = MS_TO_BLESLOTS(687.5),                    // 687.5ms
 
     /// Maximum interval for advertising
-    .intv_max = MS_TO_BLESLOTS(250),                    // 250ms
+    .intv_max = MS_TO_BLESLOTS(687.5),                    // 687.5ms
 
     /**
      *  Advertising channels map:
@@ -137,12 +140,16 @@ static const struct advertise_configuration user_adv_conf = {
     /// Host information advertising data (GAPM_ADV_NON_CONN and GAPM_ADV_UNDIRECT)
     /// Advertising filter policy:
     /// - ADV_ALLOW_SCAN_ANY_CON_ANY: Allow both scan and connection requests from anyone
+    /// - ADV_ALLOW_SCAN_ANY_CON_WLST: Allow both scan req from anyone and connection req from
+    ///                                White List devices only
     .adv_filt_policy = ADV_ALLOW_SCAN_ANY_CON_ANY,
 
     /// Address of peer device
+    /// NOTE: Meant for directed advertising (ADV_DIRECT_IND)
     .peer_addr = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6},
 
     /// Address type of peer device (0=public/1=random)
+    /// NOTE: Meant for directed advertising (ADV_DIRECT_IND)
     .peer_addr_type = 0,
 };
 
@@ -173,16 +180,11 @@ static const struct advertise_configuration user_adv_conf = {
  */
 /// Advertising data
 #define USER_ADVERTISE_DATA         ("\x03"\
-                                    ADV_TYPE_APPEARANCE\
-                                    ADV_APPEARANCE_MOUSE\
-                                    "\x05"\
-                                    ADV_TYPE_INCOMPLETE_LIST_16BIT_SERVICE_IDS\
+                                    ADV_TYPE_COMPLETE_LIST_16BIT_SERVICE_IDS\
                                     ADV_UUID_DEVICE_INFORMATION_SERVICE\
-                                    ADV_UUID_HUMAN_INTERFACE_DEVICE_SERVICE\
-                                    "\x05"\
-                                    ADV_TYPE_SERVICE_DATA_16BIT_UUID\
-                                    ADV_UUID_DEVICE_INFORMATION_SERVICE\
-                                    "\x00\x01")
+                                    "\x11"\
+                                    ADV_TYPE_COMPLETE_LIST_128BIT_SERVICE_IDS\
+                                    "\x59\x5A\x08\xE4\x86\x2A\x9E\x8F\xE9\x11\xBC\x7C\x98\x43\x42\x18")
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)

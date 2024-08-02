@@ -52,7 +52,8 @@
 //#include "spi_flash.h"
 #include "battery.h"
 #include "llc_util.h"
-#include "lld_util.h"  
+#include "lld_util.h" 
+#include "spi_flash.h"
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -72,7 +73,11 @@
 #define MINOR_0												0x00
 #define MINOR_1												0x00
 
-/* Fixed advertising fields */
+#define MEASURED_POWER_0dBm							0xC5
+/* Output power 2.5dBm */
+#define MEASURED_POWER_2d5Bm							0xC7
+
+ /* Fixed advertising fields */
 #define FLAG_0											0x02
 #define FLAG_1											0x01
 #define FLAG_2											0x06

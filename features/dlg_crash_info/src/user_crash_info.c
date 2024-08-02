@@ -53,7 +53,6 @@
 #include "arch_console.h"
 #include "dci_svc.h"
 #include "custs1_task.h"
-#include "dci_svc.h"
 #include "user_custs1_def.h"
 
 

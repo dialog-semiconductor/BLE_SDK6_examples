@@ -1,14 +1,12 @@
 # BLE Eddystone beacon with hibernation or deep sleep mode
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/wakeup_hibernation_ext_timer/banner.svg?v=1)
-
 ## Example description
 
 This example configures a DA14531 device to be used as an Eddystone beacon. The beacon advertises with a random static device address for a set amount of time, after which it drops to hibernation mode or deep-sleep mode. While advertising, the device will utilize the extended-sleep mode in between advertising events. The advertising data include the number of Advertisement PDUs and the temperature acquired by the die sensor. The system wakes up from the real-time clock in deep-sleep mode, or from an external timer upon a GPIO toggle in hibernation mode.
 
 ## HW and SW configuration
 - This example runs on the DA14531 Bluetooth Smart SoC devices.	
-- The DA145xx Pro Development Kit is needed for this example, and it can be used with the DA14531 daughterboard evaluation kits.
+- The DA145xx Pro Development Kit is needed for this example, and it can be used with the DA1453x daughterboard evaluation kits.
 
 ### Hardware configuration for use in deep-sleep mode
 
@@ -20,7 +18,7 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
 
 ### Hardware configuration for use in hibernation mode
 
-- Connect the USB1 connector of the DA145xx Pro Development Kit to the host computer.
+- Connect the USB1 connector of the DA14531 or DA1453x Pro Development Kit to the host computer.
 - Configure your external timer according to the manufacturer's instructions and connect the wake-up signal of your external timer to P25 of header J2. 
 
 	For this example we used Texas Instruments' TPL5010EVM, in which case you would have to connect the WAKE pin of the module to P25, as well as the DONE pin of the module to P24 of header J2 on the motherboard. If you prefer to supply your external timer from the motherboard, you have to connect the V3 pin of J2 header to AUX_VDD, and the ground pin of the timer to any ground pin (marked with a dash) on the motherboard. Trim the variable resistance to your preferred wake-up time interval.
@@ -28,6 +26,7 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
 	You can see the jumper configuration below.
 
 	![hibernation_board_cfg](assets/hibernation_cfg.svg)
+	![hibernation_board_cfg_DA14535](assets/hibernation_cfg_DA14535.svg)
 
 ### Software configuration
 
@@ -72,11 +71,25 @@ The configuration options are local to the ``user_hibernation_timer.c`` file and
 - ``DONE_TIMER_TIMEOUT``: Used to deassert the DONE signal of the TPL5010 in hibernation mode.
 - ``RTC_TIMEOUT``: The time after which the real-time clock will wake the system up from deep-sleep mode.
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
-- There are no known limitations for this example. But you can check and refer to the following application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-- You can also refer to the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 
 

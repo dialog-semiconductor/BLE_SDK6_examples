@@ -1,7 +1,17 @@
-## Hibernation and State aware hibernation
+# Hibernation and State aware hibernation
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/hibernation_and_stateaware_hibernation/banner.svg?v=1)
+## Example description
 
+The DA1453x supports a number of lower power modes; sleep, extended sleep, deep sleep and hibernate. Hibernate mode provides the lowest power operation as no internal clocks are running and the RAM is not retained (although there is an option to retain it if required).
+
+The DA1453x contains a Clockless Wakeup Controller which allows the device to be woken from hibernate mode by a change of state on a GPIO. The following section details how to use the driver provided within SDK6 to put the DA14531 into Hibernate mode and how to handle wakeup events.
+
+See the [DA14531 Datasheet](https://www.renesas.com/us/en/document/dst/da14531-datasheet?r=1564826) or [DA14535 Datasheet](https://www.renesas.com/us/en/document/dst/da14535-datasheet?r=25467666) for a complete description of the Clockless Wakeup Controller and all of the available sleep modes.
+
+- Devices naming:
+    - DA1453x is refering to DA14531-00, DA14531-01, DA14530 and DA14535.
+    - The DA14531-00 is the main DA14531 device. The -00 is just a new naming to introduce the variant DA14531-01. The DA14531-01 is a ROM variant of the main DA14531-00.
+    - The DA14535 is a DA14531 upgrade.
 
 - This project starts with undirected connectable advertising
 
@@ -32,11 +42,11 @@ This example runs on the BLE Smart SoC (System on Chip) devices:
 - DA14531 daughter board or DA14531 Tiny Module + DA145xxDEVKT-P PRO-Motherboard.
 
 The user manuals for the development kits can be found:
-- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [DA14531-00FXDEVKT-P](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14531-00fxdevkt-p-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
 
-- [here](http://lpccs-docs.dialog-semiconductor.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/index.html) for the DA14531 Tiny Module getting started
+- [DA14531MOD-00DEVKT-P](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14531mod-00devkt-p-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-module-development-kit-pro) for the DA14531 Tiny Module getting started
 
-To run the program from flash or OTP, please visit chapter 11 of the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html )
+To run the program from flash or OTP, please visit Programmer operations chapter of the [SmartSnippets Toolbox User Manual](https://lpccs-docs.renesas.com/UM-B-083/index.html)
 
 * **General Hardware configuration DA14531 using DA145xxDEVKT-P PRO-Motherboard**
 
@@ -44,20 +54,20 @@ To run the program from flash or OTP, please visit chapter 11 of the [SmartSnipp
 	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
 	![Motherboard_Hardware_Configuration_DA14531](assets/jtag.svg)
+
+    - This example works also on the [DA1453x DEVKT-P](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14535-00fxdevkt-p-smartbond-tiny-da14535-bluetooth-low-energy-53-soc-development-kit-pro) with with any DA1453x Daughterboard
+	![Motherboard_Hardware_Configuration_DA14531](assets/da14535.svg)	
 	
 * **Software configuration**
 
-	- This example requires:
-	* SmartSnippets Toolbox v5.0.14
-    * [SDK6 latest version](https://www.dialog-semiconductor.com/da14531_sdk_latest)
-	* Keil5
-	- **SEGGER’s J-Link** tools should be downloaded and installed.
+	- SmartSnippets Toolbox v5.0.24
+	- [SDK6 latest version](https://www.renesas.com/sdk6_latest)
+	- Keil5
+	- SEGGER’s J-Link tools should be downloaded and installed.
 
 ## How to run the example
 
 ### Setup
-For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
-
 1. Start Keil using the `hibernation_example.uvprojx` Keil project file.
 
 2. Expand the dialog shown in the red box in the image below.
@@ -65,7 +75,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	![Expand_Select_Device](assets/keil_531.png)
 
 
-3. Select the device: DA14531
+3. Select the device: DA14531 or DA14535
 
 4. Compile (F7) the program
 
@@ -185,7 +195,7 @@ To enter the hibernation after booting from SPI Flash, the following software mo
 
 6. Save all the changes done in the project and Compile (F7).
 
-7. Program the DA14531 using the compiled hex file and boot from flash. To do this, please refer to chapter 13 SPI Flash Programmer in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
+7. Program the DA14531 using the compiled hex file and boot from flash. To do this, please refer to Flash Programmer section in the [SmartSnippets Toolbox User Manual](https://lpccs-docs.renesas.com/UM-B-083/programmer_oper/index.html ).
 	
 	![SPI Jtag jumper settings](assets/spi.svg)
 
@@ -226,7 +236,7 @@ This would define the configuration of Hibernation mode to remap the address 0 t
 
 ![HIBERNATION_SYSRAM1](assets/cfg_hibernation_sysram.png)
 
-After doing this, repeat the steps from 4 - 7. In order to program the OTP and boot from OTP, please refer to chapter 8 Booter in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ).
+After doing this, repeat the steps from 4 - 7. In order to program the OTP and boot from OTP, please refer to chapter 8 Booter in the [SmartSnippets Toolbox User Manual](https://lpccs-docs.renesas.com/UM-B-083/index.html).
 
 
 ## Use-case 2
@@ -321,7 +331,7 @@ To demonstrate the state-aware hibernation example, the following software modif
 ## Expected Result
 
 ### DA14531 with DA145xxDEVKT-P PRO-Motherboard
-1. Open the Power Profiler in the SmartSnippets Toolbox. please refer to chapter 10 Power Profiler in the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html ). 
+1. Open the Power Profiler in the SmartSnippets Toolbox. please refer to chapter 6.2 Power Profiler in the [SmartSnippets Toolbox User Manual](https://lpccs-docs.renesas.com/UM-B-083/monitor_oper/power_profiler/power_profiler.html). 
 
 2. After running the program either from SysRAM, Flash or OTP, the device advertises for 30s and enters the hibernation mode. On wake-up (using the P0_5) the device advertises again. 
 
@@ -329,13 +339,23 @@ To demonstrate the state-aware hibernation example, the following software modif
 
 3. End of example.		
 
-## Troubleshooting
+## Further reading
 
-- Try a different USB cable.
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
 
-- Try different jumper wires, if used.
 
-- Verify using any BLE scanner that the device is advertising. 
 
-- If none of the above helps, please check with the customer support team who would be glad to provide you the solution.
+## Known Limitations
 
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)

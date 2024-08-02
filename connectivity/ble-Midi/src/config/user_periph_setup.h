@@ -5,26 +5,29 @@
  *
  * @brief Peripherals setup header file.
  *
- * Copyright (C) 2015-2021 Renesas Electronics Corporation and/or its affiliates
- * The MIT License (MIT)
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE.
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * All rights reserved. Confidential Information.
+ *
+ * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
+ * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
+ * revocable, non-sub-licensable right and license to use the Software, solely if used in
+ * or together with Renesas products. You may make copies of this Software, provided this
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * reserves the right to change or discontinue the Software at any time without notice.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
+ * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGES. USE OF THIS SOFTWARE MAY BE SUBJECT TO TERMS AND CONDITIONS CONTAINED IN
+ * AN ADDITIONAL AGREEMENT BETWEEN YOU AND RENESAS. IN CASE OF CONFLICT BETWEEN THE TERMS
+ * OF THIS NOTICE AND ANY SUCH ADDITIONAL LICENSE AGREEMENT, THE TERMS OF THE AGREEMENT
+ * SHALL TAKE PRECEDENCE. BY CONTINUING TO USE THIS SOFTWARE, YOU AGREE TO THE TERMS OF
+ * THIS NOTICE.IF YOU DO NOT AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO USE THIS
+ * SOFTWARE.
+ *
  ****************************************************************************************
  */
 
@@ -36,13 +39,9 @@
  ****************************************************************************************
  */
 
+#include "arch.h"
 #include "gpio.h"
 #include "uart.h"
-#include "spi.h"
-#include "spi_flash.h"
-#include "i2c.h"
-#include "i2c_eeprom.h"
-
 
 
 /*
@@ -72,7 +71,6 @@
 #define UART2_FIFO                  UART_FIFO_EN
 #define UART2_TX_FIFO_LEVEL         UART_TX_FIFO_LEVEL_0
 #define UART2_RX_FIFO_LEVEL         UART_RX_FIFO_LEVEL_0
-
 
 /****************************************************************************************/
 /* SPI configuration                                                                    */
@@ -118,7 +116,6 @@
     #define SPI_SPEED_MODE          SPI_SPEED_MODE_4MHz
 #endif
 
-
 /****************************************************************************************/
 /* SPI Flash configuration                                                              */
 /****************************************************************************************/
@@ -147,14 +144,13 @@
     #define LED_PIN                 GPIO_PIN_0
 #endif
 
-
 /***************************************************************************************/
 /* Production debug output configuration                                               */
 /***************************************************************************************/
 #if PRODUCTION_DEBUG_OUTPUT
 #if defined (__DA14531__)
     #define PRODUCTION_DEBUG_PORT   GPIO_PORT_0
-    #define PRODUCTION_DEBUG_PIN    GPIO_PIN_7
+    #define PRODUCTION_DEBUG_PIN    GPIO_PIN_11
 #else
     #define PRODUCTION_DEBUG_PORT   GPIO_PORT_2
     #define PRODUCTION_DEBUG_PIN    GPIO_PIN_5
@@ -166,27 +162,33 @@
  ****************************************************************************************
  */
 
-
+#if DEVELOPMENT_DEBUG
 /**
  ****************************************************************************************
- * @brief Enable pad and peripheral clocks assuming that peripheral power domain
- *        is down. The UART and SPI clocks are set.
+ * @brief   Reserves application's specific GPIOs
+ * @details Used only in Development mode (#if DEVELOPMENT_DEBUG)
+ *          i.e. to reserve P0_1 as Generic Purpose I/O:
+ *          RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
  ****************************************************************************************
  */
-void periph_init(void);
+void GPIO_reservations(void);
+#endif
 
 /**
  ****************************************************************************************
- * @brief Map port pins. The UART and SPI port pins and GPIO ports are mapped
+ * @brief   Sets the functionality of application pads
+ * @details i.e. to set P0_1 as Generic purpose Output:
+ *          GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
  ****************************************************************************************
  */
 void set_pad_functions(void);
 
 /**
  ****************************************************************************************
- * @brief Each application reserves its own GPIOs here.
+ * @brief   Initializes application's peripherals and pins
  ****************************************************************************************
  */
-void GPIO_reservations(void);
+void periph_init(void);
+
 
 #endif // _USER_PERIPH_SETUP_H_

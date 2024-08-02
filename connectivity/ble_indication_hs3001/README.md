@@ -1,7 +1,4 @@
-# ble_indication_hs3001
-
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_indication_hs3001/banner.svg?v=1)
-
+# ble GATT Role for indication
 
 ## Example description
 
@@ -51,7 +48,7 @@ Notify: Same as indication but no response is expected from Client.
 ## HW and SW configuration
 
 This example runs on the BLE "SmartBond device family" devices:
-- DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
+- DA1453x daughter board + DA14531DEVKT-P or DA1453xDEVKT-P .
 
 The user manuals for the development kits & HS3001 can be found:
 - [Here](https://www.renesas.com/eu/en/document/mat/um-b-114-da14531-development-kit-pro-hardware-user-manual) for the DA145xxDEVKT-P PRO-Motherboard.
@@ -74,6 +71,7 @@ In `user_periph_setup.h` you can check the following configuration for I2c.It is
 ## Hardware configuration:
 Regarding following figure you can connect the sensor to the development board.
 ![Motherboard_Hardware_Configuration_DA14531](assets/HS3001_DA1531.svg)
+![Motherboard_Hardware_Configuration_DA14531](assets/HS3001_DA1535.svg)
 
 In the same header file you can see the following configuration for HS3001:
 
@@ -247,3 +245,27 @@ This function will examine the write's content.
 
  **_7_**  After the message is sent, the app_easy_timer function is used to schedule the next call to  **user_send_temperature_ind** or **user_send_humidity_ind** function. This will ensure the temperature or humidity is transmitted regularly and after each change the user will receive an indication. The `app_easy_timer`function
 has a resolution of 10ms hence we divide the desired delay in ms by 10. 
+
+
+
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
+## Known Limitations
+
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

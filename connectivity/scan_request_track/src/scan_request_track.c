@@ -62,7 +62,9 @@ static void user_scan_request_cb(struct scan_req_data_msg const * param);
 
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
-    default_app_on_connection(connection_idx, param);
+		arch_printf("Print");
+	default_app_on_connection(connection_idx, param);
+	
 }
 
 void user_on_disconnect( struct gapc_disconnect_ind const *param )
@@ -93,6 +95,8 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
             break;
     }
 }
+
+
 
 static void user_scan_request_cb(struct scan_req_data_msg const * param)
 {

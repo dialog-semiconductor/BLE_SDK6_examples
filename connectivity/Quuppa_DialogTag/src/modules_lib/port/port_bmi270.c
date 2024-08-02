@@ -32,6 +32,7 @@
 #include "port_bmi270_config.h"
 
 
+
 #if(PORT_BMI270_INTERFACE!=PORT_BMI270_INTERFACE_I2C)
     #include "spi.h"
     #define _port_bmi270_itf_start()         spi_cs_low()
@@ -134,6 +135,14 @@ static inline int8_t _port_bmi270_itf_write(uint8_t reg, uint8_t *data, uint16_t
     
     return 0;
 }
+
+
+static inline void __nop(void)
+{
+    __asm volatile ("nop");
+}
+
+
 
 static inline void _port_bmi270_delay_us(volatile uint32_t nof_us)
 {

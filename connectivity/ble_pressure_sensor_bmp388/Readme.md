@@ -1,7 +1,4 @@
-
 # ble_pressure_sensor_bmp388
-
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_pressure_sensor_bmp388/banner.svg?v=1)
 
 ## Example description
 
@@ -35,6 +32,7 @@ Connect the Pressure 5 Click Board™ to the **MikroBUS™ 2** interface on the 
 Apply the jumper configuration of the image shown below.
 
 ![Motherboard_Hardware_Configuration_DA14531](assets/PRO-DK-MikroBus-BMP388.svg)
+![Motherboard_Hardware_Configuration_DA14535](assets/PRO-DK-MikroBus-BMP388_535.svg)
 
 You'll also need to connect the following jumper wire to the Development Kit PRO motherboard this is to connect the INT pin on the Pressure 5 Click to P0_8 on the DA14531 because 
 the label of J18, pin 2 which indicated as P3_1 unconnected.
@@ -111,10 +109,24 @@ If you want to use the I2C interface, no jumpers wires are required, you can ref
 
 ![Characteristic](assets/characteristics.png)
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
 - There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.renesas.com/eu/en/document/mat/um-b-117-da14531-getting-started-pro-development-kit-html-chinese?r=1564826) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

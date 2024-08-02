@@ -5,26 +5,29 @@
  *
  * @brief User configuration file.
  *
- * Copyright (C) 2015-2021 Renesas Electronics Corporation and/or its affiliates
- * The MIT License (MIT)
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE.
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * All rights reserved. Confidential Information.
+ *
+ * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
+ * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
+ * revocable, non-sub-licensable right and license to use the Software, solely if used in
+ * or together with Renesas products. You may make copies of this Software, provided this
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * reserves the right to change or discontinue the Software at any time without notice.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
+ * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGES. USE OF THIS SOFTWARE MAY BE SUBJECT TO TERMS AND CONDITIONS CONTAINED IN
+ * AN ADDITIONAL AGREEMENT BETWEEN YOU AND RENESAS. IN CASE OF CONFLICT BETWEEN THE TERMS
+ * OF THIS NOTICE AND ANY SUCH ADDITIONAL LICENSE AGREEMENT, THE TERMS OF THE AGREEMENT
+ * SHALL TAKE PRECEDENCE. BY CONTINUING TO USE THIS SOFTWARE, YOU AGREE TO THE TERMS OF
+ * THIS NOTICE.IF YOU DO NOT AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO USE THIS
+ * SOFTWARE.
+ *
  ****************************************************************************************
  */
 
@@ -43,7 +46,7 @@
 #include "co_bt.h"
 
 /*
- * LOCAL VARIABLES
+ * DEFINES
  ****************************************************************************************
  */
 
@@ -71,14 +74,18 @@
 
 /*************************************************************************
  * Controller Privacy Mode:
- * - APP_CFG_CNTL_PRIV_MODE_NETWORK Controller Privacy Network mode (default)
- * - APP_CFG_CNTL_PRIV_MODE_DEVICE  Controller Privacy Device mode
+ * - APP_CFG_CNTL_PRIV_MODE_NETWORK Controler Privacy Network mode (default)
+ * - APP_CFG_CNTL_PRIV_MODE_DEVICE  Controler Privacy Device mode
  *
  * Select only one option for controller privacy mode configuration.
  **************************************************************************
  */
 #define USER_CFG_CNTL_PRIV_MODE     APP_CFG_CNTL_PRIV_MODE_NETWORK
 
+/*
+ * VARIABLES
+ ****************************************************************************************
+ */
 
 /******************************************
  * Default sleep mode. Possible values are:
@@ -89,7 +96,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
+static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
 
 /*
  ****************************************************************************************
@@ -131,6 +138,7 @@ static const struct advertise_configuration user_adv_conf = {
     .mode = GAP_GEN_DISCOVERABLE,
 
     /// Host information advertising data (GAPM_ADV_NON_CONN and GAPM_ADV_UNDIRECT)
+    /// Advertising filter policy:
     /// - ADV_ALLOW_SCAN_ANY_CON_ANY: Allow both scan and connection requests from anyone
     /// - ADV_ALLOW_SCAN_ANY_CON_WLST: Allow both scan req from anyone and connection req from
     ///                                White List devices only
@@ -153,31 +161,33 @@ static const struct advertise_configuration user_adv_conf = {
  * - ADV_IND: Connectable undirected advertising event.
  *    - The maximum length of the user defined advertising data shall be 28 bytes.
  *    - The Flags data type are written by the related ROM function, hence the user shall
- *      not include them in the advertising data. The related ROM function adds 3 bytes in 
+ *      not include them in the advertising data. The related ROM function adds 3 bytes in
  *      the start of the advertising data that are to be transmitted over the air.
  *    - The maximum length of the user defined response data shall be 31 bytes.
  *
  * - ADV_NONCONN_IND: Non-connectable undirected advertising event.
  *    - The maximum length of the user defined advertising data shall be 31 bytes.
- *    - The Flags data type may be omitted, hence the user can use all the 31 bytes for 
+ *    - The Flags data type may be omitted, hence the user can use all the 31 bytes for
  *      data.
  *    - The scan response data shall be empty.
  *
  * - ADV_SCAN_IND: Scannable undirected advertising event.
  *    - The maximum length of the user defined advertising data shall be 31 bytes.
- *    - The Flags data type may be omitted, hence the user can use all the 31 bytes for 
+ *    - The Flags data type may be omitted, hence the user can use all the 31 bytes for
  *      data.
  *    - The maximum length of the user defined response data shall be 31 bytes.
  ****************************************************************************************
  */
 /// Advertising data
-#define USER_ADVERTISE_DATA                   ""
+#define USER_ADVERTISE_DATA         "\x03"\
+                                    ADV_TYPE_COMPLETE_LIST_16BIT_SERVICE_IDS\
+                                    ADV_UUID_DEVICE_INFORMATION_SERVICE
 
 /// Advertising data length - maximum 28 bytes, 3 bytes are reserved to set
 #define USER_ADVERTISE_DATA_LEN               (sizeof(USER_ADVERTISE_DATA)-1)
 
 /// Scan response data
-#define USER_ADVERTISE_SCAN_RESPONSE_DATA     ""
+#define USER_ADVERTISE_SCAN_RESPONSE_DATA ""
 
 /// Scan response data length- maximum 31 bytes
 #define USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN (sizeof(USER_ADVERTISE_SCAN_RESPONSE_DATA)-1)
@@ -195,7 +205,7 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "DIALOG-TMPL"
+#define USER_DEVICE_NAME        "DLG-BRBN"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)
@@ -217,7 +227,7 @@ static const struct gapm_configuration user_gapm_conf = {
 
     /// Device Address Type
     .addr_type = APP_CFG_ADDR_TYPE(USER_CFG_ADDRESS_MODE),
-    /// Duration before regenerate the random private address when privacy is enabled
+    /// Duration before regenerating the Random Private Address when privacy is enabled
     .renew_dur = 15000,    // 15000 * 10ms = 150s is the minimum value
 
     /***********************
@@ -225,7 +235,7 @@ static const struct gapm_configuration user_gapm_conf = {
      ***********************
      */
 
-    /// Private static address
+    /// Random Static address
     // NOTE: The address shall comply with the following requirements:
     // - the two most significant bits of the address shall be equal to 1,
     // - all the remaining bits of the address shall NOT be equal to 1,
@@ -234,7 +244,7 @@ static const struct gapm_configuration user_gapm_conf = {
     // random static address will be automatically generated.
     .addr = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 
-    /// Device IRK used for resolvable random BD address generation (LSB first)
+    /// Device IRK used for Resolvable Private Address generation (LSB first)
     .irk = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f},
 
     /****************************
@@ -270,10 +280,10 @@ static const struct gapm_configuration user_gapm_conf = {
     .max_mps = 0,
 
     /// Maximal Tx octets (connInitialMaxTxOctets value, as defined in 4.2 Specification)
-    .max_txoctets = 0,
+    .max_txoctets = 251,
 
     /// Maximal Tx time (connInitialMaxTxTime value, as defined in 4.2 Specification)
-    .max_txtime = 0,
+    .max_txtime = 2120,
 };
 
 /*

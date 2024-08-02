@@ -41,7 +41,7 @@
  #include "arch_console.h"
  #include "app_entry_point.h"
  #include "adc.h"
- 
+
  
  /*
  * GLOBAL VARIABLE DEFINITIONS
@@ -290,6 +290,11 @@ void user_gamepad_config_digitizer(void){
  * @return void
  ****************************************************************************************
  */
+static inline void __nop(void)
+{
+    __asm volatile ("nop");
+}
+
 void user_usDelay(uint32_t nof_us)
 {
     while( nof_us-- ){
@@ -306,6 +311,7 @@ void user_usDelay(uint32_t nof_us)
         __nop();
     }
 }
+
 
 /**
  ****************************************************************************************

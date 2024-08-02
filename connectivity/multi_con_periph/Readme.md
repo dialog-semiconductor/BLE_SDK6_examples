@@ -1,7 +1,5 @@
 # Multi-peripheral Example
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/multi_con_periph/banner.svg?v=1)
-
 ## Example description
 
 This example demonstrates how a single peripheral can be connected to more than one central. DA14531 is able to support up to 3 connections and the DA14585 up to 8 simultaneous connections. Additionally it also demonstrates how one could keep different characteristic values depending on different connections.

@@ -76,13 +76,8 @@
 /* Production debug output configuration                                               */
 /***************************************************************************************/
 #if PRODUCTION_DEBUG_OUTPUT
-#if defined (__DA14531__)
-    #define PRODUCTION_DEBUG_PORT   GPIO_PORT_0
-    #define PRODUCTION_DEBUG_PIN    GPIO_PIN_11
-#else
-    #define PRODUCTION_DEBUG_PORT   GPIO_PORT_2
-    #define PRODUCTION_DEBUG_PIN    GPIO_PIN_5
-#endif
+#define PRODUCTION_DEBUG_PORT   GPIO_PORT_0
+#define PRODUCTION_DEBUG_PIN    GPIO_PIN_11
 #endif
 
 /*

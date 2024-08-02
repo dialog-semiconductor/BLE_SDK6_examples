@@ -5,26 +5,29 @@
  *
  * @brief Peripherals setup and initialization.
  *
- * Copyright (C) 2018-2021 Renesas Electronics Corporation and/or its affiliates
- * The MIT License (MIT)
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE.
+ * Copyright (C) 2015-2023 Renesas Electronics Corporation and/or its affiliates.
+ * All rights reserved. Confidential Information.
+ *
+ * This software ("Software") is supplied by Renesas Electronics Corporation and/or its
+ * affiliates ("Renesas"). Renesas grants you a personal, non-exclusive, non-transferable,
+ * revocable, non-sub-licensable right and license to use the Software, solely if used in
+ * or together with Renesas products. You may make copies of this Software, provided this
+ * copyright notice and disclaimer ("Notice") is included in all such copies. Renesas
+ * reserves the right to change or discontinue the Software at any time without notice.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS". RENESAS DISCLAIMS ALL WARRANTIES OF ANY KIND,
+ * WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE
+ * MAXIMUM EXTENT PERMITTED UNDER LAW, IN NO EVENT SHALL RENESAS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE, EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGES. USE OF THIS SOFTWARE MAY BE SUBJECT TO TERMS AND CONDITIONS CONTAINED IN
+ * AN ADDITIONAL AGREEMENT BETWEEN YOU AND RENESAS. IN CASE OF CONFLICT BETWEEN THE TERMS
+ * OF THIS NOTICE AND ANY SUCH ADDITIONAL LICENSE AGREEMENT, THE TERMS OF THE AGREEMENT
+ * SHALL TAKE PRECEDENCE. BY CONTINUING TO USE THIS SOFTWARE, YOU AGREE TO THE TERMS OF
+ * THIS NOTICE.IF YOU DO NOT AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO USE THIS
+ * SOFTWARE.
+ *
  ****************************************************************************************
  */
 
@@ -33,94 +36,100 @@
  ****************************************************************************************
  */
 
-#include "rwip_config.h"             // SW configuration
-#include "user_periph_setup.h"       // peripheral configuration
-#include "gpio.h"
-#include "uart.h"                    // UART initialization
-#include "m_drv_console.h"
-#include "m_drv_interface.h"
-#include "m_drv_mc36xx.h"
-#include "arch_console.h"
-#include "user_accelerometer.h"
+#include "user_periph_setup.h"
+#include "datasheet.h"
 #include "system_library.h"
+#include "rwip_config.h"
+#include "gpio.h"
+#include "uart.h"
+#include "syscntl.h"
+
+/*
+ * GLOBAL VARIABLE DEFINITIONS
+ ****************************************************************************************
+ */
+
 #if DEVELOPMENT_DEBUG
 
 void GPIO_reservations(void)
 {
 /*
-* Globally reserved GPIOs reservation
+    i.e. to reserve P0_1 as Generic Purpose I/O:
+    RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
 */
 
-/*
-* Application specific GPIOs reservation. Used only in Development mode (#if DEVELOPMENT_DEBUG)
+#if defined (CFG_PRINTF_UART2)
+    RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
+#endif
 
-i.e.
-    RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);    //Reserve P_01 as Generic Purpose I/O
-*/
-
-#ifdef CFG_PRINTF_UART2
-    RESERVE_GPIO(UART2_TX, UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, PID_UART2_TX);
-    RESERVE_GPIO(UART2_RX, UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, PID_UART2_RX);
+#if !defined (__DA14586__)
+    RESERVE_GPIO(SPI_EN, SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);
 #endif
 }
-#endif //DEVELOPMENT_DEBUG
 
-void set_pad_functions(void)        // set gpio port function mode
+#endif
+
+void set_pad_functions(void)
 {
 /*
-* Configure application ports.
-i.e.
-    GPIO_ConfigurePin( GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false ); // Set P_01 as Generic purpose Output
+    i.e. to set P0_1 as Generic purpose Output:
+    GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
 
-#ifdef __DA14586__
-    // disallow spontaneous flash wake-up
-    GPIO_ConfigurePin(SPI_EN_GPIO_PORT, SPI_EN_GPIO_PIN, OUTPUT, PID_GPIO, true);
+#if defined (__DA14586__)
+    // Disallow spontaneous DA14586 SPI Flash wake-up
+    GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
+#else
+    // Disallow spontaneous SPI Flash wake-up
+    GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);
 #endif
 
-#ifdef CFG_PRINTF_UART2
-    GPIO_ConfigurePin(UART2_TX_GPIO_PORT, UART2_TX_GPIO_PIN, OUTPUT, PID_UART2_TX, false);
-    GPIO_ConfigurePin(UART2_RX_GPIO_PORT, UART2_RX_GPIO_PIN, INPUT, PID_UART2_RX, false);
+#if defined (CFG_PRINTF_UART2)
+    // Configure UART2 TX Pad
+    GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
+
 }
+
+#if defined (CFG_PRINTF_UART2)
+// Configuration struct for UART2
+static const uart_cfg_t uart_cfg = {
+    .baud_rate = UART2_BAUDRATE,
+    .data_bits = UART2_DATABITS,
+    .parity = UART2_PARITY,
+    .stop_bits = UART2_STOPBITS,
+    .auto_flow_control = UART2_AFCE,
+    .use_fifo = UART2_FIFO,
+    .tx_fifo_tr_lvl = UART2_TX_FIFO_LEVEL,
+    .rx_fifo_tr_lvl = UART2_RX_FIFO_LEVEL,
+    .intr_priority = 2,
+};
+#endif
 
 void periph_init(void)
 {
+#if defined (__DA14531__)
+    // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
+    syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
+#else
     // Power up peripherals' power domain
     SetBits16(PMU_CTRL_REG, PERIPH_SLEEP, 0);
     while (!(GetWord16(SYS_STAT_REG) & PER_IS_UP));
-
     SetBits16(CLK_16M_REG, XTAL16_BIAS_SH_ENABLE, 1);
+#endif
 
-    //rom patch
-     patch_func();
+    // ROM patch
+    patch_func();
 
-    //Init pads
+    // Initialize peripherals
+#if defined (CFG_PRINTF_UART2)
+    // Initialize UART2
+    uart_initialize(UART2, &uart_cfg);
+#endif
+
+    // Set pad functionality
     set_pad_functions();
 
-    // (Re)Initialize peripherals
-    // i.e.
-    //  uart_init(UART_BAUDRATE_115K2, UART_FRAC_BAUDRATE_115K2, UART_CHARFORMAT_8);
-
-#ifdef CFG_PRINTF_UART2
-    SetBits16(CLK_PER_REG, UART2_ENABLE, 1);
-    uart2_init(UART_BAUDRATE_115K2, UART_FRAC_BAUDRATE_115K2, UART_CHARFORMAT_8);
-#endif
-
-   // Enable the pads
-    SetBits16(SYS_CTRL_REG, PAD_LATCH_EN, 1);
-
-    RESERVE_GPIO(,I2C_GPIO_PORT, I2C_SDA_PIN, PID_I2C_SDA);
-    RESERVE_GPIO(,I2C_GPIO_PORT, I2C_SCL_PIN, PID_I2C_SCL);
-    // Init I2C
-    GPIO_ConfigurePin(I2C_GPIO_PORT, I2C_SCL_PIN, INPUT, PID_I2C_SCL, false);
-    GPIO_ConfigurePin(I2C_GPIO_PORT, I2C_SDA_PIN, INPUT, PID_I2C_SDA, false);
-
-    m_drv_i2c_init();
-
-    M_DRV_MC36XX_Init();
-#ifdef FIFO_DEMO
-    M_DRV_MC36XX_EnableFIFO(E_M_DRV_MC36XX_FIFO_CTL_ENABLE, E_M_DRV_MC36XX_FIFO_MODE_WATERMARK, FIFO_THRESHOLD);
-#endif
-    M_DRV_MC36XX_SetMode(E_M_DRV_MC36XX_MODE_CWAKE);
+    // Enable the pads
+    GPIO_set_pad_latch_en(true);
 }

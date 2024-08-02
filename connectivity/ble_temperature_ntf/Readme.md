@@ -1,7 +1,5 @@
 # ble_temperature_ntf
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ble_temperature_ntf/banner.svg?v=1)
-
 ## Example description
 
 This example shows:
@@ -37,6 +35,7 @@ This why we have opted to programme the onboard SPI flash with the generated bin
 Apply the jumper configuration of the image shown below.
 
 ![Motherboard_Hardware_Configuration_DA14531](assets/da14531_temp.svg)
+![Motherboard_Hardware_Configuration_DA14531](assets/da14535_temp.svg)
 	
 if you would like to use the JTAG interface for debug purpose you have to choose different i2C GPIOs configurations. Be sure to update the `user_periph_setup.h` with the following configuration as an example:
 
@@ -88,21 +87,13 @@ This example requires:
 ### Setup
 For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
-1. Start Keil using the `ble_temperature_ntf.uvprojx` Keil project file.
 
-2. Expand the dialog shown in the red box in the image below.
-
-![Expand_Select_Device](assets/Expand_Select_Device.png)
-
-3. Select your device: DA14531, DA14586 or DA14585.
-		
-![Select_Device](assets/Select_Device.png)
-
+Remember to download the binary of the application in to the Flash and then remove the Jtag pins.
 
 
 ## Expected Results
 
-1. Open the BLE scanner app and look for "DLG-TEMP".
+1. Open the BLE scanner app and look for "Temp_ntf".
 
 2. Connect to the device.
 
@@ -122,15 +113,24 @@ custom action: a write to the notification. When this occurs the **user_temperat
 anything else, a timer is generated that calls **user_send_temperature_ntf** after NOTIFICATION_DELAY ms. **user_send_temperature_ntf** will read out the sensor data and convert it to a string(for demo purposes). The string will be placed in a message, along with some other parameters, like the connection ID
 and the characteristic handle. After the message is sent, the app_easy_timer function is used to schedule the next call to the **user_send_temperature_ntf** function. This will ensure the temperature is transmitted regularly. The `app_easy_timer`function
 has a resolution of 10ms hence we divide the desired delay in ms by 10.
+## Further reading
 
-## Troubleshooting
-- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic development kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
 
-- Try a different USB1 cable.
 
-- Try different jumper wires, if used.
 
-- Note that the internal temperature sensor only works for the DA14531
+## Known Limitations
 
-- If none of the above helps, please check the user manual according to your daughter board and mother board. User manual can be found [Here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard and [Here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

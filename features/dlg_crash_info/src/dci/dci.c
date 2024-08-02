@@ -306,7 +306,6 @@ __STATIC_INLINE bool init_dci_fault_info(dci_last_fault_hdlr_t fault_hdlr)
 
 
 
-void HardFault_HandlerC(unsigned long *hardfault_args);
 
 
 
@@ -352,7 +351,7 @@ void HardFault_HandlerC(unsigned long *hardfault_args)
 
 }
 
-void NMI_HandlerC(unsigned long *nmi_args);
+
 
 void NMI_HandlerC(unsigned long *nmi_args)
 {
@@ -406,4 +405,3 @@ void NMI_HandlerC(unsigned long *nmi_args)
 
 
 /// @} APP
-

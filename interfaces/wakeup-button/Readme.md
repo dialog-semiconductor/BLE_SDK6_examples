@@ -1,8 +1,4 @@
-﻿
-# DA14585/DA14586 and DA14531 Multiple button press wake up callback
-
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/wakeup-button/banner.svg?v=1)
-
+﻿# DA14585/DA14586 and DA1453x Multiple button press wake up callback
 
 ## Example description
 
@@ -18,11 +14,12 @@ The expected result of the example can be verified by:
 ## HW and SW configuration
 
 This example runs on the BLE Smart SoC (System on Chip) devices:
-- DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
+- DA14585/DA14586 or DA1453x daughter board + DA14531 or DA1453x DEVKT-P PRO-Motherboard.
 - DA14585/DA14586 daughter board + Basic dev Kit mother board.
 	
 The user manuals for the development kits can be found:
-- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- [here](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14531-00fxdevkt-p-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-development-kit-pro) for the DA14531DEVKT-P PRO-Motherboard.
+- [here](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14535-00fxdevkt-p-smartbond-tiny-da14535-bluetooth-low-energy-53-soc-development-kit-pro) for the   DA1453x DEVKT-PPRO-Motherboard.
 - [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
 
 The example is running from SRAM. To run the program from flash please visit chapter 13 of the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/tools/SPIFlashProgrammer.html).
@@ -33,9 +30,10 @@ The example is running from SRAM. To run the program from flash please visit cha
 	- LED jumper on J8 is configured to P0_9 (red box 2).
 	- SW2 (button 2) is configured to P3_1, located on J19 (red box 1)
 	- SW3 (button 3) on J19 is configured to P0_7 (P27) on J2, see green line in the image below
-	- Connect the DA145xxDEVKT-P PRO-Motherboard to the working station through USB1 connector. 
+	- Connect the DA14531 or DA1453x DEVKT-P PRO-Motherboard to the working station through USB1 connector. 
 
 	![Motherboard_Hardware_Configuration_DA14531](assets/Motherboard_Hardware_Configuration_DA14531.svg)
+	![Motherboard_Hardware_Configuration_DA14535](assets/Motherboard_Hardware_Configuration_DA14535.svg)
 	
 * **Hardware configuration DA14585 using the DA145xxDEVKT-P PRO-Motherboard**
 
@@ -105,7 +103,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	- __Note if SmartSnippets toolbox is used remove the jumper connected to P1_3 on J8__ 
 		  
 	Image below shows a capture of SmartSnippets
-	![DA14531_SmartSnippets_Capture_wakeup](assets/DA14531_SmartSnippets_Capture_wakeup.png)
+	![DA1453x_SmartSnippets_Capture_wakeup](assets/DA14531_SmartSnippets_Capture_wakeup.png)
 
 4. After launching the example, the system will start advertising. 
 	- Note that at start up __no__ message is send via UART.
@@ -172,17 +170,24 @@ Configure the callback function:
 
 3. `arch_ble_ext_wakeup_off()` this function will disable external wake up, the BLE core can wake up the system again.
 
-## Troubleshooting
-- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
+## Further reading
 
-- Try a different USB1 cable.
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
 
-- Try different jumper wires, if used.
 
-- If SmartSnippets toolbox is used, is the jumper connected to P1_3 on J8 removed?
 
-- If none of the above steps help, please check the user manual according to your development kit. 
-	- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
-	- [here](https://www.dialog-semiconductor.com/sites/default/files/um-b-048_da14585da14586_getting_started_guide_v2.0_0.pdf) for the Basic Development Kit.
+## Known Limitations
 
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

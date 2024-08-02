@@ -1,7 +1,5 @@
 # DA14531 - DA14585/586 Simple Beacon Example
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/simple_beacon/banner.svg?v=1)
-
 ## Example description
 
 The main purpose of this Software Εxample is to demonstrate creating a ***Non-Connectable Advertising*** application example. To make Non-Connectable advertising more efficient the ``flag type`` field of an advertising packet is optional (please check ***Core Specification Supplement v6 by Bluetooth SIG***). If ``flag type`` is not used, it can free up to 3 bytes of space which can then be used for sending more advertising data.
@@ -68,11 +66,13 @@ Refer to the getting started guide of [DA14585 Basic Development Kit](http://lpc
 
 ### DA14531 Hardware Configuration
 
-In case of DA14531, the ***DA145xx Pro Development Kit*** is also required for this Software Example with default jumper configuration. Please see the illustrations below:
+In case of DA14531, the ***DA14531 Pro Development Kit*** is also required for this Software Example with default jumper configuration. Please see the illustrations below:
 
-Jumpers are placed in default configurations. Refer to the getting started guide of [DA145xx Pro Development Kit](https://www.dialog-semiconductor.com/da14531-getting-started).
+Jumpers are placed in default configurations. Refer to the getting started guide of [DA14531 Pro Development Kit](https://www.dialog-semiconductor.com/da14531-getting-started).
 
 ![531_pro_dk](assets/531_pro_dk.svg)
+
+![535_pro_dk](assets/53x_pro_dk.svg)
 
 ### Software configuration
 
@@ -159,11 +159,24 @@ To verify please take a look at the BLE sniffer log data
 
 ![scan_resp](assets/scan_resp.png)
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- Refer to the following application note for [DA1458x known hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf  "known hardware limitations").
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
-- Refer to the following application note for [DA14531 known hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation  "known hardware limitations"). 
+## Feedback and support ?
 
-- If you have any question, please contact us in our [public Bluetooth forums](https://www.dialog-semiconductor.com/forum).
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

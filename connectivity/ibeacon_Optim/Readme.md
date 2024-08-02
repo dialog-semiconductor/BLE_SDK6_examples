@@ -1,22 +1,22 @@
-## Optimised Ibeacon example
+# Optimised Ibeacon example
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/ibeacon_Optim/banner.svg?v=1)
+## Example description
 
-The example demonstrates an optimized software implementation for ibeacon on the DA14531, it can be downloaded from [A14531 Power optimized Dynamic advertising](http://lpccs-docs.dialog-semiconductor.com/SW_Example/SDK6/DA14531_Power_optimized_Dynamic_advertising.zip)
+The example demonstrates an optimized software implementation for ibeacon on the DA14531.
 
-The example is an update of the [ibeacon SW](https://www.dialog-semiconductor.com/sites/default/files/da14531_ibeacon.zip), below the main modifications, basically we demonstrate how to:
+The example is an update of the ibeacon SW example: ``BLE_SDK6_examples\connectivity\ibeacon``, below the main modifications, basically we demonstrate how to:
 
 - Alternate Static random address: change the device address in every advertising event
 - Alternate Tx output power level: change the Tx output power level in every advertising event
 - Alternate User advertising data: change the Beacon advertising payload in every advertising event 
 
-A new ibeacon structure has been created to allow the alternating and the advertising interval is set to 10 s.
+A new ibeacon structure has been created to allow the alternating and the advertising interval is set to 1 s.
 
-Because the example needs changes into the SDK we are providing within the source directory for all the modified files: *src\modified_files*
+Because the example needs changes into the SDK we are providing within the patch directory the patch file: ``patch\SDK6patch.diff``
 
 ```` C
 /* Set the advertising rate */
-#define ADV_INTERVAL_ms							10000
+#define ADV_INTERVAL_ms							1000
 ````
 
 ```` C
@@ -127,16 +127,8 @@ arch_system.c :
 void conditionally_run_radio_cals(void)
 {
 #if defined (__DA14531__)
-    // 531 case
-    uint32_t current_time = lld_evt_time_get();
-
-    if (current_time < last_temp_time)
-    {
-        last_temp_time = 0;
-    }
-
-    if ((current_time - last_temp_time) >= 500000)
-    {
+#if (USE_RF_LDO_CALIBRATION)
+    if (((current_time - last_time) >= 500000) || rf_ldo_calibration_pending)
  
 
 ````
@@ -155,10 +147,10 @@ otp_cs.c :
 arch.h :
 
 #if defined (__DA14531__)
-#define HW_STARTUP_TIME_IN_XTAL32K_CYCLES    (11)   // 11 LP clocks for startup state machine handling
-#define HW_STARTUP_TIME_IN_RCX_CYCLES        (7)    // 7 LP clocks for startup state machine handling
-#define RCX_BLE_PWR_UP_TO_SLP_IRQ_USEC       (60)
-#define XTAL32K_BLE_PWR_UP_TO_SLP_IRQ_USEC   (45)
+#define HW_STARTUP_TIME_IN_XTAL32K_CYCLES    (5)   // 5 LP clocks for startup state machine handling
+#define HW_STARTUP_TIME_IN_RCX_CYCLES        (3)    // 3 LP clocks for startup state machine handling
+#define RCX_BLE_PWR_UP_TO_SLP_IRQ_USEC       (30)
+#define XTAL32K_BLE_PWR_UP_TO_SLP_IRQ_USEC   (30)
 #endif
  
 ````
@@ -188,15 +180,18 @@ Battery Lifetime Estimator tool can be used and it can be loaded (from the Smart
 
 * **Hardware configuration**
 
-	- This example runs on the DA14531 Bluetooth Smart SoC device.
-	- A DA14531 [USB](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) or [PRO](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) Development kit is needed for this example.
+- This example runs on the DA1453x (DA14531-00, DA14531-01 and DA14535) Bluetooth Smart SoC devices.
+- The user manuals for the development kits can be found [Here](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14531-00fxdevkt-p-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- For the DA14531 getting started guide you can refer to [UM-B-117](https://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
+
+- For the DA14535 getting started guide you can refer to this [UM-B-165](https://lpccs-docs.renesas.com/DA14535/UM-B-165-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html#device-family-getting-started-with-the-pro-development-kits)
+
 	
 * **Software configuration**
 
 	- This example requires:
-        * Smartsnippets Studio 2.0.14 (or later)
-        * SDK6.0.14 (or later)
-		* SEGGER’s J-Link tools should be downloaded and installed.
+    	- [SDK6 latest version](https://www.renesas.com/sdk6_latest)
+    	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ## How to run the example
 
@@ -208,12 +203,25 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 2.  Run the example using the Keil debugger.
 3.  Use a Smart Device running an App such as Locate to view the beacons transmitted by the DA14531.
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- There are no known limitations for this example. But you can check and refer to the following 
-  application note for known hardware limitations for DA14531 devices:
-  [DA14531 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf)
-- Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
-- You can also refer to the troubleshooting section in the [Getting Started with the DA14531 PRO Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 
 

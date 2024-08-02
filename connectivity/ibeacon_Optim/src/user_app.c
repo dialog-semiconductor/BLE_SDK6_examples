@@ -48,13 +48,15 @@
  */
 /* Select output power */
 /* Select output power */
+#define TX_POWER_0dBm
+#undef  TX_POWER_2d5Bm
 
 /* User defined advertising fields */
 #define UUID_STR										"c3b8d257-493e-49da-87ba-9294ee8acf94"
 
 
 /* Set the advertising rate */
-#define ADV_INTERVAL_ms							10000
+#define ADV_INTERVAL_ms							1000
 
 /*
  * TYPE DEFINITIONS
@@ -89,13 +91,10 @@ static void uuid2hex(char *uuid, uint8_t *output);
 */
 void user_app_on_init(void)
 {
-
 		/* If we have booted from flash then it will still be in active mode, power down to 
 			 reduce current consumption. */
-		(void)spi_flash_power_down();	
-
+		spi_flash_power_down();	
 		default_app_on_init();
-
 }
 
 /**
@@ -136,9 +135,7 @@ void user_app_adv_start(void)
 		
 	  adv_payload.minor[0] = MINOR_0;
 	  adv_payload.minor[1] = MINOR_1;
-		
-		
-					
+
       //ADC read
       if(interval_count == ADC_BATT_INTERVAL) 
 	    {
@@ -165,6 +162,8 @@ void user_app_adv_start(void)
       adv_payload.minor[0] = (uint8_t)((Minor_Addr >> 8) & 0x00FF);
       adv_payload.minor[1] = (uint8_t)(Minor_Addr & 0x00FF);
 		
+	  adv_payload.measured_power = MEASURED_POWER_0dBm;
+			
 		/* Set the advertising interval */
 		cmd->intv_min = MS_TO_BLESLOTS(ADV_INTERVAL_ms);
 		cmd->intv_max = MS_TO_BLESLOTS(ADV_INTERVAL_ms);
@@ -233,6 +232,9 @@ void user_app_adv_start_new(void)
       //minor
       adv_payload_new.minor[0] = (uint8_t)((Minor_Addr >> 8) & 0x00FF);
       adv_payload_new.minor[1] = (uint8_t)(Minor_Addr & 0x00FF);
+			
+
+	  adv_payload_new.measured_power = MEASURED_POWER_2d5Bm;
 			
 		/* Set the advertising interval */
 		cmd->intv_min = MS_TO_BLESLOTS(ADV_INTERVAL_ms);

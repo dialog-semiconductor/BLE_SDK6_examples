@@ -1,7 +1,5 @@
 # Real Time Clock example 
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/RTC_Example/banner.svg?v=1)
-
 ## Example description
 
 The main purpose of this SW example is to demonstrate how to configure the RTC in order to keep time while the BLE is operating as well as use the **EVENTS** and **ALARMS** available on the RTC HW.
@@ -204,7 +202,7 @@ A 128-bit UUID custom service is also exposed with 3 custom characteristics for 
 ## HW and SW configuration
 
 - **Hardware configuration**
-  - This example runs only on DA14530/531 Bluetooth Smart SoC devices.
+  - This example runs on all DA1453x Bluetooth Smart SoC devices.
   - The Pro Development kit is required for this example.
   - Connect the Development kit to the host computer.
   - A flywire should be placed between the P06 and the FTDI's UTX pin if printing is enabled (PRINT_DATE_TIME_DATA defined) as well as J8[3:4] jumper for the alert LED.
@@ -216,7 +214,7 @@ A 128-bit UUID custom service is also exposed with 3 custom characteristics for 
 - **Software configuration**
   - This example requires:
     - Smartsnippets Toolbox 5.0.16.
-    - SDK6.0.14
+    - SDK6.0.22
     - A smartphone with a BLE scanning app (for example BLE scanner on Android or Lightblue on IOS)
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - Python 3.5 or greater
@@ -283,11 +281,24 @@ Examples:
 - Setting a one shot alarm on the next minute change, the command is 0x00 00 FF FF 00 00 00 00
   - The alarm will occur on next minute change where the sec and hos will switch to 0.
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- There are no known limitations for this example. But you can check and refer to the following 
-  application note for known hardware limitations.
-For DA14531 devices:
-  [DA14531 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf)
-- Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
-- You can also refer to the troubleshooting section in the [Getting Started with the DA14531 PRO Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+

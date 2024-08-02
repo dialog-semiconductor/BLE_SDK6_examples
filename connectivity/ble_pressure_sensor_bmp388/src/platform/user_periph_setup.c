@@ -42,7 +42,6 @@
 #include "spi.h"
 #include "i2c.h"
 #include "syscntl.h"
-#include "bmp388.h"
 #include "user_app.h"
 
 /*

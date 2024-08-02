@@ -1,7 +1,5 @@
 # BLE Central Security Demo Project
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/connectivity/central_Security_Demo/banner.svg?v=1)
-
 ## Example description
 A DA14585/6 or DA14531 Central side project with basic scan/connect and security feature. The main purpose is to demonstrate the basic pairing, encryption and bonding process on central side.
 It will actively pair up with peripheral devices and store bonding information on connection or passively respond to security request from peripheral. None SDK related functions on both central and peripheral sides can be printed to track the process of pairing/bonding process.
@@ -115,10 +113,24 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
 2.  Build and download the example using the Keil IDE. 
 3.  Run the example using the Keil debugger.
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
-- The central app should work with any BLE peripheral theoratically, but only guaranteed to work with ble_app_security example in the SDK
-- For ease of the key input, only 10 peripherals will be scanned and printed at one scanning activity
-- The demo will take no action after successfully pairing/encryption, manually reset on either side is required to run the demo again
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

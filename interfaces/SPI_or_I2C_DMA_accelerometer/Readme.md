@@ -1,8 +1,5 @@
 ﻿# SPI or I2C reading with DMA
 
-![Banner](https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/metadata/BLE_SDK6_examples/interfaces/SPI_or_I2C_DMA_accelerometer/banner.svg?v=1)
-
-
 ## Example description
 
 This example demonstrates how to use SPI or I2C to interface with the LIS2DH accelerometer. The accelerometer will store it's measurements in an internal 32 measurement fifo. When this fifo is full the interrupt pin is asserted, triggering an interrupt on the DA1453x. In the triggered interrupt handler, a DMA transfer is setup to read the fifo contents with minimal CPU involvement. At the end of the DMA transfer, another interrupt is fired, in which the retrieved data is handled. In this example the data is printed out over UART. 

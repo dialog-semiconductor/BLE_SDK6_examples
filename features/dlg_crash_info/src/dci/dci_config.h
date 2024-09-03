@@ -30,7 +30,7 @@
 
 #ifndef _DCI_CONFIG_H_
 #define _DCI_CONFIG_H_
-
+#include "da1458x_config_advanced.h"
 /**
  ****************************************************************************************
  * @addtogroup APP
@@ -49,7 +49,7 @@
 * use ONLY.   This modifies the reset procedure to do a soft reset back into RAM and could potentially
 * cause isses with the scatterload.
 */
-#undef DCI_RAMAP_ADDR0_TEST	
+#define DCI_RAMAP_ADDR0_TEST	
 
 /*
 * This is the array size for total trace depth on the stack the larger this is,

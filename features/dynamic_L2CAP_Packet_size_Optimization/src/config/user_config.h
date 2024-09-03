@@ -49,6 +49,7 @@
  * LOCAL VARIABLES
  ****************************************************************************************
  */
+#define MAX_MTU_SIZE	247
 
 /*
  ****************************************************************************************
@@ -92,7 +93,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
+static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
 
 /*
  ****************************************************************************************
@@ -216,7 +217,7 @@ static const struct gapm_configuration user_gapm_conf = {
 
     /// Maximal MTU. Shall be set to 23 if Legacy Pairing is used, 65 if Secure Connection is used,
     /// more if required by the application
-    .max_mtu = 23,
+    .max_mtu = MAX_MTU_SIZE,
 
     /// Device Address Type
     .addr_type = APP_CFG_ADDR_TYPE(USER_CFG_ADDRESS_MODE),
@@ -273,10 +274,10 @@ static const struct gapm_configuration user_gapm_conf = {
     .max_mps = 0,
 
     /// Maximal Tx octets (connInitialMaxTxOctets value, as defined in 4.2 Specification)
-    .max_txoctets = 0,
+    .max_txoctets = CFG_MAX_TX_PACKET_LENGTH,
 
     /// Maximal Tx time (connInitialMaxTxTime value, as defined in 4.2 Specification)
-    .max_txtime = 0,
+    .max_txtime = (CFG_MAX_TX_PACKET_LENGTH+11+3)*8,
 };
 
 /*

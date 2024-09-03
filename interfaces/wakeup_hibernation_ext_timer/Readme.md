@@ -2,11 +2,11 @@
 
 ## Example description
 
-This example configures a DA14531 device to be used as an Eddystone beacon. The beacon advertises with a random static device address for a set amount of time, after which it drops to hibernation mode or deep-sleep mode. While advertising, the device will utilize the extended-sleep mode in between advertising events. The advertising data include the number of Advertisement PDUs and the temperature acquired by the die sensor. The system wakes up from the real-time clock in deep-sleep mode, or from an external timer upon a GPIO toggle in hibernation mode.
+This example configures a DA14531 or DA14535 device to be used as an Eddystone beacon. The beacon advertises with a random static device address for a set amount of time, after which it drops to hibernation mode or deep-sleep mode. While advertising, the device will utilize the extended-sleep mode in between advertising events. The advertising data include the number of Advertisement PDUs and the temperature acquired by the die sensor. The system wakes up from the real-time clock in deep-sleep mode, or from an external timer upon a GPIO toggle in hibernation mode.
 
 ## HW and SW configuration
-- This example runs on the DA14531 Bluetooth Smart SoC devices.	
-- The DA145xx Pro Development Kit is needed for this example, and it can be used with the DA1453x daughterboard evaluation kits.
+- This example runs on the DA14531 and DA14535 Bluetooth Smart SoC devices.	
+- The DA14531 Pro Development Kit or the DA145x Pro Development Kit is needed for this example, and it can be used with the DA1453x daughterboard evaluation kits.
 
 ### Hardware configuration for use in deep-sleep mode
 
@@ -19,9 +19,9 @@ This example configures a DA14531 device to be used as an Eddystone beacon. The 
 ### Hardware configuration for use in hibernation mode
 
 - Connect the USB1 connector of the DA14531 or DA1453x Pro Development Kit to the host computer.
-- Configure your external timer according to the manufacturer's instructions and connect the wake-up signal of your external timer to P25 of header J2. 
+- Configure your external timer according to the manufacturer's instructions and connect the wake-up signal of your external timer to P25 of header J2 (DA14531 Pro Development Kit) or to P05 of header J2 (DA1453x Pro Development Kit). 
 
-	For this example we used Texas Instruments' TPL5010EVM, in which case you would have to connect the WAKE pin of the module to P25, as well as the DONE pin of the module to P24 of header J2 on the motherboard. If you prefer to supply your external timer from the motherboard, you have to connect the V3 pin of J2 header to AUX_VDD, and the ground pin of the timer to any ground pin (marked with a dash) on the motherboard. Trim the variable resistance to your preferred wake-up time interval.
+	For this example we used Texas Instruments' TPL5010EVM, in which case you would have to connect the WAKE pin of the module to P25 on the DA14531 Pro DK or the P05 of the DA1453x Pro DK, as well as the DONE pin of the module to P24 of header J2 on the DA14531 Pro DK or P04 of header J2 on the DA1453x Pro DK. If you prefer to supply your external timer from the motherboard (applicable to DA14531 Pro DK), you have to connect the V3 pin of J2 header to AUX_VDD, and the ground pin of the timer to any ground pin (marked with a dash) on the motherboard. Trim the variable resistance to your preferred wake-up time interval.
 
 	You can see the jumper configuration below.
 

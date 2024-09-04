@@ -124,7 +124,13 @@
 #define CFG_NVDS_TAG_BLE_CA_MIN_RSSI        (-60)
 #define CFG_NVDS_TAG_BLE_CA_NB_PKT          (20)
 #define CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT      (CFG_NVDS_TAG_BLE_CA_NB_PKT/2)
-
+/****************************************************************************************************************/
+/* Enables the logging of heap memories usage. The feature can be used in development/debug mode.               */
+/* Application must be executed in Keil debugger environment and "da14531.lib" must be replaced with            */
+/* "da14531_with_heap_logging.lib" in project structure under sdk_arch. Developer must stop execution           */
+/* and type disp_heaplog() in debugger's command window. Heap memory statistics will be displayed on window     */
+/****************************************************************************************************************/
+#undef CFG_LOG_HEAP_USAGE
 /****************************************************************************************************************/
 /* Enables the BLE statistics measurement feature.                                                              */
 /****************************************************************************************************************/

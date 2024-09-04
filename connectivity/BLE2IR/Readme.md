@@ -2,7 +2,7 @@
 
 ## Example description
 
-This SDK6 DA14585 example provides an implementation of a Simple RCU using a custom BLE profile. The example uses a 4x4 button matrix, which state is read and buffered with the keyboard module from the [Voice RCU reference design](https://support.dialog-semiconductor.com/connectivity/product/da14585?qt-product_restricted_=5&qt-view__reference_designs__block_1=4#qt-view__reference_designs__block_1). The example makes use of the update parameter request and slave latency functionality.
+This SDK6 DA14585 example provides an implementation of a Simple RCU using a custom BLE profile. The example uses a 4x4 button matrix, which state is read and buffered with the keyboard module from the [Voice RCU reference design](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14585-voice-rcu-da14585-voice-rcu-development-kit). The example makes use of the update parameter request and slave latency functionality.
 
 ## HW and SW configuration
 
@@ -32,8 +32,7 @@ This SDK6 DA14585 example provides an implementation of a Simple RCU using a cus
 * **Software configuration**
 
 	- This example requires:
-    * SmartSnippets Studio V2.0.16.
-    * SDK6 latest version
+    * [SDK6 latest version](https://www.renesas.com/sdk6_latest)
 	- **SEGGER’s J-Link** tools should be downloaded and installed.
 
 
@@ -41,7 +40,7 @@ This SDK6 DA14585 example provides an implementation of a Simple RCU using a cus
 
 For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
 
-The example is running from SRAM. For programming to Flash, see chapter 11 in the [SmartSnippets Toolbox User Manual](https://support.dialog-semiconductor.com/resource/um-b-083-smartsnippets-toolbox-user-manual).
+The example is running from SRAM. For programming to Flash, see chapter 11 in the [SmartSnippets Toolbox User Manual](https://lpccs-docs.renesas.com/UM-B-083/index.html).
 
 ### Initial Setup
 
@@ -54,6 +53,8 @@ The example is running from SRAM. For programming to Flash, see chapter 11 in th
 	- stop: 1 bit
 	- parity: None
 	- flow  control: none
+
+	![UART LOG](assets/UART_Log.png)
 
  - Pressing the button (P1_1) will initiate the following sequence:
 
@@ -77,11 +78,13 @@ The example is running from SRAM. For programming to Flash, see chapter 11 in th
 -  During runtime UART message to a serial terminal of your choice (i.e. Tera Term) will indicate the different procedures for debugging purpose.
  - UART can be disabled at compile time by undefining the CFG_PRINTF flag.  
 
+![DLG Remote](assets/DLG-Remote.jpg)
+
 ### About this example
 This section will highlight the most important aspects of the RCU example in order to get a better idea of it's internal workings.
 
 - The keyboard module from the Voice RCU Reference Design is used for reading the keyboard matrix input.
-	- More information on this can be found in the [UM-B-086 DA14585 Voice RCU Software Manual](https://support.dialog-semiconductor.com/resource/um-b-086-da14585-voice-rcu-software-manual)
+	- More information on this can be found in the [UM-B-086 DA14585 Voice RCU Software Manual](https://www.renesas.com/us/en/document/mat/um-b-086-da14585-voice-rcu-software-manual?r=1626616)
 	- The files belonging to the keyboard module are grouped together as kbd_module in the Keil project.
 	- The keyboard module has some dependencies on the port module. The port_module group in the Keil project contains all of these files.
 	- Upon each button event the keyboard module will send a notification to the application layer by means of the registered keyboard notification callback.
@@ -101,13 +104,26 @@ This section will highlight the most important aspects of the RCU example in ord
 	- user_con_timeout_init(uint32_t delay, uint8_t connection_id): Will start a timer to terminate the connection after the specified time. It will override an existing timer.
 	- user_con_timeout_cancel(): Cancel the timer (if one is currently running).
 	- user_con_timeout_reset(): Resets the timer (if one is currently running). This is used by the application to reset the timer after each button event.
-- The example uses a Custom BLE profile. More information on creating a custom profile can be found [here](https://support.dialog-semiconductor.com/resource/tutorial-3-custom-profile-gatt-cmd-examplev11)
+- The example uses a Custom BLE profile. More information on creating a custom profile can be found [here](https://lpccs-docs.renesas.com/tutorial-custom-profile-DA145xx/index.html)
+
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
 
 ## Known Limitations
 
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
-- There are No known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations](https://support.dialog-semiconductor.com/system/files/resources/DA1458x-KnownLimitations_2018_02_06.pdf "known hardware limitations").
-- Dialog Software [Forum link](https://support.dialog-semiconductor.com/forums).
-- you can Refer also for the Troubleshooting section in the DA1585x Getting Started with the Development Kit UM-B-049.
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

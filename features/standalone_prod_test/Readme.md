@@ -25,17 +25,18 @@ One of the features of the Standalone prod_test is that the user can choose to e
 ## HW and SW configuration
 
 * **Hardware configuration**
-	- This example runs on DA14531-00/01 and DA14585/586 Bluetooth Smart SoC device.
+	- This example runs on DA1453x and DA14585/586 Bluetooth Smart SoC device.
   - Any of the following Development Kits can be used : 
+    - DA14535 Daughter board + DA1453xDEVKT-P PRO Motherboard
     - DA14531-00/01 Daughter board + DA145xxDEVKT-P PRO Motherboard
-    - DA14531 SmartBond TINY™ Module + DA145xxDEVKT-P PRO Motherboard
+    - DA1453x SmartBond TINY™ Module + DA145xxDEVKT-P PRO Motherboard
     - DA14585 Daughter board + DA145xxDEVKT-P PRO Motherboard
 
-  - For running the example on a **DA14531 Daughter board + DA145xxDEVKT-P PRO Motherboard** the following configuration is required.         
+  - For running the example on a **DA1453x Daughter board + DA14531 or DA1453x DEVKT-P PRO Motherboard** the following configuration is required.         
       - Connect the DA145xx Pro Development Kit to the host computer.
       - Make sure that the jumper on J19:2-3 is populated with a jumper for activating the SW2 button.
 
-  - For running the example on a **DA14585/586 Daughter board + DA145xxDEVKT-P PRO Motherboard** the following configuration is required.         
+  - For running the example on a **DA14585/586 Daughter board + DA14531DEVKT-P PRO Motherboard** the following configuration is required.         
       - Connect the DA145xx Pro Development Kit to the host computer.
       - Make sure that the jumper on J19:4-5 is populated with a jumper for activating the SW3 button.
 
@@ -43,7 +44,7 @@ One of the features of the Standalone prod_test is that the user can choose to e
 
 This example requires:
 * SmartSnippets Toolbox 5.0.14 or later.
-* SDK6.0.18
+* SDK6.0.22
 * **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ### STANDALONE MODE TARGET
@@ -222,9 +223,23 @@ As soon as the command sequence starts executing the device will disconnect from
 
 - For the DA14585/586 Getting started guide you can refer to this [link](https://lpccs-docs.renesas.com/da14585_getting_started/index.html).
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
 
-- There are no known limitations for this example. But you can check and refer to the following application note for [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- For general support questions, please contact the [Dialog Forum](https://community.renesas.com/wireles-connectivity/f/bluetooth-low-energy).
-- You can also refer to the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)

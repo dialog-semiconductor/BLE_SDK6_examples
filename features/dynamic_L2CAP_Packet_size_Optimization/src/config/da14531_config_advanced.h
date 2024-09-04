@@ -68,7 +68,7 @@
 /* Enables True Random Number Generator. A true random number, generated at system initialization, is used to   */
 /* seed any random number generator (C standard library, ChaCha20, etc.).                                       */
 /****************************************************************************************************************/
-#define CFG_TRNG
+#define CFG_TRNG (1024)
 
 /****************************************************************************************************************/
 /* Secure connections support.                                                                                  */
@@ -82,12 +82,12 @@
 /* The ECDH keys are always created after a pairing request. If the legacy pairing is to be used, it is         */
 /* recommended to undefine the macro in order to reduce the RAM footprint.                                      */
 /****************************************************************************************************************/
-#define CFG_ENABLE_SMP_SECURE
+#undef CFG_ENABLE_SMP_SECURE
 
 /****************************************************************************************************************/
 /* Uses ChaCha20 random number generator instead of the C standard library random number generator.             */
 /****************************************************************************************************************/
-#define CFG_USE_CHACHA20_RAND
+#undef CFG_USE_CHACHA20_RAND
 
 /****************************************************************************************************************/
 /* Custom heap sizes                                                                                            */
@@ -125,6 +125,13 @@
 #define CFG_NVDS_TAG_BLE_CA_NB_PKT          (20)
 #define CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT      (CFG_NVDS_TAG_BLE_CA_NB_PKT/2)
 
+/****************************************************************************************************************/
+/* Enables the logging of heap memories usage. The feature can be used in development/debug mode.               */
+/* Application must be executed in Keil debugger environment and "da14531.lib" must be replaced with            */
+/* "da14531_with_heap_logging.lib" in project structure under sdk_arch. Developer must stop execution           */
+/* and type disp_heaplog in debugger's command window. Heap memory statistics will be displayed on window       */
+/****************************************************************************************************************/
+#undef CFG_LOG_HEAP_USAGE
 /****************************************************************************************************************/
 /* Enables the BLE statistics measurement feature.                                                              */
 /****************************************************************************************************************/
@@ -212,19 +219,8 @@
 /****************************************************************************************************************/
 #define CFG_RETAIN_RAM_1_BLOCK
 #define CFG_RETAIN_RAM_2_BLOCK
+#define CFG_RETAIN_RAM_3_BLOCK
 
-/****************************************************************************************************************/
-/* Non-retained heap handling. The non-retained heap is either empty or not, and it may fill with messages      */
-/* during the application runtime. If it is not empty while the system is going to extended sleep, it must be   */
-/* retained. Macro state:                                                                                       */
-/*      - If the macro is defined then the retention mode of the RAM cell(s), where the non-ret heap resides,   */
-/*        is automatically controlled by the SDK.                                                               */
-/*      - If the macro is undefined then the retention mode of the RAM cell(s), where the non-ret heap resides, */
-/*        is controlled by the following macros:                                                                */
-/*           * CFG_RETAIN_RAM_1_BLOCK                                                                           */
-/*           * CFG_RETAIN_RAM_2_BLOCK                                                                           */
-/****************************************************************************************************************/
-#define CFG_AUTO_DETECT_NON_RET_HEAP
 
 /****************************************************************************************************************/
 /* Code location selection.                                                                                     */

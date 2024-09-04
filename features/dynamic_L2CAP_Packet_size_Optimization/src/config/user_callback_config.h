@@ -156,7 +156,7 @@ static const struct app_bond_db_callbacks user_app_bond_db_callbacks = {
     .app_bdb_get_device_info_from_slot  = NULL,
 };
 #endif // (BLE_APP_SEC)
-
+#define user_catch_rest_hndl
 #define app_process_catch_rest_cb       user_process_catch_rest
 
 static const struct default_app_operations user_default_app_operations = {

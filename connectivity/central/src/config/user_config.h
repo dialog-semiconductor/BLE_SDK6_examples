@@ -376,10 +376,10 @@ static const struct central_configuration user_central_conf = {
     .scan_window = 0x160,
 
      /// Minimum of connection interval
-    .con_intv_min = 100,
+    .con_intv_min = MS_TO_BLESLOTS(25),
 
     /// Maximum of connection interval
-    .con_intv_max = 100,
+    .con_intv_max = MS_TO_BLESLOTS(25),
 
     /// Connection latency
     .con_latency = 0,

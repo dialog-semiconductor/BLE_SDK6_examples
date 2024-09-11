@@ -53,7 +53,6 @@
 #include "ke_task.h"
 #include "wkupct_quadec.h"
 #include "user_periph_setup.h"
-#include "spi_flash.h"
 
 
 #define SCAN_INTVL_MS		(50)
@@ -538,8 +537,6 @@ void user_app_on_set_dev_config_complete(void)
 		default_app_on_set_dev_config_complete();
 	
 		ble_scan_for_devices();
-	
-		spi_flash_power_down(); //power down flash before entering sleep
 }
 
 

@@ -1,8 +1,9 @@
-# DA14585/DA14586/DA14531 Central Implementation
+# DA1453x/DA1458x Central Implementation
 
 ## Example description
 
 This project is intended to illustrate to the user:
+
 - How to scan for peer devices
 - How to parse advertisement data during the scan process
 - How to connect to a peer device
@@ -10,20 +11,33 @@ This project is intended to illustrate to the user:
 - How to perform GATT Reads, Writes, and handle notifications
 
 This functionality can be verified by:
+
 - Connecting to another peripheral device (Out of the Box supports Proximity Reporter)
 - Reading serial output from the device.
-	
+
+Devices naming:
+
+- DA1453x is refering to DA14531-00, DA14531-01, DA14530 and DA14535.
+- DA1458x is refering to DA14585 and DA14586.
+- The DA14531-00 is the main DA14531 device.
+-  The -00 is just a new naming to introduce the variant DA14531-01. 
+- The DA14531-01 is a ROM variant of the main DA14531-00, not supported by this example.
+- The DA14535 is a DA14531 upgrade.	
 
 ## HW and SW configuration
+
 This example runs on the BLE Smart SoC (System on Chip) devices:
+
 - DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
 - DA14585/DA14586 Basic development Kit.
 - DA14531 USB Kit
 
-The user manuals for the development kits can be found:
-- [DA14531 Development Kit Product page](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
-- [DA14585 Development Kit Basic](https://www.dialog-semiconductor.com/products/da14585-development-kit-basic) for the Basic Development Kit.
-- [DA14531 USB Development Kit Product page](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) for the DA14531 USB Development Kit.
+- For the DA14531 getting started guide you can refer to [UM-B-117](https://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
+
+- For the DA14535 getting started guide you can refer to this [UM-B-165](https://lpccs-docs.renesas.com/DA14535/UM-B-165-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html#device-family-getting-started-with-the-pro-development-kits)
+
+- For the DA14531 Module getting started guide you can refer to this [UM-B-139](https://lpccs-docs.renesas.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/index.html)
+- For the DA14585/586 getting started guide you can refer to this [UM-B-049](https://lpccs-docs.renesas.com/da14585_getting_started/index.html).
 
 * **Hardware configuration using the DA145xxDEVKT-P PRO-Motherboard**
 
@@ -38,12 +52,14 @@ The user manuals for the development kits can be found:
 	  **#define UART2_TX_PIN            GPIO_PIN_5**
 
 	![da14531_usb.png](assets/da14531_usb.svg).
-	
+	- This example works also on the DA1453x DEVKT-P with with any DA1453x Daughterboard
+	![Motherboard_Hardware_Configuration_DA14531](assets/da14535.svg)	
+
 * **Software configuration**
 
-    - This example requires:
-        * [SDK6 latest version](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856), Older versions of SDK6 require minimal changes.
-        * SEGGER’s J-Link tools should be downloaded and installed.
+This example requires:
+- [SDK6 latest version](https://www.renesas.com/sdk6_latest)
+- SEGGER’s J-Link tools should be downloaded and installed.
 
 
 ## How to run the example
@@ -127,14 +143,22 @@ The application functionality is broken up into three source code files: user_ce
 	-	user_gatt_parse_service: Parses a service.
 
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
 ## Known Limitations
 
-- There are no known limitations for this example. But you can check and refer to the following 
-  application note for known hardware limitations.
-For DA14531 devices:
-  [DA14531 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da14531_errata_1v0.pdf)
-For DA14585 devices:
-  [DA14585 hardware limitations](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf)
-- Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forums/dialog-smartbond-bluetooth-low-energy-%E2%80%93-software "Forum Link").
-- You can also refer to the troubleshooting section in the [Getting Started with the DA14531 PRO Development Kit](http://lpccs-docs.dialog-semiconductor.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
 

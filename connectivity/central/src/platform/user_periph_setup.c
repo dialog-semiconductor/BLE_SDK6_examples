@@ -43,7 +43,6 @@
 #include "gpio.h"
 #include "uart.h"
 #include "syscntl.h"
-#include "spi_flash.h"
 /*
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
@@ -61,23 +60,7 @@ void GPIO_reservations(void)
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
 #endif
-
 	RESERVE_GPIO(BUTTON, GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, PID_GPIO);
-	
-		//reserve SPI pins
-	RESERVE_GPIO(en,SPI_EN_PORT, SPI_EN_PIN, PID_SPI_EN);  
-        RESERVE_GPIO(clk,SPI_CLK_PORT, SPI_CLK_PIN, PID_SPI_CLK); 
-        RESERVE_GPIO(d,SPI_DO_PORT, SPI_DO_PIN, PID_SPI_DO); 
-        RESERVE_GPIO(di,SPI_DI_PORT, SPI_DI_PIN, PID_SPI_DI); 
-
-	// SPI Flash config
-#if defined (CFG_SPI_FLASH_ENABLE) 		
-    GPIO_ConfigurePin(SPI_EN_PORT, SPI_EN_PIN, OUTPUT, PID_SPI_EN, true);  
-    GPIO_ConfigurePin(SPI_CLK_PORT, SPI_CLK_PIN, OUTPUT, PID_SPI_CLK, false); 
-    GPIO_ConfigurePin(SPI_DO_PORT, SPI_DO_PIN, OUTPUT, PID_SPI_DO, false); 
-    GPIO_ConfigurePin(SPI_DI_PORT, SPI_DI_PIN, INPUT, PID_SPI_DI, false);               
-#endif	
-	
 }
 
 #endif
@@ -89,10 +72,17 @@ void set_pad_functions(void)
     GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
 
+#if defined (__DA14586__)
+    // Disallow spontaneous DA14586 SPI Flash wake-up
+    GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
+#endif
+
 #if defined (CFG_PRINTF_UART2)
     // Configure UART2 TX Pad
     GPIO_ConfigurePin(UART2_TX_PORT, UART2_TX_PIN, OUTPUT, PID_UART2_TX, false);
 #endif
+	
+	GPIO_ConfigurePin(GPIO_BUTTON_PORT, GPIO_BUTTON_PIN, INPUT_PULLUP, PID_GPIO, false);
 
 }
 
@@ -110,28 +100,6 @@ static const uart_cfg_t uart_cfg = {
     .intr_priority = 2,
 };
 
-
-#endif
-
-
-#if defined (CFG_SPI_FLASH_ENABLE)
-// Configuration struct for SPI
-static const spi_cfg_t spi_cfg = {
-    .spi_ms = SPI_MS_MODE,
-    .spi_cp = SPI_CP_MODE,
-    .spi_speed = SPI_SPEED_MODE,
-    .spi_wsz = SPI_WSZ,
-    .spi_cs = SPI_CS,
-    .cs_pad.port = SPI_EN_PORT,
-    .cs_pad.pin = SPI_EN_PIN,
-#if defined (__DA14531__)
-    .spi_capture = SPI_EDGE_CAPTURE,
-#endif
-};
-
-static const spi_flash_cfg_t spi_flash_cfg = {
-    .chip_size = SPI_FLASH_DEV_SIZE,
-};
 #endif
 
 void periph_init(void)
@@ -154,14 +122,6 @@ void periph_init(void)
 #if defined (CFG_PRINTF_UART2)
     // Initialize UART2
     uart_initialize(UART2, &uart_cfg);
-#endif
-	
-	#if defined (CFG_SPI_FLASH_ENABLE) 
-    // Configure SPI Flash environment
-    spi_flash_configure_env(&spi_flash_cfg); 
-
-    // Initialize SPI
-    spi_initialize(&spi_cfg); 
 #endif
 
     // Set pad functionality

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# DA1453x/DA1458x Central Implementation
-=======
 # DA1453x and DA14585/586 Central Implementation
->>>>>>> bitbucket/push/llvm_no_external_module
 
 ## Example description
 
@@ -18,26 +14,6 @@ This functionality can be verified by:
 
 - Connecting to another peripheral device (Out of the Box supports Proximity Reporter)
 - Reading serial output from the device.
-<<<<<<< HEAD
-
-Devices naming:
-
-- DA1453x is refering to DA14531-00, DA14531-01, DA14530 and DA14535.
-- DA1458x is refering to DA14585 and DA14586.
-- The DA14531-00 is the main DA14531 device.
--  The -00 is just a new naming to introduce the variant DA14531-01. 
-- The DA14531-01 is a ROM variant of the main DA14531-00, not supported by this example.
-- The DA14535 is a DA14531 upgrade.	
-
-## HW and SW configuration
-
-This example runs on the BLE Smart SoC (System on Chip) devices:
-
-- DA14585/DA14586 or DA14531 daughter board + DA145xxDEVKT-P PRO-Motherboard.
-- DA14585/DA14586 Basic development Kit.
-- DA14531 USB Kit
-
-=======
 
 Devices naming:
 
@@ -56,20 +32,16 @@ This example runs on the BLE Smart SoC (System on Chip) devices:
 - DA14585/DA14586 Basic development Kit.
 - DA1453X USB Kit
 
->>>>>>> bitbucket/push/llvm_no_external_module
 - For the DA14531 getting started guide you can refer to [UM-B-117](https://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
 
 - For the DA14535 getting started guide you can refer to this [UM-B-165](https://lpccs-docs.renesas.com/DA14535/UM-B-165-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html#device-family-getting-started-with-the-pro-development-kits)
 
 - For the DA14531 Module getting started guide you can refer to this [UM-B-139](https://lpccs-docs.renesas.com/UM-B-139-Getting-Started-with-DA14531-TINY-Module/index.html)
 - For the DA14585/586 getting started guide you can refer to this [UM-B-049](https://lpccs-docs.renesas.com/da14585_getting_started/index.html).
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> bitbucket/push/llvm_no_external_module
 
 * **Hardware configuration using the DA145xxDEVKT-P PRO-Motherboard**
 
@@ -86,17 +58,8 @@ This example runs on the BLE Smart SoC (System on Chip) devices:
 	![da14531_usb.png](assets/da14531_usb.svg).
 	- This example works also on the DA1453x DEVKT-P with with any DA1453x Daughterboard
 	![Motherboard_Hardware_Configuration_DA14531](assets/da14535.svg)	
-<<<<<<< HEAD
-
-* **Software configuration**
-
-This example requires:
-- [SDK6 latest version](https://www.renesas.com/sdk6_latest)
-- SEGGER’s J-Link tools should be downloaded and installed.
-=======
 
 ## Software Configuration
->>>>>>> bitbucket/push/llvm_no_external_module
 
 - Download the [SDK6 latest version](https://www.renesas.com/sdk6_latest)
 - Install SEGGER’s J-Link tools.

@@ -89,7 +89,7 @@
  *
  ******************************************
  */
-static const sleep_state_t app_default_sleep_mode = ARCH_SLEEP_OFF;
+static const sleep_state_t app_default_sleep_mode = ARCH_EXT_SLEEP_ON;
 
 /*
  ****************************************************************************************
@@ -497,7 +497,7 @@ struct scan_req_data_msg{
 
 typedef void (scn_response_callback)(struct scan_req_data_msg const*);
 
-#define unint8_t DLG_EVENT_HANDLER_ENTER() \
+#define DLG_EVENT_HANDLER_ENTER() \
 {                                                                                                                               \
     struct ea_elt_tag *elt_s = (struct ea_elt_tag *)co_list_pick(&lld_evt_env.elt_prog);                                        \
     struct lld_evt_tag *evt_s = LLD_EVT_ENV_ADDR_GET(elt_s);                                                                    \
@@ -513,7 +513,7 @@ typedef void (scn_response_callback)(struct scan_req_data_msg const*);
                 if (status & (BLE_MIC_ERR_BIT | BLE_CRC_ERR_BIT | BLE_LEN_ERR_BIT | BLE_TYPE_ERR_BIT | BLE_SYNC_ERR_BIT))       \
                     return;                                                                                                     \
                 struct scan_req_data_msg *ind = KE_MSG_ALLOC(SCAN_REQ_DATA_MSG, TASK_APP, TASK_APP, scan_req_data_msg);         \
-                memcpy(ind->scn_bd_address, (uint8_t*)(_ble_base + (uint8_t*)rxdesc->rxdataptr), 6);                            \
+                memcpy(ind->scn_bd_address, (uint8_t*)(_ble_base + (uintptr_t)rxdesc->rxdataptr), 6);                            \
                 ke_msg_send(ind);                                                                                               \
             }                                                                                                                   \
             rx_hdl = co_buf_rx_next(rx_hdl);                                                                                    \

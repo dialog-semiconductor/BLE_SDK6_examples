@@ -1,4 +1,4 @@
-# ibeacon
+# DA1453x and DA14585/586 ibeacon
 
 ## Example description
 
@@ -23,13 +23,27 @@ macro TX_POWER_2d5Bm (see the macro definitions at the start of the user_app.c f
 	- For running the example on DA1453x, a [USB Kit](https://www.dialog-semiconductor.com/products/da14531-development-kit-usb) , [PRO_531](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14531-00fxdevkt-p-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-development-kit-pro) or [PRO_53x](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14535-00fxdevkt-p-smartbond-tiny-da14535-bluetooth-low-energy-53-soc-development-kit-pro) Development kit along with a DA1453x Daughter Board is needed.
   - For running the example on DA14585/586, a [Basic](https://www.renesas.com/us/en/products/wireless-connectivity/bluetooth-low-energy/da14585-00atdevkt-b-smartbond-da14585-bluetooth-low-energy-basic-development-kit) Development kit along with a DA14585 or a DA14586 Daughter Board is needed.
 	
-* **Software configuration**
+## Software Configuration
+- Download the [SDK6 latest version](https://www.renesas.com/sdk6_latest)
+- Install SEGGER’s J-Link tools.
+- If using e² studio with LLVM instead of Keil, ensure your project settings are adjusted accordingly (instructions below).
 
-	- This example requires:
-        * Smartsnippets Studio 2.0.10 (or later)
-        * SDK6.0.14 (or later)
-		* SEGGER’s J-Link tools should be downloaded and installed.
 
+
+
+## Using e² studio with LLVM
+Setup for e² studio
+#. Switching to e² studio: Instead of using Keil, you can use e² studio with LLVM as the compiler toolchain. Make sure your project is configured for LLVM by selecting the appropriate toolchain in e² studio.
+
+
+#. Compile and Build: Open your project in e² studio and compile using LLVM. Ensure your environment variables and paths are properly set for the Renesas toolchain.
+
+#. Run and Debug: Connect your device, set the proper debug configuration in e² studio, and start debugging using J-Link.
+
+
+By switching to e² studio and LLVM, you can take advantage of advanced debugging tools and an open-source toolchain, while maintaining full compatibility with Renesas DA145xx devices.
+
+For detailed steps on using e² studio, refer to the Renesas e² studio User Guide available on the [Renesas website](https://lpccs-docs.renesas.com/e2_studio_sdk6_getting_started/index.html).
 ## How to run the example
 
 For the initial setup of the project that involves linking the SDK to this SW example, please follow the Readme [here](../../Readme.md).
@@ -39,6 +53,10 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 1.  Build and download the example using the Keil IDE. 
 2.  Run the example using the Keil debugger.
 3.  Use a Smart Device running an App such as Locate to view the beacons transmitted by the device.
+
+
+## Note
+This example can be built by e2studio and LLVM compiler instead of using Keil.
 
 ## Further reading
 

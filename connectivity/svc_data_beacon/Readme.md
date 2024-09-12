@@ -1,4 +1,4 @@
-# DA14531-DA14585/586 Service Data Beacon
+# DA1453x and DA14585/586 Service Data Beacon
 
 ## Example description
 
@@ -17,7 +17,7 @@ For getting more information about the Non-Connectable Advertising, please refer
   - The DA1458x / DA145xx Pro Development kit is needed for this example with default jumper configuration..
   - Connect the USB Development kit to the host computer.
 - **Software configuration**
-  - [SDK6 latest version](https://www.renesas.com/us/en/document/swo/sdk60221401-da1453x-da145856).
+  - Download the [SDK6 latest version](https://www.renesas.com/sdk6_latest)
   - **SEGGER’s J-Link** tools should be downloaded and installed.
   - A smartphone with a BLE scanning app (for example **BLE scanner** on Android or **Lightblue** on IOS).
   - A BLE Sniffing tool is also useful; though not mandatory .
@@ -32,6 +32,27 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 - For the DA14531 Getting started guide you can refer to this [link](https://www.dialog-semiconductor.com/da14531-getting-started).
 - For the DA14535 Getting started guide you can refer to this [link](https://lpccs-docs.renesas.com/DA14535/UM-B-165-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html).
 
+## Software Configuration
+Download the latest version of Renesas SDK6.
+Install SEGGER’s J-Link tools.
+If using e² studio with LLVM instead of Keil, ensure your project settings are adjusted accordingly (instructions below).
+
+
+
+
+## Using e² studio with LLVM
+Setup for e² studio
+#. Switching to e² studio: Instead of using Keil, you can use e² studio with LLVM as the compiler toolchain. Make sure your project is configured for LLVM by selecting the appropriate toolchain in e² studio.
+
+
+#. Compile and Build: Open your project in e² studio and compile using LLVM. Ensure your environment variables and paths are properly set for the Renesas toolchain.
+
+#. Run and Debug: Connect your device, set the proper debug configuration in e² studio, and start debugging using J-Link.
+
+
+By switching to e² studio and LLVM, you can take advantage of advanced debugging tools and an open-source toolchain, while maintaining full compatibility with Renesas DA145xx devices.
+
+For detailed steps on using e² studio, refer to the Renesas e² studio User Guide available on the [Renesas website](https://lpccs-docs.renesas.com/e2_studio_sdk6_getting_started/index.html).
 
 
 ### Compile & Run
@@ -63,6 +84,8 @@ To verify please take a look at the BLE sniffer log data, like so,
 	
 ![ble_scaner_data](assets/ble_scanner_bytes.png)
 
+## Note
+This example can be built by e2studio and LLVM compiler instead of using Keil.
 
 ## How it works
 - This example illustrates the basics behind using standard Bluetooth SIG practices for placing advertising ``elements`` into advertising payload.

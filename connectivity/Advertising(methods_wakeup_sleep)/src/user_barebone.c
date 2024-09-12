@@ -48,7 +48,7 @@
 #include "user_button.h"
 #include "uart_utils.h"
 #include "user_periph_setup.h"
-
+#include "arch_console.h"
 /*
  * TYPE DEFINITIONS
  ****************************************************************************************
@@ -480,11 +480,11 @@ void user_change_adv_state(advertising_state state)
     
 #ifdef CFG_PRINTF
     if(adv_state == UNDIRECT_ADVERTISING)
-        printf_string(UART2,"\n\n\rAdvertising state changed to undirected advertising...");
+    	arch_printf("\n\n\rAdvertising state changed to undirected advertising...");
     else if (adv_state == NONCON_ADVERTISING)
-        printf_string(UART2,"\n\n\rAdvertising state changed to nonconnectable advertising...");
+    	arch_printf("\n\n\rAdvertising state changed to nonconnectable advertising...");
     else if (adv_state == PERMANENT_SLEEP)
-        printf_string(UART2,"\n\n\rAdvertising turned off, system going to sleep...");
+    	arch_printf("\n\n\rAdvertising turned off, system going to sleep...");
 #endif //CFG_PRINTF
     
     app_easy_gap_advertise_stop();

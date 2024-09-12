@@ -1,4 +1,4 @@
-# Optimised Ibeacon example
+# DA1453x Optimised Ibeacon example
 
 ## Example description
 
@@ -186,12 +186,29 @@ Battery Lifetime Estimator tool can be used and it can be loaded (from the Smart
 
 - For the DA14535 getting started guide you can refer to this [UM-B-165](https://lpccs-docs.renesas.com/DA14535/UM-B-165-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html#device-family-getting-started-with-the-pro-development-kits)
 
-	
-* **Software configuration**
+## Software Configuration
+Download the latest version of [SDK6 latest version](https://www.renesas.com/sdk6_latest).
+Install SEGGER’s J-Link tools.
+If using e² studio with LLVM instead of Keil, ensure your project settings are adjusted accordingly (instructions below).
 
-	- This example requires:
-    	- [SDK6 latest version](https://www.renesas.com/sdk6_latest)
-    	- **SEGGER’s J-Link** tools should be downloaded and installed.
+
+
+
+## Using e² studio with LLVM
+Setup for e² studio
+#. Switching to e² studio: Instead of using Keil, you can use e² studio with LLVM as the compiler toolchain. Make sure your project is configured for LLVM by selecting the appropriate toolchain in e² studio.
+
+
+#. Compile and Build: Open your project in e² studio and compile using LLVM. Ensure your environment variables and paths are properly set for the Renesas toolchain.
+
+#. Run and Debug: Connect your device, set the proper debug configuration in e² studio, and start debugging using J-Link.
+
+
+By switching to e² studio and LLVM, you can take advantage of advanced debugging tools and an open-source toolchain, while maintaining full compatibility with Renesas DA145xx devices.
+
+For detailed steps on using e² studio, refer to the Renesas e² studio User Guide available on the [Renesas website](https://lpccs-docs.renesas.com/e2_studio_sdk6_getting_started/index.html).
+
+
 
 ## How to run the example
 
@@ -202,6 +219,11 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 1.  Build and download the example using the Keil IDE. 
 2.  Run the example using the Keil debugger.
 3.  Use a Smart Device running an App such as Locate to view the beacons transmitted by the DA14531.
+
+
+## Note
+This example can be built by e2studio and LLVM compiler instead of using Keil.
+
 
 ## Further reading
 

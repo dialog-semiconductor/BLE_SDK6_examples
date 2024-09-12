@@ -36,7 +36,31 @@ An exception is the situation that the slave device somehow removed stored info 
         
         ![Cenrtal Jumper Placement/Wiring](assets/Board_setup.svg)
 
-* **Software configuration**
+## Software Configuration
+- Download the [SDK6 latest version](https://www.renesas.com/sdk6_latest)
+- Install SEGGER’s J-Link tools.
+- If using e² studio with LLVM instead of Keil, ensure your project settings are adjusted accordingly (instructions below).
+
+
+
+
+## Using e² studio with LLVM
+Setup for e² studio
+#. Switching to e² studio: Instead of using Keil, you can use e² studio with LLVM as the compiler toolchain. Make sure your project is configured for LLVM by selecting the appropriate toolchain in e² studio.
+
+
+#. Compile and Build: Open your project in e² studio and compile using LLVM. Ensure your environment variables and paths are properly set for the Renesas toolchain.
+
+#. Run and Debug: Connect your device, set the proper debug configuration in e² studio, and start debugging using J-Link.
+
+
+By switching to e² studio and LLVM, you can take advantage of advanced debugging tools and an open-source toolchain, while maintaining full compatibility with Renesas DA145xx devices.
+
+For detailed steps on using e² studio, refer to the Renesas e² studio User Guide available on the [Renesas website](https://lpccs-docs.renesas.com/e2_studio_sdk6_getting_started/index.html).
+
+
+
+* **Application configuration**
 	* Peripheral:
 		- Use original SDK included ble_app_security for peripheral side app.
 		- Change **.security_request_scenario** under **user_default_hnd_conf** in *user_config.h* to alter the security request behavior. DEF_SEC_REQ_NEVER by default.
@@ -52,7 +76,7 @@ An exception is the situation that the slave device somehow removed stored info 
 		- Define/undefine **CFG_SECURITY_ACTIVE** in *da1458x_config_basic.h* to change security behavior. When defined, central device will send bonding request on connection, ignoring the security request. When undefined, central device will wait for security_request from peripheral to start the pairing process.
 
 	* Compatibility:
-The project was originally created on SDK6.10.511, some codes in SDK files should be modified for full feature.
+The project was originally created on SDK6.0.22, some codes in SDK files should be modified for full feature.
 The source file should work with other SDK file without any modification.
 
 
@@ -112,6 +136,11 @@ static int gapc_cmp_evt_handler(ke_msg_id_t const msgid,
 
 2.  Build and download the example using the Keil IDE. 
 3.  Run the example using the Keil debugger.
+
+
+## Note
+This example can be built by e2studio and LLVM compiler instead of using Keil.
+
 
 ## Further reading
 

@@ -1,4 +1,4 @@
-# DA14585/DA14586/DA1453x - Changing advertising methods using GPIO button interrupt or timer callbacks
+# DA1453x and DA14585/586 - Changing advertising methods using GPIO button interrupt or timer callbacks
 
 ## Example description
 
@@ -60,16 +60,35 @@ The user manuals for the development kits can be found:
 	![simple_button_basic](assets/simple_button_basic.svg)
 
 
-### __Software configuration__
+## Software Configuration
+Download the latest version of [SDK6 latest version](https://www.dialog-semiconductor.com/da14531_sdk_latest)..
+Install SEGGER’s J-Link tools.
 
-  - This example was built on SDK 6.0.14 will be compatible with latest versions.
+Keil5.
+__SEGGER’s J-Link__ tools should be downloaded and installed.
+Serial Terminal software. For example Tera Term or PuTTY.
 
-This example requires:
+If using e² studio with LLVM instead of Keil, ensure your project settings are adjusted accordingly (instructions below).
+
+
+
+
+## Using e² studio with LLVM
+Setup for e² studio
+#. Switching to e² studio: Instead of using Keil, you can use e² studio with LLVM as the compiler toolchain. Make sure your project is configured for LLVM by selecting the appropriate toolchain in e² studio.
+
+
+#. Compile and Build: Open your project in e² studio and compile using LLVM. Ensure your environment variables and paths are properly set for the Renesas toolchain.
+
+#. Run and Debug: Connect your device, set the proper debug configuration in e² studio, and start debugging using J-Link.
+
+
+By switching to e² studio and LLVM, you can take advantage of advanced debugging tools and an open-source toolchain, while maintaining full compatibility with Renesas DA145xx devices.
+
+For detailed steps on using e² studio, refer to the Renesas e² studio User Guide available on the [Renesas website](https://lpccs-docs.renesas.com/e2_studio_sdk6_getting_started/index.html).
+
 	
-- [SDK latest version](https://www.dialog-semiconductor.com/da14531_sdk_latest).
-- Keil5.
-- __SEGGER’s J-Link__ tools should be downloaded and installed.
-- Serial Terminal software. For example Tera Term or PuTTY.
+
 
 ## How to run the example
 
@@ -156,14 +175,29 @@ Starting point for this example is the BLE barebone project from SDK6. This prov
 - The user_callback_config.h has been slightly modified. Callback is added for non-connectible advertising.
 - The user_button.h and user_button.c were added. These files accommodate the button functionality used in this example.
 
-## Troubleshooting
-- Please check that the steps according to your daughter board (DA14531, DA14585 or DA14586) and mother board (basic dev kit or DA145xxDEVKT-P PRO-Motherboard) are followed correctly.
 
-- Try a different USB1 cable.
+## Note
+This example can be built by e2studio and LLVM compiler instead of using Keil.
 
-- Try different jumper wire, if used.
+## Further reading
 
-- If none of the steps described above help, please check the user manual according to your development kit. 
-	- [Here](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html) for the DA145xxDEVKT-P PRO-Motherboard.
-	- [Here](https://www.renesas.com/tw/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-00fxdevkt-u-smartbond-tiny-da14531-bluetooth-low-energy-51-system-chip-usb-development-kit) for the Basic Development Kit.
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
+## Known Limitations
+
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+
 

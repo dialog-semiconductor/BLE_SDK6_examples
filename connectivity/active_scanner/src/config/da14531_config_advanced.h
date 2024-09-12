@@ -96,7 +96,9 @@
 /****************************************************************************************************************/
 // #define DB_HEAP_SZ              1024
 // #define ENV_HEAP_SZ             4928
-// #define MSG_HEAP_SZ             6880
+
+#define MSG_HEAP_SZ             10000
+
 // #define NON_RET_HEAP_SZ         2048
 
 /****************************************************************************************************************/
@@ -126,6 +128,10 @@
 #define CFG_NVDS_TAG_BLE_CA_MIN_RSSI        0x40
 #define CFG_NVDS_TAG_BLE_CA_NB_PKT          100
 #define CFG_NVDS_TAG_BLE_CA_NB_BAD_PKT      50
+
+
+#undef CFG_LOG_HEAP_USAGE
+
 
 /****************************************************************************************************************/
 /* Enables the BLE statistics measurement feature.                                                              */
@@ -241,7 +247,7 @@
 /* Code size for OTP copy on (extended sleep with OTP copy on). If the OTP copy is on and the default SDK       */
 /* scatter file is not used the following macro must define the code size in bytes for the OTP copy.            */
 /****************************************************************************************************************/
-#undef CFG_CODE_SIZE_FOR_OTP_COPY_ON
+//#undef CFG_CODE_SIZE_FOR_OTP_COPY_ON
 
 /****************************************************************************************************************/
 /* Temperature range selection.                                                                                 */
@@ -252,11 +258,7 @@
 /****************************************************************************************************************/
 #define CFG_AMB_TEMPERATURE
 
-/****************************************************************************************************************/
-/* Disable quadrature decoder on start up. The quadrature decoder is by default enabled on system power up and  */
-/* it may count events. This leads to WKUP_QUADEC_IRQn pending interrupts.                                      */
-/****************************************************************************************************************/
-//#define CFG_DISABLE_QUADEC_ON_START_UP
+
 
 /****************************************************************************************************************/
 /* Enable power optimizations using the XTAL16M adaptive settling algorithm.                                    */

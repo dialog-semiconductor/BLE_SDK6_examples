@@ -8,9 +8,10 @@ For information about the DA145xx platform and how to bring up your development 
 
 To run any of these SW examples, the user needs:
 
-- DA14531/DA14585/DA14586 hardware.
+- DA1453x/DA14585/DA14586 hardware.
 - Keil µvision.
-- Renesas SDK 6.0.22
+- e2 studio(New Update llvm compiler version support)
+- It is essential to always download and use the latest version of Renesas SDK6. These demo examples are continuously synchronized with the most recent SDK6 release unless otherwise specified.
 
 
 

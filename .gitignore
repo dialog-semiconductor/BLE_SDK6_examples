@@ -18,4 +18,6 @@
 artifacts
 *.DS_Store
 *metadata
-connectivity/multi_con_periph/Readme.md
+/DA14531/
+/Debug_RAM_DA14535/
+.gitignore

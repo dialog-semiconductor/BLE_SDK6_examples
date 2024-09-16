@@ -100,7 +100,6 @@
 /****************************************************************************************************************/
 #undef CFG_UART1_SDK
 
-
 /****************************************************************************************************************/
 /* Select external memory device for data storage                                                               */
 /* SPI FLASH  (#define CFG_SPI_FLASH_ENABLE)                                                                    */
@@ -119,4 +118,10 @@
 #undef CFG_SPI_DMA_SUPPORT
 #undef CFG_I2C_DMA_SUPPORT
 
-#endif // _DA14585_CONFIG_BASIC_H_
+/****************************************************************************************************************/
+/* Notify the SDK about the fixed power mode (currently used only for Bypass):                                  */
+/*     - CFG_POWER_MODE_BYPASS = Bypass mode                                                                    */
+/****************************************************************************************************************/
+//#undef CFG_POWER_MODE_BYPASS
+
+#endif // _DA14535_CONFIG_BASIC_H_

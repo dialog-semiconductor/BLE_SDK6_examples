@@ -54,14 +54,14 @@
 /****************************************************************************************************************/
 /* Enables WatchDog timer.                                                                                      */
 /****************************************************************************************************************/
-#define CFG_WDOG
+//#define CFG_WDOG
 
 /****************************************************************************************************************/
 /* Watchdog timer behavior in production mode:                                                                  */
 /*     Flag is not defined: Watchdog timer generates NMI at value 0.                                            */
 /*     Flag is defined    : Watchdog timer generates a WDOG (SYS) reset at value 0.                             */
 /****************************************************************************************************************/
-#undef CFG_WDG_TRIGGER_HW_RESET_IN_PRODUCTION_MODE
+//#undef CFG_WDG_TRIGGER_HW_RESET_IN_PRODUCTION_MODE
 
 /****************************************************************************************************************/
 /* Determines maximum concurrent connections supported by application. It configures the heap memory allocated  */

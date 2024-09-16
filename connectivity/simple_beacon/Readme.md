@@ -1,4 +1,4 @@
-# DA14531 - DA14585/586 Simple Beacon Example
+# DA1453x and DA14585/586 Simple Beacon Example
 
 ## Example description
 
@@ -46,7 +46,7 @@ For getting more information about the Non-Connectable Advertising, please refer
 
 ## Hardware & Software Configuration
 
-This example runs on DA14531 and DA14585/586 Bluetooth Smart SoC devices. 
+This example runs on DA1453x and DA14585/586 Bluetooth Smart SoC devices. 
 
   - Connect the ***DA145xx Pro Development Kit***  to the host computer via the USB connector. 
 
@@ -74,10 +74,29 @@ Jumpers are placed in default configurations. Refer to the getting started guide
 
 ![535_pro_dk](assets/53x_pro_dk.svg)
 
-### Software configuration
+## Software Configuration
+Download the latest version of Renesas SDK6.
+Install SEGGER’s J-Link tools.
+If using e² studio with LLVM instead of Keil, ensure your project settings are adjusted accordingly (instructions below).
 
 
-  - [SDK6.0.14](https://www.renesas.com/eu/en/document/swo/sdk601811821-da1453x-da145856) or later
+
+
+## Using e² studio with LLVM
+Setup for e² studio
+#. Switching to e² studio: Instead of using Keil, you can use e² studio with LLVM as the compiler toolchain. Make sure your project is configured for LLVM by selecting the appropriate toolchain in e² studio.
+
+
+#. Compile and Build: Open your project in e² studio and compile using LLVM. Ensure your environment variables and paths are properly set for the Renesas toolchain.
+
+#. Run and Debug: Connect your device, set the proper debug configuration in e² studio, and start debugging using J-Link.
+
+
+By switching to e² studio and LLVM, you can take advantage of advanced debugging tools and an open-source toolchain, while maintaining full compatibility with Renesas DA145xx devices.
+
+For detailed steps on using e² studio, refer to the Renesas e² studio User Guide available on the [Renesas website](https://lpccs-docs.renesas.com/e2_studio_sdk6_getting_started/index.html).
+
+  - Download the [SDK6 latest version](https://www.renesas.com/sdk6_latest)
 
   - ***SEGGER’s J-Link*** tools should be downloaded and installed.
 
@@ -105,7 +124,7 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 
 ```c
 
-#define USER_DATA  ("DA14585/586 & DA14531 Simple Beacon Software Example")
+#define USER_DATA  ("DA14585/586 & DA1453x Simple Beacon Software Example")
 
 ```
 
@@ -158,6 +177,11 @@ To verify please take a look at the BLE sniffer log data
 5. Full Scan Response Data.
 
 ![scan_resp](assets/scan_resp.png)
+
+
+## Note
+This example can be built by e2studio and LLVM compiler instead of using Keil.
+
 
 ## Further reading
 

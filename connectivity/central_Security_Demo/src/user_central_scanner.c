@@ -90,27 +90,28 @@ void user_print_addr(const struct bd_addr addr)
 	arch_printf("\n\r");
 }
 
-bool user_match_bd_addr(const struct bd_addr addr1, const struct bd_addr addr2)
-{
-	uint8_t addr1_bytes[6] = {0};
-	uint8_t addr2_bytes[6] = {0};
-	memcpy(&addr1_bytes,&addr1,6);
-	memcpy(&addr2_bytes,&addr2,6);
-	for(int i = 0;i<6;i++){
-		if(addr1_bytes[i] != addr2_bytes[i])
-			return false;
-	}
-	return true;
+bool user_match_bd_addr(const struct bd_addr addr1, const struct bd_addr addr2) {
+    uint8_t addr1_bytes[6] = {0};
+    uint8_t addr2_bytes[6] = {0};
+    memcpy(&addr1_bytes, &addr1, 6);
+    memcpy(&addr2_bytes, &addr2, 6);
+
+    for (int i = 0; i < 6; i++) {
+        if (addr1_bytes[i] != addr2_bytes[i]) {
+            return false;
+        }
+    }
+    return true;
 }
 
-void user_print_device_name(struct adv_device device){
-	if(device.device_name_len == 0)
-		arch_printf("N/A");
-	else{
-		for(int i =0; i<device.device_name_len; i++){
-			arch_printf("%c", device.device_name[i]);
-		}
-	}
+void user_print_device_name(struct adv_device device) {
+    if (device.device_name_len == 0) {
+        arch_printf("N/A");
+    } else {
+        for (int i = 0; i < device.device_name_len; i++) {
+            arch_printf("%c", device.device_name[i]);
+        }
+    }
 }
 
 /**
@@ -141,8 +142,8 @@ void user_print_device(struct adv_device device){
 			arch_printf("Low Duty Cycle Connectable");
 		}break;
 		default:{
-			arch_printf("Unknown Type");	
-		}break;			
+			arch_printf("Unknown Type");
+		}break;
 	}
 	arch_printf("\n\rBD ADDR: ");
 	user_print_addr(device.adv_addr);
@@ -183,7 +184,7 @@ void scan_start(void){
  ****************************************************************************************
  */
 void	user_connect_to_device(struct adv_device device){
-	wdg_resume();	
+	wdg_resume();
 	arch_printf("Connecting to ");
 	user_print_device_name(device);
 	arch_printf_flush();
@@ -201,7 +202,7 @@ static void uart_read_cb(uint16_t status)
 {
 	//Relaunch scanning if input is letter R
 	if(uart_input == 'r' || uart_input == 'R'){
-		wdg_resume();	
+		wdg_resume();
 		user_clear_devices();
 		user_scan_start();
 	}
@@ -242,7 +243,7 @@ void user_scan_stop(void)
 	app_easy_gap_advertise_stop(); //stop scanning
 	is_scanning = false;
 	for(int i = 0;i<device_count;i++){
-		user_print_device(scanned_devices[i]);	
+		user_print_device(scanned_devices[i]);
 	}
 	arch_printf("Scan Completed!\r\n");
 	arch_printf("Choose a device by input the number,\r\n");
@@ -280,7 +281,7 @@ void device_update(struct adv_report report, uint8_t idx){
 			if(report.data[i] == 0x09 && report.data_len-i>=report.data[i-1]){
 				scanned_devices[idx].device_name_len = report.data[i-1];
 				memcpy(&scanned_devices[idx].device_name, &report.data[i+1], report.data[i-1]);
-				
+
 				break;
 			}
 		}
@@ -360,7 +361,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
             // Cast the "param" pointer to the appropriate message structure
             struct gapc_param_updated_ind const *msg_param = (struct gapc_param_updated_ind const *)(param);
 
-						
+
             // Check if updated Conn Params filled to preferred ones
             if ((msg_param->con_interval >= user_connection_param_conf.intv_min) &&
                 (msg_param->con_interval <= user_connection_param_conf.intv_max) &&

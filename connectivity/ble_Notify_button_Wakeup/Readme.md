@@ -1,4 +1,4 @@
-# BLE Notifications on Button Press with Wake-up Controller
+# DA1453x and DA14585/586 BLE Notifications on Button Press with Wake-up Controller
 
 ## Example description
 
@@ -25,9 +25,14 @@ This example shows how to configure a DA14531 or DA14585/586 device to send noti
 ### Software configuration
 
  This example requires:
- - [SDK6.0.14](https://www.dialog-semiconductor.com/da14531_sdk_latest).
+ - Download the [SDK6 latest version](https://www.renesas.com/sdk6_latest)
  - **SEGGER’s J-Link** tools should be downloaded and installed.
  - Additionally, an application like LightBlue Explorer must be used to act as a BLE central. It can be found on [Google Play](https://play.google.com/store/apps/details?id=com.punchthrough.lightblueexplorer) or on the [App Store](https://apps.apple.com/gb/app/lightblue-explorer/id557428110).
+
+
+## Note
+This example can be built by e2studio and LLVM compiler instead of using Keil.
+
 
 ## How to run the example
 
@@ -74,12 +79,26 @@ For the initial setup of the project that involves linking the SDK to this SW ex
 	![ble-notify-wkup-response.png](assets/ble-notify-wkup-response.png)
 
 	
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-
 - There are no known limitations for this example. But you can check and refer to the following application note for
-[known hardware limitations for DA1458x devices](https://www.dialog-semiconductor.com/sites/default/files/da1458x-knownlimitations_2019_01_07.pdf) or [known hardware limitations for DA14531 devices](https://www.dialog-semiconductor.com/da14531_HW_Limitation).
-- Dialog Software [Forum link](https://www.dialog-semiconductor.com/forum).
-- you can also refer to the [DA14585/DA14586 Getting Started Guide with the PRO-Development Kit](http://lpccs-docs.dialog-semiconductor.com/da14585_getting_started/index.html) or the [DA14531 Getting Started guide](https://www.dialog-semiconductor.com/da14531-getting-started).
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+
 
 

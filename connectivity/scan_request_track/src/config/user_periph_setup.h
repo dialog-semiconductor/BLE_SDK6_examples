@@ -46,7 +46,6 @@
  ****************************************************************************************
  */
 
-
 /****************************************************************************************/
 /* UART2 configuration to use with arch_console print messages                          */
 /****************************************************************************************/
@@ -76,8 +75,13 @@
 /* Production debug output configuration                                               */
 /***************************************************************************************/
 #if PRODUCTION_DEBUG_OUTPUT
-#define PRODUCTION_DEBUG_PORT   GPIO_PORT_0
-#define PRODUCTION_DEBUG_PIN    GPIO_PIN_11
+#if defined (__DA14531__)
+    #define PRODUCTION_DEBUG_PORT   GPIO_PORT_0
+    #define PRODUCTION_DEBUG_PIN    GPIO_PIN_11
+#else
+    #define PRODUCTION_DEBUG_PORT   GPIO_PORT_2
+    #define PRODUCTION_DEBUG_PIN    GPIO_PIN_5
+#endif
 #endif
 
 /*

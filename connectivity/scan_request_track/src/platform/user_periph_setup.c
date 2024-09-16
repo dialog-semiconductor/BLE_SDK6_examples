@@ -105,13 +105,6 @@ void periph_init(void)
 #if defined (__DA14531__)
     // In Boost mode enable the DCDC converter to supply VBAT_HIGH for the used GPIOs
     syscntl_dcdc_turn_on_in_boost(SYSCNTL_DCDC_LEVEL_3V0);
-
-    // In ES1 DA14531 the debugger is left disabled by the booter when it loads the
-    // application image to RAM.
-#if defined (__ES1_DA14531__)
-    syscntl_load_debugger_cfg();
-#endif
-
 #else
     // Power up peripherals' power domain
     SetBits16(PMU_CTRL_REG, PERIPH_SLEEP, 0);

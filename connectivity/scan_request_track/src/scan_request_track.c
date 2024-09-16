@@ -52,7 +52,8 @@
  * GLOBAL VARIABLE DEFINITIONS
  ****************************************************************************************
  */
-scn_response_callback *scn_rsp_cb               __attribute__((section(".bss."))); //@RETENTION MEMORY
+
+scn_response_callback *scn_rsp_cb               __SECTION_ZERO("retention_mem_area0"); //@RETENTION MEMORY
 
 /*
  * FUNCTION DEFINITIONS
@@ -62,9 +63,7 @@ static void user_scan_request_cb(struct scan_req_data_msg const * param);
 
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
-		arch_printf("Print");
 	default_app_on_connection(connection_idx, param);
-	
 }
 
 void user_on_disconnect( struct gapc_disconnect_ind const *param )
@@ -100,7 +99,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
 static void user_scan_request_cb(struct scan_req_data_msg const * param)
 {
-    arch_printf("Scan request from ");
+  arch_printf("Scan request from ");
 	arch_printf("%02x:%02x:%02x:%02x:%02x:%02x \n\r", 
                 param->scn_bd_address[5],
                 param->scn_bd_address[4],

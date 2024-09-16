@@ -1,4 +1,4 @@
-﻿# Switching the DA14531 between BLE modes
+﻿# Switching the DA1453x between BLE modes
 
 ## Example description
 
@@ -9,6 +9,13 @@ In this example a closer look will be taken at switching BLE roles for the DA145
 - Oberserver (Scanning role)
 - No role
 
+Devices naming:
+
+- DA1453x is refering to DA14531-00, DA14531-01, DA14530 and DA14535.
+- The DA14531-00 is the main DA14531 device. The -00 is just a new naming to introduce the variant DA14531-01. 
+- The DA14531-01 is a ROM variant of the main DA14531-00.
+- The DA14535 is a DA14531 upgrade.
+
 ## HW and SW configuration
 
 This example runs on the DA14531 SoC (System on Chip) device:
@@ -17,9 +24,10 @@ This example runs on the DA14531 SoC (System on Chip) device:
 
 The user manual for the development kits can be found:
 
-- [here](https://www.dialog-semiconductor.com/products/da14531-development-kit-pro) for the DA145xxDEVKT-P PRO-Motherboard.
+- For the DA14531 getting started guide you can refer to [UM-B-117](https://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
 
-To run the program from flash or OTP, please visit chapter 11 of the [SmartSnippets Toolbox User Manual](http://lpccs-docs.dialog-semiconductor.com/SmartSnippetsToolbox5.0.8_UM/index.html )
+- For the DA14535 getting started guide you can refer to this [UM-B-165](https://lpccs-docs.renesas.com/DA14535/UM-B-165-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html#device-family-getting-started-with-the-pro-development-kits)
+
 
 ### Hardware configuration
 
@@ -27,14 +35,15 @@ For this example the headers should be configured as on the image below.
 
 ![mb_setup](assets/mb_setup.svg)
 
+- This example works also on the DA1453x DEVKT-P with with any DA1453x Daughterboard
+	![Motherboard_Hardware_Configuration_DA14531](assets/da14535.svg)
+
 ### Software configuration
 
 This example requires:
 
 - Terminal software like Termite or Teraterm
-- BLE scanner app like BLE scanner for Android (can be found [here](https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner))
-- [SDK6 latest version](https://www.renesas.com/sg/en/document/swo/sdk601811821-da1453x-da145856)
-- Keil5
+- [SDK6 latest version](https://www.renesas.com/sdk6_latest)
 - **SEGGER’s J-Link** tools should be downloaded and installed.
 
 ### Running the example
@@ -106,7 +115,24 @@ The terminal can also be turned of, but this is a funcion within the SDK itself 
 In order to make no role possible another option has to be configured within the file `user_config.h`. The setting **app_default_sleep_mode** has to be set to **ARCH_EXT_SLEEP_ON**. If this is not done then the watchdog will throw an error, because the DA14531 will not be doing anything while it stays on.
 ![sleep_setting](assets/sleep.png)
 
+## Further reading
+
+- [Wireless Connectivity Forum](https://lpccs-docs.renesas.com/lpc_docs_index/DA145xx.html)
+
+
+
 ## Known Limitations
 
-- Refer to the following application note for DA14531 known [hardware limitations](https://www.dialog-semiconductor.com/da14531_HW_Limitation)
-- Also refer to Dialog Software [Forum Link](https://support.dialog-semiconductor.com/forum)
+- There are no known limitations for this example. But you can check and refer to the following application note for
+[SDK6 known limitations](https://lpccs-docs.renesas.com/sdk6_kll/index.html)
+
+## Feedback and support ?
+
+If you have any comments or suggestions about this document, you can contact us through:
+
+- [Wireless Connectivity Forum](https://community.renesas.com/wireles-connectivity)
+
+- [Contact Technical Support](https://www.renesas.com/eu/en/support?nid=1564826&issue_type=technical)
+
+- [Contact a Sales Representative](https://www.renesas.com/eu/en/buy-sample/locations)
+
